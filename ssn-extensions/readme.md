@@ -1,0 +1,1 @@
+This directory contains artefacts associated with [Extensions to the Semantic Sensor Network Ontology](https://www.w3.org/TR/vocab-ssn-ext/) 
