@@ -107,9 +107,11 @@ sosa:Sample
   rdfs:isDefinedBy sosa: .
 
   sosa:hasSample a owl:InverseFunctionalProperty ;
+    owl:inverseOf sosa:isSampleOf ;
     rdfs:isDefinedBy sosa: .
 
   sosa:isSampleOf a owl:FunctionalProperty ;
+    owl:inverseOf sosa:hasSample ;
     rdfs:isDefinedBy sosa: .
 
   sosa:hasOriginalSample a owl:FunctionalProperty ;
@@ -155,9 +157,11 @@ sosa:Platform
 
   sosa:hosts
     owl:propertyChainAxiom ( ssn:inDeployment ssn:deployedSystem ) ;
+    owl:inverseOf sosa:isHostedBy ;
     rdfs:isDefinedBy sosa: .
  
   sosa:isHostedBy
+    owl:inverseOf sosa:hosts ;
     rdfs:isDefinedBy sosa: .
 
 
@@ -251,9 +255,11 @@ sosa:Sensor
 
   sosa:observes 
     rdfs:subPropertyOf ssn:forProperty ;
+    owl:inverseOf sosa:isObservedBy ;
     rdfs:isDefinedBy sosa: .
 
   sosa:isObservedBy
+    owl:inverseOf sosa:observes ;
     rdfs:isDefinedBy sosa: .
 
 sosa:Actuator
@@ -281,12 +287,14 @@ sosa:usedProcedure
   rdfs:isDefinedBy sosa: .
 
 sosa:hasFeatureOfInterest
+  owl:inverseOf sosa:isFeatureOfInterestOf ;
   rdfs:isDefinedBy sosa: .
 
 sosa:hasUltimateFeatureOfInterest
   rdfs:isDefinedBy sosa: .
 
 sosa:isFeatureOfInterestOf
+  owl:inverseOf sosa:hasFeatureOfInterest ;
   rdfs:isDefinedBy sosa: .
 
 sosa:Observation a owl:Class ;
@@ -312,13 +320,16 @@ sosa:Observation a owl:Class ;
   rdfs:isDefinedBy sosa: .
 
   sosa:madeObservation
+    owl:inverseOf sosa:madeBySensor ;
     rdfs:isDefinedBy sosa: .
     
   sosa:madeBySensor 
     rdfs:subPropertyOf sosa:madeByObserver ;
+    owl:inverseOf sosa:madeObservation ;
     rdfs:isDefinedBy sosa: .
     
   sosa:madeByObserver 
+    owl:inverseOf sosa:madeObservation ;
     rdfs:isDefinedBy sosa: .
     
   sosa:madeOnHost
@@ -343,15 +354,19 @@ sosa:Actuation a owl:Class ;
   rdfs:isDefinedBy sosa: .
 
   sosa:madeActuation
+    owl:inverseOf sosa:madeByActuator ;
     rdfs:isDefinedBy sosa: .
 
   sosa:madeByActuator 
+    owl:inverseOf sosa:madeActuation ;
     rdfs:isDefinedBy sosa: .
 
   sosa:actsOnProperty
+    owl:inverseOf sosa:isActedOnBy ;
     rdfs:isDefinedBy sosa: .
 
   sosa:isActedOnBy
+    owl:inverseOf sosa:actsOnProperty ;
     rdfs:isDefinedBy sosa: .
 
 sosa:Sampling a owl:Class ;
@@ -368,9 +383,11 @@ sosa:Sampling a owl:Class ;
   rdfs:isDefinedBy sosa: .
 
   sosa:madeSampling 
+    owl:inverseOf sosa:madeBySampler ;
     rdfs:isDefinedBy sosa: .
 
   sosa:madeBySampler 
+    owl:inverseOf sosa:madeSampling ;
     rdfs:isDefinedBy sosa: .
 
 sosa:PreparationStep a owl:Class ;
@@ -451,9 +468,11 @@ sosa:Result
   rdfs:isDefinedBy sosa: .
 
   sosa:hasResult 
+    owl:inverseOf sosa:isResultOf ;
     rdfs:isDefinedBy sosa: .
 
   sosa:isResultOf
+    owl:inverseOf sosa:hasResult ;
     rdfs:isDefinedBy sosa: .
 
   sosa:hasSimpleResult 
@@ -465,6 +484,15 @@ sosa:Result
   sosa:phenomenonTime
     rdfs:isDefinedBy sosa: .
 
+#  sosa:hasResultingSample a owl:ObjectProperty ;
+#    rdfs:subPropertyOf sosa:hasResult ;
+#    owl:inverseOf sosa:isSamplingResultOf ;
+#    rdfs:isDefinedBy sosa: .
+
+#  sosa:isSamplingResultOf a owl:ObjectProperty ;
+#    rdfs:subPropertyOf sosa:isResultOf ;
+#    owl:inverseOf sosa:hasResultingSample ;
+#    rdfs:isDefinedBy sosa: .
 
 ## Systems
 

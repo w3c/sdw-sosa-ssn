@@ -90,7 +90,6 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
     rdfs:comment "Relation between a FeatureOfInterest and the Sample used to represent it."@en ;
     schema:domainIncludes sosa:FeatureOfInterest ;
     schema:rangeIncludes sosa:Sample ;
-    owl:inverseOf sosa:isSampleOf ;
     rdfs:isDefinedBy sosa: .
 
   sosa:isSampleOf a owl:ObjectProperty ;
@@ -99,7 +98,6 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
     rdfs:comment "Relation from a Sample to the FeatureOfInterest that it is intended to be representative of."@en ;
     schema:domainIncludes sosa:Sample ;
     schema:rangeIncludes sosa:FeatureOfInterest ;
-    owl:inverseOf sosa:hasSample ;
     rdfs:isDefinedBy sosa: .
 
   sosa:hasOriginalSample a owl:ObjectProperty ;
@@ -183,7 +181,6 @@ sosa:hosts a owl:ObjectProperty ;
   schema:rangeIncludes sosa:Actuator ;
   schema:rangeIncludes sosa:Sampler ;
   schema:rangeIncludes sosa:Host ;
-  owl:inverseOf sosa:isHostedBy ;
   rdfs:isDefinedBy sosa: .
 
 sosa:isHostedBy a owl:ObjectProperty ;
@@ -195,7 +192,6 @@ sosa:isHostedBy a owl:ObjectProperty ;
   schema:domainIncludes sosa:Sampler ;
   schema:domainIncludes sosa:Host ;
   schema:rangeIncludes sosa:Host ;
-  owl:inverseOf sosa:hosts ;
   rdfs:isDefinedBy sosa: .
 
 sosa:Host a rdfs:Class , owl:Class ;
@@ -259,7 +255,6 @@ sosa:Sensor a rdfs:Class , owl:Class ;
     schema:domainIncludes sosa:Sensor ;
     schema:domainIncludes sosa:Observer ;
     schema:rangeIncludes sosa:ObservableProperty ;
-    owl:inverseOf sosa:isObservedBy ;
     rdfs:isDefinedBy sosa: .
 
   sosa:isObservedBy a owl:ObjectProperty ;
@@ -269,7 +264,6 @@ sosa:Sensor a rdfs:Class , owl:Class ;
     schema:domainIncludes sosa:ObservableProperty ;
     schema:rangeIncludes sosa:Sensor ;
     schema:rangeIncludes sosa:Observer ;
-    owl:inverseOf sosa:observes ;
     rdfs:isDefinedBy sosa: .
 
 sosa:Actuator a rdfs:Class , owl:Class ;
@@ -320,7 +314,6 @@ sosa:hasFeatureOfInterest a owl:ObjectProperty ;
   schema:domainIncludes sosa:Sampling ;
   schema:rangeIncludes sosa:FeatureOfInterest ;
   schema:rangeIncludes sosa:Sample ;
-  owl:inverseOf sosa:isFeatureOfInterestOf ;
   rdfs:isDefinedBy sosa: .
 
 sosa:hasUltimateFeatureOfInterest a owl:ObjectProperty ;
@@ -344,7 +337,6 @@ sosa:isFeatureOfInterestOf a owl:ObjectProperty ;
   schema:rangeIncludes sosa:Observation ;
   schema:rangeIncludes sosa:Actuation ;
   schema:rangeIncludes sosa:Sampling ;
-  owl:inverseOf sosa:hasFeatureOfInterest ;
   rdfs:isDefinedBy sosa: .
 
 sosa:Observation a rdfs:Class , owl:Class ;
@@ -361,7 +353,6 @@ sosa:Observation a rdfs:Class , owl:Class ;
     schema:domainIncludes sosa:Sensor ;
     schema:domainIncludes sosa:Observer ;
     schema:rangeIncludes sosa:Observation ;
-    owl:inverseOf sosa:madeBySensor ;
     rdfs:isDefinedBy sosa: .
 
   sosa:madeBySensor rdf:type owl:ObjectProperty ;
@@ -370,7 +361,6 @@ sosa:Observation a rdfs:Class , owl:Class ;
     rdfs:comment "Relation between an Observation and the Sensor which made the Observation."@en ;
     schema:domainIncludes sosa:Observation ;
     schema:rangeIncludes sosa:Sensor ;
-    owl:inverseOf sosa:madeObservation ;
     rdfs:isDefinedBy sosa: .
 
   sosa:observedProperty a owl:ObjectProperty ;
@@ -387,7 +377,6 @@ sosa:Observation a rdfs:Class , owl:Class ;
     rdfs:comment "Relation between an Observation and the Observer which made the Observation."@en ;
     schema:domainIncludes sosa:Observation ;
     schema:rangeIncludes sosa:Observer ;
-    owl:inverseOf sosa:madeObservation ;
     rdfs:isDefinedBy sosa: .
 
   sosa:madeOnHost rdf:type owl:ObjectProperty ;
@@ -411,7 +400,6 @@ sosa:Actuation a rdfs:Class , owl:Class ;
     rdfs:comment "Relation between an Actuator and the Actuation it has made."@en ;
     schema:domainIncludes sosa:Actuator ;
     schema:rangeIncludes sosa:Actuation ;
-    owl:inverseOf sosa:madeByActuator ;
     rdfs:isDefinedBy sosa: .
 
   sosa:madeByActuator a owl:ObjectProperty ;
@@ -420,7 +408,6 @@ sosa:Actuation a rdfs:Class , owl:Class ;
     rdfs:comment "Relation linking an Actuation to the Actuator that made that Actuation."@en ;
     schema:domainIncludes sosa:Actuation ;
     schema:rangeIncludes sosa:Actuator ;
-    owl:inverseOf sosa:madeActuation ;
     rdfs:isDefinedBy sosa: .
 
   sosa:actsOnProperty a owl:ObjectProperty ;
@@ -430,7 +417,6 @@ sosa:Actuation a rdfs:Class , owl:Class ;
     skos:example "In the activity (Actuation) of automatically closing a window if the temperature in a room drops below 20 degrees Celsius, the property on which the Actuator acts upon is the state of the window as it changes from being open to being closed. "@en ;
     schema:domainIncludes sosa:Actuation ;
     schema:rangeIncludes sosa:ActuatableProperty ;
-    owl:inverseOf sosa:isActedOnBy ;
     rdfs:isDefinedBy sosa: .
 
   sosa:isActedOnBy a owl:ObjectProperty ;
@@ -440,7 +426,6 @@ sosa:Actuation a rdfs:Class , owl:Class ;
     skos:example "In the activity (Actuation) of automatically closing a window if the temperature in a room drops below 20 degrees Celsius, the property on which the Actuator acts upon is the state of the window as it changes from being open to being closed. "@en ;
     schema:domainIncludes sosa:ActuatableProperty ;
     schema:rangeIncludes sosa:Actuation ;
-    owl:inverseOf sosa:actsOnProperty ;
     rdfs:isDefinedBy sosa: .
 
 sosa:Sampling a rdfs:Class , owl:Class ;
@@ -466,7 +451,6 @@ sosa:Sampling a rdfs:Class , owl:Class ;
     rdfs:comment "Relation between a Sampler (sampling device or entity) and the Sampling act it performed."@en ;
     schema:domainIncludes sosa:Sampler ;
     schema:rangeIncludes sosa:Sampling ;
-    owl:inverseOf sosa:madeBySampler ;
     rdfs:isDefinedBy sosa: .
 
   sosa:madeBySampler a owl:ObjectProperty ;
@@ -475,7 +459,6 @@ sosa:Sampling a rdfs:Class , owl:Class ;
     rdfs:comment "Relation linking an act of Sampling to the Sampler (sampling device or entity) that made it."@en ;
     schema:domainIncludes sosa:Sampling ;
     schema:rangeIncludes sosa:Sampler ;
-    owl:inverseOf sosa:madeSampling ;
     rdfs:isDefinedBy sosa: .
 
 sosa:PreparationStep a rdfs:Class , owl:Class ;
@@ -567,7 +550,6 @@ sosa:Result a rdfs:Class , owl:Class ;
     schema:domainIncludes sosa:Sampling ;
     schema:rangeIncludes sosa:Result ;
     schema:rangeIncludes sosa:Sample ;
-    owl:inverseOf sosa:isResultOf ;
     rdfs:isDefinedBy sosa: .
 
   sosa:isResultOf a owl:ObjectProperty ;
@@ -579,7 +561,6 @@ sosa:Result a rdfs:Class , owl:Class ;
     schema:rangeIncludes sosa:Actuation ;
     schema:rangeIncludes sosa:Observation ;
     schema:rangeIncludes sosa:Sampling ;
-    owl:inverseOf sosa:hasResult ;
     rdfs:isDefinedBy sosa: .
 
   sosa:hasSimpleResult a owl:DatatypeProperty ;
@@ -600,7 +581,6 @@ sosa:Result a rdfs:Class , owl:Class ;
 #    rdfs:comment "Relation linking an act of Sampling and the new Sample created as a result."@en ;
 #    schema:domainIncludes sosa:Sampling ;
 #    schema:rangeIncludes sosa:Sample ;
-#    owl:inverseOf sosa:isSamplingResultOf ;
 #    rdfs:isDefinedBy sosa: .
 
 #  sosa:isSamplingResultOf a owl:ObjectProperty ;
@@ -609,7 +589,6 @@ sosa:Result a rdfs:Class , owl:Class ;
 #    rdfs:comment "Relation linking a Sample to the act of Sampling that created or caused it."@en ;
 #    schema:domainIncludes sosa:Sample ;
 #    schema:rangeIncludes sosa:Sampling ;
-#    owl:inverseOf sosa:hasResultingSample ;
 #    rdfs:isDefinedBy sosa: .
 
 
