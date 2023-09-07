@@ -53,24 +53,6 @@ sosa:FeatureOfInterest a rdfs:Class ; a owl:Class ;
   skos:example "When measuring the height of a tree, the height is the observed ObservableProperty, 20m may be the Result of the Observation, and the tree is the FeatureOfInterest. A window is a FeatureOfInterest for an automatic window control Actuator."@en ;
   rdfs:isDefinedBy sosa: .
 
-sosa:Property a owl:Class ;
-  rdfs:label "Property"@en ;
-  skos:definition "A quality of an entity. An aspect of an entity that is intrinsic to and cannot exist without the entity."@en ;
-  rdfs:comment "A quality of an entity. An aspect of an entity that is intrinsic to and cannot exist without the entity."@en ;
-  rdfs:isDefinedBy sosa: .
-
-  sosa:hasProperty a owl:ObjectProperty ; 
-    rdfs:label "has property"@en ;
-    skos:definition "Relation between an entity and a Property of that entity."@en ;
-    rdfs:comment "Relation between an entity and a Property of that entity."@en ;
-    rdfs:isDefinedBy sosa: .
-
-  sosa:isPropertyOf a owl:ObjectProperty ;
-    rdfs:label "is property of"@en ;
-    skos:definition "Relation between a Property and the entity it belongs to."@en ;
-    rdfs:comment "Relation between a Property and the entity it belongs to."@en ;
-    rdfs:isDefinedBy sosa: .
-
   sosa:ObservableProperty a rdfs:Class , owl:Class ;
     rdfs:label "Observable Property"@en ;
     skos:definition "An observable quality (property, characteristic) of a FeatureOfInterest."@en ;
@@ -84,7 +66,6 @@ sosa:Property a owl:Class ;
     rdfs:comment "An actuatable quality (property, characteristic) of a FeatureOfInterest."@en ;
     skos:example "A window actuator acts by changing the state between a frame and a window. The ability of the window to be opened and closed is its ActuatableProperty."@en ;
     rdfs:isDefinedBy sosa: .
-
 
 ## Sample 
 
@@ -230,30 +211,6 @@ sosa:Procedure a rdfs:Class , owl:Class ;
   skos:note "Many observations may be created via the same Procedure, the same way as many tables are assembled using the same instructions (as information objects, not their concrete realization)."@en ;
   rdfs:isDefinedBy sosa: .
 
-  sosa:hasInput a owl:ObjectProperty ;
-    rdfs:label "has input"@en ;
-    skos:definition "Relation between a Procedure and an Input to it."@en ;
-    rdfs:comment "Relation between a Procedure and an Input to it."@en ;
-    rdfs:isDefinedBy sosa: .
-
-    sosa:Input a owl:Class ;
-      rdfs:label "Input"@en ;
-      skos:definition "Any information that is provided to a Procedure for its use."@en ;
-      rdfs:comment "Any information that is provided to a Procedure for its use."@en ;
-      rdfs:isDefinedBy sosa: .
-
-  sosa:hasOutput a owl:ObjectProperty ;
-    rdfs:label "has output"@en ;
-    skos:definition "Relation between a Procedure and an Output of it."@en ;
-    rdfs:comment "Relation between a Procedure and an Output of it."@en ;
-    rdfs:isDefinedBy sosa: .
-
-    sosa:Output a owl:Class ;
-      rdfs:label "Output"@en ;
-      skos:definition "Any information that is reported from a Procedure."@en ;
-      rdfs:comment "Any information that is reported from a Procedure."@en ;
-      rdfs:isDefinedBy sosa: .
-
 sosa:ObservingProcedure a rdfs:Class , owl:Class ;
   rdfs:label "Observing Procedure"@en ;
   skos:definition "The description of steps performed in order to determine the value of an ObservableProperty by an Observer."@en ;
@@ -379,20 +336,6 @@ sosa:isFeatureOfInterestOf a owl:ObjectProperty ;
   schema:rangeIncludes sosa:Observation ;
   schema:rangeIncludes sosa:Actuation ;
   schema:rangeIncludes sosa:Sampling ;
-  rdfs:isDefinedBy sosa: .
-
-sosa:implements a owl:ObjectProperty ;
-  rdfs:label "implements"@en ;
-  skos:definition "Relation between an entity that implements a Procedure in some executable way and the Procedure (an algorithm, procedure or method)."@en ;
-  rdfs:comment "Relation between an entity that implements a Procedure in some executable way and the Procedure (an algorithm, procedure or method)."@en ;
-  skos:example "For example, the relationship between a sensor and the scientific measuring Procedure via which it senses."@en ;
-  rdfs:isDefinedBy sosa: .
-
-sosa:implementedBy a owl:ObjectProperty ;
-  rdfs:label "implemented by"@en ;
-  skos:definition "Relation between a Procedure (an algorithm, procedure or method) and an entity that implements that Procedure in some executable way."@en ;
-  rdfs:comment "Relation between a Procedure (an algorithm, procedure or method) and an entity that implements that Procedure in some executable way."@en ;
-  skos:example "For example, the relationship between a scientific measuring Procedure and a sensor that senses via that Procedure."@en ;
   rdfs:isDefinedBy sosa: .
 
 sosa:Observation a rdfs:Class , owl:Class ;
@@ -587,34 +530,6 @@ sosa:resultTime
 sosa:usedProcedure
   schema:domainIncludes sosa:ObservationCollection .
 
-## Stimulus
-
-sosa:Stimulus a owl:Class ;
-  rdfs:label "Stimulus"@en ;
-  skos:definition "An event in the real world that 'triggers' the Sensor. The properties associated to the Stimulus may be different to the eventual observed ObservableProperty. It is the event, not the object, that triggers the Sensor."@en ;
-  rdfs:comment "An event in the real world that 'triggers' the Sensor. The properties associated to the Stimulus may be different to the eventual observed ObservableProperty. It is the event, not the object, that triggers the Sensor."@en ;
-  rdfs:isDefinedBy sosa: .
-
-  sosa:wasOriginatedBy a owl:ObjectProperty ;
-    rdfs:label "was originated by"@en ;
-    skos:definition "Relation between an Observation and the Stimulus that originated it."@en ;
-    rdfs:comment "Relation between an Observation and the Stimulus that originated it."@en ;
-    rdfs:isDefinedBy sosa: .
-
-  sosa:detects a owl:ObjectProperty ;
-    rdfs:label "detects"@en ;
-    skos:definition "A relation from a Sensor to the Stimulus that the Sensor detects. The Stimulus itself will be serving as a proxy for some ObservableProperty."@en ;
-    rdfs:comment "A relation from a Sensor to the Stimulus that the Sensor detects. The Stimulus itself will be serving as a proxy for some ObservableProperty."@en ;
-    rdfs:isDefinedBy sosa: .
-
-  sosa:isProxyFor a owl:ObjectProperty ;
-    rdfs:label "is proxy for"@en ;
-    skos:definition "A relation from a Stimulus to the Property that the Stimulus is serving as a proxy for."@en ;
-    rdfs:comment "A relation from a Stimulus to the Property that the Stimulus is serving as a proxy for."@en ;
-    skos:example "For example, the expansion of quicksilver is a stimulus that serves as a proxy for some temperature property. An increase or decrease in the velocity of spinning cups on a wind sensor is serving as a proxy for the wind speed."@en ;
-    rdfs:isDefinedBy sosa: .
-
-  
 ## Result 
 
 sosa:Result a rdfs:Class , owl:Class ;
@@ -693,74 +608,4 @@ sosa:phenomenonTime a owl:ObjectProperty ;
   schema:domainIncludes sosa:Observation ;
   schema:domainIncludes sosa:Sampling ;
   schema:rangeIncludes time:TemporalEntity ;
-  rdfs:isDefinedBy sosa: .
-
-## Systems
-
-sosa:System a owl:Class ;
-  rdfs:label "System"@en ;
-  skos:definition "System is a unit of abstraction for pieces of infrastructure that implement Procedures. A System may have components, its subsystems, which are other systems."@en ; 
-  rdfs:comment "System is a unit of abstraction for pieces of infrastructure that implement Procedures. A System may have components, its subsystems, which are other systems."@en ; 
-  rdfs:isDefinedBy sosa: .
-
-  sosa:hasSubSystem a owl:ObjectProperty ;
-    rdfs:label "has subsystem"@en ;
-    skos:definition "Relation between a System and its component parts."@en ;
-    rdfs:comment "Relation between a System and its component parts."@en ;
-    rdfs:isDefinedBy sosa: .
-
-
-## Deployment
-
-sosa:Deployment a owl:Class ;
-  rdfs:label "Deployment"@en ;
-  skos:definition "Describes the Deployment of one or more assets for a particular purpose. Deployment may be done on a Host."@en ;
-  rdfs:comment "Describes the Deployment of one or more assets for a particular purpose. Deployment may be done on a Host."@en ;
-  skos:example "For example, a temperature Sensor deployed on a wall, or a whole network of Sensors deployed for an Observation campaign."@en ;
-  rdfs:isDefinedBy sosa: .
-
-  sosa:deployedAsset a owl:ObjectProperty ;
-    rdfs:label "deployed asset"@en ;
-    skos:definition "Relation between a Deployment and a deployed asset."@en ;
-    rdfs:comment "Relation between a Deployment and a deployed asset."@en ;
-    rdfs:isDefinedBy sosa: .
-
-  sosa:deployedOnHost a owl:ObjectProperty ;
-    rdfs:label "deployed on host"@en ;
-    skos:definition "Relation between a Deployment and the Host on which the Systems are deployed."@en ;
-    rdfs:comment "Relation between a Deployment and the Host on which the Systems are deployed."@en ;
-    rdfs:isDefinedBy sosa: .
-
-  sosa:deployedSystem a owl:ObjectProperty ;
-    rdfs:label "deployed system"@en ;
-    skos:definition "Relation between a Deployment and a deployed System."@en ;
-    rdfs:comment "Relation between a Deployment and a deployed System."@en ;
-    rdfs:isDefinedBy sosa: .
-
-  sosa:hasDeployment a owl:ObjectProperty ;
-    rdfs:label "has deployment"@en ;
-    skos:definition "Relation between a System and a Deployment, recording that the System is deployed in that Deployment."@en ;
-    rdfs:comment "Relation between a System and a Deployment, recording that the System is deployed in that Deployment."@en ;
-    rdfs:isDefinedBy sosa: .
-
-  sosa:deployedOnPlatform a owl:ObjectProperty ;
-    rdfs:label "deployed on platform"@en ;
-    skos:definition "Relation between a Deployment and the Platform on which the Systems are deployed."@en ;
-    rdfs:comment "Relation between a Deployment and the Platform on which the Systems are deployed."@en ;
-    rdfs:isDefinedBy sosa: .
-
-  sosa:inDeployment a owl:ObjectProperty ;
-    rdfs:label "in deployment"@en ;
-    skos:definition "Relation between a Platform and a Deployment, meaning that the deployedSystems of the Deployment are hosted on the Platform."@en ;
-    rdfs:comment "Relation between a Platform and a Deployment, meaning that the deployedSystems of the Deployment are hosted on the Platform."@en ;
-    skos:example "For example, a relation between a buoy and a deployment of several Sensors."@en ;
-    rdfs:isDefinedBy sosa: .
-
-## forProperty
-
-sosa:forProperty a owl:ObjectProperty ;
-  rdfs:label "for property"@en ;
-  skos:definition "A relation between some aspect of an entity and a Property."@en ;
-  rdfs:comment "A relation between some aspect of an entity and a Property."@en ;
-  skos:example "For example, from a Sensor to the properties it can observe; from an Actuator to the properties it can act on; from a Deployment to the properties it was installed to observe or act on; from a SystemCapability to the Property the capability is described for."@en ;
   rdfs:isDefinedBy sosa: .
