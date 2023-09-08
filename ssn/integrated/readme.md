@@ -1,8 +1,28 @@
 # integrated
 
 This directory is the home of the primary artefacts relating to SSN and SOSA. 
+
 A revision of SSN/SOSA to harmonize with ISO 19156:2023 Observations, Measurements and Samples is underway through the W3C Spatial Data on the Web Working Group, and the OGC. 
 
+The need to revisit SOSA/SSN was canvassed at meetings of the Geosemantics/SDWWG and O&M SWG at the OGC member meeting in Frascati Feb 2023. 
+
+The following approach was agreed 
+- SOSA/SSN should be updated to align with OMS, the revision of ISO 19156 issued in 2023
+- alignment with the OGC Connected Systems API, and Sensor Things API should also be pursued
+- updates to SOSA/SSN must maintain backward compatibility for implementations using the 2017 ontology
+ 
+## Background and history
+
+The W3C [Recommendation for Semantic Sensor Network Ontology](https://www.w3.org/TR/vocab-ssn/) was published in 2017. 
+It included an RDF implementation of the [OGC/ISO Observations and Measurements standard (2011)](https://www.ogc.org/standard/om/) together with additional elements related to Sampling and Actuation. 
+
+A W3C Working Draft for some [Extensions to the Semantic Sensor Network Ontology](https://www.w3.org/TR/vocab-ssn-ext/) was issued in 2020. 
+
+An update of the OGC/ISO Standard was issued in 2023. Now renamed to [Observations, Measurements and Samples](http://www.opengis.net/doc/as/om/3.0) (OMS), it incorporated ideas from SSN and SSN-Ext and introduced some additional concepts proposed by members of the OGC/ISO community. 
+
+@alexrobin proposed a set of revisions to the core ontology documents as described in https://github.com/sensiasoft/w3c_sdw/blob/oms-alignment/ssn/integrated/readme.md - see below. 
+
+See also #88 #48 
 
 # SOSA/SSN - OMS Alignment
 
