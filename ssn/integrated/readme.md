@@ -1,3 +1,9 @@
+# integrated
+
+This directory is the home of the primary artefacts relating to SSN and SOSA. 
+A revision of SSN/SOSA to harmonize with ISO 19156:2023 Observations, Measurements and Samples is underway through the W3C Spatial Data on the Web Working Group, and the OGC. 
+
+
 # SOSA/SSN - OMS Alignment
 
 Notes about the integration of new OMS v3 concepts into the SOSA/SSN ontology (2023).
