@@ -1,0 +1,1 @@
+This directory contains an RDF implementation of the ISO 19156:2023 Observations, Measurements and Samples (O&M v3) model, prepared by Kathi Schleidt. 
