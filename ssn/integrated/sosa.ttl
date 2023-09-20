@@ -163,10 +163,10 @@ sosa:hasMemberSample a owl:ObjectProperty ;
   schema:rangeIncludes sosa:Sample ;
   schema:rangeIncludes sosa:SampleCollection .
 
-
 ## Platform 
 
 sosa:Platform a rdfs:Class , owl:Class ;
+  rdfs:subClassOf sosa:Host ;
   rdfs:label "Platform"@en ;
   skos:definition "A Platform is an entity that hosts other entities, particularly Sensors, Actuators, Samplers, and other Platforms."@en ;
   rdfs:comment "A Platform is an entity that hosts other entities, particularly Sensors, Actuators, Samplers, and other Platforms."@en ;
@@ -245,6 +245,7 @@ sosa:PreparationProcedure a rdfs:Class , owl:Class ;
 ## ProcedureExecutors
 
 sosa:Sensor a rdfs:Class , owl:Class ;
+  rdfs:subClassOf sosa:Observer ;
   rdfs:label "Sensor"@en ;
   skos:definition "Device, agent (including humans), or software (simulation) involved in, or implementing, a Procedure. Sensors respond to a stimulus, e.g., a change in the environment, or input data composed from the results of prior Observations, and generate a Result. Sensors can be hosted by Platforms."@en ;
   rdfs:comment "Device, agent (including humans), or software (simulation) involved in, or implementing, a Procedure. Sensors respond to a stimulus, e.g., a change in the environment, or input data composed from the results of prior Observations, and generate a Result. Sensors can be hosted by Platforms."@en ;
