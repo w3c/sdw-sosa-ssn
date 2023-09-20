@@ -1,0 +1,1 @@
+This directory contains documentation of SSN and SOSA usage, prepared to support the adoption of the [Semantic Sensor Network Ontology](https://www.w3.org/TR/vocab-ssn/). 
