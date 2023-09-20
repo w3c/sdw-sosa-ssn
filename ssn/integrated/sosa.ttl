@@ -127,7 +127,6 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
     rdfs:isDefinedBy sosa: .
 
 sosa:SpatialSample a rdfs:Class , owl:Class ;
-  rdfs:subClassOf sosa:Sample ;
   rdfs:label "Spatial Sample"@en ;
   skos:definition "A SpatialSample is a geospatial Sample. When observations are made to estimate properties of a geospatial feature, in particular where the value of a property varies within the scope of the feature, a SpatialSample is used."@en ;
   rdfs:comment "A SpatialSample is a geospatial Sample. When observations are made to estimate properties of a geospatial feature, in particular where the value of a property varies within the scope of the feature, a SpatialSample is used."@en ;
@@ -136,7 +135,6 @@ sosa:SpatialSample a rdfs:Class , owl:Class ;
   rdfs:isDefinedBy sosa: .
 
 sosa:MaterialSample a rdfs:Class , owl:Class ;
-  rdfs:subClassOf sosa:Sample ;
   rdfs:label "Material Sample"@en ;
   skos:definition "A MaterialSample is a physical, tangible Sample."@en ;
   rdfs:comment "A MaterialSample is a physical, tangible Sample."@en ;
@@ -146,7 +144,6 @@ sosa:MaterialSample a rdfs:Class , owl:Class ;
   rdfs:isDefinedBy sosa: .
 
 sosa:StatisticalSample a rdfs:Class , owl:Class ;
-  rdfs:subClassOf sosa:Sample ;
   rdfs:label "Statistical Sample"@en ;
   skos:definition "A StatisticalSample is a statistical subset of a feature-of-interest, defined for the purpose of creating Observation(s)."@en ;
   rdfs:comment "A StatisticalSample is a statistical subset of a feature-of-interest, defined for the purpose of creating Observation(s)."@en ;
@@ -165,9 +162,7 @@ sosa:hasMemberSample a owl:ObjectProperty ;
   rdfs:comment "Link to a member within a collection of samples" ;
   schema:domainIncludes sosa:SampleCollection ;
   schema:rangeIncludes sosa:Sample ;
-  schema:rangeIncludes sosa:SampleCollection ;
-  rdfs:subPropertyOf rdfs:member .
-
+  schema:rangeIncludes sosa:SampleCollection .
 
 ## Platform 
 
@@ -222,7 +217,6 @@ sosa:Procedure a rdfs:Class , owl:Class ;
   rdfs:isDefinedBy sosa: .
 
 sosa:ObservingProcedure a rdfs:Class , owl:Class ;
-  rdfs:subClassOf sosa:Procedure ;
   rdfs:label "Observing Procedure"@en ;
   skos:definition "The description of steps performed in order to determine the value of an ObservableProperty by an Observer."@en ;
   rdfs:comment "The description of steps performed in order to determine the value of an ObservableProperty by an Observer."@en ;
@@ -231,21 +225,18 @@ sosa:ObservingProcedure a rdfs:Class , owl:Class ;
   rdfs:isDefinedBy sosa: .
 
 sosa:ActuationProcedure a rdfs:Class , owl:Class ;
-  rdfs:subClassOf sosa:Procedure ;
   rdfs:label "Actuation Procedure"@en ;
   skos:definition "The description of steps performed by an Actuator to change the ActuableProperty."@en ;
   rdfs:comment "The description of steps performed by an Actuator to change the ActuableProperty."@en ;
   rdfs:isDefinedBy sosa: .
 
 sosa:SamplingProcedure a rdfs:Class , owl:Class ;
-  rdfs:subClassOf sosa:Procedure ;
   rdfs:label "Sampling Procedure"@en ;
   skos:definition "The description of steps performed by a Sampler in order to extract a Sample from its sampled Feature in the frame of a Sampling."@en ;
   rdfs:comment "The description of steps performed by a Sampler in order to extract a Sample from its sampled Feature in the frame of a Sampling."@en ;
   rdfs:isDefinedBy sosa: .
 
 sosa:PreparationProcedure a rdfs:Class , owl:Class ;
-  rdfs:subClassOf sosa:Procedure ;
   rdfs:label "Preparation Procedure"@en ;
   skos:definition "The description of preparation steps performed on a Sample."@en ;
   rdfs:comment "The description of preparation steps performed on a Sample."@en ;
@@ -381,7 +372,6 @@ sosa:Observation a rdfs:Class , owl:Class ;
     schema:domainIncludes sosa:Observation ;
     schema:rangeIncludes sosa:Sensor ;
     owl:inverseOf sosa:madeObservation ;
-    rdfs:subPropertyOf sosa:madeByObserver ;
     rdfs:isDefinedBy sosa: .
 
   sosa:observedProperty a owl:ObjectProperty ;
@@ -530,8 +520,7 @@ sosa:hasMemberObs a owl:ObjectProperty ;
   rdfs:comment "Link to a member within a collection of (observations) or (collections of observations) that share the same value for one or more of the characteristic properties" ;
   schema:domainIncludes sosa:ObservationCollection ;
   schema:rangeIncludes sosa:Observation ;
-  schema:rangeIncludes sosa:ObservationCollection ;
-  rdfs:subPropertyOf rdfs:member .
+  schema:rangeIncludes sosa:ObservationCollection .
 
 sosa:hasFeatureOfInterest
   schema:domainIncludes sosa:ObservationCollection .
