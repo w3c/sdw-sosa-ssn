@@ -221,7 +221,7 @@ sosa:Procedure
 
 sosa:ObservingProcedure
   rdfs:subClassOf sosa:Procedure ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:implementedBy ; owl:allValuesFrom sosa:Observer ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:implementedBy ; owl:allValuesFrom sosa:Sensor ] ;
   rdfs:isDefinedBy sosa: .
 
 sosa:ActuationProcedure
@@ -283,18 +283,14 @@ ssn:implementedBy a owl:ObjectProperty ;
   owl:inverseOf ssn:implements ;
   rdfs:isDefinedBy ssn: .
 
-sosa:Observer
+sosa:Sensor
+  rdfs:subClassOf ssn:System ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:detects ; owl:allValuesFrom ssn:Stimulus ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:implements ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:implements ; owl:allValuesFrom sosa:ObservingProcedure ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:observes ; owl:allValuesFrom sosa:ObservableProperty ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeObservation ; owl:allValuesFrom sosa:Observation ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isHostedBy ; owl:allValuesFrom sosa:Host ]  ;
-  rdfs:isDefinedBy sosa: .
-
-sosa:Sensor
-  rdfs:subClassOf sosa:Observer ;
-  rdfs:subClassOf ssn:System ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:detects ; owl:allValuesFrom ssn:Stimulus ] ;
   rdfs:isDefinedBy sosa: .
 
   sosa:observes 
@@ -349,8 +345,6 @@ sosa:isFeatureOfInterestOf
   rdfs:isDefinedBy sosa: .
 
 sosa:Observation a owl:Class ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeByObserver ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeByObserver ; owl:allValuesFrom sosa:Observer ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeBySensor ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeBySensor ; owl:allValuesFrom sosa:Sensor ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeOnHost ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
@@ -374,16 +368,9 @@ sosa:Observation a owl:Class ;
     rdfs:isDefinedBy sosa: .
     
   sosa:madeBySensor 
-    rdfs:subPropertyOf sosa:madeByObserver ;
-    rdfs:isDefinedBy sosa: .
-    
-  sosa:madeByObserver 
     rdfs:isDefinedBy sosa: .
     
   sosa:madeOnHost
-    rdfs:isDefinedBy sosa: .
-    
-  sosa:madeByObserver 
     rdfs:isDefinedBy sosa: .
     
   sosa:madeOnHost
@@ -457,8 +444,6 @@ sosa:PreparationStep a owl:Class ;
 ## Observation collection
 
 sosa:ObservationCollection a owl:Class ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeByObserver ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeByObserver ; owl:allValuesFrom sosa:Observer ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeBySensor ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeBySensor ; owl:allValuesFrom sosa:Sensor ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeOnHost ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
@@ -613,7 +598,7 @@ ssn:Deployment a owl:Class ;
   rdfs:comment "Describes the Deployment of one or more assets for a particular purpose. Deployment may be done on a Host."@en ;
   skos:example "For example, a temperature Sensor deployed on a wall, or a whole network of Sensors deployed for an Observation campaign."@en ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:deployedSystem ; owl:allValuesFrom ssn:System ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:deployedAsset ; owl:allValuesFrom [ a owl:Class ; owl:unionOf ( sosa:Observer sosa:Host ssn:System ) ] ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:deployedAsset ; owl:allValuesFrom [ a owl:Class ; owl:unionOf ( sosa:Sensor sosa:Host ssn:System ) ] ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:deployedOnPlatform ; owl:allValuesFrom sosa:Platform ]  ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:deployedOnHost ; owl:allValuesFrom sosa:Host ]  ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:forProperty ; owl:allValuesFrom ssn:Property ]  ;
@@ -674,7 +659,7 @@ ssn:Deployment a owl:Class ;
 sosa:Deployment 
   owl:equivalentClass ssn:Deployment ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:deployedSystem ; owl:allValuesFrom sosa:System ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:deployedAsset ; owl:allValuesFrom [ a owl:Class ; owl:unionOf ( sosa:Observer sosa:Host sosa:System ) ] ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:deployedAsset ; owl:allValuesFrom [ a owl:Class ; owl:unionOf ( sosa:Sensor sosa:Host sosa:System ) ] ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:deployedOnPlatform ; owl:allValuesFrom sosa:Platform ]  ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:deployedOnHost ; owl:allValuesFrom sosa:Host ]  ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:forProperty ; owl:allValuesFrom sosa:Property ]  ;
