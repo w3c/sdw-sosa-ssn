@@ -1,0 +1,422 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix ogc: <http://ogc.net/modspec> . 
+@prefix prov: <https://www.w3.org/TR/prov-o/#> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+
+@prefix schema: <http://schema.org/> .
+
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix sosa-oms: <http://www.w3.org/ns/sosa/sosa-oms/> .
+@prefix oms-obs: <http://www.opengis.net/spec/om/3.0/req/obs-cpt/> .
+@prefix oms-sam: <http://www.opengis.net/spec/om/3.0/req/sam-cpt/> .
+
+dcterms:title a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:rights a owl:AnnotationProperty .
+dcterms:license a owl:AnnotationProperty .
+dcterms:created a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+foaf:Agent a owl:Class .
+foaf:name a owl:AnnotationProperty .
+schema:domainIncludes a owl:AnnotationProperty .
+schema:rangeIncludes a owl:AnnotationProperty .
+skos:definition a owl:AnnotationProperty .
+skos:example a owl:AnnotationProperty .
+skos:note a owl:AnnotationProperty .
+time:TemporalEntity a owl:Class .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+voaf:Vocabulary a owl:Class .
+
+
+sosa-oms: a owl:Ontology ;
+  dcterms:title "OMS Ontology - based on (SOSA) Ontology"@en ;
+  dcterms:description "This ontology is based on the SOSA Ontology by the W3C/OGC Spatial Data on the Web Working Group."@en ;
+  dcterms:creator [ a foaf:Agent ; foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en ] ;
+  dcterms:rights "Copyright 2024 W3C/OGC." ;
+  dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
+  dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
+  dcterms:created "2023-10-07"^^xsd:date ;
+  owl:imports sosa: .
+
+ogc:implements a owl:ObjectProperty ;
+    skos:definition "link from an RDFS/OWL class or property to an element from a UML model which it implements" ;
+    rdfs:subPropertyOf dcterms:source , prov:wasDerivedFrom , doap:implements . 
+
+ogc:implementsPropertyOf a owl:ObjectProperty ;
+    skos:definition "link from an RDFS/OWL property to an class from a UML model which it implements a property of" ;
+    rdfs:subPropertyOf ogc:implements . 
+
+## Features of interest and Property
+
+sosa:FeatureOfInterest 
+  rdfs:isDefinedBy sosa: .
+
+sosa:ObservableProperty ogc:implements oms-obs:ObservableProperty ;
+    rdfs:subClassOf sosa:Property ;
+    rdfs:isDefinedBy sosa: .
+
+sosa:ActuatableProperty 
+    rdfs:subClassOf sosa:Property ;
+    rdfs:isDefinedBy sosa: .
+
+sosa:Property 
+  rdfs:isDefinedBy sosa: .
+
+sosa:hasProperty 
+    owl:inverseOf sosa:isPropertyOf ;
+    rdfs:isDefinedBy sosa: .
+
+sosa:isPropertyOf 
+    owl:inverseOf sosa:hasProperty ; 
+    rdfs:isDefinedBy sosa: .
+
+## Sample 
+
+sosa:Sample ogc:implements oms-sam:Sample ;
+  rdfs:subClassOf sosa:FeatureOfInterest ;
+  rdfs:subClassOf sosa:Result ; 
+  rdfs:isDefinedBy sosa: .
+
+sosa:hasSample 
+    owl:inverseOf sosa:isSampleOf ;
+    rdfs:isDefinedBy sosa: .
+
+sosa:isSampleOf ogc:implementsPropertyOf oms-sam:Sample ;
+    owl:inverseOf sosa:hasSample ;
+    rdfs:isDefinedBy sosa: .
+
+sosa:hasOriginalSample 
+    rdfs:isDefinedBy sosa: .
+
+sosa:hasSampledFeature 
+    rdfs:isDefinedBy sosa: .
+
+sosa:hasPreparationStep 
+    rdfs:isDefinedBy sosa: .
+
+sosa:SpatialSample a rdfs:Class , owl:Class ;
+    rdfs:subClassOf sosa:Sample ; 
+  rdfs:label "Spatial Sample"@en ;
+  skos:definition "A SpatialSample is a geospatial Sample. When observations are made to estimate properties of a geospatial feature, in particular where the value of a property varies within the scope of the feature, a SpatialSample is used."@en ;
+  rdfs:comment "A SpatialSample is a geospatial Sample. When observations are made to estimate properties of a geospatial feature, in particular where the value of a property varies within the scope of the feature, a SpatialSample is used."@en ;
+  skos:example "Some common names for spatial samples include: borehole, flightline, interval, lidar cloud, map horizon, microscope slide, mine level, mine, observation well, profile, pulp, quadrat, scene, section, ship track, spot, station, swath, trajectory, traverse, etc..."@en ;
+  skos:note "Depending on accessibility and on the nature of the expected property variation, the SpatialSample may be extensive in one, two or three spatial dimensions."@en ;
+  rdfs:isDefinedBy sosa-oms: .
+
+sosa:MaterialSample a rdfs:Class , owl:Class ;
+    rdfs:subClassOf sosa:Sample ; 
+  rdfs:label "Material Sample"@en ;
+  skos:definition "A MaterialSample is a physical, tangible Sample."@en ;
+  rdfs:comment "A MaterialSample is a physical, tangible Sample."@en ;
+  skos:example "A piece of rock, a blood sample, a water sample, etc."@en ;
+  skos:note "MaterialSamples that are curated and preserved are sometimes known as 'specimens'."@en ;
+  skos:note "MaterialSamples can be destroyed in connexion with the observation act."@en ;
+  rdfs:isDefinedBy sosa-oms: .
+
+sosa:StatisticalSample a rdfs:Class , owl:Class ;
+    rdfs:subClassOf sosa:Sample ; 
+  rdfs:label "Statistical Sample"@en ;
+  skos:definition "A StatisticalSample is a statistical subset of a feature-of-interest, defined for the purpose of creating Observation(s)."@en ;
+  rdfs:comment "A StatisticalSample is a statistical subset of a feature-of-interest, defined for the purpose of creating Observation(s)."@en ;
+  skos:example "The male or female subset of a population."@en ;
+  skos:note "StatisticalSamples usually apply to populations or other sets, of which certain subset may be of specific interest."@en ;
+  rdfs:isDefinedBy sosa-oms: .
+
+sosa:SampleCollection ogc:implements oms-sam:SampleCollection ;
+  rdfs:isDefinedBy sosa: .
+
+sosa:hasMemberSample 
+  rdfs:subPropertyOf rdfs:member ;
+  rdfs:isDefinedBy sosa: .
+
+## Platform 
+
+sosa:Platform ogc:implements oms-obs:Platform ;
+  rdfs:subClassOf ssn:System ;
+  rdfs:isDefinedBy sosa: .
+
+sosa:hosts 
+  owl:inverseOf sosa:isHostedBy ;
+  rdfs:isDefinedBy sosa: .
+
+sosa:isHostedBy 
+  owl:inverseOf sosa:hosts ;
+  rdfs:isDefinedBy sosa: .
+
+
+## Procedures
+
+sosa:Procedure ogc:implements oms-obs:Procedure ;
+  rdfs:isDefinedBy sosa: .
+
+  sosa:hasInput 
+    rdfs:isDefinedBy sosa: .
+
+    sosa:Input 
+      rdfs:isDefinedBy sosa: .
+
+  sosa:hasOutput 
+    rdfs:isDefinedBy sosa: .
+
+    sosa:Output 
+      rdfs:isDefinedBy sosa: .
+
+sosa:ObservingProcedure ogc:implements oms-obs:ObservingProcedure ;
+  rdfs:subClassOf sosa:Procedure ;
+  rdfs:isDefinedBy sosa: .
+
+sosa:ActuationProcedure 
+    rdfs:subClassOf sosa:Procedure ;
+  rdfs:isDefinedBy sosa: .
+
+sosa:SamplingProcedure ogc:implements oms-sam:SamplingProcedure ;
+    rdfs:subClassOf sosa:Procedure ;
+  rdfs:isDefinedBy sosa: .
+
+sosa:PreparationProcedure ogc:implements oms-sam:PreparationProcedure ;
+    rdfs:subClassOf sosa:Procedure ;
+  rdfs:isDefinedBy sosa: .
+
+
+## ProcedureExecutors
+
+sosa:Sensor 
+    ogc:implements oms-obs:Observer ;
+  rdfs:subClassOf sosa:Observer ;
+  rdfs:subClassOf ssn:System ;
+  rdfs:isDefinedBy sosa: .
+
+  sosa:observes 
+    rdfs:subPropertyOf sosa:forProperty ;
+    owl:inverseOf sosa:isObservedBy ;
+    rdfs:isDefinedBy sosa: .
+
+  sosa:isObservedBy 
+    owl:inverseOf sosa:observes ;
+    rdfs:isDefinedBy sosa: .
+
+sosa:Actuator 
+  rdfs:subClassOf ssn:System ;
+  rdfs:isDefinedBy sosa: .
+
+sosa:Sampler 
+    ogc:implements oms-sam:Sampler ;
+  rdfs:subClassOf ssn:System ;
+  rdfs:isDefinedBy sosa: .
+
+sosa:Observer a rdfs:Class , owl:Class ;
+    ogc:implements oms-obs:Observer ;
+  rdfs:label "Observer"@en ;
+  skos:definition "An identifiable entity that can generate Observations pertaining to an ObservableProperty by implementing an ObservingProcedure."@en ;
+  rdfs:comment "An identifiable entity that can generate Observations pertaining to an ObservableProperty by implementing an ObservingProcedure."@en ;
+  skos:example "Accelerometers, gyroscopes, barometers, magnetometers, and so forth are Observers that are typically mounted on a modern smartphone (which acts as Platform). Other examples of Sensors include the human eyes."@en ;
+  skos:note "Different Observers can follow the same (reusable) observing Procedure for the creation of different Observations."@en ;
+  skos:note "The Observer is the entity instance, not the entity type. Pertaining to sensors, the Observer would reference the explicit sensor, while the Procedure would reference the methodology utilized by that sensor type;"@en ;
+  skos:note "An Observer can be hosted by one or more Platform."@en ;
+  skos:note "The Observer is an instance of a sensor, instrument, implementation of an algorithm, or a being such as a person."@en ;
+  rdfs:isDefinedBy sosa-oms: .
+
+sosa:implements 
+  owl:inverseOf sosa:implementedBy ;
+  rdfs:isDefinedBy sosa: .
+
+sosa:implementedBy 
+  owl:inverseOf sosa:implements ;
+  rdfs:isDefinedBy sosa: .
+
+
+## ProcedureExecutions
+
+sosa:usedProcedure 
+  rdfs:isDefinedBy sosa: .
+
+sosa:hasFeatureOfInterest 
+  owl:inverseOf sosa:isFeatureOfInterestOf ;
+  rdfs:isDefinedBy sosa: .
+
+sosa:hasUltimateFeatureOfInterest 
+  rdfs:isDefinedBy sosa: .
+
+sosa:isFeatureOfInterestOf 
+  owl:inverseOf sosa:hasFeatureOfInterest ;
+  rdfs:isDefinedBy sosa: .
+
+sosa:Observation 
+    ogc:implements oms-obs:Observation ;
+  rdfs:isDefinedBy sosa: .
+
+  sosa:madeObservation 
+    owl:inverseOf sosa:madeBySensor ;
+    rdfs:isDefinedBy sosa: .
+
+  sosa:madeBySensor 
+    rdfs:subPropertyOf sosa:madeByObserver ;
+    owl:inverseOf sosa:madeObservation ;
+    rdfs:isDefinedBy sosa: .
+
+  sosa:observedProperty 
+    rdfs:isDefinedBy sosa: .
+
+  sosa:madeByObserver 
+    owl:inverseOf sosa:madeObservation ;
+    rdfs:isDefinedBy sosa: .
+
+  sosa:madeOnPlatform 
+    rdfs:isDefinedBy sosa: .
+
+sosa:Actuation 
+  rdfs:isDefinedBy sosa: .
+
+  sosa:madeActuation 
+    owl:inverseOf sosa:madeByActuator ;
+    rdfs:isDefinedBy sosa: .
+
+  sosa:madeByActuator 
+    owl:inverseOf sosa:madeActuation ;
+    rdfs:isDefinedBy sosa: .
+
+  sosa:actsOnProperty 
+    owl:inverseOf sosa:isActedOnBy ;
+    rdfs:isDefinedBy sosa: .
+
+  sosa:isActedOnBy 
+    owl:inverseOf sosa:actsOnProperty ;
+    rdfs:isDefinedBy sosa: .
+
+sosa:Sampling ogc:implements oms-sam:Sampling ;
+  rdfs:isDefinedBy sosa: .
+
+  sosa:madeSampling 
+    owl:inverseOf sosa:madeBySampler ;
+    rdfs:isDefinedBy sosa: .
+
+  sosa:madeBySampler 
+    owl:inverseOf sosa:madeSampling ;
+    rdfs:isDefinedBy sosa: .
+
+sosa:PreparationStep ogc:implements oms-sam:PreparationStep ;
+  rdfs:isDefinedBy sosa: .
+
+  sosa:preparedSample 
+    rdfs:isDefinedBy sosa: .
+
+
+## Observation Collection
+
+sosa:ObservationCollection ogc:implements oms-obs:ObservationCollection ;
+  rdfs:isDefinedBy sosa: .
+
+sosa:hasMemberObs ogc:implementsPropertyOf oms-obs:ObservationCollection ;
+  rdfs:subPropertyOf rdfs:member .
+  rdfs:isDefinedBy sosa: .
+
+
+## Stimulus
+
+sosa:Stimulus 
+  rdfs:isDefinedBy sosa: .
+
+  sosa:wasOriginatedBy 
+    rdfs:isDefinedBy sosa: .
+
+  sosa:detects 
+    rdfs:isDefinedBy sosa: .
+
+  sosa:isProxyFor 
+    rdfs:isDefinedBy sosa: .
+
+  
+## Result 
+
+sosa:Result 
+  rdfs:isDefinedBy sosa: .
+
+  sosa:hasResult 
+    owl:inverseOf sosa:isResultOf ;
+    rdfs:isDefinedBy sosa: .
+
+  sosa:isResultOf 
+    owl:inverseOf sosa:hasResult ;
+    rdfs:isDefinedBy sosa: .
+
+  sosa:hasSimpleResult 
+    rdfs:isDefinedBy sosa: .
+
+  # for sampling
+
+#  sosa:hasResultingSample a owl:ObjectProperty ;
+#    rdfs:label "has resulting sample"@en ;
+#    skos:definition "Relation linking an act of Sampling and the new Sample created as a result."@en ;
+#    rdfs:comment "Relation linking an act of Sampling and the new Sample created as a result."@en ;
+#    schema:domainIncludes sosa:Sampling ;
+#    schema:rangeIncludes sosa:Sample ;
+#    owl:inverseOf sosa:isSamplingResultOf ;
+#    rdfs:isDefinedBy sosa: .
+
+#  sosa:isSamplingResultOf a owl:ObjectProperty ;
+#    rdfs:label "is sampling result of"@en ;
+#    skos:definition "Relation linking a Sample to the act of Sampling that created or caused it."@en ;
+#    rdfs:comment "Relation linking a Sample to the act of Sampling that created or caused it."@en ;
+#    schema:domainIncludes sosa:Sample ;
+#    schema:rangeIncludes sosa:Sampling ;
+#    owl:inverseOf sosa:hasResultingSample ;
+#    rdfs:isDefinedBy sosa: .
+
+
+sosa:resultTime 
+  rdfs:isDefinedBy sosa: .
+
+sosa:phenomenonTime 
+  rdfs:isDefinedBy sosa: .
+
+
+## Systems
+
+sosa:System 
+  rdfs:isDefinedBy sosa: .
+
+  sosa:hasSubSystem 
+    rdfs:isDefinedBy sosa: .
+
+
+## Deployment
+
+sosa:Deployment 
+  rdfs:isDefinedBy sosa: .
+
+  sosa:deployedAsset 
+    rdfs:isDefinedBy sosa: .
+
+  sosa:deployedOnPlatform 
+    owl:inverseOf sosa:inDeployment ;
+    rdfs:isDefinedBy sosa: .
+
+  sosa:deployedSystem 
+    rdfs:subPropertyOf ssn:deployedAsset ;
+    owl:inverseOf sosa:hasDeployment ;
+    rdfs:isDefinedBy sosa: .
+
+  sosa:hasDeployment 
+    owl:inverseOf sosa:deployedSystem ;
+    rdfs:isDefinedBy sosa: .
+
+  sosa:inDeployment 
+    owl:inverseOf sosa:deployedOnPlatform ;
+    rdfs:isDefinedBy sosa: .
+
+
+## forProperty
+
+sosa:forProperty 
+  schema:rangeIncludes sosa:Property ;
+  rdfs:isDefinedBy sosa: .
