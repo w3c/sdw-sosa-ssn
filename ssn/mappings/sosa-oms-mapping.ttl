@@ -15,13 +15,6 @@
 @prefix schema: <http://schema.org/> .
 
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
-@prefix sosa-oms: <http://www.w3.org/ns/sosa/sosa-oms/> .
-@prefix oms-obs: <http://www.opengis.net/spec/om/3.0/req/obs-cpt/> .
-@prefix oms-obs-core: <http://www.opengis.net/spec/om/3.0/req/obs-core/> .
-@prefix oms-obs-basic: <http://www.opengis.net/spec/om/3.0/req/obs-basic/> .
-@prefix oms-sam: <http://www.opengis.net/spec/om/3.0/req/sam-cpt/> .
-@prefix oms-sam-core: <http://www.opengis.net/spec/om/3.0/req/sam-core/> .
-@prefix oms-sam-basic: <http://www.opengis.net/spec/om/3.0/req/sam-basic/> .
 
 dcterms:title a owl:AnnotationProperty .
 dcterms:description a owl:AnnotationProperty .
@@ -154,7 +147,7 @@ sosa:hasMemberSample ogc:implements <http://www.opengis.net/spec/om/3.0/req/sam-
 
 sosa:Platform ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Host> ;
     skos:altLabel "Host" ;
-  rdfs:subClassOf ssn:System ;
+  rdfs:subClassOf sosa:System ;
   rdfs:isDefinedBy sosa: .
 
 sosa:hosts ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/gen/relatedObservation-sem> ;
@@ -206,7 +199,7 @@ sosa:PreparationProcedure ogc:implements <http://www.opengis.net/spec/om/3.0/req
 
 sosa:Sensor ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observer> ;
   rdfs:subClassOf sosa:Observer ;
-  rdfs:subClassOf ssn:System ;
+  rdfs:subClassOf sosa:System ;
   rdfs:isDefinedBy sosa: .
 
   sosa:observes ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observer/observableProperty-sem> ;
@@ -219,11 +212,11 @@ sosa:Sensor ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Obser
     rdfs:isDefinedBy sosa: .
 
 sosa:Actuator 
-  rdfs:subClassOf ssn:System ;
+  rdfs:subClassOf sosa:System ;
   rdfs:isDefinedBy sosa: .
 
 sosa:Sampler ogc:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sampler> ;
-  rdfs:subClassOf ssn:System ;
+  rdfs:subClassOf sosa:System ;
   rdfs:isDefinedBy sosa: .
 
 sosa:Observer a rdfs:Class , owl:Class ;
@@ -416,7 +409,7 @@ sosa:Deployment ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/D
     rdfs:isDefinedBy sosa: .
 
   sosa:deployedSystem ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Deployment/observer-sem> ;
-    rdfs:subPropertyOf ssn:deployedAsset ;
+    rdfs:subPropertyOf sosa:deployedAsset ;
     owl:inverseOf sosa:hasDeployment ;
     rdfs:isDefinedBy sosa: .
 
