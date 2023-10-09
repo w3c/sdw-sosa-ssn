@@ -8,13 +8,14 @@
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix time: <http://www.w3.org/2006/time#> .
-@prefix ogc: <http://ogc.net/modspec> . 
 @prefix prov: <https://www.w3.org/TR/prov-o/#> .
 @prefix doap: <http://usefulinc.com/ns/doap#> .
 
 @prefix schema: <http://schema.org/> .
 
+@prefix ogc: <http://ogc.net/modspec> . 
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix sosa-oms: <http://www.w3.org/ns/sosa/oms> .
 
 dcterms:title a owl:AnnotationProperty .
 dcterms:description a owl:AnnotationProperty .
@@ -48,10 +49,6 @@ sosa-oms: a owl:Ontology ;
 ogc:implements a owl:ObjectProperty ;
     skos:definition "link from an RDFS/OWL class or property to an element from a UML model which it implements" ;
     rdfs:subPropertyOf dcterms:source , prov:wasDerivedFrom , doap:implements . 
-
-ogc:implementsPropertyOf a owl:ObjectProperty ;
-    skos:definition "link from an RDFS/OWL property to an class from a UML model which it implements a property of" ;
-    rdfs:subPropertyOf ogc:implements . 
 
 ## Features of interest and Property
 ## largely defined in ISO 19103 and ISO 19109
@@ -90,7 +87,6 @@ sosa:hasSample
     rdfs:isDefinedBy sosa: .
 
 sosa:isSampleOf ogc:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sample/sampledFeature-sem> ;
-    skos:altLabel "sampledFeature" ;
     owl:inverseOf sosa:hasSample ;
     rdfs:isDefinedBy sosa: .
 
@@ -101,7 +97,6 @@ sosa:hasSampledFeature
     rdfs:isDefinedBy sosa: .
 
 sosa:hasPreparationStep ogc:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sample/preparationStep-sem> ;
-    skos:altLabel "preparationStep" ;
     rdfs:isDefinedBy sosa: .
 
 sosa:SpatialSample a rdfs:Class , owl:Class ;
@@ -139,24 +134,20 @@ sosa:SampleCollection ogc:implements <http://www.opengis.net/spec/om/3.0/req/sam
   rdfs:isDefinedBy sosa: .
 
 sosa:hasMemberSample ogc:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/SampleCollection/member-sem> ;
-    skos:altLabel "member" ;
   rdfs:subPropertyOf rdfs:member ;
   rdfs:isDefinedBy sosa: .
 
 ## Platform 
 
 sosa:Platform ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Host> ;
-    skos:altLabel "Host" ;
   rdfs:subClassOf sosa:System ;
   rdfs:isDefinedBy sosa: .
 
 sosa:hosts ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/gen/relatedObservation-sem> ;
-    skos:altLabel "relatedObservation" ;
   owl:inverseOf sosa:isHostedBy ;
   rdfs:isDefinedBy sosa: .
 
 sosa:isHostedBy ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/host-sem> ;
-    skos:altLabel "host" ;
   owl:inverseOf sosa:hosts ;
   rdfs:isDefinedBy sosa: .
 
