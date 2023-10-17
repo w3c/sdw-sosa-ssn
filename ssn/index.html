@@ -5875,26 +5875,26 @@ their usage are given.</p>
         <pre class="example">
 @prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;.
-@prefix qudt-1-1: &lt;http://qudt.org/1.1/schema/qudt#&gt; .
-@prefix qudt-unit-1-1: &lt;http://qudt.org/1.1/vocab/unit#&gt; .
+@prefix qudt: &lt;http://qudt.org/schema/qudt/&gt; .
+@prefix unit: &lt;http://qudt.org/vocab/unit/&gt; .
 
 &lt;Observation/234534&gt; a sosa:Observation ;
    rdfs:comment "Observation of the difference between 
                     the outside temperature and the inside temperature."@en ;
    sosa:hasFeatureOfInterest &lt;apartment/134&gt; ;
    sosa:hasResult [
-      a qudt-1-1:QuantityValue ;
-      qudt-1-1:unit qudt-unit-1-1:DegreeCelsius ;
-      qudt-1-1:numericValue "-29.9"^^xsd:double ] .
+      a qudt:Quantity ;
+      qudt:unit unit:DEG_C ;
+      qudt:value "-29.9"^^xsd:decimal ] .
 
 &lt;Observation/83985&gt; a sosa:Observation ;
    rdfs:comment "Observation of the temperature inside apartment #134."@en ;
    sosa:hasFeatureOfInterest &lt;apartment/134&gt; ;
    sosa:hasResult [
-      a qudt-1-1:QuantityValue ;
-      qudt-1-1:unit qudt-unit-1-1:DegreeCelsius ;
-      qudt-1-1:numericValue "22.4"^^xsd:double ] .
-        </pre>
+      a qudt:Quantity ;
+      qudt:unit unit:DEG_C ;
+      qudt:value "22.4"^^xsd:decimal ] .
+        <&lt;>/pre>
         <pre class="example">
 @prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;.
@@ -5930,7 +5930,7 @@ their usage are given.</p>
 @prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
 
 &lt;observation/123&gt; a sosa:Observation ;
-  sosa:hasSimpleResult "12.4 m"^^cdt:length .
+  sosa:hasSimpleResult "12.4 m"^^cdt:ucum .
         </pre>
         
      </section>
@@ -6064,21 +6064,32 @@ ex:TemperatureSensor  rdfs:subClassOf [
           <h3>iPhone Barometer</h3>
           <div class="ssn">
           <p>An RDF file containing a <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/iphone_barometer-sosa.ttl">graph corresponding to this example is available</a>. </p>
-          <pre class="example">@prefix rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#>.
-@prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#> .
-@prefix sosa: &lt;http://www.w3.org/ns/sosa/> .
-@prefix time: &lt;http://www.w3.org/2006/time#>.
-@prefix qudt-1-1: &lt;http://qudt.org/1.1/schema/qudt#> .
-@prefix qudt-unit-1-1: &lt;http://qudt.org/1.1/vocab/unit#> .
-@prefix cdt: &lt;http://w3id.org/lindt/custom_datatypes#> .
-@base &lt;http://example.org/data/> .
+          <pre class="example">@prefix rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;.
+@prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+@prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
+@prefix geo: &lt;http://www.opengis.net/ont/geosparql#&gt; .
+@prefix qudt: &lt;http://qudt.org/schema/qudt/&gt; .
+@prefix unit: &lt;http://qudt.org/vocab/unit/&gt; .
+@prefix cdt: &lt;http://w3id.org/lindt/custom_datatypes#&gt; .
+@base &lt;http://example.org/data/&gt; .
 
 # The barometric readings from a Bosch Sensortec BMP282 sensor in an Apple IPhone 7
 # observed on June 6 2017 using only the SOSA core for modelling.
 
+
+# the atmosphere is sampled at a specified location
+
 &lt;earthAtmosphere&gt; rdf:type sosa:FeatureOfInterest ;
   rdfs:label "Atmosphere of Earth"@en .
+
+&lt;earthAtmosphere_StE&gt; a sosa:Sample ;
+  sosa:isSampleOf &lt;earthAtmosphere&gt; ;
+  geo:hasGeometry [ 
+    a geo:Point ;
+    geo:asWKT "POINT (4.387611 45.437772)"^^geo:WktLiteral ;
+  ] ;
+.
 
 
 # An iPhone 7 as the Platform that hosts several sensors,
@@ -6094,11 +6105,12 @@ ex:TemperatureSensor  rdfs:subClassOf [
   sosa:observes &lt;sensor/35-207306-844818-0/BMP282/atmosphericPressure&gt; .
 
 
-# An observation made by the BMP282 atmospheric pressure sensor.
+# An observation made by the BMP282 atmospheric pressure sensor
+# using the cdt:ucum custom datatype.
 
-&lt;Observation/346344> rdf:type sosa:Observation ;
+&lt;Observation/346344&gt; rdf:type sosa:Observation ;
   sosa:observedProperty &lt;sensor/35-207306-844818-0/BMP282/atmosphericPressure&gt; ;
-  sosa:hasFeatureOfInterest  &lt;earthAtmosphere&gt; ;
+  sosa:hasFeatureOfInterest  &lt;earthAtmosphere_StE&gt; ;
   sosa:madeBySensor &lt;sensor/35-207306-844818-0/BMP282&gt; ;
   sosa:hasSimpleResult "1021.45 hPa"^^cdt:ucum ;
   sosa:resultTime "2017-06-06T12:36:12Z"^^xsd:dateTime .
@@ -6106,19 +6118,16 @@ ex:TemperatureSensor  rdfs:subClassOf [
 
 # Another observation made a second later by the BMP282 atmospheric pressure sensor
 # using the QUDT Ontology for the Units of Measurement
-# and the Time Ontology for the instant.
 
 &lt;Observation/346345&gt; rdf:type sosa:Observation ;
   sosa:observedProperty &lt;sensor/35-207306-844818-0/BMP282/atmosphericPressure&gt; ;
-  sosa:hasFeatureOfInterest  &lt;earthAtmosphere&gt; ;
+  sosa:hasFeatureOfInterest  &lt;earthAtmosphere_StE&gt; ;
   sosa:madeBySensor &lt;sensor/35-207306-844818-0/BMP282&gt; ;
   sosa:hasResult [
-    rdf:type qudt-1-1:QuantityValue ;
-    qudt-1-1:numericValue "101936"^^xsd:double ;
-    qudt-1-1:unit qudt-unit-1-1:Pascal ] ;
-  sosa:resultTime [
-    rdf:type time:Instant ;
-    time:inXSDDateTimeStamp "2017-06-06T12:36:13+00:00"^^xsd:dateTimeStamp ] .
+    rdf:type qudt:QuantityValue ;
+    qudt:value "101936"^^xsd:decimal ;
+    qudt:unit unit:PA ] ;
+  sosa:resultTime "2017-06-06T12:36:13Z"^^xsd:dateTime .
           </pre></div>
         </section>
         <section id="coil_oil_plant-sosa">
@@ -6195,8 +6204,8 @@ ex:TemperatureSensor  rdfs:subClassOf [
 @prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
 @prefix ssn:  &lt;http://www.w3.org/ns/ssn/&gt; .
 @prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-@prefix qudt-1-1: &lt;http://qudt.org/1.1/schema/qudt#&gt; .
-@prefix qudt-unit-1-1: &lt;http://qudt.org/1.1/vocab/unit#&gt; .
+@prefix qudt: &lt;http://qudt.org/schema/qudt/&gt; .
+@prefix unit: &lt;http://qudt.org/vocab/unit/&gt; .
 @base &lt;http://example.org/data/&gt; .
 
 # The electric consumption of apartment #134 on April 15 2017 was 22.4 kWh as 
@@ -6206,9 +6215,9 @@ ex:TemperatureSensor  rdfs:subClassOf [
   sosa:observedProperty  &lt;apartment/134/electricConsumption&gt; ;
   sosa:madeBySensor &lt;sensor/926&gt; ; 
   sosa:hasResult [
-     rdf:type qudt-1-1:QuantityValue ;
-     qudt-1-1:numericValue "22.4"^^xsd:double ;
-     qudt-1-1:unit qudt-unit-1-1:Kilowatthour ] ;
+     rdf:type qudt:QuantityValue ;
+     qudt:numericValue "22.4"^^xsd:double ;
+     qudt:unit unit:Kilowatthour ] ;
   sosa:phenomenonTime [
     rdf:type time:Interval ;
     time:hasBeginning [ 
@@ -6293,8 +6302,8 @@ ex:TemperatureSensor  rdfs:subClassOf [
 @prefix time: &lt;http://www.w3.org/2006/time#&gt;.
 @prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
 @prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-@prefix qudt-1-1: &lt;http://qudt.org/1.1/schema/qudt#&gt; .
-@prefix qudt-unit-1-1: &lt;http://qudt.org/1.1/vocab/unit#&gt; .
+@prefix qudt: &lt;http://qudt.org/schema/qudt/&gt; .
+@prefix unit: &lt;http://qudt.org/vocab/unit/&gt; .
 @base &lt;http://example.org/data/&gt; .
 
 # The electric consumption of apartment #134 on April 15 2017 was 22.4 kWh as 
@@ -6304,9 +6313,9 @@ ex:TemperatureSensor  rdfs:subClassOf [
   sosa:observedProperty  &lt;apartment/134/electricConsumption&gt; ;
   sosa:madeBySensor &lt;sensor/926&gt; ; 
   sosa:hasResult [
-     rdf:type qudt-1-1:QuantityValue ;
-     qudt-1-1:numericValue "22.4"^^xsd:double ;
-     qudt-1-1:unit qudt-unit-1-1:Kilowatthour ] ;
+     rdf:type qudt:QuantityValue ;
+     qudt:numericValue "22.4"^^xsd:double ;
+     qudt:unit unit:Kilowatthour ] ;
   sosa:phenomenonTime [
     rdf:type time:Interval ;
     time:hasBeginning [ 
@@ -6404,8 +6413,8 @@ ex:TemperatureSensor  rdfs:subClassOf [
 @prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
 @prefix ssn: &lt;http://www.w3.org/ns/ssn/&gt; .
 @prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-@prefix qudt-1-1: &lt;http://qudt.org/1.1/schema/qudt#&gt; .
-@prefix qudt-unit-1-1: &lt;http://qudt.org/1.1/vocab/unit#&gt; .
+@prefix qudt: &lt;http://qudt.org/schema/qudt/&gt; .
+@prefix unit: &lt;http://qudt.org/vocab/unit/&gt; .
 @base &lt;http://example.org/data/&gt; .
 
 # rangefinder #30 is a laser range finder sensor that was used 
@@ -6423,8 +6432,8 @@ ex:TemperatureSensor  rdfs:subClassOf [
   sosa:observedProperty  &lt;tree/124/height&gt; ;
   sosa:madeBySensor &lt;rangefinder/30&gt; ;
   sosa:hasResult [ 
-    qudt-1-1:unit qudt-unit-1-1:Meter ; 
-    qudt-1-1:numericValue "15.3"^^xsd:double ] .
+    qudt:unit unit:Meter ; 
+    qudt:numericValue "15.3"^^xsd:double ] .
 
 # using SSN, one can explicitly link a property and its feature of interest.
  
@@ -6444,8 +6453,8 @@ ex:TemperatureSensor  rdfs:subClassOf [
   sosa:observedProperty  &lt;tree/125/height&gt; ;
   sosa:madeBySensor &lt;rangefinder/30&gt; ;
   sosa:hasResult [ 
-    qudt-1-1:numericValue "23.0"^^xsd:double ;
-    qudt-1-1:unit qudt-unit-1-1:Meter ] .
+    qudt:numericValue "23.0"^^xsd:double ;
+    qudt:unit unit:Meter ] .
 
 # using SSN, one can explicitly link a property and its feature of interest.
  
@@ -6463,8 +6472,8 @@ ex:TemperatureSensor  rdfs:subClassOf [
 @prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;.
 @prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
 @prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-@prefix qudt-1-1: &lt;http://qudt.org/1.1/schema/qudt#&gt; .
-@prefix qudt-unit-1-1: &lt;http://qudt.org/1.1/vocab/unit#&gt; .
+@prefix qudt: &lt;http://qudt.org/schema/qudt/&gt; .
+@prefix unit: &lt;http://qudt.org/vocab/unit/&gt; .
 @base &lt;http://example.org/data/&gt; .
 
 # rangefinder #30 is a laser range finder sensor that was used 
@@ -6482,8 +6491,8 @@ ex:TemperatureSensor  rdfs:subClassOf [
   sosa:observedProperty  &lt;tree/124/height&gt; ;
   sosa:madeBySensor &lt;rangefinder/30&gt; ;
   sosa:hasResult [ 
-    qudt-1-1:unit qudt-unit-1-1:Meter ; 
-    qudt-1-1:numericValue "15.3"^^xsd:double ] .
+    qudt:unit unit:Meter ; 
+    qudt:numericValue "15.3"^^xsd:double ] .
 
 &lt;tree/124&gt;  rdf:type    sosa:FeatureOfInterest ;
   rdfs:label "tree #124"@en .
@@ -6499,8 +6508,8 @@ ex:TemperatureSensor  rdfs:subClassOf [
   sosa:observedProperty  &lt;tree/125/height&gt; ;
   sosa:madeBySensor &lt;rangefinder/30&gt; ;
   sosa:hasResult [ 
-    qudt-1-1:numericValue "23.0"^^xsd:double ;
-    qudt-1-1:unit qudt-unit-1-1:Meter ] .
+    qudt:numericValue "23.0"^^xsd:double ;
+    qudt:unit unit:Meter ] .
 
 &lt;tree/125&gt;  rdf:type    sosa:FeatureOfInterest ;
   rdfs:label "tree #125"@en .
@@ -6532,8 +6541,8 @@ ex:TemperatureSensor  rdfs:subClassOf [
 @prefix ssn:  &lt;http://www.w3.org/ns/ssn/&gt; .
 @prefix geo: &lt;http://www.w3.org/2003/01/geo/wgs84_pos#&gt; .
 @prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-@prefix qudt-1-1: &lt;http://qudt.org/1.1/schema/qudt#&gt; .
-@prefix qudt-unit-1-1: &lt;http://qudt.org/1.1/vocab/unit#&gt; .
+@prefix qudt: &lt;http://qudt.org/schema/qudt/&gt; .
+@prefix unit: &lt;http://qudt.org/vocab/unit/&gt; .
 @base &lt;http://example.org/data/&gt; .
 
 # Observation #358 of seismograph VCAB DP1 BP 40 (Vineyard Canyon, Parkfield, Ca) measured
@@ -6564,9 +6573,9 @@ ex:TemperatureSensor  rdfs:subClassOf [
   sosa:hasFeatureOfInterest  &lt;VCAB-DP1-BP-40#location&gt; ;
   sosa:observedProperty  &lt;VCAB-DP1-BP-40#groundDisplacementSpeed&gt; ;
   sosa:hasResult [
-     rdf:type qudt-1-1:QuantityValue ;
-     qudt-1-1:numericValue "5e-4"^^xsd:double ;
-     qudt-1-1:unit qudt-unit-1-1:CentimeterPerSecond ] ;
+     rdf:type qudt:QuantityValue ;
+     qudt:numericValue "5e-4"^^xsd:double ;
+     qudt:unit unit:CentimeterPerSecond ] ;
   sosa:resultTime "2017-04-18T08:23:00-07:00"^^xsd:dateTimeStamp .
 
 # using SSN one can explicitly state that &lt;VCAB-DP1-BP-40#groundDisplacementSpeed&gt; is the property of &lt;VCAB-DP1-BP-40#location&gt; .
@@ -6581,8 +6590,8 @@ ex:TemperatureSensor  rdfs:subClassOf [
 @prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
 @prefix geo: &lt;http://www.w3.org/2003/01/geo/wgs84_pos#&gt; .
 @prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-@prefix qudt-1-1: &lt;http://qudt.org/1.1/schema/qudt#&gt; .
-@prefix qudt-unit-1-1: &lt;http://qudt.org/1.1/vocab/unit#&gt; .
+@prefix qudt: &lt;http://qudt.org/schema/qudt/&gt; .
+@prefix unit: &lt;http://qudt.org/vocab/unit/&gt; .
 @base &lt;http://example.org/data/&gt; .
 
 # Observation #358 of seismograph VCAB DP1 BP 40 (Vineyard Canyon, Parkfield, Ca) measured
@@ -6613,9 +6622,9 @@ ex:TemperatureSensor  rdfs:subClassOf [
   sosa:hasFeatureOfInterest  &lt;VCAB-DP1-BP-40#location&gt; ;
   sosa:observedProperty  &lt;VCAB-DP1-BP-40#groundDisplacementSpeed&gt; ;
   sosa:hasResult [
-     rdf:type qudt-1-1:QuantityValue ;
-     qudt-1-1:numericValue "5e-4"^^xsd:double ;
-     qudt-1-1:unit qudt-unit-1-1:CentimeterPerSecond ] ;
+     rdf:type qudt:QuantityValue ;
+     qudt:numericValue "5e-4"^^xsd:double ;
+     qudt:unit unit:CentimeterPerSecond ] ;
   sosa:resultTime "2017-04-18T08:23:00-07:00"^^xsd:dateTimeStamp .</pre>
           </div>
           <div class="buttonpanel" style="justify-content: center;">
@@ -6844,8 +6853,8 @@ ex:TemperatureSensor  rdfs:subClassOf [
             <pre class="example">@prefix rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
 @prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;.
 @prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-@prefix qudt-1-1: &lt;http://qudt.org/1.1/schema/qudt#&gt; .
-@prefix qudt-unit-1-1: &lt;http://qudt.org/1.1/vocab/unit#&gt; .
+@prefix qudt: &lt;http://qudt.org/schema/qudt/&gt; .
+@prefix unit: &lt;http://qudt.org/vocab/unit/&gt; .
 @prefix schema: &lt;http://schema.org/&gt;.
 
 @prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
@@ -6902,13 +6911,13 @@ ex:TemperatureSensor  rdfs:subClassOf [
   rdfs:comment "A temperature range of -40 to 80 Celsius."@en ;
   schema:minValue -40.0 ;
   schema:maxValue 80.0 ;
-  schema:unitCode qudt-unit-1-1:DegreeCelsius .
+  schema:unitCode unit:DegreeCelsius .
 
 &lt;NormalHumidityCondition&gt; a ssn-system:Condition , schema:PropertyValue ;
   rdfs:comment "A relative humidity range of 5 to 85 %."@en ;
   schema:minValue 5.0 ;
   schema:maxValue 85.0 ;
-  schema:unitCode qudt-unit-1-1:Percent .
+  schema:unitCode unit:Percent .
 
 
 
@@ -6921,23 +6930,23 @@ ex:TemperatureSensor  rdfs:subClassOf [
   rdfs:comment "The accuracy of the temperature sensor is +-0.5 °C in normal temperature and humidity conditions."@en ;
   schema:minValue -0.5 ;
   schema:maxValue 0.5 ;
-  schema:unitCode qudt-unit-1-1:DegreeCelsius .
+  schema:unitCode unit:DegreeCelsius .
 
 &lt;DHT22/4578#TemperatureSensorSensitivity&gt; a ssn:Property , ssn-system:Sensitivity , ssn-system:Resolution , schema:PropertyValue ;
   rdfs:comment "The sensitivity and resolution of the temperature sensor is 0.1 °C in normal temperature and humidity conditions."@en ;
   schema:value 0.1 ;
-  schema:unitCode qudt-unit-1-1:DegreeCelsius .
+  schema:unitCode unit:DegreeCelsius .
 
 &lt;DHT22/4578#TemperatureSensorPrecision&gt; a ssn:Property , ssn-system:Precision , schema:PropertyValue ;
   rdfs:comment "The precision (= repeatability) of the temperature sensor is +-0.2 °C in normal temperature and humidity conditions."@en ;
   schema:minValue 0.2 ;
   schema:maxValue 0.2 ;
-  schema:unitCode qudt-unit-1-1:DegreeCelsius .
+  schema:unitCode unit:DegreeCelsius .
 
 &lt;DHT22/4578#TemperatureSensorFrequency&gt; a ssn:Property , ssn-system:Frequency , schema:PropertyValue ;
   rdfs:comment "The smallest possible time between one observation and the next is 2 s on average."@en ;
   schema:value 2 ;
-  schema:unitCode qudt-unit-1-1:Second .
+  schema:unitCode unit:Second .
 
 
 &lt;observation/1087&gt; rdf:type sosa:Observation ;
@@ -6960,22 +6969,22 @@ ex:TemperatureSensor  rdfs:subClassOf [
 
 # one may use some quantity ontology.
 
-@prefix qudt-1-1: &lt;http://qudt.org/1.1/schema/qudt#&gt; .
-@prefix qudt-unit-1-1: &lt;http://qudt.org/1.1/vocab/unit#&gt; .
+@prefix qudt: &lt;http://qudt.org/schema/qudt/&gt; .
+@prefix unit: &lt;http://qudt.org/vocab/unit/&gt; .
 
-&lt;observation/1087#quality&gt; rdf:type qudt-1-1:Quantity ;
-  qudt-1-1:quantityValue [
-    rdf:type qudt-1-1:QuantityValue ;
-    qudt-1-1:numericValue "98.4"^^xsd:double ;
-    qudt-1-1:unit qudt-unit-1-1:Percent ] .</pre>
+&lt;observation/1087#quality&gt; rdf:type qudt:Quantity ;
+  qudt:quantityValue [
+    rdf:type qudt:QuantityValue ;
+    qudt:numericValue "98.4"^^xsd:double ;
+    qudt:unit unit:Percent ] .</pre>
           </div>
           <div class="sosa" style="display: none">
             <p>An RDF file containing a <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/dht22-sosa.ttl">graph corresponding to this example is available</a>. </p>
             <pre class="example">@prefix rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
 @prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;.
 @prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-@prefix qudt-1-1: &lt;http://qudt.org/1.1/schema/qudt#&gt; .
-@prefix qudt-unit-1-1: &lt;http://qudt.org/1.1/vocab/unit#&gt; .
+@prefix qudt: &lt;http://qudt.org/schema/qudt/&gt; .
+@prefix unit: &lt;http://qudt.org/vocab/unit/&gt; .
 @prefix schema: &lt;http://schema.org/&gt;.
 
 @prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
@@ -7028,8 +7037,8 @@ ex:TemperatureSensor  rdfs:subClassOf [
             <pre class="example">@prefix rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
 @prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;.
 @prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-@prefix qudt-1-1: &lt;http://qudt.org/1.1/schema/qudt#&gt; .
-@prefix qudt-unit-1-1: &lt;http://qudt.org/1.1/vocab/unit#&gt; .
+@prefix qudt: &lt;http://qudt.org/schema/qudt/&gt; .
+@prefix unit: &lt;http://qudt.org/vocab/unit/&gt; .
 @prefix schema: &lt;http://schema.org/&gt;.
 
 @prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
@@ -7123,8 +7132,8 @@ ex:TemperatureSensor  rdfs:subClassOf [
             <pre class="example">@prefix rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
 @prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;.
 @prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-@prefix qudt-1-1: &lt;http://qudt.org/1.1/schema/qudt#&gt; .
-@prefix qudt-unit-1-1: &lt;http://qudt.org/1.1/vocab/unit#&gt; .
+@prefix qudt: &lt;http://qudt.org/schema/qudt/&gt; .
+@prefix unit: &lt;http://qudt.org/vocab/unit/&gt; .
 @prefix schema: &lt;http://schema.org/&gt;.
 
 @prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
@@ -7201,7 +7210,7 @@ ex:TemperatureSensor  rdfs:subClassOf [
 @prefix sosa: &lt;http://www.w3.org/ns/sosa/> .
 @prefix ssn: &lt;http://www.w3.org/ns/ssn/> .
 @prefix ssn-system: &lt;http://www.w3.org/ns/ssn/systems/> .
-@prefix qudt-unit-1-1: &lt;http://qudt.org/vocab/unit#> .
+@prefix unit: &lt;http://qudt.org/vocab/unit/> .
 @prefix prov: &lt;http://www.w3.org/ns/prov#>.
 @prefix owl: &lt;http://www.w3.org/2002/07/owl#>.
 @prefix seas: &lt;https://w3id.org/seas/>.
@@ -7232,7 +7241,7 @@ ex:TemperatureSensor  rdfs:subClassOf [
   rdfs:comment "A temperature range of -20 to 70 Celsius."@en ;
   schema:minValue -20.0 ;
   schema:maxValue 70.0 ;
-  schema:unitCode qudt-unit-1-1:DegreeCelsius .
+  schema:unitCode unit:DegreeCelsius .
 
 &lt;IP68_Outdoor_Temperature_Sensor#systemCapability> a ssn:Property , ssn-system:SystemCapability ;
   rdfs:comment "The sensor capability in normal operating conditions."@en ;
@@ -7241,23 +7250,23 @@ ex:TemperatureSensor  rdfs:subClassOf [
 
 &lt;IP68_Outdoor_Temperature_Sensor#RFSensitivity> a ssn:Property , ssn-system:Sensitivity , schema:PropertyValue ;
   schema:value -137 ;
-  schema:unitCode qudt-unit-1-1:DecibelReferredToOneMilliwatt .
+  schema:unitCode unit:DecibelReferredToOneMilliwatt .
 
 &lt;IP68_Outdoor_Temperature_Sensor#TemperatureAccuracy> a ssn:Property , ssn-system:Accuracy , schema:PropertyValue ;
   ssn:forProperty &lt;Air?lat=45.75&amp;long=4.85#temperature> ;
   schema:minValue -0.2 ;
   schema:maxValue 0.2 ;
-  schema:unitCode qudt-unit-1-1:DegreeCelsius .
+  schema:unitCode unit:DegreeCelsius .
 
 &lt;IP68_Outdoor_Temperature_Sensor#TemperatureResolution> a ssn:Property , ssn-system:Resolution , schema:PropertyValue ;
   ssn:forProperty &lt;Air?lat=45.75&amp;long=4.85#temperature> ;
   schema:value 0.0625 ;
-  schema:unitCode qudt-unit-1-1:DegreeCelsius .
+  schema:unitCode unit:DegreeCelsius .
 
 &lt;IP68_Outdoor_Temperature_Sensor#BatteryResolution> a ssn:Property , ssn-system:Resolution , schema:PropertyValue ;
   ssn:forProperty &lt;Sensor/SL-T-P1#battery> ;
   schema:value 3.937e-3 ;
-  schema:unitCode qudt-unit-1-1:Percent .
+  schema:unitCode unit:Percent .
 
 &lt;Air?lat=45.75&amp;long=4.85> a sosa:Sample ;
   rdfs:label "The air at lat 45.75 and long 4.85."@en ;
@@ -7625,7 +7634,7 @@ ex:TemperatureSensor  rdfs:subClassOf [
               <li><code>sosa:FeatureOfInterest</code> is a sub-class of <code>dul:Entity</code></li>
             </ul>
           </li>
-          <li>Replaced inexistent <code>qudt-1-1:numericalValue</code> by <code>qudt-1-1:numericValue</code> in tree height measurement example</li>
+          <li>Replaced inexistent <code>qudt:numericalValue</code> by <code>qudt:numericValue</code> in tree height measurement example</li>
         </ol>
       </section>
   </body>
