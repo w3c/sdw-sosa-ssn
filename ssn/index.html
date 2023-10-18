@@ -5845,6 +5845,17 @@ their usage are given.</p>
       between geo-datasets. To do so, these entities can be declared as instances of geo:Feature and geometries can be 
       assigned to them via the geo:hasGeometry property.  In case of classes, e.g., specific features of 
       interests such as rivers, these can be defined as subclasses of geo:Feature.</p>
+      <p>For example, if observations are made of the atmosphere at a specific location, it might be described as a Sample using the following pattern:</p>
+      <pre class="example">
+&lt;earthAtmosphere_StE&gt; a sosa:Sample ;
+  sosa:isSampleOf &lt;earthAtmosphere&gt; ;
+  geo:hasGeometry [ 
+    a geo:Point ;
+    geo:asWKT "POINT (4.387611 45.437772)"^^geo:WktLiteral ;
+  ] ;
+.
+      </pre>
+
      </section>
         
      <section id="forecasts" class="informative">
@@ -5867,11 +5878,15 @@ their usage are given.</p>
      <h3>Quantity Values and Unit of Measures</h3>
         <p>The result of an <a href="#SOSAObservation"><code>sosa:Observation</code></a> or an <a href="#SOSAActuation"><code>sosa:Actuation</code></a> can be a quantity value with a numeric value and a unit of measure.
 
-        <p class="note">It is not in the scope of this specification to recommend any particular way of modeling results as quantity values. 
-        There exists external vocabularies that are specifically designed for modeling quantity values as OWL individuals. Examples 
-        include the Quantities, Units, Dimensions and Data Types Ontologies (QUDT, [[QUDT]]) and the Ontology of Units of Measure (OM, [[Rijgersberg-et-al-2013]]). <br/>
-        With QUDT 1.1, a <a href="#SOSAResult"><code>sosa:Result</code></a> would be a <a href="http://qudt.org/"><code>qudt:QuantityValue</code></a>.<br/>
-        With OM 2, a <a href="#SOSAResult"><code>sosa:Result</code></a> would be a <a href="http://www.wurvoc.org/vocabularies/"><code>om:Measure</code> or <code>om:Point</code></a>.</p>
+        <p class="note">It is not in the scope of this specification to recommend any particular way of expressing results as quantity values. 
+        There exist external vocabularies that are specifically designed for modeling quantity values as OWL individuals, or as datatypes. 
+        Examples include the Quantities, Units, Dimensions and Data Types Ontologies (QUDT, [[QUDT]]) the Ontology of Units of Measure (OM, [[Rijgersberg-et-al-2013]]), and the St Etienne School of Mines <i>Custom Datatypes</i> (CDT, [[CDT]]). </p>
+        <ul>
+        <li>With QUDT, a <a href="#SOSAResult"><code>sosa:Result</code></a> would be a <a href="http://qudt.org/"><code>qudt:QuantityValue</code></a></li>
+        <li>With OM 2, a <a href="#SOSAResult"><code>sosa:Result</code></a> would be a <a href="http://www.wurvoc.org/vocabularies/"><code>om:Measure</code> or <code>om:Point</code></a></li>
+        <li>With CDT, the value of <a href="#SOSAhasSimpleResult"><code>sosa:hasSimpleResult</code></a> may be structured to match <a href="https://ci.mines-stetienne.fr/lindt/v4/custom_datatypes#ucum"><code>cdt:ucum</code></a> which encodes the unit-of-measure using UCUM (UCUM, [[UCUM]])</li>
+        </ul>
+       <p class="note">Custom datatypes are not strictly compatible with OWL, which restricts the set of datatypes that can be used. See sec. 5.2 in [[owl2-syntax]] for more details.</p>
         <pre class="example">
 @prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;.
@@ -5883,7 +5898,7 @@ their usage are given.</p>
                     the outside temperature and the inside temperature."@en ;
    sosa:hasFeatureOfInterest &lt;apartment/134&gt; ;
    sosa:hasResult [
-      a qudt:Quantity ;
+      a qudt:QuantityValue ;
       qudt:unit unit:DEG_C ;
       qudt:value "-29.9"^^xsd:decimal ] .
 
@@ -5891,7 +5906,7 @@ their usage are given.</p>
    rdfs:comment "Observation of the temperature inside apartment #134."@en ;
    sosa:hasFeatureOfInterest &lt;apartment/134&gt; ;
    sosa:hasResult [
-      a qudt:Quantity ;
+      a qudt:QuantityValue ;
       qudt:unit unit:DEG_C ;
       qudt:value "22.4"^^xsd:decimal ] .
         <&lt;>/pre>
@@ -5907,7 +5922,7 @@ their usage are given.</p>
    sosa:hasResult [
       a om:Measure ;
       om:hasUnit om:degreeCelsius ;
-      om:hasNumericalValue "-29.9"^^xsd:double ] .
+      om:hasNumericalValue "-29.9"^^xsd:decimal ] .
 
 &lt;Observation/83985&gt; a sosa:Observation ;
    rdfs:comment "Observation of the temperature inside apartment #134."@en ;
@@ -5915,24 +5930,19 @@ their usage are given.</p>
    sosa:hasResult [
       a om:Point ;
       om:hasScale om:CelsiusScale ;
-      om:hasNumericalValue "22.4"^^xsd:double ] .
+      om:hasNumericalValue "22.4"^^xsd:decimal ] .
         </pre>
-
-       <p class="note"> Other means to represent quantity values as literals are reported, but
-          not in the scope of this specification. This solution would require the use of some custom datatype 
-          whose value space is some set of quantity values. Such a datatype should be supported 
-          by RDF and SPARQL engines to support the comparison of quantity values. 
-          On the other hand, this approach is not compatible with the OWL specifications, that 
-          restrict the set of datatypes that can be used. See sec. 5.2 in [[owl2-syntax]] for more details.</p>
 
         <pre class="example">
-@prefix cdt: &lt;http://w3id.org/lindt/custom_datatypes#&gt; .
 @prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
+@prefix cdt: &lt;http://w3id.org/lindt/custom_datatypes#&gt; .
 
-&lt;observation/123&gt; a sosa:Observation ;
-  sosa:hasSimpleResult "12.4 m"^^cdt:ucum .
+&lt;Observation/234534&gt; a sosa:Observation ;
+   sosa:hasFeatureOfInterest &lt;apartment/134&gt; ;
+   sosa:hasSimpleResult "-29.9 Cel"^^cdt:ucum .
         </pre>
         
+
      </section>
          
      <section id="SSNProperty-instances" class="informative">
