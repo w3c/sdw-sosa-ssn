@@ -1,15 +1,12 @@
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
- @prefix owl: <http://www.w3.org/2002/07/owl#> .
- @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
- @prefix sosa: <http://www.w3.org/ns/sosa#> .
- @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
- @prefix cdt: <http://w3id.org/lindt/custom_datatypes#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix cdt: <http://w3id.org/lindt/custom_datatypes#>.
 
 @base <http://example.org/data/> .
 
-<IDEA> a owl:Ontology ;
-   owl:imports <http://www.w3.org/ns/sosa> .
- 
  <COPR> a sosa:FeatureOfInterest ;
    sosa:hasSample <COPR_SL> ;
    rdfs:comment "Coal Oil Point Reserve: UC Santa Barbara Natural Reserve System"@en ;
@@ -39,8 +36,9 @@
    rdfs:comment "Humidity is a measure of the moisture content of air."@en ;
    rdfs:label "Relative Humidity"@en .
 
- <MeasuringRelativeHumidity> a sosa:Procedure ;
-   rdfs:comment "Instructions for measuring relative humidity"@en .
+ <MeasuringRelativeHumidityA23> a sosa:Procedure ;
+   rdfs:comment "... detailed instructions for measuring relative humidity ..."@en ;
+   .
   
  <RH_avg_1_COPR_15min_201706020300PM> a sosa:Observation ;
    rdfs:comment "Relative humidity as averaged over 15min at COPR."@en ;
@@ -50,4 +48,4 @@
    sosa:hasSimpleResult "92.5 %"^^cdt:ucum ;
    sosa:resultTime "2017-06-02-T03:00:00-7:00"^^xsd:dateTime ;
    sosa:observedProperty <RelativeHumidity> ;
-   sosa:usedProcedure <MeasuringRelativeHumidity> .
+   sosa:usedProcedure <MeasuringRelativeHumidityA23> .

@@ -11,11 +11,10 @@
 # The barometric readings from a Bosch Sensortec BMP282 sensor in an Apple IPhone 7
 # observed on June 6 2017 using only the SOSA core for modelling.
 
-
 # the atmosphere is sampled at a specific location
 # location coordinates are given using GeoSPARQL
 
-<earthAtmosphere> rdf:type sosa:FeatureOfInterest ;
+<earthAtmosphere> a sosa:FeatureOfInterest ;
   rdfs:label "Atmosphere of Earth"@en .
 
 <earthAtmosphere_StE> a sosa:Sample ;
@@ -26,6 +25,9 @@
   ] ;
 .
 
+<atmosphericPressure> a sosa:ObservableProperty ;
+  rdfs:label "Atmospheric pressure"@en .
+
 
 # An iPhone 7 as the Platform that hosts several sensors,
 # among others the Bosch Sensortec BMP282 atmospheric pressure sensor.
@@ -35,16 +37,16 @@
   rdfs:comment "IPhone 7 - IMEI 35-207306-844818-0 - John Doe"@en ;
   sosa:hosts <sensor/35-207306-844818-0/BMP282> .
 
-<sensor/35-207306-844818-0/BMP282> rdf:type sosa:Sensor ;
+<sensor/35-207306-844818-0/BMP282> a sosa:Sensor ;
   rdfs:label "Bosch Sensortec BMP282"@en ;
-  sosa:observes <sensor/35-207306-844818-0/BMP282/atmosphericPressure> .
+  sosa:observes <atmosphericPressure> .
 
 
 # An observation made by the BMP282 atmospheric pressure sensor
 # using the cdt:ucum custom datatype.
 
-<Observation/346344> rdf:type sosa:Observation ;
-  sosa:observedProperty <sensor/35-207306-844818-0/BMP282/atmosphericPressure> ;
+<Observation/346344> a sosa:Observation ;
+  sosa:observedProperty <atmosphericPressure> ;
   sosa:hasFeatureOfInterest  <earthAtmosphere_StE> ;
   sosa:madeBySensor <sensor/35-207306-844818-0/BMP282> ;
   sosa:hasSimpleResult "1021.45 hPa"^^cdt:ucum ;
@@ -54,12 +56,12 @@
 # Another observation made a second later by the BMP282 atmospheric pressure sensor
 # using the QUDT Ontology for the Units of Measurement
 
-<Observation/346345> rdf:type sosa:Observation ;
-  sosa:observedProperty <sensor/35-207306-844818-0/BMP282/atmosphericPressure> ;
+<Observation/346345> a sosa:Observation ;
+  sosa:observedProperty <atmosphericPressure> ;
   sosa:hasFeatureOfInterest  <earthAtmosphere_StE> ;
   sosa:madeBySensor <sensor/35-207306-844818-0/BMP282> ;
   sosa:hasResult [
-    rdf:type qudt:QuantityValue ;
+    a qudt:QuantityValue ;
     qudt:value "101936"^^xsd:decimal ;
-    qudt:unit unit:PA ] ;
+    qudt:hasUnit unit:PA ] ;
   sosa:resultTime "2017-06-06T12:36:13Z"^^xsd:dateTime .

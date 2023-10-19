@@ -5899,7 +5899,7 @@ their usage are given.</p>
    sosa:hasFeatureOfInterest &lt;apartment/134&gt; ;
    sosa:hasResult [
       a qudt:QuantityValue ;
-      qudt:unit unit:DEG_C ;
+      qudt:hasUnit unit:DEG_C ;
       qudt:value "-29.9"^^xsd:decimal ] .
 
 &lt;Observation/83985&gt; a sosa:Observation ;
@@ -5907,7 +5907,7 @@ their usage are given.</p>
    sosa:hasFeatureOfInterest &lt;apartment/134&gt; ;
    sosa:hasResult [
       a qudt:QuantityValue ;
-      qudt:unit unit:DEG_C ;
+      qudt:hasUnit unit:DEG_C ;
       qudt:value "22.4"^^xsd:decimal ] .
         <&lt;>/pre>
         <pre class="example">
@@ -6087,10 +6087,10 @@ ex:TemperatureSensor  rdfs:subClassOf [
 # The barometric readings from a Bosch Sensortec BMP282 sensor in an Apple IPhone 7
 # observed on June 6 2017 using only the SOSA core for modelling.
 
+# the atmosphere is sampled at a specific location
+# location coordinates are given using GeoSPARQL
 
-# the atmosphere is sampled at a specified location
-
-&lt;earthAtmosphere&gt; rdf:type sosa:FeatureOfInterest ;
+&lt;earthAtmosphere&gt; a sosa:FeatureOfInterest ;
   rdfs:label "Atmosphere of Earth"@en .
 
 &lt;earthAtmosphere_StE&gt; a sosa:Sample ;
@@ -6101,6 +6101,9 @@ ex:TemperatureSensor  rdfs:subClassOf [
   ] ;
 .
 
+&lt;atmosphericPressure&gt; a sosa:ObservableProperty ;
+  rdfs:label "Atmospheric pressure"@en .
+
 
 # An iPhone 7 as the Platform that hosts several sensors,
 # among others the Bosch Sensortec BMP282 atmospheric pressure sensor.
@@ -6110,16 +6113,16 @@ ex:TemperatureSensor  rdfs:subClassOf [
   rdfs:comment "IPhone 7 - IMEI 35-207306-844818-0 - John Doe"@en ;
   sosa:hosts &lt;sensor/35-207306-844818-0/BMP282&gt; .
 
-&lt;sensor/35-207306-844818-0/BMP282&gt; rdf:type sosa:Sensor ;
+&lt;sensor/35-207306-844818-0/BMP282&gt; a sosa:Sensor ;
   rdfs:label "Bosch Sensortec BMP282"@en ;
-  sosa:observes &lt;sensor/35-207306-844818-0/BMP282/atmosphericPressure&gt; .
+  sosa:observes &lt;atmosphericPressure&gt; .
 
 
 # An observation made by the BMP282 atmospheric pressure sensor
 # using the cdt:ucum custom datatype.
 
-&lt;Observation/346344&gt; rdf:type sosa:Observation ;
-  sosa:observedProperty &lt;sensor/35-207306-844818-0/BMP282/atmosphericPressure&gt; ;
+&lt;Observation/346344&gt; a sosa:Observation ;
+  sosa:observedProperty &lt;atmosphericPressure&gt; ;
   sosa:hasFeatureOfInterest  &lt;earthAtmosphere_StE&gt; ;
   sosa:madeBySensor &lt;sensor/35-207306-844818-0/BMP282&gt; ;
   sosa:hasSimpleResult "1021.45 hPa"^^cdt:ucum ;
@@ -6129,14 +6132,14 @@ ex:TemperatureSensor  rdfs:subClassOf [
 # Another observation made a second later by the BMP282 atmospheric pressure sensor
 # using the QUDT Ontology for the Units of Measurement
 
-&lt;Observation/346345&gt; rdf:type sosa:Observation ;
-  sosa:observedProperty &lt;sensor/35-207306-844818-0/BMP282/atmosphericPressure&gt; ;
+&lt;Observation/346345&gt; a sosa:Observation ;
+  sosa:observedProperty &lt;atmosphericPressure&gt; ;
   sosa:hasFeatureOfInterest  &lt;earthAtmosphere_StE&gt; ;
   sosa:madeBySensor &lt;sensor/35-207306-844818-0/BMP282&gt; ;
   sosa:hasResult [
-    rdf:type qudt:QuantityValue ;
+    a qudt:QuantityValue ;
     qudt:value "101936"^^xsd:decimal ;
-    qudt:unit unit:PA ] ;
+    qudt:hasUnit unit:PA ] ;
   sosa:resultTime "2017-06-06T12:36:13Z"^^xsd:dateTime .
           </pre></div>
         </section>
@@ -6144,18 +6147,15 @@ ex:TemperatureSensor  rdfs:subClassOf [
           <h3>Coal Oil Point Reserve</h3>
           <div class="ssn">
           <p>An RDF file containing a <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/IDEAS.ttl">graph corresponding to this example is available</a>. </p>
-          <pre class="example">@prefix rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
- @prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .
- @prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
- @prefix sosa: &lt;http://www.w3.org/ns/sosa#&gt; .
- @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
- @prefix cdt: &lt;http://w3id.org/lindt/custom_datatypes#&gt;.
+          <pre class="example">@prefix rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+@prefix sosa: &lt;http://www.w3.org/ns/sosa#&gt; .
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+@prefix cdt: &lt;http://w3id.org/lindt/custom_datatypes#&gt;.
 
 @base &lt;http://example.org/data/&gt; .
 
-&lt;IDEA&gt; a owl:Ontology ;
-   owl:imports &lt;http://www.w3.org/ns/sosa&gt; .
- 
  &lt;COPR&gt; a sosa:FeatureOfInterest ;
    sosa:hasSample &lt;COPR_SL&gt; ;
    rdfs:comment "Coal Oil Point Reserve: UC Santa Barbara Natural Reserve System"@en ;
@@ -6185,8 +6185,9 @@ ex:TemperatureSensor  rdfs:subClassOf [
    rdfs:comment "Humidity is a measure of the moisture content of air."@en ;
    rdfs:label "Relative Humidity"@en .
 
- &lt;MeasuringRelativeHumidity&gt; a sosa:Procedure ;
-   rdfs:comment "Instructions for measuring relative humidity"@en .
+ &lt;MeasuringRelativeHumidityA23&gt; a sosa:Procedure ;
+   rdfs:comment "... detailed instructions for measuring relative humidity ..."@en ;
+   .
   
  &lt;RH_avg_1_COPR_15min_201706020300PM&gt; a sosa:Observation ;
    rdfs:comment "Relative humidity as averaged over 15min at COPR."@en ;
@@ -6196,7 +6197,7 @@ ex:TemperatureSensor  rdfs:subClassOf [
    sosa:hasSimpleResult "92.5 %"^^cdt:ucum ;
    sosa:resultTime "2017-06-02-T03:00:00-7:00"^^xsd:dateTime ;
    sosa:observedProperty &lt;RelativeHumidity&gt; ;
-   sosa:usedProcedure &lt;MeasuringRelativeHumidity&gt; .
+   sosa:usedProcedure &lt;MeasuringRelativeHumidityA23&gt; .
           </pre></div>
         </section>
         <section id="apartment-134">
@@ -6227,7 +6228,7 @@ ex:TemperatureSensor  rdfs:subClassOf [
   sosa:hasResult [
      rdf:type qudt:QuantityValue ;
      qudt:numericValue "22.4"^^xsd:double ;
-     qudt:unit unit:Kilowatthour ] ;
+     qudt:hasUnit unit:KiloW-HR ] ;
   sosa:phenomenonTime [
     rdf:type time:Interval ;
     time:hasBeginning [ 
@@ -6325,7 +6326,7 @@ ex:TemperatureSensor  rdfs:subClassOf [
   sosa:hasResult [
      rdf:type qudt:QuantityValue ;
      qudt:numericValue "22.4"^^xsd:double ;
-     qudt:unit unit:Kilowatthour ] ;
+     qudt:hasUnit unit:KiloW-HR ] ;
   sosa:phenomenonTime [
     rdf:type time:Interval ;
     time:hasBeginning [ 
@@ -6442,7 +6443,7 @@ ex:TemperatureSensor  rdfs:subClassOf [
   sosa:observedProperty  &lt;tree/124/height&gt; ;
   sosa:madeBySensor &lt;rangefinder/30&gt; ;
   sosa:hasResult [ 
-    qudt:unit unit:Meter ; 
+    qudt:hasUnit unit:M ; 
     qudt:numericValue "15.3"^^xsd:double ] .
 
 # using SSN, one can explicitly link a property and its feature of interest.
@@ -6464,7 +6465,7 @@ ex:TemperatureSensor  rdfs:subClassOf [
   sosa:madeBySensor &lt;rangefinder/30&gt; ;
   sosa:hasResult [ 
     qudt:numericValue "23.0"^^xsd:double ;
-    qudt:unit unit:Meter ] .
+    qudt:hasUnit unit:M ] .
 
 # using SSN, one can explicitly link a property and its feature of interest.
  
@@ -6501,7 +6502,7 @@ ex:TemperatureSensor  rdfs:subClassOf [
   sosa:observedProperty  &lt;tree/124/height&gt; ;
   sosa:madeBySensor &lt;rangefinder/30&gt; ;
   sosa:hasResult [ 
-    qudt:unit unit:Meter ; 
+    qudt:hasUnit unit:M ; 
     qudt:numericValue "15.3"^^xsd:double ] .
 
 &lt;tree/124&gt;  rdf:type    sosa:FeatureOfInterest ;
@@ -6519,7 +6520,7 @@ ex:TemperatureSensor  rdfs:subClassOf [
   sosa:madeBySensor &lt;rangefinder/30&gt; ;
   sosa:hasResult [ 
     qudt:numericValue "23.0"^^xsd:double ;
-    qudt:unit unit:Meter ] .
+    qudt:hasUnit unit:M ] .
 
 &lt;tree/125&gt;  rdf:type    sosa:FeatureOfInterest ;
   rdfs:label "tree #125"@en .
@@ -6585,7 +6586,7 @@ ex:TemperatureSensor  rdfs:subClassOf [
   sosa:hasResult [
      rdf:type qudt:QuantityValue ;
      qudt:numericValue "5e-4"^^xsd:double ;
-     qudt:unit unit:CentimeterPerSecond ] ;
+     qudt:hasUnit unit:CentiM-PER-SEC ] ;
   sosa:resultTime "2017-04-18T08:23:00-07:00"^^xsd:dateTimeStamp .
 
 # using SSN one can explicitly state that &lt;VCAB-DP1-BP-40#groundDisplacementSpeed&gt; is the property of &lt;VCAB-DP1-BP-40#location&gt; .
@@ -6634,7 +6635,7 @@ ex:TemperatureSensor  rdfs:subClassOf [
   sosa:hasResult [
      rdf:type qudt:QuantityValue ;
      qudt:numericValue "5e-4"^^xsd:double ;
-     qudt:unit unit:CentimeterPerSecond ] ;
+     qudt:hasUnit unit:CentiM-PER-SEC ] ;
   sosa:resultTime "2017-04-18T08:23:00-07:00"^^xsd:dateTimeStamp .</pre>
           </div>
           <div class="buttonpanel" style="justify-content: center;">
@@ -6927,7 +6928,7 @@ ex:TemperatureSensor  rdfs:subClassOf [
   rdfs:comment "A relative humidity range of 5 to 85 %."@en ;
   schema:minValue 5.0 ;
   schema:maxValue 85.0 ;
-  schema:unitCode unit:Percent .
+  schema:unitCode unit:PERCENT .
 
 
 
@@ -6986,7 +6987,7 @@ ex:TemperatureSensor  rdfs:subClassOf [
   qudt:quantityValue [
     rdf:type qudt:QuantityValue ;
     qudt:numericValue "98.4"^^xsd:double ;
-    qudt:unit unit:Percent ] .</pre>
+    qudt:hasUnit unit:PERCENT ] .</pre>
           </div>
           <div class="sosa" style="display: none">
             <p>An RDF file containing a <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/dht22-sosa.ttl">graph corresponding to this example is available</a>. </p>
@@ -7276,7 +7277,7 @@ ex:TemperatureSensor  rdfs:subClassOf [
 &lt;IP68_Outdoor_Temperature_Sensor#BatteryResolution> a ssn:Property , ssn-system:Resolution , schema:PropertyValue ;
   ssn:forProperty &lt;Sensor/SL-T-P1#battery> ;
   schema:value 3.937e-3 ;
-  schema:unitCode unit:Percent .
+  schema:unitCode unit:PERCENT .
 
 &lt;Air?lat=45.75&amp;long=4.85> a sosa:Sample ;
   rdfs:label "The air at lat 45.75 and long 4.85."@en ;
