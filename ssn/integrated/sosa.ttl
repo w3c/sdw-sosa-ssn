@@ -127,30 +127,6 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
     owl:inverseOf sosa:hasSample ;
     rdfs:isDefinedBy sosa: .
 
-  sosa:hasOriginalSample a owl:ObjectProperty ;
-    rdfs:label "has original sample"@en ;
-    skos:definition "Link to the original sample that is related to the context sample through a chain of isSampleOf relations."@en ;
-    rdfs:comment "Link to the original sample that is related to the context sample through a chain of isSampleOf relations."@en ;
-    schema:domainIncludes sosa:Sample ;
-    schema:rangeIncludes sosa:Sample ;
-    rdfs:isDefinedBy sosa: .
-
-  sosa:hasSampledFeature a owl:ObjectProperty ;
-    rdfs:label "has ultimate sampled feature"@en ;
-    skos:definition "Link to the ultimate feature of interest of the context sample - i.e. the end of a chain of isSampleOf relations"@en ;
-    rdfs:comment "Link to the ultimate feature of interest of the context sample - i.e. the end of a chain of isSampleOf relations"@en ;
-    schema:domainIncludes sosa:Sample ;
-    schema:rangeIncludes sosa:FeatureOfInterest ;
-    rdfs:isDefinedBy sosa: .
-
-  sosa:hasPreparationStep a owl:ObjectProperty ;
-    rdfs:label "has preparation step"@en ;
-    skos:definition "Link to the ultimate feature of interest of the context sample - i.e. the end of a chain of isSampleOf relations"@en ;
-    rdfs:comment "Link to the ultimate feature of interest of the context sample - i.e. the end of a chain of isSampleOf relations"@en ;
-    schema:domainIncludes sosa:Sample ;
-    schema:rangeIncludes sosa:PreparationStep ;
-    rdfs:isDefinedBy sosa: .
-
 sosa:SampleCollection a rdfs:Class , owl:Class ;
   rdfs:label "Sample Collection"@en ;
   skos:definition "A collection of Samples."@en ;
@@ -172,7 +148,6 @@ sosa:Platform a rdfs:Class , owl:Class ;
   skos:altLabel "Host" ;
   skos:definition "A Platform is an entity that hosts other entities, particularly Sensors, Actuators, Samplers, and other Platforms."@en ;
   rdfs:comment "A Platform is an entity that hosts other entities, particularly Sensors, Actuators, Samplers, and other Platforms."@en ;
-  skos:scopeNote "The UML class 'Host' from ISO 19156:2023 is implemented in SOSA by the OWL/RDFS class 'Platform'" ;
   skos:scopeNote "The INSPIRE 'Environmental Monitoring Facility' may be implemented using SOSA by the OWL/RDFS class 'Platform'" ;
   dcterms:source <https://inspire.ec.europa.eu/id/document/tg/ef> ;
   skos:example """A post, buoy, vehicle, ship, aircraft, satellite, cell-phone, human or animal may act as platforms for (technical or biological) sensors or actuators.
@@ -250,6 +225,10 @@ sosa:Sensor a rdfs:Class , owl:Class ;
   skos:definition "Device, agent (including humans), or software (simulation) involved in, or implementing, a Procedure. Sensors respond to a stimulus, e.g., a change in the environment, or input data composed from the results of prior Observations, and generate a Result. Sensors can be hosted by Platforms."@en ;
   rdfs:comment "Device, agent (including humans), or software (simulation) involved in, or implementing, a Procedure. Sensors respond to a stimulus, e.g., a change in the environment, or input data composed from the results of prior Observations, and generate a Result. Sensors can be hosted by Platforms."@en ;
   skos:example "Accelerometers, gyroscopes, barometers, magnetometers, and so forth are Sensors that are typically mounted on a modern smart phone (which acts as Platform). Other examples of sensors include the human eyes."@en ;
+  skos:note "Different Observers can follow the same (reusable) observing Procedure for the creation of different Observations."@en ;
+  skos:note "The Observer is the entity instance, not the entity type. Pertaining to sensors, the Observer would reference the explicit sensor, while the Procedure would reference the methodology utilized by that sensor type;"@en ;
+  skos:note "An Observer can be hosted by one or more Host."@en ;
+  skos:note "The Observer is an instance of a sensor, instrument, implementation of an algorithm, or a being such as a person."@en ;
   rdfs:isDefinedBy sosa: .
 
   sosa:observes a owl:ObjectProperty ;
@@ -387,23 +366,6 @@ sosa:Observation a rdfs:Class , owl:Class ;
     schema:rangeIncludes sosa:ObservableProperty ;
     rdfs:isDefinedBy sosa: .
 
-  sosa:madeByObserver rdf:type owl:ObjectProperty ;
-    rdfs:label "made by observer"@en ;
-    skos:definition "Relation between an Observation and the Observer which made the Observation."@en ;
-    rdfs:comment "Relation between an Observation and the Observer which made the Observation."@en ;
-    schema:domainIncludes sosa:Observation ;
-    schema:rangeIncludes sosa:Sensor ;
-    owl:inverseOf sosa:madeObservation ;
-    rdfs:isDefinedBy sosa: .
-
-  sosa:madeOnPlatform rdf:type owl:ObjectProperty ;
-    rdfs:label "made on Platform"@en ;
-    skos:definition "Relation between an Observation and the Platform the Observer was attached to at the time the observation was made."@en ;
-    rdfs:comment "Relation between an Observation and the Platform the Observer was attached to at the time the observation was made."@en ;
-    schema:domainIncludes sosa:Observation ;
-    schema:rangeIncludes sosa:Platform ;
-    rdfs:isDefinedBy sosa: .
-
 sosa:Actuation a rdfs:Class , owl:Class ;
   rdfs:label "Actuation"@en ;
   skos:definition "An Actuation carries out an (Actuation) Procedure to change the state of the world using an Actuator."@en ;
@@ -484,21 +446,6 @@ sosa:Sampling a rdfs:Class , owl:Class ;
     owl:inverseOf sosa:madeSampling ;
     rdfs:isDefinedBy sosa: .
 
-sosa:PreparationStep a rdfs:Class , owl:Class ;
-  rdfs:label "Preparation Step"@en ;
-  skos:definition "A PreparationStep is an individual step pertaining to a PreparationProcedure."@en ;
-  rdfs:comment "A PreparationStep is an individual step pertaining to a PreparationProcedure."@en ;
-  skos:example "???"@en ;
-  rdfs:isDefinedBy sosa: .
-
-  sosa:preparedSample a owl:ObjectProperty ;
-    rdfs:label "prepared sample"@en ;
-    skos:definition "The Sample on which the PreparationProcedure is performed."@en ;
-    rdfs:comment "The Sample on which the PreparationProcedure is performed."@en ;
-    schema:domainIncludes sosa:PreparationStep ;
-    schema:rangeIncludes sosa:Sample ;
-    rdfs:isDefinedBy sosa: .
-
 
 ## Observation Collection
 
@@ -507,8 +454,6 @@ sosa:Observation
   - hasFeatureOfInterest
   - hasUltimateFeatureOfInterest
   - madeBySensor
-  - madeByObserver
-  - madeOnPlatform
   - observedProperty
   - phenomenonTime
   - resultTime
@@ -534,12 +479,6 @@ sosa:hasUltimateFeatureOfInterest
   schema:domainIncludes sosa:ObservationCollection .
 
 sosa:madeBySensor
-  schema:domainIncludes sosa:ObservationCollection .
-
-sosa:madeByObserver
-  schema:domainIncludes sosa:ObservationCollection .
-
-sosa:madeOnPlatform
   schema:domainIncludes sosa:ObservationCollection .
 
 sosa:observedProperty
@@ -575,6 +514,7 @@ sosa:Stimulus a owl:Class ;
     rdfs:label "detects"@en ;
     skos:definition "A relation from a Sensor to the Stimulus that the Sensor detects. The Stimulus itself will be serving as a proxy for some ObservableProperty."@en ;
     rdfs:comment "A relation from a Sensor to the Stimulus that the Sensor detects. The Stimulus itself will be serving as a proxy for some ObservableProperty."@en ;
+    schema:domainIncludes sosa:Observer ;
     schema:domainIncludes sosa:Sensor ;
     schema:rangeIncludes sosa:Stimulus ;
     rdfs:isDefinedBy sosa: .
@@ -695,26 +635,10 @@ sosa:System a owl:Class ;
 
 sosa:Deployment a owl:Class ;
   rdfs:label "Deployment"@en ;
-  skos:definition "Describes the Deployment of one or more assets for a particular purpose. Deployment may be done on a Platform."@en ;
-  rdfs:comment "Describes the Deployment of one or more assets for a particular purpose. Deployment may be done on a Platform."@en ;
+  skos:definition "Describes the Deployment of one or more assets for a particular purpose. Deployment may be done on a Host."@en ;
+  rdfs:comment "Describes the Deployment of one or more assets for a particular purpose. Deployment may be done on a Host."@en ;
   skos:example "For example, a temperature Sensor deployed on a wall, or a whole network of Sensors deployed for an Observation campaign."@en ;
   rdfs:isDefinedBy sosa: .
-
-  sosa:deployedAsset a owl:ObjectProperty ;
-    rdfs:label "deployed asset"@en ;
-    skos:definition "Relation between a Deployment and a deployed asset."@en ;
-    rdfs:comment "Relation between a Deployment and a deployed asset."@en ;
-    schema:domainIncludes sosa:Deployment ;
-    rdfs:isDefinedBy sosa: .
-
-  sosa:deployedOnPlatform a owl:ObjectProperty ;
-    rdfs:label "deployed on platform"@en ;
-    skos:definition "Relation between a Deployment and the Platform on which the Systems are deployed."@en ;
-    rdfs:comment "Relation between a Deployment and the Platform on which the Systems are deployed."@en ;
-    owl:inverseOf sosa:inDeployment ;
-    schema:domainIncludes sosa:Deployment ;
-    schema:rangeIncludes sosa:Platform ;
-    rdfs:isDefinedBy sosa: .
 
   sosa:deployedSystem a owl:ObjectProperty ;
     rdfs:label "deployed system"@en ;
@@ -732,6 +656,15 @@ sosa:Deployment a owl:Class ;
     owl:inverseOf sosa:deployedSystem ;
     schema:domainIncludes sosa:System ;
     schema:rangeIncludes sosa:Deployment ;
+    rdfs:isDefinedBy sosa: .
+
+  sosa:deployedOnPlatform a owl:ObjectProperty ;
+    rdfs:label "deployed on platform"@en ;
+    skos:definition "Relation between a Deployment and the Platform on which the Systems are deployed."@en ;
+    rdfs:comment "Relation between a Deployment and the Platform on which the Systems are deployed."@en ;
+    owl:inverseOf sosa:inDeployment ;
+    schema:domainIncludes sosa:Deployment ;
+    schema:rangeIncludes sosa:Platform ;
     rdfs:isDefinedBy sosa: .
 
   sosa:inDeployment a owl:ObjectProperty ;
