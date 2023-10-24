@@ -1,0 +1,188 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+
+@prefix schema: <http://schema.org/> .
+
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix sosa-c: <http://www.w3.org/ns/sosa-collections/> .
+
+
+dcterms:title a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:rights a owl:AnnotationProperty .
+dcterms:license a owl:AnnotationProperty .
+dcterms:created a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+foaf:Agent a owl:Class .
+foaf:name a owl:AnnotationProperty .
+schema:domainIncludes a owl:AnnotationProperty .
+schema:rangeIncludes a owl:AnnotationProperty .
+skos:definition a owl:AnnotationProperty .
+skos:example a owl:AnnotationProperty .
+skos:note a owl:AnnotationProperty .
+time:TemporalEntity a owl:Class .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+voaf:Vocabulary a owl:Class .
+
+
+sosa-c: a owl:Ontology , voaf:Vocabulary ;
+  dcterms:title "Sensor, Observation, Sample, and Actuator (SOSA) Ontology - collections"@en ;
+  dcterms:description "This ontology is based on the SSN Ontology by the W3C Semantic Sensor Networks Incubator Group (SSN-XG), together with considerations from the W3C/OGC Spatial Data on the Web Working Group."@en ;
+  dcterms:creator [ a foaf:Agent ; foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en ] ;
+  dcterms:rights "Copyright 2024 W3C/OGC." ;
+  dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
+  dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
+  dcterms:created "2023-10-24"^^xsd:date ;
+  owl:imports sosa: ;
+  vann:preferredNamespacePrefix "sosa-c" ;
+  vann:preferredNamespaceUri "http://www.w3.org/ns/sosa-collections/" .
+
+
+## Sample Collection
+
+sosa:Sample
+  rdfs:comment """If values are not provided for the following Sample properties, they may be provided by the SampleCollection of which it is a member:
+  - hasOriginalSample
+  - hasSampledFeature
+  - isSampleOf
+  - isResultOf""" ;
+  rdfs:isDefinedBy sosa: .
+
+sosa:SampleCollection a rdfs:Class , owl:Class ;
+  rdfs:label "Sample Collection"@en ;
+  skos:definition "A collection of Samples, typically with one or more property shared by all of its members."@en ;
+  rdfs:comment "A collection of Samples, typically with one or more property shared by all of its members."@en ;
+  rdfs:isDefinedBy sosa-c: .
+
+sosa:hasMemberSample a owl:ObjectProperty ;
+  rdfs:label "member sample" ;
+  rdfs:comment "Link to a member within a collection of (samples) or (collection of samples) that share the same value for one or more of the characteristic properties" ;
+  skos:editorialNote "should there be a single `member` property, with an OWL orr SHACL constraint to limit the range depending on context?" ;
+  schema:domainIncludes sosa:SampleCollection ;
+  schema:rangeIncludes sosa:Sample ;
+  schema:rangeIncludes sosa:SampleCollection ;
+  rdfs:isDefinedBy sosa-c: .
+
+sosa:hasOriginalSample
+  schema:domainIncludes sosa:SampleCollection .
+
+sosa:hasSampledFeature
+  schema:domainIncludes sosa:SampleCollection .
+
+sosa:isSampleOf
+  schema:domainIncludes sosa:SampleCollection .
+
+sosa:isResultOf
+  schema:domainIncludes sosa:SampleCollection .
+
+## Sample Collection axiomatization 
+
+sosa:SampleCollection
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasMemberSample ; owl:allValuesFrom [ owl:unionOf ( sosa:Sample sosa:SampleCollection ) ; ] ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasMemberSample ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasOriginalSample ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasOriginalSample ; owl:allValuesFrom sosa:Sample ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasSampledFeature ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasSampledFeature ; owl:allValuesFrom sosa:FeatureOfInterest ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isSampleOf ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isSampleOf ; owl:allValuesFrom sosa:FeatureOfInterest ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isResultOf ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isResultOf ; owl:allValuesFrom sosa:Sampling ] ;
+  rdfs:isDefinedBy sosa-c: .
+
+sosa:hasMemberSample a owl:ObjectProperty ;
+  rdfs:subPropertyOf rdfs:member .
+
+
+
+
+## Observation Collection
+
+sosa:Observation
+  rdfs:comment """If values are not provided for the following Observation properties, they may be provided by the ObservationCollection of which it is a member:
+  - hasFeatureOfInterest
+  - hasUltimateFeatureOfInterest
+  - madeBySensor
+  - madeByObserver
+  - madeOnPlatform
+  - observedProperty
+  - phenomenonTime
+  - resultTime
+  - usedProcedure""" ;
+  rdfs:isDefinedBy sosa: .
+
+sosa:ObservationCollection a rdfs:Class , owl:Class ;
+  rdfs:label "Observation Collection"@en ;
+  skos:definition "A collection of observations, typically with one or more property shared by all of its members."@en ;
+  rdfs:comment "A collection of observations, typically with one or more property shared by all of its members."@en ;
+  rdfs:isDefinedBy sosa-c: .
+
+sosa:hasMemberObs a owl:ObjectProperty ;
+  rdfs:label "member observation" ;
+  rdfs:comment "Link to a member within a collection of (observations) or (collections of observations) that share the same value for one or more of the characteristic properties" ;
+  skos:editorialNote "should there be a single `member` property, with an OWL orr SHACL constraint to limit the range depending on context?" ;
+  schema:domainIncludes sosa:ObservationCollection ;
+  schema:rangeIncludes sosa:Observation ;
+  schema:rangeIncludes sosa:ObservationCollection ;
+  rdfs:isDefinedBy sosa-c: .
+
+sosa:hasFeatureOfInterest
+  schema:domainIncludes sosa:ObservationCollection .
+
+sosa:hasUltimateFeatureOfInterest
+  schema:domainIncludes sosa:ObservationCollection .
+
+sosa:madeBySensor
+  schema:domainIncludes sosa:ObservationCollection .
+
+sosa:madeByObserver
+  schema:domainIncludes sosa:ObservationCollection .
+
+sosa:madeOnPlatform
+  schema:domainIncludes sosa:ObservationCollection .
+
+sosa:observedProperty
+  schema:domainIncludes sosa:ObservationCollection .
+
+sosa:phenomenonTime
+  schema:domainIncludes sosa:ObservationCollection .
+
+sosa:resultTime
+  schema:domainIncludes sosa:ObservationCollection .
+
+sosa:usedProcedure
+  schema:domainIncludes sosa:ObservationCollection .
+
+## Observation collection axiomatization
+
+sosa:ObservationCollection a owl:Class ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeBySensor ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeBySensor ; owl:allValuesFrom sosa:Sensor ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeOnPlatform ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeOnPlatform ; owl:allValuesFrom sosa:Platform ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:usedProcedure ; owl:allValuesFrom sosa:ObservingProcedure ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasFeatureOfInterest ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasFeatureOfInterest ; owl:allValuesFrom sosa:FeatureOfInterest ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasUltimateFeatureOfInterest ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasUltimateFeatureOfInterest ; owl:allValuesFrom sosa:FeatureOfInterest ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:observedProperty ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:observedProperty ; owl:allValuesFrom sosa:ObservableProperty ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:phenomenonTime ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:resultTime ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasMemberObs ; owl:allValuesFrom [ owl:unionOf ( sosa:Observation sosa:ObservationCollection ) ; ] ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasMemberObs ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:isDefinedBy sosa-c: .
+
+sosa:hasMemberObs a owl:ObjectProperty ;
+  rdfs:subPropertyOf rdfs:member .
+
+
