@@ -127,6 +127,22 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
     owl:inverseOf sosa:hasSample ;
     rdfs:isDefinedBy sosa: .
 
+sosa:hasOriginalSample a owl:ObjectProperty ;
+  rdfs:label "has original sample"@en ;
+  skos:definition "Link to the original sample that is related to the context sample through a chain of isSampleOf relations."@en ;
+  rdfs:comment "Link to the original sample that is related to the context sample through a chain of isSampleOf relations."@en ;
+  schema:domainIncludes sosa:Sample ;
+  schema:rangeIncludes sosa:Sample ;
+  rdfs:isDefinedBy sosa: .
+
+sosa:hasSampledFeature a owl:ObjectProperty ;
+  rdfs:label "has ultimate sampled feature"@en ;
+  skos:definition "Link to the ultimate feature of interest of the context sample - i.e. the end of a chain of isSampleOf relations"@en ;
+  rdfs:comment "Link to the ultimate feature of interest of the context sample - i.e. the end of a chain of isSampleOf relations"@en ;
+  schema:domainIncludes sosa:Sample ;
+  schema:rangeIncludes sosa:FeatureOfInterest ;
+  rdfs:isDefinedBy sosa: .
+
 sosa:SampleCollection a rdfs:Class , owl:Class ;
   rdfs:label "Sample Collection"@en ;
   skos:definition "A collection of Samples."@en ;

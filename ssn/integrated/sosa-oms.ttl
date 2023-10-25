@@ -91,22 +91,11 @@ sosa:isSampleOf ogc:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/S
     owl:inverseOf sosa:hasSample ;
     rdfs:isDefinedBy sosa: .
 
-sosa:hasOriginalSample a owl:ObjectProperty ;
-  rdfs:label "has original sample"@en ;
-  skos:definition "Link to the original sample that is related to the context sample through a chain of isSampleOf relations."@en ;
-  rdfs:comment "Link to the original sample that is related to the context sample through a chain of isSampleOf relations."@en ;
-  schema:domainIncludes sosa:Sample ;
-  schema:rangeIncludes sosa:Sample ;
-  rdfs:isDefinedBy sosa-oms: .
+sosa:hasOriginalSample 
+  rdfs:isDefinedBy sosa: .
 
-sosa:hasSampledFeature a owl:ObjectProperty ;
-  og:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sample/sampledFeature-sem> ;
-  rdfs:label "has ultimate sampled feature"@en ;
-  skos:definition "Link to the ultimate feature of interest of the context sample - i.e. the end of a chain of isSampleOf relations"@en ;
-  rdfs:comment "Link to the ultimate feature of interest of the context sample - i.e. the end of a chain of isSampleOf relations"@en ;
-  schema:domainIncludes sosa:Sample ;
-  schema:rangeIncludes sosa:FeatureOfInterest ;
-  rdfs:isDefinedBy sosa-oms: .
+sosa:hasSampledFeature ogc:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sample/sampledFeature-sem> ;
+  rdfs:isDefinedBy sosa: .
 
 sosa:hasPreparationStep a owl:ObjectProperty ;
   ogc:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sample/preparationStep-sem> ;
@@ -135,7 +124,7 @@ sosa:MaterialSample a rdfs:Class , owl:Class ;
   rdfs:comment "A MaterialSample is a physical, tangible Sample."@en ;
   skos:example "A piece of rock, a blood sample, a water sample, etc."@en ;
   skos:note "MaterialSamples that are curated and preserved are sometimes known as 'specimens'."@en ;
-  skos:note "MaterialSamples can be destroyed in connexion with the observation act."@en ;
+  skos:note "MaterialSamples may be destroyed in connexion with the observation act or a subsequent preparation step."@en ;
   rdfs:isDefinedBy sosa-oms: .
 
 sosa:StatisticalSample a rdfs:Class , owl:Class ;
