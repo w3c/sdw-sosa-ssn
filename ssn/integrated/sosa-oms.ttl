@@ -57,15 +57,15 @@ sosa:metadata a owl:OjectProperty ;
   ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-core/gen/metadata-sem> ;
   schema:domainIncludes sosa:FeatureOfInterest ,
                         sosa:ObservableProperty ,
+                        sosa:Observation ,
+                        sosa:ObservationCollection , 
                         sosa:Sample ,
                         sosa:SampleCollection ,
                         sosa:Sampling ,
                         sosa:PreparationStep ,
-                        sosa:Observer ,
-                        sosa:Observation ,
-                        sosa:ObservationCollection , 
-                        sosa:Platform ,
                         sosa:Procedure ,
+                        sosa:Sensor ,
+                        sosa:Platform ,
                         sosa:Deployment ; 
     rdfs:isDefinedBy sosa-oms: .
 
@@ -304,26 +304,26 @@ sosa:Observation ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/
 
   sosa:madeObservation ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/gen/relatedObservation-sem> ;
     owl:inverseOf sosa:madeBySensor ;
-    schema:domainIncludes sosa:Observer ;
+#    schema:domainIncludes sosa:Observer ;
     rdfs:isDefinedBy sosa: .
 
   sosa:madeBySensor ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/observer-sem> ;
-    rdfs:subPropertyOf sosa:madeByObserver ;
+#    rdfs:subPropertyOf sosa:madeByObserver ;
     owl:inverseOf sosa:madeObservation ;
     rdfs:isDefinedBy sosa: .
 
   sosa:observedProperty ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/observedProperty-sem> ;
     rdfs:isDefinedBy sosa: .
 
-  sosa:madeByObserver rdf:type owl:ObjectProperty ;
-    ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/observer-sem> ;
-    rdfs:label "made by observer"@en ;
-    skos:definition "Relation between an Observation and the Observer which made the Observation."@en ;
-    rdfs:comment "Relation between an Observation and the Observer which made the Observation."@en ;
-    schema:domainIncludes sosa:Observation ;
-    schema:rangeIncludes sosa:Observer ;
-    owl:inverseOf sosa:madeObservation ;
-    rdfs:isDefinedBy sosa-oms: .
+#  sosa:madeByObserver rdf:type owl:ObjectProperty ;
+#    ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/observer-sem> ;
+#    rdfs:label "made by observer"@en ;
+#    skos:definition "Relation between an Observation and the Observer which made the Observation."@en ;
+#    rdfs:comment "Relation between an Observation and the Observer which made the Observation."@en ;
+#    schema:domainIncludes sosa:Observation ;
+#    schema:rangeIncludes sosa:Sensor ;
+#    owl:inverseOf sosa:madeObservation ;
+#    rdfs:isDefinedBy sosa-oms: .
 
   sosa:madeOnPlatform rdf:type owl:ObjectProperty ;
     rdfs:label "made on platform"@en ;
