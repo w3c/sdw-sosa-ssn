@@ -51,6 +51,24 @@ ogc:implements a owl:ObjectProperty ;
     skos:definition "link from an RDFS/OWL class or property to a requirement linked to an element in a UML model which it implements" ;
     rdfs:subPropertyOf dcterms:source , prov:wasDerivedFrom , doap:implements . 
 
+## General properties
+
+sosa:metadata a owl:OjectProperty ;
+  schema:domainIncludes sosa:FeatureOfInterest ,
+                        sosa:ObservableProperty ,
+                        sosa:Sample ,
+                        sosa:SampleCollection ,
+                        sosa:Sampling ,
+                        sosa:PreparationStep ,
+                        sosa:Observer ,
+                        sosa:Observation ,
+                        sosa:ObservationCollection , 
+                        sosa:Platform ,
+                        sosa:Procedure ,
+                        sosa:Deployment ; 
+    rdfs:isDefinedBy sosa-oms: .
+
+
 ## Features of interest and Property
 ## largely defined in ISO 19103 and ISO 19109
 
@@ -213,19 +231,19 @@ sosa:PreparationProcedure a rdfs:Class , owl:Class ;
 ## ProcedureExecutors
 
 sosa:Sensor ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observer> ;
-  rdfs:subClassOf sosa:Observer ;
+#  rdfs:subClassOf sosa:Observer ;
   rdfs:subClassOf sosa:System ;
   rdfs:isDefinedBy sosa: .
 
   sosa:observes ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observer/observableProperty-sem> ;
     rdfs:subPropertyOf sosa:forProperty ;
     owl:inverseOf sosa:isObservedBy ;
-    schema:domainIncludes sosa:Observer ;
+#    schema:domainIncludes sosa:Observer ;
     rdfs:isDefinedBy sosa: .
 
   sosa:isObservedBy ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/ObservableProperty/observer-sem> ;
     owl:inverseOf sosa:observes ;
-    schema:rangeIncludes sosa:Observer ;
+#    schema:rangeIncludes sosa:Observer ;
     rdfs:isDefinedBy sosa: .
 
 sosa:Actuator 
@@ -236,27 +254,27 @@ sosa:Sampler ogc:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Samp
   rdfs:subClassOf sosa:System ;
   rdfs:isDefinedBy sosa: .
 
-sosa:Observer a rdfs:Class , owl:Class ;
-  ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observer> ;
-  rdfs:label "Observer"@en ;
-  skos:definition "An identifiable entity that can generate Observations pertaining to an ObservableProperty by implementing an ObservingProcedure."@en ;
-  rdfs:comment "An identifiable entity that can generate Observations pertaining to an ObservableProperty by implementing an ObservingProcedure."@en ;
-  skos:example "Accelerometers, gyroscopes, barometers, magnetometers, and so forth are Observers that are typically mounted on a modern smartphone (which acts as Platform). Other examples of Sensors include the human eyes."@en ;
-  skos:note "Different Observers can follow the same (reusable) observing Procedure for the creation of different Observations."@en ;
-  skos:note "The Observer is the entity instance, not the entity type. Pertaining to sensors, the Observer would reference the explicit sensor, while the Procedure would reference the methodology utilized by that sensor type;"@en ;
-  skos:note "An Observer can be hosted by one or more Platform."@en ;
-  skos:note "The Observer is an instance of a sensor, instrument, implementation of an algorithm, or a being such as a person."@en ;
-  rdfs:isDefinedBy sosa-oms: .
-
-sosa:implements  ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observer/observingProcedure-sem> ;
-  owl:inverseOf sosa:implementedBy ;
-  schema:domainIncludes sosa:Observer ;
-  rdfs:isDefinedBy sosa: .
-
-sosa:implementedBy ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/ObservingProcedure/observer-sem> ;
-  owl:inverseOf sosa:implements ;
-  schema:rangeIncludes sosa:Observer ;
-  rdfs:isDefinedBy sosa: .
+#sosa:Observer a rdfs:Class , owl:Class ;
+#  ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observer> ;
+#  rdfs:label "Observer"@en ;
+#  skos:definition "An identifiable entity that can generate Observations pertaining to an ObservableProperty by implementing an ObservingProcedure."@en ;
+#  rdfs:comment "An identifiable entity that can generate Observations pertaining to an ObservableProperty by implementing an ObservingProcedure."@en ;
+#  skos:example "Accelerometers, gyroscopes, barometers, magnetometers, and so forth are Observers that are typically mounted on a modern smartphone (which acts as Platform). Other examples of Sensors include the human eyes."@en ;
+#  skos:note "Different Observers can follow the same (reusable) observing Procedure for the creation of different Observations."@en ;
+#  skos:note "The Observer is the entity instance, not the entity type. Pertaining to sensors, the Observer would reference the explicit sensor, while the Procedure would reference the methodology utilized by that sensor type;"@en ;
+#  skos:note "An Observer can be hosted by one or more Platform."@en ;
+#  skos:note "The Observer is an instance of a sensor, instrument, implementation of an algorithm, or a being such as a person."@en ;
+#  rdfs:isDefinedBy sosa-oms: .
+#
+#sosa:implements  ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observer/observingProcedure-sem> ;
+#  owl:inverseOf sosa:implementedBy ;
+#  schema:domainIncludes sosa:Observer ;
+#  rdfs:isDefinedBy sosa: .
+#
+#sosa:implementedBy ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/ObservingProcedure/observer-sem> ;
+#  owl:inverseOf sosa:implements ;
+#  schema:rangeIncludes sosa:Observer ;
+#  rdfs:isDefinedBy sosa: .
 
 
 ## ProcedureExecutions

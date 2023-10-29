@@ -237,14 +237,14 @@ sosa:Procedure a rdfs:Class , owl:Class ;
 ## ProcedureExecutors
 
 sosa:Sensor a rdfs:Class , owl:Class ;
-  rdfs:label "Sensor"@en ;
+  rdfs:label "Sensor or Observer"@en ;
   skos:definition "Device, agent (including humans), or software (simulation) involved in, or implementing, a Procedure. Sensors respond to a stimulus, e.g., a change in the environment, or input data composed from the results of prior Observations, and generate a Result. Sensors can be hosted by Platforms."@en ;
   rdfs:comment "Device, agent (including humans), or software (simulation) involved in, or implementing, a Procedure. Sensors respond to a stimulus, e.g., a change in the environment, or input data composed from the results of prior Observations, and generate a Result. Sensors can be hosted by Platforms."@en ;
   skos:example "Accelerometers, gyroscopes, barometers, magnetometers, and so forth are Sensors that are typically mounted on a modern smart phone (which acts as Platform). Other examples of sensors include the human eyes."@en ;
-  skos:note "Different Observers can follow the same (reusable) observing Procedure for the creation of different Observations."@en ;
-  skos:note "The Observer is the entity instance, not the entity type. Pertaining to sensors, the Observer would reference the explicit sensor, while the Procedure would reference the methodology utilized by that sensor type;"@en ;
-  skos:note "An Observer can be hosted by one or more Host."@en ;
-  skos:note "The Observer is an instance of a sensor, instrument, implementation of an algorithm, or a being such as a person."@en ;
+  skos:note "Different Sensors or Observers can follow the same (reusable) observing Procedure for the creation of different Observations."@en ;
+  skos:note "The Sensor or Observer is the entity instance, not the entity type. Pertaining to sensors, the Observer would reference the explicit sensor, while the Procedure would reference the methodology utilized by that sensor type;"@en ;
+  skos:note "A Sensor or Observer can be hosted by one or more Host."@en ;
+  skos:note "The Sensor or Observer is an instance of a sensor, instrument, implementation of an algorithm, or a being such as a person."@en ;
   rdfs:isDefinedBy sosa: .
 
   sosa:observes a owl:ObjectProperty ;
@@ -366,9 +366,9 @@ sosa:Observation a rdfs:Class , owl:Class ;
     rdfs:isDefinedBy sosa: .
 
   sosa:madeBySensor rdf:type owl:ObjectProperty ;
-    rdfs:label "made by sensor"@en ;
-    skos:definition "Relation between an Observation and the Sensor which made the Observation."@en ;
-    rdfs:comment "Relation between an Observation and the Sensor which made the Observation."@en ;
+    rdfs:label "made by sensor or observer"@en ;
+    skos:definition "Relation between an Observation and the Sensor or Observer which made the Observation."@en ;
+    rdfs:comment "Relation between an Observation and the Sensor or Observer which made the Observation."@en ;
     schema:domainIncludes sosa:Observation ;
     schema:rangeIncludes sosa:Sensor ;
     owl:inverseOf sosa:madeObservation ;
