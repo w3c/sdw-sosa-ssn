@@ -285,6 +285,8 @@ sosa:implements a owl:ObjectProperty ;
   rdfs:comment "Relation between an entity that implements a Procedure in some executable way and the Procedure (an algorithm, procedure or method)."@en ;
   skos:example "For example, the relationship between a sensor and the scientific measuring Procedure via which it senses."@en ;
   schema:domainIncludes sosa:Sensor ;
+  schema:domainIncludes sosa:Sampler ;
+  schema:domainIncludes sosa:Actuator ;
   schema:rangeIncludes sosa:Procedure ;
   owl:inverseOf sosa:implementedBy ;
   rdfs:isDefinedBy sosa: .
@@ -296,6 +298,8 @@ sosa:implementedBy a owl:ObjectProperty ;
   skos:example "For example, the relationship between a scientific measuring Procedure and a sensor that senses via that Procedure."@en ;
   schema:domainIncludes sosa:Procedure ;
   schema:rangeIncludes sosa:Sensor ;
+  schema:rangeIncludes sosa:Sampler ;
+  schema:rangeIncludes sosa:Actuator ;
   owl:inverseOf sosa:implements ;
   rdfs:isDefinedBy sosa: .
 
@@ -655,6 +659,13 @@ sosa:Deployment a owl:Class ;
   rdfs:comment "Describes the Deployment of one or more assets for a particular purpose. Deployment may be done on a Host."@en ;
   skos:example "For example, a temperature Sensor deployed on a wall, or a whole network of Sensors deployed for an Observation campaign."@en ;
   rdfs:isDefinedBy sosa: .
+
+  sosa:deployedAsset a owl:ObjectProperty ;
+    rdfs:label "deployed asset"@en ;
+    skos:definition "Relation between a Deployment and a deployed asset."@en ;
+    rdfs:comment "Relation between a Deployment and a deployed asset."@en ;
+    schema:domainIncludes sosa:Deployment ;
+    rdfs:isDefinedBy sosa: .
 
   sosa:deployedSystem a owl:ObjectProperty ;
     rdfs:label "deployed system"@en ;
