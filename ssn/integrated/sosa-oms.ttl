@@ -183,18 +183,6 @@ sosa:isHostedBy ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/O
 sosa:Procedure ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Procedure> ;
   rdfs:isDefinedBy sosa: .
 
-  sosa:hasInput 
-    rdfs:isDefinedBy sosa: .
-
-    sosa:Input 
-      rdfs:isDefinedBy sosa: .
-
-  sosa:hasOutput 
-    rdfs:isDefinedBy sosa: .
-
-    sosa:Output 
-      rdfs:isDefinedBy sosa: .
-
 sosa:ObservingProcedure a rdfs:Class , owl:Class ;
   ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/ObservingProcedure> ;
   rdfs:subClassOf sosa:Procedure ;  
@@ -247,10 +235,6 @@ sosa:Sensor ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Obser
 #    schema:rangeIncludes sosa:Observer ;
     rdfs:isDefinedBy sosa: .
 
-sosa:Actuator 
-  rdfs:subClassOf sosa:System ;
-  rdfs:isDefinedBy sosa: .
-
 sosa:Sampler ogc:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sampler> ;
   rdfs:subClassOf sosa:System ;
   rdfs:isDefinedBy sosa: .
@@ -296,6 +280,7 @@ sosa:hasUltimateFeatureOfInterest ogc:implements <http://www.opengis.net/spec/om
   rdfs:isDefinedBy sosa: .
 
 sosa:isFeatureOfInterestOf 
+  ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/gen/relatedObservation-sem> ;
   owl:inverseOf sosa:hasFeatureOfInterest ;
   rdfs:isDefinedBy sosa: .
 
@@ -326,6 +311,7 @@ sosa:Observation ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/
 #    rdfs:isDefinedBy sosa-oms: .
 
   sosa:madeOnPlatform rdf:type owl:ObjectProperty ;
+    ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/host-sem> ;
     rdfs:label "made on platform"@en ;
     skos:definition "Relation between an Observation and the Platform the Sensor was attached to at the time the observation was made."@en ;
     rdfs:comment "Relation between an Observation and the Platform the Sensor was attached to at the time the observation was made."@en ;
@@ -408,21 +394,6 @@ sosa:hasMemberObs ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cor
   rdfs:isDefinedBy sosa: .
 
 
-## Stimulus
-
-sosa:Stimulus 
-  rdfs:isDefinedBy sosa: .
-
-  sosa:wasOriginatedBy 
-    rdfs:isDefinedBy sosa: .
-
-  sosa:detects 
-    rdfs:isDefinedBy sosa: .
-
-  sosa:isProxyFor 
-    rdfs:isDefinedBy sosa: .
-
-  
 ## Result 
 
 sosa:Result 
@@ -434,6 +405,7 @@ sosa:Result
     rdfs:isDefinedBy sosa: .
 
   sosa:isResultOf 
+    ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/gen/relatedObservation-sem> ;
     owl:inverseOf sosa:hasResult ;
     rdfs:isDefinedBy sosa: .
 
@@ -479,15 +451,6 @@ sosa:validTime a owl:ObjectProperty ;
   rdfs:isDefinedBy sosa-oms: .
 
 
-## Systems
-
-sosa:System 
-  rdfs:isDefinedBy sosa: .
-
-  sosa:hasSubSystem 
-    rdfs:isDefinedBy sosa: .
-
-
 ## Deployment
 
 sosa:Deployment ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Deployment> ;
@@ -510,9 +473,3 @@ sosa:Deployment ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/D
     owl:inverseOf sosa:deployedOnPlatform ;
     rdfs:isDefinedBy sosa: .
 
-
-## forProperty
-
-sosa:forProperty 
-  schema:rangeIncludes sosa:Property ;
-  rdfs:isDefinedBy sosa: .
