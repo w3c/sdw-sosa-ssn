@@ -162,12 +162,7 @@ sosa:hasMemberSample a owl:ObjectProperty ;
 
 ## Platform
 
-sosa:Host
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:inDeployment ; owl:allValuesFrom ssn:Deployment ]  ;
-  rdfs:isDefinedBy sosa: .
-
 sosa:Platform 
-  rdfs:subClassOf sosa:Host ;
   rdfs:subClassOf ssn:System ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hosts ; owl:allValuesFrom ssn:System ]  ;
   rdfs:isDefinedBy sosa: .
@@ -290,7 +285,7 @@ sosa:Sensor
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:implements ; owl:allValuesFrom sosa:ObservingProcedure ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:observes ; owl:allValuesFrom sosa:ObservableProperty ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeObservation ; owl:allValuesFrom sosa:Observation ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isHostedBy ; owl:allValuesFrom sosa:Host ]  ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isHostedBy ; owl:allValuesFrom sosa:Platform ]  ;
   rdfs:isDefinedBy sosa: .
 
   sosa:observes 
@@ -347,8 +342,8 @@ sosa:isFeatureOfInterestOf
 sosa:Observation a owl:Class ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeBySensor ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeBySensor ; owl:allValuesFrom sosa:Sensor ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeOnHost ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeOnHost ; owl:allValuesFrom sosa:Host ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeOnPlatform ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeOnPlatform ; owl:allValuesFrom sosa:Platform ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:usedProcedure ; owl:allValuesFrom sosa:ObservingProcedure ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasFeatureOfInterest ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasFeatureOfInterest ; owl:allValuesFrom sosa:FeatureOfInterest ] ;
@@ -370,12 +365,9 @@ sosa:Observation a owl:Class ;
   sosa:madeBySensor 
     rdfs:isDefinedBy sosa: .
     
-  sosa:madeOnHost
+  sosa:madeOnPlatform
     rdfs:isDefinedBy sosa: .
     
-  sosa:madeOnHost
-    rdfs:isDefinedBy sosa: .
-
   sosa:observedProperty 
     rdfs:isDefinedBy sosa: .
 
@@ -446,8 +438,8 @@ sosa:PreparationStep a owl:Class ;
 sosa:ObservationCollection a owl:Class ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeBySensor ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeBySensor ; owl:allValuesFrom sosa:Sensor ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeOnHost ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeOnHost ; owl:allValuesFrom sosa:Host ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeOnPlatform ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeOnPlatform ; owl:allValuesFrom sosa:Platform ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:usedProcedure ; owl:allValuesFrom sosa:ObservingProcedure ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasFeatureOfInterest ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasFeatureOfInterest ; owl:allValuesFrom sosa:FeatureOfInterest ] ;
@@ -594,13 +586,12 @@ sosa:System
 ssn:Deployment a owl:Class ;
   owl:equivalentClass sosa:Deployment ;
   rdfs:label "Deployment"@en ;
-  skos:definition "Describes the Deployment of one or more assets for a particular purpose. Deployment may be done on a Host."@en ;
-  rdfs:comment "Describes the Deployment of one or more assets for a particular purpose. Deployment may be done on a Host."@en ;
+  skos:definition "Describes the Deployment of one or more assets for a particular purpose. Deployment may be done on a Platform."@en ;
+  rdfs:comment "Describes the Deployment of one or more assets for a particular purpose. Deployment may be done on a Platform."@en ;
   skos:example "For example, a temperature Sensor deployed on a wall, or a whole network of Sensors deployed for an Observation campaign."@en ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:deployedSystem ; owl:allValuesFrom ssn:System ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:deployedAsset ; owl:allValuesFrom [ a owl:Class ; owl:unionOf ( sosa:Sensor sosa:Host ssn:System ) ] ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:deployedAsset ; owl:allValuesFrom [ a owl:Class ; owl:unionOf ( sosa:Sensor sosa:Platform ssn:System ) ] ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:deployedOnPlatform ; owl:allValuesFrom sosa:Platform ]  ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:deployedOnHost ; owl:allValuesFrom sosa:Host ]  ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:forProperty ; owl:allValuesFrom ssn:Property ]  ;
   rdfs:isDefinedBy ssn: .
 
@@ -611,11 +602,12 @@ ssn:Deployment a owl:Class ;
     rdfs:comment "Relation between a Deployment and a deployed asset."@en ;
     rdfs:isDefinedBy ssn: .
 
-  ssn:deployedOnHost a owl:ObjectProperty ;
-    owl:equivalentProperty sosa:deployedOnHost ;
-    rdfs:label "deployed on host"@en ;
-    skos:definition "Relation between a Deployment and the Host on which the Systems are deployed."@en ;
-    rdfs:comment "Relation between a Deployment and the Host on which the Systems are deployed."@en ;
+  ssn:deployedOnPlatform a owl:ObjectProperty ;
+    owl:equivalentProperty sosa:deployedOnPlatform ;
+    rdfs:label "deployed on platform"@en ;
+    skos:definition "Relation between a Deployment and the Platform on which the Systems are deployed."@en ;
+    rdfs:comment "Relation between a Deployment and the Platform on which the Systems are deployed."@en ;
+    owl:inverseOf ssn:inDeployment ;
     rdfs:isDefinedBy ssn: .
 
   ssn:deployedSystem a owl:ObjectProperty ;
@@ -635,15 +627,6 @@ ssn:Deployment a owl:Class ;
     owl:inverseOf ssn:deployedSystem ;
     rdfs:isDefinedBy ssn: .
 
-  ssn:deployedOnPlatform a owl:ObjectProperty ;
-    owl:equivalentProperty sosa:deployedOnPlatform ;
-    rdfs:subPropertyOf ssn:deployedOnHost ;
-    rdfs:label "deployed on platform"@en ;
-    skos:definition "Relation between a Deployment and the Platform on which the Systems are deployed."@en ;
-    rdfs:comment "Relation between a Deployment and the Platform on which the Systems are deployed."@en ;
-    owl:inverseOf ssn:inDeployment ;
-    rdfs:isDefinedBy ssn: .
-
   ssn:inDeployment a owl:ObjectProperty ;
     owl:equivalentProperty sosa:inDeployment ;
     rdfs:label "in deployment"@en ;
@@ -659,9 +642,8 @@ ssn:Deployment a owl:Class ;
 sosa:Deployment 
   owl:equivalentClass ssn:Deployment ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:deployedSystem ; owl:allValuesFrom sosa:System ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:deployedAsset ; owl:allValuesFrom [ a owl:Class ; owl:unionOf ( sosa:Sensor sosa:Host sosa:System ) ] ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:deployedAsset ; owl:allValuesFrom [ a owl:Class ; owl:unionOf ( sosa:Sensor sosa:Platform sosa:System ) ] ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:deployedOnPlatform ; owl:allValuesFrom sosa:Platform ]  ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:deployedOnHost ; owl:allValuesFrom sosa:Host ]  ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:forProperty ; owl:allValuesFrom sosa:Property ]  ;
   rdfs:isDefinedBy sosa: .
 
@@ -669,8 +651,8 @@ sosa:Deployment
     owl:equivalentProperty ssn:deployedAsset ;
     rdfs:isDefinedBy sosa: .
 
-  sosa:deployedOnHost 
-    owl:equivalentProperty ssn:deployedOnHost ;
+  sosa:deployedOnPlatform 
+    owl:equivalentProperty ssn:deployedOnPlatform ;
     rdfs:isDefinedBy sosa: .
 
   sosa:deployedSystem 
@@ -679,10 +661,6 @@ sosa:Deployment
 
   sosa:hasDeployment 
     owl:equivalentProperty ssn:hasDeployment ;
-    rdfs:isDefinedBy sosa: .
-
-  sosa:deployedOnPlatform 
-    owl:equivalentProperty ssn:deployedOnPlatform ;
     rdfs:isDefinedBy sosa: .
 
   sosa:inDeployment 
