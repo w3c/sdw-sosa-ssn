@@ -5845,7 +5845,7 @@ their usage are given.</p>
       between geo-datasets. To do so, these entities can be declared as instances of geo:Feature and geometries can be 
       assigned to them via the geo:hasGeometry property.  In case of classes, e.g., specific features of 
       interests such as rivers, these can be defined as subclasses of geo:Feature.</p>
-      <p>For example, if observations are made of the atmosphere at a specific location, it might be described as a Sample using the following pattern:</p>
+<p>For example, if observations are made of the atmosphere at a specific location, it might be described as a Sample using the following pattern:</p>
       <pre class="example">
 &lt;earthAtmosphere_StE&gt; a sosa:Sample ;
   sosa:isSampleOf &lt;earthAtmosphere&gt; ;
@@ -5878,71 +5878,18 @@ their usage are given.</p>
      <h3>Quantity Values and Unit of Measures</h3>
         <p>The result of an <a href="#SOSAObservation"><code>sosa:Observation</code></a> or an <a href="#SOSAActuation"><code>sosa:Actuation</code></a> can be a quantity value with a numeric value and a unit of measure.
 
-        <p class="note">It is not in the scope of this specification to recommend any particular way of expressing results as quantity values. 
-        There exist external vocabularies that are specifically designed for modeling quantity values as OWL individuals, or as datatypes. 
-        Examples include the Quantities, Units, Dimensions and Data Types Ontologies (QUDT, [[QUDT]]) the Ontology of Units of Measure (OM, [[Rijgersberg-et-al-2013]]), and the St Etienne School of Mines <i>Custom Datatypes</i> (CDT, [[CDT]]). </p>
-        <ul>
-        <li>With QUDT, a <a href="#SOSAResult"><code>sosa:Result</code></a> would be a <a href="http://qudt.org/"><code>qudt:QuantityValue</code></a></li>
-        <li>With OM 2, a <a href="#SOSAResult"><code>sosa:Result</code></a> would be a <a href="http://www.wurvoc.org/vocabularies/"><code>om:Measure</code> or <code>om:Point</code></a></li>
-        <li>With CDT, the value of <a href="#SOSAhasSimpleResult"><code>sosa:hasSimpleResult</code></a> may be structured to match <a href="https://ci.mines-stetienne.fr/lindt/v4/custom_datatypes#ucum"><code>cdt:ucum</code></a> which encodes the unit-of-measure using UCUM (UCUM, [[UCUM]])</li>
-        </ul>
-       <p class="note">Custom datatypes are not strictly compatible with OWL, which restricts the set of datatypes that can be used. See sec. 5.2 in [[owl2-syntax]] for more details.</p>
-        <pre class="example">
-@prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
-@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;.
-@prefix qudt: &lt;http://qudt.org/schema/qudt/&gt; .
-@prefix unit: &lt;http://qudt.org/vocab/unit/&gt; .
-
-&lt;Observation/234534&gt; a sosa:Observation ;
-   rdfs:comment "Observation of the difference between 
-                    the outside temperature and the inside temperature."@en ;
-   sosa:hasFeatureOfInterest &lt;apartment/134&gt; ;
-   sosa:hasResult [
-      a qudt:QuantityValue ;
-      qudt:hasUnit unit:DEG_C ;
-      qudt:value "-29.9"^^xsd:decimal ] .
-
-&lt;Observation/83985&gt; a sosa:Observation ;
-   rdfs:comment "Observation of the temperature inside apartment #134."@en ;
-   sosa:hasFeatureOfInterest &lt;apartment/134&gt; ;
-   sosa:hasResult [
-      a qudt:QuantityValue ;
-      qudt:hasUnit unit:DEG_C ;
-      qudt:value "22.4"^^xsd:decimal ] .
-        </pre>
-        <pre class="example">
-@prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
-@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;.
-@prefix om: &lt;http://www.ontology-of-units-of-measure.org/resource/om-2/&gt; .
-
-&lt;Observation/234534&gt; a sosa:Observation ;
-   rdfs:comment "Observation of the difference between
-                    the outside temperature and the inside temperature."@en ;
-   sosa:hasFeatureOfInterest &lt;apartment/134&gt; ;
-   sosa:hasResult [
-      a om:Measure ;
-      om:hasUnit om:degreeCelsius ;
-      om:hasNumericalValue "-29.9"^^xsd:decimal ] .
-
-&lt;Observation/83985&gt; a sosa:Observation ;
-   rdfs:comment "Observation of the temperature inside apartment #134."@en ;
-   sosa:hasFeatureOfInterest &lt;apartment/134&gt; ;
-   sosa:hasResult [
-      a om:Point ;
-      om:hasScale om:CelsiusScale ;
-      om:hasNumericalValue "22.4"^^xsd:decimal ] .
-        </pre>
-
-        <pre class="example">
-@prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
-@prefix cdt: &lt;http://w3id.org/lindt/custom_datatypes#&gt; .
-
-&lt;Observation/234534&gt; a sosa:Observation ;
-   sosa:hasFeatureOfInterest &lt;apartment/134&gt; ;
-   sosa:hasSimpleResult "-29.9 Cel"^^cdt:ucum .
-        </pre>
-        
-
+          <p class="note">It is not in the scope of this specification to recommend any particular way of expressing results as quantity values. 
+            There exist external vocabularies that are specifically designed for modeling quantity values as OWL individuals, or as datatypes. 
+            Examples include the Quantities, Units, Dimensions and Data Types Ontologies (QUDT, [[QUDT]]) the Ontology of Units of Measure (OM, [[Rijgersberg-et-al-2013]]), and the St Etienne School of Mines <i>Custom Datatypes</i> (CDT, [[CDT]]). </p>
+            <ul>
+            <li>With QUDT, a <a href="#SOSAResult"><code>sosa:Result</code></a> would be a <a href="http://qudt.org/"><code>qudt:QuantityValue</code></a></li>
+            <li>With OM 2, a <a href="#SOSAResult"><code>sosa:Result</code></a> would be a <a href="http://www.wurvoc.org/vocabularies/"><code>om:Measure</code> or <code>om:Point</code></a></li>
+            <li>With CDT, the value of <a href="#SOSAhasSimpleResult"><code>sosa:hasSimpleResult</code></a> may be structured to match <a href="https://ci.mines-stetienne.fr/lindt/v4/custom_datatypes#ucum"><code>cdt:ucum</code></a> which encodes the unit-of-measure using UCUM (UCUM, [[UCUM]])</li>
+            </ul>
+           <p class="note">Custom datatypes are not strictly compatible with OWL, which restricts the set of datatypes that can be used. See sec. 5.2 in [[owl2-syntax]] for more details.</p>
+<pre class="example" data-include="./examples/2017ex1.ttl" data-include-format="text"></pre>
+<pre class="example" data-include="./examples/2017ex2.ttl" data-include-format="text"></pre>
+<pre class="example" data-include="./examples/2017ex3.ttl" data-include-format="text"></pre>      
      </section>
          
      <section id="SSNProperty-instances" class="informative">
@@ -5957,47 +5904,10 @@ their usage are given.</p>
          <code>&lt;office/2/temperature&gt;</code>, denote the same individual.</p>
          <p>This also holds for subclasses of <a href="#SSNProperty"><code>ssn:Property</code></a>: <a href="#SOSAObservableProperty"><code>sosa:ObservableProperty</code></a>, and <a href="#SOSAActuatableProperty"><code>sosa:ActuatableProperty</code></a>.</p>
          <p>This first example is modeling instances of <a href="#SSNProperty"><code>ssn:Property</code></a> as generic to all features of interest:</p>
-         <pre class="example">
-ex:Temperature a ssn:Property .
-
-&lt;office/1&gt; a sosa:FeatureOfInterest;
-  ssn:hasProperty ex:Temperature . 
-
-&lt;Observation/1&gt; a sosa:Observation ;
-  sosa:observedProperty ex:Temperature ;
-  sosa:hasFeatureOfInterest &lt;office/1&gt; .
-
-&lt;office/2&gt; a sosa:FeatureOfInterest;
-  ssn:hasProperty ex:Temperature . 
-
-&lt;Observation/2&gt; a sosa:Observation ;
-  sosa:observedProperty ex:Temperature ;
-  sosa:hasFeatureOfInterest &lt;office/2&gt; .
-         </pre>
+<pre class="example" data-include="./examples/2017ex4.ttl" data-include-format="text"></pre>
          <p>This second example is modeling instances of <a href="#SSNProperty"><code>ssn:Property</code></a> as specific to a features of interest:</p>
-         <pre class="example">
-ex:Temperature a owl:Class ;
-  rdfs:subClassOf ssn:Property .
-
-&lt;office/1&gt; a sosa:FeatureOfInterest;
-  ssn:hasProperty &lt;office/1/temperature&gt; . 
-
-&lt;office/1/temperature&gt; a ex:Temperature , ssn:Property .
-
-&lt;Observation/1&gt; a sosa:Observation ;
-  sosa:observedProperty &lt;office/1/temperature&gt; ;
-  sosa:hasFeatureOfInterest &lt;office/1&gt; .
-
-&lt;office/2&gt; a sosa:FeatureOfInterest;
-  ssn:hasProperty &lt;office/2/temperature&gt; . 
-
-&lt;office/2/temperature&gt; a ex:Temperature , ssn:Property .
-
-&lt;Observation/2&gt; a sosa:Observation ;
-  sosa:observedProperty &lt;office/2/temperature&gt; ;
-  sosa:hasFeatureOfInterest &lt;office/2&gt; .
-         </pre>
-     </section>
+<pre class="example" data-include="./examples/2017ex5.ttl" data-include-format="text"></pre>
+        </section>
 
 
      <section id="SSNSystem-instances" class="informative">
@@ -6012,53 +5922,10 @@ ex:Temperature a owl:Class ;
          <code>&lt;TemperatureSensor/2&gt;</code>, denote the same individual.</p>
          <p>This also holds for subclasses of <a href="#SSNSystem"><code>ssn:System</code></a>: <a href="#SOSASensor"><code>sosa:Sensor</code></a>, <a href="#SOSAActuator"><code>sosa:Actuator</code></a>, and <a href="#SOSASampler"><code>sosa:Sampler</code></a>.</p>
          <p>This first example is modeling instances of <a href="#SSNSystem"><code>ssn:System</code></a> as generic:</p>
-         <pre class="example">
-ex:TemperatureSensor a ssn:System .
-
-&lt;Observation/1&gt; a sosa:Observation ;
-  sosa:madeBySensor ex:TemperatureSensor .
-
-&lt;Observation/2&gt; a sosa:Observation ;
-  sosa:madeBySensor ex:TemperatureSensor .
-
-# describing the system capabilities and operating/survival range can be done generically 
-# with this modeling choice:
-
-ex:TemperatureSensor ssn-system:hasOperatingRange ex:TemperatureSensorOperatingRange .
-
-ex:TemperatureSensorOperatingRange a ssn-system:OperatingRange ;
-  ssn-system:inCondition ex:NormalTemperatureCondition , ex:NormalHumidityCondition .
-           </pre>
+<pre class="example" data-include="./examples/2017ex6.ttl" data-include-format="text"></pre>
          <p>This second example is modeling instances of <a href="#SSNSystem"><code>ssn:System</code></a> as specific:</p>
-         <pre class="example">
-ex:TemperatureSensor a owl:Class ;
-  rdfs:subClassOf ssn:System .
-
-&lt;TemperatureSensor/1&gt; a ex:TemperatureSensor , ssn:System .
-
-&lt;Observation/1&gt; a sosa:Observation ;
-  sosa:madeBySensor &lt;TemperatureSensor/1&gt; .
-
-&lt;TemperatureSensor/2&gt; a ex:TemperatureSensor , ssn:System .
-
-&lt;Observation/2&gt; a sosa:Observation ;
-  sosa:madeBySensor &lt;TemperatureSensor/2&gt; .
-
-# describing the system capabilities and operating/survival range can be done at the level of 
-# the class or at the level of each instance with this modeling choice:
-
-ex:TemperatureSensor  rdfs:subClassOf [
-    owl:onProperty ssn-system:hasOperatingRange ;
-    owl:hasValue ex:TemperatureSensorOperatingRange ] .
-
-&lt;TemperatureSensor/1&gt; 
-  ssn-system:hasOperatingRange ex:TemperatureSensorOperatingRange ; # this axiom can be inferred
-  ssn-system:hasOperatingRange &lt;moreSpecificTemperatureSensorOperatingRange&gt; .
-
-&lt;moreSpecificTemperatureSensorOperatingRange&gt; a ssn-system:OperatingRange ;
-  ssn-system:inCondition &lt;modeSpecificTemperatureCondition&gt; , &lt;modeSpecificHumidityCondition&gt; .
-         </pre>
-     </section>
+<pre class="example" data-include="./examples/2017ex7.ttl" data-include-format="text"></pre>
+        </section>
 
      </section>
 
@@ -6074,131 +5941,15 @@ ex:TemperatureSensor  rdfs:subClassOf [
           <h3>iPhone Barometer</h3>
           <div class="ssn">
           <p>An RDF file containing a <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/iphone_barometer-sosa.ttl">graph corresponding to this example is available</a>. </p>
-          <pre class="example">@prefix rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
-@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;.
-@prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-@prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
-@prefix geo: &lt;http://www.opengis.net/ont/geosparql#&gt; .
-@prefix qudt: &lt;http://qudt.org/schema/qudt/&gt; .
-@prefix unit: &lt;http://qudt.org/vocab/unit/&gt; .
-@prefix cdt: &lt;http://w3id.org/lindt/custom_datatypes#&gt; .
-@base &lt;http://example.org/data/&gt; .
-
-# The barometric readings from a Bosch Sensortec BMP282 sensor in an Apple IPhone 7
-# observed on June 6 2017 using only the SOSA core for modelling.
-
-# the atmosphere is sampled at a specific location
-# location coordinates are given using GeoSPARQL
-
-&lt;earthAtmosphere&gt; a sosa:FeatureOfInterest ;
-  rdfs:label "Atmosphere of Earth"@en .
-
-&lt;earthAtmosphere_StE&gt; a sosa:Sample ;
-  sosa:isSampleOf &lt;earthAtmosphere&gt; ;
-  geo:hasGeometry [ 
-    a geo:Point ;
-    geo:asWKT "POINT (4.387611 45.437772)"^^geo:WktLiteral ;
-  ] ;
-.
-
-&lt;atmosphericPressure&gt; a sosa:ObservableProperty ;
-  rdfs:label "Atmospheric pressure"@en .
-
-
-# An iPhone 7 as the Platform that hosts several sensors,
-# among others the Bosch Sensortec BMP282 atmospheric pressure sensor.
-
-&lt;iphone7/35-207306-844818-0&gt; a sosa:Platform ;
-  rdfs:label "IPhone 7 - IMEI 35-207306-844818-0"@en ;
-  rdfs:comment "IPhone 7 - IMEI 35-207306-844818-0 - John Doe"@en ;
-  sosa:hosts &lt;sensor/35-207306-844818-0/BMP282&gt; .
-
-&lt;sensor/35-207306-844818-0/BMP282&gt; a sosa:Sensor ;
-  rdfs:label "Bosch Sensortec BMP282"@en ;
-  sosa:observes &lt;atmosphericPressure&gt; .
-
-
-# An observation made by the BMP282 atmospheric pressure sensor
-# using the cdt:ucum custom datatype.
-
-&lt;Observation/346344&gt; a sosa:Observation ;
-  sosa:observedProperty &lt;atmosphericPressure&gt; ;
-  sosa:hasFeatureOfInterest  &lt;earthAtmosphere_StE&gt; ;
-  sosa:madeBySensor &lt;sensor/35-207306-844818-0/BMP282&gt; ;
-  sosa:hasSimpleResult "1021.45 hPa"^^cdt:ucum ;
-  sosa:resultTime "2017-06-06T12:36:12Z"^^xsd:dateTime .
-
-
-# Another observation made a second later by the BMP282 atmospheric pressure sensor
-# using the QUDT Ontology for the Units of Measurement
-
-&lt;Observation/346345&gt; a sosa:Observation ;
-  sosa:observedProperty &lt;atmosphericPressure&gt; ;
-  sosa:hasFeatureOfInterest  &lt;earthAtmosphere_StE&gt; ;
-  sosa:madeBySensor &lt;sensor/35-207306-844818-0/BMP282&gt; ;
-  sosa:hasResult [
-    a qudt:QuantityValue ;
-    qudt:value "101936"^^xsd:decimal ;
-    qudt:hasUnit unit:PA ] ;
-  sosa:resultTime "2017-06-06T12:36:13Z"^^xsd:dateTime .
-          </pre></div>
+<pre class="example" data-include="./examples/2017ex8.ttl" data-include-format="text"></pre>
+        </div>
         </section>
         <section id="coil_oil_plant-sosa">
           <h3>Coal Oil Point Reserve</h3>
           <div class="ssn">
           <p>An RDF file containing a <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/IDEAS.ttl">graph corresponding to this example is available</a>. </p>
-          <pre class="example">@prefix rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
-@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .
-@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
-@prefix sosa: &lt;http://www.w3.org/ns/sosa#&gt; .
-@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-@prefix cdt: &lt;http://w3id.org/lindt/custom_datatypes#&gt;.
-
-@base &lt;http://example.org/data/&gt; .
-
- &lt;COPR&gt; a sosa:FeatureOfInterest ;
-   sosa:hasSample &lt;COPR_SL&gt; ;
-   rdfs:comment "Coal Oil Point Reserve: UC Santa Barbara Natural Reserve System"@en ;
-   rdfs:label "Coal Oil Point Reserve"@en .
-
- &lt;COPR_Station_Location&gt; a sosa:Sample ;
-   rdfs:comment "."@en ;
-   rdfs:label "Air around COPR Station"@en ;
-   sosa:isSampleOf &lt;COPR&gt; .
- 
- &lt;COPR_Station&gt; a sosa:Platform ;
-   rdfs:comment "Station at Coal Oil Point Reserve, CA (see http://www.geog.ucsb.edu/ideas/COPR.html for details)"@en ;
-   rdfs:label "Coal Oil Point Reserve Wx Station"@en ;
-   rdfs:seeAlso &lt;http://www.geog.ucsb.edu/ideas/COPR.html&gt; ;
-   sosa:hosts &lt;COPR-HMP45C-L&gt; .
- 
- &lt;COPR-HMP45C-L&gt; a sosa:Platform ;
-   rdfs:label "HMP45C-L Temperature and Relative Humidity Probe at Coal Oil Point, UCSB, CA"@en ;
-   sosa:hosts &lt;HUMICAP-H&gt; ;
-   sosa:isHostedBy &lt;COPR_Station&gt; .
-
- &lt;HUMICAP-H&gt; a sosa:Sensor ;
-   rdfs:label "Vaisala HUMICAP H-chip"@en ;
-   sosa:isHostedBy &lt;COPR-HMP45C-L&gt; .
-
- &lt;RelativeHumidity&gt; a sosa:ObservableProperty ;
-   rdfs:comment "Humidity is a measure of the moisture content of air."@en ;
-   rdfs:label "Relative Humidity"@en .
-
- &lt;MeasuringRelativeHumidityA23&gt; a sosa:Procedure ;
-   rdfs:comment "... detailed instructions for measuring relative humidity ..."@en ;
-   .
-  
- &lt;RH_avg_1_COPR_15min_201706020300PM&gt; a sosa:Observation ;
-   rdfs:comment "Relative humidity as averaged over 15min at COPR."@en ;
-   rdfs:label "Relative humidity, AVG, 15min, COPR, 06.02.2017, 3:00 PM"@en ;
-   sosa:madeBySensor &lt;HUMICAP-H&gt; ;
-   sosa:hasFeatureOfInterest &lt;COPR_Station_Location&gt; ;
-   sosa:hasSimpleResult "92.5 %"^^cdt:ucum ;
-   sosa:resultTime "2017-06-02-T03:00:00-7:00"^^xsd:dateTime ;
-   sosa:observedProperty &lt;RelativeHumidity&gt; ;
-   sosa:usedProcedure &lt;MeasuringRelativeHumidityA23&gt; .
-          </pre></div>
+<pre class="example" data-include="./examples/2017ex9.ttl" data-include-format="text"></pre>
+        </div>
         </section>
         <section id="apartment-134">
           <h3>apartment 134</h3>
@@ -6210,197 +5961,12 @@ ex:TemperatureSensor  rdfs:subClassOf [
           </div>
           <div class="ssn">
           <p>An RDF file containing a <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/apartment-134.ttl">graph corresponding to this example is available</a>. </p>
-          <pre class="example">@prefix rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
-@prefix time: &lt;http://www.w3.org/2006/time#&gt;.
-@prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
-@prefix ssn:  &lt;http://www.w3.org/ns/ssn/&gt; .
-@prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-@prefix qudt: &lt;http://qudt.org/schema/qudt/&gt; .
-@prefix unit: &lt;http://qudt.org/vocab/unit/&gt; .
-@base &lt;http://example.org/data/&gt; .
-
-# The electric consumption of apartment #134 on April 15 2017 was 22.4 kWh as 
-# observed by sensor #926. The result was available 12 seconds later.
-
-&lt;Observation/235714&gt; rdf:type sosa:Observation ;
-  sosa:observedProperty  &lt;apartment/134/electricConsumption&gt; ;
-  sosa:madeBySensor &lt;sensor/926&gt; ; 
-  sosa:hasResult [
-     rdf:type qudt:QuantityValue ;
-     qudt:numericValue "22.4"^^xsd:double ;
-     qudt:hasUnit unit:KiloW-HR ] ;
-  sosa:phenomenonTime [
-    rdf:type time:Interval ;
-    time:hasBeginning [ 
-      rdf:type time:Instant ;
-      time:inXSDDateTimeStamp "2017-04-15T00:00:00+00:00"^^xsd:dateTimeStamp ] ;
-    time:hasEnd [ 
-      rdf:type time:Instant ;
-      time:inXSDDateTimeStamp "2017-04-16T00:00:00+00:00"^^xsd:dateTimeStamp ] ] ;
-  sosa:resultTime "2017-04-16T00:00:12+00:00"^^xsd:dateTimeStamp .
-
-
-# Sensor #926 observes the electric consumption of apartment #134, and we know that 
-# it made some observations.
-
-&lt;sensor/926&gt; rdf:type sosa:Sensor ;
-  sosa:observes  &lt;apartment/134/electricConsumption&gt; ;
-  sosa:madeObservation &lt;Observation/235714&gt;, &lt;Observation/235715&gt;, &lt;Observation/235716&gt; .
-
-# mobile sensor tempSensor #23 observes the temperature in its surroundings, and we know 
-# that it made some observations. 
-
-&lt;tempSensor/23&gt; rdf:type sosa:Sensor ;
-  sosa:observes  &lt;tempSensor/23#temperature&gt; ;
-  sosa:madeObservation &lt;tempSensor/23/4572&gt;, &lt;tempSensor/23/4573&gt;, &lt;tempSensor/23/4574&gt; .
-
-
-# Sensor #926 observes the electric consumption of apartment #134
-
-&lt;sensor/926&gt; rdf:type sosa:Sensor ;
-  sosa:observes  &lt;apartment/134/electricConsumption&gt; .
-
-# This is equivalent to saying that the electric consumption of apartment #134 is 
-# observed by Sensor #926
-
-&lt;apartment/134/electricConsumption&gt; rdf:type sosa:ObservableProperty ;
-  sosa:isObservedBy &lt;sensor/926&gt;  .
-
-
-# Sensor #926 made observations identified by &lt;Observation/235714&gt; and &lt;Observation/235715&gt;.
-
-&lt;sensor/926&gt; rdf:type sosa:Sensor ;
-  sosa:madeObservation &lt;Observation/235714&gt;, &lt;Observation/235715&gt; .
-
-# This is equivalent to saying that these observations have been made by sensor #926.
-
-&lt;Observation/235714&gt; rdf:type sosa:Observation ;
-  sosa:madeBySensor &lt;sensor/926&gt; .
-
-&lt;Observation/235754&gt; rdf:type sosa:Observation ;
-  sosa:madeBySensor &lt;sensor/926&gt; .
-
-
-# the window opening state is an ActuatableProperty.
-# SSN allows to explicitly say that &lt;window/104#state&gt; is a property of &lt;window&gt;
-
-&lt;window&gt; rdf:type sosa:FeatureOfInterest ;
-  ssn:hasProperty &lt;window/104#state&gt; .
-
-&lt;window/104#state&gt; rdf:type sosa:ActuatableProperty ;
-  sosa:isActedOnBy &lt;actuation/188&gt; .
-
-
-# WindowCloser #987 made actuation #188
-# SSN allows to explicitly say that &lt;windowCloser/987&gt; is designed to automatically open and close window #104.
-
-&lt;windowCloser/987&gt; rdf:type sosa:Actuator ;
-  sosa:madeActuation &lt;actuation/188&gt; ;
-  ssn:forProperty &lt;window/104#state&gt; .
-
-
-# Actuation #188 acted on the state of window #104 and returned 'true'.
-
-&lt;actuation/188&gt; rdf:type sosa:Actuation ;
-  sosa:actsOnProperty  &lt;window/104#state&gt; ;
-  sosa:madeByActuator &lt;windowCloser/987&gt; ;
-  sosa:hasSimpleResult true ;
-  sosa:resultTime "2017-04-18T17:24:00+02:00"^^xsd:dateTimeStamp .
-          </pre></div>
+<pre class="example" data-include="./examples/2017ex10.ttl" data-include-format="text"></pre>
+          </div>
           <div class="sosa" style="display: none">
           <p>An RDF file containing a <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/apartment-134-sosa.ttl">graph corresponding to this example is available</a>. </p>
-          <pre class="example">@prefix rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
-@prefix time: &lt;http://www.w3.org/2006/time#&gt;.
-@prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
-@prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-@prefix qudt: &lt;http://qudt.org/schema/qudt/&gt; .
-@prefix unit: &lt;http://qudt.org/vocab/unit/&gt; .
-@base &lt;http://example.org/data/&gt; .
-
-# The electric consumption of apartment #134 on April 15 2017 was 22.4 kWh as 
-# observed by sensor #926. The result was available 12 seconds later.
-
-&lt;Observation/235714&gt; rdf:type sosa:Observation ;
-  sosa:observedProperty  &lt;apartment/134/electricConsumption&gt; ;
-  sosa:madeBySensor &lt;sensor/926&gt; ; 
-  sosa:hasResult [
-     rdf:type qudt:QuantityValue ;
-     qudt:numericValue "22.4"^^xsd:double ;
-     qudt:hasUnit unit:KiloW-HR ] ;
-  sosa:phenomenonTime [
-    rdf:type time:Interval ;
-    time:hasBeginning [ 
-      rdf:type time:Instant ;
-      time:inXSDDateTimeStamp "2017-04-15T00:00:00+00:00"^^xsd:dateTimeStamp ] ;
-    time:hasEnd [ 
-      rdf:type time:Instant ;
-      time:inXSDDateTimeStamp "2017-04-16T00:00:00+00:00"^^xsd:dateTimeStamp ] ] ;
-  sosa:resultTime "2017-04-16T00:00:12+00:00"^^xsd:dateTimeStamp .
-
-
-# Sensor #926 observes the electric consumption of apartment #134, and we know that 
-# it made some observations.
-
-&lt;sensor/926&gt; rdf:type sosa:Sensor ;
-  sosa:observes  &lt;apartment/134/electricConsumption&gt; ;
-  sosa:madeObservation &lt;Observation/235714&gt;, &lt;Observation/235715&gt;, &lt;Observation/235716&gt; .
-
-# mobile sensor tempSensor #23 observes the temperature in its surroundings, and we know 
-# that it made some observations. 
-
-&lt;tempSensor/23&gt; rdf:type sosa:Sensor ;
-  sosa:observes  &lt;tempSensor/23#temperature&gt; ;
-  sosa:madeObservation &lt;tempSensor/23/4572&gt;, &lt;tempSensor/23/4573&gt;, &lt;tempSensor/23/4574&gt; .
-
-
-# Sensor #926 observes the electric consumption of apartment #134
-
-&lt;sensor/926&gt; rdf:type sosa:Sensor ;
-  sosa:observes  &lt;apartment/134/electricConsumption&gt; .
-
-# This is equivalent to saying that the electric consumption of apartment #134 is 
-# observed by Sensor #926
-
-&lt;apartment/134/electricConsumption&gt; rdf:type sosa:ObservableProperty ;
-  sosa:isObservedBy &lt;sensor/926&gt;  .
-
-
-# Sensor #926 made observations identified by &lt;Observation/235714&gt; and &lt;Observation/235715&gt;.
-
-&lt;sensor/926&gt; rdf:type sosa:Sensor ;
-  sosa:madeObservation &lt;Observation/235714&gt;, &lt;Observation/235715&gt; .
-
-# This is equivalent to saying that these observations have been made by sensor #926.
-
-&lt;Observation/235714&gt; rdf:type sosa:Observation ;
-  sosa:madeBySensor &lt;sensor/926&gt; .
-
-&lt;Observation/235754&gt; rdf:type sosa:Observation ;
-  sosa:madeBySensor &lt;sensor/926&gt; .
-
-
-# the window opening state is an ActuatableProperty.
-
-&lt;window&gt; rdf:type sosa:FeatureOfInterest .
-
-&lt;window/104#state&gt; rdf:type sosa:ActuatableProperty ;
-  sosa:isActedOnBy &lt;actuation/188&gt; .
-
-
-# WindowCloser #987 made actuation #188
-
-&lt;windowCloser/987&gt; rdf:type sosa:Actuator ;
-  sosa:madeActuation &lt;actuation/188&gt; .
-
-
-# Actuation #188 acted on the state of window #104 and returned 'true'.
-
-&lt;actuation/188&gt; rdf:type sosa:Actuation ;
-  sosa:actsOnProperty  &lt;window/104#state&gt; ;
-  sosa:madeByActuator &lt;windowCloser/987&gt; ; 
-  sosa:hasSimpleResult true ;
-  sosa:resultTime "2017-04-18T17:24:00+02:00"^^xsd:dateTimeStamp .
-          </pre></div>
+<pre class="example" data-include="./examples/2017ex11.ttl" data-include-format="text"></pre>
+          </div>
           <div class="buttonpanel" style="justify-content: center;">
               <span>
                 <span class="sosa" style="display: none;">[<a href="#" onclick="hide_ssn(false,this.parentElement.parentElement);return false;">Show all SOSA and SSN terms</a>]</span>
@@ -6419,114 +5985,11 @@ ex:TemperatureSensor  rdfs:subClassOf [
           </div>
           <div class="ssn">
             <p>An RDF file containing a <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/tree-height.ttl">graph corresponding to this example is available</a>. </p>
-            <pre class="example">@prefix rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
-@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;.
-@prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
-@prefix ssn: &lt;http://www.w3.org/ns/ssn/&gt; .
-@prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-@prefix qudt: &lt;http://qudt.org/schema/qudt/&gt; .
-@prefix unit: &lt;http://qudt.org/vocab/unit/&gt; .
-@base &lt;http://example.org/data/&gt; .
-
-# rangefinder #30 is a laser range finder sensor that was used 
-# to observe the height of tree #124 and #125.
-
-&lt;rangefinder/30&gt;        rdf:type           sosa:Sensor ;
-  rdfs:label "rangefinder #30"@en ;
-  rdfs:comment "rangefinder #30 is a laser range finder sensor."@en .
-
-# rangefinder #30 made observation #1087 of the height of tree #124.
-
-&lt;observation/1087&gt;  rdf:type               sosa:Observation ;
-  rdfs:label "observation #1087"@en ;
-  sosa:hasFeatureOfInterest  &lt;tree/124&gt; ;
-  sosa:observedProperty  &lt;tree/124/height&gt; ;
-  sosa:madeBySensor &lt;rangefinder/30&gt; ;
-  sosa:hasResult [ 
-    qudt:hasUnit unit:M ; 
-    qudt:numericValue "15.3"^^xsd:double ] .
-
-# using SSN, one can explicitly link a property and its feature of interest.
- 
-&lt;tree/124&gt;  rdf:type    sosa:FeatureOfInterest ;
-  rdfs:label "tree #124"@en ;
-  ssn:hasProperty &lt;tree/124#height&gt; .
-
-&lt;tree/124#height&gt;  rdf:type    sosa:ObservableProperty , ssn:Property ;
-  rdfs:label "the height of tree #124"@en ;
-  ssn:isPropertyOf &lt;tree/124&gt; .
-
-# rangefinder #30 made observation #1088 of the height of tree #125.
-
-&lt;observation/1088&gt;  rdf:type               sosa:Observation ;
-  rdfs:label "observation #1088"@en ;
-  sosa:hasFeatureOfInterest  &lt;tree/125&gt; ;
-  sosa:observedProperty  &lt;tree/125/height&gt; ;
-  sosa:madeBySensor &lt;rangefinder/30&gt; ;
-  sosa:hasResult [ 
-    qudt:numericValue "23.0"^^xsd:double ;
-    qudt:hasUnit unit:M ] .
-
-# using SSN, one can explicitly link a property and its feature of interest.
- 
-&lt;tree/125&gt;  rdf:type    sosa:FeatureOfInterest ;
-  rdfs:label "tree #125"@en ;
-  ssn:hasProperty &lt;tree/125#height&gt; .
-
-&lt;tree/125#height&gt;  rdf:type    sosa:ObservableProperty , ssn:Property ;
-  rdfs:label "the height of tree #125"@en ;
-  ssn:isPropertyOf &lt;tree/125&gt; .</pre>
+<pre class="example" data-include="./examples/2017ex12.ttl" data-include-format="text"></pre>
           </div>
           <div class="sosa" style="display: none">
             <p>An RDF file containing a <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/tree-height-sosa.ttl">graph corresponding to this example is available</a>. </p>
-            <pre class="example">@prefix rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
-@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;.
-@prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
-@prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-@prefix qudt: &lt;http://qudt.org/schema/qudt/&gt; .
-@prefix unit: &lt;http://qudt.org/vocab/unit/&gt; .
-@base &lt;http://example.org/data/&gt; .
-
-# rangefinder #30 is a laser range finder sensor that was used 
-# to observe the height of tree #124 and #125.
-
-&lt;rangefinder/30&gt;        rdf:type           sosa:Sensor ;
-  rdfs:label "rangefinder #30"@en ;
-  rdfs:comment "rangefinder #30 is a laser range finder sensor."@en .
-
-# rangefinder #30 made observation #1087 of the height of tree #124.
-
-&lt;observation/1087&gt;  rdf:type               sosa:Observation ;
-  rdfs:label "observation #1087"@en ;
-  sosa:hasFeatureOfInterest  &lt;tree/124&gt; ;
-  sosa:observedProperty  &lt;tree/124/height&gt; ;
-  sosa:madeBySensor &lt;rangefinder/30&gt; ;
-  sosa:hasResult [ 
-    qudt:hasUnit unit:M ; 
-    qudt:numericValue "15.3"^^xsd:double ] .
-
-&lt;tree/124&gt;  rdf:type    sosa:FeatureOfInterest ;
-  rdfs:label "tree #124"@en .
-
-&lt;tree/124#height&gt;  rdf:type    sosa:ObservableProperty , ssn:Property ;
-  rdfs:label "the height of tree #124"@en .
-
-# rangefinder #30 made observation #1088 of the height of tree #125.
-
-&lt;observation/1088&gt;  rdf:type               sosa:Observation ;
-  rdfs:label "observation #1088"@en ;
-  sosa:hasFeatureOfInterest  &lt;tree/125&gt; ;
-  sosa:observedProperty  &lt;tree/125/height&gt; ;
-  sosa:madeBySensor &lt;rangefinder/30&gt; ;
-  sosa:hasResult [ 
-    qudt:numericValue "23.0"^^xsd:double ;
-    qudt:hasUnit unit:M ] .
-
-&lt;tree/125&gt;  rdf:type    sosa:FeatureOfInterest ;
-  rdfs:label "tree #125"@en .
-
-&lt;tree/125#height&gt;  rdf:type    sosa:ObservableProperty , ssn:Property ;
-  rdfs:label "the height of tree #125"@en .</pre>
+<pre class="example" data-include="./examples/2017ex13.ttl" data-include-format="text"></pre>
           </div>
           <div class="buttonpanel" style="justify-content: center;">
               <span>
@@ -6546,97 +6009,11 @@ ex:TemperatureSensor  rdfs:subClassOf [
           </div>
           <div class="ssn">
             <p>An RDF file containing a <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/seismograph.ttl">graph corresponding to this example is available</a>. </p>
-            <pre class="example">@prefix rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
-@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;.
-@prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
-@prefix ssn:  &lt;http://www.w3.org/ns/ssn/&gt; .
-@prefix geo: &lt;http://www.w3.org/2003/01/geo/wgs84_pos#&gt; .
-@prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-@prefix qudt: &lt;http://qudt.org/schema/qudt/&gt; .
-@prefix unit: &lt;http://qudt.org/vocab/unit/&gt; .
-@base &lt;http://example.org/data/&gt; .
-
-# Observation #358 of seismograph VCAB DP1 BP 40 (Vineyard Canyon, Parkfield, Ca) measured
-# a earth displacement speed of 0.000500 cm/sec at 8:23 am on April 18, 2017, Pacific
-# Daylight Time.
-
-&lt;earth&gt;  rdf:type    sosa:FeatureOfInterest ;
-  rdfs:label "earth"@en .
-
-&lt;VCAB-DP1-BP-40&gt; rdf:type sosa:Sensor ;
-  rdfs:label "seismograph VCAB DP1 BP 40 (Vineyard Canyon, Parkfield, Ca)"@en ;
-  rdfs:seeAlso &lt;https://earthquake.usgs.gov/monitoring/seismograms/153&gt; ;
-  sosa:observes &lt;VCAB-DP1-BP-40#groundDisplacementSpeed&gt; .
-
-&lt;VCAB-DP1-BP-40#location&gt; rdf:type sosa:FeatureOfInterest ;
-  rdfs:label "location of VCAB-DP1-BP-40"@en ;
-  geo:lat 35.8648067 ;
-  geo:long -120.6195831 ;
-  geo:alt 12.75 ;
-  sosa:isSampleOf &lt;earth&gt; .
-
-&lt;VCAB-DP1-BP-40#groundDisplacementSpeed&gt;  rdf:type    sosa:ObservableProperty , ssn:Property ;
-  rdfs:label "the ground displacement speed at location of VCAB-DP1-BP-40"@en ;
-  sosa:isObservedBy &lt;VCAB-DP1-BP-40&gt; .
-
-&lt;VCAB-DP1-BP-40?t=2017-04-18T08%3A23%3A00-07%3A00&gt; rdf:type sosa:Observation ;
-  sosa:madeBySensor &lt;VCAB-DP1-BP-40&gt; ; 
-  sosa:hasFeatureOfInterest  &lt;VCAB-DP1-BP-40#location&gt; ;
-  sosa:observedProperty  &lt;VCAB-DP1-BP-40#groundDisplacementSpeed&gt; ;
-  sosa:hasResult [
-     rdf:type qudt:QuantityValue ;
-     qudt:numericValue "5e-4"^^xsd:double ;
-     qudt:hasUnit unit:CentiM-PER-SEC ] ;
-  sosa:resultTime "2017-04-18T08:23:00-07:00"^^xsd:dateTimeStamp .
-
-# using SSN one can explicitly state that &lt;VCAB-DP1-BP-40#groundDisplacementSpeed&gt; is the property of &lt;VCAB-DP1-BP-40#location&gt; .
-
-&lt;VCAB-DP1-BP-40#location&gt; ssn:hasProperty &lt;VCAB-DP1-BP-40#groundDisplacementSpeed&gt; .
-</pre>
+<pre class="example" data-include="./examples/2017ex14.ttl" data-include-format="text"></pre>
           </div>
           <div class="sosa" style="display: none">
             <p>An RDF file containing a <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/seismograph-sosa.ttl">graph corresponding to this example is available</a>. </p>
-            <pre class="example">@prefix rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
-@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;.
-@prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
-@prefix geo: &lt;http://www.w3.org/2003/01/geo/wgs84_pos#&gt; .
-@prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-@prefix qudt: &lt;http://qudt.org/schema/qudt/&gt; .
-@prefix unit: &lt;http://qudt.org/vocab/unit/&gt; .
-@base &lt;http://example.org/data/&gt; .
-
-# Observation #358 of seismograph VCAB DP1 BP 40 (Vineyard Canyon, Parkfield, Ca) measured
-# a earth displacement speed of 0.000500 cm/sec at 8:23 am on April 18, 2017, Pacific
-# Daylight Time.
-
-&lt;earth&gt;  rdf:type    sosa:FeatureOfInterest ;
-  rdfs:label "earth"@en .
-
-&lt;VCAB-DP1-BP-40&gt; rdf:type sosa:Sensor ;
-  rdfs:label "seismograph VCAB DP1 BP 40 (Vineyard Canyon, Parkfield, Ca)"@en ;
-  rdfs:seeAlso &lt;https://earthquake.usgs.gov/monitoring/seismograms/153&gt; ;
-  sosa:observes &lt;VCAB-DP1-BP-40#groundDisplacementSpeed&gt; .
-
-&lt;VCAB-DP1-BP-40#location&gt; rdf:type sosa:FeatureOfInterest ;
-  rdfs:label "location of VCAB-DP1-BP-40"@en ;
-  geo:lat 35.8648067 ;
-  geo:long -120.6195831 ;
-  geo:alt 12.75 ;
-  sosa:isSampleOf &lt;earth&gt; .
-
-&lt;VCAB-DP1-BP-40#groundDisplacementSpeed&gt;  rdf:type    sosa:ObservableProperty , ssn:Property ;
-  rdfs:label "the ground displacement speed at location of VCAB-DP1-BP-40"@en ;
-  sosa:isObservedBy &lt;VCAB-DP1-BP-40&gt; .
-
-&lt;VCAB-DP1-BP-40?t=2017-04-18T08%3A23%3A00-07%3A00&gt; rdf:type sosa:Observation ;
-  sosa:madeBySensor &lt;VCAB-DP1-BP-40&gt; ; 
-  sosa:hasFeatureOfInterest  &lt;VCAB-DP1-BP-40#location&gt; ;
-  sosa:observedProperty  &lt;VCAB-DP1-BP-40#groundDisplacementSpeed&gt; ;
-  sosa:hasResult [
-     rdf:type qudt:QuantityValue ;
-     qudt:numericValue "5e-4"^^xsd:double ;
-     qudt:hasUnit unit:CentiM-PER-SEC ] ;
-  sosa:resultTime "2017-04-18T08:23:00-07:00"^^xsd:dateTimeStamp .</pre>
+<pre class="example" data-include="./examples/2017ex15.ttl" data-include-format="text"></pre>
           </div>
           <div class="buttonpanel" style="justify-content: center;">
               <span>
@@ -6649,22 +6026,7 @@ ex:TemperatureSensor  rdfs:subClassOf [
         <section id="sunspots">
           <h3>Number of sunspots</h3>
           <p>An RDF file containing a <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/sunspots.ttl">graph corresponding to this example is available</a>. </p>
-          <pre class="example">@prefix rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
-@prefix time: &lt;http://www.w3.org/2006/time#&gt;.
-@prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
-@prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-@base &lt;http://example.org/data/&gt; .
-
-# The result of an observation of the sunspot number is available a few minutes 
-# after the phenomenon time, due to the light travel duration.
-
-&lt;Observation/7536&gt; rdf:type sosa:Observation ;
-  sosa:observedProperty  &lt;Sun#sunspotNumber&gt; ;
-  sosa:hasSimpleResult 66 ;
-  sosa:phenomenonTime [
-    rdf:type time:Instant ;
-    time:inXSDDateTimeStamp "2017-03-31T11:51:42+00:00"^^xsd:dateTimeStamp ] ;
-  sosa:resultTime "2017-03-31T12:00:00+00:00"^^xsd:dateTimeStamp .</pre>
+<pre class="example" data-include="./examples/2017ex16.ttl" data-include-format="text"></pre>
         </section>
 
         <section id="spinning-cups">
@@ -6677,81 +6039,11 @@ ex:TemperatureSensor  rdfs:subClassOf [
           </div>
           <div class="ssn">
             <p>An RDF file containing a <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/spinning-cups.ttl">graph corresponding to this example is available</a>. </p>
-            <pre class="example">@prefix rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
-@prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
-@prefix ssn:  &lt;http://www.w3.org/ns/ssn/&gt; .
-@prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-@base &lt;http://example.org/data/&gt; .
-
-# movements of spinning cups on wind sensor #14 serves as proxies for the wind speed
-# at the location of the wind sensor.
-
-&lt;windSensor/14&gt; rdf:type sosa:Sensor ;
-  sosa:observes &lt;location/4687#windSpeed&gt; .
-
-# wind sensor #14 detected some movement of spinning cups, from which originated the
-# observations #147 and #148.
-
-&lt;windSensor/14&gt; rdf:type sosa:Sensor ;
-  sosa:madeObservation &lt;observation/147&gt; , &lt;observation/148&gt; ; 
-  ssn:detects &lt;observation/147#spinningCupsMovement&gt; , &lt;observation/148#spinningCupsMovement&gt; .
-
-# observation #147 was originated by the movement of the spinning cups of sensor #14.
-# the result of observations #147 and #148 is using some custom datatype that encodes the unit of measure.
-
-&lt;observation/147&gt; rdf:type sosa:Observation ;
-  sosa:observedProperty &lt;location/4687#windSpeed&gt; ;
-  sosa:madeBySensor &lt;windSensor/14&gt; ;
-  ssn:wasOriginatedBy &lt;observation/147#spinningCupsMovement&gt; ;
-  sosa:resultTime "2017-04-12T12:00:00Z"^^xsd:dateTime ;
-  sosa:hasSimpleResult "47 km/h"^^&lt;speed&gt; .
-
-&lt;observation/147#spinningCupsMovement&gt; rdf:type ssn:Stimulus ;
-  ssn:isProxyFor &lt;location/4687#windSpeed&gt; .
-
-&lt;observation/148&gt; rdf:type sosa:Observation ;
-  sosa:observedProperty &lt;location/4687#windSpeed&gt; ;
-  sosa:madeBySensor &lt;windSensor/14&gt; ;
-  ssn:wasOriginatedBy &lt;observation/148#spinningCupsMovement&gt; ;
-  sosa:resultTime "2017-04-12T12:01:00Z"^^xsd:dateTime ;
-  sosa:hasSimpleResult "43 km/h"^^&lt;speed&gt; .
-
-&lt;observation/148#spinningCupsMovement&gt; rdf:type ssn:Stimulus ;
-  ssn:isProxyFor &lt;location/4687#windSpeed&gt; .</pre>
+<pre class="example" data-include="./examples/2017ex17.ttl" data-include-format="text"></pre>
           </div>
           <div class="sosa" style="display: none">
             <p>An RDF file containing a <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/spinning-cups-sosa.ttl">graph corresponding to this example is available</a>. </p>
-            <pre class="example">@prefix rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
-@prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
-@prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-@base &lt;http://example.org/data/&gt; .
-
-# movements of spinning cups on wind sensor #14 serves as proxies for the wind speed
-# at the location of the wind sensor.
-
-&lt;windSensor/14&gt; rdf:type sosa:Sensor ;
-  sosa:observes &lt;location/4687#windSpeed&gt; .
-
-# wind sensor #14 made observations #147 and #148.
-
-&lt;windSensor/14&gt; rdf:type sosa:Sensor ;
-  sosa:madeObservation &lt;observation/147&gt; , &lt;observation/148&gt; .
-
-# the result of observations #147 and #148 is using some custom datatype that encodes the unit of measure.
-
-&lt;observation/147&gt; rdf:type sosa:Observation ;
-  sosa:observedProperty &lt;location/4687#windSpeed&gt; ;
-  sosa:madeBySensor &lt;windSensor/14&gt; ;
-  sosa:resultTime "2017-04-12T12:00:00Z"^^xsd:dateTime ;
-  sosa:hasSimpleResult "47 km/h"^^&lt;speed&gt; .
-
-&lt;observation/148&gt; rdf:type sosa:Observation ;
-  sosa:observedProperty &lt;location/4687#windSpeed&gt; ;
-  sosa:madeBySensor &lt;windSensor/14&gt; ;
-  sosa:resultTime "2017-04-12T12:01:00Z"^^xsd:dateTime ;
-  sosa:hasSimpleResult "43 km/h"^^&lt;speed&gt; .
-
-</pre>
+<pre class="example" data-include="./examples/2017ex18.ttl" data-include-format="text"></pre>
           </div>
           <div class="buttonpanel" style="justify-content: center;">
               <span>
@@ -6774,74 +6066,11 @@ ex:TemperatureSensor  rdfs:subClassOf [
             <p>In the following example, the ice core is a sample of the Antarctic ice sheet, and observations are made on the ice core. </p>
             <p>A convenient side effect of this feature is that all observations related to the larger thing (the ice sheet) can be found, and then potentially joined together in a meta-analysis in order to characterize that. </p>
             <p>An RDF file containing a <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/ice-core.ttl">graph corresponding to this example is available</a>. </p>
-            <pre class="example">@prefix rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
-@prefix time: &lt;http://www.w3.org/2006/time#&gt;.
-@prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
-@prefix ssn:  &lt;http://www.w3.org/ns/ssn/&gt; .
-@prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-@prefix geo: &lt;http://www.w3.org/2003/01/geo/wgs84_pos#&gt;.
-@base &lt;http://example.org/data/&gt; .
-
-
-# The CO2 level observed in an ice core is 240 parts per million.
-# the ice core is a sample of the polar ice sheet of Antarctica. 
-
-&lt;http://dbpedia.org/resource/Antarctic_ice_sheet&gt; a sosa:FeatureOfInterest ;
-  sosa:hasSample &lt;iceCore/12&gt;, &lt;iceCore/13&gt;, &lt;iceCore/14&gt; .
-
-&lt;iceCore/12&gt; rdf:type sosa:Sample ;
-  sosa:isSampleOf &lt;http://dbpedia.org/resource/Antarctic_ice_sheet&gt; ;
-  sosa:isResultOf &lt;WellDrilling/4578&gt; ;
-  sosa:madeBySampler &lt;thermalDrill/2&gt; .
-
-  &lt;WellDrilling/4578&gt; a sosa:Sampling ;
-    geo:lat -73.35 ; 
-    geo:long 9.32 ;
-    sosa:hasResult &lt;iceCore/12&gt; ;
-    sosa:madeBySampler &lt;thermalDrill/2&gt; ;
-    sosa:resultTime "2017-04-03T11:12:00Z"^^xsd:dateTime ;
-    sosa:hasFeatureOfInterest &lt;http://dbpedia.org/resource/Antarctic_ice_sheet&gt; .
-
-&lt;iceCore/12#observation&gt; a sosa:Observation ;
-  sosa:observedProperty &lt;iceCore/12#CO2&gt; ;
-  sosa:hasSimpleResult 240 .
-
-# using SSN one can explicitly state that &lt;iceCore/12#CO2&gt; is the property of &lt;iceCore/12&gt; .
-
-&lt;iceCore/12#CO2&gt; ssn:isPropertyOf &lt;iceCore/12&gt; .</pre>
+<pre class="example" data-include="./examples/2017ex19.ttl" data-include-format="text"></pre>
           </div>
           <div class="sosa" style="display: none">
             <p>An RDF file containing a <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/ice-core-sosa.ttl">graph corresponding to this example is available</a>. </p>
-            <pre class="example">@prefix rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
-@prefix time: &lt;http://www.w3.org/2006/time#&gt;.
-@prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
-@prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-@prefix geo: &lt;http://www.w3.org/2003/01/geo/wgs84_pos#&gt;.
-@base &lt;http://example.org/data/&gt; .
-
-
-# The CO2 level observed in an ice core is 240 parts per million.
-# the ice core is a sample of the polar ice sheet of Antarctica. 
-
-&lt;http://dbpedia.org/resource/Antarctic_ice_sheet&gt; a sosa:FeatureOfInterest ;
-  sosa:hasSample &lt;iceCore/12&gt;, &lt;iceCore/13&gt;, &lt;iceCore/14&gt; .
-
-&lt;iceCore/12&gt; rdf:type sosa:Sample ;
-  sosa:isSampleOf &lt;http://dbpedia.org/resource/Antarctic_ice_sheet&gt; ;
-  sosa:isResultOf &lt;WellDrilling/4578&gt; ;
-  sosa:madeBySampler &lt;thermalDrill/2&gt; .
-
-  &lt;WellDrilling/4578&gt; a sosa:Sampling ;
-    geo:lat -73.35 ; 
-    geo:long 9.32 ;
-    sosa:hasResult &lt;iceCore/12&gt; ;
-    sosa:madeBySampler &lt;thermalDrill/2&gt; ;
-    sosa:resultTime "2017-04-03T11:12:00Z"^^xsd:dateTime ;
-    sosa:hasFeatureOfInterest &lt;http://dbpedia.org/resource/Antarctic_ice_sheet&gt; .
-
-&lt;iceCore/12#observation&gt; a sosa:Observation ;
-  sosa:observedProperty &lt;iceCore/12#CO2&gt; ;
-  sosa:hasSimpleResult 240 .</pre>
+<pre class="example" data-include="./examples/2017ex20.ttl" data-include-format="text"></pre>
           </div>
           <div class="buttonpanel" style="justify-content: center;">
               <span>
@@ -6861,168 +6090,11 @@ ex:TemperatureSensor  rdfs:subClassOf [
           </div>
           <div class="ssn">
             <p>An RDF file containing a <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/dht22.ttl">graph corresponding to this example is available</a>. </p>
-            <pre class="example">@prefix rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
-@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;.
-@prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-@prefix qudt: &lt;http://qudt.org/schema/qudt/&gt; .
-@prefix unit: &lt;http://qudt.org/vocab/unit/&gt; .
-@prefix schema: &lt;http://schema.org/&gt;.
-
-@prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
-@prefix ssn: &lt;http://www.w3.org/ns/ssn/&gt; .
-@prefix ssn-system: &lt;http://www.w3.org/ns/ssn/systems/&gt; .
-
-@prefix rdfp: &lt;https://w3id.org/rdfp/&gt;.
-
-@base &lt;http://example.org/data/&gt; .
-
-
-&lt;DHT22#Procedure&gt; a sosa:Procedure ;
-  ssn:hasOutput &lt;DHT22#output&gt; .
-
-&lt;DHT22#output&gt; a ssn:Output , rdfp:GraphDescription ;
-  rdfs:comment "The output is a RDF Graph that describes both the temperature and the humidity. It can be validated by a SHACL shapes graph."@en ;
-  rdfp:presentedBy [
-    a rdfp:GraphDescription ;
-    rdfp:validationRule &lt;shacl_shapes_graph&gt; ;
-  ] .
-
-
-&lt;DHT22/4578&gt; a ssn:System ;
-  rdfs:comment "DHT22 sensor #4578 contains a humidity and a temperature sensor."@en ;
-  rdfs:seeAlso &lt;https://www.sparkfun.com/datasheets/Sensors/Temperature/DHT22.pdf&gt; ;
-  ssn:hasSubSystem &lt;DHT22/4578#TemperatureSensor&gt;, &lt;DHT22/4578#HumiditySensor&gt; .
-
-
-
-&lt;DHT22/4578#TemperatureSensor&gt; a sosa:Sensor , ssn:System ;
-  rdfs:comment "The embedded temperature sensor, a specific instance of temperature sensor."@en ;
-  ssn-system:hasOperatingRange &lt;DHT22/4578#TemperatureSensorOperatingRange&gt; ; 
-  ssn-system:hasSystemCapability &lt;DHT22/4578#TemperatureSensorCapability&gt; ;
-  ssn:implements &lt;DHT22#Procedure&gt; .
-
-&lt;DHT22/4578#HumiditySensor&gt; a sosa:Sensor , ssn:System ;
-  rdfs:comment "The embedded humidity sensor, a specific instance of humidity sensor."@en ;
-  ssn-system:hasOperatingRange &lt;DHT22/4578#HumiditySensorOperatingRange&gt; ;
-  ssn:implements &lt;DHT22#Procedure&gt; .
-
-
-
-&lt;DHT22/4578#TemperatureSensorOperatingRange&gt; a ssn-system:OperatingRange ;
-  rdfs:comment "The conditions in which the DHT22 temperature sensor is expected to operate."@en ;
-  ssn-system:inCondition &lt;NormalTemperatureCondition&gt; , &lt;NormalHumidityCondition&gt; .
-
-&lt;DHT22/4578#HumiditySensorOperatingRange&gt; a ssn-system:OperatingRange ;
-  rdfs:comment "The conditions in which the DHT22 humidity sensor is expected to operate."@en ;
-  ssn-system:inCondition &lt;NormalTemperatureCondition&gt; , &lt;NormalHumidityCondition&gt; .
-
-
-
-&lt;NormalOperatingCondition&gt; a ssn-system:Condition , schema:PropertyValue ;
-  rdfs:comment "A temperature range of -40 to 80 Celsius."@en ;
-  schema:minValue -40.0 ;
-  schema:maxValue 80.0 ;
-  schema:unitCode unit:DegreeCelsius .
-
-&lt;NormalHumidityCondition&gt; a ssn-system:Condition , schema:PropertyValue ;
-  rdfs:comment "A relative humidity range of 5 to 85 %."@en ;
-  schema:minValue 5.0 ;
-  schema:maxValue 85.0 ;
-  schema:unitCode unit:PERCENT .
-
-
-
-&lt;DHT22/4578#TemperatureSensorCapability&gt; a ssn:Property , ssn-system:SystemCapability , schema:PropertyValue ;
-  rdfs:comment "The capabilities of the temperature sensor in normal temperature and humidity conditions." ;
-  ssn-system:inCondition &lt;NormalTemperatureCondition&gt; , &lt;NormalHumidityCondition&gt; ;
-  ssn-system:hasSystemProperty &lt;DHT22/4578#TemperatureSensorAccuracy&gt; , &lt;DHT22/4578#TemperatureSensorSensitivity&gt; , &lt;DHT22/4578#TemperatureSensorRepeatability&gt; , &lt;DHT22/4578#TemperatureSensorFrequency&gt; .
-
-&lt;DHT22/4578#TemperatureSensorAccuracy&gt; a ssn:Property , ssn-system:Accuracy , schema:PropertyValue ;
-  rdfs:comment "The accuracy of the temperature sensor is +-0.5 °C in normal temperature and humidity conditions."@en ;
-  schema:minValue -0.5 ;
-  schema:maxValue 0.5 ;
-  schema:unitCode unit:DegreeCelsius .
-
-&lt;DHT22/4578#TemperatureSensorSensitivity&gt; a ssn:Property , ssn-system:Sensitivity , ssn-system:Resolution , schema:PropertyValue ;
-  rdfs:comment "The sensitivity and resolution of the temperature sensor is 0.1 °C in normal temperature and humidity conditions."@en ;
-  schema:value 0.1 ;
-  schema:unitCode unit:DegreeCelsius .
-
-&lt;DHT22/4578#TemperatureSensorPrecision&gt; a ssn:Property , ssn-system:Precision , schema:PropertyValue ;
-  rdfs:comment "The precision (= repeatability) of the temperature sensor is +-0.2 °C in normal temperature and humidity conditions."@en ;
-  schema:minValue 0.2 ;
-  schema:maxValue 0.2 ;
-  schema:unitCode unit:DegreeCelsius .
-
-&lt;DHT22/4578#TemperatureSensorFrequency&gt; a ssn:Property , ssn-system:Frequency , schema:PropertyValue ;
-  rdfs:comment "The smallest possible time between one observation and the next is 2 s on average."@en ;
-  schema:value 2 ;
-  schema:unitCode unit:Second .
-
-
-&lt;observation/1087&gt; rdf:type sosa:Observation ;
-  sosa:madeBySensor &lt;DHT22/4578#TemperatureSensor&gt; ;
-  sosa:usedProcedure &lt;DHT22#Procedure&gt; ;
-  ssn-system:qualityOfObservation &lt;observation/1087#quality&gt; ;
-
-
-# one may classify the quality of observation using some class:
-
-&lt;observation/1087#quality&gt; rdf:type ex:FairQuality .
-
-
-# one may use some other ontology to further qualify this quality.
-
-&lt;observation/1087#quality&gt;
-  ex:evaluatedBy &lt;Tom&gt; ;
-  ex:confidenceValue "6"^^xsd:integer;
-  rdfs:comment """Tom gave a confidence value of 6 out of 10 on this observation."""@en .
-
-# one may use some quantity ontology.
-
-@prefix qudt: &lt;http://qudt.org/schema/qudt/&gt; .
-@prefix unit: &lt;http://qudt.org/vocab/unit/&gt; .
-
-&lt;observation/1087#quality&gt; rdf:type qudt:Quantity ;
-  qudt:quantityValue [
-    rdf:type qudt:QuantityValue ;
-    qudt:numericValue "98.4"^^xsd:double ;
-    qudt:hasUnit unit:PERCENT ] .</pre>
+<pre class="example" data-include="./examples/2017ex21.ttl" data-include-format="text"></pre>
           </div>
           <div class="sosa" style="display: none">
             <p>An RDF file containing a <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/dht22-sosa.ttl">graph corresponding to this example is available</a>. </p>
-            <pre class="example">@prefix rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
-@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;.
-@prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-@prefix qudt: &lt;http://qudt.org/schema/qudt/&gt; .
-@prefix unit: &lt;http://qudt.org/vocab/unit/&gt; .
-@prefix schema: &lt;http://schema.org/&gt;.
-
-@prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
-@prefix ssn: &lt;http://www.w3.org/ns/ssn/&gt; .
-@prefix ssn-system: &lt;http://www.w3.org/ns/ssn/systems/&gt; .
-
-@prefix rdfp: &lt;https://w3id.org/rdfp/&gt;.
-
-@base &lt;http://example.org/data/&gt; .
-
-
-&lt;DHT22#Procedure&gt; a sosa:Procedure .
-
-&lt;DHT22/4578&gt; a sosa:Platform ;
-  rdfs:comment "DHT22 sensor #4578 contains a humidity and a temperature sensor."@en ;
-  rdfs:seeAlso &lt;https://www.sparkfun.com/datasheets/Sensors/Temperature/DHT22.pdf&gt; .
-
-
-&lt;DHT22/4578#TemperatureSensor&gt; a sosa:Sensor ;
-  sosa:isHostedBy &lt;DHT22/4578&gt; .
-  rdfs:comment "The embedded temperature sensor, a specific instance of temperature sensor."@en .
-
-
-&lt;observation/1087&gt; a sosa:Observation ;
-  sosa:madeBySensor &lt;DHT22/4578#TemperatureSensor&gt; ;
-  sosa:usedProcedure &lt;DHT22#Procedure&gt; .
-</pre>
+<pre class="example" data-include="./examples/2017ex22.ttl" data-include-format="text"></pre>
           </div>
           <div class="buttonpanel" style="justify-content: center;">
               <span>
@@ -7045,277 +6117,19 @@ ex:TemperatureSensor  rdfs:subClassOf [
             <p>This example shows how the conditions (temperature and humidity) in a room may be measured using one or more sensors. Each sensor observes the conditions in its immediate vicinity, and the values are then used to characterize the room. </p>
             <p>In Room 145 one of the walls is external in the building, so there is expected to be a temperature gradient across the room, and there are two sensors on different walls. In room 245 there is one sensor on the south wall. Each of these locations corresponds to a <code>sosa:Sample</code> of the entire room. The wall also serves as a <code>sosa:Platform</code> on which the sensors are mounted. </p>
             <p>An RDF file containing a <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/dht22-deployment.ttl">graph corresponding to this example is available</a>. </p>
-            <pre class="example">@prefix rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
-@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;.
-@prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-@prefix qudt: &lt;http://qudt.org/schema/qudt/&gt; .
-@prefix unit: &lt;http://qudt.org/vocab/unit/&gt; .
-@prefix schema: &lt;http://schema.org/&gt;.
-
-@prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
-@prefix ssn: &lt;http://www.w3.org/ns/ssn/&gt; .
-@prefix ssn-system: &lt;http://www.w3.org/ns/ssn/systems/&gt; .
-
-@base &lt;http://example.org/data/&gt; .
-
-
-&lt;Room145&gt; a sosa:FeatureOfInterest ;
-  rdfs:label "Room #145"@en ;
-  sosa:hasSample &lt;Room145/east&gt; ;
-  sosa:hasSample &lt;Room145/south&gt; .
-
-  &lt;Room145/east&gt; a sosa:Sample , sosa:FeatureOfInterest , sosa:Platform ;
-    rdfs:label "East wall of room #145."@en ;
-    rdfs:comment "This wall hosts PCB Board 1 with DHT22 temperature and humidity sensor #4578."@en ;
-    sosa:hosts &lt;PCBBoard1&gt; .
-
-  &lt;Room145/south&gt; a sosa:Sample , sosa:FeatureOfInterest , sosa:Platform ;
-    rdfs:label "South wall of room #145."@en ;
-    rdfs:comment "This wall hosts PCB Board 2 with DHT22 temperature and humidity sensor #4579."@en ;
-    sosa:hosts &lt;PCBBoard2&gt; .
-
-
-&lt;Room245&gt; a sosa:FeatureOfInterest ;
-  rdfs:label "Room #245"@en ;
-  sosa:hasProperty &lt;Room245#temperature&gt; , &lt;Room245#humidity&gt; ;
-  sosa:hasSample &lt;Room245/south&gt; .
-
-  &lt;Room245/south&gt; a sosa:Sample , sosa:FeatureOfInterest , sosa:Platform ;
-    rdfs:label "South wall of room #245."@en ;
-    sosa:hosts &lt;PCBBoard3&gt; .
-
-
-
-
-
-&lt;PCBBoard1&gt; a ssn:System , sosa:Platform ;
-  rdfs:label "PCB Board 1"@en ;
-  rdfs:comment "PCB Board 1 hosts DHT22 temperature and humidity sensor #4578 permanently, one can say it has it as one of its subsystems."@en ;
-  sosa:hosts &lt;DHT22/4578&gt; ;
-  ssn:hasSubSystem &lt;DHT22/4578&gt; .
-
-  &lt;DHT22/4578&gt; a ssn:System ;
-    rdfs:label "DHT22 sensor #4578"@en ;
-    sosa:isHostedBy &lt;PCBBoard1&gt; .
-
-
-&lt;PCBBoard2&gt; a ssn:System , sosa:Platform ;
-  rdfs:label "PCB Board 2"@en ;
-  rdfs:comment "PCB Board 2 hosts DHT22 temperature and humidity sensor #4579 permanently, one can say it has it as one of its subsystems."@en ;
-  sosa:hosts &lt;DHT22/4579&gt; ;
-  ssn:hasSubSystem &lt;DHT22/4579&gt; .
-
-  &lt;DHT22/4579&gt; a ssn:System ;
-    rdfs:label "DHT22 sensor #4579."@en ;
-    sosa:isHostedBy &lt;PCBBoard2&gt; .
-
-
-&lt;PCBBoard3&gt; a ssn:System , sosa:Platform ;
-  rdfs:label "PCB Board 3"@en ;
-  rdfs:comment "PCB Board 3 hosts DHT22 temperature and humidity sensor #4580 permanently, one can say it has it as one of its subsystems."@en ;
-  sosa:hosts &lt;DHT22/4580&gt; ;
-  ssn:hasSubSystem &lt;DHT22/4580&gt; .
-
-  &lt;DHT22/4580&gt; a ssn:System ;
-    rdfs:label "DHT22 sensor #4580."@en ;
-    sosa:isHostedBy &lt;PCBBoard3&gt; .
-
-
-
-
-&lt;Room245Deployment&gt; a ssn:Deployment ;
-  rdfs:comment "Deployment of PCB Board 3 on the south wall of room #245 for the purpose of observing the temperature and humidity of room #245."@en ;
-  ssn:deployedOnPlatform &lt;Room245/south&gt; ;
-  ssn:deployedSystem &lt;PCBBoard3&gt; ;
-  ssn:forProperty &lt;Room245#temperature&gt; , &lt;Room245#humidity&gt; .
-
-
-&lt;Room145Deployment&gt; a ssn:Deployment ;
-  rdfs:comment "Deployment of PCB Board 1 and 2 on the east and south wall of room #145, respectively, for the purpose of observing the temperature and humidity of room #145."@en ;
-  ssn:deployedOnPlatform &lt;Room245/east&gt; , &lt;Room245/south&gt; ;
-  ssn:deployedSystem &lt;PCBBoard1&gt; , &lt;PCBBoard2&gt; ;
-  ssn:forProperty &lt;Room145#temperature&gt; , &lt;Room145#humidity&gt; .
-
-</pre>
+<pre class="example" data-include="./examples/2017ex23.ttl" data-include-format="text"></pre>
           </div>
           <div class="sosa" style="display: none">
             <p>An RDF file containing a <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/dht22-deployment-sosa.ttl">graph corresponding to this example is available</a>. </p>
-            <pre class="example">@prefix rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
-@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;.
-@prefix xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt; .
-@prefix qudt: &lt;http://qudt.org/schema/qudt/&gt; .
-@prefix unit: &lt;http://qudt.org/vocab/unit/&gt; .
-@prefix schema: &lt;http://schema.org/&gt;.
-
-@prefix sosa: &lt;http://www.w3.org/ns/sosa/&gt; .
-
-@base &lt;http://example.org/data/&gt; .
-
-
-&lt;Room145&gt; a sosa:FeatureOfInterest ;
-  rdfs:label "Room #145"@en ;
-  sosa:hasSample &lt;Room145/east&gt; ;
-  sosa:hasSample &lt;Room145/south&gt; .
-
-  &lt;Room145/east&gt; a sosa:Sample , sosa:FeatureOfInterest , sosa:Platform ;
-    rdfs:label "East wall of room #145."@en ;
-    rdfs:comment "This wall hosts PCB Board 1 with DHT22 temperature and humidity sensor #4578."@en ;
-    sosa:hosts &lt;PCBBoard1&gt; .
-
-  &lt;Room145/south&gt; a sosa:Sample , sosa:FeatureOfInterest , sosa:Platform ;
-    rdfs:label "South wall of room #145."@en ;
-    rdfs:comment "This wall hosts PCB Board 2 with DHT22 temperature and humidity sensor #4579."@en ;
-    sosa:hosts &lt;PCBBoard2&gt; .
-
-
-&lt;Room245&gt; a sosa:FeatureOfInterest ;
-  rdfs:label "Room #245"@en ;
-  sosa:hasProperty &lt;Room245#temperature&gt; , &lt;Room245#humidity&gt; ;
-  sosa:hasSample &lt;Room245/south&gt; .
-
-  &lt;Room245/south&gt; a sosa:Sample , sosa:FeatureOfInterest , sosa:Platform ;
-    rdfs:label "South wall of room #245."@en ;
-    sosa:hosts &lt;PCBBoard3&gt; .
-
-
-&lt;PCBBoard1&gt; a sosa:Platform ;
-  rdfs:label "PCB Board 1"@en ;
-  rdfs:comment "PCB Board 1 hosts DHT22 temperature and humidity sensor #4578 permanently."@en ;
-  sosa:hosts &lt;DHT22/4578&gt; .
-
-  &lt;DHT22/4578&gt; a sosa:Platform ;
-    rdfs:label "DHT22 sensor #4578"@en ;
-    sosa:isHostedBy &lt;PCBBoard1&gt; .
-
-
-&lt;PCBBoard2&gt; a sosa:Platform ;
-  rdfs:label "PCB Board 2"@en ;
-  rdfs:comment "PCB Board 2 hosts DHT22 temperature and humidity sensor #4579 permanentlys."@en ;
-  sosa:hosts &lt;DHT22/4578&gt; .
-
-  &lt;DHT22/4579&gt; a sosa:Platform ;
-    rdfs:label "DHT22 sensor #4579."@en ;
-    sosa:isHostedBy &lt;PCBBoard2&gt; .
-
-
-&lt;PCBBoard3&gt; a sosa:Platform ;
-  rdfs:label "PCB Board 3"@en ;
-  rdfs:comment "PCB Board 3 hosts DHT22 temperature and humidity sensor #4580 permanently."@en ;
-  sosa:hosts &lt;DHT22/4578&gt; .
-
-  &lt;DHT22/4580&gt; a sosa:Platform ;
-    rdfs:label "DHT22 sensor #4580."@en ;
-    sosa:isHostedBy &lt;PCBBoard3&gt; .
-</pre></div>
+<pre class="example" data-include="./examples/2017ex24.ttl" data-include-format="text"></pre>
+          </div>
         </section>
         <section id="ip68-smart-sensor">
           <h3>IP68 Smart Sensor</h3>
           <div>
             <p>This example describes the IP68 Smart Sensor that and some of its capabilities and operating ranges. A specific IP68 Smart Sensor observes the air temperature, and its own battery state.</p>
             <p>An RDF file containing a <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/ip68.ttl">graph corresponding to this example is available</a>. </p>
-            <pre class="example">@prefix rdf:  &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
-@prefix geo: &lt;http://www.w3.org/2003/01/geo/wgs84_pos#> .
-@prefix gr: &lt;http://purl.org/goodrelations/v1#> .
-@prefix org: &lt;http://www.w3.org/ns/org#> .
-@prefix schema: &lt;http://schema.org/> .
-@prefix sosa: &lt;http://www.w3.org/ns/sosa/> .
-@prefix ssn: &lt;http://www.w3.org/ns/ssn/> .
-@prefix ssn-system: &lt;http://www.w3.org/ns/ssn/systems/> .
-@prefix unit: &lt;http://qudt.org/vocab/unit/> .
-@prefix prov: &lt;http://www.w3.org/ns/prov#>.
-@prefix owl: &lt;http://www.w3.org/2002/07/owl#>.
-@prefix seas: &lt;https://w3id.org/seas/>.
-@prefix cdt: &lt;http://w3id.org/lindt/custom_datatypes#>.
-
-@base &lt;https://data.grandlyon.com/> .
-
-&lt;Organization/1> a org:Organization ;
-    owl:sameAs &lt;http://dbpedia.org/page/Metropolis_of_Lyon> .
-
-&lt;Air> a sosa:FeatureOfInterest ;
-  rdfs:label "The air."@en .
-
-&lt;IP68_Outdoor_Temperature_Sensor> a owl:Class , gr:ProductOrServiceModel ;
-  gr:name "IP68 Outdoor Temperature Sensor"@en ;
-  rdfs:label "IP68 Outdoor Temperature Sensor"@en ;
-  rdfs:subClassOf [
-    owl:onProperty ssn-system:hasOperatingRange ;
-    owl:hasValue &lt;IP68_Outdoor_Temperature_Sensor#operatingRange> ] ;
-  rdfs:subClassOf [
-    owl:onProperty ssn-system:hasSystemCapability ;
-    owl:hasValue &lt;IP68_Outdoor_Temperature_Sensor#systemCapability> ] .
-
-&lt;IP68_Outdoor_Temperature_Sensor#operatingRange> a ssn-system:OperatingRange , ssn:Property ;
-  ssn-system:inCondition &lt;IP68_Outdoor_Temperature_Sensor#normalOperatingCondition> .
-
-&lt;IP68_Outdoor_Temperature_Sensor#normalOperatingCondition> a ssn-system:Condition , schema:PropertyValue ;
-  rdfs:comment "A temperature range of -20 to 70 Celsius."@en ;
-  schema:minValue -20.0 ;
-  schema:maxValue 70.0 ;
-  schema:unitCode unit:DegreeCelsius .
-
-&lt;IP68_Outdoor_Temperature_Sensor#systemCapability> a ssn:Property , ssn-system:SystemCapability ;
-  rdfs:comment "The sensor capability in normal operating conditions."@en ;
-  ssn-system:hasSystemProperty &lt;IP68_Outdoor_Temperature_Sensor#RFSensitivity> , &lt;IP68_Outdoor_Temperature_Sensor#TemperatureAccuracy> , &lt;IP68_Outdoor_Temperature_Sensor#TemperatureResolution> , &lt;IP68_Outdoor_Temperature_Sensor#BatteryAccuracy> , &lt;IP68_Outdoor_Temperature_Sensor#BatteryResolution> ;
-  ssn-system:inCondition &lt;IP68_Outdoor_Temperature_Sensor#normalOperatingCondition> .
-
-&lt;IP68_Outdoor_Temperature_Sensor#RFSensitivity> a ssn:Property , ssn-system:Sensitivity , schema:PropertyValue ;
-  schema:value -137 ;
-  schema:unitCode unit:DecibelReferredToOneMilliwatt .
-
-&lt;IP68_Outdoor_Temperature_Sensor#TemperatureAccuracy> a ssn:Property , ssn-system:Accuracy , schema:PropertyValue ;
-  ssn:forProperty &lt;Air?lat=45.75&amp;long=4.85#temperature> ;
-  schema:minValue -0.2 ;
-  schema:maxValue 0.2 ;
-  schema:unitCode unit:DegreeCelsius .
-
-&lt;IP68_Outdoor_Temperature_Sensor#TemperatureResolution> a ssn:Property , ssn-system:Resolution , schema:PropertyValue ;
-  ssn:forProperty &lt;Air?lat=45.75&amp;long=4.85#temperature> ;
-  schema:value 0.0625 ;
-  schema:unitCode unit:DegreeCelsius .
-
-&lt;IP68_Outdoor_Temperature_Sensor#BatteryResolution> a ssn:Property , ssn-system:Resolution , schema:PropertyValue ;
-  ssn:forProperty &lt;Sensor/SL-T-P1#battery> ;
-  schema:value 3.937e-3 ;
-  schema:unitCode unit:PERCENT .
-
-&lt;Air?lat=45.75&amp;long=4.85> a sosa:Sample ;
-  rdfs:label "The air at lat 45.75 and long 4.85."@en ;
-  sosa:isSampleOf &lt;Air> ;
-  ssn:hasProperty &lt;Air?lat=45.75&amp;long=4.85#temperature> .
-
-&lt;Air?lat=45.75&amp;long=4.85#temperature> a ssn:Property , sosa:ObservableProperty ;
-  ssn:isPropertyOf &lt;Air?lat=45.75&amp;long=4.85> .
-
-&lt;Sensor/SL-T-P1> a gr:ProductOrService, sosa:Sensor , seas:LoRaCommunicationDevice , &lt;IP68_Outdoor_Temperature_Sensor> ;
-    gr:hasBrand [ a gr:Brand ; gr:name "Sensing Labs"@en ] ;
-    geo:alt 100.0 ;
-    geo:lat 45.75 ;
-    geo:lon 4.85 ;
-    ssn:implements &lt;IP68_Outdoor_Temperature_Sensor#temperatureSensingProcedure> ;
-    ssn:implements &lt;IP68_Outdoor_Temperature_Sensor#batterySensingProcedure> ;
-    ssn:observes &lt;Sensor/SL-T-P1#battery> ;
-    ssn:observes &lt;Air?lat=45.75&amp;long=4.85#temperature> .
-
-&lt;Deployment/SL-T-P1/2017-06-06> a ssn:Deployment ;
-  ssn:deployedSystem &lt;Sensor/SL-T-P1> ;
-  prov:startedAtTime "2017-06-06"^^xsd:date ;
-  prov:wasAssociatedWith &lt;Organization/1> ;
-  ssn:deployedOnPlatform &lt;Tree/1> .
-
-&lt;Observation/5872357#temperature> a sosa:Observation ;
-    sosa:hasSimpleResult "64.5244681928429 Cel"^^cdt:ucum ;
-    sosa:madeBySensor &lt;Sensor/SL-T-P1> ;
-    sosa:hasFeatureOfInterest &lt;Air?lat=45.75&amp;long=4.85> ;
-    sosa:observedProperty &lt;Air?lat=45.75&amp;long=4.85#temperature> ;
-    sosa:resultTime "2017-06-20T21:49:18+00:00"^^xsd:dateTime .
-
-&lt;Observation/5872357#battery> a sosa:Observation ;
-    sosa:hasSimpleResult "73.2 %"^^cdt:ucum ;
-    sosa:madeBySensor &lt;Sensor/SL-T-P1> ;
-    sosa:hasFeatureOfInterest &lt;Sensor/SL-T-P1> ;
-    sosa:observedProperty &lt;Sensor/SL-T-P1#battery> ;
-    sosa:resultTime "2017-06-20T21:49:18+00:00"^^xsd:dateTime .</pre>
+<pre class="example" data-include="./examples/2017ex25.ttl" data-include-format="text"></pre>
           </div>
         </section>
 
@@ -7645,7 +6459,7 @@ ex:TemperatureSensor  rdfs:subClassOf [
               <li><code>sosa:FeatureOfInterest</code> is a sub-class of <code>dul:Entity</code></li>
             </ul>
           </li>
-          <li>Replaced inexistent <code>qudt:numericalValue</code> by <code>qudt:numericValue</code> in tree height measurement example</li>
+          <li>Replaced inexistent <code>qudt-1-1:numericalValue</code> by <code>qudt-1-1:numericValue</code> in tree height measurement example</li>
         </ol>
       </section>
   </body>
