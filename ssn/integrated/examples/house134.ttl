@@ -12,8 +12,8 @@
 @prefix time: <http://www.w3.org/2006/time#> .
 @prefix schema: <http://schema.org/> .
 @prefix qudt: <http://qudt.org/schema/qudt#> .
-@prefix qudt-1-1: <http://qudt.org/1.1/schema/qudt> .
-@prefix qudt-unit-1-1: <http://qudt.org/1.1/vocab/unit#> .
+@prefix qudt: <http://qudt.org/1.1/schema/qudt> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
 @base  <http://example.org/> .
 
 
@@ -100,12 +100,12 @@
 	rdfs:comment "A temperature range of -40 to 80 Celsius."@en ;
 	schema:minValue -40.0 ;
 	schema:maxValue 80.0 ;
-	schema:unitCode qudt-unit-1-1:DegreeCelsius .
+	schema:unitCode unit:DegreeCelsius .
 
 <DHT22TempSensitivity> a ssn:Property, ssn-system:Sensitivity, ssn-system:Resolution, schema:PropertyValue ;
 	rdfs:comment "The sensitivity and resolution of the temperature sensor is 0.1 °C in normal temperature and humidity conditions."@en ;
 	schema:value 0.1 ;
-	schema:unitCode qudt-unit-1-1:DegreeCelsius .
+	schema:unitCode unit:DegreeCelsius .
 
 <house/134/deployment> a ssn:Deployment ;
 	rdfs:comment "Deployment of PCB Board 1 and 2 in the kitchen for the purpose of observing the temperature."@en ;
@@ -150,9 +150,9 @@
    
 <observation/235716> a sosa:Observation ;
 	sosa:hasResult [
-		a qudt-1-1:QuantityValue ;
-		qudt-1-1:unit qudt-unit-1-1:DegreeCelsius ;
-		qudt-1-1:numericValue "22.9"^^xsd:double
+		a qudt:QuantityValue ;
+		qudt:hasUnit unit:DegreeCelsius ;
+		qudt:numericValue "22.9"^^xsd:double
 	] .
 
 # The electric consumption in the kitchen of house #134 was 22.4 kWh as 
