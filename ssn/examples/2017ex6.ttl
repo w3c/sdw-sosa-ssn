@@ -1,0 +1,15 @@
+ex:TemperatureSensor a ssn:System .
+
+<Observation/1> a sosa:Observation ;
+  sosa:madeBySensor ex:TemperatureSensor .
+
+<Observation/2> a sosa:Observation ;
+  sosa:madeBySensor ex:TemperatureSensor .
+
+# describing the system capabilities and operating/survival range can be done generically 
+# with this modeling choice:
+
+ex:TemperatureSensor ssn-system:hasOperatingRange ex:TemperatureSensorOperatingRange .
+
+ex:TemperatureSensorOperatingRange a ssn-system:OperatingRange ;
+  ssn-system:inCondition ex:NormalTemperatureCondition , ex:NormalHumidityCondition .

@@ -2,8 +2,8 @@
 @prefix time: <http://www.w3.org/2006/time#>.
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
-@prefix qudt-1-1: <http://qudt.org/1.1/schema/qudt#> .
-@prefix qudt-unit-1-1: <http://qudt.org/1.1/vocab/unit#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
 @base <http://example.org/data/> .
 
 # The electric consumption of appartment #134 on April 15 2017 was 22.4 kWh as 
@@ -13,9 +13,9 @@
   sosa:observedProperty  <Appartment/134/electricConsumption> ;
   sosa:madeBySensor <sensor/926> ; 
   sosa:hasResult [
-     rdf:type qudt-1-1:QuantityValue ;
-     qudt-1-1:numericValue "22.4"^^xsd:double ;
-     qudt-1-1:unit qudt-unit-1-1:Kilowatthour ] ;
+     rdf:type qudt:QuantityValue ;
+     qudt:numericValue "22.4"^^xsd:double ;
+     qudt:hasUnit unit:Kilowatthour ] ;
   sosa:phenomenonTime [
     rdf:type time:Interval ;
     time:hasBeginning [ 

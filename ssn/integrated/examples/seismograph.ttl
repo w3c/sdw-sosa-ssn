@@ -4,8 +4,8 @@
 @prefix ssn:  <http://www.w3.org/ns/ssn/> .
 @prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
-@prefix qudt-1-1: <http://qudt.org/1.1/schema/qudt#> .
-@prefix qudt-unit-1-1: <http://qudt.org/1.1/vocab/unit#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
 @base <http://example.org/data/> .
 
 # Observation #358 of seismograph VCAB DP1 BP 40 (Vineyard Canyon, Parkfield, Ca) measured
@@ -36,9 +36,9 @@
   sosa:hasFeatureOfInterest  <VCAB-DP1-BP-40#location> ;
   sosa:observedProperty  <VCAB-DP1-BP-40#groundDisplacementSpeed> ;
   sosa:hasResult [
-     rdf:type qudt-1-1:QuantityValue ;
-     qudt-1-1:numericValue "5e-4"^^xsd:double ;
-     qudt-1-1:unit qudt-unit-1-1:CentimeterPerSecond ] ;
+     rdf:type qudt:QuantityValue ;
+     qudt:numericValue "5e-4"^^xsd:double ;
+     qudt:hasUnit unit:CentiM-PER-SEC ] ;
   sosa:resultTime "2017-04-18T08:23:00-07:00"^^xsd:dateTimeStamp .
 
 # Using SSN one can explicitly state that <VCAB-DP1-BP-40#groundDisplacementSpeed> is the property of <VCAB-DP1-BP-40#location> .
