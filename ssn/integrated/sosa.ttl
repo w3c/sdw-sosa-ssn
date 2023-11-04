@@ -159,7 +159,11 @@ sosa:hasMemberSample a owl:ObjectProperty ;
 ## Platform 
 
 sosa:Platform a rdfs:Class , owl:Class ;
+<<<<<<< HEAD
   rdfs:label "Platform or Host"@en ;
+=======
+  rdfs:label "Platform"@en ;
+>>>>>>> gh-pages
   skos:prefLabel "Platform" ;
   skos:altLabel "Host" ;
   skos:definition "A Platform is an entity that hosts other entities, particularly Sensors, Actuators, Samplers, and other Platforms."@en ;
@@ -238,13 +242,17 @@ sosa:Procedure a rdfs:Class , owl:Class ;
 
 sosa:Sensor a rdfs:Class , owl:Class ;
   rdfs:label "Sensor or Observer"@en ;
-  skos:definition "Device, agent (including humans), or software (simulation) involved in, or implementing, a Procedure. Sensors respond to a stimulus, e.g., a change in the environment, or input data composed from the results of prior Observations, and generate a Result. Sensors can be hosted by Platforms."@en ;
+  skos:altLabel "Observer"@en ;
+  skos:prefLabel "Sensor"@en ;
+  skos:definition """An identifiable entity that can generate Observations pertaining to an ObservableProperty by implementing an ObservingProcedure. Device, agent (including humans), or software (simulation) involved in, or implementing, a Procedure. Sensors respond to a stimulus, e.g., a change in the environment, or input data composed from the results of prior Observations, and generate a Result. Sensors can be hosted by Platforms."""@en ;
+  skos:example "Accelerometers, gyroscopes, barometers, magnetometers, and so forth are Sensors that are typically mounted on a modern smartphone (which acts as Host or Platform). Other examples of Sensors include the human eyes."@en ;
+  skos:note "Different Sensors can follow the same (reusable) observing Procedure for the creation of different Observations."@en ;
+  skos:note "The Sensor is the entity instance, not the entity type. Pertaining to sensors, the Sensor would reference the explicit sensor, while the Procedure would reference the methodology utilized by that sensor type;"@en ;
+  skos:note "A Sensor can be hosted by one or more Platform."@en ;
+  skos:note "The Sensor is an instance of a sensor, instrument, implementation of an algorithm, or a being such as a person."@en ;
   rdfs:comment "Device, agent (including humans), or software (simulation) involved in, or implementing, a Procedure. Sensors respond to a stimulus, e.g., a change in the environment, or input data composed from the results of prior Observations, and generate a Result. Sensors can be hosted by Platforms."@en ;
   skos:example "Accelerometers, gyroscopes, barometers, magnetometers, and so forth are Sensors that are typically mounted on a modern smart phone (which acts as Platform). Other examples of sensors include the human eyes."@en ;
-  skos:note "Different Sensors or Observers can follow the same (reusable) observing Procedure for the creation of different Observations."@en ;
-  skos:note "The Sensor or Observer is the entity instance, not the entity type. Pertaining to sensors, the Observer would reference the explicit sensor, while the Procedure would reference the methodology utilized by that sensor type;"@en ;
-  skos:note "A Sensor or Observer can be hosted by one or more Platform or Host."@en ;
-  skos:note "The Sensor or Observer is an instance of a sensor, instrument, implementation of an algorithm, or a being such as a person."@en ;
+  skos:scopeNote "The UML class 'Observer' from ISO 19156:2023 is implemented in SOSA by the OWL/RDFS class 'Sensor'. The class name 'Sensor' is preferred for backward compatibility with existing SOSA deployments. " ;
   rdfs:isDefinedBy sosa: .
 
   sosa:observes a owl:ObjectProperty ;
@@ -285,8 +293,11 @@ sosa:implements a owl:ObjectProperty ;
   rdfs:comment "Relation between an entity that implements a Procedure in some executable way and the Procedure (an algorithm, procedure or method)."@en ;
   skos:example "For example, the relationship between a sensor and the scientific measuring Procedure via which it senses."@en ;
   schema:domainIncludes sosa:Sensor ;
+<<<<<<< HEAD
   schema:domainIncludes sosa:Sampler ;
   schema:domainIncludes sosa:Actuator ;
+=======
+>>>>>>> gh-pages
   schema:rangeIncludes sosa:Procedure ;
   owl:inverseOf sosa:implementedBy ;
   rdfs:isDefinedBy sosa: .
@@ -386,6 +397,17 @@ sosa:Observation a rdfs:Class , owl:Class ;
     schema:rangeIncludes sosa:ObservableProperty ;
     rdfs:isDefinedBy sosa: .
 
+<<<<<<< HEAD
+=======
+  sosa:madeOnPlatform rdf:type owl:ObjectProperty ;
+    rdfs:label "made on Platform"@en ;
+    skos:definition "Relation between an Observation and the Platform the Observer was attached to at the time the observation was made."@en ;
+    rdfs:comment "Relation between an Observation and the Platform the Observer was attached to at the time the observation was made."@en ;
+    schema:domainIncludes sosa:Observation ;
+    schema:rangeIncludes sosa:Platform ;
+    rdfs:isDefinedBy sosa: .
+
+>>>>>>> gh-pages
 sosa:Actuation a rdfs:Class , owl:Class ;
   rdfs:label "Actuation"@en ;
   skos:definition "An Actuation carries out an (Actuation) Procedure to change the state of the world using an Actuator."@en ;
@@ -474,6 +496,10 @@ sosa:Observation
   - hasFeatureOfInterest
   - hasUltimateFeatureOfInterest
   - madeBySensor
+<<<<<<< HEAD
+=======
+  - madeOnPlatform
+>>>>>>> gh-pages
   - observedProperty
   - phenomenonTime
   - resultTime
@@ -501,6 +527,12 @@ sosa:hasUltimateFeatureOfInterest
 sosa:madeBySensor
   schema:domainIncludes sosa:ObservationCollection .
 
+<<<<<<< HEAD
+=======
+sosa:madeOnPlatform
+  schema:domainIncludes sosa:ObservationCollection .
+
+>>>>>>> gh-pages
 sosa:observedProperty
   schema:domainIncludes sosa:ObservationCollection .
 
@@ -534,7 +566,6 @@ sosa:Stimulus a owl:Class ;
     rdfs:label "detects"@en ;
     skos:definition "A relation from a Sensor to the Stimulus that the Sensor detects. The Stimulus itself will be serving as a proxy for some ObservableProperty."@en ;
     rdfs:comment "A relation from a Sensor to the Stimulus that the Sensor detects. The Stimulus itself will be serving as a proxy for some ObservableProperty."@en ;
-    schema:domainIncludes sosa:Observer ;
     schema:domainIncludes sosa:Sensor ;
     schema:rangeIncludes sosa:Stimulus ;
     rdfs:isDefinedBy sosa: .
