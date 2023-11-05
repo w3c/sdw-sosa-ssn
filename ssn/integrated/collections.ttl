@@ -157,11 +157,11 @@ sosa:resultTime
 sosa:usedProcedure
   schema:domainIncludes sosa:ObservationCollection .
 
-sosa:hasResult
-  schema:domainIncludes sosa:ObservationCollection .
+#sosa:hasResult
+#  schema:domainIncludes sosa:ObservationCollection .
 
-sosa:hasSimpleResult
-  schema:domainIncludes sosa:ObservationCollection .
+#sosa:hasSimpleResult
+#  schema:domainIncludes sosa:ObservationCollection .
 
 ## Observation collection axiomatization
 
@@ -178,8 +178,8 @@ sosa:ObservationCollection a owl:Class ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:observedProperty ; owl:allValuesFrom sosa:ObservableProperty ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:phenomenonTime ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:resultTime ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasSimpleResult ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasResult ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+#  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasSimpleResult ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+#  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasResult ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasMember ; owl:allValuesFrom [ owl:unionOf ( sosa:Observation sosa:ObservationCollection ) ; ] ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasMember ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:isDefinedBy sosa-c: .
