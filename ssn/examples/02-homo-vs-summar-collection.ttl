@@ -8,61 +8,69 @@
 
 @prefix ex: <http://example.org/> .
 
-<http://example.org/OC1>
+ex:OC1
   rdf:type sosa:ObservationCollection ;
-  sosa:hasFeatureOfInterest <http://example.org/Sample_1> ;
-  sosa:madeBySensor <http://example.org/s4> ;
-  sosa:observedProperty <http://example.org/op2> ;
-  sosa:phenomenonTime [
-      rdf:type time:ProperInterval ;
-      time:hasBeginning [
-          rdf:type time:Instant ;
-          time:inXSDDateTime "2018-03-10T15:07:00.00+10:00"^^xsd:dateTime ;
-        ] ;
-    ] ;
-  sosa:usedProcedure <http://example.org/p3> ;
-  sosa:hasMember <http://example.org/O2> ;
-  sosa:hasMember <http://example.org/O3> ;
-  sosa:hasMember <http://example.org/O4> ;
-  sosa:hasMember <http://example.org/O5> ;
+  sosa:hasFeatureOfInterest ex:Sample_1 ;
+  sosa:madeBySensor ex:s4 ;
+  sosa:observedProperty ex:op2 ;
+  sosa:usedProcedure ex:p3 ;
+  sosa:hasMember ex:O2 ;
+  sosa:hasMember ex:O3 ;
+  sosa:hasMember ex:O4 ;
+  sosa:hasMember ex:O5 ;
 .
-<http://example.org/O2>
+ex:OC2
+  rdf:type sosa:ObservationCollection-Summarizing ;
+  sosa:hasFeatureOfInterest ex:Sample_1 ;
+  sosa:madeBySensor ex:s4 ;
+  sosa:observedProperty ex:op2 ;
+  sosa:usedProcedure ex:p3 ;
+  sosa:phenomenonTime "2018-03-10T15:09:00+10:00"^^xsd:dateTime ;
+  sosa:phenomenonTime "2018-03-10T15:10:00+10:00"^^xsd:dateTime ;
+  sosa:phenomenonTime "2018-03-10T15:11:00+10:00"^^xsd:dateTime ;
+  sosa:phenomenonTime "2018-03-10T15:12:00+10:00"^^xsd:dateTime ;
+  sosa:hasMember ex:O2 ;
+  sosa:hasMember ex:O3 ;
+  sosa:hasMember ex:O4 ;
+  sosa:hasMember ex:O5 ;
+.
+ex:O2
   rdf:type sosa:Observation ;
-  sosa:hasResult <http://example.org/r96> ;
-  sosa:resultTime "2018-03-10T15:09:00+10:00"^^xsd:dateTime ;
+  sosa:hasResult ex:r96 ;
+  sosa:phenomenonTime "2018-03-10T15:09:00+10:00"^^xsd:dateTime ;
 .
-<http://example.org/O3>
+ex:O3
   rdf:type sosa:Observation ;
-  sosa:hasResult <http://example.org/r97> ;
-  sosa:resultTime "2018-03-10T15:10:00+10:00"^^xsd:dateTime ;
+  sosa:hasResult ex:r97 ;
+  sosa:phenomenonTime "2018-03-10T15:10:00+10:00"^^xsd:dateTime ;
 .
-<http://example.org/O4>
+ex:O4
   rdf:type sosa:Observation ;
-  sosa:hasResult <http://example.org/r98> ;
-  sosa:resultTime "2018-03-10T15:11:00+10:00"^^xsd:dateTime ;
+  sosa:hasResult ex:r98 ;
+  sosa:phenomenonTime "2018-03-10T15:11:00+10:00"^^xsd:dateTime ;
 .
-<http://example.org/O5>
+ex:O5
   rdf:type sosa:Observation ;
-  sosa:hasResult <http://example.org/r99> ;
-  sosa:resultTime "2018-03-10T15:12:00+10:00"^^xsd:dateTime ;
+  sosa:hasResult ex:r99 ;
+  sosa:phenomenonTime "2018-03-10T15:12:00+10:00"^^xsd:dateTime ;
 .
-<http://example.org/Sample_1>
+ex:Sample_1
   rdf:type sosa:Sample ;
-  sosa:isSampleOf <http://example.org/foia> ;
+  sosa:isSampleOf ex:foia ;
 .
-<http://example.org/foia>
+ex:foia
   rdf:type sosa:FeatureOfInterest ;
 .
-<http://example.org/s4>
+ex:s4
   rdf:type sosa:Sensor ;
 .
-<http://example.org/op2>
+ex:op2
   rdf:type sosa:ObservableProperty ;
 .
-<http://example.org/p3>
+ex:p3
   rdf:type sosa:Procedure ;
 .
-<http://example.org/examples>
+ex:examples
   rdf:type owl:Ontology ;
   dcterms:created "2023-11-04"^^xsd:date ;
   dcterms:creator <http://orcid.org/0000-0002-3884-3420> ;
