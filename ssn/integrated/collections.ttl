@@ -63,7 +63,7 @@ sosa:hasMember a owl:ObjectProperty ;
   rdfs:isDefinedBy sosa-c: .
 
 
-## Sample Collection
+## Homogeneous Sample Collection
 
 sosa:Sample
   rdfs:comment """If values are not provided for the following Sample properties, they may be provided by the SampleCollection of which it is a member:
@@ -74,8 +74,9 @@ sosa:Sample
   rdfs:isDefinedBy sosa: .
 
 sosa:SampleCollection a rdfs:Class , owl:Class ;
-  rdfs:label "Sample Collection"@en ;
-  skos:definition "Collection of one or more samples, which may be nested in further collections. The members of a collection share a common value for one or more property"@en ;
+  rdfs:label "Homogeneous Sample Collection"@en ;
+  skos:definition """Collection of one or more samples, which may be nested in further collections. 
+  The members of a standard collection share a common value for one or more property"""@en ;
   rdfs:isDefinedBy sosa-c: .
 
 sosa:hasOriginalSample
@@ -90,7 +91,7 @@ sosa:isSampleOf
 sosa:isResultOf
   schema:domainIncludes sosa:SampleCollection .
 
-## Sample Collection axiomatization 
+## Homogeneous Sample Collection axiomatization 
 
 sosa:SampleCollection
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasMember ; owl:allValuesFrom [ owl:unionOf ( sosa:Sample sosa:SampleCollection ) ; ] ] ;
@@ -105,8 +106,40 @@ sosa:SampleCollection
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isResultOf ; owl:allValuesFrom sosa:Sampling ] ;
   rdfs:isDefinedBy sosa-c: .
 
+## Summarizing Sample Collection 
 
-## Observation Collection
+sosa:SampleCollection-Summarizing a rdfs:Class , owl:Class ;
+  rdfs:label "Summarizing Sample Collection"@en ;
+  skos:definition """Collection of one or more samples, which may be nested in further collections. 
+  The members of a summarizing collection do not necessarily share a common value for any property. 
+  The values of the collection properties should summarize the values of the properties of the member samples."""@en ;
+  rdfs:isDefinedBy sosa-c: .
+
+sosa:hasOriginalSample
+  schema:domainIncludes sosa:SampleCollection-Summarizing .
+
+sosa:hasSampledFeature
+  schema:domainIncludes sosa:SampleCollection-Summarizing .
+
+sosa:isSampleOf
+  schema:domainIncludes sosa:SampleCollection-Summarizing .
+
+sosa:isResultOf
+  schema:domainIncludes sosa:SampleCollection-Summarizing .
+
+## Summarizing Sample Collection axiomatization 
+
+sosa:SampleCollection
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasMember ; owl:allValuesFrom [ owl:unionOf ( sosa:Sample sosa:SampleCollection ) ; ] ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasMember ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasOriginalSample ; owl:allValuesFrom sosa:Sample ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasSampledFeature ; owl:allValuesFrom sosa:FeatureOfInterest ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isSampleOf ; owl:allValuesFrom sosa:FeatureOfInterest ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isResultOf ; owl:allValuesFrom sosa:Sampling ] ;
+  rdfs:isDefinedBy sosa-c: .
+
+
+## Homogeneous Observation Collection
 
 sosa:Observation
   rdfs:comment """If values are not provided for the following Observation properties, they may be provided by the ObservationCollection of which it is a member:
@@ -124,8 +157,9 @@ sosa:Observation
   rdfs:isDefinedBy sosa: .
 
 sosa:ObservationCollection a rdfs:Class , owl:Class ;
-  rdfs:label "Observation Collection"@en ;
-  skos:definition "Collection of one or more observations, which may be nested in further collections. The members of a collection share a common value for one or more property"@en ;
+  rdfs:label "Homogeneous Observation Collection"@en ;
+  skos:definition """Collection of one or more observations, which may be nested in further collections. 
+  The members of a collection share a common value for one or more property"""@en ;
   rdfs:isDefinedBy sosa-c: .
 
 sosa:hasFeatureOfInterest
@@ -161,9 +195,11 @@ sosa:usedProcedure
 #sosa:hasSimpleResult
 #  schema:domainIncludes sosa:ObservationCollection .
 
-## Observation collection axiomatization
+## Homogeneous Observation collection axiomatization
 
 sosa:ObservationCollection a owl:Class ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasMember ; owl:allValuesFrom [ owl:unionOf ( sosa:Observation sosa:ObservationCollection ) ; ] ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasMember ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeBySensor ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeBySensor ; owl:allValuesFrom sosa:Sensor ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeOnPlatform ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
@@ -178,8 +214,78 @@ sosa:ObservationCollection a owl:Class ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:resultTime ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
 #  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasSimpleResult ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
 #  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasResult ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:isDefinedBy sosa-c: .
+
+
+
+## Summarizing Observation Collection
+
+sosa:Observation
+  rdfs:comment """If values are not provided for the following Observation properties, they may be provided by the ObservationCollection of which it is a member:
+  - hasFeatureOfInterest
+  - hasUltimateFeatureOfInterest
+  - madeBySensor
+  - madeByObserver
+  - madeOnPlatform
+  - observedProperty
+  - phenomenonTime
+  - resultTime
+  - hasResult
+  - hasSimpleResult
+  - usedProcedure""" ;
+  rdfs:isDefinedBy sosa: .
+
+sosa:ObservationCollection-Summarizing a rdfs:Class , owl:Class ;
+  rdfs:label "Summarizing Observation Collection"@en ;
+  skos:definition """Collection of one or more observations, which may be nested in further collections. 
+  The members of a summarizing collection do not necessarily share a common value for any property. 
+  The values of the collection properties should summarize the values of the properties of the member samples."""@en ;
+  rdfs:isDefinedBy sosa-c: .
+
+sosa:hasFeatureOfInterest
+  schema:domainIncludes sosa:ObservationCollection-Summarizing .
+
+sosa:hasUltimateFeatureOfInterest
+  schema:domainIncludes sosa:ObservationCollection-Summarizing .
+
+sosa:madeBySensor
+  schema:domainIncludes sosa:ObservationCollection-Summarizing .
+
+sosa:madeByObserver
+  schema:domainIncludes sosa:ObservationCollection-Summarizing .
+
+sosa:madeOnPlatform
+  schema:domainIncludes sosa:ObservationCollection-Summarizing .
+
+sosa:observedProperty
+  schema:domainIncludes sosa:ObservationCollection-Summarizing .
+
+sosa:phenomenonTime
+  schema:domainIncludes sosa:ObservationCollection-Summarizing .
+
+sosa:resultTime
+  schema:domainIncludes sosa:ObservationCollection-Summarizing .
+
+sosa:usedProcedure
+  schema:domainIncludes sosa:ObservationCollection-Summarizing .
+
+#sosa:hasResult
+#  schema:domainIncludes sosa:ObservationCollection-Summarizing .
+
+#sosa:hasSimpleResult
+#  schema:domainIncludes sosa:ObservationCollection-Summarizing .
+
+## Summarizing Observation collection axiomatization
+
+sosa:ObservationCollection-Summarizing a owl:Class ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasMember ; owl:allValuesFrom [ owl:unionOf ( sosa:Observation sosa:ObservationCollection ) ; ] ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasMember ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeBySensor ; owl:allValuesFrom sosa:Sensor ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeOnPlatform ; owl:allValuesFrom sosa:Platform ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:usedProcedure ; owl:allValuesFrom sosa:ObservingProcedure ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasFeatureOfInterest ; owl:allValuesFrom sosa:FeatureOfInterest ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasUltimateFeatureOfInterest ; owl:allValuesFrom sosa:FeatureOfInterest ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:observedProperty ; owl:allValuesFrom sosa:ObservableProperty ] ;
   rdfs:isDefinedBy sosa-c: .
 
 
