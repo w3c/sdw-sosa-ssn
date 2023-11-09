@@ -11,18 +11,19 @@
 ex:OC1
   rdf:type sosa:ObservationCollection ;
   sosa:hasFeatureOfInterest ex:Sample_1 ;
-  sosa:madeBySensor ex:s4 ;
   sosa:observedProperty ex:op2 ;
   sosa:usedProcedure ex:p3 ;
   sosa:hasMember ex:O2 ;
   sosa:hasMember ex:O3 ;
   sosa:hasMember ex:O4 ;
   sosa:hasMember ex:O5 ;
+  skos:note """member observations have a common FoI, oP and Procedure""" ;
 .
 ex:OC2
   rdf:type sosa:ObservationCollectionSummarizing ;
   sosa:hasFeatureOfInterest ex:Sample_1 ;
   sosa:madeBySensor ex:s4 ;
+  sosa:madeBySensor ex:s5 ;
   sosa:observedProperty ex:op2 ;
   sosa:usedProcedure ex:p3 ;
   sosa:phenomenonTime [
@@ -37,9 +38,12 @@ ex:OC2
   sosa:hasMember ex:O3 ;
   sosa:hasMember ex:O4 ;
   sosa:hasMember ex:O5 ;
+  skos:note """`madeBySensor` is repeated to enumerate the sensors used in the member observations
+  `phenomenonTime` defines a time interval that encompasses the times of the member observations""" ;
 .
 ex:O2
   rdf:type sosa:Observation ;
+  sosa:madeBySensor ex:s4 ;
   sosa:hasResult ex:r96 ;
   sosa:phenomenonTime [
       time:inXSDDateTime "2018-03-10T15:09:00+10:00"^^xsd:dateTime ;
@@ -47,6 +51,7 @@ ex:O2
 .
 ex:O3
   rdf:type sosa:Observation ;
+  sosa:madeBySensor ex:s4 ;
   sosa:hasResult ex:r97 ;
   sosa:phenomenonTime [
       time:inXSDDateTime "2018-03-10T15:10:00+10:00"^^xsd:dateTime ;
@@ -54,6 +59,7 @@ ex:O3
 .
 ex:O4
   rdf:type sosa:Observation ;
+  sosa:madeBySensor ex:s5 ;
   sosa:hasResult ex:r98 ;
   sosa:phenomenonTime [
       time:inXSDDateTime "2018-03-10T15:11:00+10:00"^^xsd:dateTime ;
@@ -61,6 +67,7 @@ ex:O4
 .
 ex:O5
   rdf:type sosa:Observation ;
+  sosa:madeBySensor ex:s5 ;
   sosa:hasResult ex:r99 ;
   sosa:phenomenonTime [
       time:inXSDDateTime "2018-03-10T15:12:00+10:00"^^xsd:dateTime ;
@@ -72,9 +79,15 @@ ex:Sample_1
 .
 ex:foia
   rdf:type sosa:FeatureOfInterest ;
+  sosa:hasProperty ex:op2 ;
 .
 ex:s4
   rdf:type sosa:Sensor ;
+  sosa:implements ex:p3 ;
+.
+ex:s5
+  rdf:type sosa:Sensor ;
+  sosa:implements ex:p3 ;
 .
 ex:op2
   rdf:type sosa:ObservableProperty ;
