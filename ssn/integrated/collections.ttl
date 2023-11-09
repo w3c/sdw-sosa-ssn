@@ -100,7 +100,7 @@ sosa:SampleCollection
 
 ## Summarizing Sample Collection 
 
-sosa:SampleCollection-Summarizing a rdfs:Class , owl:Class ;
+sosa:SampleCollectionSummarizing a rdfs:Class , owl:Class ;
   rdfs:label "Summarizing Sample Collection"@en ;
   skos:definition """Collection of one or more samples, which may be nested in further collections. 
   The members of a summarizing collection do not necessarily share a common value for any property. 
@@ -108,16 +108,16 @@ sosa:SampleCollection-Summarizing a rdfs:Class , owl:Class ;
   rdfs:isDefinedBy sosa-c: .
 
 sosa:hasOriginalSample
-  schema:domainIncludes sosa:SampleCollection-Summarizing .
+  schema:domainIncludes sosa:SampleCollectionSummarizing .
 
 sosa:hasSampledFeature
-  schema:domainIncludes sosa:SampleCollection-Summarizing .
+  schema:domainIncludes sosa:SampleCollectionSummarizing .
 
 sosa:isSampleOf
-  schema:domainIncludes sosa:SampleCollection-Summarizing .
+  schema:domainIncludes sosa:SampleCollectionSummarizing .
 
 sosa:isResultOf
-  schema:domainIncludes sosa:SampleCollection-Summarizing .
+  schema:domainIncludes sosa:SampleCollectionSummarizing .
 
 ## Summarizing Sample Collection axiomatization 
 
@@ -212,7 +212,7 @@ sosa:ObservationCollection a owl:Class ;
 
 ## Summarizing Observation Collection
 
-sosa:ObservationCollection-Summarizing a rdfs:Class , owl:Class ;
+sosa:ObservationCollectionSummarizing a rdfs:Class , owl:Class ;
   rdfs:label "Summarizing Observation Collection"@en ;
   skos:definition """Collection of one or more observations, which may be nested in further collections. 
   The members of a summarizing collection do not necessarily share a common value for any property. 
@@ -220,41 +220,41 @@ sosa:ObservationCollection-Summarizing a rdfs:Class , owl:Class ;
   rdfs:isDefinedBy sosa-c: .
 
 sosa:hasFeatureOfInterest
-  schema:domainIncludes sosa:ObservationCollection-Summarizing .
+  schema:domainIncludes sosa:ObservationCollectionSummarizing .
 
 sosa:hasUltimateFeatureOfInterest
-  schema:domainIncludes sosa:ObservationCollection-Summarizing .
+  schema:domainIncludes sosa:ObservationCollectionSummarizing .
 
 sosa:madeBySensor
-  schema:domainIncludes sosa:ObservationCollection-Summarizing .
+  schema:domainIncludes sosa:ObservationCollectionSummarizing .
 
 sosa:madeByObserver
-  schema:domainIncludes sosa:ObservationCollection-Summarizing .
+  schema:domainIncludes sosa:ObservationCollectionSummarizing .
 
 sosa:madeOnPlatform
-  schema:domainIncludes sosa:ObservationCollection-Summarizing .
+  schema:domainIncludes sosa:ObservationCollectionSummarizing .
 
 sosa:observedProperty
-  schema:domainIncludes sosa:ObservationCollection-Summarizing .
+  schema:domainIncludes sosa:ObservationCollectionSummarizing .
 
 sosa:phenomenonTime
-  schema:domainIncludes sosa:ObservationCollection-Summarizing .
+  schema:domainIncludes sosa:ObservationCollectionSummarizing .
 
 sosa:resultTime
-  schema:domainIncludes sosa:ObservationCollection-Summarizing .
+  schema:domainIncludes sosa:ObservationCollectionSummarizing .
 
 sosa:usedProcedure
-  schema:domainIncludes sosa:ObservationCollection-Summarizing .
+  schema:domainIncludes sosa:ObservationCollectionSummarizing .
 
 #sosa:hasResult
-#  schema:domainIncludes sosa:ObservationCollection-Summarizing .
+#  schema:domainIncludes sosa:ObservationCollectionSummarizing .
 
 #sosa:hasSimpleResult
-#  schema:domainIncludes sosa:ObservationCollection-Summarizing .
+#  schema:domainIncludes sosa:ObservationCollectionSummarizing .
 
 ## Summarizing Observation collection axiomatization
 
-sosa:ObservationCollection-Summarizing a owl:Class ;
+sosa:ObservationCollectionSummarizing a owl:Class ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasMember ; owl:allValuesFrom [ owl:unionOf ( sosa:Observation sosa:ObservationCollection ) ; ] ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasMember ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeBySensor ; owl:allValuesFrom sosa:Sensor ] ;
