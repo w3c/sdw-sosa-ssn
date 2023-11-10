@@ -17,15 +17,15 @@ ex:OC1
   sosa:hasMember ex:O3 ;
   sosa:hasMember ex:O4 ;
   sosa:hasMember ex:O5 ;
-  skos:note """member observations have a common FoI, oP and Procedure""" ;
+  skos:note """homogeneous collection - member observations have a common FoI, oP and Procedure""" ;
 .
 ex:OC2
-  rdf:type sosa:ObservationCollectionSummarizing ;
+  rdf:type sosa:GeneralObservationCollection ;
   sosa:hasFeatureOfInterest ex:Sample_1 ;
-  sosa:madeBySensor ex:s4 ;
-  sosa:madeBySensor ex:s5 ;
   sosa:observedProperty ex:op2 ;
   sosa:usedProcedure ex:p3 ;
+  sosa:madeBySensor ex:s4 ;
+  sosa:madeBySensor ex:s5 ;
   sosa:phenomenonTime [
       time:hasBeginning [
           time:inXSDDateTime "2018-03-10T15:09:00+10:00"^^xsd:dateTime ;
@@ -38,8 +38,9 @@ ex:OC2
   sosa:hasMember ex:O3 ;
   sosa:hasMember ex:O4 ;
   sosa:hasMember ex:O5 ;
-  skos:note """`madeBySensor` is repeated to enumerate the sensors used in the member observations
-  `phenomenonTime` defines a time interval that encompasses the times of the member observations""" ;
+  skos:note """general collection - member observations have a common FoI, oP and Procedure
+  `madeBySensor` is repeated to enumerate the sensors used in the member observations
+  `phenomenonTime` is a time interval that encompasses the times of the member observations""" ;
 .
 ex:O2
   rdf:type sosa:Observation ;
