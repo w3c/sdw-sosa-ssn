@@ -45,10 +45,10 @@ sosa-c: a owl:Ontology ;
 
 
 sosa:hasMember a owl:ObjectProperty ;
-  rdfs:label "member of collection" ;
-  rdfs:comment "Link to a member within a collection of (samples or observations) or (collection of samples or collection of observations) that share the same value for one or more of the characteristic properties" ;
+  rdfs:label "has member of collection" ;
+  skos:definition "Link to a member within a collection of (samples or observations) or (collection of samples or collection of observations) that share the same value for one or more of the characteristic properties" ;
   rdfs:subPropertyOf rdfs:member ;
-  skos:editorialNote "Note that there is a single `member` property. OWL or SHACL constraints may limit the range depending on context" ;
+  skos:editorialNote "Note that there is a single `member` property. OWL or SHACL constraints may limit the range depending on the context of different collection types" ;
   schema:domainIncludes sosa:GeneralSampleCollection ;
   schema:domainIncludes sosa:GeneralObservationCollection ;
   schema:domainIncludes sosa:SampleCollection ;
@@ -67,8 +67,9 @@ sosa:hasMember a owl:ObjectProperty ;
 sosa:GeneralSampleCollection a owl:Class ;
   rdfs:label "General Sample Collection"@en ;
   skos:definition """Collection of one or more samples, which may be nested in further collections. 
-  The members of a general (summarizing) collection do not necessarily share a common value for any property. 
-  The values of the collection properties should summarize the values of the properties of the member samples."""@en ;
+  The values of the collection properties summarize the values of the properties of the member samples."""@en ;
+  skos:note """The members of a general (summarizing) collection do not necessarily share a common value for any property. 
+""" ;
   rdfs:isDefinedBy sosa-c: .
 
 sosa:hasOriginalSample
@@ -133,8 +134,8 @@ sosa:SampleCollection
 sosa:GeneralObservationCollection a owl:Class ;
   rdfs:label "General Observation Collection"@en ;
   skos:definition """Collection of one or more observations, which may be nested in further collections. 
-  The members of a general (summarizing) collection do not necessarily share a common value for any property. 
-  The values of the collection properties should summarize the values of the properties of the member samples."""@en ;
+  The values of the collection properties summarize the values of the properties of the member observations. """@en ;
+  skos:note """The members of a general (summarizing) collection do not necessarily share a common value for any property. """@en ;
   rdfs:isDefinedBy sosa-c: .
 
 sosa:hasFeatureOfInterest

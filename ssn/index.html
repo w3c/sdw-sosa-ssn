@@ -2969,6 +2969,317 @@ their usage are given.</p>
       </section>
       </section>
 
+      <section id="Collections">
+        <h3>Collections of Observations or Samples</h3>
+        <section class="informative" id="Collections-overview">
+          <h4>Overview and examples</h4>
+          <div>
+            <p>The following figure provides an overview of the core classes
+               and properties that are specifically related to describing collections of observations or of samples.
+              SOSA axioms are shown in green, while SSN-only axioms are shown in blue.
+            </p>
+            <figure class="sosa">
+              <a href="images/SOSA-Collections.png"><img alt="Collections of Observations or Samples" src="images/SOSA-Collections.png"></a>
+              <figcaption>Classes and relationships related to collections of observations or samples</figcaption>
+            </figure>
+          </div>
+          <div>
+            <p>The following examples illustrate how the terms related to SCollections can be used:</p>
+            <ul>
+              <li><a href="#OC1">Observation collection 1</a></li>
+              <li><a href="#SC1">Sample collection 1</a></li>
+            </ul>
+          </div>
+        </section>
+        <section id="Collections-specification">
+          <h4>Specification</h4>
+        <p>This section introduces the following classes and properties:</p>
+        <div class="azlist">
+          <p>
+            <a href="#SOSAGeneralObservationCollection">sosa:GeneralObservationCollection</a>,
+            <a href="#SOSAObservationCollection">sosa:ObservationCollection</a>,
+            <a href="#SOSAGeneralSampleCollection">sosa:GeneralSampleCollection</a>,
+            <a href="#SOSASampleCollection">sosa:SampleCollection</a>,
+            <a href="#SOSAhasMember">sosa:hasMember</a>,
+          </p>
+          <div class="buttonpanel">
+            <span>
+              <span class="sosa" style="display: none;">[<a href="#Collections-specification" onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show all SOSA and SSN terms</a>]</span>
+              <span class="ssn">[<a href="#Collections-specification" onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Show only core SOSA terms</a>]</span>
+            </span>
+          </div>
+        </div>
+        <section class="specterm sosa" id="SOSAGeneralObservationCollection" about="sosa:GeneralObservationCollection" typeof="owl:Class rdfs:Class">
+          <h5><a href="#SOSAGeneralObservationCollection">sosa:GeneralObservationCollection</a></h5>
+          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/GeneralObservationCollection</p>
+          <p><strong>a OWL Class</strong></p>
+
+          <em property="rdfs:label">General Observation Collection</em> -
+          <span property="skos:definition">A <a href="#SOSAGeneralObservationCollection"><code>GeneralObservationCollection</code></a> is a collection of one or more <a href="#SOSAObservation"><code>observations</code></a>, which may be nested in further collections. 
+          The values of the collection properties summarize the values of the properties of the member observations.</span> <br>
+          <span property="skos:note">The members of a general (summarizing) collection do not necessarily share a common value for any property. </span> <br>
+          <table>
+            <tbody>
+              <tr>
+                <th>Example</th>
+                <td><span property="skos:example"></span></td>
+              </tr>
+              <tr class="ssn">
+                <th>Sub class of</th>
+                <td>
+                  <span rel="rdfs:subClassOf" resource="rdf:Bag"><a href="https://www.w3.org/TR/rdf12-schema/#ch_bag">rdf:Bag</a></span></span>
+                </td>
+              </tr>
+              <tr class="ssn">
+                <th class="restrictions">Restrictions</th>
+                <td>
+                  <span about="sosa:GeneralObservationCollection" rel="rdfs:subClassOf" resource="[_:SOSAGeneralObservationCollection1]"></span>
+                  <span about="[_:SOSAGeneralObservationCollection]" typeof="owl:Restriction"></span>
+                  <span about="[_:SOSAGeneralObservationCollection]" rel="owl:onProperty" resource="sosa:hasMember"><a href="#SOSAhasMember">sosa:hasMember</a></span>
+                  <span about="[_:SOSAGeneralObservationCollection]" property="owl:minCardinality" resource="sosa:GeneralObservationCollection"><em><b>MIN 1</b></em></span>
+                  <br>
+                  <span about="sosa:GeneralObservationCollection" rel="rdfs:subClassOf" resource="[_:SOSAGeneralObservationCollection2]"></span>
+                  <span about="[_:SOSAGeneralObservationCollection]" typeof="owl:Restriction"></span>
+                  <span about="[_:SOSAGeneralObservationCollection]" rel="owl:onProperty" resource="sosa:hasMember"><a href="#SOSAhasMember">sosa:hasMember</a></span>
+                  <span about="[_:SOSAGeneralObservationCollection]" property="owl:allValuesFrom" resource="sosa:GeneralObservationCollection"><em><b>ONLY</b></em> (<a href="#SOSAObservation">sosa:Observation</a> OR <a href="#SOSAGeneralObservationCollection">sosa:GeneralObservationCollection</a> OR <a href="#SOSAObservationCollection">sosa:ObservationCollection</a> )</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="buttonpanel">
+            <span>
+              <span class="sosa" style="display: none;">[<a href="#" onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show additional SSN axioms</a>]</span>
+              <span class="ssn">[<a href="#" onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide additional SSN axioms</a>]</span>
+            </span>
+            <span class="back">[<a href="#Collections">Back to module overview and examples</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+          </div>
+        </section>
+        <section class="specterm sosa" id="SOSAObservationCollection" about="sosa:ObservationCollection" typeof="owl:Class rdfs:Class">
+          <h5><a href="#SOSAObservationCollection">sosa:ObservationCollection</a></h5>
+          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/ObservationCollection</p>
+          <p><strong>a OWL Class</strong></p>
+
+          <em property="rdfs:label">Observation Collection</em> -
+          <span property="skos:definition">A <a href="#SOSAObservationCollection"><code>ObservationCollection</code></a> is a collection of one or more <a href="#SOSAObservation"><code>observations</code></a>, which may be nested in further collections. 
+          The members of a homogeneous collection have a common value for one or more property.</span> <br>
+          <table>
+            <tbody>
+              <tr>
+                <th>Example</th>
+                <td><span property="skos:example"></span></td>
+              </tr>
+              <tr class="ssn">
+                <th>Sub class of</th>
+                <td>
+                  <span rel="rdfs:subClassOf" resource="sosa:GeneralObservationCollection"><a href="#SOSAGeneralObservationCollection">sosa:GeneralObservationCollection</a></span></span>
+                </td>
+              </tr>
+              <tr class="ssn">
+                <th class="restrictions">Restrictions</th>
+                <td>
+                  <span about="sosa:ObservationCollection" rel="rdfs:subClassOf" resource="[_:SOSAObservationCollection1]"></span>
+                  <span about="[_:SOSAObservationCollection]" typeof="owl:Restriction"></span>
+                  <span about="[_:SOSAObservationCollection]" rel="owl:onProperty" resource="sosa:hasMember"><a href="#SOSAhasMember">sosa:hasMember</a></span>
+                  <span about="[_:SOSAObservationCollection]" property="owl:allValuesFrom" resource="sosa:ObservationCollection"><em><b>ONLY</b></em> (<a href="#SOSAObservation">sosa:Observation</a> OR <a href="#SOSAObservationCollection">sosa:ObservationCollection</a> )</span>
+                  <br/>
+                  <span about="sosa:ObservationCollection" rel="rdfs:subClassOf" resource="[_:SOSAObservationCollection2]"></span>
+                  <span about="[_:SOSAObservationCollection]" typeof="owl:Restriction"></span>
+                  <span about="[_:SOSAObservationCollection]" rel="owl:onProperty" resource="sosa:hasFeatureOfInterest"><a href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a></span>
+                  <span about="[_:SOSAObservationCollection]" property="owl:maxCardinality" resource="sosa:ObservationCollection"><em><b>MAX 1</b></em></span>
+                  <br/>
+                  <span about="sosa:ObservationCollection" rel="rdfs:subClassOf" resource="[_:SOSAObservationCollection3]"></span>
+                  <span about="[_:SOSAObservationCollection]" typeof="owl:Restriction"></span>
+                  <span about="[_:SOSAObservationCollection]" rel="owl:onProperty" resource="sosa:madeBySensor"><a href="#SOSAmadeBySensor">sosa:madeBySensor</a></span>
+                  <span about="[_:SOSAObservationCollection]" property="owl:maxCardinality" resource="sosa:ObservationCollection"><em><b>MAX 1</b></em></span>
+                  <br/>
+                  <span about="sosa:ObservationCollection" rel="rdfs:subClassOf" resource="[_:SOSAObservationCollection4]"></span>
+                  <span about="[_:SOSAObservationCollection]" typeof="owl:Restriction"></span>
+                  <span about="[_:SOSAObservationCollection]" rel="owl:onProperty" resource="sosa:madeOnPlatform"><a href="#SOSAmadeOnPlatform">sosa:madeOnPlatform</a></span>
+                  <span about="[_:SOSAObservationCollection]" property="owl:maxCardinality" resource="sosa:ObservationCollection"><em><b>MAX 1</b></em></span>
+                  <br/>
+                  <span about="sosa:ObservationCollection" rel="rdfs:subClassOf" resource="[_:SOSAObservationCollection5]"></span>
+                  <span about="[_:SOSAObservationCollection]" typeof="owl:Restriction"></span>
+                  <span about="[_:SOSAObservationCollection]" rel="owl:onProperty" resource="sosa:observedProperty"><a href="#SOSAobservedProperty">sosa:observedProperty</a></span>
+                  <span about="[_:SOSAObservationCollection]" property="owl:maxCardinality" resource="sosa:ObservationCollection"><em><b>MAX 1</b></em></span>
+                  <br/>
+                  <span about="sosa:ObservationCollection" rel="rdfs:subClassOf" resource="[_:SOSAObservationCollection6]"></span>
+                  <span about="[_:SOSAObservationCollection]" typeof="owl:Restriction"></span>
+                  <span about="[_:SOSAObservationCollection]" rel="owl:onProperty" resource="sosa:phenomenonTime"><a href="#SOSAphenomenonTime">sosa:phenomenonTime</a></span>
+                  <span about="[_:SOSAObservationCollection]" property="owl:maxCardinality" resource="sosa:ObservationCollection"><em><b>MAX 1</b></em></span>
+                  <br/>
+                  <span about="sosa:ObservationCollection" rel="rdfs:subClassOf" resource="[_:SOSAObservationCollection7]"></span>
+                  <span about="[_:SOSAObservationCollection]" typeof="owl:Restriction"></span>
+                  <span about="[_:SOSAObservationCollection]" rel="owl:onProperty" resource="sosa:resultTime"><a href="#SOSAresultTime">sosa:resultTime</a></span>
+                  <span about="[_:SOSAObservationCollection]" property="owl:maxCardinality" resource="sosa:ObservationCollection"><em><b>MAX 1</b></em></span>
+                  <br/>
+                  <span about="sosa:ObservationCollection" rel="rdfs:subClassOf" resource="[_:SOSAObservationCollection8]"></span>
+                  <span about="[_:SOSAObservationCollection]" typeof="owl:Restriction"></span>
+                  <span about="[_:SOSAObservationCollection]" rel="owl:onProperty" resource="sosa:usedProcedure"><a href="#SOSAusedProcedure">sosa:usedProcedure</a></span>
+                  <span about="[_:SOSAObservationCollection]" property="owl:maxCardinality" resource="sosa:ObservationCollection"><em><b>MAX 1</b></em></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="buttonpanel">
+            <span>
+              <span class="sosa" style="display: none;">[<a href="#" onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show additional SSN axioms</a>]</span>
+              <span class="ssn">[<a href="#" onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide additional SSN axioms</a>]</span>
+            </span>
+            <span class="back">[<a href="#Collections">Back to module overview and examples</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+          </div>
+        </section>
+        <section class="specterm sosa" id="SOSAGeneralSampleCollection" about="sosa:GeneralSampleCollection" typeof="owl:Class rdfs:Class">
+          <h5><a href="#SOSAGeneralSampleCollection">sosa:GeneralSampleCollection</a></h5>
+          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/GeneralSampleCollection</p>
+          <p><strong>a OWL Class</strong></p>
+
+          <em property="rdfs:label">General Sample Collection</em> -
+          <span property="skos:definition">A <a href="#SOSAGeneralSampleCollection"><code>GeneralSampleCollection</code></a> is a collection of one or more <a href="#SOSASample"><code>samples</code></a>, which may be nested in further collections. 
+          The values of the collection properties summarize the values of the properties of the member samples.</span> <br>
+          <span property="skos:note">The members of a general (summarizing) collection do not necessarily share a common value for any property. </span> <br>
+
+          <table>
+            <tbody>
+              <tr>
+                <th>Example</th>
+                <td><span property="skos:example"></span></td>
+              </tr>
+              <tr class="ssn">
+                <th>Sub class of</th>
+                <td>
+                  <span rel="rdfs:subClassOf" resource="rdf:Bag"><a href="https://www.w3.org/TR/rdf12-schema/#ch_bag">rdf:Bag</a></span></span>
+                </td>
+              </tr>
+              <tr class="ssn">
+                <th class="restrictions">Restrictions</th>
+                <td>
+                  <span about="sosa:GeneralSampleCollection" rel="rdfs:subClassOf" resource="[_:SOSAGeneralSampleCollection1]"></span>
+                  <span about="[_:SOSAGeneralSampleCollection]" typeof="owl:Restriction"></span>
+                  <span about="[_:SOSAGeneralSampleCollection]" rel="owl:onProperty" resource="sosa:hasMember"><a href="#SOSAhasMember">sosa:hasMember</a></span>
+                  <span about="[_:SOSAGeneralSampleCollection]" property="owl:minCardinality" resource="sosa:GeneralSampleCollection"><em><b>MIN 1</b></em></span>
+                  <br>
+                  <span about="sosa:GeneralSampleCollection" rel="rdfs:subClassOf" resource="[_:SOSAGeneralSampleCollection2]"></span>
+                  <span about="[_:SOSAGeneralSampleCollection]" typeof="owl:Restriction"></span>
+                  <span about="[_:SOSAGeneralSampleCollection]" rel="owl:onProperty" resource="sosa:hasMember"><a href="#SOSAhasMember">sosa:hasMember</a></span>
+                  <span about="[_:SOSAGeneralSampleCollection]" property="owl:allValuesFrom" resource="sosa:GeneralSampleCollection"><em><b>ONLY</b></em> (<a href="#SOSASample">sosa:Sample</a> OR <a href="#SOSAGeneralSampleCollection">sosa:GeneralSampleCollection</a> OR <a href="#SOSASampleCollection">sosa:SampleCollection</a> )</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="buttonpanel">
+            <span>
+              <span class="sosa" style="display: none;">[<a href="#" onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show additional SSN axioms</a>]</span>
+              <span class="ssn">[<a href="#" onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide additional SSN axioms</a>]</span>
+            </span>
+            <span class="back">[<a href="#Collections">Back to module overview and examples</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+          </div>
+        </section>
+        <section class="specterm sosa" id="SOSASampleCollection" about="sosa:SampleCollection" typeof="owl:Class rdfs:Class">
+          <h5><a href="#SOSASampleCollection">sosa:SampleCollection</a></h5>
+          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/SampleCollection</p>
+          <p><strong>a OWL Class</strong></p>
+
+          <em property="rdfs:label">Sample Collection</em> -
+          <span property="skos:definition">A <a href="#SOSASampleCollection"><code>SampleCollection</code></a> is a collection of one or more <a href="#SOSASample"><code>samples</code></a>, which may be nested in further collections. 
+          The members of a homogeneous collection have a common value for one or more property.</span> <br>
+          <table>
+            <tbody>
+              <tr>
+                <th>Example</th>
+                <td><span property="skos:example"></span></td>
+              </tr>
+              <tr class="ssn">
+                <th>Sub class of</th>
+                <td>
+                  <span rel="rdfs:subClassOf" resource="sosa:GeneralSampleCollection"><a href="#SOSAGeneralSampleCollection">sosa:GeneralSampleCollection</a></span></span>
+                </td>
+              </tr>
+              <tr class="ssn">
+                <th class="restrictions">Restrictions</th>
+                <td>
+                  <span about="sosa:SampleCollection" rel="rdfs:subClassOf" resource="[_:SOSASampleCollection1]"></span>
+                  <span about="[_:SOSASampleCollection]" typeof="owl:Restriction"></span>
+                  <span about="[_:SOSASampleCollection]" rel="owl:onProperty" resource="sosa:hasMember"><a href="#SOSAhasMember">sosa:hasMember</a></span>
+                  <span about="[_:SOSASampleCollection]" property="owl:allValuesFrom" resource="sosa:SampleCollection"><em><b>ONLY</b></em> (<a href="#SOSASample">sosa:Sample</a> OR <a href="#SOSASampleCollection">sosa:SampleCollection</a> )</span>
+                  <br/>
+                  <span about="sosa:SampleCollection" rel="rdfs:subClassOf" resource="[_:SOSASampleCollection2]"></span>
+                  <span about="[_:SOSASampleCollection]" typeof="owl:Restriction"></span>
+                  <span about="[_:SOSASampleCollection]" rel="owl:onProperty" resource="sosa:isResultOf"><a href="#SOSAisResultOf">sosa:isResultOf</a></span>
+                  <span about="[_:SOSASampleCollection]" property="owl:maxCardinality" resource="sosa:SampleCollection"><em><b>MAX 1</b></em></span>
+                  <br/>
+                  <span about="sosa:SampleCollection" rel="rdfs:subClassOf" resource="[_:SOSASampleCollection3]"></span>
+                  <span about="[_:SOSASampleCollection]" typeof="owl:Restriction"></span>
+                  <span about="[_:SOSASampleCollection]" rel="owl:onProperty" resource="sosa:isSampleOf"><a href="#SOSAisSampleOf">sosa:isSampleOf</a></span>
+                  <span about="[_:SOSASampleCollection]" property="owl:maxCardinality" resource="sosa:SampleCollection"><em><b>MAX 1</b></em></span>
+                  <br/>
+                  <span about="sosa:SampleCollection" rel="rdfs:subClassOf" resource="[_:SOSASampleCollection4]"></span>
+                  <span about="[_:SOSASampleCollection]" typeof="owl:Restriction"></span>
+                  <span about="[_:SOSASampleCollection]" rel="owl:onProperty" resource="sosa:hasOriginalSample"><a href="#SOSAhasOriginalSample">sosa:hasOriginalSample</a></span>
+                  <span about="[_:SOSASampleCollection]" property="owl:maxCardinality" resource="sosa:SampleCollection"><em><b>MAX 1</b></em></span>
+                  <br/>
+                  <span about="sosa:SampleCollection" rel="rdfs:subClassOf" resource="[_:SOSASampleCollection5]"></span>
+                  <span about="[_:SOSASampleCollection]" typeof="owl:Restriction"></span>
+                  <span about="[_:SOSASampleCollection]" rel="owl:onProperty" resource="sosa:hasSampledFeature"><a href="#SOSAhasSampledFeature">sosa:hasSampledFeature</a></span>
+                  <span about="[_:SOSASampleCollection]" property="owl:maxCardinality" resource="sosa:SampleCollection"><em><b>MAX 1</b></em></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="buttonpanel">
+            <span>
+              <span class="sosa" style="display: none;">[<a href="#" onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show additional SSN axioms</a>]</span>
+              <span class="ssn">[<a href="#" onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide additional SSN axioms</a>]</span>
+            </span>
+            <span class="back">[<a href="#Collections">Back to module overview and examples</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+          </div>
+        </section>
+        <section class="specterm sosa" id="SOSAhasMember" about="sosa:hasMember" typeof="owl:ObjectProperty">
+          <h5><a href="#SOSAhasMember">sosa:hasMember</a></h5>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/hasMember</p>
+            <p><strong>a OWL Object Property</strong></p>
+
+          <em property="rdfs:label">has member of collection</em> -
+          <span property="skos:definition">Link to a member within a collection of (<a href="#SOSASample"><code>samples</code></a> or <a href="#SOSAObservation"><code>observations</code></a>) or (<a href="#SOSAGeneralSampleCollection"><code>collection of samples</code></a> or <a href="#SOSAGeneralObservationCollection"><code>collection of observations</code></a>).</span>
+          <span property="skos:note">Note that there is a single `member` property. OWL or SHACL constraints may limit the range depending on the context of different collection types.</span>
+          <table>
+            <tbody>
+              <tr>
+                <th>Example</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>Inverse property of</th>
+                <td>
+                  <span rel="owl:inverseOf" resource="sosa:isMemberOf"><a href="#SSNisMemberOf">sosa:isMemberOf</a></span>
+                </td>
+              </tr>
+              <tr>
+                <th>Domain Includes</th>
+                <td><span rel="schema:domainIncludes" resource="sosa:GeneralObservationCollection"><a href="#SOSAGeneralObservationCollection">sosa:GeneralObservationCollection</a></span> , <span rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a href="#SOSAObservationCollection">sosa:ObservationCollection</a></span> , <span rel="schema:domainIncludes" resource="sosa:GeneralSampleCollection"><a href="#SOSAGeneralSamplenCollection">sosa:GeneralSampleCollection</a></span> , <span rel="schema:domainIncludes" resource="sosa:SampleCollection"><a href="#SOSASampleCollection">sosa:SampleCollection</a></span></td>
+              </tr>
+              <tr>
+                <th>Range Includes</th>
+                <td><span rel="schema:rangeIncludes" resource="sosa:GeneralObservationCollection"><a href="#SOSAGeneralObservationCollection">sosa:GeneralObservationCollection</a></span> , <span rel="schema:rangeIncludes" resource="sosa:ObservationCollection"><a href="#SOSAObservationCollection">sosa:ObservationCollection</a></span> , <span rel="schema:rangeIncludes" resource="sosa:Observation"><a href="#SOSAObservation">sosa:Observation</a></span> , <span rel="schema:rangeIncludes" resource="sosa:GeneralSampleCollection"><a href="#SOSAGeneralSamplenCollection">sosa:GeneralSampleCollection</a></span> , <span rel="schema:rangeIncludes" resource="sosa:SampleCollection"><a href="#SOSASampleCollection">sosa:SampleCollection</a></span> , <span rel="schema:rangeIncludes" resource="sosa:Sample"><a href="#SOSASample">sosa:Sample</a></span></td>
+              </tr>
+              <tr>
+                <th>is Defined By</th>
+                <td>
+                  <span rel="rdfs:isDefinedBy"><a href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="buttonpanel">
+            <span class="back">[<a href="#Collections">Back to module overview and examples</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+          </div>
+        </section>
+
+
    </section>
 
     <section id="HorizontalSegmentation" class="informative">
