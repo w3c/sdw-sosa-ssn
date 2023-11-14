@@ -1,3 +1,4 @@
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -10,7 +11,7 @@
 @prefix ex: <http://example.org/> .
 
 ex:OC1
-  rdf:type sosa:ObservationCollection ;
+  a sosa:HomogeneousObservationCollection ;
   sosa:hasFeatureOfInterest ex:Sample_1 ;
   sosa:observedProperty ex:op2 ;
   sosa:usedProcedure ex:p3 ;
@@ -21,7 +22,7 @@ ex:OC1
   skos:note """homogeneous collection - member observations have a common FoI, oP and Procedure""" ;
 .
 ex:OC2
-  rdf:type sosa:GeneralObservationCollection ;
+  a sosa:ObservationCollection ;
   sosa:hasFeatureOfInterest ex:Sample_1 ;
   sosa:observedProperty ex:op2 ;
   sosa:usedProcedure ex:p3 ;
@@ -44,7 +45,7 @@ ex:OC2
   `phenomenonTime` is a time interval that encompasses the times of the member observations""" ;
 .
 ex:O2
-  rdf:type sosa:Observation ;
+  a sosa:Observation ;
   sosa:madeBySensor ex:s4 ;
   sosa:hasResult ex:r96 ;
   sosa:phenomenonTime [
@@ -52,7 +53,7 @@ ex:O2
     ] ;
 .
 ex:O3
-  rdf:type sosa:Observation ;
+  a sosa:Observation ;
   sosa:madeBySensor ex:s4 ;
   sosa:hasResult ex:r97 ;
   sosa:phenomenonTime [
@@ -60,7 +61,7 @@ ex:O3
     ] ;
 .
 ex:O4
-  rdf:type sosa:Observation ;
+  a sosa:Observation ;
   sosa:madeBySensor ex:s5 ;
   sosa:hasResult ex:r98 ;
   sosa:phenomenonTime [
@@ -68,7 +69,7 @@ ex:O4
     ] ;
 .
 ex:O5
-  rdf:type sosa:Observation ;
+  a sosa:Observation ;
   sosa:madeBySensor ex:s5 ;
   sosa:hasResult ex:r99 ;
   sosa:phenomenonTime [
@@ -76,31 +77,33 @@ ex:O5
     ] ;
 .
 ex:Sample_1
-  rdf:type sosa:Sample ;
+  a sosa:Sample ;
   sosa:isSampleOf ex:foia ;
 .
 ex:foia
-  rdf:type sosa:FeatureOfInterest ;
+  a sosa:FeatureOfInterest ;
   sosa:hasProperty ex:op2 ;
 .
 ex:s4
-  rdf:type sosa:Sensor ;
+  a sosa:Sensor ;
   sosa:implements ex:p3 ;
 .
 ex:s5
-  rdf:type sosa:Sensor ;
+  a sosa:Sensor ;
   sosa:implements ex:p3 ;
 .
 ex:op2
-  rdf:type sosa:ObservableProperty ;
+  a sosa:ObservableProperty ;
 .
 ex:p3
-  rdf:type sosa:Procedure ;
+  a sosa:Procedure ;
 .
-ex:examples
-  rdf:type owl:Ontology ;
+ex:examples-collection-obs
+  a owl:Ontology ;
   dcterms:created "2023-11-04"^^xsd:date ;
   dcterms:creator <http://orcid.org/0000-0002-3884-3420> ;
   rdfs:comment "Small dataset to test rules in SOSA Collections" ;
-  owl:imports <http://www.w3.org/ns/sosa-collections/> , <http://www.w3.org/2006/time> ;
+  owl:imports <http://www.w3.org/ns/sosa-collections/> , 
+    <http://www.w3.org/2006/time> , 
+    <http://purl.org/dc/elements/1.1/> ;
 .
