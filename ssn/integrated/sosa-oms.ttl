@@ -10,6 +10,7 @@
 @prefix time: <http://www.w3.org/2006/time#> .
 @prefix prov: <https://www.w3.org/TR/prov-o/#> .
 @prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
 
 @prefix schema: <http://schema.org/> .
 
@@ -271,6 +272,13 @@ sosa:isFeatureOfInterestOf
 sosa:Observation ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation> ;
   rdfs:isDefinedBy sosa: .
 
+sosa:observationType a owl:ObjectProperty ;
+  ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-core/AbstractObservationCharacteristics/type-sem> ;
+  rdfs:label "observation type"@en ;
+  skos:definition "Information providing further detail on the type of Observations."@en ;
+  schema:domainIncludes sosa:Observation ;
+  rdfs:isDefinedBy sosa-oms: .
+
   sosa:madeObservation ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/gen/relatedObservation-sem> ;
     owl:inverseOf sosa:madeBySensor ;
     rdfs:isDefinedBy sosa: .
@@ -306,6 +314,12 @@ sosa:Observation ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/
     schema:domainIncludes sosa:ObservationCollection ;
     schema:rangeIncludes sosa:Observation ;
     rdfs:isDefinedBy sosa-oms: .
+
+  dqv:hasQualityMeasurement
+    ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-core/AbstractObservationCharacteristics/resultQuality-sem> ;
+    rdfs:comment "Information pertaining to the data quality of the result." ;
+    schema:domainIncludes osa:Observation ;
+    rdfs:isDefinedBy dqv: .
 
 sosa:Sampling ogc:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sampling> ;
   rdfs:isDefinedBy sosa: .
