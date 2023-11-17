@@ -12,6 +12,7 @@
 
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix sosa-c: <http://www.w3.org/ns/sosa-collections/> .
+@prefix sosa-oms: <http://www.w3.org/ns/sosa/oms/> .
 
 
 dcterms:title a owl:AnnotationProperty .
@@ -48,9 +49,11 @@ sosa-c:
 
 sosa:hasMember 
   a owl:ObjectProperty ;
-  rdfs:label "has member of collection" ;
-  skos:definition "Link to a member within a collection of (samples or observations) or (collection of samples or collection of observations) that share the same value for one or more of the characteristic properties" ;
   rdfs:subPropertyOf rdfs:member ;
+  rdfs:label "has member of collection" ;
+  skos:definition """Link to a member within a collection of (samples or observations) or (collection of samples or collection of observations) which may share a value for one or more of the characteristic properties. 
+  """ ;
+  skos:scopeNote "rules for the consistency of values of properties of collections and properties of their members are given for each collection type" ;
   skos:editorialNote "Note that there is a single `member` property. OWL or SHACL constraints may limit the range depending on the context of different collection types" ;
   schema:domainIncludes sosa:SampleCollection ;
   schema:domainIncludes sosa:ObservationCollection ;
@@ -71,9 +74,14 @@ sosa:SampleCollection
   a owl:Class ;
   rdfs:label "General Sample Collection"@en ;
   skos:definition """Collection of one or more samples, which may be nested in further collections. 
-  The values of the collection properties summarize the values of the properties of the member samples."""@en ;
+  The values of the collection properties summarize the values of the properties of the member samples.
+  
+  Where a property is not mentioned in the description of the collection, each member may have any value for that property.
+  Where a property is mentioned one time in the description of the collection, the property may be omitted on a member, else if present a member must have that same value for that property.
+  Where a property is mentioned more than one time in the description of the collection, or where the value of that property is a range, the property must be present for each member and must have a value which corresponds to one of the values for that property on the collection, or which falls within the range of values for that property on the collection.
+  """@en ;
   skos:note """The members of a general (summarizing) collection do not necessarily share a common value for any property. 
-""" ;
+  """ ;
   rdfs:isDefinedBy sosa-c: .
 
 sosa:hasOriginalSample
@@ -107,11 +115,6 @@ sosa:SampleCollection
       ) ; 
     ] 
   ] ;
-  rdfs:subClassOf [
-    a owl:Restriction ;
-    owl:onProperty sosa:hasMember ; 
-    owl:minCardinality "1"^^xsd:nonNegativeInteger 
-  ] ;
   rdfs:subClassOf [ 
     a owl:Restriction ; 
     owl:onProperty sosa:hasOriginalSample ; 
@@ -132,6 +135,7 @@ sosa:SampleCollection
     owl:onProperty sosa:isResultOf ; 
     owl:allValuesFrom sosa:Sampling 
   ] ;
+  owl:disjointWith sosa:ObservationCollection ;
   rdfs:isDefinedBy sosa-c: .
 
 
@@ -141,7 +145,11 @@ sosa:HomogeneousSampleCollection
   a owl:Class ;
   rdfs:label "Homogeneous Sample Collection"@en ;
   skos:definition """Collection of one or more samples, which may be nested in further collections. 
-  The members of a homogeneous collection share a common value for one or more property"""@en ;
+  The members of a homogeneous collection share a common value for one or more property. 
+    
+  Where a property is not mentioned in the description of the collection, each member may have any value for that property.
+  Where a property is mentioned one time in the description of the collection, the property may be omitted on a member, else if present a member must have that same value for that property.
+  """@en ;
   rdfs:isDefinedBy sosa-c: .
 
 sosa:hasOriginalSample
@@ -203,7 +211,12 @@ sosa:ObservationCollection
   a owl:Class ;
   rdfs:label "General Observation Collection"@en ;
   skos:definition """Collection of one or more observations, which may be nested in further collections. 
-  The values of the collection properties summarize the values of the properties of the member observations. """@en ;
+  The values of the collection properties summarize the values of the properties of the member observations. 
+    
+  Where a property is not mentioned in the description of the collection, each member may have any value for that property.
+  Where a property is mentioned one time in the description of the collection, the property may be omitted on a member, else if present a member must have that same value for that property.
+  Where a property is mentioned more than one time in the description of the collection, or where the value of that property is a range, the property must be present for each member and must have a value which corresponds to one of the values for that property on the collection, or which falls within the range of values for that property on the collection.
+  """@en ;
   skos:note """The members of a general (summarizing) collection do not necessarily share a common value for any property. """@en ;
   rdfs:isDefinedBy sosa-c: .
 
@@ -281,11 +294,6 @@ sosa:ObservationCollection
   ] ;
   rdfs:subClassOf [ 
     a owl:Restriction ; 
-    owl:onProperty sosa:hasMember ; 
-    owl:minCardinality "1"^^xsd:nonNegativeInteger 
-  ] ;
-  rdfs:subClassOf [ 
-    a owl:Restriction ; 
     owl:onProperty sosa:madeBySensor ; 
     owl:allValuesFrom sosa:Sensor 
   ] ;
@@ -324,6 +332,7 @@ sosa:ObservationCollection
     owl:onProperty sosa:resultTime ; 
     owl:allValuesFrom xsd:DateTime 
   ] ;
+  owl:disjointWith sosa:SampleCollection ;
   rdfs:isDefinedBy sosa-c: .
 
 
@@ -348,7 +357,11 @@ sosa:HomogeneousObservationCollection
   a owl:Class ;
   rdfs:label "Homogeneous Observation Collection"@en ;
   skos:definition """Collection of one or more observations, which may be nested in further collections. 
-  The members of a homogeneous collection share a common value for one or more property"""@en ;
+  The members of a homogeneous collection share a common value for one or more property.
+      
+  Where a property is not mentioned in the description of the collection, each member may have any value for that property.
+  Where a property is mentioned one time in the description of the collection, the property may be omitted on a member, else if present a member must have that same value for that property.
+  """@en ;
   rdfs:isDefinedBy sosa-c: .
 
 sosa:hasFeatureOfInterest
