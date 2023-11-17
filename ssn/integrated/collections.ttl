@@ -6,6 +6,7 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix time: <http://www.w3.org/2006/time#> .
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
 
 @prefix schema: <http://schema.org/> .
 
@@ -76,16 +77,20 @@ sosa:SampleCollection
   rdfs:isDefinedBy sosa-c: .
 
 sosa:hasOriginalSample
-  schema:domainIncludes sosa:SampleCollection .
+  schema:domainIncludes sosa:SampleCollection ;
+rdfs:isDefinedBy sosa: .
 
 sosa:hasSampledFeature
-  schema:domainIncludes sosa:SampleCollection .
+  schema:domainIncludes sosa:SampleCollection ;
+  rdfs:isDefinedBy sosa: .
 
 sosa:isSampleOf
-  schema:domainIncludes sosa:SampleCollection .
+  schema:domainIncludes sosa:SampleCollection ;
+  rdfs:isDefinedBy sosa: .
 
 sosa:isResultOf
-  schema:domainIncludes sosa:SampleCollection .
+  schema:domainIncludes sosa:SampleCollection ;
+  rdfs:isDefinedBy sosa: .
 
 ## General Sample Collection axiomatization 
 
@@ -140,16 +145,20 @@ sosa:HomogeneousSampleCollection
   rdfs:isDefinedBy sosa-c: .
 
 sosa:hasOriginalSample
-  schema:domainIncludes sosa:HomogeneousSampleCollection .
+  schema:domainIncludes sosa:HomogeneousSampleCollection ;
+  rdfs:isDefinedBy sosa: .
 
 sosa:hasSampledFeature
-  schema:domainIncludes sosa:HomogeneousSampleCollection .
+  schema:domainIncludes sosa:HomogeneousSampleCollection ;
+  rdfs:isDefinedBy sosa: .
 
 sosa:isSampleOf
-  schema:domainIncludes sosa:HomogeneousSampleCollection .
+  schema:domainIncludes sosa:HomogeneousSampleCollection ;
+  rdfs:isDefinedBy sosa: .
 
 sosa:isResultOf
-  schema:domainIncludes sosa:HomogeneousSampleCollection .
+  schema:domainIncludes sosa:HomogeneousSampleCollection ;
+  rdfs:isDefinedBy sosa: .
 
 ## Homogeneous Sample Collection axiomatization 
 
@@ -199,37 +208,60 @@ sosa:ObservationCollection
   rdfs:isDefinedBy sosa-c: .
 
 sosa:hasFeatureOfInterest
-  schema:domainIncludes sosa:ObservationCollection .
+  schema:domainIncludes sosa:ObservationCollection ;
+  rdfs:isDefinedBy sosa: .
 
 sosa:hasUltimateFeatureOfInterest
-  schema:domainIncludes sosa:ObservationCollection .
+  schema:domainIncludes sosa:ObservationCollection ;
+  rdfs:isDefinedBy sosa: .
 
 sosa:madeBySensor
-  schema:domainIncludes sosa:ObservationCollection .
+  schema:domainIncludes sosa:ObservationCollection ;
+  rdfs:isDefinedBy sosa: .
 
 sosa:madeByObserver
-  schema:domainIncludes sosa:ObservationCollection .
+  schema:domainIncludes sosa:ObservationCollection ;
+  rdfs:isDefinedBy sosa: .
 
 sosa:madeOnPlatform
-  schema:domainIncludes sosa:ObservationCollection .
+  schema:domainIncludes sosa:ObservationCollection ;
+  rdfs:isDefinedBy sosa: .
 
 sosa:observedProperty
-  schema:domainIncludes sosa:ObservationCollection .
+  schema:domainIncludes sosa:ObservationCollection ;
+  rdfs:isDefinedBy sosa: .
 
 sosa:phenomenonTime
-  schema:domainIncludes sosa:ObservationCollection .
+  schema:domainIncludes sosa:ObservationCollection ;
+  rdfs:isDefinedBy sosa: .
 
 sosa:resultTime
-  schema:domainIncludes sosa:ObservationCollection .
+  schema:domainIncludes sosa:ObservationCollection ;
+  rdfs:isDefinedBy sosa: .
+
+sosa:validTime 
+  schema:domainIncludes sosa:ObservationCollection ;
+  rdfs:isDefinedBy sosa-oms: .
+
+sosa:observationType 
+  schema:domainIncludes sosa:ObservationCollection ;
+  rdfs:isDefinedBy sosa-oms: .
+
+dqv:hasQualityMeasurement
+  schema:domainIncludes sosa:ObservationCollection ;
+  rdfs:isDefinedBy dqv: .
 
 sosa:usedProcedure
-  schema:domainIncludes sosa:ObservationCollection .
+  schema:domainIncludes sosa:ObservationCollection ;
+  rdfs:isDefinedBy sosa: .
 
 #sosa:hasResult
-#  schema:domainIncludes sosa:ObservationCollection .
+#  schema:domainIncludes sosa:ObservationCollection ;
+#  rdfs:isDefinedBy sosa: .
 
 #sosa:hasSimpleResult
-#  schema:domainIncludes sosa:ObservationCollection .
+#  schema:domainIncludes sosa:ObservationCollection ;
+#  rdfs:isDefinedBy sosa: .
 
 ## General Observation collection axiomatization
 
@@ -320,37 +352,60 @@ sosa:HomogeneousObservationCollection
   rdfs:isDefinedBy sosa-c: .
 
 sosa:hasFeatureOfInterest
-  schema:domainIncludes sosa:HomogeneousObservationCollection .
+  schema:domainIncludes sosa:HomogeneousObservationCollection ;
+  rdfs:isDefinedBy sosa: .
 
 sosa:hasUltimateFeatureOfInterest
-  schema:domainIncludes sosa:HomogeneousObservationCollection .
+  schema:domainIncludes sosa:HomogeneousObservationCollection ;
+  rdfs:isDefinedBy sosa: .
 
 sosa:madeBySensor
-  schema:domainIncludes sosa:HomogeneousObservationCollection .
+  schema:domainIncludes sosa:HomogeneousObservationCollection ;
+  rdfs:isDefinedBy sosa: .
 
 sosa:madeByObserver
-  schema:domainIncludes sosa:HomogeneousObservationCollection .
+  schema:domainIncludes sosa:HomogeneousObservationCollection ;
+  rdfs:isDefinedBy sosa: .
 
 sosa:madeOnPlatform
-  schema:domainIncludes sosa:HomogeneousObservationCollection .
+  schema:domainIncludes sosa:HomogeneousObservationCollection ;
+  rdfs:isDefinedBy sosa: .
 
 sosa:observedProperty
-  schema:domainIncludes sosa:HomogeneousObservationCollection .
+  schema:domainIncludes sosa:HomogeneousObservationCollection ;
+  rdfs:isDefinedBy sosa: .
 
 sosa:phenomenonTime
-  schema:domainIncludes sosa:HomogeneousObservationCollection .
+  schema:domainIncludes sosa:HomogeneousObservationCollection ;
+  rdfs:isDefinedBy sosa: .
 
 sosa:resultTime
-  schema:domainIncludes sosa:HomogeneousObservationCollection .
+  schema:domainIncludes sosa:HomogeneousObservationCollection ;
+  rdfs:isDefinedBy sosa: .
+
+sosa:validTime 
+  schema:domainIncludes sosa:HomogeneousObservationCollection ;
+  rdfs:isDefinedBy sosa-oms: .
+
+sosa:observationType 
+  schema:domainIncludes sosa:HomogeneousObservationCollection ;
+  rdfs:isDefinedBy sosa-oms: .
+
+dqv:hasQualityMeasurement
+  schema:domainIncludes sosa:HomogeneousObservationCollection ;
+  rdfs:isDefinedBy dqv: .
 
 sosa:usedProcedure
-  schema:domainIncludes sosa:HomogeneousObservationCollection .
+  schema:domainIncludes sosa:HomogeneousObservationCollection ;
+  rdfs:isDefinedBy sosa: .
 
 #sosa:hasResult
-#  schema:domainIncludes sosa:HomogeneousObservationCollection .
+#  schema:domainIncludes sosa:HomogeneousObservationCollection ;
+#  rdfs:isDefinedBy sosa: .
 
 #sosa:hasSimpleResult
-#  schema:domainIncludes sosa:HomogeneousObservationCollection .
+#  schema:domainIncludes sosa:HomogeneousObservationCollection ;
+#  rdfs:isDefinedBy sosa: .
 
 ## Homogeneous Observation collection axiomatization
 
