@@ -43,26 +43,27 @@
 
     <section id="abstract">
       <p>The Semantic Sensor Network (SSN) ontology is an ontology for describing
-sensors and their observations, the involved procedures,  the studied features of
+sensors and their observations, the involved procedures, the studied features of
 interest, the samples used to do so, and the observed properties, as well as actuators.
-SSN follows a horizontal and vertical modularization architecture by including a
-lightweight but self-contained core ontology called SOSA (Sensor, Observation, Sample, and
-Actuator) for its elementary classes and properties. With their different scope and different degrees of axiomatization, SSN and SOSA are able to support a wide range of applications and use
+SSN follows a horizontal and vertical modularization architecture, with the core classes 
+and properties defined using minimal axiomatization in a graph called SOSA (Sensor, Observation, Sample, and Actuator) 
+supplemented with additional axiomatization and terms in further graphs. 
+These allow SSN to support a wide range of applications and use
 cases, including satellite imagery, large-scale scientific monitoring, industrial and
 household infrastructures, social sensing, citizen science, observation-driven ontology
-engineering, and the Web of Things. Both ontologies are described below, and examples of
-their usage are given.</p>
-      <p style="text-align: center;">The namespace for SSN terms is <span class="repeated"
-          style="font-family: courier;">http://www.w3.org/ns/ssn/</span>.
-        <br>
-        The namespace for SOSA terms is <span class="repeated" style="font-family: courier;">
+engineering, and the Web of Things. </p>
+      <!--<p style="text-align: center;">The namespace for SSN terms is <span class="repeated"
+          style="font-family: courier;">http://www.w3.org/ns/ssn/</span>.</p>-->
+      <p style="text-align: center;">
+        The namespace for the core terms is <span class="repeated" style="font-family: courier;">
           http://www.w3.org/ns/sosa/</span>.</p>
-      <p style="text-align: center;">The suggested prefix for the SSN namespace
-        is <span class="repeated" style="font-family: courier;">ssn</span>.<br>
-        The suggested prefix for the SOSA namespace is <span class="repeated" style="font-family: courier;">sosa</span>.</p>
-      <p style="text-align: center;"> The SSN ontology is available at <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>.
+      <!--<p style="text-align: center;">The suggested prefix for the SSN namespace
+        is <span class="repeated" style="font-family: courier;">ssn</span>.<br></p>-->
+      <p style="text-align: center;">The suggested prefix for the SOSA namespace is <span class="repeated" style="font-family: courier;">sosa</span>.</p>
+      <p style="text-align: center;"> 
+        The SOSA graph containing the core definitions is available at <a href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a>.<br/>
+        The SSN graph with the full axiomatization of the core terms is available at <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>.
         <br>
-        The SOSA ontology is available at <a href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a>.
       </p>
     </section>
     <section id="sotd">
@@ -111,16 +112,17 @@ their usage are given.</p>
  
     <section id="Modularization" class="informative">
       <h2>Modularization</h2>
-      <p><span data-dobid="hdw">Practitioners</span> using the original Semantic
-        Sensor Network Ontology as defined in the <em>W3C Semantic Sensor Network Incubator Group </em> [[SSNO]] have identified a major
+      <p><span data-dobid="hdw">Practitioners</span> using the original Ontology 
+        as defined in the <em>W3C Semantic Sensor Network Incubator Group </em> [[SSNO]] have identified a major
         issue in its complexity, partly due to the layering underneath the
-        Dolce-UltraLite (DUL) upper level ontology. In response to this, the new
-        Semantic Sensor Network (SSN) ontology offers several ontology subsets that
-        are distinguished mainly through their ontological commitments. This
-        section explains the rationale and method for modularizing SSN, i.e.,
-        offering several distinct ontologies that are similar in their domain of
-        discourse, but with different ontological commitments, suitable to
-        several use cases and target audiences. For example, SOSA is intended 
+        Dolce-UltraLite (DUL) upper level ontology. 
+        In response to this, the 
+        Semantic Sensor Network (SSN) ontology offers several subsets that
+        are distinguished through both their scope and their ontological commitments. 
+        This
+        section explains the rationale and method for modularizing SSN suitable to
+        several use cases and target audiences. 
+        For example, SOSA is intended 
   to provide Schema.org-style semantic enrichment capabilities for 
   data repositories managed by an audience broader than typical ontology engineers, 
    while still ensuring interoperability with SSN-based repositories.</p>
@@ -132,7 +134,7 @@ their usage are given.</p>
         modularization can be distinguished.</p>
       <p>The first category comprises those approaches that focus on the
         composition of existing ontologies by means of integrating and mapping
-        ontologies, most commonly through <code>owl:import</code> statements.
+        ontologies, most commonly through <code>owl:imports</code> statements.
         OWL import has a direction from a dependent ontology to a dependency
         ontology. Although import is transitive, knowledge is propagated in only
         one direction. The importing ontology assumes all the meaning of the
@@ -151,8 +153,9 @@ their usage are given.</p>
         possible and result in the same answers without the need to access other
         modules of the ontology.</p>
       <p> Our modularization uses the first approach by composing the
-        ontology into several modules that use <code>owl:import</code>
-        statements, whereby we distinguish two methods depending on the
+        ontology into several modules or graphs that use <code>owl:imports</code>
+        statements. 
+        We distinguish two methods depending on the
         directionality of the segmentation: a vertical segmentation and a
         horizontal segmentation.</p>
       <figure>
@@ -164,7 +167,7 @@ their usage are given.</p>
         lower level modules. Lower level modules are independent of their higher
         level modules and logically consistent on their own.</p>
       <p>For example, the <i>Dolce-UltraLite Alignment Module</i> imports the <i>SSN
-          Ontology</i> which itself imports the <i>SOSA Ontology</i>. However,
+          graph</i> which itself imports the <i>SOSA graph</i>. However,
         in reverse, neither <i>SOSA</i> nor <i>SSN</i> import the <i>Dolce-UltraLite
           Alignment Module</i>. In fact, <i>SOSA</i> as the core, does not
         import any other ontologies, which makes it truly independent of
@@ -266,29 +269,74 @@ their usage are given.</p>
 </ul>
 </ul>
     </section>
-    <section id="Axiomatization" class="normative">
-      <h2>Axiomatization</h2>
-      <p>This section introduces the specifications for SOSA and SSN.</p>
+    <section id="RDFImplementation" class="normative">
+      <h2>RDF Implementation</h2>
+      <p>This section introduces the specifications for the RDF implementation of the Semantic Sensor Network Ontology as SOSA.</p>
 
       <section>
         <h2>Namespaces</h2>
         <p style="text-align: center;">
+          The namespace for the core terms is <span class="repeated" style="font-family: courier;">http://www.w3.org/ns/sosa/</span>.
+          <!--
           <span class="ssn">
             The namespace for SSN terms is <span class="repeated" style="font-family: courier;">http://www.w3.org/ns/ssn/</span>.<br/>
-          </span>
-          The namespace for SOSA terms is <span class="repeated" style="font-family: courier;">http://www.w3.org/ns/sosa/</span>.
+          </span>-->
         </p>
         <p style="text-align: center;">
-          <span class="ssn">
+          <!--<span class="ssn">
             The suggested prefix for the SSN namespace is <span class="repeated" style="font-family: courier;">ssn</span>.<br>
-          </span>
+          </span>-->
           The suggested prefix for the SOSA namespace is <span class="repeated" style="font-family: courier;">sosa</span>.
         </p>
+          <aside class="note">
+            <p>In previous editions of SSN, the namespace <span class="repeated" style="font-family: courier;">http://www.w3.org/ns/ssn/</span> was used for some terms. In this edition all terms are consolidated into a single namespace. The terms in the <code>ssn:</code> namespaces remain in the RDF artefacts to protect backward compatibility of existing deployments, but are marked <code>deprecated</code>. </p>
+          </aside>
+        <h2>RDF distribution</h2>
+        <p>
+          The SSN Ontology is distributed in several graphs, each packaged as an RDF file. 
+          Within each graph, where further information (axioms and annotations) is added to an existing term, <code>rdfs:isDefinedBy</code> indicates the graph where the term was originally defined. 
+        </p>
+        <h3>SOSA</h3>
+        <p>
+          The SOSA graph contains the basic definitions of the core terms with minimal axiomatization - only <code>rdf:type</code> and <code>owl:inverseOf</code> - together with key annotations <code>rdfs:label</code> , <code>skos:definition</code> , <code>schema:domainIncludes</code> , <code>schema:rangeIncludes</code>, plus other annotations as required. 
+        </p>
         <p style="text-align: center;">
-          <span class="ssn">
-            The SSN ontology is available at <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>.<br>
-          </span>
-          The SOSA ontology is available at <a href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a>.
+          The SOSA graph is available at <a href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a>.
+        </p>
+        <h3>SSN</h3>
+        <p>
+          The SSN graph contains the full axiomatization of the core terms, importing SOSA and using <code>rdfs:subClassOf</code>, <code>rdfs:subPropertyOf</code>, <code>owl:Restriction</code> with the various associated RDFS and OWL structures. 
+        </p>
+        <p style="text-align: center;">
+          The SSN graph is available at <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>.
+        </p>
+        <h3>SSN-System</h3>
+        <p>
+          The SSN-System graph imports SOSA and SSN and contains additional definitions associated with the composition and deployment of systems. 
+        </p>
+        <p style="text-align: center;">
+          The SSN-System graph is available at <a href="http://www.w3.org/ns/ssn-system/">http://www.w3.org/ns/ssn-system/</a>.
+        </p>
+        <h3>Sample-Relations</h3>
+        <p>
+          The Sample-Relations graph imports SOSA and contains additional definitions associated with relationships between samples. 
+        </p>
+        <p style="text-align: center;">
+          The Sample-Relations graph is available at <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>.
+        </p>
+        <h3>SOSA-OMS</h3>
+        <p>
+          The SOSA-OMS graph describes the alignment of SOSA to ISO 19156:2023 (OMS), importing SOSA and with additional terms required for OMS. This graph is the canonical RDF implementation of OMS.  
+        </p>
+        <p style="text-align: center;">
+          The SOSA-OMS graph is available at <a href="http://www.w3.org/ns/sosa-oms/">http://www.w3.org/ns/sosa-oms/</a>.
+        </p>
+        <h3>(Proposed) SSN-OMS</h3>
+        <p>
+          The SSN-OMS graph describes the alignment of SSN to ISO 19156:2023 (OMS) with RDFS/OWL axiomatization. This graph imports SSN and SOSA-OMS. This graph is the canonical OWL implementation of OMS.  
+        </p>
+        <p style="text-align: center;">
+          The SSN-OMS graph is available at <a href="http://www.w3.org/ns/ssn-oms/">http://www.w3.org/ns/ssn-oms/</a>.
         </p>
       </section>
 
@@ -6453,6 +6501,13 @@ their usage are given.</p>
           </li>
           <li>Replaced inexistent <code>qudt-1-1:numericalValue</code> by <code>qudt-1-1:numericValue</code> in tree height measurement example</li>
         </ol>
-      </section>
+        <h3>Changes since W3C Recommendation 19 October 2017 <a href="https://www.w3.org/TR/2017/REC-vocab-ssn-20171019/">
+          (https://www.w3.org/TR/2017/REC-vocab-ssn-20171019/)</a></h3>
+      <ol>
+        <li>Updated Abstract to reflect the revised graph and axiomatization design</li>
+        <li>Updated Chapter 2 'Modularization' to to reflect the revised graph arrangement</li>
+        <li>Changed title of Chapter 4 from 'Axiomatization' to 'RDF Implementation' and updated the summary of namespaces and graphs</li>
+      </ol>
+    </section>
   </body>
 </html>
