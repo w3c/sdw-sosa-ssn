@@ -112,8 +112,9 @@ engineering, and the Web of Things. </p>
  
     <section id="Modularization" class="informative">
       <h2>Modularization</h2>
+      <!--
       <p><span data-dobid="hdw">Practitioners</span> using the original Ontology 
-        as defined in the <em>W3C Semantic Sensor Network Incubator Group </em> [[SSNO]] have identified a major
+        as defined in the <em>W3C Semantic Sensor Network Incubator Group </em> [[SSNO]] identified a major
         issue in its complexity, partly due to the layering underneath the
         Dolce-UltraLite (DUL) upper level ontology. 
         In response to this, the 
@@ -125,12 +126,12 @@ engineering, and the Web of Things. </p>
         For example, SOSA is intended 
   to provide Schema.org-style semantic enrichment capabilities for 
   data repositories managed by an audience broader than typical ontology engineers, 
-   while still ensuring interoperability with SSN-based repositories.</p>
-      <p>Ontology modularization is a common method used in ontology engineering
-        to segment an ontology into smaller parts. In general, ontology
-        modularization aims at providing users of ontologies with the knowledge
+   while still ensuring interoperability with SSN-based repositories.</p>-->
+      <p>Ontology modularization is commonly used 
+        to segment an ontology to provide users with the knowledge
         they require, reducing the scope as much as possible to what is strictly
-        necessary in a given use case. Two main categories of ontology
+        necessary in a given use case. </p>
+        <!-- Two main categories of ontology
         modularization can be distinguished.</p>
       <p>The first category comprises those approaches that focus on the
         composition of existing ontologies by means of integrating and mapping
@@ -152,8 +153,8 @@ engineering, and the Web of Things. </p>
         as subsumption or query answering within a single module should be
         possible and result in the same answers without the need to access other
         modules of the ontology.</p>
-      <p> Our modularization uses the first approach by composing the
-        ontology into several modules or graphs that use <code>owl:imports</code>
+      <p> Our modularization uses the first approach by composing the -->
+        <p>The SSN Ontology is distributed through several modules or graphs that use <code>owl:imports</code>
         statements. 
         We distinguish two methods depending on the
         directionality of the segmentation: a vertical segmentation and a
@@ -166,11 +167,29 @@ engineering, and the Web of Things. </p>
       <p>Vertical modules build upon each other, i.e., they directionally <code>owl:import</code>
         lower level modules. Lower level modules are independent of their higher
         level modules and logically consistent on their own.</p>
-      <p>For example, the <i>Dolce-UltraLite Alignment Module</i> imports the <i>SSN
-          graph</i> which itself imports the <i>SOSA graph</i>. However,
-        in reverse, neither <i>SOSA</i> nor <i>SSN</i> import the <i>Dolce-UltraLite
-          Alignment Module</i>. In fact, <i>SOSA</i> as the core, does not
-        import any other ontologies, which makes it truly independent of
+      <p>In particular, 
+        <ol>
+          <li>
+            the <i>SOSA graph</i> declares all the core classes and properties, and provides textual definitions and other annotations. 
+            Some semantic enrichment is provided using Schema.org properties, but there is no formal axiomatization. 
+            <b><i>SOSA</i> may be used <i>as-is</i> by an audience who wish to use terminology consistent with the SSN Ontology, thus ensuring interoperability with SSN-based repositories</b>
+          </li>
+          <li>
+            the <i>SSN graph</i> imports <i>SOSA</i>, and adds axioms that formally indicate how properties relate to classes, how classes relate to each other. <b><i>SSN</i> may be used in semantic web systems that use inferencing and reasoning, and consistency checking for datasets</b>
+          </li>
+          <li>
+            the <i>SOSA-OMS graph</i> imports <i>SOSA</i> and describes the alignment of SOSA to [[OMS]], adding some additional terms used in OMS that are not otherwise included in SSN. <b><i>SOSA-OMS</i> may be used by audiences for whom strict conformance to [[OMS]] (also known as ISO 19156:2023) is a requirement</b>
+          </li>
+          <li>
+            the <i>SSN-OMS graph</i> imports <i>SOSA-OMS</i> and <i>SSN</i> and describes the alignment of SSN to [[OMS]] including OWL/RDFS axiomatization. <b><i>SSN-OMS</i> may be used by audiences for whom strict conformance to [[OMS]] (also known as ISO 19156:2023) is a requirement, with reasoning support</b>
+          </li>
+          <li>
+            the <i>Dolce-UltraLite Alignment graph</i> imports the <i>SSN graph</i> which itself imports the <i>SOSA graph</i>, and adds axioms that position SSN within <i>Dolce-UltraLite</i>. <b><i>DUL-Alignment</i> may be used to integrate data designed using SSN into systems otherwise built in the <i>Dolce-UltraLite</i> framework</b>
+          </li>
+        </ol>
+      </p>  
+      <p><i>SOSA</i> as the core, does not
+        import any other ontologies, so it is truly independent of
         vertical modules that add more expressivity and further ontological
         commitments to the lightweight semantics of <i>SOSA</i>.</p>
       <p>Note that higher level here is not to be confused with upper level
@@ -182,8 +201,12 @@ engineering, and the Web of Things. </p>
       <h3 id="horizontal-segmentation">Horizontal Segmentation</h3>
       <p>Modules that are horizontally layered may depend on each other, i.e.,
         they may rely on the directional import of another horizontal module.
-        Only one horizontal module that is dependent on the SSN ontology is
-        presented in this specification, the <i>Sample Relations Module</i>.
+        Two horizontal modules that are dependent on the SSN ontology are
+        presented in this specification, 
+        <ol>
+          <li>the <i>Sample Relations Module</i></li>
+          <li>the SSN System module</li>
+        </ol>
         Other ontologies that add domain-specific terms to SSN, but require the
         import of SSN, can be considered horizontal modules.</p>
     </section>
@@ -326,14 +349,14 @@ engineering, and the Web of Things. </p>
         </p>
         <h3>SOSA-OMS</h3>
         <p>
-          The SOSA-OMS graph describes the alignment of SOSA to ISO 19156:2023 (OMS), importing SOSA and with additional terms required for OMS. This graph is the canonical RDF implementation of OMS.  
+          The SOSA-OMS graph describes the alignment of SOSA to ISO 19156:2023 [[OMS]] using annotations to link SOSA terms to specific requirements in [[OMS]]. SOSA-OMS imports SOSA and declares additional terms required for OMS. <b>This graph is the canonical RDF implementation of OMS.</b>  
         </p>
         <p style="text-align: center;">
           The SOSA-OMS graph is available at <a href="http://www.w3.org/ns/sosa-oms/">http://www.w3.org/ns/sosa-oms/</a>.
         </p>
-        <h3>(Proposed) SSN-OMS</h3>
+        <h3>SSN-OMS</h3>
         <p>
-          The SSN-OMS graph describes the alignment of SSN to ISO 19156:2023 (OMS) with RDFS/OWL axiomatization. This graph imports SSN and SOSA-OMS. This graph is the canonical OWL implementation of OMS.  
+          The SSN-OMS graph describes the alignment of SSN to ISO 19156:2023 [[OMS]] with RDFS/OWL axiomatization. This graph imports SSN and SOSA-OMS. <b>This graph is the canonical OWL implementation of OMS.</b>  
         </p>
         <p style="text-align: center;">
           The SSN-OMS graph is available at <a href="http://www.w3.org/ns/ssn-oms/">http://www.w3.org/ns/ssn-oms/</a>.
@@ -6505,7 +6528,7 @@ engineering, and the Web of Things. </p>
           (https://www.w3.org/TR/2017/REC-vocab-ssn-20171019/)</a></h3>
       <ol>
         <li>Updated Abstract to reflect the revised graph and axiomatization design</li>
-        <li>Updated Chapter 2 'Modularization' to to reflect the revised graph arrangement</li>
+        <li>Updated Chapter 2 'Modularization' to simplify and to reflect the revised graph arrangement</li>
         <li>Changed title of Chapter 4 from 'Axiomatization' to 'RDF Implementation' and updated the summary of namespaces and graphs</li>
       </ol>
     </section>
