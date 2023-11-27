@@ -296,8 +296,8 @@ engineering, and the Web of Things. </p>
       <h2>RDF Implementation</h2>
       <p>This section introduces the specifications for the RDF implementation of the Semantic Sensor Network Ontology as SOSA.</p>
 
-      <section>
-        <h2>Namespaces</h2>
+      <section id="namespaces">
+        <h3>Namespaces</h3>
         <p style="text-align: center;">
           The namespace for the core terms is <span class="repeated" style="font-family: courier;">http://www.w3.org/ns/sosa/</span>.
           <!--
@@ -314,47 +314,49 @@ engineering, and the Web of Things. </p>
           <aside class="note">
             <p>In previous editions of SSN, the namespace <span class="repeated" style="font-family: courier;">http://www.w3.org/ns/ssn/</span> was used for some terms. In this edition all terms are consolidated into a single namespace. The terms in the <code>ssn:</code> namespaces remain in the RDF artefacts to protect backward compatibility of existing deployments, but are marked <code>deprecated</code>. </p>
           </aside>
-        <h2>RDF distribution</h2>
+      </section>
+      <section id="RDFdistribution">
+        <h3>RDF distribution</h3>
         <p>
           The SSN Ontology is distributed in several graphs, each packaged as an RDF file. 
           Within each graph, where further information (axioms and annotations) is added to an existing term, <code>rdfs:isDefinedBy</code> indicates the graph where the term was originally defined. 
         </p>
-        <h3>SOSA</h3>
+        <h4>SOSA</h4>
         <p>
           The SOSA graph contains the basic definitions of the core terms with minimal axiomatization - only <code>rdf:type</code> and <code>owl:inverseOf</code> - together with key annotations <code>rdfs:label</code> , <code>skos:definition</code> , <code>schema:domainIncludes</code> , <code>schema:rangeIncludes</code>, plus other annotations as required. 
         </p>
         <p style="text-align: center;">
           The SOSA graph is available at <a href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a>.
         </p>
-        <h3>SSN</h3>
+        <h4>SSN</h4>
         <p>
           The SSN graph contains the full axiomatization of the core terms, importing SOSA and using <code>rdfs:subClassOf</code>, <code>rdfs:subPropertyOf</code>, <code>owl:Restriction</code> with the various associated RDFS and OWL structures. 
         </p>
         <p style="text-align: center;">
           The SSN graph is available at <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>.
         </p>
-        <h3>SSN-System</h3>
+        <h4>SSN-System</h4>
         <p>
           The SSN-System graph imports SOSA and SSN and contains additional definitions associated with the composition and deployment of systems. 
         </p>
         <p style="text-align: center;">
           The SSN-System graph is available at <a href="http://www.w3.org/ns/ssn-system/">http://www.w3.org/ns/ssn-system/</a>.
         </p>
-        <h3>Sample-Relations</h3>
+        <h4>Sample-Relations</h4>
         <p>
           The Sample-Relations graph imports SOSA and contains additional definitions associated with relationships between samples. 
         </p>
         <p style="text-align: center;">
           The Sample-Relations graph is available at <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>.
         </p>
-        <h3>SOSA-OMS</h3>
+        <h4>SOSA-OMS</h4>
         <p>
           The SOSA-OMS graph describes the alignment of SOSA to ISO 19156:2023 [[OMS]] using annotations to link SOSA terms to specific requirements in [[OMS]]. SOSA-OMS imports SOSA and declares additional terms required for OMS. <b>This graph is the canonical RDF implementation of OMS.</b>  
         </p>
         <p style="text-align: center;">
           The SOSA-OMS graph is available at <a href="http://www.w3.org/ns/sosa-oms/">http://www.w3.org/ns/sosa-oms/</a>.
         </p>
-        <h3>SSN-OMS</h3>
+        <h4>SSN-OMS</h4>
         <p>
           The SSN-OMS graph describes the alignment of SSN to ISO 19156:2023 [[OMS]] with RDFS/OWL axiomatization. This graph imports SSN and SOSA-OMS. <b>This graph is the canonical OWL implementation of OMS.</b>  
         </p>
