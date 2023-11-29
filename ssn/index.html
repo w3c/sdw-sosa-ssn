@@ -4380,13 +4380,53 @@ their usage are given.</p>
     <section id="VerticalSegmentation">
 <h2>Vertical Segmentation</h2>
 <p>This section introduces the specifications for the vertical segmentation modules that align SOSA and SSN to a variety of related ontologies and specifications.  </p>
-     <section id="DUL_Alignment" class="informative">
+  <section id="OMS_alignment" class="normative">
+    <h3>OMS Alignment Module</h3>
+    <p>This section introduces the alignment of SOSA and SSN to Observations, measurements and samples [[OMS]], the latest edition of the OGC and ISO standard previously known as Observations and Measurements [[OandM]], which was a key influence and input in the development of SSN. 
+      This module serves to provide a detailed mapping of SOSA terms to discrete requirements in [[OMS]] thus explaining how SOSA and SSN provide an RDF and OWL/RDFS implementation of OMS (repectively). </p>
+    <p>
+      Note that [[OMS]] is formalized using UML, which does not provide accessible global identifiers for terms in the structure model. 
+      Here we use the URI for each formal Requirement relating to a class or property in [[OMS]] to denote the UML class or property. 
+      Within the RDF representation of the alignment, the predicate <code>ogc:implements</code> is used to link a SOSA term to the corresponding OMS class or property, defined as follows: <br/>
+      <code>ogc:implements a owl:ObjectProperty ; <br/>
+        rdfs:subPropertyOf dcterms:source , prov:wasDerivedFrom , doap:implements . </code>
+    </p>
+    <section id="OMS_Alignment-namespaces">
+      <h4>Namespaces</h4>
+      <p>The following namespace prefixes are used in the alignment of SOSA
+        and SSN to OMS</p>
+      <table>
+        <tbody>
+          <tr>
+            <th> Prefix </th>
+            <th> Namespace </th>
+          </tr>
+          <tr>
+            <td> sosa: </td>
+            <td> <a href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a>
+            </td>
+          </tr>
+          <tr>
+            <td> ssn: </td>
+            <td> <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>
+            </td>
+          </tr>
+          <tr>
+            <td> sosa-oms: </td>
+            <td> <a href="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl">http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+  </section>
+  <section id="DUL_Alignment" class="informative">
       <h3>Dolce-Ultralite Alignment Module</h3>
       <p>This section introduces the alignment of SSN to the DOLCE UltraLite upper ontology (DUL) which is the core dependency of the previous version of SSN. This serves to
         axiomatically clarify the intended meaning of SSN terms and will assist
         SSN users wishing to interoperate with other DUL-aligned ontologies. It is also imported in the SSNX alignment module that aligns SSN to the previous version of SSN. Note, however, that the DUL alignment can be used independently to align SSN with more generic concepts/properties of DUL.</p>
       The DUL alignment, known as "ssn-dul" is available at <a href="http://www.w3.org/ns/ssn/dul">http://www.w3.org/ns/ssn/dul</a>.
-      <p></p>
       <section id="DUL_Alignment-namespaces" class="informative">
         <h3>Namespaces</h3>
         <p>The following namespace prefixes are used in the alignment to SOSA
@@ -6453,6 +6493,11 @@ their usage are given.</p>
           </li>
           <li>Replaced inexistent <code>qudt-1-1:numericalValue</code> by <code>qudt-1-1:numericValue</code> in tree height measurement example</li>
         </ol>
+        <h3>Changes since W3C Recommendation 19 October 2017 <a href="https://www.w3.org/TR/2017/REC-vocab-ssn-20171019/">
+          (https://www.w3.org/TR/2017/REC-vocab-ssn-20171019/)</a></h3>
+      <ol>
+        <li>Added OMS alignment modules to section 6. 'Vertical Segmentation'</li>
+      </ol>
       </section>
   </body>
 </html>
