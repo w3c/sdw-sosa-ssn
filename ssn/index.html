@@ -5931,19 +5931,12 @@ their usage are given.</p>
          
      <section id="SSNProperty-instances" class="informative">
      <h3>Generic or Specific Instances of ssn:Property</h3>
-        <p>This specification does not specify whether an instance of <a href="#SSNProperty"><code>ssn:Property</code></a> should be generic to all features of interest (e.g., <code>ex:Temperature</code>,
-         <code>ex:OnOffStatus</code>), or specific to a single feature of interest (e.g., <code>&lt;myBodyTemperature&gt;</code>, <code>&lt;LightStatus&gt;</code>).
-         Implementers are free to choose one way of modeling things or the other.
-         </p>
-         <p>On the other hand, one SHOULD NOT use <a href="https://www.w3.org/TR/owl2-new-features/#F12:_Punning">OWL punning</a> to make <code>ex:Temperature</code> denote both a subclass of 
-         <a href="#SSNProperty"><code>ssn:Property</code></a> and an instance of <a href="#SSNProperty"><code>ssn:Property</code></a>. In fact, merging the 
-         two examples below in a single RDF Graph would make an OWL reasoner infer that <code>ex:Temperature</code>, <code>&lt;office/1/temperature&gt;</code>, and
-         <code>&lt;office/2/temperature&gt;</code>, denote the same individual.</p>
-         <p>This also holds for subclasses of <a href="#SSNProperty"><code>ssn:Property</code></a>: <a href="#SOSAObservableProperty"><code>sosa:ObservableProperty</code></a>, and <a href="#SOSAActuatableProperty"><code>sosa:ActuatableProperty</code></a>.</p>
-         <p>This first example is modeling instances of <a href="#SSNProperty"><code>ssn:Property</code></a> as generic to all features of interest:</p>
-<pre class="example" data-include="./examples/2017ex4.ttl" data-include-format="text"></pre>
-         <p>This second example is modeling instances of <a href="#SSNProperty"><code>ssn:Property</code></a> as specific to a features of interest:</p>
-<pre class="example" data-include="./examples/2017ex5.ttl" data-include-format="text"></pre>
+        <p>The previous version of SOSA/SSN left an ambiguity on whether an instance of <a href="#SSNProperty"><code>ssn:Property</code></a> should be generic to all features of interest (e.g., <code>ex:Temperature</code>,
+         <code>ex:OnOffStatus</code>), or specific to a single feature of interest (e.g., <code>&lt;myBodyTemperature&gt;</code>, <code>&lt;LightStatus&gt;</code>). This version solves the ambiguity by differentiating:</p>
+         <ul>
+          <li><a href="#SOSAProperty"><code>sosa:Property</code></a> for the former case</li>
+          <li><a href="#SOSAPropertyOfInterest"><code>sosa:PropertyOfInterest</code></a> for the latter case.</li>
+         </ul>
         </section>
 
 
