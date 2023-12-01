@@ -5,8 +5,6 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
-@prefix vann: <http://purl.org/vocab/vann/> .
-@prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix time: <http://www.w3.org/2006/time#> .
 @prefix prov: <https://www.w3.org/TR/prov-o/#> .
 @prefix doap: <http://usefulinc.com/ns/doap#> .
@@ -32,9 +30,6 @@ skos:definition a owl:AnnotationProperty .
 skos:example a owl:AnnotationProperty .
 skos:note a owl:AnnotationProperty .
 time:TemporalEntity a owl:Class .
-vann:preferredNamespacePrefix a owl:AnnotationProperty .
-vann:preferredNamespaceUri a owl:AnnotationProperty .
-voaf:Vocabulary a owl:Class .
 
 
 sosa-oms: a owl:Ontology ;
@@ -122,7 +117,6 @@ sosa:hasPreparationStep a owl:ObjectProperty ;
   ogc:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sample/preparationStep-sem> ;
   rdfs:label "has preparation step"@en ;
   skos:definition "Link to a preparation step used to prepare the sample"@en ;
-  rdfs:comment "Link to a preparation step used to prepare the sample"@en ;
   schema:domainIncludes sosa:Sample ;
   schema:rangeIncludes sosa:PreparationStep ;
   rdfs:isDefinedBy sosa-oms: .
@@ -132,7 +126,6 @@ sosa:SpatialSample a rdfs:Class , owl:Class ;
   rdfs:subClassOf sosa:Sample ; 
   rdfs:label "Spatial Sample"@en ;
   skos:definition "A SpatialSample is a geospatial Sample. When observations are made to estimate properties of a geospatial feature, in particular where the value of a property varies within the scope of the feature, a SpatialSample is used."@en ;
-  rdfs:comment "A SpatialSample is a geospatial Sample. When observations are made to estimate properties of a geospatial feature, in particular where the value of a property varies within the scope of the feature, a SpatialSample is used."@en ;
   skos:example "Some common names for spatial samples include: borehole, flightline, interval, lidar cloud, map horizon, microscope slide, mine level, mine, observation well, profile, pulp, quadrat, scene, section, ship track, spot, station, swath, trajectory, traverse, etc..."@en ;
   skos:note "Depending on accessibility and on the nature of the expected property variation, the SpatialSample may be extensive in one, two or three spatial dimensions."@en ;
   rdfs:isDefinedBy sosa-oms: .
@@ -142,7 +135,6 @@ sosa:MaterialSample a rdfs:Class , owl:Class ;
   rdfs:subClassOf sosa:Sample ; 
   rdfs:label "Material Sample"@en ;
   skos:definition "A MaterialSample is a physical, tangible Sample."@en ;
-  rdfs:comment "A MaterialSample is a physical, tangible Sample."@en ;
   skos:example "A piece of rock, a blood sample, a water sample, etc."@en ;
   skos:note "MaterialSamples that are curated and preserved are sometimes known as 'specimens'."@en ;
   skos:note "MaterialSamples may be destroyed in connexion with the observation act or a subsequent preparation step."@en ;
@@ -153,7 +145,6 @@ sosa:StatisticalSample a rdfs:Class , owl:Class ;
   rdfs:subClassOf sosa:Sample ; 
   rdfs:label "Statistical Sample"@en ;
   skos:definition "A StatisticalSample is a statistical subset of a feature-of-interest, defined for the purpose of creating Observation(s)."@en ;
-  rdfs:comment "A StatisticalSample is a statistical subset of a feature-of-interest, defined for the purpose of creating Observation(s)."@en ;
   skos:example "The male or female subset of a population."@en ;
   skos:note "StatisticalSamples usually apply to populations or other sets, of which certain subset may be of specific interest."@en ;
   rdfs:isDefinedBy sosa-oms: .
@@ -161,7 +152,7 @@ sosa:StatisticalSample a rdfs:Class , owl:Class ;
 sosa:SampleCollection ogc:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/SampleCollection> ;
   rdfs:isDefinedBy sosa: .
 
-sosa:hasMemberSample ogc:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/SampleCollection/member-sem> ;
+sosa:hasMember ogc:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/SampleCollection/member-sem> ;
   rdfs:subPropertyOf rdfs:member ;
   rdfs:isDefinedBy sosa: .
 
@@ -190,7 +181,6 @@ sosa:ObservingProcedure a rdfs:Class , owl:Class ;
   rdfs:subClassOf sosa:Procedure ;  
   rdfs:label "Observing Procedure"@en ;
   skos:definition "The description of steps performed in order to determine the value of an ObservableProperty by an Observer."@en ;
-  rdfs:comment "The description of steps performed in order to determine the value of an ObservableProperty by an Observer."@en ;
   skos:example "A workflow, protocol, plan, algorithm, or computational method specifying how to make an observation; the description of the process utilized by an observer. This could be a chemical analysis method, a protocol for measuring an object, but could also be a checklist utilized by a human observer during a biodiversity campaign."@en ;
   skos:note "The observing procedure cannot describe a sensor instance, but it can describe the sensor type."@en ;
   rdfs:isDefinedBy sosa-oms: .
@@ -199,7 +189,6 @@ sosa:ActuationProcedure a rdfs:Class , owl:Class ;
   rdfs:subClassOf sosa:Procedure ;
   rdfs:label "Actuation Procedure"@en ;
   skos:definition "The description of steps performed by an Actuator to change the ActuableProperty."@en ;
-  rdfs:comment "The description of steps performed by an Actuator to change the ActuableProperty."@en ;
   rdfs:isDefinedBy sosa-oms: .
 
 sosa:SamplingProcedure a rdfs:Class , owl:Class ;
@@ -207,7 +196,6 @@ sosa:SamplingProcedure a rdfs:Class , owl:Class ;
   rdfs:subClassOf sosa:Procedure ;
   rdfs:label "Sampling Procedure"@en ;
   skos:definition "The description of steps performed by a Sampler in order to extract a Sample from its sampled Feature in the frame of a Sampling."@en ;
-  rdfs:comment "The description of steps performed by a Sampler in order to extract a Sample from its sampled Feature in the frame of a Sampling."@en ;
   rdfs:isDefinedBy sosa-oms: .
 
 sosa:PreparationProcedure a rdfs:Class , owl:Class ;
@@ -215,7 +203,6 @@ sosa:PreparationProcedure a rdfs:Class , owl:Class ;
   rdfs:subClassOf sosa:Procedure ;
   rdfs:label "Preparation Procedure"@en ;
   skos:definition "The description of preparation steps performed on a Sample."@en ;
-  rdfs:comment "The description of preparation steps performed on a Sample."@en ;
   rdfs:isDefinedBy sosa-oms: .
 
 
@@ -294,7 +281,6 @@ sosa:observationType a owl:ObjectProperty ;
     ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/host-sem> ;
     rdfs:label "made on platform"@en ;
     skos:definition "Relation between an Observation and the Platform the Sensor was attached to at the time the observation was made."@en ;
-    rdfs:comment "Relation between an Observation and the Platform the Sensor was attached to at the time the observation was made."@en ;
     schema:domainIncludes sosa:Observation ;
     schema:domainIncludes sosa:ObservationCollection ;
     schema:rangeIncludes sosa:Platform ;
@@ -304,7 +290,6 @@ sosa:observationType a owl:ObjectProperty ;
     ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/gen/relatedObservation-sem> ;
     rdfs:label "related observation"@en ;
     skos:definition "Relation to an Observation."@en ;
-    rdfs:comment "Relation to an Observation."@en ;
     schema:domainIncludes sosa:Sample ;
     schema:domainIncludes sosa:ObservableProperty ;
     schema:domainIncludes sosa:ObservingProcedure ;
@@ -317,7 +302,7 @@ sosa:observationType a owl:ObjectProperty ;
 
   dqv:hasQualityMeasurement
     ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-core/AbstractObservationCharacteristics/resultQuality-sem> ;
-    rdfs:comment "Information pertaining to the data quality of the result." ;
+    skos:definition "Information pertaining to the data quality of the result." ;
     schema:domainIncludes osa:Observation ;
     rdfs:isDefinedBy dqv: .
 
@@ -336,7 +321,6 @@ sosa:Sampling ogc:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sam
     ogc:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sampling/relatedSampling-sem> ;
     rdfs:label "related sampling"@en ;
     skos:definition "Relation to an act of Sampling."@en ;
-    rdfs:comment "Relation to an act of Sampling."@en ;
     schema:domainIncludes sosa:Sampling ;
     schema:rangeIncludes sosa:Sampling ;
     rdfs:isDefinedBy sosa-oms: .
@@ -345,7 +329,6 @@ sosa:PreparationStep a rdfs:Class , owl:Class ;
   ogc:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/PreparationStep> ;
   rdfs:label "Preparation Step"@en ;
   skos:definition "A PreparationStep is an individual step pertaining to a Sample PreparationProcedure."@en ;
-  rdfs:comment "A PreparationStep is an individual step pertaining to a Sample PreparationProcedure."@en ;
   skos:example "???"@en ;
   rdfs:isDefinedBy sosa-oms: .
 
@@ -353,7 +336,6 @@ sosa:PreparationStep a rdfs:Class , owl:Class ;
     ogc:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/PreparationStep/preparedSample-sem> ;
     rdfs:label "prepared sample"@en ;
     skos:definition "The Sample on which the PreparationProcedure is performed."@en ;
-    rdfs:comment "The Sample on which the PreparationProcedure is performed."@en ;
     schema:domainIncludes sosa:PreparationStep ;
     schema:rangeIncludes sosa:Sample ;
     rdfs:isDefinedBy sosa-oms: .
@@ -362,7 +344,6 @@ sosa:PreparationStep a rdfs:Class , owl:Class ;
     ogc:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/PreparationStep/processingDetails-sem> ;
     rdfs:label "processing details"@en ;
     skos:definition "The PreparationProcedure used by the PreparationStep."@en ;
-    rdfs:comment "The PreparationProcedure used by the PreparationStep."@en ;
     schema:domainIncludes sosa:PreparationStep ;
     schema:rangeIncludes sosa:PreparationProcedure ;
     rdfs:isDefinedBy sosa-oms: .
@@ -371,7 +352,6 @@ sosa:PreparationStep a rdfs:Class , owl:Class ;
     ogc:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/PreparationProcedure/samplePreparationStep-sem> ;
     rdfs:label "sample preparation step"@en ;
     skos:definition "A PreparationStep that uses the PreparationProcedure."@en ;
-    rdfs:comment "A PreparationStep that uses the PreparationProcedure."@en ;
     schema:domainIncludes sosa:PreparationProcedure ;
     schema:rangeIncludes sosa:PreparationStep ;
     rdfs:isDefinedBy sosa-oms: .
@@ -382,7 +362,7 @@ sosa:PreparationStep a rdfs:Class , owl:Class ;
 sosa:ObservationCollection ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-core/AbstractObservationCollection> ;
   rdfs:isDefinedBy sosa: .
 
-sosa:hasMemberObs ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-core/AbstractObservationCollection/member-sem> ;
+sosa:hasMember ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-core/AbstractObservationCollection/member-sem> ;
   rdfs:subPropertyOf rdfs:member ;
   rdfs:isDefinedBy sosa: .
 
@@ -436,7 +416,6 @@ sosa:validTime a owl:ObjectProperty ;
   ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/validTime-sem> ;
   rdfs:label "valid time"@en ;
   skos:definition "The time interval during which the result is assumed to be applicable for use."@en ;
-  rdfs:comment "The time interval during which the result is assumed to be applicable for use."@en ;
   schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:Observation ;
   schema:domainIncludes sosa:Sampling ;
