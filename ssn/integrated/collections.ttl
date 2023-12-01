@@ -57,30 +57,33 @@ sosa:hasMember
   skos:editorialNote "Note that there is a single `member` property. OWL or SHACL constraints may limit the range depending on the context of different collection types" ;
   schema:domainIncludes sosa:SampleCollection ;
   schema:domainIncludes sosa:ObservationCollection ;
-  schema:domainIncludes sosa:HomogeneousSampleCollection ;
-  schema:domainIncludes sosa:HomogeneousObservationCollection ;
   schema:rangeIncludes sosa:Sample ;
   schema:rangeIncludes sosa:SampleCollection ;
-  schema:rangeIncludes sosa:HomogeneousSampleCollection ;
   schema:rangeIncludes sosa:Observation ;
   schema:rangeIncludes sosa:ObservationCollection ;
-  schema:rangeIncludes sosa:HomogeneousObservationCollection ;
   rdfs:isDefinedBy sosa-c: .
 
 
-## General Sample Collection 
+## Sample Collection 
 
 sosa:SampleCollection 
   a owl:Class ;
-  rdfs:label "General Sample Collection"@en ;
+  rdfs:label "Sample Collection"@en ;
   skos:definition """Collection of one or more samples, which may be nested in further collections. 
-  The values of the collection properties summarize the values of the properties of the member samples.
+
+  The following Sample and Sampling properties may appear in the description of the Sample Collection: hasOriginalSample , hasSampledFeature , isSampleOf , isResultOf , usedProcedure , madeBySampler . 
+  If they are present, the values of these properties summarize the values of the properties of the member samples. 
+  The following consistency rules apply: 
   
-  Where a property is not mentioned in the description of the collection, each member may have any value for that property.
-  Where a property is mentioned one time in the description of the collection, the property may be omitted on a member, else if present a member must have that same value for that property.
-  Where a property is mentioned more than one time in the description of the collection, or where the value of that property is a range, the property must be present for each member and must have a value which corresponds to one of the values for that property on the collection, or which falls within the range of values for that property on the collection.
+  1. Where a property is not mentioned in the description of the Sample Collection, a member Sample or Sample Collection may have any value for that property.
+
+  2. Where a property is mentioned one time in the description of the Sample Collection, every member Sample or Sample Collection has that same value for that property - i.e. the collection is homogeneous in that property.  That property may be omitted in the description of any member Sample or Sample Collection.
+
+  3. Where a property is mentioned more than one time in the description of the Sample Collection, the property must be present in the description of each member Sample or Sample Collection, and must have a value which corresponds to one of the values in the description of the collection. 
+  
+  4. Where a property in the description of the Sample Collection has a value that is a range or interval, the property must be present in the description of each member Sample or Sample Collection, and must have a value that either matches or falls within that range or interval.
   """@en ;
-  skos:note """The members of a general (summarizing) collection do not necessarily share a common value for any property. 
+  skos:note """The members of a collection do not necessarily share a common value for any property. 
   """ ;
   rdfs:isDefinedBy sosa-c: .
 
@@ -100,7 +103,15 @@ sosa:isResultOf
   schema:domainIncludes sosa:SampleCollection ;
   rdfs:isDefinedBy sosa: .
 
-## General Sample Collection axiomatization 
+sosa:usedProcedure
+  schema:domainIncludes sosa:SampleCollection ;
+  rdfs:isDefinedBy sosa: .
+
+sosa:madeBySampler
+  schema:domainIncludes sosa:SampleCollection ;
+  rdfs:isDefinedBy sosa: .
+
+## Sample Collection axiomatization 
 
 sosa:SampleCollection
   rdfs:subClassOf rdf:Bag ;
@@ -111,111 +122,61 @@ sosa:SampleCollection
       owl:unionOf ( 
         sosa:Sample 
         sosa:SampleCollection 
-        sosa:HomogeneousSampleCollection 
       ) ; 
     ] 
   ] ;
   rdfs:subClassOf [ 
     a owl:Restriction ; 
     owl:onProperty sosa:hasOriginalSample ; 
-    owl:allValuesFrom sosa:Sample 
+    owl:minCardinality "0"^^xsd:nonNegativeInteger 
   ] ;
   rdfs:subClassOf [ 
     a owl:Restriction ; 
     owl:onProperty sosa:hasSampledFeature ; 
-    owl:allValuesFrom sosa:FeatureOfInterest 
+    owl:minCardinality "0"^^xsd:nonNegativeInteger 
   ] ;
   rdfs:subClassOf [ 
     a owl:Restriction ; 
     owl:onProperty sosa:isSampleOf ; 
-    owl:allValuesFrom sosa:FeatureOfInterest 
+    owl:minCardinality "0"^^xsd:nonNegativeInteger 
   ] ;
   rdfs:subClassOf [ 
     a owl:Restriction ; 
     owl:onProperty sosa:isResultOf ; 
-    owl:allValuesFrom sosa:Sampling 
+    owl:minCardinality "0"^^xsd:nonNegativeInteger 
+  ] ;
+  rdfs:subClassOf [ 
+    a owl:Restriction ; 
+    owl:onProperty sosa:usedProcedure ; 
+    owl:minCardinality "0"^^xsd:nonNegativeInteger 
+  ] ;
+  rdfs:subClassOf [ 
+    a owl:Restriction ; 
+    owl:onProperty sosa:madeBySampler ; 
+    owl:minCardinality "0"^^xsd:nonNegativeInteger 
   ] ;
   owl:disjointWith sosa:ObservationCollection ;
   rdfs:isDefinedBy sosa-c: .
 
 
-## Homogeneous Sample Collection
-
-sosa:HomogeneousSampleCollection 
-  a owl:Class ;
-  rdfs:label "Homogeneous Sample Collection"@en ;
-  skos:definition """Collection of one or more samples, which may be nested in further collections. 
-  The members of a homogeneous collection share a common value for one or more property. 
-    
-  Where a property is not mentioned in the description of the collection, each member may have any value for that property.
-  Where a property is mentioned one time in the description of the collection, the property may be omitted on a member, else if present a member must have that same value for that property.
-  """@en ;
-  rdfs:isDefinedBy sosa-c: .
-
-sosa:hasOriginalSample
-  schema:domainIncludes sosa:HomogeneousSampleCollection ;
-  rdfs:isDefinedBy sosa: .
-
-sosa:hasSampledFeature
-  schema:domainIncludes sosa:HomogeneousSampleCollection ;
-  rdfs:isDefinedBy sosa: .
-
-sosa:isSampleOf
-  schema:domainIncludes sosa:HomogeneousSampleCollection ;
-  rdfs:isDefinedBy sosa: .
-
-sosa:isResultOf
-  schema:domainIncludes sosa:HomogeneousSampleCollection ;
-  rdfs:isDefinedBy sosa: .
-
-## Homogeneous Sample Collection axiomatization 
-
-sosa:HomogeneousSampleCollection
-  rdfs:subClassOf sosa:SampleCollection ;
-  rdfs:subClassOf [ 
-    a owl:Restriction ; 
-    owl:onProperty sosa:hasMember ; 
-    owl:allValuesFrom [ 
-      owl:unionOf ( 
-        sosa:Sample 
-        sosa:HomogeneousSampleCollection 
-      ) ; 
-    ] 
-  ] ;
-  rdfs:subClassOf [ 
-    a owl:Restriction ; 
-    owl:onProperty sosa:hasOriginalSample ; 
-    owl:maxCardinality "1"^^xsd:nonNegativeInteger 
-  ] ;
-  rdfs:subClassOf [ 
-    a owl:Restriction ; 
-    owl:onProperty sosa:hasSampledFeature ; 
-    owl:maxCardinality "1"^^xsd:nonNegativeInteger 
-  ] ;
-  rdfs:subClassOf [ 
-    a owl:Restriction ; 
-    owl:onProperty sosa:isSampleOf ; 
-    owl:maxCardinality "1"^^xsd:nonNegativeInteger 
-  ] ;
-  rdfs:subClassOf [ 
-    a owl:Restriction ; 
-    owl:onProperty sosa:isResultOf ; 
-    owl:maxCardinality "1"^^xsd:nonNegativeInteger 
-  ] ;
-  rdfs:isDefinedBy sosa-c: .
-
-
-## General Observation Collection
+## Observation Collection
 
 sosa:ObservationCollection 
   a owl:Class ;
-  rdfs:label "General Observation Collection"@en ;
+  rdfs:label "Observation Collection"@en ;
   skos:definition """Collection of one or more observations, which may be nested in further collections. 
-  The values of the collection properties summarize the values of the properties of the member observations. 
-    
-  Where a property is not mentioned in the description of the collection, each member may have any value for that property.
-  Where a property is mentioned one time in the description of the collection, the property may be omitted on a member, else if present a member must have that same value for that property.
-  Where a property is mentioned more than one time in the description of the collection, or where the value of that property is a range, the property must be present for each member and must have a value which corresponds to one of the values for that property on the collection, or which falls within the range of values for that property on the collection.
+
+  The following Observation properties may appear in the description of the Observation Collection: hasFeatureOfInterest , hasUltimateFeatureOfInterest , usedProcedure , madeBySensor , madeOnPlatform ,  observedProperty , phenomenonTime , resultTime , validTime , hasResult , hasSimpleResult , observationType , hasQualityMeasurement . 
+  If they are present, the values of these properties summarize the values of the properties of the member samples. 
+  The following consistency rules apply: 
+  
+  1. Where a property is not mentioned in the description of the Observation Collection, a member Observation or Observation Collection may have any value for that property.
+
+  2. Where a property is mentioned one time in the description of the Observation Collection, every member Observation or Observation Collection has that same value for that property - i.e. the collection is homogeneous in that property.  That property may be omitted in the description of any member Observation or Observation Collection.
+
+  3. Where a property is mentioned more than one time in the description of the Observation Collection, the property must be present in the description of each member Observation or Observation Collection, and must have a value which corresponds to one of the values in the description of the collection. 
+  
+  4. Where a property in the description of the Observation Collection has a value that is a range or interval, the property must be present in the description of each member Observation or Observation Collection, and must have a value that either matches or falls within that range or interval.
   """@en ;
   skos:note """The members of a general (summarizing) collection do not necessarily share a common value for any property. """@en ;
   rdfs:isDefinedBy sosa-c: .
@@ -228,6 +189,10 @@ sosa:hasUltimateFeatureOfInterest
   schema:domainIncludes sosa:ObservationCollection ;
   rdfs:isDefinedBy sosa: .
 
+sosa:usedProcedure
+  schema:domainIncludes sosa:ObservationCollection ;
+  rdfs:isDefinedBy sosa: .
+
 sosa:madeBySensor
   schema:domainIncludes sosa:ObservationCollection ;
   rdfs:isDefinedBy sosa: .
@@ -248,6 +213,10 @@ sosa:resultTime
   schema:domainIncludes sosa:ObservationCollection ;
   rdfs:isDefinedBy sosa: .
 
+sosa:validTime
+  schema:domainIncludes sosa:ObservationCollection ;
+  rdfs:isDefinedBy sosa: .
+
 sosa:hasResult
   schema:domainIncludes sosa:ObservationCollection ;
   rdfs:isDefinedBy sosa: .
@@ -255,10 +224,6 @@ sosa:hasResult
 sosa:hasSimpleResult
   schema:domainIncludes sosa:ObservationCollection ;
   rdfs:isDefinedBy sosa: .
-
-sosa:validTime 
-  schema:domainIncludes sosa:ObservationCollection ;
-  rdfs:isDefinedBy sosa-oms: .
 
 sosa:observationType 
   schema:domainIncludes sosa:ObservationCollection ;
@@ -272,7 +237,7 @@ sosa:usedProcedure
   schema:domainIncludes sosa:ObservationCollection ;
   rdfs:isDefinedBy sosa: .
 
-## General Observation collection axiomatization
+## Observation collection axiomatization
 
 sosa:ObservationCollection 
   a owl:Class ;
@@ -284,188 +249,74 @@ sosa:ObservationCollection
       owl:unionOf ( 
         sosa:Observation 
         sosa:ObservationCollection 
-        sosa:HomogeneousObservationCollection 
       ) ;
     ] 
   ] ;
   rdfs:subClassOf [ 
     a owl:Restriction ; 
     owl:onProperty sosa:madeBySensor ; 
-    owl:allValuesFrom sosa:Sensor 
+    owl:minCardinality "0"^^xsd:nonNegativeInteger 
   ] ;
   rdfs:subClassOf [ 
     a owl:Restriction ; 
     owl:onProperty sosa:madeOnPlatform ; 
-    owl:allValuesFrom sosa:Platform 
+    owl:minCardinality "0"^^xsd:nonNegativeInteger 
   ] ;
   rdfs:subClassOf [ 
     a owl:Restriction ; 
     owl:onProperty sosa:usedProcedure ; 
-    owl:allValuesFrom sosa:ObservingProcedure 
+    owl:minCardinality "0"^^xsd:nonNegativeInteger 
   ] ;
   rdfs:subClassOf [ 
     a owl:Restriction ; 
     owl:onProperty sosa:hasFeatureOfInterest ; 
-    owl:allValuesFrom sosa:FeatureOfInterest 
+    owl:minCardinality "0"^^xsd:nonNegativeInteger 
   ] ;
   rdfs:subClassOf [ 
     a owl:Restriction ; 
     owl:onProperty sosa:hasUltimateFeatureOfInterest ; 
-    owl:allValuesFrom sosa:FeatureOfInterest 
+    owl:minCardinality "0"^^xsd:nonNegativeInteger 
   ] ;
   rdfs:subClassOf [ 
     a owl:Restriction ; 
     owl:onProperty sosa:observedProperty ; 
-    owl:allValuesFrom sosa:ObservableProperty 
+    owl:minCardinality "0"^^xsd:nonNegativeInteger 
   ] ;
   rdfs:subClassOf [ 
     a owl:Restriction ; 
     owl:onProperty sosa:phenomenonTime ; 
-    owl:allValuesFrom time:TemporalEntity 
+    owl:minCardinality "0"^^xsd:nonNegativeInteger 
+  ] ;
+  rdfs:subClassOf [ 
+    a owl:Restriction ; 
+    owl:onProperty sosa:validTime ; 
+    owl:minCardinality "0"^^xsd:nonNegativeInteger 
   ] ;
   rdfs:subClassOf [ 
     a owl:Restriction ; 
     owl:onProperty sosa:resultTime ; 
-    owl:allValuesFrom xsd:DateTime 
+    owl:minCardinality "0"^^xsd:nonNegativeInteger 
+  ] ;
+  rdfs:subClassOf [ 
+    a owl:Restriction ; 
+    owl:onProperty sosa:hasResult ; 
+    owl:minCardinality "0"^^xsd:nonNegativeInteger 
+  ] ;
+  rdfs:subClassOf [ 
+    a owl:Restriction ; 
+    owl:onProperty sosa:hasSimpleResult ; 
+    owl:minCardinality "0"^^xsd:nonNegativeInteger 
+  ] ;
+  rdfs:subClassOf [ 
+    a owl:Restriction ; 
+    owl:onProperty sosa:observationType ; 
+    owl:minCardinality "0"^^xsd:nonNegativeInteger 
+  ] ;
+  rdfs:subClassOf [ 
+    a owl:Restriction ; 
+    owl:onProperty dqv:hasQualityMeasurement ; 
+    owl:minCardinality "0"^^xsd:nonNegativeInteger 
   ] ;
   owl:disjointWith sosa:SampleCollection ;
   rdfs:isDefinedBy sosa-c: .
-
-
-## Homogeneous Observation Collection
-
-sosa:Observation
-  rdfs:comment """If values are not provided for the following Observation properties, they may be provided by the ObservationCollection of which it is a member:
-  - hasFeatureOfInterest
-  - hasUltimateFeatureOfInterest
-  - madeBySensor
-  - madeByObserver
-  - madeOnPlatform
-  - observedProperty
-  - phenomenonTime
-  - resultTime
-  - hasResult
-  - hasSimpleResult
-  - usedProcedure""" ;
-  rdfs:isDefinedBy sosa: .
-
-sosa:HomogeneousObservationCollection 
-  a owl:Class ;
-  rdfs:label "Homogeneous Observation Collection"@en ;
-  skos:definition """Collection of one or more observations, which may be nested in further collections. 
-  The members of a homogeneous collection share a common value for one or more property.
-      
-  Where a property is not mentioned in the description of the collection, each member may have any value for that property.
-  Where a property is mentioned one time in the description of the collection, the property may be omitted on a member, else if present a member must have that same value for that property.
-  """@en ;
-  rdfs:isDefinedBy sosa-c: .
-
-sosa:hasFeatureOfInterest
-  schema:domainIncludes sosa:HomogeneousObservationCollection ;
-  rdfs:isDefinedBy sosa: .
-
-sosa:hasUltimateFeatureOfInterest
-  schema:domainIncludes sosa:HomogeneousObservationCollection ;
-  rdfs:isDefinedBy sosa: .
-
-sosa:madeBySensor
-  schema:domainIncludes sosa:HomogeneousObservationCollection ;
-  rdfs:isDefinedBy sosa: .
-
-sosa:madeOnPlatform
-  schema:domainIncludes sosa:HomogeneousObservationCollection ;
-  rdfs:isDefinedBy sosa: .
-
-sosa:observedProperty
-  schema:domainIncludes sosa:HomogeneousObservationCollection ;
-  rdfs:isDefinedBy sosa: .
-
-sosa:usedProcedure
-  schema:domainIncludes sosa:HomogeneousObservationCollection ;
-  rdfs:isDefinedBy sosa: .
-
-sosa:hasResult
-  schema:domainIncludes sosa:HomogeneousObservationCollection ;
-  rdfs:isDefinedBy sosa: .
-
-sosa:hasSimpleResult
-  schema:domainIncludes sosa:HomogeneousObservationCollection ;
-  rdfs:isDefinedBy sosa: .
-
-sosa:phenomenonTime
-  schema:domainIncludes sosa:HomogeneousObservationCollection ;
-  rdfs:isDefinedBy sosa: .
-
-sosa:resultTime
-  schema:domainIncludes sosa:HomogeneousObservationCollection ;
-  rdfs:isDefinedBy sosa: .
-
-sosa:validTime 
-  schema:domainIncludes sosa:HomogeneousObservationCollection ;
-  rdfs:isDefinedBy sosa-oms: .
-
-sosa:observationType 
-  schema:domainIncludes sosa:HomogeneousObservationCollection ;
-  rdfs:isDefinedBy sosa-oms: .
-
-dqv:hasQualityMeasurement
-  schema:domainIncludes sosa:HomogeneousObservationCollection ;
-  rdfs:isDefinedBy dqv: .
-
-## Homogeneous Observation collection axiomatization
-
-sosa:HomogeneousObservationCollection 
-  a owl:Class ;
-  rdfs:subClassOf sosa:ObservationCollection ;
-  rdfs:subClassOf [ 
-    a owl:Restriction ; 
-    owl:onProperty sosa:hasMember ; 
-    owl:allValuesFrom [ 
-      owl:unionOf ( 
-        sosa:Observation 
-        sosa:HomogeneousObservationCollection 
-      ) ; 
-    ] 
-  ] ;
-  rdfs:subClassOf [ 
-    a owl:Restriction ; 
-    owl:onProperty 
-    sosa:usedProcedure ; 
-    owl:maxCardinality "1"^^xsd:nonNegativeInteger 
-  ] ;
-  rdfs:subClassOf [ 
-    a owl:Restriction ; 
-    owl:onProperty sosa:madeBySensor ; 
-    owl:maxCardinality "1"^^xsd:nonNegativeInteger 
-  ] ;
-  rdfs:subClassOf [ 
-    a owl:Restriction ; 
-    owl:onProperty sosa:madeOnPlatform ; 
-    owl:maxCardinality "1"^^xsd:nonNegativeInteger 
-  ] ;
-  rdfs:subClassOf [ 
-    a owl:Restriction ; 
-    owl:onProperty sosa:hasFeatureOfInterest ; 
-    owl:maxCardinality "1"^^xsd:nonNegativeInteger 
-  ] ;
-  rdfs:subClassOf [ 
-    a owl:Restriction ; 
-    owl:onProperty sosa:observedProperty ; 
-    owl:maxCardinality "1"^^xsd:nonNegativeInteger 
-  ] ;
-  rdfs:subClassOf [ 
-    a owl:Restriction ; 
-    owl:onProperty sosa:phenomenonTime ; 
-    owl:maxCardinality "1"^^xsd:nonNegativeInteger 
-  ] ;
-  rdfs:subClassOf [ 
-    a owl:Restriction ; 
-    owl:onProperty sosa:resultTime ; 
-    owl:maxCardinality "1"^^xsd:nonNegativeInteger 
-  ] ;
-#  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasSimpleResult ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
-#  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasResult ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
-  rdfs:isDefinedBy sosa-c: .
-
-
 
