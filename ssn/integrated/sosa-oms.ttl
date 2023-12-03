@@ -15,7 +15,6 @@
 
 @prefix ogc: <http://www.opengis.net/def/ont/modspec/> . 
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
-@prefix sosa-c: <http://www.w3.org/ns/sosa-collections/> .
 @prefix sosa-oms: <http://www.w3.org/ns/sosa/oms/> .
 @base <http://www.w3.org/ns/sosa/oms/> .
 
@@ -48,7 +47,7 @@ sosa-oms: a owl:Ontology ;
   dcterms:created "2023-10-07"^^xsd:date ;
   dcterms:source <https://docs.ogc.org/as/20-082r4/20-082r4.html> ;
   rdfs:comment "The original source of each resource is indicated by the rdfs:isDefinedBy property" ;
-  owl:imports sosa: , sosa-c: .
+  owl:imports sosa: .
 
 ogc:implements a owl:ObjectProperty ;
     skos:definition "link from an RDFS/OWL class or property to a requirement linked to an element in a UML model which it implements" ;
@@ -284,6 +283,14 @@ sosa:Observation ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/
   sosa:observedProperty ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/observedProperty-sem> ;
     rdfs:isDefinedBy sosa: .
 
+  sosa:observationType 
+    schema:domainIncludes sosa:ObservationCollection ;
+    rdfs:isDefinedBy sosa-oms: .
+
+  dqv:hasQualityMeasurement
+    schema:domainIncludes sosa:ObservationCollection ;
+    rdfs:isDefinedBy dqv: .
+
   sosa:madeOnPlatform rdf:type owl:ObjectProperty ;
     ogc:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/host-sem> ;
     rdfs:label "made on platform"@en ;
@@ -427,6 +434,7 @@ sosa:validTime a owl:ObjectProperty ;
   rdfs:comment "The time interval during which the result is assumed to be applicable for use."@en ;
   schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:Observation ;
+  schema:domainIncludes sosa:ObservationCollection ;
   schema:domainIncludes sosa:Sampling ;
   schema:rangeIncludes time:Interval , dcterms:PeriodOfTime ;
   rdfs:isDefinedBy sosa-oms: .

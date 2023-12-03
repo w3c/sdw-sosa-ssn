@@ -45,6 +45,24 @@ sosa: a owl:Ontology , voaf:Vocabulary ;
   vann:preferredNamespaceUri "http://www.w3.org/ns/sosa/" .
 
 
+## Utility terms 
+
+sosa:hasMember 
+  a owl:ObjectProperty ;
+  rdfs:label "has member of collection" ;
+  skos:definition """Link to a member within a collection of (samples or observations) or (collection of samples or collection of observations) which may share a value for one or more of the characteristic properties. 
+  """ ;
+  skos:scopeNote "rules for the consistency of values of properties of collections and properties of their members are given for each collection type" ;
+  skos:editorialNote "Note that there is a single `member` property. OWL or SHACL constraints may limit the range depending on the context of different collection types" ;
+  schema:domainIncludes sosa:SampleCollection ;
+  schema:domainIncludes sosa:ObservationCollection ;
+  schema:rangeIncludes sosa:Sample ;
+  schema:rangeIncludes sosa:SampleCollection ;
+  schema:rangeIncludes sosa:Observation ;
+  schema:rangeIncludes sosa:ObservationCollection ;
+  rdfs:isDefinedBy sosa: .
+
+
 ## Features of interest and Property
 
 sosa:FeatureOfInterest a rdfs:Class , owl:Class ;
@@ -123,6 +141,7 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
     skos:definition "Relation from a Sample to the FeatureOfInterest that it is intended to be representative of."@en ;
     rdfs:comment "Relation from a Sample to the FeatureOfInterest that it is intended to be representative of."@en ;
     schema:domainIncludes sosa:Sample ;
+    schema:domainIncludes sosa:SampleCollection ;
     schema:rangeIncludes sosa:FeatureOfInterest ;
     owl:inverseOf sosa:hasSample ;
     rdfs:isDefinedBy sosa: .
@@ -132,6 +151,7 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
     skos:definition "Link to the original sample that is related to the context sample through a chain of isSampleOf relations."@en ;
     rdfs:comment "Link to the original sample that is related to the context sample through a chain of isSampleOf relations."@en ;
     schema:domainIncludes sosa:Sample ;
+    schema:domainIncludes sosa:SampleCollection ;
     schema:rangeIncludes sosa:Sample ;
     rdfs:isDefinedBy sosa: .
 
@@ -140,6 +160,7 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
     skos:definition "Link to the ultimate feature of interest of the context sample - i.e. the end of a chain of isSampleOf relations"@en ;
     rdfs:comment "Link to the ultimate feature of interest of the context sample - i.e. the end of a chain of isSampleOf relations"@en ;
     schema:domainIncludes sosa:Sample ;
+    schema:domainIncludes sosa:SampleCollection ;
     schema:rangeIncludes sosa:FeatureOfInterest ;
     rdfs:isDefinedBy sosa: .
 
@@ -304,7 +325,9 @@ sosa:usedProcedure a owl:ObjectProperty ;
   rdfs:comment "A relation to link to a re-usable Procedure used in making an Observation, an Actuation, or a Sample, typically through a Sensor, Actuator or Sampler."@en ;
   schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:Observation ;
+  schema:domainIncludes sosa:ObservationCollection ;
   schema:domainIncludes sosa:Sampling ;
+  schema:domainIncludes sosa:SampleCollection ;
   schema:rangeIncludes sosa:Procedure ;
   rdfs:isDefinedBy sosa: .
 
@@ -314,6 +337,7 @@ sosa:hasFeatureOfInterest a owl:ObjectProperty ;
   rdfs:comment "A relation between an Observation and the entity whose quality was observed, or between an Actuation and the entity whose property was modified, or between an act of Sampling and the entity that was sampled."@en ;
   skos:example "For example, in an Observation of the weight of a person, the FeatureOfInterest is the person and the property is its weight."@en ;
   schema:domainIncludes sosa:Observation ;
+  schema:domainIncludes sosa:ObservationCollection ;
   schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:Sampling ;
   schema:rangeIncludes sosa:FeatureOfInterest ;
@@ -328,6 +352,7 @@ sosa:hasUltimateFeatureOfInterest a owl:ObjectProperty ;
   rdfs:comment """should match a property chain something like this but with sosa:isSampleOf*
       owl:propertyChainAxiom ( sosa:hasFeatureOfInterest sosa:isSampleOf )""" ;
   schema:domainIncludes sosa:Observation ;
+  schema:domainIncludes sosa:ObservationCollection ;
   schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:Sampling ;
   schema:rangeIncludes sosa:FeatureOfInterest ;
@@ -366,6 +391,7 @@ sosa:Observation a rdfs:Class , owl:Class ;
     skos:definition "Relation between an Observation and the Sensor or Observer which made the Observation."@en ;
     rdfs:comment "Relation between an Observation and the Sensor or Observer which made the Observation."@en ;
     schema:domainIncludes sosa:Observation ;
+    schema:domainIncludes sosa:ObservationCollection ;
     schema:rangeIncludes sosa:Sensor ;
     owl:inverseOf sosa:madeObservation ;
     rdfs:isDefinedBy sosa: .
@@ -375,8 +401,21 @@ sosa:Observation a rdfs:Class , owl:Class ;
     skos:definition "Relation linking an Observation to the property that was observed. The ObservableProperty should be a property of the FeatureOfInterest (linked by hasFeatureOfInterest) of this Observation."@en ;
     rdfs:comment "Relation linking an Observation to the property that was observed. The ObservableProperty should be a property of the FeatureOfInterest (linked by hasFeatureOfInterest) of this Observation."@en ;
     schema:domainIncludes sosa:Observation ;
+    schema:domainIncludes sosa:ObservationCollection ;
     schema:rangeIncludes sosa:ObservableProperty ;
     rdfs:isDefinedBy sosa: .
+
+  sosa:madeBySensor rdf:type owl:ObjectProperty ;
+    rdfs:label "made by sensor or observer"@en ;
+    skos:definition "Relation between an Observation and the Sensor or Observer which made the Observation."@en ;
+    rdfs:comment "Relation between an Observation and the Sensor or Observer which made the Observation."@en ;
+    schema:domainIncludes sosa:Observation ;
+    schema:domainIncludes sosa:ObservationCollection ;
+    schema:rangeIncludes sosa:Sensor ;
+    owl:inverseOf sosa:madeObservation ;
+    rdfs:isDefinedBy sosa: .
+
+
 
 sosa:Actuation a rdfs:Class , owl:Class ;
   rdfs:label "Actuation"@en ;
@@ -454,10 +493,10 @@ sosa:Sampling a rdfs:Class , owl:Class ;
     skos:definition "Relation linking an act of Sampling to the Sampler (sampling device or entity) that made it."@en ;
     rdfs:comment "Relation linking an act of Sampling to the Sampler (sampling device or entity) that made it."@en ;
     schema:domainIncludes sosa:Sampling ;
+    schema:domainIncludes sosa:SampleCollection ;
     schema:rangeIncludes sosa:Sampler ;
     owl:inverseOf sosa:madeSampling ;
     rdfs:isDefinedBy sosa: .
-
 
 ## Stimulus
 
@@ -508,6 +547,7 @@ sosa:Result a rdfs:Class , owl:Class ;
     rdfs:comment "Relation linking an Observation or Actuation or act of Sampling and a Result or Sample."@en ;
     schema:domainIncludes sosa:Actuation ;
     schema:domainIncludes sosa:Observation ;
+    schema:domainIncludes sosa:ObservationCollection ;
     schema:domainIncludes sosa:Sampling ;
     schema:rangeIncludes sosa:Result ;
     schema:rangeIncludes sosa:Sample ;
@@ -520,6 +560,7 @@ sosa:Result a rdfs:Class , owl:Class ;
     rdfs:comment "Relation linking a Result to the Observation or Actuation or act of Sampling that created or caused it."@en ;
     schema:domainIncludes sosa:Result ;
     schema:domainIncludes sosa:Sample ;
+    schema:domainIncludes sosa:SampleCollection ;
     schema:rangeIncludes sosa:Actuation ;
     schema:rangeIncludes sosa:Observation ;
     schema:rangeIncludes sosa:Sampling ;
@@ -533,6 +574,7 @@ sosa:Result a rdfs:Class , owl:Class ;
     skos:example "For instance, the values 23 or true."@en ;
     schema:domainIncludes sosa:Actuation ;
     schema:domainIncludes sosa:Observation ;
+    schema:domainIncludes sosa:ObservationCollection ;
     schema:domainIncludes sosa:Sampling ;
     rdfs:isDefinedBy sosa: .
 
@@ -563,6 +605,7 @@ sosa:resultTime a owl:DatatypeProperty ;
   rdfs:comment "The result time is the instant of time when the Observation, Actuation or Sampling activity was completed."@en ;
   schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:Observation ;
+  schema:domainIncludes sosa:ObservationCollection ;
   schema:domainIncludes sosa:Sampling ;
   rdfs:range xsd:dateTime ;
   rdfs:isDefinedBy sosa: .
@@ -573,6 +616,7 @@ sosa:phenomenonTime a owl:ObjectProperty ;
   rdfs:comment "The time that the Result of an Observation, Actuation or Sampling applies to the FeatureOfInterest. Not necessarily the same as the resultTime. May be an Interval or an Instant, or some other compound TemporalEntity."@en ;
   schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:Observation ;
+  schema:domainIncludes sosa:ObservationCollection ;
   schema:domainIncludes sosa:Sampling ;
   schema:rangeIncludes time:TemporalEntity ;
   rdfs:isDefinedBy sosa: .
@@ -658,3 +702,54 @@ sosa:forProperty a owl:ObjectProperty ;
   skos:example "For example, from a Sensor to the properties it can observe; from an Actuator to the properties it can act on; from a Deployment to the properties it was installed to observe or act on; from a SystemCapability to the Property the capability is described for."@en ;
   schema:rangeIncludes sosa:Property ;
   rdfs:isDefinedBy sosa: .
+
+
+## Collections 
+
+## Observation Collection
+
+sosa:ObservationCollection 
+  a owl:Class ;
+  rdfs:label "Observation Collection"@en ;
+  skos:definition """Collection of one or more observations, which may be nested in further collections. 
+
+  The following Observation properties may appear in the description of the Observation Collection: hasFeatureOfInterest , hasUltimateFeatureOfInterest , usedProcedure , madeBySensor , madeOnPlatform ,  observedProperty , phenomenonTime , resultTime , validTime , hasResult , hasSimpleResult , observationType , hasQualityMeasurement . 
+  If they are present, the values of these properties summarize the values of the properties of the member samples. 
+  The following consistency rules apply: 
+  
+  1. Where a property is not mentioned in the description of the Observation Collection, a member Observation or Observation Collection may have any value for that property.
+
+  2. Where a property is mentioned one time in the description of the Observation Collection, every member Observation or Observation Collection has that same value for that property - i.e. the collection is homogeneous in that property.  That property may be omitted in the description of any member Observation or Observation Collection.
+
+  3. Where a property is mentioned more than one time in the description of the Observation Collection, the property must be present in the description of each member Observation or Observation Collection, and must have a value which corresponds to one of the values in the description of the collection. 
+  
+  4. Where a property in the description of the Observation Collection has a value that is a range or interval, the property must be present in the description of each member Observation or Observation Collection, and must have a value that either matches or falls within that range or interval.
+  """@en ;
+  skos:note """The members of a general (summarizing) collection do not necessarily share a common value for any property. """@en ;
+  rdfs:isDefinedBy sosa: .
+
+## Sample Collection 
+
+sosa:SampleCollection 
+  a owl:Class ;
+  rdfs:label "Sample Collection"@en ;
+  skos:definition """Collection of one or more samples, which may be nested in further collections. 
+
+  The following Sample and Sampling properties may appear in the description of the Sample Collection: hasOriginalSample , hasSampledFeature , isSampleOf , isResultOf , usedProcedure , madeBySampler . 
+  If they are present, the values of these properties summarize the values of the properties of the member samples. 
+  The following consistency rules apply: 
+  
+  1. Where a property is not mentioned in the description of the Sample Collection, a member Sample or Sample Collection may have any value for that property.
+
+  2. Where a property is mentioned one time in the description of the Sample Collection, every member Sample or Sample Collection has that same value for that property - i.e. the collection is homogeneous in that property.  That property may be omitted in the description of any member Sample or Sample Collection.
+
+  3. Where a property is mentioned more than one time in the description of the Sample Collection, the property must be present in the description of each member Sample or Sample Collection, and must have a value which corresponds to one of the values in the description of the collection. 
+  
+  4. Where a property in the description of the Sample Collection has a value that is a range or interval, the property must be present in the description of each member Sample or Sample Collection, and must have a value that either matches or falls within that range or interval.
+  """@en ;
+  skos:note """The members of a collection do not necessarily share a common value for any property. 
+  """ ;
+  rdfs:isDefinedBy sosa: .
+
+
+
