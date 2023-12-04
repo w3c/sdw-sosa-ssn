@@ -8,6 +8,7 @@
 @prefix vann: <http://purl.org/vocab/vann/> .
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix time: <http://www.w3.org/2006/time#> .
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
 
 @prefix schema: <http://schema.org/> .
 
@@ -129,8 +130,8 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
 
   sosa:hasSample a owl:ObjectProperty ;
     rdfs:label "has sample"@en ;
-    skos:definition "Relation between a FeatureOfInterest and the Sample used to represent it."@en ;
-    rdfs:comment "Relation between a FeatureOfInterest and the Sample used to represent it."@en ;
+    skos:definition "Relation between a FeatureOfInterest and the Sample or SampleCollection used to represent it."@en ;
+    rdfs:comment "Relation between a FeatureOfInterest and the Sample or SampleCollection used to represent it."@en ;
     schema:domainIncludes sosa:FeatureOfInterest ;
     schema:rangeIncludes sosa:Sample ;
     owl:inverseOf sosa:isSampleOf ;
@@ -138,8 +139,8 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
 
   sosa:isSampleOf a owl:ObjectProperty ;
     rdfs:label "is sample of"@en ;
-    skos:definition "Relation from a Sample to the FeatureOfInterest that it is intended to be representative of."@en ;
-    rdfs:comment "Relation from a Sample to the FeatureOfInterest that it is intended to be representative of."@en ;
+    skos:definition "Relation from a Sample or SampleCollection to the FeatureOfInterest that it is intended to be representative of."@en ;
+    rdfs:comment "Relation from a Sample or SampleCollection to the FeatureOfInterest that it is intended to be representative of."@en ;
     schema:domainIncludes sosa:Sample ;
     schema:domainIncludes sosa:SampleCollection ;
     schema:rangeIncludes sosa:FeatureOfInterest ;
@@ -148,8 +149,8 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
 
   sosa:hasOriginalSample a owl:ObjectProperty ;
     rdfs:label "has original sample"@en ;
-    skos:definition "Link to the original sample that is related to the context sample through a chain of isSampleOf relations."@en ;
-    rdfs:comment "Link to the original sample that is related to the context sample through a chain of isSampleOf relations."@en ;
+    skos:definition "Link to the original sample collected from the ultimate feature of interest that is related to the context Sample or SampleCollection through a chain of isSampleOf relations."@en ;
+    rdfs:comment "Link to the original sample collected from the ultimate feature of interest that is related to the context Sample or SampleCollection through a chain of isSampleOf relations."@en ;
     schema:domainIncludes sosa:Sample ;
     schema:domainIncludes sosa:SampleCollection ;
     schema:rangeIncludes sosa:Sample ;
@@ -157,11 +158,29 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
 
   sosa:hasSampledFeature a owl:ObjectProperty ;
     rdfs:label "has ultimate sampled feature"@en ;
-    skos:definition "Link to the ultimate feature of interest of the context sample - i.e. the end of a chain of isSampleOf relations"@en ;
-    rdfs:comment "Link to the ultimate feature of interest of the context sample - i.e. the end of a chain of isSampleOf relations"@en ;
+    skos:definition "Link to the ultimate feature of interest of the context Sample or SampleCollection - i.e. the end of a chain of isSampleOf relations"@en ;
+    rdfs:comment "Link to the ultimate feature of interest of the context Sample or SampleCollection - i.e. the end of a chain of isSampleOf relations"@en ;
     schema:domainIncludes sosa:Sample ;
     schema:domainIncludes sosa:SampleCollection ;
     schema:rangeIncludes sosa:FeatureOfInterest ;
+    rdfs:isDefinedBy sosa: .
+
+  sosa:isResultOfMadeBySampler a owl:ObjectProperty ;
+    rdfs:label "is a result of made by sampler"@en ;
+    skos:definition "Relation linking a Sample or SampleCollection to the Sampler (sampling device or entity) that made it."@en ;
+    rdfs:comment "Relation linking a Sample or SampleCollection to the Sampler (sampling device or entity) that made it."@en ;
+    schema:domainIncludes sosa:Sample ;
+    schema:domainIncludes sosa:SampleCollection ;
+    schema:rangeIncludes sosa:Sampler ;
+    rdfs:isDefinedBy sosa: .
+
+  sosa:isResultOfUsedProcedure a owl:ObjectProperty ;
+    rdfs:label "is a result of used procedure"@en ;
+    skos:definition "Relation linking a Sample or SampleCollection to the Procedure (plan) used to make it."@en ;
+    rdfs:comment "Relation linking a Sample or SampleCollection to the Procedure (plan) used to make it."@en ;
+    schema:domainIncludes sosa:Sample ;
+    schema:domainIncludes sosa:SampleCollection ;
+    schema:rangeIncludes sosa:Procedure ;
     rdfs:isDefinedBy sosa: .
 
 
@@ -711,21 +730,22 @@ sosa:forProperty a owl:ObjectProperty ;
 sosa:ObservationCollection 
   a owl:Class ;
   rdfs:label "Observation Collection"@en ;
-  skos:definition """Collection of one or more observations, which may be nested in further collections. 
+  skos:definition """Collection of one or more observations or observation collections, i.e. collections may be nested. 
 
-  The following Observation properties may appear in the description of the Observation Collection: hasFeatureOfInterest , hasUltimateFeatureOfInterest , usedProcedure , madeBySensor , madeOnPlatform ,  observedProperty , phenomenonTime , resultTime , validTime , hasResult , hasSimpleResult , observationType , hasQualityMeasurement . 
-  If they are present, the values of these properties summarize the values of the properties of the member samples. 
-  The following consistency rules apply: 
+  The following Observation properties may appear in an Observation Collection: 
+  hasFeatureOfInterest , hasUltimateFeatureOfInterest , usedProcedure , madeBySensor , madeOnPlatform ,  observedProperty , phenomenonTime , resultTime , validTime , hasResult , hasSimpleResult , observationType , hasQualityMeasurement . 
+  If it is present, the value of a property summarizes the values of the matching properties of the member observations, where membership is either direct or transitive through one or more member observation collections. 
+  The following consistency rules apply with respect to the Observation properties listed above: 
   
-  1. Where a property is not mentioned in the description of the Observation Collection, a member Observation or Observation Collection may have any value for that property.
+  1. Where an individual Observation Collection omits a property, a member Observation (direct or transitive) MAY have any value for that property.
 
-  2. Where a property is mentioned one time in the description of the Observation Collection, every member Observation or Observation Collection has that same value for that property - i.e. the collection is homogeneous in that property.  That property may be omitted in the description of any member Observation or Observation Collection.
+  2. Where an individual Observation Collection has a single value for a property, each member Observation(direct or transitive) MUST have that same value for the property - i.e. the collection is homogeneous in that property.  That property MAY be omitted in any member Observation or Observation Collection.
 
-  3. Where a property is mentioned more than one time in the description of the Observation Collection, the property must be present in the description of each member Observation or Observation Collection, and must have a value which corresponds to one of the values in the description of the collection. 
+  3. Where an individual Observation Collection has more than one value for a property, each member Observation (direct or transitive) MUST have a value for that property that matches one of the values for the property in the collection. 
   
-  4. Where a property in the description of the Observation Collection has a value that is a range or interval, the property must be present in the description of each member Observation or Observation Collection, and must have a value that either matches or falls within that range or interval.
+  4. Where an individual Observation Collection has a value for a property that is a range or interval, each member Observation (direct or transitive) MUST have a value for that property that matches or falls within that range or interval.
   """@en ;
-  skos:note """The members of a general (summarizing) collection do not necessarily share a common value for any property. """@en ;
+  skos:note """The members of a collection do not necessarily share a common value for any property. """@en ;
   rdfs:isDefinedBy sosa: .
 
 ## Sample Collection 
@@ -733,19 +753,21 @@ sosa:ObservationCollection
 sosa:SampleCollection 
   a owl:Class ;
   rdfs:label "Sample Collection"@en ;
-  skos:definition """Collection of one or more samples, which may be nested in further collections. 
+  skos:definition """Collection of one or more samples or sample collections, i.e. collections may be nested. 
 
-  The following Sample and Sampling properties may appear in the description of the Sample Collection: hasOriginalSample , hasSampledFeature , isSampleOf , isResultOf , usedProcedure , madeBySampler . 
-  If they are present, the values of these properties summarize the values of the properties of the member samples. 
-  The following consistency rules apply: 
+  The following Sample properties may appear in a Sample Collection: 
+  hasOriginalSample , hasSampledFeature , isSampleOf , isResultOf , isResultOfUsedProcedure , isResultOfMadeBySampler . 
+  If it is present, the value of a property summarizes the values of the matching properties of the member samples, where membership is either direct or transitive through onw or more member sample collections. 
+
+  The following consistency rules apply with respect to the Sample properties listed above: 
   
-  1. Where a property is not mentioned in the description of the Sample Collection, a member Sample or Sample Collection may have any value for that property.
+  1. Where an individual Sample Collection omits a property, a member Sample (direct or transitive) MAY have any value for that property.
 
-  2. Where a property is mentioned one time in the description of the Sample Collection, every member Sample or Sample Collection has that same value for that property - i.e. the collection is homogeneous in that property.  That property may be omitted in the description of any member Sample or Sample Collection.
+  2. Where an individual Sample Collection has a single value for a property, each member Sample (direct or transitive) MUST have that same value for the property - i.e. the collection is homogeneous in that property.  That property MAY be omitted in any member Sample or Sample Collection.
 
-  3. Where a property is mentioned more than one time in the description of the Sample Collection, the property must be present in the description of each member Sample or Sample Collection, and must have a value which corresponds to one of the values in the description of the collection. 
+  3. Where an individual Sample Collection has more than one value for a property, each member Sample (direct or transitive) MUST have a value for that property that matches one of the values for the property in the collection. 
   
-  4. Where a property in the description of the Sample Collection has a value that is a range or interval, the property must be present in the description of each member Sample or Sample Collection, and must have a value that either matches or falls within that range or interval.
+  4. Where an individual Sample Collection has a value for a property that is a range or interval, each member Sample (direct or transitive) MUST have a value for that property that either matches or falls within that range or interval.
   """@en ;
   skos:note """The members of a collection do not necessarily share a common value for any property. 
   """ ;
