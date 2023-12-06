@@ -1,0 +1,87 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix prov: <https://www.w3.org/TR/prov-o/#> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
+
+@prefix schema: <http://schema.org/> .
+
+@prefix ogc-ms: <http://www.opengis.net/def/ont/modspec/> . 
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix sosa-oms: <http://www.w3.org/ns/sosa/oms/> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix ssn-oms: <http://www.w3.org/ns/ssn/oms/> .
+
+dcterms:title a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:rights a owl:AnnotationProperty .
+dcterms:license a owl:AnnotationProperty .
+dcterms:created a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+foaf:Agent a owl:Class .
+foaf:name a owl:AnnotationProperty .
+ogc-ms:implements a owl:ObjectProperty .
+schema:domainIncludes a owl:AnnotationProperty .
+schema:rangeIncludes a owl:AnnotationProperty .
+skos:definition a owl:AnnotationProperty .
+skos:example a owl:AnnotationProperty .
+skos:note a owl:AnnotationProperty .
+time:TemporalEntity a owl:Class .
+
+
+ssn-oms: a owl:Ontology ;
+  dcterms:title "OMS Ontology - based on (SOSA) Ontology with SSN axiomatization"@en ;
+  dcterms:description "This ontology is based on the SOSA Ontology by the W3C/OGC Spatial Data on the Web Working Group, supplemented by some classes and properties required to implement ISO 19156:2023 , with axiomatization following SSN."@en ;
+  dcterms:creator [ a foaf:Agent ; foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en ] ;
+  dcterms:rights "Copyright 2024 W3C/OGC." ;
+  dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
+  dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
+  dcterms:created "2023-12-06"^^xsd:date ;
+  dcterms:source <https://docs.ogc.org/as/20-082r4/20-082r4.html> ;
+  rdfs:comment "Vertical module adding SSN-style axioms to SOSA-OMS graph" ;
+  owl:imports ssn: , sosa-oms: .
+
+## General properties
+
+sosa-oms:metadata 
+    rdfs:isDefinedBy sosa-oms: .
+
+## Sample 
+
+sosa-oms:SpatialSample 
+  rdfs:subClassOf sosa:Sample ; 
+  rdfs:isDefinedBy sosa-oms: .
+
+sosa-oms:MaterialSample 
+  rdfs:subClassOf sosa:Sample ; 
+  rdfs:isDefinedBy sosa-oms: .
+
+sosa-oms:StatisticalSample 
+  rdfs:subClassOf sosa:Sample ; 
+  rdfs:isDefinedBy sosa-oms: .
+
+
+## Procedures
+
+sosa-oms:ObservingProcedure 
+  rdfs:subClassOf sosa:Procedure ;  
+  rdfs:isDefinedBy sosa-oms: .
+
+sosa-oms:ActuationProcedure 
+  rdfs:subClassOf sosa:Procedure ;
+  rdfs:isDefinedBy sosa-oms: .
+
+sosa-oms:SamplingProcedure 
+  rdfs:subClassOf sosa:Procedure ;
+  rdfs:isDefinedBy sosa-oms: .
+
+sosa-oms:PreparationProcedure 
+  rdfs:subClassOf sosa:Procedure ;
+  rdfs:isDefinedBy sosa-oms: .
+

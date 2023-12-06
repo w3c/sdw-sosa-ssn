@@ -74,11 +74,9 @@ sosa:FeatureOfInterest
   rdfs:isDefinedBy sosa: .
 
 sosa:ObservableProperty ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/ObservableProperty> ;
-    rdfs:subClassOf sosa:Property ;
     rdfs:isDefinedBy sosa: .
 
 sosa:ActuatableProperty 
-    rdfs:subClassOf sosa:Property ;
     rdfs:isDefinedBy sosa: .
 
 sosa:Property 
@@ -95,8 +93,6 @@ sosa:isPropertyOf
 ## Sample 
 
 sosa:Sample ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sample> ;
-  rdfs:subClassOf sosa:FeatureOfInterest ;
-  rdfs:subClassOf sosa:Result ; 
   rdfs:isDefinedBy sosa: .
 
 sosa:hasSample 
@@ -123,7 +119,6 @@ sosa-oms:hasPreparationStep a owl:ObjectProperty ;
 
 sosa-oms:SpatialSample a owl:Class ;
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/SpatialSample> ;
-  rdfs:subClassOf sosa:Sample ; 
   rdfs:label "Spatial Sample"@en ;
   skos:definition "A SpatialSample is a geospatial Sample. When observations are made to estimate properties of a geospatial feature, in particular where the value of a property varies within the scope of the feature, a SpatialSample is used."@en ;
   skos:example "Some common names for spatial samples include: borehole, flightline, interval, lidar cloud, map horizon, microscope slide, mine level, mine, observation well, profile,  quadrat, scene, section, ship track, spot, station, swath, trajectory, traverse, etc..."@en ;
@@ -132,7 +127,6 @@ sosa-oms:SpatialSample a owl:Class ;
 
 sosa-oms:MaterialSample a owl:Class ;
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/MaterialSample> ;
-  rdfs:subClassOf sosa:Sample ; 
   rdfs:label "Material Sample"@en ;
   skos:definition "A MaterialSample is a physical, tangible Sample."@en ;
   skos:example "A piece of rock, a blood sample, a water sample, etc."@en ;
@@ -142,7 +136,6 @@ sosa-oms:MaterialSample a owl:Class ;
 
 sosa-oms:StatisticalSample a owl:Class ;
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/StatisticalSample> ;
-  rdfs:subClassOf sosa:Sample ; 
   rdfs:label "Statistical Sample"@en ;
   skos:definition "A StatisticalSample is a statistical subset of a feature-of-interest, defined for the purpose of creating Observation(s)."@en ;
   skos:example "The male or female subset of a population."@en ;
@@ -159,7 +152,6 @@ sosa:hasMember ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-bas
 ## Platform 
 
 sosa:Platform ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Host> ;
-  rdfs:subClassOf sosa:System ;
   rdfs:isDefinedBy sosa: .
 
 sosa:hosts ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/gen/relatedObservation-sem> ;
@@ -178,7 +170,6 @@ sosa:Procedure ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt
 
 sosa-oms:ObservingProcedure a rdfs:Class , owl:Class ;
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/ObservingProcedure> ;
-  rdfs:subClassOf sosa:Procedure ;  
   rdfs:label "Observing Procedure"@en ;
   skos:definition "The description of steps performed in order to determine the value of an ObservableProperty by an Observer."@en ;
   skos:example "A workflow, protocol, plan, algorithm, or computational method specifying how to make an observation; the description of the process utilized by an observer. This could be a chemical analysis method, a protocol for measuring an object, but could also be a checklist utilized by a human observer during a biodiversity campaign."@en ;
@@ -186,21 +177,18 @@ sosa-oms:ObservingProcedure a rdfs:Class , owl:Class ;
   rdfs:isDefinedBy sosa-oms: .
 
 sosa-oms:ActuationProcedure a rdfs:Class , owl:Class ;
-  rdfs:subClassOf sosa:Procedure ;
   rdfs:label "Actuation Procedure"@en ;
   skos:definition "The description of steps performed by an Actuator to change the ActuableProperty."@en ;
   rdfs:isDefinedBy sosa-oms: .
 
 sosa-oms:SamplingProcedure a rdfs:Class , owl:Class ;
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/SamplingProcedure> ;
-  rdfs:subClassOf sosa:Procedure ;
   rdfs:label "Sampling Procedure"@en ;
   skos:definition "The description of steps performed by a Sampler in order to extract a Sample from its sampled Feature in the frame of a Sampling."@en ;
   rdfs:isDefinedBy sosa-oms: .
 
 sosa-oms:PreparationProcedure a rdfs:Class , owl:Class ;
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/PreparationProcedure> ;
-  rdfs:subClassOf sosa:Procedure ;
   rdfs:label "Preparation Procedure"@en ;
   skos:definition "The description of preparation steps performed on a Sample."@en ;
   rdfs:isDefinedBy sosa-oms: .
@@ -209,7 +197,6 @@ sosa-oms:PreparationProcedure a rdfs:Class , owl:Class ;
 ## ProcedureExecutors
 
 sosa:Sensor ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observer> ;
-  rdfs:subClassOf sosa:System ;
   rdfs:isDefinedBy sosa: .
 
   sosa:observes ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observer/observableProperty-sem> ;
@@ -222,7 +209,6 @@ sosa:Sensor ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Ob
     rdfs:isDefinedBy sosa: .
 
 sosa:Sampler ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sampler> ;
-  rdfs:subClassOf sosa:System ;
   rdfs:isDefinedBy sosa: .
 
 sosa:implements  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observer/observingProcedure-sem>  ,
