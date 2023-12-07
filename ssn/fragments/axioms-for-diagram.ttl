@@ -40,12 +40,24 @@ ssn-ad: a owl:Ontology , voaf:Vocabulary ;
   rdfs:comment "Please report any errors to the W3C Spatial Data on the Web Working Group via the SDW WG Public List public-sdw-wg@w3.org"@en ;
   rdfs:seeAlso <https://www.w3.org/2015/spatial/wiki/Semantic_Sensor_Network_Ontology> ;
   dcterms:created "2023-12-04"^^xsd:date ;
-  owl:imports ssn: .
+  owl:imports sosa: .
 
 
 ## Collections 
 
 sosa:SampleCollection
+  rdfs:subClassOf rdf:Bag ;
+  rdfs:subClassOf [ 
+    a owl:Restriction ; 
+    owl:onProperty sosa:hasMember ; 
+    owl:allValuesFrom [ 
+      owl:unionOf ( 
+        sosa:Sample 
+        sosa:SampleCollection 
+      ) ; 
+    ] 
+  ] ;
+  owl:disjointWith sosa:ObservationCollection ;
   rdfs:subClassOf [ 
     a owl:Restriction ; 
     owl:onProperty sosa:hasOriginalSample ; 
@@ -63,11 +75,6 @@ sosa:SampleCollection
   ] ;
   rdfs:subClassOf [ 
     a owl:Restriction ; 
-    owl:onProperty sosa:isResultOf ; 
-    owl:minCardinality "0"^^xsd:nonNegativeInteger 
-  ] ;
-  rdfs:subClassOf [ 
-    a owl:Restriction ; 
     owl:onProperty sosa:isResultOfUsedProcedure ; 
     owl:minCardinality "0"^^xsd:nonNegativeInteger 
   ] ;
@@ -80,6 +87,18 @@ sosa:SampleCollection
 
 
 sosa:ObservationCollection 
+  rdfs:subClassOf rdf:Bag ;
+  rdfs:subClassOf [ 
+    a owl:Restriction ; 
+    owl:onProperty sosa:hasMember ; 
+    owl:allValuesFrom [ 
+      owl:unionOf ( 
+        sosa:Observation 
+        sosa:ObservationCollection 
+      ) ;
+    ] 
+  ] ;
+  owl:disjointWith sosa:SampleCollection ;
   rdfs:subClassOf [ 
     a owl:Restriction ; 
     owl:onProperty sosa:madeBySensor ; 
