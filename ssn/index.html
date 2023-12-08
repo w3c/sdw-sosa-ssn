@@ -1790,6 +1790,7 @@ their usage are given.</p>
              <a href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a>,
              <a href="#SOSAisFeatureOfInterestOf">sosa:isFeatureOfInterestOf</a>,
             <span class="ssn"> <a href="#SSNProperty">ssn:Property</a>, </span>
+            <span class="ssn"> <a href="#SSNPropertyOfInterest">ssn:PropertyOfInterest</a>, </span>
             <span class="ssn"> <a href="#SSNhasProperty">ssn:hasProperty</a>,</span>
             <span class="ssn"> <a href="#SSNisPropertyOf">ssn:isPropertyOf</a>, </span>
             <span class="ssn"> <a href="#SSNforProperty">ssn:forProperty</a></span>
@@ -1915,36 +1916,80 @@ their usage are given.</p>
         </section>
 
         <section class="specterm ssn" id="SSNProperty" about="ssn:Property" typeof="owl:Class">
-            <h5><a href="#SSNProperty">ssn:Property</a></h5>
-              <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/ssn/Property</p>
-              <p><strong>a OWL Class</strong></p>
+          <h5><a href="#SSNProperty">ssn:Property</a></h5>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/ssn/Property</p>
+            <p><strong>a OWL Class</strong></p>
 
-            <em property="rdfs:label">Property</em> -
-            <span property="rdfs:comment skos:definition">A quality of an entity. An aspect of an entity that is intrinsic to and cannot exist without the entity.</span>
-            <table>
-              <tbody>
-                <tr>
-                  <th class="restrictions">Restrictions:</th>
-                  <td>
-                    <span about="ssn:Property" rel="rdfs:subClassOf" resource="[_:SSNProperty1]"></span>
-                    <span about="[_:SSNProperty1]" typeof="owl:Restriction"></span>
-                    <span about="[_:SSNProperty1]" rel="owl:onProperty" resource="ssn:isPropertyOf"><a href="#SSNisPropertyOf">ssn:isPropertyOf</a></span>
-                    <span about="[_:SSNProperty1]" property="owl:allValuesFrom" resource="sosa:FeatureOfInterest"><em><b>ONLY</b></em> <a href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a></span>
-                  </td>
-                </tr>
-                <tr>
-                  <th>is Defined By</th>
-                  <td>
-                    <span rel="rdfs:isDefinedBy"><a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a></span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <div class="buttonpanel">
-              <span class="back">[<a href="#Features-of-Interest-and-Properties">Back to module overview and examples</a>]</span>
-              <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-            </div>
-          </section>
+          <em property="rdfs:label">Property</em> -
+          <span property="rdfs:comment skos:definition">An identifiable quality of a <a href="#SOSAFeatureOfInterest"><code></code>FeatureOfInterest</code></a> that can be observed or acted upon. A property can apply to different features of interest.</span>
+          <table>
+            <tbody>
+              <tr>
+                <th>Example</th>
+                <td><span about="ssn:Property" property="skos:example">Cars (a feature type) all have a characteristic colour, where "colour" is a property.</span></td>
+              </tr>
+              <tr>
+                <th>Note</th>
+                <td><span about="ssn:Property" property="skos:note">Concepts from existing code lists, vocabularies, and taxonomies, may be used as instances of <a href="#SOSAFeatureOfInterest"><code>Property</code></a>.</span></td>
+              </tr>
+              <tr>
+                <th>is Defined By</th>
+                <td>
+                  <span rel="rdfs:isDefinedBy"><a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="buttonpanel">
+            <span class="back">[<a href="#Features-of-Interest-and-Properties">Back to module overview and examples</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+          </div>
+        </section>
+
+        <section class="specterm ssn" id="SSNPropertyOfInterest" about="ssn:PropertyOfInterest" typeof="owl:Class">
+          <h5><a href="#SSNPropertyOfInterest">ssn:PropertyOfInterest</a></h5>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/ssn/PropertyOfInterest</p>
+            <p><strong>a OWL Class</strong></p>
+
+          <em property="rdfs:label">Property Of Interest</em> -
+          <span property="rdfs:comment skos:definition">An identifiable quality of a <a href="#SOSAFeatureOfInterest"><code>FeatureOfInterest</code></a> that can be observed or acted upon. A property of interest is specific to a <a href="#SOSAFeatureOfInterest"><code>FeatureOfInterest</code></a>. It is inherent to and cannot exist without that feature of interest.</span>
+          <table>
+            <tbody>
+              <tr>
+                <th>Example</th>
+                <td><span about="ssn:PropertyOfInterest" property="skos:example">Abby's car has the colour red, where "colour red" is a property of interest of the car.</span></td>
+              </tr>
+              <tr>
+                <th>Note</th>
+                <td><span about="ssn:PropertyOfInterest" property="skos:note">Properties of interest need not always be explicitly identified. It depends on the use case.</span></td>
+              </tr>
+              <tr>
+                <th class="restrictions">Restrictions:</th>
+                <td>
+                  <span about="ssn:PropertyOfInterest" rel="rdfs:subClassOf" resource="[_:SSNPropertyOfInterest1]"></span>
+                  <span about="[_:SSNPropertyOfInterest1]" typeof="owl:Restriction"></span>
+                  <span about="[_:SSNPropertyOfInterest1]" rel="owl:onProperty" resource="ssn:isPropertyOf"><a href="#SSNisPropertyOf">ssn:isPropertyOf</a></span>
+                  <span about="[_:SSNPropertyOfInterest1]" property="owl:allValuesFrom" resource="sosa:FeatureOfInterest"><em><b>ONLY</b></em> <a href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a></span>
+                  <br/>
+                  <span about="ssn:Property" rel="rdfs:subClassOf" resource="[_:SSNPropertyOfInterest2]"></span>
+                  <span about="[_:SSNPropertyOfInterest2]" typeof="owl:Restriction"></span>
+                  <span about="[_:SSNPropertyOfInterest2]" rel="owl:onProperty" resource="ssn:isPropertyOf"><a href="#SSNisPropertyOf">ssn:isPropertyOf</a></span>
+                  <span about="[_:SSNPropertyOfInterest2]" property="owl:cardinality" resource="sosa:FeatureOfInterest"><em><b>EXACTLY 1</b></em></span>
+                </td>
+              </tr>
+              <tr>
+                <th>is Defined By</th>
+                <td>
+                  <span rel="rdfs:isDefinedBy"><a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="buttonpanel">
+            <span class="back">[<a href="#Features-of-Interest-and-Properties">Back to module overview and examples</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+          </div>
+        </section>
 
           <section class="specterm ssn" id="SSNhasProperty" about="ssn:hasProperty" typeof="owl:ObjectProperty">
             <h5><a href="#SSNhasProperty">ssn:hasProperty</a></h5>
@@ -6936,19 +6981,12 @@ their usage are given.</p>
          
      <section id="SSNProperty-instances" class="informative">
      <h3>Generic or Specific Instances of ssn:Property</h3>
-        <p>This specification does not specify whether an instance of <a href="#SSNProperty"><code>ssn:Property</code></a> should be generic to all features of interest (e.g., <code>ex:Temperature</code>,
-         <code>ex:OnOffStatus</code>), or specific to a single feature of interest (e.g., <code>&lt;myBodyTemperature&gt;</code>, <code>&lt;LightStatus&gt;</code>).
-         Implementers are free to choose one way of modeling things or the other.
-         </p>
-         <p>On the other hand, one SHOULD NOT use <a href="https://www.w3.org/TR/owl2-new-features/#F12:_Punning">OWL punning</a> to make <code>ex:Temperature</code> denote both a subclass of 
-         <a href="#SSNProperty"><code>ssn:Property</code></a> and an instance of <a href="#SSNProperty"><code>ssn:Property</code></a>. In fact, merging the 
-         two examples below in a single RDF Graph would make an OWL reasoner infer that <code>ex:Temperature</code>, <code>&lt;office/1/temperature&gt;</code>, and
-         <code>&lt;office/2/temperature&gt;</code>, denote the same individual.</p>
-         <p>This also holds for subclasses of <a href="#SSNProperty"><code>ssn:Property</code></a>: <a href="#SOSAObservableProperty"><code>sosa:ObservableProperty</code></a>, and <a href="#SOSAActuatableProperty"><code>sosa:ActuatableProperty</code></a>.</p>
-         <p>This first example is modeling instances of <a href="#SSNProperty"><code>ssn:Property</code></a> as generic to all features of interest:</p>
-<pre class="example" data-include="./examples/2017ex4.ttl" data-include-format="text"></pre>
-         <p>This second example is modeling instances of <a href="#SSNProperty"><code>ssn:Property</code></a> as specific to a features of interest:</p>
-<pre class="example" data-include="./examples/2017ex5.ttl" data-include-format="text"></pre>
+        <p>The previous version of SOSA/SSN left an ambiguity on whether an instance of <a href="#SSNProperty"><code>ssn:Property</code></a> should be generic to all features of interest (e.g., <code>ex:Temperature</code>,
+         <code>ex:OnOffStatus</code>), or specific to a single feature of interest (e.g., <code>&lt;myBodyTemperature&gt;</code>, <code>&lt;LightStatus&gt;</code>). This version solves the ambiguity by differentiating:</p>
+         <ul>
+          <li><a href="#SOSAProperty"><code>sosa:Property</code></a> for the former case</li>
+          <li><a href="#SOSAPropertyOfInterest"><code>sosa:PropertyOfInterest</code></a> for the latter case.</li>
+         </ul>
         </section>
 
 
