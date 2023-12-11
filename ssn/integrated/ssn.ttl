@@ -41,6 +41,14 @@ This ontology was originally developed in 2009-2011 by the W3C Semantic Sensor N
 
 In particular, (a) the scope is extended to include actuation and sampling; (b) the core concepts and properties are factored out into the SOSA ontology. The SSN ontology imports SOSA and adds formal axiomatization consistent with the text definitions in SOSA, and adds classes and properties to accommodate the scope of the original SSN ontology. """@en ;
   rdfs:comment "Please report any errors to the W3C Spatial Data on the Web Working Group via the SDW WG Public List public-sdw-wg@w3.org"@en ;
+  skos:scopeNote "The SSN graph contains an axiomatization of the core terms from the SOSA graph (serialized in the sosa:ttl file) plus some deprecated terms in the ssn: namespace. " ;
+  skos:historyNote """
+  Terms in the ssn: namespace have equivalence axioms to terms declared in the sosa: namespace, and are marked 'deprecated'. 
+  The axiomatization from the 2017 version of the standard is preserved. 
+
+  Terms in the sosa: namespace do not carry symmetric equivalent axioms. 
+  Axiomatization only uses sosa: terms. 
+  """ ;
   rdfs:seeAlso <https://www.w3.org/2015/spatial/wiki/Semantic_Sensor_Network_Ontology> ;
   dcterms:created "2017-04-17"^^xsd:date ;
   vann:preferredNamespacePrefix "ssn" ;
@@ -51,8 +59,8 @@ In particular, (a) the scope is extended to include actuation and sampling; (b) 
 ## Features of interest and Property
 
 sosa:FeatureOfInterest
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:hasProperty ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ; 
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:hasProperty ; owl:allValuesFrom ssn:Property ]  ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasProperty ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ; 
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasProperty ; owl:allValuesFrom sosa:Property ]  ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasSample ; owl:allValuesFrom sosa:Sample ]  ;
   rdfs:isDefinedBy sosa: .
 
@@ -81,6 +89,7 @@ sosa:PropertyOfInterest a owl:Class ;
 
   ssn:hasProperty a owl:ObjectProperty ; 
     owl:equivalentProperty sosa:hasProperty ;
+    owl:deprecated true ;
     rdfs:label "has property"@en ;
     skos:definition "Relation between an entity and a Property of that entity."@en ;
     rdfs:comment "Relation between an entity and a Property of that entity."@en ;
@@ -89,6 +98,7 @@ sosa:PropertyOfInterest a owl:Class ;
 
   ssn:isPropertyOf a owl:ObjectProperty ;
     owl:equivalentProperty sosa:isPropertyOf ;
+    owl:deprecated true ;
     rdfs:label "is property of"@en ;
     skos:definition "Relation between a Property and the entity it belongs to."@en ;
     rdfs:comment "Relation between a Property and the entity it belongs to."@en ;
@@ -99,7 +109,7 @@ sosa:PropertyOfInterest a owl:Class ;
     rdfs:subClassOf ssn:Property ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isObservedBy ; owl:allValuesFrom sosa:Sensor ] ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sosa:observedProperty ] ; owl:allValuesFrom sosa:Observation ] ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf ssn:isProxyFor ] ; owl:allValuesFrom ssn:Stimulus ] ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sosa:isProxyFor ] ; owl:allValuesFrom sosa:Stimulus ] ;
     rdfs:isDefinedBy sosa: .
 
   sosa:ActuatableProperty
@@ -107,20 +117,16 @@ sosa:PropertyOfInterest a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isActedOnBy ; owl:allValuesFrom sosa:Actuation ] ;
     rdfs:isDefinedBy sosa: .
 
-# clone the ssn: resources into the sosa: namespace
-# Note owl:equivalentClass/Property axioms 
+# sosa: namespace
 
 sosa:Property 
-  owl:equivalentClass ssn:Property ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isPropertyOf ; owl:allValuesFrom sosa:FeatureOfInterest ]  ;
   rdfs:isDefinedBy sosa: .
 
   sosa:hasProperty  
-    owl:equivalentProperty ssn:hasProperty ;
     rdfs:isDefinedBy sosa: .
 
   sosa:isPropertyOf 
-    owl:equivalentProperty ssn:isPropertyOf ;
     rdfs:isDefinedBy sosa: .
 
 
@@ -179,11 +185,11 @@ sosa:hasMemberSample a owl:ObjectProperty ;
 
 sosa:Platform 
   rdfs:subClassOf ssn:System ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hosts ; owl:allValuesFrom ssn:System ]  ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hosts ; owl:allValuesFrom sosa:System ]  ;
   rdfs:isDefinedBy sosa: .
 
   sosa:hosts
-    owl:propertyChainAxiom ( ssn:inDeployment ssn:deployedSystem ) ;
+    owl:propertyChainAxiom ( sosa:inDeployment sosa:deployedSystem ) ;
     rdfs:isDefinedBy sosa: .
  
   sosa:isHostedBy
@@ -193,12 +199,13 @@ sosa:Platform
 ## Procedures
 
 sosa:Procedure 
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:hasInput ; owl:allValuesFrom ssn:Input ]  ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:hasOutput ; owl:allValuesFrom ssn:Output ]  ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasInput ; owl:allValuesFrom sosa:Input ]  ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasOutput ; owl:allValuesFrom sosa:Output ]  ;
   rdfs:isDefinedBy sosa: .
 
   ssn:hasInput a owl:ObjectProperty ;
     owl:equivalentProperty sosa:hasInput ;
+    owl:deprecated true ;
     rdfs:label "has input"@en ;
     skos:definition "Relation between a Procedure and an Input to it."@en ;
     rdfs:comment "Relation between a Procedure and an Input to it."@en ;
@@ -206,6 +213,7 @@ sosa:Procedure
 
     ssn:Input a owl:Class ;
       owl:equivalentClass sosa:Input ;
+      owl:deprecated true ;
       rdfs:label "Input"@en ;
       skos:definition "Any information that is provided to a Procedure for its use."@en ;
       rdfs:comment "Any information that is provided to a Procedure for its use."@en ;
@@ -215,6 +223,7 @@ sosa:Procedure
 
   ssn:hasOutput a owl:ObjectProperty ;
     owl:equivalentProperty sosa:hasOutput ;
+    owl:deprecated true ;
     rdfs:label "has output"@en ;
     skos:definition "Relation between a Procedure and an Output of it."@en ;
     rdfs:comment "Relation between a Procedure and an Output of it."@en ;
@@ -222,6 +231,7 @@ sosa:Procedure
 
     ssn:Output a owl:Class ;
       owl:equivalentClass sosa:Output ;
+      owl:deprecated true ;
       rdfs:label "Output"@en ;
       skos:definition "Any information that is reported from a Procedure."@en ;
       rdfs:comment "Any information that is reported from a Procedure."@en ;
@@ -231,43 +241,39 @@ sosa:Procedure
 
 sosa:ObservingProcedure
   rdfs:subClassOf sosa:Procedure ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:implementedBy ; owl:allValuesFrom sosa:Sensor ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implementedBy ; owl:allValuesFrom sosa:Sensor ] ;
   rdfs:isDefinedBy sosa: .
 
 sosa:ActuationProcedure
   rdfs:subClassOf sosa:Procedure ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:implementedBy ; owl:allValuesFrom sosa:Actuator ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implementedBy ; owl:allValuesFrom sosa:Actuator ] ;
   rdfs:isDefinedBy sosa: .
 
 sosa:SamplingProcedure
   rdfs:subClassOf sosa:Procedure ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:implementedBy ; owl:allValuesFrom sosa:Sampler ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implementedBy ; owl:allValuesFrom sosa:Sampler ] ;
   rdfs:isDefinedBy sosa: .
 
 sosa:PreparationProcedure
   rdfs:subClassOf sosa:Procedure ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:implementedBy ; owl:allValuesFrom sosa:PreparationStep ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implementedBy ; owl:allValuesFrom sosa:PreparationStep ] ;
   rdfs:isDefinedBy sosa: .
 
 # clone the ssn: resources into the sosa: namespace
 # Note owl:equivalentClass/Property axioms 
 
   sosa:hasInput 
-    owl:equivalentProperty ssn:hasInput ;
     rdfs:isDefinedBy sosa: .
 
     sosa:Input 
-      owl:equivalentClass ssn:Input ;
       rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sosa:hasInput ] ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
       rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sosa:hasInput ] ; owl:allValuesFrom sosa:Procedure ] ;
       rdfs:isDefinedBy sosa: .
 
   sosa:hasOutput 
-    owl:equivalentProperty ssn:hasOutput ;
     rdfs:isDefinedBy sosa: .
 
     sosa:Output 
-      owl:equivalentClass ssn:Output ;
       rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sosa:hasOutput ] ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
       rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sosa:hasOutput ] ; owl:allValuesFrom sosa:Procedure ] ;
       rdfs:isDefinedBy sosa: .
@@ -277,6 +283,7 @@ sosa:PreparationProcedure
 
 ssn:implements a owl:ObjectProperty ;
   owl:equivalentProperty sosa:implements ;
+  owl:deprecated true ;
   rdfs:label "implements"@en ;
   skos:definition "Relation between an entity that implements a Procedure in some executable way and the Procedure (an algorithm, procedure or method)."@en ;
   rdfs:comment "Relation between an entity that implements a Procedure in some executable way and the Procedure (an algorithm, procedure or method)."@en ;
@@ -286,6 +293,7 @@ ssn:implements a owl:ObjectProperty ;
 
 ssn:implementedBy a owl:ObjectProperty ;
   owl:equivalentProperty sosa:implementedBy ;
+  owl:deprecated true ;
   rdfs:label "implemented by"@en ;
   skos:definition "Relation between a Procedure (an algorithm, procedure or method) and an entity that implements that Procedure in some executable way."@en ;
   rdfs:comment "Relation between a Procedure (an algorithm, procedure or method) and an entity that implements that Procedure in some executable way."@en ;
@@ -294,10 +302,10 @@ ssn:implementedBy a owl:ObjectProperty ;
   rdfs:isDefinedBy ssn: .
 
 sosa:Sensor
-  rdfs:subClassOf ssn:System ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:detects ; owl:allValuesFrom ssn:Stimulus ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:implements ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:implements ; owl:allValuesFrom sosa:ObservingProcedure ] ;
+  rdfs:subClassOf sosa:System ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:detects ; owl:allValuesFrom sosa:Stimulus ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implements ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implements ; owl:allValuesFrom sosa:ObservingProcedure ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:observes ; owl:allValuesFrom sosa:ObservableProperty ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeObservation ; owl:allValuesFrom sosa:Observation ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isHostedBy ; owl:allValuesFrom sosa:Platform ]  ;
@@ -311,17 +319,17 @@ sosa:Sensor
     rdfs:isDefinedBy sosa: .
 
 sosa:Actuator
-  rdfs:subClassOf ssn:System ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:implements ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:implements ; owl:allValuesFrom sosa:ActuationProcedure ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:forProperty ; owl:allValuesFrom sosa:ActuatableProperty ] ;
+  rdfs:subClassOf sosa:System ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implements ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implements ; owl:allValuesFrom sosa:ActuationProcedure ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:forProperty ; owl:allValuesFrom sosa:ActuatableProperty ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeActuation ; owl:allValuesFrom sosa:Actuation ] ;
   rdfs:isDefinedBy sosa: .
 
 sosa:Sampler 
-  rdfs:subClassOf ssn:System ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:implements ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:implements ; owl:allValuesFrom sosa:SamplingProcedure ] ;
+  rdfs:subClassOf sosa:System ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implements ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implements ; owl:allValuesFrom sosa:SamplingProcedure ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeSampling ; owl:allValuesFrom sosa:Sampling ] ;
   rdfs:isDefinedBy sosa: .
 
@@ -329,20 +337,18 @@ sosa:Sampler
 # Note owl:equivalentClass/Property axioms 
 
 sosa:implements 
-  owl:equivalentProperty ssn:implements ;
   rdfs:isDefinedBy sosa: .
 
 sosa:implementedBy 
-  owl:equivalentProperty ssn:implementedBy ;
   rdfs:isDefinedBy sosa: .
 
 
 ## ProcedureExecutions
 
 sosa:usedProcedure 
-  owl:propertyChainAxiom ( sosa:madeBySensor ssn:implements ) ;
-  owl:propertyChainAxiom ( sosa:madeByActuator ssn:implements ) ;
-  owl:propertyChainAxiom ( sosa:madeBySampler ssn:implements ) ;
+  owl:propertyChainAxiom ( sosa:madeBySensor sosa:implements ) ;
+  owl:propertyChainAxiom ( sosa:madeByActuator sosa:implements ) ;
+  owl:propertyChainAxiom ( sosa:madeBySampler sosa:implements ) ;
   rdfs:isDefinedBy sosa: .
 
 sosa:hasFeatureOfInterest
@@ -475,6 +481,7 @@ sosa:hasMemberObs a owl:ObjectProperty ;
 
 ssn:Stimulus a owl:Class ;
   owl:equivalentClass sosa:Stimulus ;
+  owl:deprecated true ;
   rdfs:label "Stimulus"@en ;
   skos:definition "An event in the real world that 'triggers' the Sensor. The properties associated to the Stimulus may be different to the eventual observed ObservableProperty. It is the event, not the object, that triggers the Sensor."@en ;
   rdfs:comment "An event in the real world that 'triggers' the Sensor. The properties associated to the Stimulus may be different to the eventual observed ObservableProperty. It is the event, not the object, that triggers the Sensor."@en ;
@@ -485,6 +492,7 @@ ssn:Stimulus a owl:Class ;
 
   ssn:wasOriginatedBy a owl:ObjectProperty , owl:FunctionalProperty ;
     owl:equivalentProperty sosa:wasOriginatedBy ;
+    owl:deprecated true ;
     rdfs:label "was originated by"@en ;
     skos:definition "Relation between an Observation and the Stimulus that originated it."@en ;
     rdfs:comment "Relation between an Observation and the Stimulus that originated it."@en ;
@@ -492,6 +500,7 @@ ssn:Stimulus a owl:Class ;
 
   ssn:detects a owl:ObjectProperty ;
     owl:equivalentProperty sosa:detects ;
+    owl:deprecated true ;
     rdfs:label "detects"@en ;
     skos:definition "A relation from a Sensor to the Stimulus that the Sensor detects. The Stimulus itself will be serving as a proxy for some ObservableProperty."@en ;
     rdfs:comment "A relation from a Sensor to the Stimulus that the Sensor detects. The Stimulus itself will be serving as a proxy for some ObservableProperty."@en ;
@@ -499,6 +508,7 @@ ssn:Stimulus a owl:Class ;
 
   ssn:isProxyFor a owl:ObjectProperty ;
     owl:equivalentProperty sosa:isProxyFor ;
+    owl:deprecated true ;
     rdfs:label "is proxy for"@en ;
     skos:definition "A relation from a Stimulus to the Property that the Stimulus is serving as a proxy for."@en ;
     rdfs:comment "A relation from a Stimulus to the Property that the Stimulus is serving as a proxy for."@en ;
@@ -516,15 +526,12 @@ sosa:Stimulus
   rdfs:isDefinedBy sosa: .
 
   sosa:wasOriginatedBy a owl:FunctionalProperty ;
-    owl:equivalentProperty ssn:wasOriginatedBy ;
     rdfs:isDefinedBy sosa: .
 
   sosa:detects 
-    owl:equivalentProperty ssn:detects ;
     rdfs:isDefinedBy sosa: .
 
   sosa:isProxyFor 
-    owl:equivalentProperty ssn:isProxyFor ;
     rdfs:isDefinedBy sosa: .
 
   
@@ -562,6 +569,7 @@ sosa:Result
 
 ssn:System a owl:Class ;
   owl:equivalentClass sosa:System ;
+  owl:deprecated true ;
   rdfs:label "System"@en ;
   skos:definition "System is a unit of abstraction for pieces of infrastructure that implement Procedures. A System may have components, its subsystems, which are other systems."@en ; 
   rdfs:comment "System is a unit of abstraction for pieces of infrastructure that implement Procedures. A System may have components, its subsystems, which are other systems."@en ; 
@@ -574,6 +582,7 @@ ssn:System a owl:Class ;
 
   ssn:hasSubSystem a owl:ObjectProperty ;
     owl:equivalentProperty sosa:hasSubSystem ;
+    owl:deprecated true ;
     rdfs:label "has subsystem"@en ;
     skos:definition "Relation between a System and its component parts."@en ;
     rdfs:comment "Relation between a System and its component parts."@en ;
@@ -583,7 +592,6 @@ ssn:System a owl:Class ;
 # Note owl:equivalentClass/Property axioms 
 
 sosa:System 
-  owl:equivalentClass ssn:System ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isHostedBy ; owl:allValuesFrom sosa:Platform ]  ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implements ; owl:allValuesFrom sosa:Procedure ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasSubSystem ; owl:allValuesFrom sosa:System ]  ;
@@ -592,7 +600,6 @@ sosa:System
   rdfs:isDefinedBy sosa: .
 
   sosa:hasSubSystem 
-    owl:equivalentProperty ssn:hasSubSystem ;
     rdfs:isDefinedBy sosa: .
 
 
@@ -600,6 +607,7 @@ sosa:System
 
 ssn:Deployment a owl:Class ;
   owl:equivalentClass sosa:Deployment ;
+  owl:deprecated true ;
   rdfs:label "Deployment"@en ;
   skos:definition "Describes the Deployment of one or more assets for a particular purpose. Deployment may be done on a Platform."@en ;
   rdfs:comment "Describes the Deployment of one or more assets for a particular purpose. Deployment may be done on a Platform."@en ;
@@ -612,6 +620,7 @@ ssn:Deployment a owl:Class ;
 
   ssn:deployedAsset a owl:ObjectProperty ;
     owl:equivalentProperty sosa:deployedAsset ;
+    owl:deprecated true ;
     rdfs:label "deployed asset"@en ;
     skos:definition "Relation between a Deployment and a deployed asset."@en ;
     rdfs:comment "Relation between a Deployment and a deployed asset."@en ;
@@ -619,6 +628,7 @@ ssn:Deployment a owl:Class ;
 
   ssn:deployedOnPlatform a owl:ObjectProperty ;
     owl:equivalentProperty sosa:deployedOnPlatform ;
+    owl:deprecated true ;
     rdfs:label "deployed on platform"@en ;
     skos:definition "Relation between a Deployment and the Platform on which the Systems are deployed."@en ;
     rdfs:comment "Relation between a Deployment and the Platform on which the Systems are deployed."@en ;
@@ -627,6 +637,7 @@ ssn:Deployment a owl:Class ;
 
   ssn:deployedSystem a owl:ObjectProperty ;
     owl:equivalentProperty sosa:deployedSystem ;
+    owl:deprecated true ;
     rdfs:subPropertyOf ssn:deployedAsset ;
     rdfs:label "deployed system"@en ;
     skos:definition "Relation between a Deployment and a deployed System."@en ;
@@ -636,6 +647,7 @@ ssn:Deployment a owl:Class ;
 
   ssn:hasDeployment a owl:ObjectProperty ;
     owl:equivalentProperty sosa:hasDeployment ;
+    owl:deprecated true ;
     rdfs:label "has deployment"@en ;
     skos:definition "Relation between a System and a Deployment, recording that the System is deployed in that Deployment."@en ;
     rdfs:comment "Relation between a System and a Deployment, recording that the System is deployed in that Deployment."@en ;
@@ -644,6 +656,7 @@ ssn:Deployment a owl:Class ;
 
   ssn:inDeployment a owl:ObjectProperty ;
     owl:equivalentProperty sosa:inDeployment ;
+    owl:deprecated true ;
     rdfs:label "in deployment"@en ;
     skos:definition "Relation between a Platform and a Deployment, meaning that the deployedSystems of the Deployment are hosted on the Platform."@en ;
     rdfs:comment "Relation between a Platform and a Deployment, meaning that the deployedSystems of the Deployment are hosted on the Platform."@en ;
@@ -655,7 +668,6 @@ ssn:Deployment a owl:Class ;
 # Note owl:equivalentClass/Property axioms 
 
 sosa:Deployment 
-  owl:equivalentClass ssn:Deployment ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:deployedSystem ; owl:allValuesFrom sosa:System ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:deployedAsset ; owl:allValuesFrom [ a owl:Class ; owl:unionOf ( sosa:Sensor sosa:Platform sosa:System ) ] ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:deployedOnPlatform ; owl:allValuesFrom sosa:Platform ]  ;
@@ -663,23 +675,18 @@ sosa:Deployment
   rdfs:isDefinedBy sosa: .
 
   sosa:deployedAsset 
-    owl:equivalentProperty ssn:deployedAsset ;
     rdfs:isDefinedBy sosa: .
 
   sosa:deployedOnPlatform 
-    owl:equivalentProperty ssn:deployedOnPlatform ;
     rdfs:isDefinedBy sosa: .
 
   sosa:deployedSystem 
-    owl:equivalentProperty ssn:deployedSystem ;
     rdfs:isDefinedBy sosa: .
 
   sosa:hasDeployment 
-    owl:equivalentProperty ssn:hasDeployment ;
     rdfs:isDefinedBy sosa: .
 
   sosa:inDeployment 
-    owl:equivalentProperty ssn:inDeployment ;
     rdfs:isDefinedBy sosa: .
 
 
@@ -687,6 +694,7 @@ sosa:Deployment
 
 ssn:forProperty a owl:ObjectProperty ;
   owl:equivalentProperty sosa:forProperty ;
+  owl:deprecated true ;
   rdfs:label "for property"@en ;
   skos:definition "A relation between some aspect of an entity and a Property."@en ;
   rdfs:comment "A relation between some aspect of an entity and a Property."@en ;
@@ -697,5 +705,4 @@ ssn:forProperty a owl:ObjectProperty ;
 # Note owl:equivalentClass/Property axioms 
 
 sosa:forProperty a owl:ObjectProperty ;
-  owl:equivalentProperty ssn:forProperty ;
   rdfs:isDefinedBy sosa: .
