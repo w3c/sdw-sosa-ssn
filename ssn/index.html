@@ -629,6 +629,12 @@ engineering, and the Web of Things. </p>
                       <td><span property="skos:example">The activity of estimating the intensity of an Earthquake using the Mercalli intensity scale is an <a href="#SOSAObservation"><code>Observation</code></a> as is measuring the moment magnitude, i.e., the energy released by said earthquake.</span></td>
                     </tr>
                     <tr class="ssn">
+                      <th>Sub class of</th>
+                      <td>
+                        <span rel="rdfs:subClassOf" resource="sosa:ProcedureExecution"><a href="#SOSAProcedureExecution">sosa:ProcedureExecution</a></span>
+                      </td>
+                    </tr> 
+                    <tr class="ssn">
                     <th class="restrictions">Restrictions</th>
                     <td>
                       <span about="sosa:Observation" rel="rdfs:subClassOf" resource="[_:SOSAObservation1]"></span>
@@ -1178,6 +1184,12 @@ engineering, and the Web of Things. </p>
                     <th>Example</th>
                     <td><span property="skos:example">The activity of automatically closing a window if the temperature in a room drops below 20 degree Celsius. The activity is the <a href="#SOSAActuation"><code>Actuation</code></a> and the device that closes the window is the <a href="#SOSAActuator"><code>Actuator</code></a>. The <a href="#SOSAProcedure"><code>Procedure</code></a> is the rule, plan, or specification that defines the <a href="#SSNSYSTEMCondition"><code>Conditions</code></a> that triggers the <a href="#SOSAActuation"><code>Actuation</code></a>, here a drop in temperature.</span></td>
                   </tr>
+                  <tr class="ssn">
+                    <th>Sub class of</th>
+                    <td>
+                      <span rel="rdfs:subClassOf" resource="sosa:ProcedureExecution"><a href="#SOSAProcedureExecution">sosa:ProcedureExecution</a></span>
+                    </td>
+                  </tr> 
                 <tr class="ssn">
                   <th class="restrictions">Restrictions</th>
                   <td>
@@ -1658,6 +1670,12 @@ engineering, and the Web of Things. </p>
                       <span property="skos:example">Taking a diamond-drill core from a rock outcrop.</span><br>
                     </td>
                   </tr>
+                  <tr class="ssn">
+                    <th>Sub class of</th>
+                    <td>
+                      <span rel="rdfs:subClassOf" resource="sosa:ProcedureExecution"><a href="#SOSAProcedureExecution">sosa:ProcedureExecution</a></span>
+                    </td>
+                  </tr> 
                   <tr class="ssn">
                     <th class="restrictions">Restrictions</th>
                     <td>
@@ -2358,6 +2376,7 @@ engineering, and the Web of Things. </p>
               SOSA axioms are shown in green, while SSN-only axioms are shown in blue.
             </p>
             <figure class="ssn">
+              TODO: change the figure to illustrate ProcedureExecution
               <a href="images/SSN-Procedures.png"><img alt="Procedures" src="images/SSN-Procedures.png"></a>
               <figcaption>Classes and relationships related to procedures</figcaption>
             </figure>
@@ -2376,6 +2395,7 @@ engineering, and the Web of Things. </p>
         <div class="azlist">
           <p>
              <a href="#SOSAProcedure">sosa:Procedure</a>,
+             <a href="#SOSAProcedureExecution">sosa:ProcedureExecution</a>,
              <a href="#SOSAusedProcedure">sosa:usedProcedure</a>,
               <a href="#SOSAimplements">sosa:implements</a>, 
               <a href="#SOSAimplementedBy">sosa:implementedBy</a>, 
@@ -2676,6 +2696,31 @@ engineering, and the Web of Things. </p>
               <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
             </div>
         </section>
+
+        <section class="specterm" id="SOSAProcedureExecution" about="sosa:ProcedureExecution" typeof="owl:Class rdfs:Class">
+          <h5><a href="#SOSAProcedureExecution">sosa:ProcedureExecution</a></h5>
+          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/ProcedureExecution</p>
+          <p><strong>a OWL Class</strong></p>
+
+          <em property="rdfs:label">Procedure Execution</em> -
+          <span property="rdfs:comment skos:definition">Act of carrying out a <a href="#SOSAProcedure"><code>Procedure</code></a>. This class generalizes the <a href="#SOSAObservation"><code>Observation</code></a>, <a href="#SOSAActuation"><code>Actuation</code></a>, and <a href="#SOSASampling"><code>Sampling</code></a> classes.</span> <br>
+          <table>
+            <tbody>
+              <tr>
+                <th>is Defined By</th>
+                <td>
+                  <span rel="rdfs:isDefinedBy"><a href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      <div class="buttonpanel">
+          <span class="back">[<a href="#Procedures">Back to module overview and examples</a>]</span>
+          <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
+
         </section>
       </section>
 
