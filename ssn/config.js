@@ -48,7 +48,11 @@ var respecConfig = {
       },{
         value: "Raúl García-Castro, Universidad Politécnica de Madrid"
       },{
+        value: "Sylvan Grellet, BRGM"
+      },{
         value: "Joshua Lieberman, Tumbling Walls"
+      },{
+        value: "Kathi Schleidt, Datacove"
       },{
         value: "Claus Stadler, Universität Leipzig"
       }]
@@ -107,11 +111,18 @@ var respecConfig = {
         date: "10 September 2012"  
        }, 
        "OandM":{
-        href:"http://www.opengeospatial.org/standards/om",
+        href:"https://portal.ogc.org/files/?artifact_id=41579",
         title:"Observations and Measurements (O&M)",
         authors: ["Simon Cox"],
         publisher: "Open Geospatial Consortium", 
         date: "2011"
+       }, 
+       "OMS":{
+        href:"https://docs.ogc.org/as/20-082r4/20-082r4.html",
+        title:"Observations, measurements and samples (OMS)",
+        authors: ["Katharina Schleidt" , "Ilkka Rinne"],
+        publisher: "Open Geospatial Consortium", 
+        date: "2023"
        }, 
        "SML":{
         href:"http://www.opengeospatial.org/standards/sensorml",
