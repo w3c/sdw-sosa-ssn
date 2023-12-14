@@ -1,19 +1,35 @@
+# baseURI: file:///C:/dev/W3C/sdw-sosa-ssn/ssn/examples/01-observation-collection.ttl
+# imports: http://www.w3.org/ns/sosa-collections/
+
+@prefix eg: <http://example.org/my-feature/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix eg: <http://example.org/my-feature/> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
-eg:c1 a sosa:ObservationCollection ;
-  sosa:hasMember eg:a1 ;
-  sosa:observedProperty eg:p1 ;
-  sosa:resultTime "2022-05-01T22:33:44Z"^^xsd:dateTime ;
-  sosa:phenomenonTime "2022-05-01T22:33:40Z"^^xsd:dateTime ;
+<file:///C:/dev/W3C/sdw-sosa-ssn/ssn/examples/01-observation-collection.ttl>
+  a owl:Ontology ;
+  owl:imports <http://www.w3.org/ns/sosa-collections/> ;
 .
-
-eg:a1 a sosa:Observation ;
+eg:HomoCollection_1
+  a sosa:ObservationCollection ;
+  rdfs:label "Homogeneous Observation Collection #1" ;
+.
+eg:a1
+  a sosa:Observation ;
   sosa:hasFeatureOfInterest <https://demo.pygeoapi.io/master/collections/utah_city_locations/items/Salem> ;
   sosa:hasSimpleResult 33 ;
 .
-eg:p1 a skos:Concept;
-  skos:prefLabel "Some Observable Property";
+eg:c1
+  a sosa:ObservationCollection ;
+  sosa:hasMember eg:a1 ;
+  sosa:observedProperty eg:p1 ;
+  sosa:phenomenonTime "2022-05-01T22:33:40Z"^^xsd:dateTime ;
+  sosa:resultTime "2022-05-01T22:33:44Z"^^xsd:dateTime ;
+.
+eg:p1
+  a skos:Concept ;
+  skos:prefLabel "Some Observable Property" ;
 .
