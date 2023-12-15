@@ -6,6 +6,7 @@
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix time: <http://www.w3.org/2006/time#> .
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
 @prefix prov: <https://www.w3.org/TR/prov-o/#> .
 @prefix doap: <http://usefulinc.com/ns/doap#> .
 @prefix dqv: <http://www.w3.org/ns/dqv#> .
@@ -263,6 +264,11 @@ sosa-oms:observationType a owl:ObjectProperty ;
   sosa:observedProperty ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/observedProperty-sem> ;
     rdfs:isDefinedBy sosa: .
 
+  dqv:hasQualityMeasurement
+    schema:domainIncludes sosa:Observation ;
+    schema:domainIncludes sosa:ObservationCollection ;
+    rdfs:isDefinedBy dqv: .
+
   sosa-oms:madeOnPlatform rdf:type owl:ObjectProperty ;
     ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/host-sem> ;
     rdfs:label "made on platform"@en ;
@@ -403,6 +409,7 @@ sosa-oms:validTime a owl:ObjectProperty ;
   rdfs:label "valid time"@en ;
   skos:definition "The time interval during which the result is assumed to be applicable for use."@en ;
   schema:domainIncludes sosa:Observation ;
+  schema:domainIncludes sosa:ObservationCollection ;
   schema:domainIncludes sosa:Sampling ;
   schema:rangeIncludes time:Interval , dcterms:PeriodOfTime ;
   rdfs:isDefinedBy sosa-oms: .
