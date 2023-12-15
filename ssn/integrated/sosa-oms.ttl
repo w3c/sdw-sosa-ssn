@@ -278,10 +278,16 @@ sosa-oms:observationType a owl:ObjectProperty ;
   sosa:observedProperty ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/observedProperty-sem> ;
     rdfs:isDefinedBy sosa: .
 
-  dqv:hasQualityMeasurement
+ sosa-oms:resultQuality a owl:ObjectProperty ;
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-core/AbstractObservationCharacteristics/resultQuality-sem> ;
+  rdfs:label "observation result quality" ;
+  skos:definition "Information pertaining to the data quality of the result." ;
+  skos:scopeNote """This instance-specific description complements the description of the observation Procedure, which provides information concerning the quality of all observations using this procedure.""" ; 
+  skos:note  """The quality of a result can be assessed following the procedures in the ISO 19157 series. Multiple measures can be provided.""" ;
+  skos:note  """dqv:hasQualityMeasurement from the Data Quality Vocabulary is equivalent""" ;
     schema:domainIncludes sosa:Observation ;
     schema:domainIncludes sosa:ObservationCollection ;
-    rdfs:isDefinedBy dqv: .
+    rdfs:isDefinedBy sosa-oms: .
 
   sosa-oms:madeOnPlatform rdf:type owl:ObjectProperty ;
     ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/host-sem> ;

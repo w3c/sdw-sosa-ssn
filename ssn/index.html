@@ -3429,7 +3429,7 @@ engineering, and the Web of Things. </p>
           <a href="#SOSAhasResult"><code>hasResult</code></a> , 
           <a href="#SOSAhasSimpleResult"><code>hasSimpleResult</code></a> , 
           <a href="#OMSobservationType"><code>observationType</code></a> , 
-          <a href="https://www.w3.org/TR/vocab-dqv/#dqv:hasQualityMeasurement"><code>hasQualityMeasurement</code></a> . 
+          <a href="#OMSresultQuality"><code>resultQuality</code></a> . 
           If they are present, the values of these properties summarize the values of the matching properties of the member observations, where membership is either direct or transitive through one or more member observation collections.  
           <br/><br/>
           The following consistency rules with respect to the Observation properties listed above: 
@@ -5030,11 +5030,6 @@ engineering, and the Web of Things. </p>
             </td>
           </tr>
           <tr>
-            <td> dqv: </td>
-            <td> <a href="http://www.w3.org/ns/dqv#">http://www.w3.org/ns/dqv#</a>
-            </td>
-          </tr>
-          <tr>
             <td> ogc-ms: </td>
             <td> <a href="http://www.opengis.net/def/ont/modspec/">http://www.opengis.net/def/ont/modspec/</a>
             </td>
@@ -5074,24 +5069,25 @@ engineering, and the Web of Things. </p>
       <p>This section introduces the following classes and properties:</p>
       <div class="azlist">
         <p>
-          <a href="#OMSSpatialSample">sosa-oms:SpatialSample</a>
-          , <a href="#OMSMaterialSample">sosa-oms:MaterialSample</a>
-          , <a href="#OMSStatisticalSample">sosa-oms:StatisticalSample</a>
-          , <a href="#OMSObservingProcedure">sosa-oms:ObservingProcedure</a>
-          , <a href="#OMSSamplingProcedure">sosa-oms:SamplingProcedure</a>
-          , <a href="#OMSPreparationProcedure">sosa-oms:PreparationProcedure</a>
           , <a href="#OMSActuationProcedure">sosa-oms:ActuationProcedure</a>
+          , <a href="#OMSMaterialSample">sosa-oms:MaterialSample</a>
+          , <a href="#OMSObservingProcedure">sosa-oms:ObservingProcedure</a>
+          , <a href="#OMSPreparationProcedure">sosa-oms:PreparationProcedure</a>
+          , <a href="#OMSSamplingProcedure">sosa-oms:SamplingProcedure</a>
+          , <a href="#OMSSpatialSample">sosa-oms:SpatialSample</a>
+          , <a href="#OMSStatisticalSample">sosa-oms:StatisticalSample</a>
           , <a href="#OMSPreparationStep">sosa-oms:PreparationStep</a>
+          , <a href="#OMShasPreparationStep">sosa-oms:hasPreparationStep</a>
+          , <a href="#OMSmadeOnPlatform">sosa-oms:madeOnPlatform</a>
           , <a href="#OMSmetadata">sosa-oms:metadata</a>,
           , <a href="#OMSobservationType">sosa-oms:observationType</a>
-          , <a href="#OMSvalidTime">sosa-oms:validTime</a>
-          , <a href="#OMSmadeOnPlatform">sosa-oms:madeOnPlatform</a>
-          , <a href="#OMSrelatedObservation">sosa-oms:relatedObservation</a>
-          , <a href="#OMSrelatedSampling">sosa-oms:relatedSampling</a>
-          , <a href="#OMShasPreparationStep">sosa-oms:hasPreparationStep</a>
           , <a href="#OMSpreparedSample">sosa-oms:preparedSample</a>
           , <a href="#OMSprocessingDetails">sosa-oms:processingDetails</a>
+          , <a href="#OMSrelatedObservation">sosa-oms:relatedObservation</a>
+          , <a href="#OMSrelatedSampling">sosa-oms:relatedSampling</a>
+          , <a href="#OMSresultQuality">sosa-oms:resultQuality</a>
           , <a href="#OMSsamplePreparationStep">sosa-oms:samplePreparationStep</a>
+          , <a href="#OMSvalidTime">sosa-oms:validTime</a>
         </p>
       </div>
           <section class="specterm" id="OMSSpatialSample" about="sosa-oms:SpatialSample"
@@ -5468,6 +5464,45 @@ engineering, and the Web of Things. </p>
    </div>
  </section>
 
+ <section class="specterm" id="OMSresultQuality" about="sosa-oms:resultQuality"
+          typeof="owl:ObjectProperty">
+   <h5><a href="#OMSresultQuality">sosa-oms:resultQuality</a></h5>
+   <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/resultQuality</p>
+   <p><strong>a OWL Object Property</strong></p>
+
+   <em property="rdfs:label">observation result quality</em> -
+   <span property="skos:definition">Information pertaining to the data quality of the result.</span>
+   <table>
+    <tbody>
+      <tr>
+        <th>Note</th>
+        <td>
+          <span property="skos:scopeNote">This instance-specific description complements the description of the observation Procedure, which provides information concerning the quality of all observations using this procedure. </span> 
+          <span property="skos:note">The quality of a result can be assessed following the procedures in the ISO 19157 series. Multiple measures can be provided.</span> 
+          <span property="skos:note"><a href="https://www.w3.org/TR/vocab-dqv/#dqv:hasQualityMeasurement">dqv:hasQualityMeasurement</a> from the Data Quality Vocabulary is equivalent</span> 
+          </td>
+      </tr>
+      <tr>
+       <th>Domain Includes</th>
+       <td>
+         <span rel="schema:domainIncludes" resource="sosa:Observation"><a href="#SOSAObservation">sosa:Observation</a></span> 
+         , <span rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a href="#SOSAObservationCollection">sosa:ObservationCollection</a></span> 
+       </td>
+     </tr>
+     <tr>
+      <th>is Defined By</th>
+      <td>
+       <span rel="rdfs:isDefinedBy"><a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
+      </td>
+     </tr>
+   </tbody>
+   </table>
+
+   <div class="buttonpanel">
+     <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
+   </div>
+ </section>
+
  <section class="specterm" id="OMSvalidTime" about="sosa-oms:validTime"
           typeof="owl:ObjectProperty">
    <h5><a href="#OMSvalidTime">sosa-oms:validTime</a></h5>
@@ -5777,7 +5812,7 @@ engineering, and the Web of Things. </p>
             <td> obs-cpt:Deployment </td>
           </tr>
           <tr>
-            <td> <a href="SOSAoms:MaterialSample">sosa-oms:MaterialSample</a> </td>
+            <td> <a href="SOSAMaterialSample">sosa-oms:MaterialSample</a> </td>
             <td> ogc-ms:implements </td>
             <td> sam-basic:MaterialSample </td>
           </tr>
@@ -5864,11 +5899,6 @@ engineering, and the Web of Things. </p>
         <p>The following properties used in SOSA can be aligned as follows. </p>
         <table>
           <tbody>
-            <tr>
-              <td> <a href="https://www.w3.org/TR/vocab-dqv/#dqv:hasQualityMeasurement">dqv:hasQualityMeasurement</a> </td>
-              <td> ogc-ms:implements </td>
-              <td> obs-core:AbstractObservationCharacteristics/resultQuality-sem </td>
-            </tr>
             <tr>
               <td> <a href="SOSAdeployedOnPlatform">sosa:deployedOnPlatform</a> </td>
               <td> ogc-ms:implements </td>
@@ -6023,6 +6053,11 @@ engineering, and the Web of Things. </p>
               <td> <a href="OMSrelatedSampling">sosa-oms:relatedSampling</a> </td>
               <td> ogc-ms:implements </td>
               <td> sam-cpt:Sampling/relatedSampling-sem </td>
+            </tr>
+            <tr>
+              <td> <a href="#OMSresultQuality">sosa-oms:resultQuality</a> </td>
+              <td> ogc-ms:implements </td>
+              <td> obs-core:AbstractObservationCharacteristics/resultQuality-sem </td>
             </tr>
             <tr>
               <td> <a href="SOSAresultTime">sosa:resultTime</a> </td>
