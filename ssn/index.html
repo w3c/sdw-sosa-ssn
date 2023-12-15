@@ -3429,7 +3429,7 @@ engineering, and the Web of Things. </p>
           <a href="#SOSAhasResult"><code>hasResult</code></a> , 
           <a href="#SOSAhasSimpleResult"><code>hasSimpleResult</code></a> , 
           <a href="#OMSobservationType"><code>observationType</code></a> , 
-          <a href="https://www.w3.org/TR/vocab-dqv/#dqv:hasQualityMeasurement"><code>hasQualityMeasurement</code></a> . 
+          <a href="#OMSresultQuality"><code>resultQuality</code></a> . 
           If they are present, the values of these properties summarize the values of the matching properties of the member observations, where membership is either direct or transitive through one or more member observation collections.  
           <br/><br/>
           The following consistency rules with respect to the Observation properties listed above: 
@@ -5005,9 +5005,9 @@ engineering, and the Web of Things. </p>
     <p>
       Note that [[OMS]] is formalized using UML, which does not provide accessible global identifiers for terms in the structure model. 
       Here we use the URI for each formal Requirement relating to a class or property in [[OMS]] to denote the UML class or property. 
-      Within the RDF representation of the alignment, we use the predicate <code>ogc-ms:implements</code> to link a SOSA term to the corresponding OMS class or property, defined as follows: <br/>
-      <code>ogc-ms:implements a owl:ObjectProperty ; <br/>
-        rdfs:subPropertyOf dcterms:source , prov:wasDerivedFrom , doap:implements . </code>
+      Within the RDF representation of the alignment, we use the predicate <code>ogc-ms:implements</code> to link a SOSA term to the corresponding OMS class or property, defined as follows: <br/><br/>
+      <pre>ogc-ms:implements a owl:ObjectProperty ;
+      rdfs:subPropertyOf dcterms:source , prov:wasDerivedFrom , doap:implements . </pre>
     </p>
     <section id="OMS_Alignment-namespaces">
       <h4>Namespaces</h4>
@@ -5027,11 +5027,6 @@ engineering, and the Web of Things. </p>
           <tr>
             <td> sosa-oms: </td>
             <td> <a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a>
-            </td>
-          </tr>
-          <tr>
-            <td> dqv: </td>
-            <td> <a href="http://www.w3.org/ns/dqv#">http://www.w3.org/ns/dqv#</a>
             </td>
           </tr>
           <tr>
@@ -5074,24 +5069,25 @@ engineering, and the Web of Things. </p>
       <p>This section introduces the following classes and properties:</p>
       <div class="azlist">
         <p>
-          <a href="#OMSSpatialSample">sosa-oms:SpatialSample</a>
-          , <a href="#OMSMaterialSample">sosa-oms:MaterialSample</a>
-          , <a href="#OMSStatisticalSample">sosa-oms:StatisticalSample</a>
-          , <a href="#OMSObservingProcedure">sosa-oms:ObservingProcedure</a>
-          , <a href="#OMSSamplingProcedure">sosa-oms:SamplingProcedure</a>
-          , <a href="#OMSPreparationProcedure">sosa-oms:PreparationProcedure</a>
           , <a href="#OMSActuationProcedure">sosa-oms:ActuationProcedure</a>
+          , <a href="#OMSMaterialSample">sosa-oms:MaterialSample</a>
+          , <a href="#OMSObservingProcedure">sosa-oms:ObservingProcedure</a>
+          , <a href="#OMSPreparationProcedure">sosa-oms:PreparationProcedure</a>
+          , <a href="#OMSSamplingProcedure">sosa-oms:SamplingProcedure</a>
+          , <a href="#OMSSpatialSample">sosa-oms:SpatialSample</a>
+          , <a href="#OMSStatisticalSample">sosa-oms:StatisticalSample</a>
           , <a href="#OMSPreparationStep">sosa-oms:PreparationStep</a>
+          , <a href="#OMShasPreparationStep">sosa-oms:hasPreparationStep</a>
+          , <a href="#OMSmadeOnPlatform">sosa-oms:madeOnPlatform</a>
           , <a href="#OMSmetadata">sosa-oms:metadata</a>,
           , <a href="#OMSobservationType">sosa-oms:observationType</a>
-          , <a href="#OMSvalidTime">sosa-oms:validTime</a>
-          , <a href="#OMSmadeOnPlatform">sosa-oms:madeOnPlatform</a>
-          , <a href="#OMSrelatedObservation">sosa-oms:relatedObservation</a>
-          , <a href="#OMSrelatedSampling">sosa-oms:relatedSampling</a>
-          , <a href="#OMShasPreparationStep">sosa-oms:hasPreparationStep</a>
           , <a href="#OMSpreparedSample">sosa-oms:preparedSample</a>
           , <a href="#OMSprocessingDetails">sosa-oms:processingDetails</a>
+          , <a href="#OMSrelatedObservation">sosa-oms:relatedObservation</a>
+          , <a href="#OMSrelatedSampling">sosa-oms:relatedSampling</a>
+          , <a href="#OMSresultQuality">sosa-oms:resultQuality</a>
           , <a href="#OMSsamplePreparationStep">sosa-oms:samplePreparationStep</a>
+          , <a href="#OMSvalidTime">sosa-oms:validTime</a>
         </p>
       </div>
           <section class="specterm" id="OMSSpatialSample" about="sosa-oms:SpatialSample"
@@ -5468,6 +5464,45 @@ engineering, and the Web of Things. </p>
    </div>
  </section>
 
+ <section class="specterm" id="OMSresultQuality" about="sosa-oms:resultQuality"
+          typeof="owl:ObjectProperty">
+   <h5><a href="#OMSresultQuality">sosa-oms:resultQuality</a></h5>
+   <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/resultQuality</p>
+   <p><strong>a OWL Object Property</strong></p>
+
+   <em property="rdfs:label">observation result quality</em> -
+   <span property="skos:definition">Information pertaining to the data quality of the result.</span>
+   <table>
+    <tbody>
+      <tr>
+        <th>Note</th>
+        <td>
+          <span property="skos:scopeNote">This instance-specific description complements the description of the observation Procedure, which provides information concerning the quality of all observations using this procedure. </span> 
+          <span property="skos:note">The quality of a result can be assessed following the procedures in the ISO 19157 series. Multiple measures can be provided.</span> 
+          <span property="skos:note"><a href="https://www.w3.org/TR/vocab-dqv/#dqv:hasQualityMeasurement">dqv:hasQualityMeasurement</a> from the Data Quality Vocabulary is equivalent</span> 
+          </td>
+      </tr>
+      <tr>
+       <th>Domain Includes</th>
+       <td>
+         <span rel="schema:domainIncludes" resource="sosa:Observation"><a href="#SOSAObservation">sosa:Observation</a></span> 
+         , <span rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a href="#SOSAObservationCollection">sosa:ObservationCollection</a></span> 
+       </td>
+     </tr>
+     <tr>
+      <th>is Defined By</th>
+      <td>
+       <span rel="rdfs:isDefinedBy"><a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
+      </td>
+     </tr>
+   </tbody>
+   </table>
+
+   <div class="buttonpanel">
+     <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
+   </div>
+ </section>
+
  <section class="specterm" id="OMSvalidTime" about="sosa-oms:validTime"
           typeof="owl:ObjectProperty">
    <h5><a href="#OMSvalidTime">sosa-oms:validTime</a></h5>
@@ -5768,91 +5803,91 @@ engineering, and the Web of Things. </p>
         </section>
     <section id="OMS-Alignment-Class">
       <h4>Class Alignments</h4>
-      <p>The following classes in SOSA can be aligned as follows. </p>
+      <p>The following classes used in SOSA can be aligned as follows. </p>
       <table>
         <tbody>
           <tr>
-            <td> sosa:Deployment </td>
+            <td> <a href="SOSADeployment">sosa:Deployment</a> </td>
             <td> ogc-ms:implements </td>
             <td> obs-cpt:Deployment </td>
           </tr>
           <tr>
-            <td> sosa-oms:MaterialSample </td>
+            <td> <a href="SOSAMaterialSample">sosa-oms:MaterialSample</a> </td>
             <td> ogc-ms:implements </td>
             <td> sam-basic:MaterialSample </td>
           </tr>
           <tr>
-            <td> sosa:ObservableProperty </td>
+            <td> <a href="SOSAObservableProperty">sosa:ObservableProperty</a> </td>
             <td> ogc-ms:implements </td>
             <td> obs-cpt:ObservableProperty </td>
           </tr>
           <tr>
-            <td> sosa:Observation </td>
+            <td> <a href="SOSAObservation">sosa:Observation</a> </td>
             <td> ogc-ms:implements </td>
             <td> obs-cpt:Observation </td>
           </tr>
           <tr>
-            <td> sosa-oms:ObservingProcedure </td>
+            <td> <a href="OMSObservingProcedure">sosa-oms:ObservingProcedure</a> </td>
             <td> ogc-ms:implements </td>
             <td> obs-cpt:ObservingProcedure </td>
           </tr>
           <tr>
-            <td> sosa:Platform </td>
+            <td> <a href="SOSAPlatform">sosa:Platform</a> </td>
             <td> ogc-ms:implements </td>
             <td> obs-cpt:Host </td>
           </tr>
           <tr>
-            <td> sosa-oms:PreparationProcedure </td>
+            <td> <a href="OMSPreparationProcedure">sosa-oms:PreparationProcedure</a> </td>
             <td> ogc-ms:implements </td>
             <td> sam-cpt:PreparationProcedure </td>
           </tr>
           <tr>
-            <td> sosa-oms:PreparationStep </td>
+            <td> <a href="OMSPreparationStep">sosa-oms:PreparationStep</a> </td>
             <td> ogc-ms:implements </td>
             <td> sam-cpt:PreparationStep </td>
           </tr>
           <tr>
-            <td> sosa:Procedure </td>
+            <td> <a href="SOSAProcedure">sosa:Procedure</a> </td>
             <td> ogc-ms:implements </td>
             <td> obs-cpt:Procedure </td>
           </tr>
           <tr>
-            <td> sosa:Sample </td>
+            <td> <a href="SOSASample">sosa:Sample</a> </td>
             <td> ogc-ms:implements </td>
             <td> sam-cpt:Sample </td>
           </tr>
           <tr>
-            <td> sosa:SampleCollection </td>
+            <td> <a href="SOSASampleCollection">sosa:SampleCollection</a> </td>
             <td> ogc-ms:implements </td>
             <td> sam-basic:SampleCollection </td>
           </tr>
           <tr>
-            <td> sosa:Sampler </td>
+            <td> <a href="SOSAtSampler">sosa:Sampler</a> </td>
             <td> ogc-ms:implements </td>
             <td> sam-cpt:Sampler </td>
           </tr>
           <tr>
-            <td> sosa:Sampling </td>
+            <td> <a href="SOSASampling">sosa:Sampling</a> </td>
             <td> ogc-ms:implements </td>
             <td> sam-cpt:Sampling </td>
           </tr>
           <tr>
-            <td> sosa-oms:SamplingProcedure </td>
+            <td> <a href="OMSSamplingProcedure">sosa-oms:SamplingProcedure</a> </td>
             <td> ogc-ms:implements </td>
             <td> sam-cpt:SamplingProcedure </td>
           </tr>
           <tr>
-            <td> sosa:Sensor </td>
+            <td> <a href="SOSASensor">sosa:Sensor</a> </td>
             <td> ogc-ms:implements </td>
             <td> obs-cpt:Observer </td>
           </tr>
           <tr>
-            <td> sosa-oms:SpatialSample </td>
+            <td> <a href="OMSSpatialSample">sosa-oms:SpatialSample</a> </td>
             <td> ogc-ms:implements </td>
             <td> sam-basic:SpatialSample </td>
           </tr>
           <tr>
-            <td> sosa-oms:StatisticalSample </td>
+            <td> <a href="OMSStatisticalSample">sosa-oms:StatisticalSample</a> </td>
             <td> ogc-ms:implements </td>
             <td> sam-basic:StatisticalSample </td>
           </tr>
@@ -5861,186 +5896,186 @@ engineering, and the Web of Things. </p>
       </section>
       <section id="OMS-Alignment-Property">
         <h4>Property Alignments</h4>
-        <p>The following classes in SOSA can be aligned as follows. </p>
+        <p>The following properties used in SOSA can be aligned as follows. </p>
         <table>
           <tbody>
             <tr>
-              <td> dqv:hasQualityMeasurement </td>
-              <td> ogc-ms:implements </td>
-              <td> obs-core:AbstractObservationCharacteristics/resultQuality-sem </td>
-            </tr>
-            <tr>
-              <td> sosa:deployedOnPlatform </td>
+              <td> <a href="SOSAdeployedOnPlatform">sosa:deployedOnPlatform</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-cpt:Deployment/host-sem </td>
             </tr>
             <tr>
-              <td> sosa:deployedSystem </td>
+              <td> <a href="SOSAdeployedSystem">sosa:deployedSystem</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-cpt:Deployment/host-sem </td>
             </tr>
             <tr>
-              <td> sosa:hasDeployment </td>
+              <td> <a href="SOSAhasDeployment">sosa:hasDeployment</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-cpt:Observer/deployment-sem </td>
             </tr>
             <tr>
-              <td> sosa:hasFeatureOfInterest </td>
+              <td> <a href="SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-cpt:Observation/featureOfInterest-sem , obs-core:AbstractObservationCharacteristics/pFoI-sem , sam-cpt:Sampling/featureOfInterest-sem </td>
             </tr>
             <tr>
-              <td> sosa:hasMember </td>
+              <td> <a href="SOSAhasMember">sosa:hasMember</a> </td>
               <td> ogc-ms:implements </td>
               <td> sam-basic:SampleCollection/member-sem , obs-core:AbstractObservationCollection/member-sem </td>
             </tr>
             <tr>
-              <td> sosa-oms:hasPreparationStep </td>
+              <td> <a href="OMShasPreparationStep">sosa-oms:hasPreparationStep</a> </td>
               <td> ogc-ms:implements </td>
               <td> sam-cpt:Sample/preparationStep-sem </td>
             </tr>
             <tr>
-              <td> sosa:hasResult </td>
+              <td> <a href="SOSAhasResult">sosa:hasResult</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-cpt:Observation/result-sem , sam-cpt:Sampling/result-sem </td>
             </tr>
             <tr>
-              <td> sosa:hasSampledFeature </td>
+              <td> <a href="SOSAhasSampledFeature">sosa:hasSampledFeature</a> </td>
               <td> ogc-ms:implements </td>
               <td> sam-cpt:Sample/sampledFeature-sem </td>
             </tr>
             <tr>
-              <td> sosa:hasSimpleResult </td>
+              <td> <a href="SOSAhasSimpleResult">sosa:hasSimpleResult</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-cpt:Observation/result-sem </td>
             </tr>
             <tr>
-              <td> sosa:hasUltimateFeatureOfInterest </td>
+              <td> <a href="SOSAhasUltimateFeatureOfInterest">sosa:hasUltimateFeatureOfInterest</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-core:AbstractObservationCharacteristics/uFoI-sem </td>
             </tr>
             <tr>
-              <td> sosa:hosts </td>
+              <td> <a href="SOSAhosts">sosa:hosts</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-cpt:gen/relatedObservation-sem </td>
             </tr>
             <tr>
-              <td> sosa:implementedBy </td>
+              <td> <a href="SOSAimplementedBy">sosa:implementedBy</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-cpt:ObservingProcedure/observer-sem , sam-cpt:SamplingProcedure/sampler-sem </td>
             </tr>
             <tr>
-              <td> sosa:implements </td>
+              <td> <a href="SOSAimplements">sosa:implements</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-cpt:Observer/observingProcedure-sem , sam-cpt:Sampling/samplingProcedure-sem </td>
             </tr>
             <tr>
-              <td> sosa:inDeployment </td>
+              <td> <a href="SOSAinDeployment">sosa:inDeployment</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-cpt:Host/deployment-sem </td>
             </tr>
             <tr>
-              <td> sosa:isFeatureOfInterestOf </td>
+              <td> <a href="SOSAisFeatureOfInterestOf">sosa:isFeatureOfInterestOf</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-cpt:gen/relatedObservation-sem </td>
             </tr>
             <tr>
-              <td> sosa:isHostedBy </td>
+              <td> <a href="SOSAisHostedBy">sosa:isHostedBy</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-cpt:Observation/host-sem </td>
             </tr>
             <tr>
-              <td> sosa:isObservedBy </td>
+              <td> <a href="SOSAisObservedBy">sosa:isObservedBy</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-cpt:ObservableProperty/observer-sem </td>
             </tr>
             <tr>
-              <td> sosa:isSampleOf </td>
+              <td> <a href="SOSAisSampleOf">sosa:isSampleOf</a> </td>
               <td> ogc-ms:implements </td>
               <td> sam-cpt:Sample/sampledFeature-sem </td>
             </tr>
             <tr>
-              <td> sosa:madeBySampler </td>
+              <td> <a href="SOSAmadeBySampler">sosa:madeBySampler</a> </td>
               <td> ogc-ms:implements </td>
               <td> sam-cpt:Sampling/sampler-sem </td>
             </tr>
             <tr>
-              <td> sosa:madeBySensor </td>
+              <td> <a href="SOSAmadeBySensor">sosa:madeBySensor</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-cpt:Observation/observer-sem </td>
             </tr>
             <tr>
-              <td> sosa:madeObservation </td>
+              <td> <a href="SOSAmadeObservation">sosa:madeObservation</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-cpt:gen/relatedObservation-sem </td>
             </tr>
             <tr>
-              <td> sosa-oms:madeOnPlatform </td>
+              <td> <a href="OMSmadeOnPlatform">sosa-oms:madeOnPlatform</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-cpt:Observation/host-sem </td>
             </tr>
             <tr>
-              <td> sosa:madeSampling </td>
+              <td> <a href="SOSAmadeSampling">sosa:madeSampling</a> </td>
               <td> ogc-ms:implements </td>
               <td> sam-cpt:Sampler/sampling-sem </td>
             </tr>
             <tr>
-              <td> sosa-oms:observationType </td>
+              <td> <a href="OMSobservationType">sosa-oms:observationType</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-core:AbstractObservationCharacteristics/type-sem </td>
             </tr>
             <tr>
-              <td> sosa:observedProperty </td>
+              <td> <a href="SOSAobservedProperty">sosa:observedProperty</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-cpt:Observation/observedProperty-sem </td>
             </tr>
             <tr>
-              <td> sosa:observes </td>
+              <td> <a href="SOSAobserves">sosa:observes</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-cpt:Observer/observableProperty-sem </td>
             </tr>
             <tr>
-              <td> sosa:phenomenonTime </td>
+              <td> <a href="SOSAphenomenonTime">sosa:phenomenonTime</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-cpt:Observation/phenomenonTime-sem </td>
             </tr>
             <tr>
-              <td> sosa-oms:preparedSample </td>
+              <td> <a href="OMSpreparedSample">sosa-oms:preparedSample</a> </td>
               <td> ogc-ms:implements </td>
               <td> sam-cpt:PreparationStep/preparedSample-sem </td>
             </tr>
             <tr>
-              <td> sosa-oms:processingDetails </td>
+              <td> <a href="OMSprocessingDetails">sosa-oms:processingDetails</a> </td>
               <td> ogc-ms:implements </td>
               <td> sam-cpt:PreparationStep/processingDetails-sem </td>
             </tr>
             <tr>
-              <td> sosa-oms:relatedObservation </td>
+              <td> <a href="OMSrelatedObservation">sosa-oms:relatedObservation</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-cpt:gen/relatedObservation-sem </td>
             </tr>
             <tr>
-              <td> sosa-oms:relatedSampling </td>
+              <td> <a href="OMSrelatedSampling">sosa-oms:relatedSampling</a> </td>
               <td> ogc-ms:implements </td>
               <td> sam-cpt:Sampling/relatedSampling-sem </td>
             </tr>
             <tr>
-              <td> sosa:resultTime </td>
+              <td> <a href="#OMSresultQuality">sosa-oms:resultQuality</a> </td>
+              <td> ogc-ms:implements </td>
+              <td> obs-core:AbstractObservationCharacteristics/resultQuality-sem </td>
+            </tr>
+            <tr>
+              <td> <a href="SOSAresultTime">sosa:resultTime</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-cpt:Observation/resultTime-sem </td>
             </tr>
             <tr>
-              <td> sosa-oms:samplePreparationStep </td>
+              <td> <a href="OMSsamplePreparationStep">sosa-oms:samplePreparationStep</a> </td>
               <td> ogc-ms:implements </td>
               <td> sam-cpt:PreparationProcedure/samplePreparationStep-sem </td>
             </tr>
             <tr>
-              <td> sosa:usedProcedure </td>
+              <td> <a href="SOSAusedProcedure">sosa:usedProcedure</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-cpt:Observation/observingProcedure-sem , sam-cpt:Sampling/samplingProcedure-sem </td>
             </tr>
             <tr>
-              <td> sosa-oms:validTime </td>
+              <td> <a href="OMSvalidTime">sosa-oms:validTime</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-cpt:Observation/validTime-sem </td>
             </tr>
