@@ -5069,17 +5069,17 @@ engineering, and the Web of Things. </p>
       <p>This section introduces the following classes and properties:</p>
       <div class="azlist">
         <p>
-          , <a href="#OMSActuationProcedure">sosa-oms:ActuationProcedure</a>
+          <a href="#OMSSpatialSample">sosa-oms:SpatialSample</a>
           , <a href="#OMSMaterialSample">sosa-oms:MaterialSample</a>
-          , <a href="#OMSObservingProcedure">sosa-oms:ObservingProcedure</a>
-          , <a href="#OMSPreparationProcedure">sosa-oms:PreparationProcedure</a>
-          , <a href="#OMSSamplingProcedure">sosa-oms:SamplingProcedure</a>
-          , <a href="#OMSSpatialSample">sosa-oms:SpatialSample</a>
           , <a href="#OMSStatisticalSample">sosa-oms:StatisticalSample</a>
+          , <a href="#OMSObservingProcedure">sosa-oms:ObservingProcedure</a>
+          , <a href="#OMSActuationProcedure">sosa-oms:ActuationProcedure</a>
+          , <a href="#OMSSamplingProcedure">sosa-oms:SamplingProcedure</a>
+          , <a href="#OMSPreparationProcedure">sosa-oms:PreparationProcedure</a>
           , <a href="#OMSPreparationStep">sosa-oms:PreparationStep</a>
           , <a href="#OMShasPreparationStep">sosa-oms:hasPreparationStep</a>
           , <a href="#OMSmadeOnPlatform">sosa-oms:madeOnPlatform</a>
-          , <a href="#OMSmetadata">sosa-oms:metadata</a>,
+          , <a href="#OMSmetadata">sosa-oms:metadata</a>
           , <a href="#OMSobservationType">sosa-oms:observationType</a>
           , <a href="#OMSpreparedSample">sosa-oms:preparedSample</a>
           , <a href="#OMSprocessingDetails">sosa-oms:processingDetails</a>
@@ -5279,6 +5279,42 @@ engineering, and the Web of Things. </p>
             </div>
           </section>
 
+          <section class="specterm" id="OMSActuationProcedure" about="sosa-oms:ActuationProcedure"
+                   typeof="owl:Class">
+            <h5><a href="#OMSActuationProcedure">sosa-oms:ActuationProcedure</a></h5>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/ActuationProcedure</p>
+            <p><strong>a OWL Class</strong></p>
+
+            <em property="rdfs:label">Actuation Procedure</em> -
+            <span property="skos:definition">The description of steps performed by an Actuator to change the ActuableProperty.</span>
+            <table>
+              <tbody>
+                <tr>
+                  <th>Note</th>
+                  <td>
+                    <span property="skos:note">ActuationProcedure is not mentioned in OMS, which does not address Actuation. It is added here since it is trivially symmetric with the other procedure classes.</span>
+                  </td>
+                </tr>
+              <tr class="ssn">
+                <th>Sub class of</th>
+                <td>
+                  <span rel="rdfs:subClassOf" resource="sosa:Procedure">sosa:Procedure</span>
+                </td>
+              </tr>
+              <tr>
+                <th>is Defined By</th>
+                <td>
+                <span rel="rdfs:isDefinedBy"><a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
+                </td>
+              </tr>
+            </tbody>
+            </table>
+
+            <div class="buttonpanel">
+              <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
+            </div>
+          </section>
+
           <section class="specterm" id="OMSSamplingProcedure" about="sosa-oms:SamplingProcedure"
                    typeof="owl:Class">
             <h5><a href="#OMSSamplingProcedure">sosa-oms:SamplingProcedure</a></h5>
@@ -5339,36 +5375,6 @@ engineering, and the Web of Things. </p>
             </div>
           </section>
 
-          <section class="specterm" id="OMSActuationProcedure" about="sosa-oms:ActuationProcedure"
-                   typeof="owl:Class">
-            <h5><a href="#OMSActuationProcedure">sosa-oms:ActuationProcedure</a></h5>
-            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/ActuationProcedure</p>
-            <p><strong>a OWL Class</strong></p>
-
-            <em property="rdfs:label">Actuation Procedure</em> -
-            <span property="rdfs:comment skos:definition">The description of steps performed by an Actuator to change the ActuableProperty.</span>
-            <table>
-              <tbody>
-              <tr class="ssn">
-                <th>Sub class of</th>
-                <td>
-                  <span rel="rdfs:subClassOf" resource="sosa:Procedure">sosa:Procedure</span>
-                </td>
-              </tr>
-              <tr>
-                <th>is Defined By</th>
-                <td>
-                <span rel="rdfs:isDefinedBy"><a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
-                </td>
-              </tr>
-            </tbody>
-            </table>
-
-            <div class="buttonpanel">
-              <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
-            </div>
-          </section>
-
           <section class="specterm" id="OMSPreparationStep" about="sosa-oms:PreparationStep"
                    typeof="owl:Class">
             <h5><a href="#OMSPreparationStep">sosa-oms:PreparationStep</a></h5>
@@ -5393,11 +5399,85 @@ engineering, and the Web of Things. </p>
             </div>
           </section>
 
+
+          <section class="specterm" id="OMShasPreparationStep" about="sosa-oms:hasPreparationStep"
+                   typeof="owl:ObjectProperty">
+            <h5><a href="#OMShasPreparationStep">sosa-oms:hasPreparationStep</a></h5>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/hasPreparationStep</p>
+            <p><strong>a OWL Object Property</strong></p>
+
+            <em property="rdfs:label">has preparation step</em> -
+            <span property="rdfs:comment skos:definition">Link to a preparation step used to prepare the sample</span>
+            <br>
+            <table>
+              <tbody>
+                <tr>
+                  <th>Domain Includes</th>
+                  <td>
+                    <span rel="schema:domainIncludes" resource="sosa:Sample"><a href="#SOSASample">sosa:Sample</a></span> 
+                  </td>
+                </tr>
+                <tr>
+                  <th>Range Includes</th>
+                  <td>
+                    <span rel="schema:domainIncludes" resource="sosa-oms:PreparationStep"><a href="#OMSPreparationStep">sosa-oms:PreparationStep</a></span> 
+                  </td>
+                </tr>
+                <tr>
+                  <th>is Defined By</th>
+                  <td>
+                  <span rel="rdfs:isDefinedBy"><a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="buttonpanel">
+              <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
+            </div>
+          </section>
+
           <section class="specterm" id="OMSmetadata" about="sosa-oms:metadata"
           typeof="owl:ObjectProperty">
    <h5><a href="#OMSmetadata">sosa-oms:metadata</a></h5>
    <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/metadata</p>
    <p><strong>a OWL Object Property</strong></p>
+
+          <section class="specterm" id="OMSmadeOnPlatform" about="sosa-oms:madeOnPlatform"
+                   typeof="owl:ObjectProperty">
+            <h5><a href="#OMSmadeOnPlatform">sosa-oms:madeOnPlatform</a></h5>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/madeOnPlatform</p>
+            <p><strong>a OWL Object Property</strong></p>
+
+            <em property="rdfs:label">made on platform</em> -
+            <span property="rdfs:comment skos:definition">Relation between an Observation and the Platform the Sensor was attached to at the time the observation was made.</span>
+            <table>
+              <tbody>
+                <tr>
+                  <th>Domain Includes</th>
+                  <td>
+                    <span rel="schema:domainIncludes" resource="sosa:Observation"><a href="#SOSAObservation">sosa:Observation</a></span> 
+                    , <span rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a href="#SOSAObservationCollection">sosa:ObservationCollection</a></span> 
+                  </td>
+                </tr>
+                <tr>
+                  <th>Range Includes</th>
+                  <td>
+                    <span rel="schema:rangeIncludes" resource="sosa:Platform"><a href="#SOSAPlatform">sosa:Platform</a></span> 
+                  </td>
+                </tr>
+              <tr>
+                <th>is Defined By</th>
+                <td>
+                <span rel="rdfs:isDefinedBy"><a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
+                </td>
+              </tr>
+            </tbody>
+            </table>
+
+            <div class="buttonpanel">
+              <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
+            </div>
+          </section>
 
    <em property="rdfs:label">metadata</em> -
    <span property="rdfs:comment skos:definition">Links an individual to a metadata description</span>
@@ -5464,104 +5544,62 @@ engineering, and the Web of Things. </p>
    </div>
  </section>
 
- <section class="specterm" id="OMSresultQuality" about="sosa-oms:resultQuality"
-          typeof="owl:ObjectProperty">
-   <h5><a href="#OMSresultQuality">sosa-oms:resultQuality</a></h5>
-   <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/resultQuality</p>
-   <p><strong>a OWL Object Property</strong></p>
-
-   <em property="rdfs:label">observation result quality</em> -
-   <span property="skos:definition">Information pertaining to the data quality of the result.</span>
-   <table>
-    <tbody>
-      <tr>
-        <th>Note</th>
-        <td>
-          <span property="skos:scopeNote">This instance-specific description complements the description of the observation Procedure, which provides information concerning the quality of all observations using this procedure. </span> 
-          <span property="skos:note">The quality of a result can be assessed following the procedures in the ISO 19157 series. Multiple measures can be provided.</span> 
-          <span property="skos:note"><a href="https://www.w3.org/TR/vocab-dqv/#dqv:hasQualityMeasurement">dqv:hasQualityMeasurement</a> from the Data Quality Vocabulary is equivalent</span> 
-          </td>
-      </tr>
-      <tr>
-       <th>Domain Includes</th>
-       <td>
-         <span rel="schema:domainIncludes" resource="sosa:Observation"><a href="#SOSAObservation">sosa:Observation</a></span> 
-         , <span rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a href="#SOSAObservationCollection">sosa:ObservationCollection</a></span> 
-       </td>
-     </tr>
-     <tr>
-      <th>is Defined By</th>
-      <td>
-       <span rel="rdfs:isDefinedBy"><a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
-      </td>
-     </tr>
-   </tbody>
-   </table>
-
-   <div class="buttonpanel">
-     <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
-   </div>
- </section>
-
- <section class="specterm" id="OMSvalidTime" about="sosa-oms:validTime"
-          typeof="owl:ObjectProperty">
-   <h5><a href="#OMSvalidTime">sosa-oms:validTime</a></h5>
-   <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/validTime</p>
-   <p><strong>a OWL Object Property</strong></p>
-
-   <em property="rdfs:label">valid time</em> -
-   <span property="rdfs:comment skos:definition">The time interval during which the result is assumed to be applicable for use.</span>
-   <table>
-     <tbody>
-       <tr>
-         <th>Domain Includes</th>
-         <td>
-           <span rel="schema:domainIncludes" resource="sosa:Observation"><a href="#SOSAObservation">sosa:Observation</a></span> 
-           , <span rel="schema:domainIncludes" resource="sosa:Sampling"><a href="#SOSASampling">sosa:Sampling</a></span>         
-         </td>
-       </tr>
-       <tr>
-         <th>Range Includes</th>
-         <td>
-           <span rel="schema:rangeIncludes" resource="time:Interval"><a href="https://www.w3.org/TR/owl-time/#time:Interval">time:Interval</a></span> 
-           , <span rel="schema:rangeIncludes" resource="dcterms:PeriodOfTime"><a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/PeriodOfTime">dcterms:PeriodOfTime</a></span>
-         </td>
-       </tr>
-     <tr>
-       <th>is Defined By</th>
-       <td>
-       <span rel="rdfs:isDefinedBy"><a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
-       </td>
-     </tr>
-   </tbody>
-   </table>
-
-   <div class="buttonpanel">
-     <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
-   </div>
- </section>
-
- <section class="specterm" id="OMSmadeOnPlatform" about="sosa-oms:madeOnPlatform"
+          <section class="specterm" id="OMSpreparedSample" about="sosa-oms:preparedSample"
                    typeof="owl:ObjectProperty">
-            <h5><a href="#OMSmadeOnPlatform">sosa-oms:madeOnPlatform</a></h5>
-            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/madeOnPlatform</p>
+            <h5><a href="#OMSpreparedSample">sosa-oms:preparedSample</a></h5>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/preparedSample</p>
             <p><strong>a OWL Object Property</strong></p>
 
-            <em property="rdfs:label">made on platform</em> -
-            <span property="rdfs:comment skos:definition">Relation between an Observation and the Platform the Sensor was attached to at the time the observation was made.</span>
+            <em property="rdfs:label">prepared sample</em> -
+            <span property="rdfs:comment skos:definition">The Sample on which the PreparationProcedure is performed.</span>
             <table>
               <tbody>
                 <tr>
                   <th>Domain Includes</th>
                   <td>
-                    <span rel="schema:domainIncludes" resource="sosa:Observation"><a href="#SOSAObservation">sosa:Observation</a></span> 
-                    , <span rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a href="#SOSAObservationCollection">sosa:ObservationCollection</a></span> 
+                    <span rel="schema:domainIncludes" resource="sosa-oms:PreparationStep"><a href="#OMSPreparationStep">sosa-oms:PreparationStep</a></span> 
                   </td>
                 </tr>
                 <tr>
                   <th>Range Includes</th>
                   <td>
-                    <span rel="schema:rangeIncludes" resource="sosa:Platform"><a href="#SOSAPlatform">sosa:Platform</a></span> 
+                    <span rel="schema:rangeIncludes" resource="sosa:Sample"><a href="#SOSASample">sosa:Sample</a></span> 
+                  </td>
+                </tr>
+              <tr>
+                <th>is Defined By</th>
+                <td>
+                <span rel="rdfs:isDefinedBy"><a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
+                </td>
+              </tr>
+            </tbody>
+            </table>
+
+            <div class="buttonpanel">
+              <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
+            </div>
+          </section>
+
+          <section class="specterm" id="OMSprocessingDetails" about="sosa-oms:processingDetails"
+                   typeof="owl:ObjectProperty">
+            <h5><a href="#OMSprocessingDetails">sosa-oms:processingDetails</a></h5>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/processingDetails</p>
+            <p><strong>a OWL Object Property</strong></p>
+
+            <em property="rdfs:label">processing details</em> -
+            <span property="rdfs:comment skos:definition">The PreparationProcedure used by the PreparationStep.</span>
+            <table>
+              <tbody>
+                <tr>
+                  <th>Domain Includes</th>
+                  <td>
+                    <span rel="schema:domainIncludes" resource="sosa-oms:PreparationStep"><a href="#OMSPreparationStep">sosa-oms:PreparationStep</a></span> 
+                  </td>
+                </tr>
+                <tr>
+                  <th>Range Includes</th>
+                  <td>
+                    <span rel="schema:rangeIncludes" resource="sosa-oms:PreparationProcedure"><a href="#OMSPreparationProcedure">sosa-oms:PreparationProcedure</a></span> 
                   </td>
                 </tr>
               <tr>
@@ -5656,151 +5694,122 @@ engineering, and the Web of Things. </p>
             </div>
           </section>
 
-          <section class="specterm" id="OMShasPreparationStep" about="sosa-oms:hasPreparationStep"
-                   typeof="owl:ObjectProperty">
-            <h5><a href="#OMShasPreparationStep">sosa-oms:hasPreparationStep</a></h5>
-            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/hasPreparationStep</p>
-            <p><strong>a OWL Object Property</strong></p>
+ <section class="specterm" id="OMSresultQuality" about="sosa-oms:resultQuality"
+          typeof="owl:ObjectProperty">
+   <h5><a href="#OMSresultQuality">sosa-oms:resultQuality</a></h5>
+   <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/resultQuality</p>
+   <p><strong>a OWL Object Property</strong></p>
 
-            <em property="rdfs:label">has preparation step</em> -
-            <span property="rdfs:comment skos:definition">Link to a preparation step used to prepare the sample</span>
-            <br>
-            <table>
-              <tbody>
-                <tr>
-                  <th>Domain Includes</th>
-                  <td>
-                    <span rel="schema:domainIncludes" resource="sosa:Sample"><a href="#SOSASample">sosa:Sample</a></span> 
-                  </td>
-                </tr>
-                <tr>
-                  <th>Range Includes</th>
-                  <td>
-                    <span rel="schema:domainIncludes" resource="sosa-oms:PreparationStep"><a href="#OMSPreparationStep">sosa-oms:PreparationStep</a></span> 
-                  </td>
-                </tr>
-                <tr>
-                  <th>is Defined By</th>
-                  <td>
-                  <span rel="rdfs:isDefinedBy"><a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <div class="buttonpanel">
-              <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
-            </div>
-          </section>
+   <em property="rdfs:label">observation result quality</em> -
+   <span property="skos:definition">Information pertaining to the data quality of the result.</span>
+   <table>
+    <tbody>
+      <tr>
+        <th>Note</th>
+        <td>
+          <span property="skos:scopeNote">This instance-specific description complements the description of the observation Procedure, which provides information concerning the quality of all observations using this procedure. </span> 
+          <br/> 
+          <span property="skos:note">The quality of a result can be assessed following the procedures in the ISO 19157 series. Multiple measures can be provided.</span> 
+          <br/>
+          <span property="skos:note"><a href="https://www.w3.org/TR/vocab-dqv/#dqv:hasQualityMeasurement">dqv:hasQualityMeasurement</a> from the Data Quality Vocabulary is equivalent</span> 
+          </td>
+      </tr>
+      <tr>
+       <th>Domain Includes</th>
+       <td>
+         <span rel="schema:domainIncludes" resource="sosa:Observation"><a href="#SOSAObservation">sosa:Observation</a></span> 
+         , <span rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a href="#SOSAObservationCollection">sosa:ObservationCollection</a></span> 
+       </td>
+     </tr>
+     <tr>
+      <th>is Defined By</th>
+      <td>
+       <span rel="rdfs:isDefinedBy"><a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
+      </td>
+     </tr>
+   </tbody>
+   </table>
 
-          <section class="specterm" id="OMSpreparedSample" about="sosa-oms:preparedSample"
-                   typeof="owl:ObjectProperty">
-            <h5><a href="#OMSpreparedSample">sosa-oms:preparedSample</a></h5>
-            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/preparedSample</p>
-            <p><strong>a OWL Object Property</strong></p>
+   <div class="buttonpanel">
+     <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
+   </div>
+ </section>
 
-            <em property="rdfs:label">prepared sample</em> -
-            <span property="rdfs:comment skos:definition">The Sample on which the PreparationProcedure is performed.</span>
-            <table>
-              <tbody>
-                <tr>
-                  <th>Domain Includes</th>
-                  <td>
-                    <span rel="schema:domainIncludes" resource="sosa-oms:PreparationStep"><a href="#OMSPreparationStep">sosa-oms:PreparationStep</a></span> 
-                  </td>
-                </tr>
-                <tr>
-                  <th>Range Includes</th>
-                  <td>
-                    <span rel="schema:rangeIncludes" resource="sosa:Sample"><a href="#SOSASample">sosa:Sample</a></span> 
-                  </td>
-                </tr>
-              <tr>
-                <th>is Defined By</th>
-                <td>
-                <span rel="rdfs:isDefinedBy"><a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
-                </td>
-              </tr>
-            </tbody>
-            </table>
+ <section class="specterm" id="OMSsamplePreparationStep" about="sosa-oms:samplePreparationStep"
+ typeof="owl:ObjectProperty">
+<h5><a href="#OMSsamplePreparationStep">sosa-oms:samplePreparationStep</a></h5>
+<p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/samplePreparationStep</p>
+<p><strong>a OWL Object Property</strong></p>
 
-            <div class="buttonpanel">
-              <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
-            </div>
-          </section>
+<em property="rdfs:label">sample preparation step</em> -
+<span property="rdfs:comment skos:definition">A PreparationStep that uses the PreparationProcedure.</span>
+<table>
+<tbody>
+<tr>
+<th>Domain Includes</th>
+<td>
+  <span rel="schema:domainIncludes" resource="sosa-oms:PreparationProcedure"><a href="#OMSPreparationProcedure">sosa-oms:PreparationProcedure</a></span> 
+</td>
+</tr>
+<tr>
+<th>Range Includes</th>
+<td>
+  <span rel="schema:rangeIncludes" resource="sosa-oms:PreparationStep"><a href="#OMSPreparationStep">sosa-oms:PreparationStep</a></span> 
+</td>
+</tr>
+<tr>
+<th>is Defined By</th>
+<td>
+<span rel="rdfs:isDefinedBy"><a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
+</td>
+</tr>
+</tbody>
+</table>
 
-          <section class="specterm" id="OMSprocessingDetails" about="sosa-oms:processingDetails"
-                   typeof="owl:ObjectProperty">
-            <h5><a href="#OMSprocessingDetails">sosa-oms:processingDetails</a></h5>
-            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/processingDetails</p>
-            <p><strong>a OWL Object Property</strong></p>
+<div class="buttonpanel">
+<span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
+</div>
+</section>
 
-            <em property="rdfs:label">processing details</em> -
-            <span property="rdfs:comment skos:definition">The PreparationProcedure used by the PreparationStep.</span>
-            <table>
-              <tbody>
-                <tr>
-                  <th>Domain Includes</th>
-                  <td>
-                    <span rel="schema:domainIncludes" resource="sosa-oms:PreparationStep"><a href="#OMSPreparationStep">sosa-oms:PreparationStep</a></span> 
-                  </td>
-                </tr>
-                <tr>
-                  <th>Range Includes</th>
-                  <td>
-                    <span rel="schema:rangeIncludes" resource="sosa-oms:PreparationProcedure"><a href="#OMSPreparationProcedure">sosa-oms:PreparationProcedure</a></span> 
-                  </td>
-                </tr>
-              <tr>
-                <th>is Defined By</th>
-                <td>
-                <span rel="rdfs:isDefinedBy"><a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
-                </td>
-              </tr>
-            </tbody>
-            </table>
+<section class="specterm" id="OMSvalidTime" about="sosa-oms:validTime"
+          typeof="owl:ObjectProperty">
+   <h5><a href="#OMSvalidTime">sosa-oms:validTime</a></h5>
+   <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/validTime</p>
+   <p><strong>a OWL Object Property</strong></p>
 
-            <div class="buttonpanel">
-              <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
-            </div>
-          </section>
+   <em property="rdfs:label">valid time</em> -
+   <span property="rdfs:comment skos:definition">The time interval during which the result is assumed to be applicable for use.</span>
+   <table>
+     <tbody>
+       <tr>
+         <th>Domain Includes</th>
+         <td>
+           <span rel="schema:domainIncludes" resource="sosa:Observation"><a href="#SOSAObservation">sosa:Observation</a></span> 
+           , <span rel="schema:domainIncludes" resource="sosa:Sampling"><a href="#SOSASampling">sosa:Sampling</a></span>         
+         </td>
+       </tr>
+       <tr>
+         <th>Range Includes</th>
+         <td>
+           <span rel="schema:rangeIncludes" resource="time:Interval"><a href="https://www.w3.org/TR/owl-time/#time:Interval">time:Interval</a></span> 
+           , <span rel="schema:rangeIncludes" resource="dcterms:PeriodOfTime"><a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/PeriodOfTime">dcterms:PeriodOfTime</a></span>
+         </td>
+       </tr>
+     <tr>
+       <th>is Defined By</th>
+       <td>
+       <span rel="rdfs:isDefinedBy"><a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
+       </td>
+     </tr>
+   </tbody>
+   </table>
 
-          <section class="specterm" id="OMSsamplePreparationStep" about="sosa-oms:samplePreparationStep"
-                   typeof="owl:ObjectProperty">
-            <h5><a href="#OMSsamplePreparationStep">sosa-oms:samplePreparationStep</a></h5>
-            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/samplePreparationStep</p>
-            <p><strong>a OWL Object Property</strong></p>
+   <div class="buttonpanel">
+     <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
+   </div>
+ </section>
 
-            <em property="rdfs:label">sample preparation step</em> -
-            <span property="rdfs:comment skos:definition">A PreparationStep that uses the PreparationProcedure.</span>
-            <table>
-              <tbody>
-                <tr>
-                  <th>Domain Includes</th>
-                  <td>
-                    <span rel="schema:domainIncludes" resource="sosa-oms:PreparationProcedure"><a href="#OMSPreparationProcedure">sosa-oms:PreparationProcedure</a></span> 
-                  </td>
-                </tr>
-                <tr>
-                  <th>Range Includes</th>
-                  <td>
-                    <span rel="schema:rangeIncludes" resource="sosa-oms:PreparationStep"><a href="#OMSPreparationStep">sosa-oms:PreparationStep</a></span> 
-                  </td>
-                </tr>
-              <tr>
-                <th>is Defined By</th>
-                <td>
-                <span rel="rdfs:isDefinedBy"><a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
-                </td>
-              </tr>
-            </tbody>
-            </table>
-
-            <div class="buttonpanel">
-              <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
-            </div>
-          </section>
-
-        </section>
+</section>
     <section id="OMS-Alignment-Class">
       <h4>Class Alignments</h4>
       <p>The following classes used in SOSA can be aligned as follows. </p>
@@ -6013,6 +6022,11 @@ engineering, and the Web of Things. </p>
               <td> <a href="SOSAmadeSampling">sosa:madeSampling</a> </td>
               <td> ogc-ms:implements </td>
               <td> sam-cpt:Sampler/sampling-sem </td>
+            </tr>
+            <tr>
+              <td> <a href="OMSmetadata">sosa-oms:metadata</a> </td>
+              <td> ogc-ms:implements </td>
+              <td> obs-core:gen/metadata-sem </td>
             </tr>
             <tr>
               <td> <a href="OMSobservationType">sosa-oms:observationType</a> </td>
