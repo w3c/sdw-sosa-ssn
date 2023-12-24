@@ -147,22 +147,12 @@ sosa:SampleCollection ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/
   rdfs:isDefinedBy sosa: .
 
 sosa:hasMember ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/SampleCollection/member-sem> ;
-  rdfs:subPropertyOf rdfs:member ;
   rdfs:isDefinedBy sosa: .
 
 ## Platform 
 
 sosa:Platform ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Host> ;
   rdfs:isDefinedBy sosa: .
-
-sosa:hosts ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/gen/relatedObservation-sem> ;
-  owl:inverseOf sosa:isHostedBy ;
-  rdfs:isDefinedBy sosa: .
-
-sosa:isHostedBy ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/host-sem> ;
-  owl:inverseOf sosa:hosts ;
-  rdfs:isDefinedBy sosa: .
-
 
 ## Procedures
 
@@ -180,6 +170,7 @@ sosa-oms:ObservingProcedure a rdfs:Class , owl:Class ;
 sosa-oms:ActuationProcedure a rdfs:Class , owl:Class ;
   rdfs:label "Actuation Procedure"@en ;
   skos:definition "The description of steps performed by an Actuator to change the ActuableProperty."@en ;
+  skos:note "ActuationProcedure is not mentioned in OMS, which does not address Actuation. It is added here since it is trivially symmetric with the other procedure classes."@en ;
   rdfs:isDefinedBy sosa-oms: .
 
 sosa-oms:SamplingProcedure a rdfs:Class , owl:Class ;
@@ -201,7 +192,6 @@ sosa:Sensor ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Ob
   rdfs:isDefinedBy sosa: .
 
   sosa:observes ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observer/observableProperty-sem> ;
-    rdfs:subPropertyOf sosa:forProperty ;
     owl:inverseOf sosa:isObservedBy ;
     rdfs:isDefinedBy sosa: .
 
@@ -355,7 +345,6 @@ sosa:ObservationCollection ogc-ms:implements <http://www.opengis.net/spec/om/3.0
   rdfs:isDefinedBy sosa: .
 
 sosa:hasMember ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-core/AbstractObservationCollection/member-sem> ;
-  rdfs:subPropertyOf rdfs:member ;
   rdfs:isDefinedBy sosa: .
 
 
@@ -425,7 +414,6 @@ sosa:Deployment ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cp
     rdfs:isDefinedBy sosa: .
 
   sosa:deployedSystem ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Deployment/observer-sem> ;
-    rdfs:subPropertyOf sosa:deployedAsset ;
     owl:inverseOf sosa:hasDeployment ;
     rdfs:isDefinedBy sosa: .
 
