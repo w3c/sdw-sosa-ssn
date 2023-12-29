@@ -202,13 +202,14 @@ sosa:Sensor ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Ob
 sosa:Sampler ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sampler> ;
   rdfs:isDefinedBy sosa: .
 
-sosa:implements  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observer/observingProcedure-sem>  ,
+sosa:implements  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observer/observingProcedure->  ,
                                 <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sampling/samplingProcedure-sem> ;
   owl:inverseOf sosa:implementedBy ;
   rdfs:isDefinedBy sosa: .
 
 sosa:implementedBy ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/ObservingProcedure/observer-sem> ,
-                                  <http://www.opengis.net/spec/om/3.0/req/sam-cpt/SamplingProcedure/sampler-sem> ;
+                                  <http://www.opengis.net/spec/om/3.0/req/sam-cpt/SamplingProcedure/sampler-sem> ,
+                                  <http://www.opengis.net/spec/om/3.0/req/sam-cpt/PreparationStep/processingDetails-sem>;
   owl:inverseOf sosa:implements ;
   rdfs:isDefinedBy sosa: .
 
@@ -354,7 +355,7 @@ sosa:Result
   rdfs:isDefinedBy sosa: .
 
   sosa:hasResult ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/result-sem> ,
-                                <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sampling/result-sem>;
+                                <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sampling/sample-sem>;
     owl:inverseOf sosa:isResultOf ;
     rdfs:isDefinedBy sosa: .
 
