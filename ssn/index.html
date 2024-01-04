@@ -5002,13 +5002,20 @@ engineering, and the Web of Things. </p>
     <h3>OMS Alignment Module</h3>
     <p>This section introduces the alignment of SOSA and SSN to Observations, measurements and samples [[OMS]]. OMS is the latest edition of the OGC and ISO standard previously known as Observations and Measurements [[OandM]], which was a key influence and input in the development of SSN. 
       This module serves to provide a detailed mapping of SOSA terms to discrete requirements in [[OMS]] thus explaining how SOSA and SSN provide an RDF and OWL/RDFS implementation of OMS (repectively). </p>
-    <p>
-      Note that [[OMS]] is formalized using UML, which does not provide accessible global identifiers for terms in the structure model. 
-      Here we use the URI for each formal Requirement relating to a class or property in [[OMS]] to denote the UML class or property. 
-      Within the RDF representation of the alignment, we use the predicate <code>ogc-ms:implements</code> to link a SOSA term to the corresponding OMS class or property, defined as follows: <br/><br/>
+      <p>
+        Note that [[OMS]] is formalized using UML, which does not provide accessible global identifiers for terms in the
+        structure model.
+        However, each UML element (class or property) satisfies a formal requirement, which are each individually
+        denoted
+        by a URI in the [[OMS]] specification.
+        For example, the conceptual Observation class in OMS corresponds to the requirement
+      <pre>http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/Observation-sem</pre>.
+      So here we use the requirement URI to denote the corresponding UML class or property. </p>
+      <p> Within the RDF representation of the alignment, we use the predicate <code>ogc-ms:implements</code> to link a
+        SOSA term to the corresponding OMS class or property, defined as follows: <br /><br />
       <pre>ogc-ms:implements a owl:ObjectProperty ;
       rdfs:subPropertyOf dcterms:source , prov:wasDerivedFrom , doap:implements . </pre>
-    </p>
+      </p>
     <section id="OMS_Alignment-namespaces">
       <h4>Namespaces</h4>
       <p>The following namespace prefixes are used in the alignment of SOSA
