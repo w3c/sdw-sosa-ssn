@@ -117,7 +117,13 @@ var respecConfig = {
         publisher: "Open Geospatial Consortium", 
         date: "2011"
        }, 
-       "OMS":{
+       "OBOE" :{
+        href:"http://dx.doi.org/10.5063/F11C1TTM",
+        date: "2016",
+        authors:["Mark Schildhauer", "Matthew B. Jones", "Shawn Bowers", "Joshua Madin", "Sergeui Krivov", "Deana Pennington", "Ferdinando Villa", "Benjamin Leinfelder", "Christopher Jones", "Margaret O'Brien"],
+        title: "OBOE: the Extensible Observation Ontology, version 1.1"
+       },
+        "OMS":{
         href:"https://docs.ogc.org/as/20-082r4/20-082r4.html",
         title:"Observations, measurements and samples (OMS)",
         authors: ["Katharina Schleidt" , "Ilkka Rinne"],
