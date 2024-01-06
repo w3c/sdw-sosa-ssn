@@ -18,11 +18,35 @@ oboe-core:Measurement
   rdfs:comment "an oboe-core:Measurement is a (atomic) sosa:Observation, whose result (value) is an estimate of the value of one of the characteristics of the observed Entity. A collection of oboe-core:Measurement individuals together compose an oboe-core:Observation, whose results together provide a full description of the feature of interest. " ;
   owl:equivalentClass sosa:Observation ;
 .
+oboe-core:Observation
+  rdfs:subClassOf sosa:ObservationCollection ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom sosa:Observation ;
+      owl:onProperty sosa:hasMember ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:cardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onProperty sosa:hasFeatureOfInterest ;
+    ] ;
+.
+oboe-core:ObservationCollection
+  rdfs:subClassOf sosa:ObservationCollection ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:allValuesFrom sosa:ObservationCollection ;
+      owl:onProperty sosa:hasMember ;
+    ] ;
+.
 oboe-core:Protocol
-  owl:equivalentClass sosa:Procedure ;
+  rdfs:subClassOf sosa:Procedure ;
 .
 oboe-core:hasMeasurement
-  rdfs:subPropertyOf rdfs:member ;
+  rdfs:subPropertyOf sosa:hasMember ;
+.
+oboe-core:hasMember
+  rdfs:subPropertyOf sosa:hasMember ;
 .
 oboe-core:hasValue
   rdfs:subPropertyOf sosa:hasResult ;
@@ -42,16 +66,16 @@ oboe-core:usesProtocol
   rdfs:subPropertyOf sosa:usedProcedure ;
 .
 dcterms:created
-  rdf:type owl:AnnotationProperty ;
+  a owl:AnnotationProperty ;
 .
 dcterms:creator
-  rdf:type owl:AnnotationProperty ;
+  a owl:AnnotationProperty ;
 .
 dcterms:license
-  rdf:type owl:AnnotationProperty ;
+  a owl:AnnotationProperty ;
 .
 dcterms:rights
-  rdf:type owl:AnnotationProperty ;
+  a owl:AnnotationProperty ;
 .
 sosa:FeatureOfInterest
   rdfs:subClassOf oboe-core:Entity ;
@@ -66,25 +90,26 @@ sosa:hasFeatureOfInterest
     ) ;
 .
 sosa:oboe
-  rdf:type owl:Ontology ;
+  a owl:Ontology ;
   dcterms:created "2017-03-05"^^xsd:date ;
   dcterms:creator <http://orcid.org/0000-0002-3884-3420> ;
   dcterms:creator "Simon J D COX" ;
   dcterms:creator [
-      rdf:type foaf:Agent ;
+      a foaf:Agent ;
       foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en ;
     ] ;
+  dcterms:description "Mapping of classes and properties from OBOE to SOSA" ;
   dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
   dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
-  dcterms:rights "Copyright 2017 W3C/OGC." ;
-  rdfs:comment "Mapping of classes and properties from OBOE to SOSA" ;
+  dcterms:modified "2024-01-06"^^xsd:date ;
+  dcterms:rights "Copyright 2024 W3C/OGC." ;
   rdfs:label "OBOE -> SOSA map" ;
   owl:imports <http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl> ;
   owl:imports sosa: ;
 .
 foaf:Agent
-  rdf:type owl:Class ;
+  a owl:Class ;
 .
 foaf:name
-  rdf:type owl:AnnotationProperty ;
+  a owl:AnnotationProperty ;
 .
