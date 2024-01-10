@@ -214,6 +214,9 @@
       import any other ontologies, so it is truly independent of
       vertical modules that add more expressivity and further ontological
       commitments to the lightweight semantics of <i>SOSA</i>.</p>
+    <p class="note">Readers who do not wish to view the SSN axioms may hide them by selecting the button [Show only core
+      SOSA terms] at the top of the <a href="#overview-of-classes-and-properties">Overview of Classes and Properties</a>
+      or [Hide additional SSN axioms] on each individual specification block.</p>
     <p>Note that higher level here is not to be confused with upper level
       ontologies. Upper level ontologies are general knowledge ontologies that
       can be directionally imported in many domains, whereas our definition of
@@ -351,10 +354,10 @@
         </ul>
     </ul>
   </section>
-  <section id="RDFImplementation" class="normative">
-    <h2>RDF Implementation</h2>
+  <section id="Specification" class="normative">
+    <h2>Specification</h2>
     <p>This section introduces the specifications for the RDF implementation of the Semantic Sensor Network Ontology as
-      SOSA.</p>
+      SOSA and the axiomatization as SSN.</p>
 
     <section id="namespaces">
       <h3>Namespaces</h3>
@@ -384,10 +387,11 @@
     <section id="RDFdistribution">
       <h3>RDF distribution</h3>
       <p>
-        The SOSA and SSN Ontologies are distributed in several graphs, each packaged as an RDF file.
+        The SSN Ontology is distributed in several graphs, each packaged as an RDF file.
         Within each graph, where further information (axioms and annotations) is added to an existing term,
         <code>rdfs:isDefinedBy</code> indicates the graph where the term was originally defined.
       </p>
+      <p>The first two graphs are specified in <a href="#Specification">this section</a>.</p>
       <h4>SOSA</h4>
       <p>
         The SOSA graph contains the basic definitions of the core terms with minimal axiomatization - only
@@ -407,6 +411,8 @@
       <p style="text-align: center;">
         The SSN graph is available at <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>.
       </p>
+      <p>The next two graphs are specified in the section <a href="#HorizontalSegmentation">Horizontal Segmentation</a>.
+      </p>
       <h4>SSN-System</h4>
       <p>
         The SSN-System graph imports SOSA and SSN and contains additional definitions associated with the composition
@@ -425,6 +431,8 @@
         The Sample-Relations graph is available at <a
           href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>.
       </p>
+      <p>The section <a href="#VerticalSegmentation">Vertical Segmentation</a> describes various alignements and
+        extensions.</p>
       <h4>SOSA-OMS</h4>
       <p>
         The SOSA-OMS graph describes the alignment of SOSA to ISO 19156:2023 [[OMS]] using annotations to link SOSA
@@ -2926,7 +2934,7 @@
                   <span about="sosa:Property" rel="rdfs:subClassOf" resource="[_:SOSAPropertyOfInterest2]"></span>
                   <span about="[_:SOSAPropertyOfInterest2]" typeof="owl:Restriction"></span>
                   <span about="[_:SOSAPropertyOfInterest2]" rel="owl:onProperty" resource="sosa:isPropertyOf"><a
-                      href="#SSNisPropertyOf">sosa:isPropertyOf</a></span>
+                      href="#SOSAisPropertyOf">sosa:isPropertyOf</a></span>
                   <span about="[_:SOSAPropertyOfInterest2]" property="owl:cardinality"
                     resource="sosa:FeatureOfInterest"><em><b>EXACTLY 1</b></em></span>
                 </td>
@@ -4326,10 +4334,10 @@
           </figure>
         </div>
         <div>
-          <p>The following examples illustrate how the terms related to SCollections can be used:</p>
+          <p>The following examples illustrate how the terms related to Collections can be used:</p>
           <ul>
-            <li><a href="#OC1">Observation collection 1</a></li>
-            <li><a href="#SC1">Sample collection 1</a></li>
+            <li><a href="#OC1">TODO - Observation collection 1</a></li>
+            <li><a href="#SC1">TODO - Sample collection 1</a></li>
           </ul>
         </div>
       </section>
@@ -4427,7 +4435,7 @@
                 <th>Disjoint with</th>
                 <td>
                   <span rel="owl:disjointWith" resource="sosa:SampleCollection"><a
-                      href="#SampleCollection">sosa:SampleCollection</a></span>
+                      href="#SOSASampleCollection">sosa:SampleCollection</a></span>
                 </td>
               </tr>
               <tr class="ssn">
@@ -4522,7 +4530,7 @@
                 <th>Disjoint with</th>
                 <td>
                   <span rel="owl:disjointWith" resource="sosa:ObservationCollection"><a
-                      href="#ObservationCollection">sosa:ObservationCollection</a></span>
+                      href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
                 </td>
               </tr>
               <tr class="ssn">
@@ -4572,14 +4580,10 @@
           <table>
             <tbody>
               <tr>
-                <th>Example</th>
-                <td><span property="skos:example">... TODO ...</span></td>
-              </tr>
-              <tr>
                 <th>Inverse property of</th>
                 <td>
                   <span rel="owl:inverseOf" resource="sosa:isMemberOf"><a
-                      href="#SSNisMemberOf">sosa:isMemberOf</a></span>
+                      href="#SOSAisMemberOf">sosa:isMemberOf</a></span>
                 </td>
               </tr>
               <tr>
@@ -7635,7 +7639,7 @@
               <td> obs-cpt:Deployment </td>
             </tr>
             <tr>
-              <td> <a href="#SOSAMaterialSample">sosa-oms:MaterialSample</a> </td>
+              <td> <a href="#OMSMaterialSample">sosa-oms:MaterialSample</a> </td>
               <td> ogc-ms:implements </td>
               <td> sam-basic:MaterialSample </td>
             </tr>
@@ -7685,7 +7689,7 @@
               <td> sam-basic:SampleCollection </td>
             </tr>
             <tr>
-              <td> <a href="#SOSAtSampler">sosa:Sampler</a> </td>
+              <td> <a href="#SOSASampler">sosa:Sampler</a> </td>
               <td> ogc-ms:implements </td>
               <td> sam-cpt:Sampler </td>
             </tr>
@@ -8865,7 +8869,7 @@
       </section>
       <section>
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/rdf/sosa-oboe-mapping.ttl">graph
+            href="https://github.com/w3c/sdw-sosa-ssn/blob/gh-pages/ssn/mappings/sosa-oboe-mapping.ttl">graph
             corresponding to this alignment is available</a>. </p>
       </section>
     </section>
@@ -9809,7 +9813,7 @@
             equivalent)</li>
           <li><code>oldsosa:hasValue</code> is a sub-property of <code>sosa:hasResult</code> (instead of equivalent)
           </li>
-        </ul>  
+        </ul>
     </ol>
     <h3>Changes since 3rd Public Working Draft <a href="https://www.w3.org/TR/2017/WD-vocab-ssn-20170504/">
         (https://www.w3.org/TR/2017/WD-vocab-ssn-20170504/)</a></h3>
