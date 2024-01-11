@@ -2723,10 +2723,14 @@
           <p><strong>an OWL Object Property</strong></p>
 
           <em property="rdfs:label">has feature of interest</em> -
-          <span property="rdfs:comment skos:definition">A relation between an <a
-              href="#SOSAObservation"><code>Observation</code></a> and the entity whose quality was observed, or between
-            an <a href="#SOSAActuation"><code>Actuation</code></a> and the entity whose property was modified, or
-            between an act of <a href="#SOSASampling"><code>Sampling</code></a> and the entity that was sampled.</span>
+          <span property="skos:definition">A relation between an <a href="#SOSAObservation"><code>Observation</code></a>
+            and the entity whose quality was observed, or between an <a href="#SOSAActuation"><code>Actuation</code></a>
+            and the entity whose property was modified, or between an act of <a
+              href="#SOSASampling"><code>Sampling</code></a> and the entity that was sampled.</span>
+          <p><span property="skos:scopeNote" class="note">Note that this is the <i>proximate</i> feature of interest,
+              which may be a proxy entity such as a <i>sample</i> of the <i>ultimate</i> feature of interest.
+              Use <a href="#SOSAhasUltimateFeatureOfInterest">sosa:hasUltimateFeatureOfInterest</a> if the intention is
+              to link to the ultimate feature of interest.</span></p>
           <table>
             <tbody>
               <tr>
@@ -4467,7 +4471,6 @@
             <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
           </div>
         </section>
-
         <section class="specterm sosa" id="SOSASampleCollection" about="sosa:SampleCollection"
           typeof="owl:Class rdfs:Class">
           <h5><a href="#SOSASampleCollection">sosa:SampleCollection</a></h5>
@@ -6716,12 +6719,6 @@
               <td> obs-cpt: </td>
               <td> <a
                   href="http://www.opengis.net/spec/om/3.0/req/obs-cpt/">http://www.opengis.net/spec/om/3.0/req/obs-cpt/</a>
-              </td>
-            </tr>
-            <tr>
-              <td> obs-basic: </td>
-              <td> <a
-                  href="hhttp://www.opengis.net/spec/om/3.0/req/obs-basic/">http://www.opengis.net/spec/om/3.0/req/obs-basic/</a>
               </td>
             </tr>
             <tr>
@@ -9062,7 +9059,7 @@
           </tbody>
         </table>
 
-        <p>The final property alignment first requires some sub-properties of PROV properties to be defined: </p>
+          <p>The final property alignment first requires some sub-properties of PROV properties to be defined: </p>
 
         <table>
           <tbody>
@@ -9104,6 +9101,11 @@
             corresponding to this
             alignment is available</a>. </p>
 
+          <p>An RDF file containing a <a
+              href="https://github.com/w3c/sdw/blob/gh-pages/ssn/rdf/sosa-prov-mapping.ttl">graph corresponding to this
+              alignment is available</a>. </p>
+
+        </section>
       </section>
     </section>
   </section>
