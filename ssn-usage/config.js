@@ -41,14 +41,14 @@ var respecConfig = {
       alt: "W3C",
       height: "48",
       width: "72",
-      url: "http://www.w3.org/"
+      url: "https://www.w3.org/"
     },
     {
-      src: "http://www.w3.org/2015/01/ogc_logo.jpg",
+      src: "https://www.ogc.org/wp-content/uploads/2023/03/OGC-1.svg",
       alt: "OGC",
       height: "48",
-      width: "115",
-      url: "http://www.opengeospatial.org/"
+      width: "141",
+      url: "https://www.ogc.org/"
     }
   ],
   noRecTrack: false,
