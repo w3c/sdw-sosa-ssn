@@ -6,8 +6,8 @@
   <title>Semantic Sensor Network Ontology</title>
   <script class="remove" src="https://www.w3.org/Tools/respec/respec-w3c-common"></script>
   <script class="remove" src="config.js"></script>
-  <script type="text/javascript" src="https://www.w3.org/2007/OWL/toggles.js"></script>
-  <script type="text/javascript">
+  <script src="https://www.w3.org/2007/OWL/toggles.js"></script>
+  <script>
 
     function hide_ssn(hide, element) {
       var scrollY = window.scrollY;
@@ -67,7 +67,7 @@
         style="font-family: courier;">sosa</span>.</p>
     <p style="text-align: center;">
       The SOSA graph containing the core definitions is available at <a
-        href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a>.<br />
+        href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a>.<br>
       The SSN graph with the full axiomatization of the core terms is available at <a
         href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>.
       <br>
@@ -171,14 +171,14 @@
     <figure>
       <img alt="Ontology Modules" src="images/modular_ontology.png">
       <figcaption>The SOSA and SSN ontologies and their vertical and horizontal modules.
-        <br />TODO: re-draw to include SOSA-OMS, SSN-OMS
+        <br>TODO: re-draw to include SOSA-OMS, SSN-OMS
       </figcaption>
     </figure>
     <h3 id="vertical-segmentation">Vertical Segmentation</h3>
     <p>Vertical modules build upon each other, i.e., they directionally <code>owl:import</code>
       lower level modules. Lower level modules are independent of their higher
       level modules and logically consistent on their own.</p>
-    <p>In particular,
+    <p>In particular,</p>
     <ol>
       <li>
         the <i>SOSA graph</i> declares all the core classes and properties, and provides textual definitions and other
@@ -209,7 +209,6 @@
           framework</b>
       </li>
     </ol>
-    </p>
     <p><i>SOSA</i> as the core, does not
       import any other ontologies, so it is truly independent of
       vertical modules that add more expressivity and further ontological
@@ -227,13 +226,13 @@
     <p>Modules that are horizontally layered may depend on each other, i.e.,
       they may rely on the directional import of another horizontal module.
       Two horizontal modules that are dependent on the SOSA and SSN ontologies are
-      presented in this specification,
+      presented in this specification,</p>
     <ol>
       <li>the <i>Sample Relations Module</i></li>
       <li>the SSN System module</li>
     </ol>
-    Other ontologies that add domain-specific terms to SOSA and SSN, but require the
-    import of SOSA or SSN, can be considered horizontal modules.</p>
+    <p>Other ontologies that add domain-specific terms to SOSA and SSN, but require the
+      import of SOSA or SSN, can be considered horizontal modules.</p>
   </section>
   <section id="Developments" class="informative">
     <h2>Origins of SSN and SOSA</h2>
@@ -1892,7 +1891,7 @@
         <figure class="ssn">
           <a href="images/SSN-Sampling.png"><img alt="Sampling and samples (SOSA/SSN)"
               src="images/SSN-Sampling.png"></a>
-          <figcaption>Classes and relationships involved in Sampling (SOSA/SSN)<br />TODO - redraw adding
+          <figcaption>Classes and relationships involved in Sampling (SOSA/SSN)<br>TODO - redraw adding
             isResultOfUsedProcedure and isResultOfMadeBySampler
             <br>TODO Add UltimateFoI, hasOriginalSample, hasSampledFeature
           </figcaption>
@@ -1942,11 +1941,11 @@
                     have no significant function outside of their role in the observation process. The characteristics
                     of the samples themselves are generally of little interest, except to the manager of a sampling
                     campaign, or sample curator.
-                    <br />
+                    <br>
                     A Sample is intended to sample some FeatureOfInterest, so there is an expectation of at least one
                     isSampleOf property. However, in some cases the identity, and even the exact type, of the sampled
                     feature may not be known when observations are made using the sampling features.</span>
-                  <br />
+                  <br>
                   <span property="rdfs:comment">Physical samples are sometimes known as 'specimens'.</span>
                 </td>
               </tr>
@@ -1957,7 +1956,7 @@
                     made. In the context of the observation model, it connotes the 'world in the vicinity of the
                     station', so the observed properties relate to the physical medium at the station, and not to any
                     physical artifact such as a mooring, buoy, benchmark, monument, well, etc.</span>
-                  <br />
+                  <br>
                   <span property="skos:example">A statistical sample is often designed to be characteristic of an entire
                     population, so that <a href="#SOSAObservation"><code>Observations</code></a> can be made regarding
                     the sample that provide a good estimate of the properties of the population.</span>
@@ -2935,7 +2934,7 @@
                   <span about="[_:SOSAPropertyOfInterest1]" property="owl:allValuesFrom"
                     resource="sosa:FeatureOfInterest"><em><b>ONLY</b></em> <a
                       href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a></span>
-                  <br />
+                  <br>
                   <span about="sosa:Property" rel="rdfs:subClassOf" resource="[_:SOSAPropertyOfInterest2]"></span>
                   <span about="[_:SOSAPropertyOfInterest2]" typeof="owl:Restriction"></span>
                   <span about="[_:SOSAPropertyOfInterest2]" rel="owl:onProperty" resource="sosa:isPropertyOf"><a
@@ -4319,14 +4318,13 @@
           entity. </p>
         <p>The results of collections of observations are often packaged in a 'data cube' whose axes define the range of
           properties of the set of observations. </p>
-        <p>Two classes representing collections of Observations or of Samples are provided:
+        <p>Two classes representing collections of Observations or of Samples are provided:</p>
         <ul>
           <li><a href="#SOSAObservationCollection">sosa:ObservationCollection</a> is a collection of observations whose
             property values summarize the values of the properties of its members</li>
           <li><a href="#SOSASampleCollection">sosa:SampleCollection</a> is a collection of samples whose property values
             summarize the values of the properties of its members</li>
         </ul>
-        </p>
         <div>
           <p>The following figure provides an overview of the core classes
             and properties that are specifically related to describing collections of observations or of samples.
@@ -4334,7 +4332,7 @@
           <figure class="sosa">
             <a href="images/SOSA-Collections.png"><img alt="Collections of Observations or Samples"
                 src="images/SOSA-Collections.png"></a>
-            <figcaption>Classes and relationships related to collections of observations or samples<br />TODO re-draw
+            <figcaption>Classes and relationships related to collections of observations or samples<br>TODO re-draw
               diagram to match document style</figcaption>
           </figure>
         </div>
@@ -4373,56 +4371,56 @@
           <p><strong>an OWL Class</strong></p>
           <p class="note">ObservationCollection added in the 2024 Update</p>
 
-          <em property="rdfs:label">Observation Collection</em> -
-          <span property="skos:definition">A <a href="#SOSAObservationCollection"><code>ObservationCollection</code></a>
-            is a collection of one or more <a href="#SOSAObservation"><code>Observations</code></a> or <a
-              href="#SOSAObservationCollection"><code>ObservationCollections</code></a>, i.e. collections may be nested.
-            <br /><br />
-            The following <a href="#SOSAObservation"><code>Observation</code></a> properties may appear in an <a
-              href="#SOSAObservationCollection"><code>ObservationCollection</code></a>:
-            <a href="#SOSAhasFeatureOfInterest"><code>hasFeatureOfInterest</code></a> ,
-            <a href="#SOSAhasUltimateFeatureOfInterest"><code>hasUltimateFeatureOfInterest</code></a> ,
-            <a href="#SOSAusedProcedure"><code>usedProcedure</code></a> ,
-            <a href="#SOSAmadeBySensor"><code>madeBySensor</code></a> ,
-            <a href="#OMSmadeOnPlatform"><code>madeOnPlatform</code></a> ,
-            <a href="#SOSAobservedProperty"><code>observedProperty</code></a> ,
-            <a href="#SOSAphenomenonTime"><code>phenomenonTime</code></a> ,
-            <a href="#SOSAresultTime"><code>resultTime</code></a> ,
-            <a href="#OMSvalidTime"><code>validTime</code></a> ,
-            <a href="#SOSAhasResult"><code>hasResult</code></a> ,
-            <a href="#SOSAhasSimpleResult"><code>hasSimpleResult</code></a> ,
-            <a href="#OMSobservationType"><code>observationType</code></a> ,
-            <a href="#OMSresultQuality"><code>resultQuality</code></a> .
-            If they are present, the values of these properties summarize the values of the matching properties of the
-            member observations, where membership is either direct or transitive through one or more member observation
-            collections.
-            <br /><br />
-            The following consistency rules with respect to the Observation properties listed above:
-            <ol>
-              <li>Where an individual <a href="#SOSAObservationCollection"><code>ObservationCollection</code></a>
-                <i>omits a property</i>, a member <a href="#SOSAObservation"><code>Observation</code></a> (direct or
-                transitive) MAY have any value for that property.
-              </li>
-              <li>Where an individual <a href="#SOSAObservationCollection"><code>ObservationCollection</code></a> has
-                <i>a single value for a property</i>, each member <a
-                  href="#SOSAObservation"><code>Observation</code></a> (direct or transitive) MUST have that same value
-                for that property - i.e. the collection is homogeneous in that property. That property MAY be omitted in
-                any member <a href="#SOSAObservation"><code>Observation</code></a> or <a
-                  href="#SOSAObservationCollection"><code>ObservationCollection</code></a>.
-              </li>
-              <li>Where an individual <a href="#SOSAObservationCollection"><code>ObservationCollection</code></a> has
-                <i>more than one value for a property</i>, each member <a
-                  href="#SOSAObservation"><code>Observation</code></a> (direct or transitive) MUST have a value for that
-                property that matches one of the values for the property in the collection.
-              </li>
-              <li>Where an individual <a href="#SOSAObservationCollection"><code>ObservationCollection</code></a> <i>has
-                  a value for a property that is a range or interval</i>, each member <a
-                  href="#SOSAObservation"><code>Observation</code></a> (direct or transitive) MUST have a value for that
-                property that matches or falls within that range or interval.</li>
-            </ol>
-          </span> <br>
-          <span property="skos:note">The members of a collection do not necessarily share a common value for any
-            property. </span> <br>
+          <p>
+            <em property="rdfs:label">Observation Collection</em> -
+            <span property="skos:definition">A <a
+                href="#SOSAObservationCollection"><code>ObservationCollection</code></a>
+              is a collection of one or more <a href="#SOSAObservation"><code>Observations</code></a> or <a
+                href="#SOSAObservationCollection"><code>ObservationCollections</code></a>, i.e. collections may be
+              nested.
+              <br><br>
+              The following <a href="#SOSAObservation"><code>Observation</code></a> properties may appear in an <a
+                href="#SOSAObservationCollection"><code>ObservationCollection</code></a>:
+              <a href="#SOSAhasFeatureOfInterest"><code>hasFeatureOfInterest</code></a> ,
+              <a href="#SOSAhasUltimateFeatureOfInterest"><code>hasUltimateFeatureOfInterest</code></a> ,
+              <a href="#SOSAusedProcedure"><code>usedProcedure</code></a> ,
+              <a href="#SOSAmadeBySensor"><code>madeBySensor</code></a> ,
+              <a href="#OMSmadeOnPlatform"><code>madeOnPlatform</code></a> ,
+              <a href="#SOSAobservedProperty"><code>observedProperty</code></a> ,
+              <a href="#SOSAphenomenonTime"><code>phenomenonTime</code></a> ,
+              <a href="#SOSAresultTime"><code>resultTime</code></a> ,
+              <a href="#OMSvalidTime"><code>validTime</code></a> ,
+              <a href="#SOSAhasResult"><code>hasResult</code></a> ,
+              <a href="#SOSAhasSimpleResult"><code>hasSimpleResult</code></a> ,
+              <a href="#OMSobservationType"><code>observationType</code></a> ,
+              <a href="#OMSresultQuality"><code>resultQuality</code></a> .
+              If they are present, the values of these properties summarize the values of the matching properties of the
+              member observations, where membership is either direct or transitive through one or more member
+              observation
+              collections.
+              <br><br>
+              The following consistency rules with respect to the Observation properties listed above:
+              <br><br>1. Where an individual <a href="#SOSAObservationCollection"><code>ObservationCollection</code></a>
+              <i>omits a property</i>, a member <a href="#SOSAObservation"><code>Observation</code></a> (direct or
+              transitive) MAY have any value for that property.
+              <br><br>2. Where an individual <a href="#SOSAObservationCollection"><code>ObservationCollection</code></a>
+              has <i>a single value for a property</i>, each member <a
+                href="#SOSAObservation"><code>Observation</code></a> (direct or transitive) MUST have that same value
+              for that property - i.e. the collection is homogeneous in that property. That property MAY be omitted in
+              any member <a href="#SOSAObservation"><code>Observation</code></a> or <a
+                href="#SOSAObservationCollection"><code>ObservationCollection</code></a>.
+              <br><br>3. Where an individual <a href="#SOSAObservationCollection"><code>ObservationCollection</code></a>
+              has <i>more than one value for a property</i>, each member <a
+                href="#SOSAObservation"><code>Observation</code></a> (direct or transitive) MUST have a value for that
+              property that matches one of the values for the property in the collection.
+              <br><br>4. Where an individual <a href="#SOSAObservationCollection"><code>ObservationCollection</code></a>
+              <i>has a value for a property that is a range or interval</i>, each member <a
+                href="#SOSAObservation"><code>Observation</code></a> (direct or transitive) MUST have a value for that
+              property that matches or falls within that range or interval.
+            </span> <br>
+            <span property="skos:note">The members of a collection do not necessarily share a common value for any
+              property. </span>
+          </p>
           <table>
             <tbody>
               <tr>
@@ -4478,44 +4476,43 @@
           <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/SampleCollection</p>
           <p><strong>an OWL Class</strong></p>
           <p class="note">SampleCollection added in the 2024 Update</p>
-
-          <em property="rdfs:label">Sample Collection</em> -
-          <span property="skos:definition">A <a href="#SOSASampleCollection"><code>SampleCollection</code></a> is a
-            collection of one or more <a href="#SOSASample"><code>Samples</code></a> or <a
-              href="#SOSASampleCollection"><code>SampleCollections</code></a>, i.e. collections may be nested.
-            <br /><br />
-            The following <a href="#SOSASample"><code>Sample</code></a> properties may appear in a <a
-              href="#SOSASampleCollection"><code>SampleCollection</code></a>:
-            <a href="#SOSAhasOriginalSample"><code>hasOriginalSample</code></a> ,
-            <a href="#SOSAhasSampledFeature"><code>hasSampledFeature</code></a> ,
-            <a href="#SOSAisSampleOf"><code>isSampleOf</code></a> ,
-            <a href="#SOSAisResultOfUsedProcedure"><code>isResultOfUsedProcedure</code></a> ,
-            <a href="#SOSAisResultOfMadeBySampler"><code>isResultOfMadeBySampler</code></a>.
-            If it is present, the values of a property summarizes the values of the matching properties of the member
-            samples, where membership is either direct or transitive through onw or more member sample collections.
-            <br /><br />
-            The following consistency rules apply with respect to the Sample properties listed above:
-            <ol>
-              <li>Where an individual <a href="#SOSASampleCollection"><code>SampleCollection</code></a> <i>omits a
-                  property</i>, a member <a href="#SOSASample"><code>Sample</code></a> (direct or transitive) MAY have
-                any value for that property.</li>
-              <li>Where an individual <a href="#SOSASampleCollection"><code>SampleCollection</code></a> has <i>a single
-                  value for a property</i>, each member <a href="#SOSASample"><code>Sample</code></a> (direct or
-                transitive) MUST have that same value for that property - i.e. the collection is homogeneous in that
-                property. That property MAY be omitted in any member <a href="#SOSASample"><code>Sample</code></a> or <a
-                  href="#SOSASampleCollection"><code>SampleCollection</code></a>.</li>
-              <li>Where an individual <a href="#SOSASampleCollection"><code>SampleCollection</code></a> has <i>more than
-                  one value for a property</i>, each member <a href="#SOSASample"><code>Sample</code></a> (direct or
-                transitive) MUST have a value for that property that matches one of the values for the property in the
-                collection.</li>
-              <li>Where an individual <a href="#SOSASampleCollection"><code>SampleCollection</code></a> <i>has a value
-                  for a property that is a range or interval</i>, each member <a
-                  href="#SOSASample"><code>Sample</code></a> (direct or transitive) MUST have a value for that property
-                that matches or falls within that range or interval.</li>
-            </ol>
-          </span> <br>
-          <span property="skos:note">The members of a collection do not necessarily share a common value for any
-            property. </span> <br>
+          <p>
+            <em property="rdfs:label">Sample Collection</em> -
+            <span property="skos:definition">A <a href="#SOSASampleCollection"><code>SampleCollection</code></a> is a
+              collection of one or more <a href="#SOSASample"><code>Samples</code></a> or <a
+                href="#SOSASampleCollection"><code>SampleCollections</code></a>, i.e. collections may be nested.
+              <br><br>
+              The following <a href="#SOSASample"><code>Sample</code></a> properties may appear in a <a
+                href="#SOSASampleCollection"><code>SampleCollection</code></a>:
+              <a href="#SOSAhasOriginalSample"><code>hasOriginalSample</code></a> ,
+              <a href="#SOSAhasSampledFeature"><code>hasSampledFeature</code></a> ,
+              <a href="#SOSAisSampleOf"><code>isSampleOf</code></a> ,
+              <a href="#SOSAisResultOfUsedProcedure"><code>isResultOfUsedProcedure</code></a> ,
+              <a href="#SOSAisResultOfMadeBySampler"><code>isResultOfMadeBySampler</code></a>.
+              If it is present, the values of a property summarizes the values of the matching properties of the member
+              samples, where membership is either direct or transitive through onw or more member sample collections.
+              <br><br>
+              The following consistency rules apply with respect to the Sample properties listed above:
+              <br><br>1. Where an individual <a href="#SOSASampleCollection"><code>SampleCollection</code></a> <i>omits
+                a property</i>, a member <a href="#SOSASample"><code>Sample</code></a> (direct or transitive) MAY have
+              any value for that property.
+              <br><br>2. Where an individual <a href="#SOSASampleCollection"><code>SampleCollection</code></a> has <i>a
+                single value for a property</i>, each member <a href="#SOSASample"><code>Sample</code></a> (direct or
+              transitive) MUST have that same value for that property - i.e. the collection is homogeneous in that
+              property. That property MAY be omitted in any member <a href="#SOSASample"><code>Sample</code></a> or <a
+                href="#SOSASampleCollection"><code>SampleCollection</code></a>.
+              <br><br>3. Where an individual <a href="#SOSASampleCollection"><code>SampleCollection</code></a> has
+              <i>more than one value for a property</i>, each member <a href="#SOSASample"><code>Sample</code></a>
+              (direct or transitive) MUST have a value for that property that matches one of the values for the property
+              in the collection.
+              <br><br>4. Where an individual <a href="#SOSASampleCollection"><code>SampleCollection</code></a> <i>has a
+                value for a property that is a range or interval</i>, each member <a
+                href="#SOSASample"><code>Sample</code></a> (direct or transitive) MUST have a value for that property
+              that matches or falls within that range or interval.
+            </span> <br>
+            <span property="skos:note">The members of a collection do not necessarily share a common value for any
+              property. </span>
+          </p>
 
           <table>
             <tbody>
@@ -5487,7 +5484,7 @@
             replicate <a href="#SOSAObservation"><code>Observations</code></a> on an unchanged or similar quality value:
             i.e., a measure of a <a href="#SOSASensor"><code>Sensor</code></a>'s ability to consistently reproduce an <a
               href="#SOSAObservation"><code>Observation</code></a>, under the defined <a
-              href="#SSNSYSTEMCondition"><code>Conditions</code></a>.<br />
+              href="#SSNSYSTEMCondition"><code>Conditions</code></a>.<br>
             As an actuator capability: The closeness of agreement between replicate <a
               href="#SOSAActuation"><code>Actuations</code></a> for an unchanged or similar command: i.e., a measure of
             an <a href="#SOSAActuator"><code>Actuator</code></a>'s ability to consistently reproduce an <a
@@ -6494,23 +6491,23 @@
               <tr>
                 <th>Examples</th>
                 <td><span property="skos:example">Adjacent flight-line</span>
-                  <br />
+                  <br>
                   <span property="skos:example">Females</span>
-                  <br />
+                  <br>
                   <span property="skos:example">Juveniles</span>
-                  <br />
+                  <br>
                   <span property="skos:example">Males</span>
-                  <br />
+                  <br>
                   <span property="skos:example">Pixel within image or scene</span>
-                  <br />
+                  <br>
                   <span property="skos:example">Probe spot on polished specimen</span>
-                  <br />
+                  <br>
                   <span property="skos:example">Specimen taken from borehole</span>
-                  <br />
+                  <br>
                   <span property="skos:example">Split of core sample</span>
-                  <br />
+                  <br>
                   <span property="skos:example">Station along a traverse</span>
-                  <br />
+                  <br>
                   <span property="skos:example">Sub-sample with grain size smaller than specified seive mesh</span>
                 </td>
               </tr>
@@ -6687,10 +6684,9 @@
         Here we use the URI for each formal Requirement relating to a class or property in [[OMS]] to denote the UML
         class or property.
         Within the RDF representation of the alignment, we use the predicate <code>ogc-ms:implements</code> to link a
-        SOSA term to the corresponding OMS class or property, defined as follows: <br /><br />
+        SOSA term to the corresponding OMS class or property, defined as follows: </p>
       <pre>ogc-ms:implements an OWL:ObjectProperty ;
       rdfs:subPropertyOf dcterms:source , prov:wasDerivedFrom , doap:implements . </pre>
-      </p>
       <section id="OMS_Alignment-namespaces">
         <h4>Namespaces</h4>
         <p>The following namespace prefixes are used in the alignment of SOSA
@@ -7744,15 +7740,15 @@
               <td> <a href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-cpt:Observation/featureOfInterest-sem ,
-                <br /> obs-core:AbstractObservationCharacteristics/pFoI-sem ,
-                <br /> sam-cpt:Sampling/featureOfInterest-sem
+                <br> obs-core:AbstractObservationCharacteristics/pFoI-sem ,
+                <br> sam-cpt:Sampling/featureOfInterest-sem
               </td>
             </tr>
             <tr>
               <td> <a href="#SOSAhasMember">sosa:hasMember</a> </td>
               <td> ogc-ms:implements </td>
               <td> sam-basic:SampleCollection/member-sem ,
-                <br /> obs-core:AbstractObservationCollection/member-sem
+                <br> obs-core:AbstractObservationCollection/member-sem
               </td>
             </tr>
             <tr>
@@ -7764,7 +7760,7 @@
               <td> <a href="#SOSAhasResult">sosa:hasResult</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-cpt:Observation/result-sem ,
-                <br /> sam-cpt:Sampling/sample-sem
+                <br> sam-cpt:Sampling/sample-sem
               </td>
             </tr>
             <tr>
@@ -7786,15 +7782,15 @@
               <td> <a href="#SOSAimplementedBy">sosa:implementedBy</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-cpt:ObservingProcedure/observer-sem ,
-                <br /> sam-cpt:SamplingProcedure/sampler-sem
+                <br> sam-cpt:SamplingProcedure/sampler-sem
               </td>
             </tr>
             <tr>
               <td> <a href="#SOSAimplements">sosa:implements</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-cpt:Observer/observingProcedure-sem ,
-                <br /> sam-cpt:Sampling/samplingProcedure-sem ,
-                <br /> sam-cpt:PreparationStep/processingDetails-sem
+                <br> sam-cpt:Sampling/samplingProcedure-sem ,
+                <br> sam-cpt:PreparationStep/processingDetails-sem
               </td>
             </tr>
             <tr>
@@ -7906,7 +7902,7 @@
               <td> <a href="#SOSAusedProcedure">sosa:usedProcedure</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-cpt:Observation/observingProcedure-sem ,
-                <br /> sam-cpt:Sampling/samplingProcedure-sem
+                <br> sam-cpt:Sampling/samplingProcedure-sem
               </td>
             </tr>
             <tr>
@@ -8883,12 +8879,11 @@
         responsibility for an activity taking place, for the existence of an entity, or for another agent's activity.
       </p>
       <figure>
-        <a href="images/prov-o.png"><img src="images/prov-o.png" alt="PROV-O" width="350" /></a>
+        <a href="images/prov-o.png"><img src="images/prov-o.png" alt="PROV-O" width="350"></a>
         <a href="images/observation-prov.png"><img src="images/observation-prov.png" alt="Observation PROV-O"
-            width="350" /></a>
-        <a href="images/actuation-prov.png"><img src="images/actuation-prov.png" alt="Actuation PROV-O"
-            width="350" /></a>
-        <a href="images/sampling-prov.png"><img src="images/sampling-prov.png" alt="Sampling PROV-O" width="350" /></a>
+            width="350"></a>
+        <a href="images/actuation-prov.png"><img src="images/actuation-prov.png" alt="Actuation PROV-O" width="350"></a>
+        <a href="images/sampling-prov.png"><img src="images/sampling-prov.png" alt="Sampling PROV-O" width="350"></a>
         <figcaption>Core PROV classes and some of the properties that relate them, shown alongside the core SOSA
           structure for observation, actuation and sampling. Classes generally aligned with prov:Entity in yellow
           ellipses; with prov:Activity in purple boxes; with prov:Agent in orange boxes.</figcaption>
@@ -9109,7 +9104,6 @@
 
       </section>
     </section>
-  </section>
   </section>
 
   <section class="informative" id="common-modeling-questions">
