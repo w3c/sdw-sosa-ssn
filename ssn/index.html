@@ -4301,17 +4301,22 @@
             </span>
           </div>
         </div>
-        <section class="specterm sosa" id="SOSAObservationCollection" about="sosa:ObservationCollection"
-          typeof="owl:Class rdfs:Class">
-          <h5><a href="#SOSAObservationCollection">sosa:ObservationCollection</a></h5>
-          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/ObservationCollection</p>
-          <p><strong>a OWL Class</strong></p>
 
+        <section class="specterm sosa" id="SOSAObservationCollection" about="sosa:ObservationCollection"
+        typeof="owl:Class rdfs:Class">
+        <h5><a href="#SOSAObservationCollection">sosa:ObservationCollection</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/ObservationCollection</p>
+        <p><strong>an OWL Class</strong></p>
+        <p class="note">ObservationCollection added in the 2024 Update</p>
+
+        <p>
           <em property="rdfs:label">Observation Collection</em> -
-          <span property="skos:definition">A <a href="#SOSAObservationCollection"><code>ObservationCollection</code></a>
+          <span property="skos:definition">A <a
+              href="#SOSAObservationCollection"><code>ObservationCollection</code></a>
             is a collection of one or more <a href="#SOSAObservation"><code>Observations</code></a> or <a
-              href="#SOSAObservationCollection"><code>ObservationCollections</code></a>, i.e. collections may be nested.
-            <br /><br />
+              href="#SOSAObservationCollection"><code>ObservationCollections</code></a>, i.e. collections may be
+            nested.
+            <br><br>
             The following <a href="#SOSAObservation"><code>Observation</code></a> properties may appear in an <a
               href="#SOSAObservationCollection"><code>ObservationCollection</code></a>:
             <a href="#SOSAhasFeatureOfInterest"><code>hasFeatureOfInterest</code></a> ,
@@ -4328,99 +4333,98 @@
             <a href="#OMSobservationType"><code>observationType</code></a> ,
             <a href="#OMSresultQuality"><code>resultQuality</code></a> .
             If they are present, the values of these properties summarize the values of the matching properties of the
-            member observations, where membership is either direct or transitive through one or more member observation
+            member observations, where membership is either direct or transitive through one or more member
+            observation
             collections.
-            <br /><br />
+            <br><br>
             The following consistency rules with respect to the Observation properties listed above:
-            <ol>
-              <li>Where an individual <a href="#SOSAObservationCollection"><code>ObservationCollection</code></a>
-                <i>omits a property</i>, a member <a href="#SOSAObservation"><code>Observation</code></a> (direct or
-                transitive) MAY have any value for that property.
-              </li>
-              <li>Where an individual <a href="#SOSAObservationCollection"><code>ObservationCollection</code></a> has
-                <i>a single value for a property</i>, each member <a
-                  href="#SOSAObservation"><code>Observation</code></a> (direct or transitive) MUST have that same value
-                for that property - i.e. the collection is homogeneous in that property. That property MAY be omitted in
-                any member <a href="#SOSAObservation"><code>Observation</code></a> or <a
-                  href="#SOSAObservationCollection"><code>ObservationCollection</code></a>.
-              </li>
-              <li>Where an individual <a href="#SOSAObservationCollection"><code>ObservationCollection</code></a> has
-                <i>more than one value for a property</i>, each member <a
-                  href="#SOSAObservation"><code>Observation</code></a> (direct or transitive) MUST have a value for that
-                property that matches one of the values for the property in the collection.
-              </li>
-              <li>Where an individual <a href="#SOSAObservationCollection"><code>ObservationCollection</code></a> <i>has
-                  a value for a property that is a range or interval</i>, each member <a
-                  href="#SOSAObservation"><code>Observation</code></a> (direct or transitive) MUST have a value for that
-                property that matches or falls within that range or interval.</li>
-              <li>Where an individual <a href="#SOSAObservationCollection"><code>ObservationCollection</code></a> <i>has
-                  more than one value for a property that is a range or interval</i>, each member <a
-                  href="#SOSAObservation"><code>Observation</code></a> (direct or transitive) MUST have a value for that
-                property that matches or falls within one of those ranges or intervals.</li>
-            </ol>
+            <br><br>1. Where an individual <a href="#SOSAObservationCollection"><code>ObservationCollection</code></a>
+            <i>omits a property</i>, a member <a href="#SOSAObservation"><code>Observation</code></a> (direct or
+            transitive) MAY have any value for that property.
+            <br><br>2. Where an individual <a href="#SOSAObservationCollection"><code>ObservationCollection</code></a>
+            has <i>a single value for a property</i>, each member <a
+              href="#SOSAObservation"><code>Observation</code></a> (direct or transitive) MUST have that same value
+            for that property - i.e. the collection is homogeneous in that property. That property MAY be omitted in
+            any member <a href="#SOSAObservation"><code>Observation</code></a> or <a
+              href="#SOSAObservationCollection"><code>ObservationCollection</code></a>.
+            <br><br>3. Where an individual <a href="#SOSAObservationCollection"><code>ObservationCollection</code></a>
+            has <i>more than one value for a property</i>, each member <a
+              href="#SOSAObservation"><code>Observation</code></a> (direct or transitive) MUST have a value for that
+            property that matches one of the values for the property in the collection.
+            <br><br>4. Where an individual <a href="#SOSAObservationCollection"><code>ObservationCollection</code></a>
+            <i>has a value for a property that is a range or interval</i>, each member <a
+              href="#SOSAObservation"><code>Observation</code></a> (direct or transitive) MUST have a value for that
+            property that matches or falls within that range or interval.
+            <br><br>5. Where an individual <a href="#SOSAObservationCollection"><code>ObservationCollection</code></a> <i>has
+              more than one value for a property that is a range or interval</i>, each member <a
+              href="#SOSAObservation"><code>Observation</code></a> (direct or transitive) MUST have a value for that
+            property that matches or falls within one of those ranges or intervals.
           </span> <br>
           <span property="skos:note">The members of a collection do not necessarily share a common value for any
-            property. </span> <br>
-          <table>
-            <tbody>
-              <tr>
-                <th>Example</th>
-                <td><span property="skos:example">... TODO ...</span></td>
-              </tr>
-              <tr class="ssn">
-                <th>Sub class of</th>
-                <td>
-                  <span rel="rdfs:subClassOf" resource="rdf:Bag"><a
-                      href="https://www.w3.org/TR/rdf12-schema/#ch_bag">rdf:Bag</a></span></span>
-                </td>
-              </tr>
-              <tr class="ssn">
-                <th>Disjoint with</th>
-                <td>
-                  <span rel="owl:disjointWith" resource="sosa:SampleCollection"><a
-                      href="#SampleCollection">sosa:SampleCollection</a></span></span>
-                </td>
-              </tr>
-              <tr class="ssn">
-                <th class="restrictions">Restrictions</th>
-                <td>
-                  <span about="sosa:ObservationCollection" rel="rdfs:subClassOf"
-                    resource="[_:SOSAObservationCollection2]"></span>
-                  <span about="[_:SOSAObservationCollection]" typeof="owl:Restriction"></span>
-                  <span about="[_:SOSAObservationCollection]" rel="owl:onProperty" resource="sosa:hasMember"><a
-                      href="#SOSAhasMember">sosa:hasMember</a></span>
-                  <span about="[_:SOSAObservationCollection]" property="owl:allValuesFrom"
-                    resource="sosa:ObservationCollection"><em><b>ONLY</b></em> (<a
-                      href="#SOSAObservation">sosa:Observation</a> OR <a
-                      href="#SOSAObservationCollection">sosa:ObservationCollection</a> )</span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="buttonpanel">
-            <span>
-              <span class="sosa" style="display: none;">[<a href="#"
-                  onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
-                  additional SSN axioms</a>]</span>
-              <span class="ssn">[<a href="#"
-                  onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
-                  additional SSN axioms</a>]</span>
-            </span>
-            <span class="back">[<a href="#Collections">Back to module overview and examples</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-          </div>
-        </section>
-        <section class="specterm sosa" id="SOSASampleCollection" about="sosa:SampleCollection"
-          typeof="owl:Class rdfs:Class">
-          <h5><a href="#SOSASampleCollection">sosa:SampleCollection</a></h5>
-          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/SampleCollection</p>
-          <p><strong>a OWL Class</strong></p>
-
+            property. </span>
+        </p>
+        <table>
+          <tbody>
+            <tr>
+              <th>Example</th>
+              <td><span property="skos:example">... TODO ...</span></td>
+            </tr>
+            <tr class="ssn">
+              <th>Sub class of</th>
+              <td>
+                <span rel="rdfs:subClassOf" resource="rdf:Bag"><a
+                    href="https://www.w3.org/TR/rdf12-schema/#ch_bag">rdf:Bag</a></span>
+              </td>
+            </tr>
+            <tr class="ssn">
+              <th>Disjoint with</th>
+              <td>
+                <span rel="owl:disjointWith" resource="sosa:SampleCollection"><a
+                    href="#SOSASampleCollection">sosa:SampleCollection</a></span>
+              </td>
+            </tr>
+            <tr class="ssn">
+              <th class="restrictions">Restrictions</th>
+              <td>
+                <span about="sosa:ObservationCollection" rel="rdfs:subClassOf"
+                  resource="[_:SOSAObservationCollection2]"></span>
+                <span about="[_:SOSAObservationCollection]" typeof="owl:Restriction"></span>
+                <span about="[_:SOSAObservationCollection]" rel="owl:onProperty" resource="sosa:hasMember"><a
+                    href="#SOSAhasMember">sosa:hasMember</a></span>
+                <span about="[_:SOSAObservationCollection]" property="owl:allValuesFrom"
+                  resource="sosa:ObservationCollection"><em><b>ONLY</b></em> (<a
+                    href="#SOSAObservation">sosa:Observation</a> OR <a
+                    href="#SOSAObservationCollection">sosa:ObservationCollection</a> )</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="buttonpanel">
+          <span>
+            <span class="sosa" style="display: none;">[<a href="#"
+                onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
+                additional SSN axioms</a>]</span>
+            <span class="ssn">[<a href="#"
+                onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
+                additional SSN axioms</a>]</span>
+          </span>
+          <span class="back">[<a href="#Collections">Back to module overview and examples</a>]</span>
+          <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+      </section>
+      
+      <section class="specterm sosa" id="SOSASampleCollection" about="sosa:SampleCollection"
+        typeof="owl:Class rdfs:Class">
+        <h5><a href="#SOSASampleCollection">sosa:SampleCollection</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/SampleCollection</p>
+        <p><strong>an OWL Class</strong></p>
+        <p class="note">SampleCollection added in the 2024 Update</p>
+        <p>
           <em property="rdfs:label">Sample Collection</em> -
           <span property="skos:definition">A <a href="#SOSASampleCollection"><code>SampleCollection</code></a> is a
             collection of one or more <a href="#SOSASample"><code>Samples</code></a> or <a
               href="#SOSASampleCollection"><code>SampleCollections</code></a>, i.e. collections may be nested.
-            <br /><br />
+            <br><br>
             The following <a href="#SOSASample"><code>Sample</code></a> properties may appear in a <a
               href="#SOSASampleCollection"><code>SampleCollection</code></a>:
             <a href="#SOSAhasOriginalSample"><code>hasOriginalSample</code></a> ,
@@ -4430,82 +4434,82 @@
             <a href="#SOSAisResultOfMadeBySampler"><code>isResultOfMadeBySampler</code></a>.
             If it is present, the values of a property summarizes the values of the matching properties of the member
             samples, where membership is either direct or transitive through onw or more member sample collections.
-            <br /><br />
+            <br><br>
             The following consistency rules apply with respect to the Sample properties listed above:
-            <ol>
-              <li>Where an individual <a href="#SOSASampleCollection"><code>SampleCollection</code></a> <i>omits a
-                  property</i>, a member <a href="#SOSASample"><code>Sample</code></a> (direct or transitive) MAY have
-                any value for that property.</li>
-              <li>Where an individual <a href="#SOSASampleCollection"><code>SampleCollection</code></a> has <i>a single
-                  value for a property</i>, each member <a href="#SOSASample"><code>Sample</code></a> (direct or
-                transitive) MUST have that same value for that property - i.e. the collection is homogeneous in that
-                property. That property MAY be omitted in any member <a href="#SOSASample"><code>Sample</code></a> or <a
-                  href="#SOSASampleCollection"><code>SampleCollection</code></a>.</li>
-              <li>Where an individual <a href="#SOSASampleCollection"><code>SampleCollection</code></a> has <i>more than
-                  one value for a property</i>, each member <a href="#SOSASample"><code>Sample</code></a> (direct or
-                transitive) MUST have a value for that property that matches one of the values for the property in the
-                collection.</li>
-              <li>Where an individual <a href="#SOSASampleCollection"><code>SampleCollection</code></a> <i>has a value
-                  for a property that is a range or interval</i>, each member <a
-                  href="#SOSASample"><code>Sample</code></a> (direct or transitive) MUST have a value for that property
-                that matches or falls within that range or interval.</li>
-              <li>Where an individual <a href="#SOSASampleCollection"><code>SampleCollection</code></a> <i>has more than
-                  one value for a property that is a range or interval</i>, each member <a
-                  href="#SOSASample"><code>Sample</code></a> (direct or transitive) MUST have a value for that property
-                that matches or falls within one of those ranges or intervals.</li>
-            </ol>
+            <br><br>1. Where an individual <a href="#SOSASampleCollection"><code>SampleCollection</code></a> <i>omits
+              a property</i>, a member <a href="#SOSASample"><code>Sample</code></a> (direct or transitive) MAY have
+            any value for that property.
+            <br><br>2. Where an individual <a href="#SOSASampleCollection"><code>SampleCollection</code></a> has <i>a
+              single value for a property</i>, each member <a href="#SOSASample"><code>Sample</code></a> (direct or
+            transitive) MUST have that same value for that property - i.e. the collection is homogeneous in that
+            property. That property MAY be omitted in any member <a href="#SOSASample"><code>Sample</code></a> or <a
+              href="#SOSASampleCollection"><code>SampleCollection</code></a>.
+            <br><br>3. Where an individual <a href="#SOSASampleCollection"><code>SampleCollection</code></a> has
+            <i>more than one value for a property</i>, each member <a href="#SOSASample"><code>Sample</code></a>
+            (direct or transitive) MUST have a value for that property that matches one of the values for the property
+            in the collection.
+            <br><br>4. Where an individual <a href="#SOSASampleCollection"><code>SampleCollection</code></a> <i>has a
+              value for a property that is a range or interval</i>, each member <a
+              href="#SOSASample"><code>Sample</code></a> (direct or transitive) MUST have a value for that property
+            that matches or falls within that range or interval.
+            <br><br>Where an individual <a href="#SOSASampleCollection"><code>SampleCollection</code></a> <i>has more than
+              one value for a property that is a range or interval</i>, each member <a
+              href="#SOSASample"><code>Sample</code></a> (direct or transitive) MUST have a value for that property
+            that matches or falls within one of those ranges or intervals.
           </span> <br>
           <span property="skos:note">The members of a collection do not necessarily share a common value for any
-            property. </span> <br>
+            property. </span>
+        </p>
 
-          <table>
-            <tbody>
-              <tr>
-                <th>Example</th>
-                <td><span property="skos:example">... TODO ...</span></td>
-              </tr>
-              <tr class="ssn">
-                <th>Sub class of</th>
-                <td>
-                  <span rel="rdfs:subClassOf" resource="rdf:Bag"><a
-                      href="https://www.w3.org/TR/rdf12-schema/#ch_bag">rdf:Bag</a></span></span>
-                </td>
-              </tr>
-              <tr class="ssn">
-                <th>Disjoint with</th>
-                <td>
-                  <span rel="owl:disjointWith" resource="sosa:ObservationCollection"><a
-                      href="#ObservationCollection">sosa:ObservationCollection</a></span></span>
-                </td>
-              </tr>
-              <tr class="ssn">
-                <th class="restrictions">Restrictions</th>
-                <td>
-                  <span about="sosa:SampleCollection" rel="rdfs:subClassOf" resource="[_:SOSASampleCollection2]"></span>
-                  <span about="[_:SOSASampleCollection]" typeof="owl:Restriction"></span>
-                  <span about="[_:SOSASampleCollection]" rel="owl:onProperty" resource="sosa:hasMember"><a
-                      href="#SOSAhasMember">sosa:hasMember</a></span>
-                  <span about="[_:SOSASampleCollection]" property="owl:allValuesFrom"
-                    resource="sosa:SampleCollection"><em><b>ONLY</b></em> (<a href="#SOSASample">sosa:Sample</a> OR <a
-                      href="#SOSASampleCollection">sosa:SampleCollection</a> )</span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="buttonpanel">
-            <span>
-              <span class="sosa" style="display: none;">[<a href="#"
-                  onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
-                  additional SSN axioms</a>]</span>
-              <span class="ssn">[<a href="#"
-                  onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
-                  additional SSN axioms</a>]</span>
-            </span>
-            <span class="back">[<a href="#Collections">Back to module overview and examples</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-          </div>
-        </section>
-        <section class="specterm sosa" id="SOSAhasMember" about="sosa:hasMember" typeof="owl:ObjectProperty">
+        <table>
+          <tbody>
+            <tr>
+              <th>Example</th>
+              <td><span property="skos:example">... TODO ...</span></td>
+            </tr>
+            <tr class="ssn">
+              <th>Sub class of</th>
+              <td>
+                <span rel="rdfs:subClassOf" resource="rdf:Bag"><a
+                    href="https://www.w3.org/TR/rdf12-schema/#ch_bag">rdf:Bag</a></span>
+              </td>
+            </tr>
+            <tr class="ssn">
+              <th>Disjoint with</th>
+              <td>
+                <span rel="owl:disjointWith" resource="sosa:ObservationCollection"><a
+                    href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
+              </td>
+            </tr>
+            <tr class="ssn">
+              <th class="restrictions">Restrictions</th>
+              <td>
+                <span about="sosa:SampleCollection" rel="rdfs:subClassOf" resource="[_:SOSASampleCollection2]"></span>
+                <span about="[_:SOSASampleCollection]" typeof="owl:Restriction"></span>
+                <span about="[_:SOSASampleCollection]" rel="owl:onProperty" resource="sosa:hasMember"><a
+                    href="#SOSAhasMember">sosa:hasMember</a></span>
+                <span about="[_:SOSASampleCollection]" property="owl:allValuesFrom"
+                  resource="sosa:SampleCollection"><em><b>ONLY</b></em> (<a href="#SOSASample">sosa:Sample</a> OR <a
+                    href="#SOSASampleCollection">sosa:SampleCollection</a> )</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="buttonpanel">
+          <span>
+            <span class="sosa" style="display: none;">[<a href="#"
+                onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
+                additional SSN axioms</a>]</span>
+            <span class="ssn">[<a href="#"
+                onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
+                additional SSN axioms</a>]</span>
+          </span>
+          <span class="back">[<a href="#Collections">Back to module overview and examples</a>]</span>
+          <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+      </section>
+
+      <section class="specterm sosa" id="SOSAhasMember" about="sosa:hasMember" typeof="owl:ObjectProperty">
           <h5><a href="#SOSAhasMember">sosa:hasMember</a></h5>
           <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/hasMember</p>
           <p><strong>an OWL Object Property</strong></p>
