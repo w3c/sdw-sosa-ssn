@@ -464,6 +464,7 @@
             , <a href="#SOSAProcedure">sosa:Procedure</a>
             , <a href="#SOSAResult">sosa:Result</a>
             , <a href="#SOSASample">sosa:Sample</a>
+            , <a href="#SOSASampleCollection">sosa:SampleCollection</a>
             , <a href="#SOSASampler">sosa:Sampler</a>
             , <a href="#SOSASampling">sosa:Sampling</a>
             , <a href="#SOSASensor">sosa:Sensor</a>
@@ -2700,10 +2701,14 @@
           <p><strong>an OWL Object Property</strong></p>
 
           <em property="rdfs:label">has feature of interest</em> -
-          <span property="rdfs:comment skos:definition">A relation between an <a
-              href="#SOSAObservation"><code>Observation</code></a> and the entity whose quality was observed, or between
-            an <a href="#SOSAActuation"><code>Actuation</code></a> and the entity whose property was modified, or
-            between an act of <a href="#SOSASampling"><code>Sampling</code></a> and the entity that was sampled.</span>
+          <span property="skos:definition">A relation between an <a href="#SOSAObservation"><code>Observation</code></a>
+            and the entity whose quality was observed, or between an <a href="#SOSAActuation"><code>Actuation</code></a>
+            and the entity whose property was modified, or between an act of <a
+              href="#SOSASampling"><code>Sampling</code></a> and the entity that was sampled.</span>
+          <p><span property="skos:scopeNote" class="note">Note that this is the <i>proximate</i> feature of interest,
+              which may be a proxy entity such as a <i>sample</i> of the <i>ultimate</i> feature of interest.
+              Use <a href="#SOSAhasUltimateFeatureOfInterest">sosa:hasUltimateFeatureOfInterest</a> if the intention is
+              to link to the ultimate feature of interest.</span></p>
           <table>
             <tbody>
               <tr>
