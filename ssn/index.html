@@ -377,7 +377,8 @@
             style="font-family: courier;">http://www.w3.org/ns/ssn/</span> was used for some terms. In this edition all
           terms are consolidated into a single namespace. The terms in the <code>sosa:</code> namespaces remain in the
           RDF artefacts to protect backward compatibility of existing deployments, but are marked
-          <code>deprecated</code>. </p>
+          <code>deprecated</code>.
+        </p>
       </aside>
     </section>
     <section id="RDFdistribution">
@@ -2697,10 +2698,14 @@
           <p><strong>an OWL Object Property</strong></p>
 
           <em property="rdfs:label">has feature of interest</em> -
-          <span property="rdfs:comment skos:definition">A relation between an <a
-              href="#SOSAObservation"><code>Observation</code></a> and the entity whose quality was observed, or between
-            an <a href="#SOSAActuation"><code>Actuation</code></a> and the entity whose property was modified, or
-            between an act of <a href="#SOSASampling"><code>Sampling</code></a> and the entity that was sampled.</span>
+          <span property="skos:definition">A relation between an <a href="#SOSAObservation"><code>Observation</code></a>
+            and the entity whose quality was observed, or between an <a href="#SOSAActuation"><code>Actuation</code></a>
+            and the entity whose property was modified, or between an act of <a
+              href="#SOSASampling"><code>Sampling</code></a> and the entity that was sampled.</span>
+          <p><span property="skos:scopeNote" class="note">Note that this is the <i>proximate</i> feature of interest,
+              which may be a proxy entity such as a <i>sample</i> of the <i>ultimate</i> feature of interest.
+              Use <a href="#SOSAhasUltimateFeatureOfInterest">sosa:hasUltimateFeatureOfInterest</a> if the intention is
+              to link to the ultimate feature of interest.</span></p>
           <table>
             <tbody>
               <tr>
@@ -3847,7 +3852,8 @@
                     resource="sosa:Sensor"><a href="#SOSASensor">sosa:Sensor</a></span>, <span
                     rel="schema:rangeIncludes" resource="sosa:Sampler"><a href="#SOSASampler">sosa:Sampler</a></span>,
                   <span rel="schema:rangeIncludes" resource="sosa:Platform"><a
-                      href="#SOSAPlatform">sosa:Platform</a></span></td>
+                      href="#SOSAPlatform">sosa:Platform</a></span>
+                </td>
               </tr>
               <tr>
                 <th>Inverse property of</th>
@@ -3903,7 +3909,8 @@
                     resource="sosa:Sensor"><a href="#SOSASensor">sosa:Sensor</a></span>, <span
                     rel="schema:domainIncludes" resource="sosa:Sampler"><a href="#SOSASampler">sosa:Sampler</a></span>,
                   <span rel="schema:domainIncludes" resource="sosa:Platform"><a
-                      href="#SOSAPlatform">sosa:Platform</a></span></td>
+                      href="#SOSAPlatform">sosa:Platform</a></span>
+                </td>
               </tr>
               <tr>
                 <th>Range Includes</th>
@@ -4325,17 +4332,20 @@
             <ol>
               <li>Where an individual <a href="#SOSAObservationCollection"><code>ObservationCollection</code></a>
                 <i>omits a property</i>, a member <a href="#SOSAObservation"><code>Observation</code></a> (direct or
-                transitive) MAY have any value for that property.</li>
+                transitive) MAY have any value for that property.
+              </li>
               <li>Where an individual <a href="#SOSAObservationCollection"><code>ObservationCollection</code></a> has
                 <i>a single value for a property</i>, each member <a
                   href="#SOSAObservation"><code>Observation</code></a> (direct or transitive) MUST have that same value
                 for that property - i.e. the collection is homogeneous in that property. That property MAY be omitted in
                 any member <a href="#SOSAObservation"><code>Observation</code></a> or <a
-                  href="#SOSAObservationCollection"><code>ObservationCollection</code></a>.</li>
+                  href="#SOSAObservationCollection"><code>ObservationCollection</code></a>.
+              </li>
               <li>Where an individual <a href="#SOSAObservationCollection"><code>ObservationCollection</code></a> has
                 <i>more than one value for a property</i>, each member <a
                   href="#SOSAObservation"><code>Observation</code></a> (direct or transitive) MUST have a value for that
-                property that matches one of the values for the property in the collection.</li>
+                property that matches one of the values for the property in the collection.
+              </li>
               <li>Where an individual <a href="#SOSAObservationCollection"><code>ObservationCollection</code></a> <i>has
                   a value for a property that is a range or interval</i>, each member <a
                   href="#SOSAObservation"><code>Observation</code></a> (direct or transitive) MUST have a value for that
@@ -4527,7 +4537,8 @@
                       href="#SOSAObservationCollection">sosa:ObservationCollection</a></span> , <span
                     rel="schema:rangeIncludes" resource="sosa:Sample"><a href="#SOSASample">sosa:Sample</a></span> ,
                   <span rel="schema:rangeIncludes" resource="sosa:SampleCollection"><a
-                      href="#SOSASampleCollection">sosa:SampleCollection</a></span></td>
+                      href="#SOSASampleCollection">sosa:SampleCollection</a></span>
+                </td>
               </tr>
               <tr>
                 <th>is Defined By</th>
@@ -8958,7 +8969,8 @@
         </p>
         <p>This also holds for subclasses of <a href="#SOSASystem"><code>sosa:System</code></a>: <a
             href="#SOSASensor"><code>sosa:Sensor</code></a>, <a href="#SOSAActuator"><code>sosa:Actuator</code></a>, and
-          <a href="#SOSASampler"><code>sosa:Sampler</code></a>.</p>
+          <a href="#SOSASampler"><code>sosa:Sampler</code></a>.
+        </p>
         <p>This first example is modeling instances of <a href="#SOSASystem"><code>sosa:System</code></a> as generic:
         </p>
         <pre class="example" data-include="./examples/2017ex6.ttl" data-include-format="text"></pre>
