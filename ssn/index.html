@@ -123,7 +123,7 @@
     <h2>Modularization</h2>
     <!--
       <p><span data-dobid="hdw">Practitioners</span> using the original Ontology 
-        as defined in the <em>W3C Semantic Sensor Network Incubator Group </em> [[SSNO]] identified a major
+        as defined in the <em>W3C Semantic Sensor Network Incubator Group </em> [[SSNX]] identified a major
         issue in its complexity, partly due to the layering underneath the
         Dolce-UltraLite (DUL) upper level ontology. 
         In response to this, the 
@@ -238,7 +238,7 @@
     <h2>Origins of SSN and SOSA</h2>
     <p>Here we briefly review the origins of SSN and SOSA, namely the initial
       SSN version published by the <em>W3C Semantic Sensor Network Incubator
-        Group </em> [[SSNO]] and work on Sensor Web Enablement by the OGC. We
+        Group </em> [[SSNX]] and work on Sensor Web Enablement by the OGC. We
       also highlight the most substantial changes made since the initial
       release of the SSN ontology.</p>
     <p>Starting in 2002, the OGC's Sensor Web Enablement initiative has developed
@@ -266,18 +266,18 @@
       applications and domains. O&amp;M also provided a model for sampling,
       since almost all scientific observations are made on a subset of, or
       proxy for, the ultimate feature of interest. </p>
-    <p>The initial <em>W3C Semantic Sensor Network Incubator Group </em>ontology
-      (SSN) was built around an ontology design pattern called the <em>Stimulus
+    <p>The initial <em>W3C Semantic Sensor Network Incubator Group</em>ontology
+      (SSNX) was built around an ontology design pattern called the <em>Stimulus
         Sensor Observation</em> (SSO) pattern [[SSO-Pattern]]. The SSO was
       developed as a minimal and common ground for heavy-weight ontologies
       for the use on the Semantic Sensor Web as well as to explicitly
       address the need for light-weight semantics requested by the Linked
       Data community. The SSO was also aligned to the <em>Dolce-Ultralite </em>upper
       ontology (DUL). </p>
-    <p>The new SSN described in this document is based on a revised and
+    <p>The SSN ontology described in this document is based on a revised and
       expanded version of this pattern, namely the <em>Sensor, Observation,
-        Sample, and Actuator</em> (SOSA) ontology. Similar to the original
-      SSO, SOSA acts as a central building block for the SSN but puts more
+        Sample, and Actuator</em> (SOSA) ontology.
+      Similar to SSNX, SOSA acts as a central building block for the SSN but puts more
       emphasis on light-weight use and the ability to be used standalone.
       The axiomatization also changed to provide an experience more related
       to Schema.org. Notable differences include the usage of the Schema.org
@@ -4364,6 +4364,7 @@
             </span>
           </div>
         </div>
+
         <section class="specterm sosa" id="SOSAObservationCollection" about="sosa:ObservationCollection"
           typeof="owl:Class rdfs:Class">
           <h5><a href="#SOSAObservationCollection">sosa:ObservationCollection</a></h5>
@@ -4417,6 +4418,11 @@
               <i>has a value for a property that is a range or interval</i>, each member <a
                 href="#SOSAObservation"><code>Observation</code></a> (direct or transitive) MUST have a value for that
               property that matches or falls within that range or interval.
+              <br><br>5. Where an individual <a href="#SOSAObservationCollection"><code>ObservationCollection</code></a>
+              <i>has
+                more than one value for a property that is a range or interval</i>, each member <a
+                href="#SOSAObservation"><code>Observation</code></a> (direct or transitive) MUST have a value for that
+              property that matches or falls within one of those ranges or intervals.
             </span> <br>
             <span property="skos:note">The members of a collection do not necessarily share a common value for any
               property. </span>
@@ -4470,6 +4476,7 @@
             <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
           </div>
         </section>
+
         <section class="specterm sosa" id="SOSASampleCollection" about="sosa:SampleCollection"
           typeof="owl:Class rdfs:Class">
           <h5><a href="#SOSASampleCollection">sosa:SampleCollection</a></h5>
@@ -4509,6 +4516,11 @@
                 value for a property that is a range or interval</i>, each member <a
                 href="#SOSASample"><code>Sample</code></a> (direct or transitive) MUST have a value for that property
               that matches or falls within that range or interval.
+              <br><br>5. Where an individual <a href="#SOSASampleCollection"><code>SampleCollection</code></a> <i>has
+                more than
+                one value for a property that is a range or interval</i>, each member <a
+                href="#SOSASample"><code>Sample</code></a> (direct or transitive) MUST have a value for that property
+              that matches or falls within one of those ranges or intervals.
             </span> <br>
             <span property="skos:note">The members of a collection do not necessarily share a common value for any
               property. </span>
@@ -7919,9 +7931,8 @@
       <p>This section introduces the alignment of SSN to the DOLCE UltraLite upper ontology (DUL) which is the core
         dependency of the previous version of SSN. This serves to
         axiomatically clarify the intended meaning of SSN terms and will assist
-        SSN users wishing to interoperate with other DUL-aligned ontologies. It is also imported in the SSNX alignment
-        module that aligns SSN to the previous version of SSN. Note, however, that the DUL alignment can be used
-        independently to align SSN with more generic concepts/properties of DUL.</p>
+        SSN users wishing to interoperate with other DUL-aligned ontologies. Note, however, that the DUL alignment can
+        be used independently to align SSN with more generic concepts/properties of DUL.</p>
       The DUL alignment, known as "ssn-dul" is available at <a
         href="http://www.w3.org/ns/ssn/dul">http://www.w3.org/ns/ssn/dul</a>.
       <section id="DUL_Alignment-namespaces" class="informative">
@@ -8118,605 +8129,15 @@
     </section>
     <section id="SSNX_Alignment" class="informative">
       <h3>SSNX Alignment Module</h3>
-      <p>This section formally relates the SSN ontology to the previous version of SSN
-        that was published by the SSN-XG ("old SSN"). This may be useful for
-        backward-compatibility and transition purposes. While the namespaces for
-        SSN and DUL have changed since the SSN-XG first published the old SSN,
-        the SSN alignment, known as "SSN-SSNX" is available at <a
+      <p>An alignment of the SSN ontology to the version of SSN that was published by the original W3C incubator group
+        (SSNX) is provided in the previous edition of this document.
+        The RDF representation of the alignment remains available at <a
           href="http://www.w3.org/2017/01/ssn-ssnx/">http://www.w3.org/2017/01/ssn-ssnx/</a>.
-        Note that SSN-SSNX imports SSN-DUL.
+        The explanation of this alignment may be consulted at <a
+          href="https://www.w3.org/TR/2017/REC-vocab-ssn-20171019/#SSNX_Alignment">https://www.w3.org/TR/2017/REC-vocab-ssn-20171019/#SSNX_Alignment</a>
       </p>
-      <section id="SSNX" class="informative">
-        <h4>Namespaces</h4>
-        <p>The following namespace prefixes are used in the alignment to SOSA
-          and SSN</p>
-        <table>
-          <tbody>
-            <tr>
-              <th> Prefix </th>
-              <th> Namespace </th>
-            </tr>
-            <tr>
-              <td> sosa: </td>
-              <td> <a href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a>
-              </td>
-            </tr>
-            <tr>
-              <td> ssn: </td>
-              <td> <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>
-              </td>
-            </tr>
-            <tr>
-              <td> oldsosa: </td>
-              <td> <a href="http://purl.oclc.org/NET/ssnx/ssn">http://purl.oclc.org/NET/ssnx/ssn#</a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-      <section id="SSNX-Classes-Alignment" class="informative">
-        <h4>Class Alignments</h4>
-        <p>The primary classes from SSN-XG have direct equivalent classes in
-          SOSA and SSN as shown below. </p>
-        <table>
-          <tbody>
-            <tr>
-              <td> oldsosa:Property </td>
-              <td> equivalent class </td>
-              <td> sosa:Property </td>
-            </tr>
-            <tr>
-              <td> oldsosa:System </td>
-              <td> equivalent class </td>
-              <td> sosa:System </td>
-            </tr>
-            <tr>
-              <td> oldsosa:Platform </td>
-              <td> equivalent class </td>
-              <td> sosa:Platform </td>
-            </tr>
-            <tr>
-              <td> oldsosa:Input</td>
-              <td> equivalent class </td>
-              <td> sosa:Input </td>
-            </tr>
-            <tr>
-              <td> oldsosa:Output </td>
-              <td> equivalent class </td>
-              <td> sosa:Output </td>
-            </tr>
-            <tr>
-              <td> oldsosa:Stimulus </td>
-              <td> equivalent class </td>
-              <td> sosa:Stimulus </td>
-            </tr>
-            <tr>
-              <td> oldsosa:MeasurementRange </td>
-              <td> equivalent class </td>
-              <td> ssn-system:MeasurementRange </td>
-            </tr>
-            <tr>
-              <td> oldsosa:Sensor </td>
-              <td> equivalent class </td>
-              <td> sosa:Sensor </td>
-            </tr>
-            <tr>
-              <td> oldsosa:Condition </td>
-              <td> equivalent class </td>
-              <td> ssn-system:Condition </td>
-            </tr>
-            <tr>
-              <td> oldsosa:Precision </td>
-              <td> equivalent class </td>
-              <td> ssn-system:Precision </td>
-            </tr>
-            <tr>
-              <td> oldsosa:Sensitivity </td>
-              <td> equivalent class </td>
-              <td> ssn-system:Sensitivity </td>
-            </tr>
-            <tr>
-              <td> oldsosa:OperatingProperty</td>
-              <td> equivalent class </td>
-              <td> ssn-system:OperatingProperty</td>
-            </tr>
-
-            <tr>
-              <td> oldsosa:MaintenanceSchedule</td>
-              <td> equivalent class </td>
-              <td> ssn-system:MaintenanceSchedule </td>
-            </tr>
-            <tr>
-              <td> oldsosa:OperatingPowerRange</td>
-              <td> equivalent class </td>
-              <td> ssn-system:OperatingPowerRange </td>
-            </tr>
-            <tr>
-              <td> oldsosa:SurvivalProperty </td>
-              <td> equivalent class </td>
-              <td> ssn-system:SurvivalProperty </td>
-            </tr>
-            <tr>
-              <td> oldsosa:BatteryLifetime </td>
-              <td> equivalent class </td>
-              <td> ssn-system:BatteryLifetime </td>
-            </tr>
-            <tr>
-              <td> oldsosa:SystemLifetime </td>
-              <td> equivalent class </td>
-              <td> ssn-system:SystemLifetime </td>
-            </tr>
-          </tbody>
-        </table>
-        <p> The following classes in SOSA and SSN are interpreted as superclasses of the corresponding ones in SSN-XG.
-        </p>
-        <table>
-          <tbody>
-            <tr>
-              <td> oldsosa:FeatureOfInterest </td>
-              <td> subclass of </td>
-              <td> sosa:FeatureOfInterest </td>
-            </tr>
-            <tr>
-              <td> oldsosa:Device </td>
-              <td> subclass of </td>
-              <td> sosa:Platform; sosa:System</td>
-            </tr>
-            <tr>
-              <td> oldsosa:Sensing </td>
-              <td> subclass of </td>
-              <td> sosa:Procedure</td>
-            </tr>
-            <tr>
-              <td> oldsosa:ObservationValue </td>
-              <td> subclass of </td>
-              <td> sosa:Result </td>
-            </tr>
-            <tr>
-              <td> oldsosa:MeasurementProperty </td>
-              <td> subclass of </td>
-              <td> ssn-system:SystemProperty</td>
-            </tr>
-            <tr>
-              <td> oldsosa:Accuracy</td>
-              <td> subclass of </td>
-              <td> ssn-system:Accuracy </td>
-            </tr>
-            <tr>
-              <td> oldsosa:DetectionLimit</td>
-              <td> subclass of </td>
-              <td> ssn-system:DetectionLimit</td>
-            </tr>
-            <tr>
-              <td> oldsosa:Drift</td>
-              <td> subclass of </td>
-              <td> ssn-system:Drift</td>
-            </tr>
-            <tr>
-              <td> oldsosa:Frequency</td>
-              <td> subclass of </td>
-              <td> ssn-system:Frequency</td>
-            </tr>
-            <tr>
-              <td> oldsosa:Latency</td>
-              <td> subclass of </td>
-              <td> ssn-system:Latency</td>
-            </tr>
-            <tr>
-              <td> oldsosa:Resolution</td>
-              <td> subclass of </td>
-              <td> ssn-system:Resolution</td>
-            </tr>
-            <tr>
-              <td> oldsosa:ResponseTime</td>
-              <td> subclass of </td>
-              <td> ssn-system:ResponseTime</td>
-            </tr>
-            <tr>
-              <td> oldsosa:Selectivity</td>
-              <td> subclass of </td>
-              <td> ssn-system:Selectivity</td>
-            </tr>
-
-
-          </tbody>
-        </table>
-        <p>The more complex aligments of SSN-XG classes are expressed as combinations of axiomatic statements as
-          follows. </p>
-
-        <table>
-          <tbody>
-            <tr>
-              <td rowspan="4"> oldsosa:Process </td>
-              <td> equivalent class </td>
-              <td> sosa:Procedure</td>
-            </tr>
-            <tr>
-              <td> subclass of </td>
-              <td> [ a owl:Restriction ; owl:onProperty oldsosa:hasOutput ;
-                owl:someValuesFrom oldsosa:Output ]</td>
-            </tr>
-            <tr>
-              <td> subclass of </td>
-              <td> [ a owl:Restriction ; owl:onProperty oldsosa:hasInput ;
-                owl:allValuesFrom oldsosa:Input ]</td>
-            </tr>
-            <tr>
-              <td> subclass of </td>
-              <td> [ a owl:Restriction ; owl:onProperty oldsosa:hasOutput ;
-                owl:allValuesFrom oldsosa:Output ]</td>
-            </tr>
-            <tr>
-              <td rowspan="12"> oldsosa:Observation </td>
-              <td> subclass of </td>
-              <td> [ a owl:Restriction ; owl:onProperty oldsosa:featureOfInterest
-                ; owl:allValuesFrom oldsosa:FeatureOfInterest ]</td>
-            </tr>
-            <tr>
-              <td> subclass of </td>
-              <td> [ a owl:Restriction ; owl:onProperty oldsosa:observationResult
-                ; owl:allValuesFrom oldsosa:SensorOutput ]</td>
-            </tr>
-            <tr>
-              <td> subclass of </td>
-              <td> [ a owl:Restriction ; owl:onProperty oldsosa:observedBy ;
-                owl:allValuesFrom oldsosa:Sensor ]</td>
-            </tr>
-            <tr>
-              <td> subclass of </td>
-              <td> [ a owl:Restriction ; owl:onProperty oldsosa:observedProperty
-                ; owl:allValuesFrom oldsosa:Property ]</td>
-            </tr>
-            <tr>
-              <td> subclass of </td>
-              <td> [ a owl:Restriction ; owl:onProperty oldsosa:sensingMethodUsed
-                ; owl:allValuesFrom oldsosa:Sensing ]</td>
-            </tr>
-            <tr>
-              <td> subclass of </td>
-              <td> [ a owl:Restriction ; owl:onProperty
-                oldsosa:observationResultTime ; owl:minCardinality
-                "0"^^xsd:nonNegativeInteger ]</td>
-            </tr>
-            <tr>
-              <td> subclass of </td>
-              <td> [ a owl:Restriction ; owl:onProperty
-                oldsosa:observationSamplingTime ; owl:minCardinality
-                "0"^^xsd:nonNegativeInteger ]</td>
-            </tr>
-            <tr>
-              <td> subclass of </td>
-              <td> [ a owl:Restriction ; owl:onProperty
-                oldsosa:qualityOfObservation ; owl:minCardinality
-                "0"^^xsd:nonNegativeInteger ]</td>
-            </tr>
-            <tr>
-              <td> subclass of </td>
-              <td> [ a owl:Restriction ; owl:onProperty oldsosa:featureOfInterest
-                ; owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                owl:onClass oldsosa:FeatureOfInterest ]</td>
-            </tr>
-            <tr>
-              <td> subclass of </td>
-              <td> [ a owl:Restriction ; owl:onProperty oldsosa:observedBy ;
-                owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                owl:onClass oldsosa:Sensor ]</td>
-            </tr>
-            <tr>
-              <td> subclass of </td>
-              <td> [ a owl:Restriction ; owl:onProperty oldsosa:observedProperty
-                ; owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                owl:onClass oldsosa:Property ]</td>
-            </tr>
-            <tr>
-              <td> subclass of </td>
-              <td> [ a owl:Restriction ; owl:onProperty oldsosa:sensingMethodUsed
-                ; owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                owl:onClass oldsosa:Sensing ]</td>
-            </tr>
-            <tr>
-              <td rowspan="3"> oldsosa:SensorOutput </td>
-              <td> subclass of </td>
-              <td> sosa:Result</td>
-            </tr>
-            <tr>
-              <td> subclass of </td>
-              <td> [ a owl:Restriction ; owl:onProperty oldsosa:hasValue ;
-                owl:someValuesFrom oldsosa:ObservationValue ]</td>
-            </tr>
-            <tr>
-              <td> subclass of </td>
-              <td> [ a owl:Restriction ; owl:onProperty oldsosa:isProducedBy ;
-                owl:someValuesFrom oldsosa:Sensor ]</td>
-            </tr>
-            <tr>
-              <td rowspan="2"> oldsosa:ObservationValue </td>
-              <td> subclass of </td>
-              <td> sosa:Result</td>
-            </tr>
-            <tr>
-              <td> subclass of </td>
-              <td> [ a owl:Restriction ; owl:onProperty dul:isRegionFor ; owl:someValuesFrom oldsosa:SensorOutput ]
-              </td>
-            </tr>
-
-            <tr>
-              <td rowspan="3"> oldsosa:Deployment </td>
-              <td> equivalent class </td>
-              <td> sosa:Deployment</td>
-            </tr>
-            <tr>
-              <td> subclass of </td>
-              <td> [ a owl:Restriction ; owl:onProperty
-                oldsosa:deployedOnPlatform ; owl:allValuesFrom oldsosa:Platform ]</td>
-            </tr>
-            <tr>
-              <td> subclass of </td>
-              <td> [ a owl:Restriction ; owl:onProperty oldsosa:deployedSystem ;
-                owl:allValuesFrom oldsosa:System ]</td>
-            </tr>
-            <tr>
-              <td rowspan="4"> oldsosa:MeasurementCapability </td>
-              <td> subclass of</td>
-              <td> ssn-system:SystemCapability</td>
-            </tr>
-            <tr>
-              <td> subclass of </td>
-              <td> [ a owl:Restriction ; owl:onProperty oldsosa:forProperty ;
-                owl:allValuesFrom oldsosa:Property ]</td>
-            </tr>
-            <tr>
-              <td> subclass of </td>
-              <td> [ a owl:Restriction ; owl:onProperty
-                oldsosa:hasMeasurementProperty ; owl:allValuesFrom
-                oldsosa:MeasurementProperty ]</td>
-            </tr>
-            <tr>
-              <td> subclass of </td>
-              <td> [ a owl:Restriction ; owl:onProperty oldsosa:inCondition ;
-                owl:allValuesFrom oldsosa:Condition ]</td>
-            </tr>
-            <tr>
-              <td rowspan="3"> oldsosa:OperatingRange </td>
-              <td> equivalent class</td>
-              <td> ssn-system:OperatingRange</td>
-            </tr>
-            <tr>
-              <td> subclass of </td>
-              <td> [ a owl:Restriction ; owl:onProperty
-                oldsosa:hasOperatingProperty ; owl:allValuesFrom
-                oldsosa:OperatingProperty ]</td>
-            </tr>
-            <tr>
-              <td> subclass of </td>
-              <td> [ a owl:Restriction ; owl:onProperty oldsosa:inCondition ;
-                owl:allValuesFrom oldsosa:Condition ]</td>
-            </tr>
-            <tr>
-              <td rowspan="3"> oldsosa:SurvivalRange </td>
-              <td> equivalent class</td>
-              <td> ssn-system:SurvivalRange</td>
-            </tr>
-            <tr>
-              <td> subclass of </td>
-              <td> [ a owl:Restriction ; owl:onProperty
-                oldsosa:hasSurvivalProperty ; owl:allValuesFrom
-                oldsosa:SurvivalProperty ]</td>
-            </tr>
-            <tr>
-              <td> subclass of </td>
-              <td> [ a owl:Restriction ; owl:onProperty oldsosa:inCondition ;
-                owl:allValuesFrom oldsosa:Condition ] </td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-      <section id="SSNX_Alignment_property" class="informative">
-        <h4>Property Alignments</h4>
-        <p>The following properties from SSN-XG have direct equivalent
-          properties in SOSA and SSN. </p>
-        <table>
-          <tbody>
-            <tr>
-              <td> oldsosa:hasProperty </td>
-              <td> equivalent property </td>
-              <td> sosa:hasProperty </td>
-            </tr>
-            <tr>
-              <td> oldsosa:isPropertyOf </td>
-              <td> equivalent property </td>
-              <td> sosa:isPropertyOf </td>
-            </tr>
-            <tr>
-              <td> oldsosa:attachedSystem </td>
-              <td> equivalent property </td>
-              <td> sosa:hosts </td>
-            </tr>
-            <tr>
-              <td> oldsosa:onPlatform </td>
-              <td> equivalent property </td>
-              <td> sosa:isHostedBy </td>
-            </tr>
-            <tr>
-              <td> oldsosa:hasInput </td>
-              <td> equivalent property </td>
-              <td> sosa:hasInput </td>
-            </tr>
-            <tr>
-              <td> oldsosa:hasOutput </td>
-              <td> equivalent property </td>
-              <td> sosa:hasOutput </td>
-            </tr>
-            <tr>
-              <td> oldsosa:implements </td>
-              <td> equivalent property </td>
-              <td> sosa:implements </td>
-            </tr>
-            <tr>
-              <td> oldsosa:implementedBy </td>
-              <td> equivalent property </td>
-              <td> sosa:implementedBy </td>
-            </tr>
-            <tr>
-              <td> oldsosa:sensingMethodUsed </td>
-              <td> equivalent property </td>
-              <td> sosa:usedProcedure </td>
-            </tr>
-            <tr>
-              <td> oldsosa:featureOfInterest </td>
-              <td> equivalent property </td>
-              <td> sosa:hasFeatureOfInterest </td>
-            </tr>
-            <tr>
-              <td> oldsosa:madeObservation </td>
-              <td> equivalent property </td>
-              <td> sosa:madeObservation</td>
-            </tr>
-            <tr>
-              <td> oldsosa:observedBy </td>
-              <td> equivalent property </td>
-              <td> sosa:madeBySensor</td>
-            </tr>
-            <tr>
-              <td> oldsosa:observedProperty </td>
-              <td> equivalent property </td>
-              <td> sosa:observedProperty</td>
-            </tr>
-            <tr>
-              <td> oldsosa:detects </td>
-              <td> equivalent property </td>
-              <td> sosa:detects</td>
-            </tr>
-            <tr>
-              <td> oldsosa:isProxyFor </td>
-              <td> equivalent property </td>
-              <td> sosa:isProxyFor</td>
-            </tr>
-            <tr>
-              <td> oldsosa:isProducedBy </td>
-              <td> equivalent property </td>
-              <td> sosa:isResultOf</td>
-            </tr>
-            <tr>
-              <td> oldsosa:observationSamplingTime </td>
-              <td> equivalent property </td>
-              <td> sosa:phenomenonTime</td>
-            </tr>
-            <tr>
-              <td> oldsosa:qualityOfObservation </td>
-              <td> equivalent property </td>
-              <td> ssn-system:qualityOfObservation </td>
-            </tr>
-            <tr>
-              <td> oldsosa:hasSubSystem </td>
-              <td> equivalent property </td>
-              <td> sosa:hasSubSystem </td>
-            </tr>
-            <tr>
-              <td> oldsosa:deployedOnPlatform </td>
-              <td> equivalent property </td>
-              <td> sosa:deployedOnPlatform</td>
-            </tr>
-            <tr>
-              <td> oldsosa:deployedSystem </td>
-              <td> equivalent property </td>
-              <td> sosa:deployedSystem </td>
-            </tr>
-            <tr>
-              <td> oldsosa:hasDeployment </td>
-              <td> equivalent property </td>
-              <td> sosa:hasDeployment </td>
-            </tr>
-            <tr>
-              <td> oldsosa:inDeployment </td>
-              <td> equivalent property </td>
-              <td> sosa:inDeployment </td>
-            </tr>
-            <tr>
-              <td> oldsosa:forProperty </td>
-              <td> equivalent property </td>
-              <td> sosa:forProperty </td>
-            </tr>
-            <tr>
-              <td> oldsosa:inCondition </td>
-              <td> equivalent property </td>
-              <td> ssn-system:inCondition </td>
-            </tr>
-            <tr>
-              <td> oldsosa:hasSurvivalRange </td>
-              <td> equivalent property </td>
-              <td> ssn-system:hasSurvivalRange </td>
-            </tr>
-            <tr>
-              <td> oldsosa:hasSurvivalProperty </td>
-              <td> equivalent property </td>
-              <td> ssn-system:hasSurvivalProperty </td>
-            </tr>
-            <tr>
-              <td> oldsosa:hasOperatingRange </td>
-              <td> equivalent property </td>
-              <td> ssn-system:hasOperatingRange </td>
-            </tr>
-            <tr>
-              <td> oldsosa:hasOperatingProperty </td>
-              <td> equivalent property </td>
-              <td> ssn-system:hasOperatingProperty </td>
-            </tr>
-          </tbody>
-        </table>
-        <p>Additional alignments from SSG-XG properties to SOSA and SSN are defined as
-          follows. </p>
-        <table>
-          <tbody>
-            <tr>
-              <td> oldsosa:hasValue </td>
-              <td> sub-property of </td>
-              <td> sosa:hasResult </td>
-            </tr>
-            <tr>
-              <td> oldsosa:observationResult </td>
-              <td> sub-property of </td>
-              <td> sosa:hasResult</td>
-            </tr>
-            <tr>
-              <td> oldsosa:hasMeasurementCapability </td>
-              <td> sub-property of </td>
-              <td> ssn-system:hasSystemCapability </td>
-            </tr>
-            <tr>
-              <td> oldsosa:hasMeasurementProperty </td>
-              <td> sub-property of </td>
-              <td>ssn-system:hasSystemProperty</td>
-            </tr>
-
-            <tr>
-              <td> oldsosa:hasSurvivalRange </td>
-              <td> sub-property of </td>
-              <td> sosa:hasResult </td>
-            </tr>
-          </tbody>
-        </table>
-        <p> The more complicated alignments are presented in combination with the property-chain axioms as follows. </p>
-        <table>
-          <tbody>
-            <tr>
-              <td rowspan="3"> oldsosa:observes </td>
-              <td> equivalent property </td>
-              <td> sosa:observes </td>
-            </tr>
-            <tr>
-              <td> property chain axiom </td>
-              <td>( oldsosa:hasMeasurementCapability oldsosa:forProperty )</td>
-            </tr>
-            <tr>
-              <td> property chain axiom </td>
-              <td> ( oldsosa:madeObservation oldsosa:observedProperty ) </td>
-            </tr>
-
-          </tbody>
-        </table>
-      </section>
     </section>
+
     <section id="OBOE_Alignment" class="informative">
       <h3>OBOE Alignment Module</h3>
       <p>This section introduces the alignment of SOSA to <a href="https://github.com/NCEAS/oboe/">OBOE</a>.</p>
@@ -8767,17 +8188,17 @@
             <tr>
               <td> oboe:Measurement </td>
               <td> subclass of </td>
-              <td> <a href="#SOSAObservation">sosa:Observation</a> </td>
+              <td> sosa:Observation </td>
             </tr>
             <tr>
               <td> oboe:Characteristic </td>
               <td> equivalent class </td>
-              <td> <a href="#SOSAObservableProperty">sosa:ObservableProperty</a> </td>
+              <td> sosa:ObservableProperty </td>
             </tr>
             <tr>
               <td> oboe:Protocol </td>
               <td> equivalent class </td>
-              <td> <a href="#SOSAProcedure">sosa:Procedure</a> </td>
+              <td> sosa:Procedure </td>
             </tr>
           </tbody>
         </table>
@@ -8787,12 +8208,12 @@
         <table>
           <tbody>
             <tr>
-              <td> <a href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a> </td>
+              <td> sosa:FeatureOfInterest </td>
               <td> subclass of </td>
               <td> oboe:Entity </td>
             </tr>
             <tr>
-              <td> <a href="#SOSAResult">sosa:Result</a> </td>
+              <td> sosa:Result </td>
               <td> subclass of </td>
               <td> oboe:Entity </td>
             </tr>
@@ -8808,22 +8229,22 @@
             <tr>
               <td> oboe:ofCharacteristic </td>
               <td> equivalent property </td>
-              <td> <a href="#SOSAobservedProperty">sosa:observedProperty</a> </td>
+              <td> sosa:observedProperty </td>
             </tr>
             <tr>
               <td> oboe:hasValue </td>
               <td> equivalent property </td>
-              <td> <a href="#SOSAhasResult">sosa:hasResult</a> </td>
+              <td> sosa:hasResult </td>
             </tr>
             <tr>
               <td> oboe:usesProtocol </td>
               <td> equivalent property </td>
-              <td> <a href="#SOSAusedProcedure">sosa:usedProcedure</a> </td>
+              <td> sosa:usedProcedure </td>
             </tr>
             <tr>
               <td> oboe:usesMethod </td>
               <td> equivalent property </td>
-              <td> <a href="#SOSAusedProcedure">sosa:usedProcedure</a> </td>
+              <td> sosa:usedProcedure </td>
             </tr>
           </tbody>
         </table>
@@ -8837,7 +8258,7 @@
         <table>
           <tbody>
             <tr>
-              <td> <a href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a> </td>
+              <td> sosa:hasFeatureOfInterest </td>
               <td> property-chain axiom </td>
               <td> [oboe:measurementFor, oboe:ofEntity] </td>
             </tr>
@@ -8861,10 +8282,10 @@
             </tr>
           </tbody>
         </table>
+        <p>An RDF file containing a <a
+            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/rdf/sosa-oboe-mapping.ttl">graph
+            corresponding to this alignment is available</a>. </p>
       </section>
-      <p>An RDF file containing a <a
-          href="https://github.com/w3c/sdw-sosa-ssn/blob/gh-pages/ssn/mappings/sosa-oboe-mapping.ttl">graph
-          corresponding to this alignment is available</a>. </p>
     </section>
 
     <section id="PROV_Alignment" class="informative">
@@ -8879,11 +8300,12 @@
         responsibility for an activity taking place, for the existence of an entity, or for another agent's activity.
       </p>
       <figure>
-        <a href="images/prov-o.png"><img src="images/prov-o.png" alt="PROV-O" width="350"></a>
+        <a href="images/prov-o.png"><img src="images/prov-o.png" alt="PROV-O" width="350" /></a>
         <a href="images/observation-prov.png"><img src="images/observation-prov.png" alt="Observation PROV-O"
-            width="350"></a>
-        <a href="images/actuation-prov.png"><img src="images/actuation-prov.png" alt="Actuation PROV-O" width="350"></a>
-        <a href="images/sampling-prov.png"><img src="images/sampling-prov.png" alt="Sampling PROV-O" width="350"></a>
+            width="350" /></a>
+        <a href="images/actuation-prov.png"><img src="images/actuation-prov.png" alt="Actuation PROV-O"
+            width="350" /></a>
+        <a href="images/sampling-prov.png"><img src="images/sampling-prov.png" alt="Sampling PROV-O" width="350" /></a>
         <figcaption>Core PROV classes and some of the properties that relate them, shown alongside the core SOSA
           structure for observation, actuation and sampling. Classes generally aligned with prov:Entity in yellow
           ellipses; with prov:Activity in purple boxes; with prov:Agent in orange boxes.</figcaption>
@@ -8932,15 +8354,15 @@
         <table>
           <tbody>
             <tr>
-              <td> <a href="#SOSAObservation">sosa:Observation</a> </td>
+              <td> sosa:Observation </td>
               <td rowspan="3"> subclass of </td>
               <td rowspan="3"> prov:Activity </td>
             </tr>
             <tr>
-              <td> <a href="#SOSAActuation">sosa:Actuation</a> </td>
+              <td> sosa:Actuation </td>
             </tr>
             <tr>
-              <td> <a href="#SOSASampling">sosa:Sampling</a> </td>
+              <td> sosa:Sampling </td>
             </tr>
           </tbody>
         </table>
@@ -8949,15 +8371,15 @@
         <table>
           <tbody>
             <tr>
-              <td> <a href="#SOSASensor">sosa:Sensor</a> </td>
+              <td> sosa:Sensor </td>
               <td rowspan="3"> subclass of </td>
               <td rowspan="3"> prov:Agent , prov:Entity </td>
             </tr>
             <tr>
-              <td> <a href="#SOSAActuator">sosa:Actuator</a> </td>
+              <td> sosa:Actuator </td>
             </tr>
             <tr>
-              <td> <a href="#SOSASampler">sosa:Sampler</a> </td>
+              <td> sosa:Sampler </td>
             </tr>
           </tbody>
         </table>
@@ -8965,7 +8387,7 @@
         <table>
           <tbody>
             <tr>
-              <td> <a href="#SOSAProcedure">sosa:Procedure</a> </td>
+              <td> sosa:Procedure </td>
               <td> subclass of </td>
               <td> prov:Plan </td>
             </tr>
@@ -8976,27 +8398,27 @@
         <table>
           <tbody>
             <tr>
-              <td> <a href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a> </td>
+              <td> sosa:FeatureOfInterest </td>
               <td> subclass of </td>
               <td> prov:Entity </td>
             </tr>
             <tr>
-              <td> <a href="#SOSAObservableProperty">sosa:ObservableProperty</a> </td>
+              <td> sosa:ObservableProperty </td>
               <td> subclass of </td>
               <td> prov:Entity </td>
             </tr>
             <tr>
-              <td> <a href="#SOSAPlatform">sosa:Platform</a> </td>
+              <td> sosa:Platform </td>
               <td> subclass of </td>
               <td> prov:Entity </td>
             </tr>
             <tr>
-              <td> <a href="#SOSAResult">sosa:Result</a> </td>
+              <td> sosa:Result </td>
               <td> subclass of </td>
               <td> prov:Entity </td>
             </tr>
             <tr>
-              <td> <a href="#SOSASample">sosa:Sample</a> </td>
+              <td> sosa:Sample </td>
               <td> subclass of </td>
               <td> prov:Entity </td>
             </tr>
@@ -9009,47 +8431,47 @@
         <table>
           <tbody>
             <tr>
-              <td> <a href="#SOSAmadeByActuator">sosa:madeByActuator</a> </td>
+              <td> sosa:madeByActuator </td>
               <td> subproperty of </td>
               <td> prov:wasAssociatedWith </td>
             </tr>
             <tr>
-              <td> <a href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a> </td>
+              <td> sosa:hasFeatureOfInterest </td>
               <td> subproperty of </td>
               <td> prov:used </td>
             </tr>
             <tr>
-              <td> <a href="#SOSAhasResult">sosa:hasResult</a> </td>
+              <td> sosa:hasResult </td>
               <td> subproperty of </td>
               <td> prov:generated </td>
             </tr>
             <tr>
-              <td> <a href="#SOSAmadeByActuator">sosa:madeByActuator</a> </td>
+              <td> sosa:invokedBy </td>
               <td> subproperty of </td>
               <td> prov:wasAssociatedWith </td>
             </tr>
             <tr>
-              <td> <a href="#SOSAisResultOf">sosa:isResultOf</a> </td>
+              <td> sosa:isResultOf </td>
               <td> subproperty of </td>
               <td> prov:wasGeneratedBy </td>
             </tr>
             <tr>
-              <td> <a href="#SOSAisSampleOf">sosa:isSampleOf</a> </td>
+              <td> sosa:isSampleOf </td>
               <td> subproperty of </td>
               <td> prov:wasDerivedFrom </td>
             </tr>
             <tr>
-              <td> <a href="#SOSAmadeBySampler">sosa:madeBySampler</a> </td>
+              <td> sosa:madeBySampler </td>
               <td> subproperty of </td>
               <td> prov:wasAssociatedWith </td>
             </tr>
             <tr>
-              <td> <a href="#SOSAmadeBySensor">sosa:madeBySensor</a> </td>
+              <td> sosa:madeBySensor </td>
               <td> subproperty of </td>
               <td> prov:wasAssociatedWith </td>
             </tr>
             <tr>
-              <td> <a href="#SOSAresultTime">sosa:resultTime</a> </td>
+              <td> sosa:resultTime </td>
               <td> subproperty of </td>
               <td> prov:endedAtTime </td>
             </tr>
@@ -9076,7 +8498,7 @@
             </tr>
             <tr>
               <td> range </td>
-              <td> <a href="#SOSAProcedure">sosa:Procedure</a> </td>
+              <td> sosa:Procedure </td>
             </tr>
           </tbody>
         </table>
@@ -9086,17 +8508,12 @@
         <table>
           <tbody>
             <tr>
-              <td> <a href="#SOSAusedProcedure">sosa:usedProcedure</a> </td>
+              <td> sosa:usedProcedure </td>
               <td> property chain axiom </td>
               <td> [ sp:eventAssociation , sp:hadProcedure ] </td>
             </tr>
           </tbody>
         </table>
-
-        <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/rdf/sosa-prov-mapping.ttl">graph
-            corresponding to this
-            alignment is available</a>. </p>
 
         <p>An RDF file containing a <a
             href="https://github.com/w3c/sdw/blob/gh-pages/ssn/rdf/sosa-prov-mapping.ttl">graph corresponding to this
@@ -9511,7 +8928,6 @@
         <pre class="example" data-include="./examples/2017ex25.ttl" data-include-format="text"></pre>
       </div>
     </section>
-
   </section>
 
   <section class="appendix" id="acknowledgments">
@@ -9551,37 +8967,67 @@
       <li> sosa:Sensor has been changed to be a subclass of dul:Object
         instead of dul:Physical Object.</li>
       <li>Various typography and spelling errors and consistency of
-        expression in annotation properties have been improved</li>
-      <li>Added "sosa:hasResult meta:domainIncludes sosa:Actuation" and
-        "sosa:isResultOf meta:rangeIncludes sosa:Actuation"</li>
-      <li>Changed the defintion of FeatureofInterest to account for
-        actuators</li>
-      <li>Introduced sosa:actsOnProperty and its inverse property
-        sosa:isActedOnBy</li>
-      <li>Added madeBySensor property</li>
-      <li>Renamed invokes and invokedBy to madeActuation and
-        madeByActuator</li>
-      <li>Changed hostedBy to isHostedBy</li>
-      <li>Added Sampler (device) and Sampling (act) to SOSA</li>
-      <li>Added madeSampling and madeBySampler properties</li>
-      <li>Added Sample to range of hasResult, and to domain or isResultOf</li>
-      <li>Added hasSimpleResult and hasResult instead of hasValue</li>
-      <li>Added ObservableProperty and ActuatableProperty</li>
-      <li>Changed rdfs:comment and skos:definition of sosa:Platform</li>
-      <li>Refined sosa:Result</li>
-      <li>Changed sosa:madeByActuator to sosa:actuationMadeBy</li>
-      <li>Added schema:domainIncludes sosa:Sampling to
-        sosa:observedProperty</li>
-      <li>Added schema:rangeIncludes time:TemporalEntity and
-        schema:domainIncludes sosa:Sampling to sosa:phenomenonTime</li>
-      <li>Changed sosa:actuationMadeBy to sosa:madeByActuator</li>
+        expression in annotation properties have been improved. These do not
+        induce any changes in the intended meaning of the terms. </li>
+      <li>Specgen 6 has been used to generate the ontology documentation.
+        The popular sketch of SSN structure has been removed. </li>
+      <li>Object properties sosa:isValueOf, sosa:produces and
+        sosa:featureInObservation, along with a propertychain subproperty of
+        produces and another propertychain subproperty of hasProperty, were
+        introduced unintentionally in the FPWD.</li>
+    </ol>
+    <h3>Changes since 2nd Public Working Draft <a href="https://www.w3.org/TR/2017/WD-vocab-ssn-20170105/">
+        (https://www.w3.org/TR/2017/WD-vocab-ssn-20170105/)</a></h3>
+    <ol>
+      <li>Changed meta prefix declaration to schema</li>
+      <li>Added voaf:Vocabulary class to ontology instances</li>
+      <li>Added dcterms:license statements</li>
+      <li>Added vann:preferredNamespacePrefix and vann:preferredNamespaceUri
+        statements</li>
+      <li>Added SOSA and SSN alignment</li>
+      <li>Added SSN/SOSA alignments with O&amp;M</li>
+      <li>Consistently added Capitalization of all ontology terms in all
+        rdfs:comments</li>
+      <li>Addressed naming inconsistency with changes in name to
+        isObservedBy/observes, madeBySensor/madeObservation</li>
+      <li>Use skos:examples to describe examples of classes/properties</li>
+      <li>Removed history skos:historyNote</li>
+      <li>SOSA-specific changes:
+        <ul>
+          <li>Various typography and spelling errors and consistency of
+            expression in annotation properties have been improved</li>
+          <li>Added "sosa:hasResult meta:domainIncludes sosa:Actuation" and
+            "sosa:isResultOf meta:rangeIncludes sosa:Actuation"</li>
+          <li>Changed the defintion of FeatureofInterest to account for
+            actuators</li>
+          <li>Introduced sosa:actsOnProperty and its inverse property
+            sosa:isActedOnBy</li>
+          <li>Added madeBySensor property</li>
+          <li>Renamed invokes and invokedBy to madeActuation and
+            madeByActuator</li>
+          <li>Changed hostedBy to isHostedBy</li>
+          <li>Added Sampler (device) and Sampling (act) to SOSA</li>
+          <li>Added madeSampling and madeBySampler properties</li>
+          <li>Added Sample to range of hasResult, and to domain or isResultOf</li>
+          <li>Added hasSimpleResult and hasResult instead of hasValue</li>
+          <li>Added ObservableProperty and ActuatableProperty</li>
+          <li>Changed rdfs:comment and skos:definition of sosa:Platform</li>
+          <li>Refined sosa:Result</li>
+          <li>Changed sosa:madeByActuator to sosa:actuationMadeBy</li>
+          <li>Added schema:domainIncludes sosa:Sampling to
+            sosa:observedProperty</li>
+          <li>Added schema:rangeIncludes time:TemporalEntity and
+            schema:domainIncludes sosa:Sampling to sosa:phenomenonTime</li>
+          <li>Changed sosa:actuationMadeBy to sosa:madeByActuator</li>
+        </ul>
+      </li>
       <li>SSN-specific changes:
         <ul>
           <li>Changed syntax and layout in the alignment to SSN of the
             SSN-XG</li>
           <li>Refine sosa:Property: ObservableProperty in sosa, Property in
             ssn, old SSN Property equivalent with sosa:Property</li>
-          <li>Import sosa: "sosa: an OWL:Ontology ; owl:imports sosa:."</li>
+          <li>Import sosa: "sosa: a owl:Ontology ; owl:imports sosa:."</li>
           <li>Update prefix for featureOfInterest in sosa:Observation and
             sosa:Property definition</li>
           <li>Added skos:examples to several rdfs:comments</li>
@@ -9809,67 +9255,6 @@
             equivalent)</li>
           <li><code>oldsosa:hasValue</code> is a sub-property of <code>sosa:hasResult</code> (instead of equivalent)
           </li>
-        </ul>
-    </ol>
-    <h3>Changes since 3rd Public Working Draft <a href="https://www.w3.org/TR/2017/WD-vocab-ssn-20170504/">
-        (https://www.w3.org/TR/2017/WD-vocab-ssn-20170504/)</a></h3>
-    <ol>
-      <li>Fixed colouring of O&amp;M module in Figure 1 to be normative</li>
-      <li>Updated figures in the Axiomatization section</li>
-      <li>Added examples to Appendix</li>
-      <li>Added a "at risk" section in Status of This Document section</li>
-      <li>Reorganized specification sections to have:
-        <ul>
-          <li>One non-normative overview section, with links to the examples that showcase the terms in that section
-          </li>
-          <li>The normative specification section</li>
-          <li>Moved sosa:qualityOfObservation, properties related to system capabilities, operating range, and survival
-            range, to horizontal ontology module http://www.w3.org/ns/ssn/systems/ marked at risk</li>
-        </ul>
-      </li>
-      <li>Added new horizontal module for System Capabilities to Figure 1</li>
-      <li>Fixed errors in class alignments in Dolce-Ultralite Alignment Module, sosa:Sensor to sosa:Sensor,
-        sosa:FeatureOfInterest to sosa:FeatureOfInterest and sosa:Deployment to sosa:Deployment</li>
-      <li>Fixed errors in property alignments in Dolce-Ultralite Alignment Module, sosa:usedProcedure to
-        sosa:usedProcedure</li>
-      <li>Applied consistent use of Manchester OWL Syntax in all axioms in SSN/SOSA</li>
-      <li>Fixed error in sosa:actsOnProperty axiom of sosa:Actuation, i.e. changed Qualified Cardinality to Minimum
-        Cardinality</li>
-      <li>Fixed error in the use of Hash URIs and SlashURIs in the System Capabilities module</li>
-      <li>Combined Location and Forecasting in one section and added an example how to model Quantity Values and Unit of
-        Measures</li>
-      <li>Added Wide Review Section and Exit Criteria Section</li>
-      <li>Switched Horizontal Segmentation and Vertical Segmentation sections around</li>
-      <li>Requested bug fixes to correct the SSN/SOSA alignment to DUL</li>
-    </ol>
-    <h3>Changes since W3C Candidate Recommendation 11 July 2017 <a
-        href="https://www.w3.org/TR/2017/CR-vocab-ssn-20170711/">
-        (https://www.w3.org/TR/2017/CR-vocab-ssn-20170711/)</a></h3>
-    <ol>
-      <li>Made System Capabilities Module informative as of exit criteria</li>
-      <li>Fixed wrong link in Origins of SSN and SOSA Section to point to Section 6.1</li>
-      <li>Added Coal Oil Point Reserve and IP68 Smart Sensor examples</li>
-      <li>Fixed inconsistency in Fig. 6 &amp; 7, i.e. defined the range of property sosa:isActedOnBy as sosa:Actuation
-      </li>
-      <li>Removed Features at Risk section</li>
-      <li>Removed Candidate Recommendation Exit Criteria section</li>
-    </ol>
-    <h3>Changes since W3C Recommendation 19 October 2017 <a href="https://www.w3.org/TR/2017/REC-vocab-ssn-20171019/">
-        (https://www.w3.org/TR/2017/REC-vocab-ssn-20171019/)</a></h3>
-    <ol>
-      <li>Fixed remaining broken links to ontology graph and namespaces and "specifically" typo</li>
-      <li>Fixed Seismographs example, replacing the final <code>;</code> with a <code>.</code></li>
-      <li>Fixed targets of <code>sosa:hosts</code> and <code>sosa:hasSubSystem</code> in DHT Deployment example</li>
-      <li>Fixed domain/range for <code>actsOnProperty</code> and <code>isActedOnBy</code> in actuation diagrams</li>
-      <li>Fixed <code>sosa:hasSimplResult</code> syntax errors in apartment 134 examples</li>
-      <li>Replaced inexistent <code>sosa:actuationMadeBy</code> by <code>sosa:madeByActuator</code> in apartment 134
-        example</li>
-      <li>Relaxed axioms in 6.2 SSNX Alignment Module:
-        <ul>
-          <li><code>oldsosa:FeatureOfInterest</code> is a sub-class of <code>sosa:FeatureOfInterest</code> (instead of
-            equivalent)</li>
-          <li><code>oldsosa:hasValue</code> is a sub-property of <code>sosa:hasResult</code> (instead of equivalent)
-          </li>
           <li><code>oldsosa:observationResult</code> is a sub-property of <code>sosa:hasResult</code> (instead of
             equivalent)</li>
         </ul>
@@ -9892,7 +9277,9 @@
       <li>Adjust namespace of terms previously in sosa:</li>
       <li>Added OMS alignment modules to section 6. 'Vertical Segmentation'</li>
       <li>Added ObservationCollection, SampleCollection, hasMember</li>
-      <li>Retire O&amp;Mv2 alignment - superseded by OMS alignment</li>
+      <li>Retire O&Mv2 alignment - superseded by OMS alignment</li>
+      <li>Retire SSNX alignment - leave behind a stub giving links to the previous edition of the recommendation and to
+        the RDF alignment file. </li>
     </ol>
   </section>
 </body>
