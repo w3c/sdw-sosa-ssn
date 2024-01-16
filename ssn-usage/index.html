@@ -25,42 +25,37 @@
   <section id="intro">
     <h1>Introduction</h1>
     <p>The goal of the work is to analyse the usage of the SSN ontology along two aspects: usage in Linked Data datasets
-      (Consumers) and usage in ontologies that reuse or extend those ontologies (Producers).
-      Other usage aspects (e.g., usage in software implementations) are out of the scope of this work.</p>
-    <p>This edition is an update of the original usage report, adding usage information relating to the terms added to
+      (Consumers) and usage in ontologies that reuse or extend those ontologies (Producers).</p>
+    <p>This edition is a supplement to the original usage report, adding usage information relating to the terms added to
       SSN in the 2024 update. </p>
   </section>
+  <section id="2017-usage">
+    <h1>Summary of 2017 usage report</h1>
+    <p>The <a href="https://w3c.github.io/sdw/ssn-usage/">usage report</a> for the previous edition of the SSN Ontology documented evidence of implementation in at least two datasets for all terms in the <code>ssn:</code> and <code>sosa:</code> namespaces, either directly or by entailment, except for the following:</p>
+    <ul>
+      <li><a href="https://www.w3.org/TR/2017/REC-vocab-ssn-20171019/#SOSAactsOnProperty">sosa:actsOnProperty</a></li>
+      <li><a href="https://www.w3.org/TR/2017/REC-vocab-ssn-20171019/#SSNInput">ssn:Input</a> - deprecated in this edition?</li>
+      <li><a href="https://www.w3.org/TR/2017/REC-vocab-ssn-20171019/#SOSAmadeActuation">sosa:madeActuation</a> - symmetric with sosa:madeObservation</li>
+      <li><a href="https://www.w3.org/TR/2017/REC-vocab-ssn-20171019/#SOSAmadeByActuator">sosa:madeByActuator</a> - symmetric with sosa:madeBySensor</li>
+      <li><a href="https://www.w3.org/TR/2017/REC-vocab-ssn-20171019/#SOSAmadeBySampler">sosa:madeBySampler</a> - symmetric with sosa:madeBySensor</li>
+      <li><a href="https://www.w3.org/TR/2017/REC-vocab-ssn-20171019/#SSNOutput">ssn:Output</a> - deprecated in this edition?</li>
+      <li><a href="https://www.w3.org/TR/2017/REC-vocab-ssn-20171019/#SOSAResult">sosa:Result</a> - deprecated in this edition???</li>
+      <li><a href="https://www.w3.org/TR/2017/REC-vocab-ssn-20171019/#SOSASampler">sosa:Sampler</a>- symmetric with sosa:Sensor</li>
+      <li><a href="https://www.w3.org/TR/2017/REC-vocab-ssn-20171019/#SOSASampling">sosa:Sampling</a>- symmetric with sosa:Observation</li>
+    </ul> 
+    </p>
+  </section>
   <section id="usage-datasets">
-    <h1>Usage in datasets (Consumers)</h1>
-    <p>The goals of this analysis are the following: a) to analyse which modules of the SSN ontology have been used in
-      different datasets and b) to analyse the coverage of the SSN vocabulary terms and modules in those datasets.</p>
-    <section id="automated-inclusion-datasets">
-      <h2>Stage 1. Automated inclusion of datasets</h2>
-      <p>The following tasks have been performed to automatically analyse the coverage of the SSN ontology in datasets:
+    <h1>Usage of new terms</h1>
+      <p>The earlier edition of the usage report included automatic analysis of datasets included in several linked data registries. 
+        For the new edition we focus on the new terms. 
+        Most of the terms added in the 2024 edition were prompted by specific requirements from the community.
+        Several projects provide implementations that use the new terms in datasets.
       </p>
-      <ol>
-        <li>To select the datasets to be included in the study. The datasets selected are those that are included in the
-          following registries:
-          <ul>
-            <li>LOD Laundromat: It includes datasets collected by catalog-specific scripts (e.g., the Datahub ones) and
-              by hand.</li>
-            <li>LOD Cloud Cache: It includes crawled data from various RDF and Linked Data resources from around the
-              Web, as well as data extracted using Virtuoso Sponger from web pages.</li>
-            <li>LODStats: It includes the datasets from the data.gov, publicdata.eu and datahub.io data catalogs.</li>
-          </ul>
-        </li>
-        <li>To identify which vocabulary terms from the SSN ontology are used in each dataset.
-          In this task the Loupe system has been used to analyze the vocabulary usage patterns stored in LOD Laundromat
-          (657,902 datasets).
-          Besides, LOD Cloud Cache (3,203,793 documents) and LODStats (2,005 datasets) have been analysed using SPARQL
-          queries.
-          It must be noted that the identification has been based on the direct mention of the terms in the datasets; it
-          does not include the cases in which some SSN term is specialized in another ontology and in the data the
-          specialized term appears and not the SSN one.</li>
-      </ol>
-    </section>
     <section id="manual-inclusion-datasets">
-      <h2>Stage 2. Manual inclusion of datasets</h2>
+      <h2>Projects and services using new terms</h2>
+    <p>The goals of this analysis are the following: a) to analyse which modules of the SSN ontology have been used in
+      various datasets and services and b) to analyse the coverage of the SSN vocabulary terms and modules in those datasets.</p>
       <p>The automated approach is not enough for analysing the usage of the SSN data, since these data may not be
         openly published in the Web, may be part of streams of data that are not persisted, may be used internally in
         data processing infrastructures, etc.
@@ -97,154 +92,6 @@
         </thead>
         <tbody>
           <tr>
-            <td>D1</td>
-            <td><a href="http://aemet.linkeddata.es/">http://aemet.linkeddata.es/</a></td>
-            <td>
-              LOD Laundromat,
-              LOD Cloud Cache
-            </td>
-          </tr>
-          <tr>
-            <td>D2</td>
-            <td><a href="http://lab.environment.data.gov.au/">http://lab.environment.data.gov.au/</a></td>
-            <td>Bureau of Meteorology, Australian Government Linked Data Wokring group</td>
-          </tr>
-          <tr>
-            <td>D3</td>
-            <td><a href="http://crtm.linkeddata.es/sparql">http://crtm.linkeddata.es/sparql</a></td>
-            <td>Freddy Priyatna</td>
-          </tr>
-          <tr>
-            <td>D4</td>
-            <td><a
-                href="http://www.zaragoza.es/ciudad/risp/sparql.htm">http://www.zaragoza.es/ciudad/risp/sparql.htm</a>
-            </td>
-            <td>Oscar Corcho</td>
-          </tr>
-          <tr>
-            <td>D5</td>
-            <td><a href="http://smartcity.linkeddata.es/lcc/sparql/">http://smartcity.linkeddata.es/lcc/sparql/</a></td>
-            <td>Raúl García-Castro</td>
-          </tr>
-          <tr>
-            <td>D6</td>
-            <td><a
-                href="http://iot.ee.surrey.ac.uk:8080/datasets/traffic/traffic_oct_nov/trafficData158324.ttl">http://iot.ee.surrey.ac.uk:8080/datasets/traffic/traffic_oct_nov/trafficData158324.ttl</a>
-            </td>
-            <td>Amélie Gyrard</td>
-          </tr>
-          <tr>
-            <td>D7</td>
-            <td><a
-                href="http://iot.ee.surrey.ac.uk:8080/datasets/pollution/pollutionData204273_oo2.ttl">http://iot.ee.surrey.ac.uk:8080/datasets/pollution/pollutionData204273_oo2.ttl</a>
-            </td>
-            <td>Amélie Gyrard</td>
-          </tr>
-          <tr>
-            <td>D8</td>
-            <td><a
-                href="http://iot.ee.surrey.ac.uk:8080/datasets/parking/aarhus_parking.ttl">http://iot.ee.surrey.ac.uk:8080/datasets/parking/aarhus_parking.ttl</a>
-            </td>
-            <td>Amélie Gyrard</td>
-          </tr>
-          <tr>
-            <td>D9</td>
-            <td><a
-                href="http://iot.ee.surrey.ac.uk:8080/datasets/aarhusculturalevents/culturalEvents_aarhus.ttl">http://iot.ee.surrey.ac.uk:8080/datasets/aarhusculturalevents/culturalEvents_aarhus.ttl</a>
-            </td>
-            <td>Amélie Gyrard</td>
-          </tr>
-          <tr>
-            <td>D10</td>
-            <td><a href="http://ontology.irstea.fr/weather/snorql/">http://ontology.irstea.fr/weather/snorql/</a></td>
-            <td>Amélie Gyrard</td>
-          </tr>
-          <tr>
-            <td>D11</td>
-            <td><a href="http://graphofthings.org/">http://graphofthings.org/</a></td>
-            <td>Danh Le Phuoc</td>
-          </tr>
-          <tr>
-            <td>D12</td>
-            <td><a href="http://pid.geoscience.gov.au/sample/">http://pid.geoscience.gov.au/sample/</a> <a
-                href="http://pid.geoscience.gov.au/survey/">http://pid.geoscience.gov.au/survey/</a></td>
-            <td>Nicholas Car, Geoscience Australia</td>
-          </tr>
-          <tr>
-            <td>D13</td>
-            <td><a
-                href="http://resource.geosciml.org/classifier/ics/ischart/StratigraphicPoints">http://resource.geosciml.org/classifier/ics/ischart/StratigraphicPoints</a>
-            </td>
-            <td>Simon Cox, IUGS Commission for Geoscience Information</td>
-          </tr>
-          <tr>
-            <td>D14</td>
-            <td><a
-                href="https://syndream.laas.fr:8082/endpoint/query/">https://syndream.laas.fr:8082/endpoint/query/</a>
-            </td>
-            <td>Nicolas Seydoux, IRIT/LAAS-CNRS</td>
-          </tr>
-          <tr>
-            <td>D15</td>
-            <td><a
-                href="https://markusstocker.github.io/eyp-fixo3-ld/browser">https://markusstocker.github.io/eyp-fixo3-ld/browser</a>
-              <br /><a
-                href="https://markusstocker.github.io/eyp-fixo3-ld/docs/">https://markusstocker.github.io/eyp-fixo3-ld/docs/</a>
-            </td>
-            <td>Markus Stocker, MARUM - Center for Marine Environmental Sciences, University of Bremen</td>
-          </tr>
-          <tr>
-            <td>D16</td>
-            <td><a
-                href="http://linkedsystems.uk/system/instance/TOOL0969_1234/current/">http://linkedsystems.uk/system/instance/TOOL0969_1234/current/</a>
-            </td>
-            <td>Alexandra Kokkinaki, British Oceanographic Data Centre</td>
-          </tr>
-          <tr>
-            <td>D17</td>
-            <td><a
-                href="http://stko.geog.ucsb.edu/RDF/IDEAS_Coal_Oil_Point_Reserve_Observations_Temp_RH_Slr.ttl">http://stko.geog.ucsb.edu/RDF/IDEAS_Coal_Oil_Point_Reserve_Observations_Temp_RH_Slr.ttl</a>
-            </td>
-            <td>Krzysztof Janowicz, IDEAS Coal Oil Point Reserve Observations</td>
-          </tr>
-          <tr>
-            <td>D18</td>
-            <td><a
-                href="https://github.com/kaefer3000/t2-rest-leds-sosa">https://github.com/kaefer3000/t2-rest-leds-sosa</a>
-              for <a href="https://tessel.io/">https://tessel.io/</a></td>
-            <td>Tobias K&auml;fer, Karlsruhe Institute of Technology</td>
-          </tr>
-          <tr>
-            <td>D19</td>
-            <td><a href="https://ci.mines-stetienne.fr/pep-platform/">https://ci.mines-stetienne.fr/pep-platform/</a>
-            </td>
-            <td>Maxime Lefrançois, <a href="http://the-smart-energy.com/">ITEA2 12004 Smart Energy Aware Systems
-                Project</a></td>
-          </tr>
-          <tr>
-            <td>D20</td>
-            <td><a href="https://fuseki.datalab.erasme.org/">https://fuseki.datalab.erasme.org/</a></td>
-            <td>Alessandro Cerioni, <a href="http://www.biotope-project.eu/">IoT European Platforms Initiative bIoTope
-                Project</a></td>
-          </tr>
-          <tr>
-            <td>D21</td>
-            <td><a href="https://envirocar.org/lod/envirocar.ttl">https://envirocar.org/lod/envirocar.ttl</a></td>
-            <td>Krzysztof Janowicz, <a href="https://envirocar.org/">enviroCar</a></td>
-          </tr>
-          <tr>
-            <td>D22</td>
-            <td><a href="https://xdomes.org/ont/xdomes/sensorType">https://xdomes.org/ont/xdomes/sensorType</a></td>
-            <td>Janet Fredericks, <a href="https://xdomes.org/">https://xdomes.org/</a></td>
-          </tr>
-          <tr>
-            <td>D23</td>
-            <td><a
-                href="https://xdomes.org/ont/xdomes/observableProperty">https://xdomes.org/ont/xdomes/observableProperty</a>
-            </td>
-            <td>Janet Fredericks, <a href="https://xdomes.org/">https://xdomes.org/</a></td>
-          </tr>
-          <tr>
             <th colspan="2">New datasets for 2024 edition</th>
           </tr>
           <tr>
@@ -260,6 +107,26 @@
           <tr>
             <td>D26</td>
             <td><a href="https://www.onewater.fr/en">OneWater - Eau Bien Commun</a></td>
+            <td>Sylvain Grellet, <a href="https://www.brgm.fr/en/">OneWater</a></td>
+          </tr>
+          <tr>
+            <td>D27</td>
+            <td><a href="https://ternaustralia.github.io/ontology_tern/">TERN Ontology</a></td>
+            <td>TERN Linked Data Services, <a href="https://linkeddata.tern.org.au/about/acknowledgement-and-attribution">TERN</a></td>
+          </tr>
+          <tr>
+            <td>D28</td>
+            <td><a href="https://www.onewater.fr/en">Biodiversity Data Repository</a></td>
+            <td>Sylvain Grellet, <a href="https://www.brgm.fr/en/">OneWater</a></td>
+          </tr>
+          <tr>
+            <td>D29</td>
+            <td><a href="https://www.onewater.fr/en">GSWA</a></td>
+            <td>Sylvain Grellet, <a href="https://www.brgm.fr/en/">OneWater</a></td>
+          </tr>
+          <tr>
+            <td>D30</td>
+            <td><a href="https://www.onewater.fr/en">GSQ</a></td>
             <td>Sylvain Grellet, <a href="https://www.brgm.fr/en/">OneWater</a></td>
           </tr>
         </tbody>
