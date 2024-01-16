@@ -208,8 +208,8 @@ sosa:Platform
 ## Procedures
 
 sosa:Procedure 
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasInput ; owl:allValuesFrom sosa:Input ]  ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasOutput ; owl:allValuesFrom sosa:Output ]  ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasInput ]  ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasOutput ]  ;
   rdfs:isDefinedBy sosa: .
 
   ssn:hasInput a owl:ObjectProperty ;
@@ -221,7 +221,6 @@ sosa:Procedure
     rdfs:isDefinedBy ssn: .
 
     ssn:Input a owl:Class ;
-      owl:equivalentClass sosa:Input ;
       owl:deprecated true ;
       rdfs:label "Input"@en ;
       skos:definition "Any information that is provided to a Procedure for its use."@en ;
@@ -239,7 +238,6 @@ sosa:Procedure
     rdfs:isDefinedBy ssn: .
 
     ssn:Output a owl:Class ;
-      owl:equivalentClass sosa:Output ;
       owl:deprecated true ;
       rdfs:label "Output"@en ;
       skos:definition "Any information that is reported from a Procedure."@en ;
@@ -274,18 +272,8 @@ sosa:PreparationProcedure
   sosa:hasInput 
     rdfs:isDefinedBy sosa: .
 
-    sosa:Input 
-      rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sosa:hasInput ] ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
-      rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sosa:hasInput ] ; owl:allValuesFrom sosa:Procedure ] ;
-      rdfs:isDefinedBy sosa: .
-
   sosa:hasOutput 
     rdfs:isDefinedBy sosa: .
-
-    sosa:Output 
-      rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sosa:hasOutput ] ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
-      rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sosa:hasOutput ] ; owl:allValuesFrom sosa:Procedure ] ;
-      rdfs:isDefinedBy sosa: .
 
 
 ## ProcedureExecutors

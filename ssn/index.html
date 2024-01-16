@@ -461,11 +461,9 @@
             , <a href="#SOSAActuator">sosa:Actuator</a>
             , <a href="#SOSADeployment">sosa:Deployment</a>
             , <a href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a>
-            , <a href="#SOSAInput">sosa:Input</a>
             , <a href="#SOSAObservableProperty">sosa:ObservableProperty</a>
             , <a href="#SOSAObservation">sosa:Observation</a>
             , <a href="#SOSAObservationCollection">sosa:ObservationCollection</a>
-            , <a href="#SOSAOutput">sosa:Output</a>
             , <a href="#SOSAPlatform">sosa:Platform</a>
             , <a href="#SOSAProcedure">sosa:Procedure</a>
             , <a href="#SOSAProperty">sosa:Property</a>
@@ -3352,8 +3350,6 @@
             , <a href="#SOSAimplementedBy">sosa:implementedBy</a>
             , <a href="#SOSAhasInput">sosa:hasInput</a>
             , <a href="#SOSAhasOutput">sosa:hasOutput</a>
-            , <a href="#SOSAInput">sosa:Input</a>
-            , <a href="#SOSAOutput">sosa:Output</a>
           </p>
           <div class="buttonpanel">
             <span>
@@ -3404,15 +3400,11 @@
                   <span about="[_:SOSAProcedure1]" typeof="owl:Restriction"></span>
                   <span about="[_:SOSAProcedure1]" rel="owl:onProperty" resource="sosa:hasInput"><a
                       href="#SOSAhasInput">sosa:hasInput</a></span>
-                  <span about="[_:SOSAProcedure1]" property="owl:allValuesFrom"
-                    resource="sosa:Input"><em><b>ONLY</b></em> <a href="#SOSAInput">sosa:Input</a></span>
                   <br>
                   <span about="sosa:Procedure" rel="rdfs:subClassOf" resource="[_:SOSAProcedure2]"></span>
                   <span about="[_:SOSAProcedure2]" typeof="owl:Restriction"></span>
                   <span about="[_:SOSAProcedure2]" rel="owl:onProperty" resource="sosa:hasOutput"><a
                       href="#SOSAhasOutput">sosa:hasOutput</a></span>
-                  <span about="[_:SOSAProcedure2]" property="owl:allValuesFrom"
-                    resource="sosa:Output"><em><b>ONLY</b></em> <a href="#SOSAOutput">sosa:Output</a></span>
                   <br>
                   <span about="sosa:Procedure" rel="rdfs:subClassOf" resource="[_:SOSAProcedure3]"></span>
                   <span about="[_:SOSAProcedure3]" typeof="owl:Restriction"></span>
@@ -3608,60 +3600,6 @@
         </section>
 
 
-        <section class="specterm sosa" id="SOSAInput" about="sosa:Input" typeof="owl:Class">
-          <h5><a href="#SOSAInput">sosa:Input</a></h5>
-          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/Input</p>
-          <p><strong>an OWL Class</strong></p>
-
-          <em property="rdfs:label">Input</em> -
-          <span property="rdfs:comment skos:definition">Any information that is provided to a <a
-              href="#SOSAProcedure"><code>Procedure</code></a> for its use.</span>
-          <table>
-            <tbody>
-              <tr class="ssn">
-                <th class="restrictions">Restrictions</th>
-                <td>
-                  <span about="sosa:Input" rel="rdfs:subClassOf" resource="[_:SSNInput1]"></span>
-                  <span about="[_:SSNInput1]" typeof="owl:Restriction"></span>
-                  <span about="[_:SSNInput1]" rel="owl:onProperty" resource="[_:SSNInput1b]"></span>
-                  <span about="[_:SSNInput1b]" rel="owl:inverseOf" resource="sosa:hasInput"><em><b>inverse Of</b></em>
-                    <a href="#SOSAhasInput">sosa:hasInput</a></span>
-                  <span about="[_:SSNInput1]" property="owl:allValuesFrom"
-                    resource="sosa:Procedure"><em><b>ONLY</b></em> <a href="#SOSAProcedure">sosa:Procedure </a></span>
-                  <br>
-                  <span about="sosa:Input" rel="rdfs:subClassOf" resource="[_:SSNInput2]"></span>
-                  <span about="[_:SSNInput2]" typeof="owl:Restriction"></span>
-                  <span about="[_:SSNInput2]" rel="owl:onProperty" resource="[_:SSNInput2b]"></span>
-                  <span about="[_:SSNInput2b]" rel="owl:inverseOf" resource="sosa:hasInput"><em><b>inverse Of</b></em>
-                    <a href="#SOSAhasInput">sosa:hasInput</a></span>
-                  <span about="[_:SSNInput2]" property="owl:minCardinality" content="1"
-                    datatype="xsd:nonNegativeInteger"><em><b>MIN 1</b></em></span>
-                </td>
-              </tr>
-              <tr>
-                <th>is Defined By</th>
-                <td>
-                  <span rel="rdfs:isDefinedBy"><a
-                      href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a></span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="buttonpanel">
-            <span>
-              <span class="sosa" style="display: none;">[<a href="#"
-                  onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
-                  additional SSN axioms</a>]</span>
-              <span class="ssn">[<a href="#"
-                  onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
-                  additional SSN axioms</a>]</span>
-            </span>
-            <span class="back">[<a href="#Procedures">Back to module overview and examples</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-          </div>
-        </section>
-
-
         <section class="specterm" id="SOSAhasOutput" about="sosa:hasOutput" typeof="owl:ObjectProperty">
           <h5><a href="#SOSAhasOutput">sosa:hasOutput</a></h5>
           <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/hasOutput</p>
@@ -3688,59 +3626,6 @@
           </div>
         </section>
 
-
-        <section class="specterm sosa" id="SOSAOutput" about="sosa:Output" typeof="owl:Class">
-          <h5><a href="#SOSAOutput">sosa:Output</a></h5>
-          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/Output</p>
-          <p><strong>an OWL Class</strong></p>
-
-          <em property="rdfs:label">Output</em> -
-          <span property="rdfs:comment skos:definition">Any information that is reported from a <a
-              href="#SOSAProcedure"><code>Procedure</code></a>.</span>
-          <table>
-            <tbody>
-              <tr class="ssn">
-                <th class="restrictions">Restrictions</th>
-                <td>
-                  <span about="sosa:Output" rel="rdfs:subClassOf" resource="[_:SSNOutput1]"></span>
-                  <span about="[_:SSNOutput1]" typeof="owl:Restriction"></span>
-                  <span about="[_:SSNOutput1]" rel="owl:onProperty" resource="[_:SSNOutput1b]"></span>
-                  <span about="[_:SSNOutput1b]" rel="owl:inverseOf" resource="sosa:hasOutput"><em><b>inverse Of</b></em>
-                    <a href="#SOSAhasOutput">sosa:hasOutput</a></span>
-                  <span about="[_:SSNOutput1]" property="owl:allValuesFrom"
-                    resource="sosa:Procedure"><em><b>ONLY</b></em> <a href="#SOSAProcedure">sosa:Procedure </a></span>
-                  <br>
-                  <span about="sosa:Output" rel="rdfs:subClassOf" resource="[_:SSNOutput2]"></span>
-                  <span about="[_:SSNOutput2]" typeof="owl:Restriction"></span>
-                  <span about="[_:SSNOutput2]" rel="owl:onProperty" resource="[_:SSNOutput2b]"></span>
-                  <span about="[_:SSNOutput2b]" rel="owl:inverseOf" resource="sosa:hasOutput"><em><b>inverse Of</b></em>
-                    <a href="#SOSAhasOutput">sosa:hasOutput</a></span>
-                  <span about="[_:SSNOutput2]" property="owl:minCardinality" content="1"
-                    datatype="xsd:nonNegativeInteger"><em><b>MIN 1</b></em></span>
-                </td>
-              </tr>
-              <tr>
-                <th>is Defined By</th>
-                <td>
-                  <span rel="rdfs:isDefinedBy"><a
-                      href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a></span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="buttonpanel">
-            <span>
-              <span class="sosa" style="display: none;">[<a href="#"
-                  onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
-                  additional SSN axioms</a>]</span>
-              <span class="ssn">[<a href="#"
-                  onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
-                  additional SSN axioms</a>]</span>
-            </span>
-            <span class="back">[<a href="#Procedures">Back to module overview and examples</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-          </div>
-        </section>
 
         <section class="specterm" id="SOSAProcedureExecution" about="sosa:ProcedureExecution"
           typeof="owl:Class rdfs:Class">
@@ -9280,6 +9165,7 @@
       <li>Retire O&Mv2 alignment - superseded by OMS alignment</li>
       <li>Retire SSNX alignment - leave behind a stub giving links to the previous edition of the recommendation and to
         the RDF alignment file. </li>
+      <li>Remove sosa:Input, sosa:Output ; mark ssn:Input, ssn:Output deprecated</li>
     </ol>
   </section>
 </body>
