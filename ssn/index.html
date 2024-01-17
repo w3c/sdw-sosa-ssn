@@ -4570,7 +4570,6 @@
         <div class="azlist">
           <p>
             <a href="#SSNSYSTEMinCondition">ssn-system:inCondition</a>
-            , <a href="#SSNSYSTEMCondition">ssn-system:Condition</a>
             , <a href="#SSNSYSTEMhasSystemCapability">ssn-system:hasSystemCapability</a>
             , <a href="#SSNSYSTEMSystemCapability">ssn-system:SystemCapability</a>
             , <a href="#SSNSYSTEMhasSystemProperty">ssn-system:hasSystemProperty</a>
@@ -4701,52 +4700,6 @@
           </div>
         </section>
 
-        <section class="specterm sosa" id="SSNSYSTEMCondition" about="ssn-system:Condition" typeof="owl:Class">
-          <h5><a href="#SSNSYSTEMCondition">ssn-system:Condition</a></h5>
-          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/ssn/systems/Condition</p>
-          <p><strong>an OWL Class</strong></p>
-
-          <em property="rdfs:label">Condition</em> -
-          <span property="rdfs:comment skos:definition">Used to specify ranges for qualities that act as <a
-              href="#SSNSYSTEMCondition"><code>Conditions</code></a> on a Systems' operation.</span>
-          <table>
-            <tbody>
-              <tr>
-                <th>Example</th>
-                <td><span property="skos:example">For example, wind speed of 10-60m/s may be used as the
-                    <code>Condition</code> on a <a href="#SSNSYSTEMSystemProperty"><code>SystemProperty</code></a>, for
-                    example, to state that a <a href="#SOSASensor"><code>Sensor</code></a> has a particular <a
-                      href="#SSNSYSTEMAccuracy"><code>Accuracy</code></a> under that <code>Condition</code>.</span></td>
-              </tr>
-              <tr class="ssn">
-                <th>Sub class of</th>
-                <td>
-                  <span rel="rdfs:subClassOf" resource="sosa:Property"><a href="#SOSAProperty">sosa:Property</a></span>
-                </td>
-              </tr>
-              <tr>
-                <th>is Defined By</th>
-                <td>
-                  <span rel="rdfs:isDefinedBy"><a
-                      href="http://www.w3.org/ns/ssn/systems/">http://www.w3.org/ns/ssn/systems/</a></span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="buttonpanel">
-            <span>
-              <span class="sosa" style="display: none;">[<a href="#"
-                  onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
-                  additional SSN axioms</a>]</span>
-              <span class="ssn">[<a href="#"
-                  onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
-                  additional SSN axioms</a>]</span>
-            </span>
-            <span class="back">[<a href="#System-capabilities">Back to module overview and examples</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-          </div>
-        </section>
-
         <section class="specterm sosa" id="SSNSYSTEMhasSystemCapability" about="ssn-system:hasSystemCapability"
           typeof="owl:ObjectProperty">
           <h5><a href="#SSNSYSTEMhasSystemCapability">ssn-system:hasSystemCapability</a></h5>
@@ -4840,9 +4793,6 @@
                   <span about="[_:SystemCapabilities3]" typeof="owl:Restriction"></span>
                   <span about="[_:SystemCapabilities3]" rel="owl:onProperty" resource="ssn-system:inCondition"><a
                       href="#SSNSYSTEMinCondition">ssn-system:inCondition</a></span>
-                  <span about="[_:SystemCapabilities3]" property="owl:allValuesFrom"
-                    resource="ssn-system:Condition"><em><b>ONLY</b></em> <a
-                      href="#SSNSYSTEMCondition">ssn-system:Condition</a></span>
                   <br>
                   <span about="ssn-system:SystemCapability" rel="rdfs:subClassOf"
                     resource="[_:SystemCapabilities4]"></span>
@@ -5713,9 +5663,6 @@
                   <span about="[_:OperatingRange3]" typeof="owl:Restriction"></span>
                   <span about="[_:OperatingRange3]" rel="owl:onProperty" resource="ssn-system:inCondition"><a
                       href="#SSNSYSTEMinCondition">ssn-system:inCondition</a></span>
-                  <span about="[_:OperatingRange3]" property="owl:allValuesFrom"
-                    resource="ssn-system:Condition"><em><b>ONLY</b></em> <a
-                      href="#SSNSYSTEMCondition">ssn-system:Condition</a></span>
                   <br>
                   <span about="ssn-system:OperatingRange" rel="rdfs:subClassOf" resource="[_:OperatingRange4]"></span>
                   <span about="[_:OperatingRange4]" typeof="owl:Restriction"></span>
@@ -6039,9 +5986,6 @@
                   <span about="[_:SurvivalRange3]" typeof="owl:Restriction"></span>
                   <span about="[_:SurvivalRange3]" rel="owl:onProperty" resource="ssn-system:inCondition"><a
                       href="#SSNSYSTEMinCondition">ssn-system:inCondition</a></span>
-                  <span about="[_:SurvivalRange3]" property="owl:allValuesFrom"
-                    resource="ssn-system:Condition"><em><b>ONLY</b></em> <a
-                      href="#SSNSYSTEMCondition">ssn-system:Condition</a></span>
                   <br>
                   <span about="ssn-system:SurvivalRange" rel="rdfs:subClassOf" resource="[_:SurvivalRange4]"></span>
                   <span about="[_:SurvivalRange4]" typeof="owl:Restriction"></span>
@@ -9165,8 +9109,9 @@
       <li>Retire O&Mv2 alignment - superseded by OMS alignment</li>
       <li>Retire SSNX alignment - leave behind a stub giving links to the previous edition of the recommendation and to
         the RDF alignment file. </li>
-      <li>Remove sosa:Input, sosa:Output ; mark ssn:Input, ssn:Output deprecated</li>
-    </ol>
+        <li>Remove sosa:Input, sosa:Output ; mark ssn:Input, ssn:Output deprecated</li>
+        <li>Mark ssn-system:Condition deprecated</li>
+      </ol>
   </section>
 </body>
 
