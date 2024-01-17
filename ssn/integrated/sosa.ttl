@@ -406,6 +406,7 @@ sosa:ProcedureExecution a rdfs:Class , owl:Class ;
   skos:definition "Act of carrying out a Procedure. This class generalizes the Observation, Actuation, and Sampling classes."@en ;
   rdfs:isDefinedBy sosa: .
 
+
 sosa:Observation a rdfs:Class , owl:Class ;
   rdfs:label "Observation"@en ;
   skos:definition "Act of carrying out an (Observation) Procedure to estimate or calculate a value of a property of a FeatureOfInterest. Links to a Sensor to describe what made the Observation and how; links to an ObservableProperty to describe what the result is an estimate of, and to a FeatureOfInterest to detail what that property was associated with."@en ;
@@ -452,11 +453,10 @@ sosa:Observation a rdfs:Class , owl:Class ;
     rdfs:isDefinedBy sosa: .
 
 
-
-sosa:Actuation a rdfs:Class , owl:Class ;
+sosa:Actuation a owl:Class ;
   rdfs:label "Actuation"@en ;
-  skos:definition "An Actuation carries out an (Actuation) Procedure to change the state of the world using an Actuator."@en ;
-  rdfs:comment "An Actuation carries out an (Actuation) Procedure to change the state of the world using an Actuator."@en ;
+  skos:definition "An Actuation carries out an (Actuation) Procedure to change the state of the world using an Actuator. hasResult indicates the intended value of the ActuatableProperty at the completion of the Actuation"@en ;
+  rdfs:comment "There may be an associated Observation to verify that the result has been obtained. "@en ;
   skos:example "The activity of automatically closing a window if the temperature in a room drops below 20 degree Celsius. The activity is the Actuation and the device that closes the window is the Actuator. The Procedure is the rule, plan, or specification that defines the conditions that triggers the Actuation, here a drop in temperature. "@en ;
   rdfs:isDefinedBy sosa: .
 
