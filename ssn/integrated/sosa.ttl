@@ -13,6 +13,7 @@
 @prefix schema: <http://schema.org/> .
 
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix sosa-oms: <http://www.w3.org/ns/sosa/oms/> .
 
 
 dcterms:title a owl:AnnotationProperty .
@@ -355,6 +356,7 @@ sosa:usedProcedure a owl:ObjectProperty ;
   schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:Observation ;
   schema:domainIncludes sosa:ObservationCollection ;
+  schema:domainIncludes sosa:ProcedureExecution ;
   schema:domainIncludes sosa:Sampling ;
   schema:domainIncludes sosa:SampleCollection ;
   schema:rangeIncludes sosa:Procedure ;
@@ -366,9 +368,10 @@ sosa:hasFeatureOfInterest a owl:ObjectProperty ;
   skos:scopeNote "Note that this is the _proximate_ feature of interest, which may be a proxy entity such as a sample of the _ultimate_ feature of interest. Use `hasUltimateFeatureOfInterest` if the intention is to link to the _ultimate_ feature of interest. " ;
   rdfs:comment "A relation between an Observation and the entity whose quality was observed, or between an Actuation and the entity whose property was modified, or between an act of Sampling and the entity that was sampled."@en ;
   skos:example "For example, in an Observation of the weight of a person, the FeatureOfInterest is the person and the property is its weight."@en ;
+  schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:Observation ;
   schema:domainIncludes sosa:ObservationCollection ;
-  schema:domainIncludes sosa:Actuation ;
+  schema:domainIncludes sosa:ProcedureExecution ;
   schema:domainIncludes sosa:Sampling ;
   schema:rangeIncludes sosa:FeatureOfInterest ;
   schema:rangeIncludes sosa:Sample ;
@@ -381,9 +384,10 @@ sosa:hasUltimateFeatureOfInterest a owl:ObjectProperty ;
   skos:scopeNote "This is useful when the proximate feature of interest is a sample of the ultimate feature of interest, directly or transitively." ;
   rdfs:comment """should match a property chain something like this but with sosa:isSampleOf*
       owl:propertyChainAxiom ( sosa:hasFeatureOfInterest sosa:isSampleOf )""" ;
+  schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:Observation ;
   schema:domainIncludes sosa:ObservationCollection ;
-  schema:domainIncludes sosa:Actuation ;
+  schema:domainIncludes sosa:ProcedureExecution ;
   schema:domainIncludes sosa:Sampling ;
   schema:rangeIncludes sosa:FeatureOfInterest ;
   rdfs:isDefinedBy sosa: .
@@ -641,6 +645,7 @@ sosa:resultTime a owl:DatatypeProperty ;
   schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:Observation ;
   schema:domainIncludes sosa:ObservationCollection ;
+  schema:domainIncludes sosa:ProcedureExecution ;
   schema:domainIncludes sosa:Sampling ;
   rdfs:range xsd:dateTime ;
   rdfs:isDefinedBy sosa: .
