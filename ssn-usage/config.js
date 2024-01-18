@@ -10,24 +10,21 @@ var respecConfig = {
   // crEnd: "3000-01-01",
   editors: [
     {
-      name: "Raúl García-Castro",
-      company: "Ontology Engineering Group, Universidad Politécnica de Madrid",
-      companyURL: "http://www.oeg-upm.net/"
-    },
-    {
       name: "Simon Cox",
       company: "OGC",
       companyURL: "https://ogc.org/"
     },
     {
-      name: "Armin Haller",
-      company: "Australian National University",
-      companyURL: "http://cbe.anu.edu.au/"
-    }, {
-      name: "Nandana Mihindukulasooriya",
-      company: "Ontology Engineering Group, Universidad Politécnica de Madrid",
-      companyURL: "http://www.oeg-upm.net/"
-    }],
+      name: "Nicholas Car",
+      company: "KurrawongAI",
+      companyURL: "https://kurrawong.ai"
+    },
+    {
+      name: "Maxime Lefrançois",
+      company: "École Nationale Supérieure des Mines de Saint-Étienne",
+      companyURL: "http://www.mines-stetienne.fr/"
+    }
+  ],
   wg: "Spatial Data on the Web Working Group",
   wgURI: "https://www.w3.org/2015/spatial/",
   wgPublicList: "public-sdw-comments",
@@ -61,6 +58,13 @@ var respecConfig = {
       href: "http://www.sciencedirect.com/science/article/pii/S1570826812000571",
       publisher: "Web Semantics: Science, Services and Agents on the World Wide Web, 17:25-32 ",
       date: "December 2012"
+    },
+    "usage-ssn": {
+      authors: ["Raúl García-Castro", "Armin Haller", "Nandana Mihindukulasooriya", "(editors)"],
+      title: "On the usage of the SSN ontology",
+      href: "https://w3c.github.io/sdw/ssn-usage/",
+      publisher: "W3C Note",
+      date: "September 4, 2017"
     },
     "vocab-ssn": {
       authors: ["Armin Haller", "Krzysztof Janowicz", "Simon Cox", "Danh Le Phuoc", "Kerry Taylor", "Maxime Lefrançois", "(editors)"],
