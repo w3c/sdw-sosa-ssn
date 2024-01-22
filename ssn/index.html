@@ -7911,11 +7911,11 @@
 
     <section id="OBOE_Alignment" class="informative">
       <h3>OBOE Alignment Module</h3>
-      <p>This section introduces the alignment of SOSA to <a href="https://github.com/NCEAS/oboe/">OBOE</a>.</p>
-      <p>OBOE, the Extensible Observation Ontology, is used within the
-        biodiversity community for semantic representation of observation
-        data. The ontology is composed of multiple modules. The core
-        observation elements are in the module OBOE-core. </p>
+      <p>This section introduces the alignment of SOSA to [[OBOE]].</p>
+      <p>OBOE, the Extensible Observation Ontology, is used within the biodiversity community for semantic
+        representation of observation data.
+        The ontology is composed of multiple modules.
+        The core observation elements are in the module <a href="https://github.com/NCEAS/oboe/">OBOE-core</a>. </p>
       <section id="OBOE_Alignment_ns">
         <h4>Namespaces</h4>
         <p>The following namespace prefixes are used in the alignment to SOSA.</p>
@@ -7926,14 +7926,14 @@
               <th> Namespace </th>
             </tr>
             <tr>
-              <td> sosa: </td>
+              <td> <code>sosa:</code> </td>
               <td> <a href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a>
               </td>
             </tr>
             <tr>
-              <td> oboe: </td>
+              <td> <code>oboe:</code> </td>
               <td> <a
-                  href="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#">http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#</a>
+                  href="http://ecoinformatics.org/oboe/oboe.1.1/oboe-core.owl#">http://ecoinformatics.org/oboe/oboe.1.1/oboe-core.owl#</a>
               </td>
             </tr>
           </tbody>
@@ -7941,35 +7941,65 @@
       </section>
       <section id="OBOE_Alignment_class" class="informative">
         <h4>Class Alignments</h4>
-        <p>An oboe:Observation is composed of a collection of
-          oboe:Measurements with the same feature of interest. Each
-          oboe:Measurement concerns a distinct observed-property
-          ("characteristic") and uses a distinct procedure ("protocol"). We
-          therefore choose to align sosa:Observation with oboe:Measurement.</p>
-        <figure>
-          <a href="images/OBOE-core.png"><img alt="OBOE core classes" src="images/OBOE-core.png" height="400"></a>
-          <a href="images/SOSA-obs-core.png"><img alt="SOSA Observation" src="images/SOSA-obs-core.png"
-              height="300"></a>
-          <figcaption>Core classes from OBOE alongside the SOSA observation model.</figcaption>
+        <p>An <code>oboe:Observation</code> is composed of a collection of <code>oboe:Measurements</code> concerning a
+          single <code>oboe:Entity</code>.
+          Each individual <code>oboe:Measurement</code> concerns a distinct <code>oboe:Characteristic</code> and uses
+          a distinct <code>oboe:Protocol</code>.
+          This aligns to a <a href="#SOSAObservationCollection">sosa:ObservationCollection</a> whose member <a
+            href="#SOSAObservation">sosa:Observations</a> each concern a different <a
+            href="#SOSAobservedProperty">sosa:observedProperty</a> of a single <a
+            href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a> .
+        </p>
+        <p>An <code>oboe:ObservationCollection</code> is composed of a collection of <code>oboe:Observations</code>
+          with no particular homogeneity expectation of the members.
+          This aligns to a <a href="#SOSAObservationCollection">sosa:ObservationCollection</a> whose members are <a
+            href="#SOSAObservationCollection">sosa:ObservationCollections</a> each having a single <a
+            href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a>.
+        </p>
+        <figure id="oboe-implementation">
+          <img alt="The OBOE core model" src="./images/OBOE-core.png" / style="width:40%"><img
+            alt="The SSN-ext model arranged to align with OBOE" src="./images/SOSA-oboe-map.png" style="width:50%" />
+          <figcaption>
+            The OBOE core model (left), shown alongside the SOSA model including two levels of <a
+              href="#SOSAObservationCollection">ObservationCollection</a> (right) with matching classes and properties
+            aligned.
+          </figcaption>
         </figure>
         <p>The primary classes from [[OBOE]] are aligned with SOSA classes as
           follows.</p>
         <table>
           <tbody>
             <tr>
-              <td> oboe:Measurement </td>
+              <td> <code>oboe:ObservationCollection</code> </td>
               <td> subclass of </td>
-              <td> sosa:Observation </td>
+              <td> <a href="#SOSAObservationCollection">sosa:ObservationCollection</a>
+                <br /><a href="#SOSAhasMember">sosa:hasMember</a> <b>only</b> <a
+                  href="#SOSAObservationCollection">sosa:ObservationCollection</a>
+              </td>
             </tr>
             <tr>
-              <td> oboe:Characteristic </td>
+              <td> <code>oboe:Observation</code> </td>
+              <td> subclass of </td>
+              <td> <a href="#SOSAObservationCollection">sosa:ObservationCollection</a>
+                <br /><a href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a> <b>exactly 1</b>
+                <br /><a href="#SOSAhasMember">sosa:hasMember</a> <b>only</b> <a
+                  href="#SOSAObservation">sosa:Observation</a>
+              </td>
+            </tr>
+            <tr>
+              <td> <code>oboe:Measurement</code> </td>
+              <td> equivalent class </td>
+              <td> <a href="#SOSAObservation">sosa:Observation</a> </td>
+            </tr>
+            <tr>
+              <td> <code>oboe:Characteristic</code> </td>
               <td> equivalent class </td>
               <td> sosa:ObservableProperty </td>
             </tr>
             <tr>
-              <td> oboe:Protocol </td>
-              <td> equivalent class </td>
-              <td> sosa:Procedure </td>
+              <td> <code>oboe:Protocol</code> </td>
+              <td> subclass of </td>
+              <td> <a href="#SOSAProcedure">sosa:Procedure</a> </td>
             </tr>
           </tbody>
         </table>
@@ -7981,7 +8011,7 @@
             <tr>
               <td> sosa:FeatureOfInterest </td>
               <td> subclass of </td>
-              <td> oboe:Entity </td>
+              <td> <code>oboe:Entity</code> </td>
             </tr>
           </tbody>
         </table>
@@ -7993,58 +8023,49 @@
         <table>
           <tbody>
             <tr>
-              <td> oboe:ofCharacteristic </td>
+              <td> <code>oboe:ofEntity</code> </td>
+              <td> equivalent property </td>
+              <td> <a href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a> </td>
+            </tr>
+            <tr>
+              <td> <code>oboe:ofCharacteristic</code> </td>
               <td> equivalent property </td>
               <td> sosa:observedProperty </td>
             </tr>
             <tr>
-              <td> oboe:hasValue </td>
+              <td> <code>oboe:usesProtocol</code> </td>
+              <td> subproperty of </td>
+              <td> <a href="#SOSAusedProcedure">sosa:usedProcedure</a> </td>
+            </tr>
+            <tr>
+              <td> <code>oboe:usesMethod</code> </td>
+              <td> subproperty of </td>
+              <td> <a href="#SOSAusedProcedure">sosa:usedProcedure</a> </td>
+            </tr>
+            <tr>
+              <td> <code>oboe:hasValue</code> </td>
               <td> equivalent property </td>
               <td> sosa:hasResult </td>
             </tr>
-            <tr>
-              <td> oboe:usesProtocol </td>
-              <td> equivalent property </td>
-              <td> sosa:usedProcedure </td>
-            </tr>
-            <tr>
-              <td> oboe:usesMethod </td>
-              <td> equivalent property </td>
-              <td> sosa:usedProcedure </td>
-            </tr>
           </tbody>
         </table>
-        <p>oboe:hasValue, oboe:usesProtocol and oboe:usesMethod are
-          sub-properties of the corresponding SOSA properties which apply to
-          actuation and sampling as well as observation.</p>
-        <p>The feature of interest is linked to the oboe:Observation that
-          contains a oboe:Measurement, rather than to the oboe:Measurement
-          directly, so a property-chain axiom is required to express the
-          alignment.</p>
+        <p>The properties oboe:hasMember and oboe:hasMeasurement link an oboe:ObservationCollection to its member
+          oboe:Observations, and an oboe:Observation to its member oboe:Measurements, respectively.
+          These match <a href="#SOSAhasMember">sosa:hasMember</a> links to a <a
+            href="#SOSAObservationCollection">sosa:ObservationCollection</a> (with a single <a
+            href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a>) and to the <a
+            href="#SOSAObservation">sosa:Observations</a> of the different properties, respectively. </p>
         <table>
           <tbody>
             <tr>
-              <td> sosa:hasFeatureOfInterest </td>
-              <td> property-chain axiom </td>
-              <td> [oboe:measurementFor, oboe:ofEntity] </td>
-            </tr>
-          </tbody>
-        </table>
-        <p>The properties oboe:hasMeasurement and its inverse
-          oboe:measurementFor link an oboe:Observation to its member
-          oboe:Measurements. These could be modeled as sub-properties related
-          to rdfs:member and its inverse as follows.</p>
-        <table>
-          <tbody>
-            <tr>
-              <td> oboe:hasMeasurement </td>
+              <td> <code>oboe:hasMember</code> </td>
               <td> sub-property of </td>
-              <td> rdfs:member </td>
+              <td> <a href="#SOSAhasMember">sosa:hasMember</a> </td>
             </tr>
             <tr>
-              <td> oboe:measurementFor </td>
+              <td> <code>oboe:hasMeasurement</code> </td>
               <td> sub-property of </td>
-              <td> [ owl:inverseOf rdfs:member ] </td>
+              <td> <a href="#SOSAhasMember">sosa:hasMember</a> </td>
             </tr>
           </tbody>
         </table>
@@ -9044,12 +9065,14 @@
       <li>Adjust namespace of terms previously in sosa:</li>
       <li>Added OMS alignment modules to section 6. 'Vertical Segmentation'</li>
       <li>Added ObservationCollection, SampleCollection, hasMember</li>
-      <li>Retire O&Mv2 alignment - superseded by OMS alignment</li>
+      <li>Retire O&amp;Mv2 alignment - superseded by OMS alignment</li>
       <li>Retire SSNX alignment - leave behind a stub giving links to the previous edition of the recommendation and to
-        the RDF alignment file. </li>
+        the RDF alignment file</li>
       <li>Remove sosa:Input, sosa:Output ; mark ssn:Input, ssn:Output deprecated</li>
       <li>Mark ssn-system:Condition deprecated</li>
       <li>Mark sosa:Result deprecated</li>
+      <li>Update OBOE alignment - using ObservationCollection, SampleCollection, hasMember</li>
+      the RDF alignment file. </li>
       <li>Add patterns for Sensors, Procedures and Datasheets</li>
     </ol>
   </section>
