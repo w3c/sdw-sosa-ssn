@@ -72,6 +72,7 @@ ssn-system:inCondition a owl:ObjectProperty ;
   rdfs:isDefinedBy ssn-system: .
 
 ssn-system:Condition a owl:Class ;
+  owl:deprecated true ;
   rdfs:label "Condition"@en ;
   skos:definition "Used to specify ranges for qualities that act as conditions on a system/sensor's operation.  For example, wind speed of 10-60m/s may be used as the condition on a SystemProperty, for example, to state that a sensor has a particular accuracy in that condition."@en ;
   rdfs:comment "Used to specify ranges for qualities that act as conditions on a system/sensor's operation.  For example, wind speed of 10-60m/s may be used as the condition on a SystemProperty, for example, to state that a sensor has a particular accuracy in that condition."@en ;
@@ -99,7 +100,7 @@ ssn-system:hasSystemCapability a owl:ObjectProperty ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:forProperty ; owl:allValuesFrom ssn:Property ] ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasSystemProperty ; owl:allValuesFrom ssn-system:SystemProperty ] ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:inCondition ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:inCondition ; owl:allValuesFrom ssn-system:Condition ] ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:inCondition ] ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf ssn-system:hasSystemCapability ] ; owl:allValuesFrom ssn:System ] ;
     rdfs:isDefinedBy ssn-system: .
 
@@ -253,7 +254,7 @@ ssn-system:hasOperatingRange a owl:ObjectProperty ;
 
     The System continues to operate as defined using SystemCapability. If, however, the SurvivalRange is violated, the System is 'damaged' and SystemCapability specifications may no longer hold."""@en ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:inCondition ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:inCondition ; owl:allValuesFrom ssn-system:Condition ] ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:inCondition ] ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf ssn-system:hasOperatingRange ] ; owl:allValuesFrom ssn:System ] ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasOperatingProperty ; owl:allValuesFrom ssn-system:OperatingProperty ] ;
     rdfs:subClassOf ssn:Property ;
@@ -314,7 +315,7 @@ ssn-system:hasSurvivalRange a owl:ObjectProperty ;
     rdfs:subClassOf ssn:Property ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:inCondition ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasSurvivalProperty ; owl:allValuesFrom ssn-system:SurvivalProperty ] ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:inCondition ; owl:allValuesFrom ssn-system:Condition ] ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:inCondition ] ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf ssn-system:hasSurvivalRange ] ; owl:allValuesFrom ssn:System ] ;
     rdfs:isDefinedBy ssn-system: .
 

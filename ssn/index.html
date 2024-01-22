@@ -461,16 +461,13 @@
             , <a href="#SOSAActuator">sosa:Actuator</a>
             , <a href="#SOSADeployment">sosa:Deployment</a>
             , <a href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a>
-            , <a href="#SOSAInput">sosa:Input</a>
             , <a href="#SOSAObservableProperty">sosa:ObservableProperty</a>
             , <a href="#SOSAObservation">sosa:Observation</a>
             , <a href="#SOSAObservationCollection">sosa:ObservationCollection</a>
-            , <a href="#SOSAOutput">sosa:Output</a>
             , <a href="#SOSAPlatform">sosa:Platform</a>
             , <a href="#SOSAProcedure">sosa:Procedure</a>
             , <a href="#SOSAProperty">sosa:Property</a>
             , <a href="#SOSAPropertyOfInterest">sosa:PropertyOfInterest</a>
-            , <a href="#SOSAResult">sosa:Result</a>
             , <a href="#SOSASample">sosa:Sample</a>
             , <a href="#SOSASampleCollection">sosa:SampleCollection</a>
             , <a href="#SOSASampler">sosa:Sampler</a>
@@ -888,8 +885,6 @@
                   <span about="[_:SOSAObservation12]" typeof="owl:Restriction"></span>
                   <span about="[_:SOSAObservation12]" rel="owl:onProperty" resource="sosa:hasResult"><a
                       href="#SOSAhasResult">sosa:hasResult</a></span>
-                  <span about="[_:SOSAObservation12]" property="owl:allValuesFrom"
-                    resource="sosa:Result"><em><b>ONLY</b></em> <a href="#SOSAResult">sosa:Result</a></span>
                   <br>
                   <span about="sosa:Observation" rel="rdfs:subClassOf" resource="[_:SOSAObservation13]"></span>
                   <span about="[_:SOSAObservation13]" typeof="owl:Restriction"></span>
@@ -1600,8 +1595,6 @@
                   <span about="[_:SOSAActuation12]" typeof="owl:Restriction"></span>
                   <span about="[_:SOSAActuation12]" rel="owl:onProperty" resource="sosa:hasResult"><a
                       href="#SOSAhasResult">sosa:hasResult</a></span>
-                  <span about="[_:SOSAActuation12]" property="owl:allValuesFrom"
-                    resource="sosa:Result"><em><b>ONLY</b></em> <a href="#SOSAResult">sosa:Result</a></span>
                   <br>
                   <span about="sosa:Actuation" rel="rdfs:subClassOf" resource="[_:SOSAActuation13]"></span>
                   <span about="[_:SOSAActuation13]" typeof="owl:Restriction"></span>
@@ -1966,8 +1959,7 @@
                 <th>Sub class of</th>
                 <td>
                   <span rel="rdfs:subClassOf" resource="sosa:FeatureOfInterest"><a
-                      href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a></span>, <span rel="rdfs:subClassOf"
-                    resource="sosa:Result"><a href="#SOSAResult">sosa:Result</a></span>
+                      href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a></span>
                 </td>
               </tr>
               <tr class="ssn">
@@ -3106,57 +3098,12 @@
         <p>This section introduces the following classes and properties:</p>
         <div class="azlist">
           <p>
-            <a href="#SOSAResult">sosa:Result</a>
-            , <a href="#SOSAhasResult">sosa:hasResult</a>
+            <a href="#SOSAhasResult">sosa:hasResult</a>
             , <a href="#SOSAisResultOf">sosa:isResultOf</a>
             , <a href="#SOSAhasSimpleResult">sosa:hasSimpleResult</a>
             , <a href="#SOSAresultTime">sosa:resultTime</a>
           </p>
         </div>
-        <section class="specterm sosa" id="SOSAResult" about="sosa:Result" typeof="owl:Class rdfs:Class">
-          <h5><a href="#SOSAResult">sosa:Result</a></h5>
-          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/Result</p>
-          <p><strong>an OWL Class</strong></p>
-
-          <em property="rdfs:label">Result</em> -
-          <span property="rdfs:comment skos:definition">The <a href="#SOSAResult"><code>Result</code></a> of an <a
-              href="#SOSAObservation"><code>Observation</code></a>, <a href="#SOSAActuation"><code>Actuation</code></a>,
-            or act of <a href="#SOSASampling"><code>Sampling</code></a>. To store an observation's simple result value
-            one can use the <a href="#SOSAhasSimpleResult"><code>hasSimpleResult</code></a> property.</span> <br>
-          <table>
-            <tbody>
-              <tr>
-                <th>Example</th>
-                <td><span property="skos:example">The value 20 as the height of a certain tree together with the unit,
-                    e.g., Meter.</span></td>
-              </tr>
-              <tr class="ssn">
-                <th>Restriction</th>
-                <td>
-                  <span about="sosa:Result" rel="rdfs:subClassOf" resource="[_:SOSAResult1]"></span>
-                  <span about="[_:SOSAResult1]" typeof="owl:Restriction"></span>
-                  <span about="[_:SOSAResult1]" rel="owl:onProperty" resource="sosa:isResultOf"><a
-                      href="#SOSAisResultOf">sosa:isResultOf</a></span>
-                  <span about="[_:SOSAResult1]" property="owl:minCardinality" content="1"
-                    datatype="xsd:nonNegativeInteger"><em><b>MIN 1</b></em></span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="buttonpanel">
-            <span>
-              <span class="sosa" style="display: none;">[<a href="#"
-                  onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
-                  additional SSN axioms</a>]</span>
-              <span class="ssn">[<a href="#"
-                  onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
-                  additional SSN axioms</a>]</span>
-            </span>
-            <span class="back">[<a href="#Results">Back to module overview and examples</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-          </div>
-        </section>
-
 
         <section class="specterm sosa" id="SOSAhasResult" about="sosa:hasResult" typeof="owl:ObjectProperty">
           <h5><a href="#SOSAhasResult">sosa:hasResult</a></h5>
@@ -3183,9 +3130,8 @@
               </tr>
               <tr>
                 <th>Range Includes</th>
-                <td><span rel="schema:rangeIncludes" resource="sosa:Result"><a
-                      href="#SOSAResult">sosa:Result</a></span>, <span rel="schema:rangeIncludes"
-                    resource="sosa:Sample"><a href="#SOSASample">sosa:Sample</a></span></td>
+                <td><span rel="schema:rangeIncludes" resource="sosa:Sample"><a href="#SOSASample">sosa:Sample</a></span>
+                </td>
               </tr>
               <tr>
                 <th>Inverse property of</th>
@@ -3216,9 +3162,8 @@
             <tbody>
               <tr>
                 <th>Domain Includes</th>
-                <td><span rel="schema:domainIncludes" resource="sosa:Result"><a
-                      href="#SOSAResult">sosa:Result</a></span>, <span rel="schema:domainIncludes"
-                    resource="sosa:Sample"><a href="#SOSASample">sosa:Sample</a></span></td>
+                <td><span rel="schema:domainIncludes" resource="sosa:Sample"><a
+                      href="#SOSASample">sosa:Sample</a></span></td>
               </tr>
               <tr>
                 <th>Range Includes</th>
@@ -3352,8 +3297,6 @@
             , <a href="#SOSAimplementedBy">sosa:implementedBy</a>
             , <a href="#SOSAhasInput">sosa:hasInput</a>
             , <a href="#SOSAhasOutput">sosa:hasOutput</a>
-            , <a href="#SOSAInput">sosa:Input</a>
-            , <a href="#SOSAOutput">sosa:Output</a>
           </p>
           <div class="buttonpanel">
             <span>
@@ -3404,15 +3347,11 @@
                   <span about="[_:SOSAProcedure1]" typeof="owl:Restriction"></span>
                   <span about="[_:SOSAProcedure1]" rel="owl:onProperty" resource="sosa:hasInput"><a
                       href="#SOSAhasInput">sosa:hasInput</a></span>
-                  <span about="[_:SOSAProcedure1]" property="owl:allValuesFrom"
-                    resource="sosa:Input"><em><b>ONLY</b></em> <a href="#SOSAInput">sosa:Input</a></span>
                   <br>
                   <span about="sosa:Procedure" rel="rdfs:subClassOf" resource="[_:SOSAProcedure2]"></span>
                   <span about="[_:SOSAProcedure2]" typeof="owl:Restriction"></span>
                   <span about="[_:SOSAProcedure2]" rel="owl:onProperty" resource="sosa:hasOutput"><a
                       href="#SOSAhasOutput">sosa:hasOutput</a></span>
-                  <span about="[_:SOSAProcedure2]" property="owl:allValuesFrom"
-                    resource="sosa:Output"><em><b>ONLY</b></em> <a href="#SOSAOutput">sosa:Output</a></span>
                   <br>
                   <span about="sosa:Procedure" rel="rdfs:subClassOf" resource="[_:SOSAProcedure3]"></span>
                   <span about="[_:SOSAProcedure3]" typeof="owl:Restriction"></span>
@@ -3608,60 +3547,6 @@
         </section>
 
 
-        <section class="specterm sosa" id="SOSAInput" about="sosa:Input" typeof="owl:Class">
-          <h5><a href="#SOSAInput">sosa:Input</a></h5>
-          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/Input</p>
-          <p><strong>an OWL Class</strong></p>
-
-          <em property="rdfs:label">Input</em> -
-          <span property="rdfs:comment skos:definition">Any information that is provided to a <a
-              href="#SOSAProcedure"><code>Procedure</code></a> for its use.</span>
-          <table>
-            <tbody>
-              <tr class="ssn">
-                <th class="restrictions">Restrictions</th>
-                <td>
-                  <span about="sosa:Input" rel="rdfs:subClassOf" resource="[_:SSNInput1]"></span>
-                  <span about="[_:SSNInput1]" typeof="owl:Restriction"></span>
-                  <span about="[_:SSNInput1]" rel="owl:onProperty" resource="[_:SSNInput1b]"></span>
-                  <span about="[_:SSNInput1b]" rel="owl:inverseOf" resource="sosa:hasInput"><em><b>inverse Of</b></em>
-                    <a href="#SOSAhasInput">sosa:hasInput</a></span>
-                  <span about="[_:SSNInput1]" property="owl:allValuesFrom"
-                    resource="sosa:Procedure"><em><b>ONLY</b></em> <a href="#SOSAProcedure">sosa:Procedure </a></span>
-                  <br>
-                  <span about="sosa:Input" rel="rdfs:subClassOf" resource="[_:SSNInput2]"></span>
-                  <span about="[_:SSNInput2]" typeof="owl:Restriction"></span>
-                  <span about="[_:SSNInput2]" rel="owl:onProperty" resource="[_:SSNInput2b]"></span>
-                  <span about="[_:SSNInput2b]" rel="owl:inverseOf" resource="sosa:hasInput"><em><b>inverse Of</b></em>
-                    <a href="#SOSAhasInput">sosa:hasInput</a></span>
-                  <span about="[_:SSNInput2]" property="owl:minCardinality" content="1"
-                    datatype="xsd:nonNegativeInteger"><em><b>MIN 1</b></em></span>
-                </td>
-              </tr>
-              <tr>
-                <th>is Defined By</th>
-                <td>
-                  <span rel="rdfs:isDefinedBy"><a
-                      href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a></span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="buttonpanel">
-            <span>
-              <span class="sosa" style="display: none;">[<a href="#"
-                  onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
-                  additional SSN axioms</a>]</span>
-              <span class="ssn">[<a href="#"
-                  onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
-                  additional SSN axioms</a>]</span>
-            </span>
-            <span class="back">[<a href="#Procedures">Back to module overview and examples</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-          </div>
-        </section>
-
-
         <section class="specterm" id="SOSAhasOutput" about="sosa:hasOutput" typeof="owl:ObjectProperty">
           <h5><a href="#SOSAhasOutput">sosa:hasOutput</a></h5>
           <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/hasOutput</p>
@@ -3688,59 +3573,6 @@
           </div>
         </section>
 
-
-        <section class="specterm sosa" id="SOSAOutput" about="sosa:Output" typeof="owl:Class">
-          <h5><a href="#SOSAOutput">sosa:Output</a></h5>
-          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/Output</p>
-          <p><strong>an OWL Class</strong></p>
-
-          <em property="rdfs:label">Output</em> -
-          <span property="rdfs:comment skos:definition">Any information that is reported from a <a
-              href="#SOSAProcedure"><code>Procedure</code></a>.</span>
-          <table>
-            <tbody>
-              <tr class="ssn">
-                <th class="restrictions">Restrictions</th>
-                <td>
-                  <span about="sosa:Output" rel="rdfs:subClassOf" resource="[_:SSNOutput1]"></span>
-                  <span about="[_:SSNOutput1]" typeof="owl:Restriction"></span>
-                  <span about="[_:SSNOutput1]" rel="owl:onProperty" resource="[_:SSNOutput1b]"></span>
-                  <span about="[_:SSNOutput1b]" rel="owl:inverseOf" resource="sosa:hasOutput"><em><b>inverse Of</b></em>
-                    <a href="#SOSAhasOutput">sosa:hasOutput</a></span>
-                  <span about="[_:SSNOutput1]" property="owl:allValuesFrom"
-                    resource="sosa:Procedure"><em><b>ONLY</b></em> <a href="#SOSAProcedure">sosa:Procedure </a></span>
-                  <br>
-                  <span about="sosa:Output" rel="rdfs:subClassOf" resource="[_:SSNOutput2]"></span>
-                  <span about="[_:SSNOutput2]" typeof="owl:Restriction"></span>
-                  <span about="[_:SSNOutput2]" rel="owl:onProperty" resource="[_:SSNOutput2b]"></span>
-                  <span about="[_:SSNOutput2b]" rel="owl:inverseOf" resource="sosa:hasOutput"><em><b>inverse Of</b></em>
-                    <a href="#SOSAhasOutput">sosa:hasOutput</a></span>
-                  <span about="[_:SSNOutput2]" property="owl:minCardinality" content="1"
-                    datatype="xsd:nonNegativeInteger"><em><b>MIN 1</b></em></span>
-                </td>
-              </tr>
-              <tr>
-                <th>is Defined By</th>
-                <td>
-                  <span rel="rdfs:isDefinedBy"><a
-                      href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a></span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="buttonpanel">
-            <span>
-              <span class="sosa" style="display: none;">[<a href="#"
-                  onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
-                  additional SSN axioms</a>]</span>
-              <span class="ssn">[<a href="#"
-                  onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
-                  additional SSN axioms</a>]</span>
-            </span>
-            <span class="back">[<a href="#Procedures">Back to module overview and examples</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-          </div>
-        </section>
 
         <section class="specterm" id="SOSAProcedureExecution" about="sosa:ProcedureExecution"
           typeof="owl:Class rdfs:Class">
@@ -4685,7 +4517,6 @@
         <div class="azlist">
           <p>
             <a href="#SSNSYSTEMinCondition">ssn-system:inCondition</a>
-            , <a href="#SSNSYSTEMCondition">ssn-system:Condition</a>
             , <a href="#SSNSYSTEMhasSystemCapability">ssn-system:hasSystemCapability</a>
             , <a href="#SSNSYSTEMSystemCapability">ssn-system:SystemCapability</a>
             , <a href="#SSNSYSTEMhasSystemProperty">ssn-system:hasSystemProperty</a>
@@ -4816,52 +4647,6 @@
           </div>
         </section>
 
-        <section class="specterm sosa" id="SSNSYSTEMCondition" about="ssn-system:Condition" typeof="owl:Class">
-          <h5><a href="#SSNSYSTEMCondition">ssn-system:Condition</a></h5>
-          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/ssn/systems/Condition</p>
-          <p><strong>an OWL Class</strong></p>
-
-          <em property="rdfs:label">Condition</em> -
-          <span property="rdfs:comment skos:definition">Used to specify ranges for qualities that act as <a
-              href="#SSNSYSTEMCondition"><code>Conditions</code></a> on a Systems' operation.</span>
-          <table>
-            <tbody>
-              <tr>
-                <th>Example</th>
-                <td><span property="skos:example">For example, wind speed of 10-60m/s may be used as the
-                    <code>Condition</code> on a <a href="#SSNSYSTEMSystemProperty"><code>SystemProperty</code></a>, for
-                    example, to state that a <a href="#SOSASensor"><code>Sensor</code></a> has a particular <a
-                      href="#SSNSYSTEMAccuracy"><code>Accuracy</code></a> under that <code>Condition</code>.</span></td>
-              </tr>
-              <tr class="ssn">
-                <th>Sub class of</th>
-                <td>
-                  <span rel="rdfs:subClassOf" resource="sosa:Property"><a href="#SOSAProperty">sosa:Property</a></span>
-                </td>
-              </tr>
-              <tr>
-                <th>is Defined By</th>
-                <td>
-                  <span rel="rdfs:isDefinedBy"><a
-                      href="http://www.w3.org/ns/ssn/systems/">http://www.w3.org/ns/ssn/systems/</a></span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="buttonpanel">
-            <span>
-              <span class="sosa" style="display: none;">[<a href="#"
-                  onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
-                  additional SSN axioms</a>]</span>
-              <span class="ssn">[<a href="#"
-                  onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
-                  additional SSN axioms</a>]</span>
-            </span>
-            <span class="back">[<a href="#System-capabilities">Back to module overview and examples</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-          </div>
-        </section>
-
         <section class="specterm sosa" id="SSNSYSTEMhasSystemCapability" about="ssn-system:hasSystemCapability"
           typeof="owl:ObjectProperty">
           <h5><a href="#SSNSYSTEMhasSystemCapability">ssn-system:hasSystemCapability</a></h5>
@@ -4955,9 +4740,6 @@
                   <span about="[_:SystemCapabilities3]" typeof="owl:Restriction"></span>
                   <span about="[_:SystemCapabilities3]" rel="owl:onProperty" resource="ssn-system:inCondition"><a
                       href="#SSNSYSTEMinCondition">ssn-system:inCondition</a></span>
-                  <span about="[_:SystemCapabilities3]" property="owl:allValuesFrom"
-                    resource="ssn-system:Condition"><em><b>ONLY</b></em> <a
-                      href="#SSNSYSTEMCondition">ssn-system:Condition</a></span>
                   <br>
                   <span about="ssn-system:SystemCapability" rel="rdfs:subClassOf"
                     resource="[_:SystemCapabilities4]"></span>
@@ -5828,9 +5610,6 @@
                   <span about="[_:OperatingRange3]" typeof="owl:Restriction"></span>
                   <span about="[_:OperatingRange3]" rel="owl:onProperty" resource="ssn-system:inCondition"><a
                       href="#SSNSYSTEMinCondition">ssn-system:inCondition</a></span>
-                  <span about="[_:OperatingRange3]" property="owl:allValuesFrom"
-                    resource="ssn-system:Condition"><em><b>ONLY</b></em> <a
-                      href="#SSNSYSTEMCondition">ssn-system:Condition</a></span>
                   <br>
                   <span about="ssn-system:OperatingRange" rel="rdfs:subClassOf" resource="[_:OperatingRange4]"></span>
                   <span about="[_:OperatingRange4]" typeof="owl:Restriction"></span>
@@ -6154,9 +5933,6 @@
                   <span about="[_:SurvivalRange3]" typeof="owl:Restriction"></span>
                   <span about="[_:SurvivalRange3]" rel="owl:onProperty" resource="ssn-system:inCondition"><a
                       href="#SSNSYSTEMinCondition">ssn-system:inCondition</a></span>
-                  <span about="[_:SurvivalRange3]" property="owl:allValuesFrom"
-                    resource="ssn-system:Condition"><em><b>ONLY</b></em> <a
-                      href="#SSNSYSTEMCondition">ssn-system:Condition</a></span>
                   <br>
                   <span about="ssn-system:SurvivalRange" rel="rdfs:subClassOf" resource="[_:SurvivalRange4]"></span>
                   <span about="[_:SurvivalRange4]" typeof="owl:Restriction"></span>
@@ -8020,11 +7796,6 @@
         <table>
           <tbody>
             <tr>
-              <td> <a href="#SOSAResult">sosa:Result</a> </td>
-              <td> subclass of </td>
-              <td> owl:unionOf ( dul:Region dul:Object ) </td>
-            </tr>
-            <tr>
               <td> (not (oldsosa:Observation)) and (old-sosa:observationResult some owl:Thing)</td>
               <td> subclass of </td>
               <td> <a href="#SOSAObservation">sosa:Observation</a> </td>
@@ -8140,11 +7911,11 @@
 
     <section id="OBOE_Alignment" class="informative">
       <h3>OBOE Alignment Module</h3>
-      <p>This section introduces the alignment of SOSA to <a href="https://github.com/NCEAS/oboe/">OBOE</a>.</p>
-      <p>OBOE, the Extensible Observation Ontology, is used within the
-        biodiversity community for semantic representation of observation
-        data. The ontology is composed of multiple modules. The core
-        observation elements are in the module OBOE-core. </p>
+      <p>This section introduces the alignment of SOSA to [[OBOE]].</p>
+      <p>OBOE, the Extensible Observation Ontology, is used within the biodiversity community for semantic
+        representation of observation data.
+        The ontology is composed of multiple modules.
+        The core observation elements are in the module <a href="https://github.com/NCEAS/oboe/">OBOE-core</a>. </p>
       <section id="OBOE_Alignment_ns">
         <h4>Namespaces</h4>
         <p>The following namespace prefixes are used in the alignment to SOSA.</p>
@@ -8155,14 +7926,14 @@
               <th> Namespace </th>
             </tr>
             <tr>
-              <td> sosa: </td>
+              <td> <code>sosa:</code> </td>
               <td> <a href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a>
               </td>
             </tr>
             <tr>
-              <td> oboe: </td>
+              <td> <code>oboe:</code> </td>
               <td> <a
-                  href="http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#">http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#</a>
+                  href="http://ecoinformatics.org/oboe/oboe.1.1/oboe-core.owl#">http://ecoinformatics.org/oboe/oboe.1.1/oboe-core.owl#</a>
               </td>
             </tr>
           </tbody>
@@ -8170,35 +7941,65 @@
       </section>
       <section id="OBOE_Alignment_class" class="informative">
         <h4>Class Alignments</h4>
-        <p>An oboe:Observation is composed of a collection of
-          oboe:Measurements with the same feature of interest. Each
-          oboe:Measurement concerns a distinct observed-property
-          ("characteristic") and uses a distinct procedure ("protocol"). We
-          therefore choose to align sosa:Observation with oboe:Measurement.</p>
-        <figure>
-          <a href="images/OBOE-core.png"><img alt="OBOE core classes" src="images/OBOE-core.png" height="400"></a>
-          <a href="images/SOSA-obs-core.png"><img alt="SOSA Observation" src="images/SOSA-obs-core.png"
-              height="300"></a>
-          <figcaption>Core classes from OBOE alongside the SOSA observation model.</figcaption>
+        <p>An <code>oboe:Observation</code> is composed of a collection of <code>oboe:Measurements</code> concerning a
+          single <code>oboe:Entity</code>.
+          Each individual <code>oboe:Measurement</code> concerns a distinct <code>oboe:Characteristic</code> and uses
+          a distinct <code>oboe:Protocol</code>.
+          This aligns to a <a href="#SOSAObservationCollection">sosa:ObservationCollection</a> whose member <a
+            href="#SOSAObservation">sosa:Observations</a> each concern a different <a
+            href="#SOSAobservedProperty">sosa:observedProperty</a> of a single <a
+            href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a> .
+        </p>
+        <p>An <code>oboe:ObservationCollection</code> is composed of a collection of <code>oboe:Observations</code>
+          with no particular homogeneity expectation of the members.
+          This aligns to a <a href="#SOSAObservationCollection">sosa:ObservationCollection</a> whose members are <a
+            href="#SOSAObservationCollection">sosa:ObservationCollections</a> each having a single <a
+            href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a>.
+        </p>
+        <figure id="oboe-implementation">
+          <img alt="The OBOE core model" src="./images/OBOE-core.png" / style="width:40%"><img
+            alt="The SSN-ext model arranged to align with OBOE" src="./images/SOSA-oboe-map.png" style="width:50%" />
+          <figcaption>
+            The OBOE core model (left), shown alongside the SOSA model including two levels of <a
+              href="#SOSAObservationCollection">ObservationCollection</a> (right) with matching classes and properties
+            aligned.
+          </figcaption>
         </figure>
         <p>The primary classes from [[OBOE]] are aligned with SOSA classes as
           follows.</p>
         <table>
           <tbody>
             <tr>
-              <td> oboe:Measurement </td>
+              <td> <code>oboe:ObservationCollection</code> </td>
               <td> subclass of </td>
-              <td> sosa:Observation </td>
+              <td> <a href="#SOSAObservationCollection">sosa:ObservationCollection</a>
+                <br /><a href="#SOSAhasMember">sosa:hasMember</a> <b>only</b> <a
+                  href="#SOSAObservationCollection">sosa:ObservationCollection</a>
+              </td>
             </tr>
             <tr>
-              <td> oboe:Characteristic </td>
+              <td> <code>oboe:Observation</code> </td>
+              <td> subclass of </td>
+              <td> <a href="#SOSAObservationCollection">sosa:ObservationCollection</a>
+                <br /><a href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a> <b>exactly 1</b>
+                <br /><a href="#SOSAhasMember">sosa:hasMember</a> <b>only</b> <a
+                  href="#SOSAObservation">sosa:Observation</a>
+              </td>
+            </tr>
+            <tr>
+              <td> <code>oboe:Measurement</code> </td>
+              <td> equivalent class </td>
+              <td> <a href="#SOSAObservation">sosa:Observation</a> </td>
+            </tr>
+            <tr>
+              <td> <code>oboe:Characteristic</code> </td>
               <td> equivalent class </td>
               <td> sosa:ObservableProperty </td>
             </tr>
             <tr>
-              <td> oboe:Protocol </td>
-              <td> equivalent class </td>
-              <td> sosa:Procedure </td>
+              <td> <code>oboe:Protocol</code> </td>
+              <td> subclass of </td>
+              <td> <a href="#SOSAProcedure">sosa:Procedure</a> </td>
             </tr>
           </tbody>
         </table>
@@ -8210,12 +8011,7 @@
             <tr>
               <td> sosa:FeatureOfInterest </td>
               <td> subclass of </td>
-              <td> oboe:Entity </td>
-            </tr>
-            <tr>
-              <td> sosa:Result </td>
-              <td> subclass of </td>
-              <td> oboe:Entity </td>
+              <td> <code>oboe:Entity</code> </td>
             </tr>
           </tbody>
         </table>
@@ -8227,58 +8023,49 @@
         <table>
           <tbody>
             <tr>
-              <td> oboe:ofCharacteristic </td>
+              <td> <code>oboe:ofEntity</code> </td>
+              <td> equivalent property </td>
+              <td> <a href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a> </td>
+            </tr>
+            <tr>
+              <td> <code>oboe:ofCharacteristic</code> </td>
               <td> equivalent property </td>
               <td> sosa:observedProperty </td>
             </tr>
             <tr>
-              <td> oboe:hasValue </td>
+              <td> <code>oboe:usesProtocol</code> </td>
+              <td> subproperty of </td>
+              <td> <a href="#SOSAusedProcedure">sosa:usedProcedure</a> </td>
+            </tr>
+            <tr>
+              <td> <code>oboe:usesMethod</code> </td>
+              <td> subproperty of </td>
+              <td> <a href="#SOSAusedProcedure">sosa:usedProcedure</a> </td>
+            </tr>
+            <tr>
+              <td> <code>oboe:hasValue</code> </td>
               <td> equivalent property </td>
               <td> sosa:hasResult </td>
             </tr>
-            <tr>
-              <td> oboe:usesProtocol </td>
-              <td> equivalent property </td>
-              <td> sosa:usedProcedure </td>
-            </tr>
-            <tr>
-              <td> oboe:usesMethod </td>
-              <td> equivalent property </td>
-              <td> sosa:usedProcedure </td>
-            </tr>
           </tbody>
         </table>
-        <p>oboe:hasValue, oboe:usesProtocol and oboe:usesMethod are
-          sub-properties of the corresponding SOSA properties which apply to
-          actuation and sampling as well as observation.</p>
-        <p>The feature of interest is linked to the oboe:Observation that
-          contains a oboe:Measurement, rather than to the oboe:Measurement
-          directly, so a property-chain axiom is required to express the
-          alignment.</p>
+        <p>The properties oboe:hasMember and oboe:hasMeasurement link an oboe:ObservationCollection to its member
+          oboe:Observations, and an oboe:Observation to its member oboe:Measurements, respectively.
+          These match <a href="#SOSAhasMember">sosa:hasMember</a> links to a <a
+            href="#SOSAObservationCollection">sosa:ObservationCollection</a> (with a single <a
+            href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a>) and to the <a
+            href="#SOSAObservation">sosa:Observations</a> of the different properties, respectively. </p>
         <table>
           <tbody>
             <tr>
-              <td> sosa:hasFeatureOfInterest </td>
-              <td> property-chain axiom </td>
-              <td> [oboe:measurementFor, oboe:ofEntity] </td>
-            </tr>
-          </tbody>
-        </table>
-        <p>The properties oboe:hasMeasurement and its inverse
-          oboe:measurementFor link an oboe:Observation to its member
-          oboe:Measurements. These could be modeled as sub-properties related
-          to rdfs:member and its inverse as follows.</p>
-        <table>
-          <tbody>
-            <tr>
-              <td> oboe:hasMeasurement </td>
+              <td> <code>oboe:hasMember</code> </td>
               <td> sub-property of </td>
-              <td> rdfs:member </td>
+              <td> <a href="#SOSAhasMember">sosa:hasMember</a> </td>
             </tr>
             <tr>
-              <td> oboe:measurementFor </td>
+              <td> <code>oboe:hasMeasurement</code> </td>
               <td> sub-property of </td>
-              <td> [ owl:inverseOf rdfs:member ] </td>
+              <td> <a href="#SOSAhasMember">sosa:hasMember</a> </td>
             </tr>
           </tbody>
         </table>
@@ -8409,11 +8196,6 @@
             </tr>
             <tr>
               <td> sosa:Platform </td>
-              <td> subclass of </td>
-              <td> prov:Entity </td>
-            </tr>
-            <tr>
-              <td> sosa:Result </td>
               <td> subclass of </td>
               <td> prov:Entity </td>
             </tr>
@@ -8578,9 +8360,9 @@
         Units of Measure (OM, [[Rijgersberg-et-al-2013]]), and the St Etienne School of Mines <i>Custom Datatypes</i>
         (CDT, [[CDT]]). </p>
       <ul>
-        <li>With QUDT, a <a href="#SOSAResult"><code>sosa:Result</code></a> would be a <a
-            href="http://qudt.org/"><code>qudt:QuantityValue</code></a></li>
-        <li>With OM 2, a <a href="#SOSAResult"><code>sosa:Result</code></a> would be a <a
+        <li>With QUDT, a quantitative result would be a <a href="http://qudt.org/"><code>qudt:QuantityValue</code></a>
+        </li>
+        <li>With OM 2, a quantitative result would be a <a
             href="http://www.wurvoc.org/vocabularies/"><code>om:Measure</code> or <code>om:Point</code></a></li>
         <li>With CDT, the value of <a href="#SOSAhasSimpleResult"><code>sosa:hasSimpleResult</code></a> may be
           structured to match <a
@@ -9277,9 +9059,14 @@
       <li>Adjust namespace of terms previously in sosa:</li>
       <li>Added OMS alignment modules to section 6. 'Vertical Segmentation'</li>
       <li>Added ObservationCollection, SampleCollection, hasMember</li>
-      <li>Retire O&Mv2 alignment - superseded by OMS alignment</li>
+      <li>Retire O&amp;Mv2 alignment - superseded by OMS alignment</li>
       <li>Retire SSNX alignment - leave behind a stub giving links to the previous edition of the recommendation and to
-        the RDF alignment file. </li>
+        the RDF alignment file</li>
+      <li>Remove sosa:Input, sosa:Output ; mark ssn:Input, ssn:Output deprecated</li>
+      <li>Mark ssn-system:Condition deprecated</li>
+      <li>Mark sosa:Result deprecated</li>
+      <li>Update OBOE alignment - using ObservationCollection, SampleCollection, hasMember</li>
+      the RDF alignment file. </li>
     </ol>
   </section>
 </body>
