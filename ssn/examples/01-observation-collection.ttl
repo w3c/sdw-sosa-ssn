@@ -1,4 +1,4 @@
-# baseURI: file:///C:/dev/W3C/sdw-sosa-ssn/ssn/examples/01-observation-collection.ttl
+# baseURI: https://raw.githubusercontent.com/w3c/sdw-sosa-ssn/ProcedureExecution-spec/ssn/examples/01-observation-collection.ttl
 # imports: http://www.w3.org/ns/sosa-collections/
 
 @prefix eg: <http://example.org/my-feature/> .
@@ -9,9 +9,9 @@
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<file:///C:/dev/W3C/sdw-sosa-ssn/ssn/examples/01-observation-collection.ttl>
+<https://raw.githubusercontent.com/w3c/sdw-sosa-ssn/ProcedureExecution-spec/ssn/examples/01-observation-collection.ttl>
   a owl:Ontology ;
-  owl:imports <http://www.w3.org/ns/sosa-collections/> ;
+  owl:imports <http://www.w3.org/ns/sosa/> ;
 .
 eg:HomoCollection_1
   a sosa:ObservationCollection ;
@@ -19,17 +19,24 @@ eg:HomoCollection_1
 .
 eg:a1
   a sosa:Observation ;
-  sosa:hasFeatureOfInterest <https://demo.pygeoapi.io/master/collections/utah_city_locations/items/Salem> ;
+  sosa:hasFeatureOfInterest <https://www.geonames.org/2158307> ;
   sosa:hasSimpleResult 33 ;
+.
+eg:a1
+  a sosa:Observation ;
+  sosa:hasFeatureOfInterest <https://www.geonames.org/2154172> ;
+  sosa:hasSimpleResult 27 ;
 .
 eg:c1
   a sosa:ObservationCollection ;
   sosa:hasMember eg:a1 ;
+  sosa:hasMember eg:a2 ;
+  sosa:madeBySensor <https://orcid.org/0000-0002-3884-3420> ;
   sosa:observedProperty eg:p1 ;
   sosa:phenomenonTime "2022-05-01T22:33:40Z"^^xsd:dateTime ;
   sosa:resultTime "2022-05-01T22:33:44Z"^^xsd:dateTime ;
 .
 eg:p1
   a skos:Concept ;
-  skos:prefLabel "Some Observable Property" ;
+  skos:prefLabel "Ranking Property" ;
 .
