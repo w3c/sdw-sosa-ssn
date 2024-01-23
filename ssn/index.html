@@ -3202,7 +3202,10 @@
             <tbody>
               <tr>
                 <th>Example</th>
-                <td><span property="skos:example">For instance, the values 23 or true.</span></td>
+                <td><span property="skos:example">
+                    <pre>"23"^^xsd:integer 
+"true"^^xsd:boolean</pre>
+                  </span></td>
               </tr>
               <tr>
                 <th>Domain Includes</th>
@@ -3222,33 +3225,41 @@
         </section>
 
 
-
-
         <section class="specterm sosa" id="SOSAresultTime" about="sosa:resultTime" typeof="owl:DatatypeProperty">
           <h5><a href="#SOSAresultTime">sosa:resultTime</a></h5>
           <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/resultTime</p>
           <p><strong>an OWL Datatype Property</strong></p>
 
           <em property="rdfs:label">result time</em> -
-          <span property="rdfs:comment skos:definition">The result time is the instant of time when the <a
+          <span property="skos:definition">The result time is the instant of time when the <a
               href="#SOSAObservation"><code>Observation</code></a>, <a href="#SOSAActuation"><code>Actuation</code></a>
             or <a href="#SOSASampling"><code>Sampling</code></a> activity was completed.</span> <br>
+          <span property="rdfs:comment">The value would usually be encoded using <a
+              href="https://www.w3.org/TR/xmlschema-2/#dateTime"><code>xsd:dateTime</code></a> <a
+              href="https://www.w3.org/TR/xmlschema-2/#date"><code>xsd:date</code></a> <a
+              href="https://www.w3.org/TR/xmlschema-2/#gYearMonth"><code>xsd:gYearMonth</code></a> <a
+              href="https://www.w3.org/TR/xmlschema-2/#gYear"><code>xsd:gYear</code></a>.</span> <br>
+
           <table>
             <tbody>
               <tr>
-                <th>Domain Includes</th>
-                <td><span rel="schema:domainIncludes" resource="sosa:Actuation"><a
-                      href="#SOSAActuation">sosa:Actuation</a></span>, <span rel="schema:domainIncludes"
-                    resource="sosa:Observation"><a href="#SOSAObservation">sosa:Observation</a></span>, <span
-                    rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a
-                      href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>, <span
-                    rel="schema:domainIncludes" resource="sosa:Sampling"><a
-                      href="#SOSASampling">sosa:Sampling</a></span></td>
-              </tr>
               <tr>
-                <th>Range</th>
-                <td><span rel="rdfs:range" resource="xsd:dateTime"><a
-                      href="https://www.w3.org/TR/xmlschema-2/#dateTime">xsd:dateTime</a></span></td>
+                <th>Example</th>
+                <td><span property="skos:example">
+                    <pre>"2024-01-23T19:26:00+11:00"^^xsd:dateTime
+"2024-01-23"^^xsd:date
+"2024-01"^^xsd:gMonth
+"2024"^^xsd:gYear</pre>
+                  </span></td>
+              </tr>
+              <th>Domain Includes</th>
+              <td><span rel="schema:domainIncludes" resource="sosa:Actuation"><a
+                    href="#SOSAActuation">sosa:Actuation</a></span>, <span rel="schema:domainIncludes"
+                  resource="sosa:Observation"><a href="#SOSAObservation">sosa:Observation</a></span>, <span
+                  rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a
+                    href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>, <span
+                  rel="schema:domainIncludes" resource="sosa:Sampling"><a href="#SOSASampling">sosa:Sampling</a></span>
+              </td>
               </tr>
             </tbody>
           </table>
@@ -8391,6 +8402,7 @@
       </ul>
     </section>
 
+
     <section id="SOSASystem-instances" class="informative">
       <h3>Generic or Specific Instances of sosa:System</h3>
       <p>This specification does not specify whether an instance of <a href="#SOSASystem"><code>sosa:System</code></a>
@@ -8416,13 +8428,6 @@
       <p>This second example is modeling instances of <a href="#SOSASystem"><code>sosa:System</code></a> as specific:
       </p>
       <pre class="example" data-include="./examples/2017ex7.ttl" data-include-format="text"></pre>
-    </section>
-
-    <section id="datasheet" class="informative">
-      <h3>Sensors, Procedures, Datasheets</h3>
-      <p>The relationships between and roles of indivdual Observations, Sensors (observers), and Procedures may follow a
-        number of patterns. </p>
-      <p> ... More here from Maxime, Alex, Sylvain, Hylke ... </p>
     </section>
 
   </section>
@@ -9072,7 +9077,7 @@
       <li>Mark ssn-system:Condition deprecated</li>
       <li>Mark sosa:Result deprecated</li>
       <li>Update OBOE alignment - using ObservationCollection, SampleCollection, hasMember</li>
-      the RDF alignment file. </li>
+      <li>remove rdfs:range on sosa:resultTime</li>
       <li>Add patterns for Sensors, Procedures and Datasheets</li>
     </ol>
   </section>
