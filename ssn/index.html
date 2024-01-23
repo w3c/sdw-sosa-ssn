@@ -1017,9 +1017,8 @@
           <span property="rdfs:comment skos:definition">Device, agent (including humans), or software (simulation)
             involved in, or implementing, a <a href="#SOSAProcedure"><code>Procedure</code></a>. <a
               href="#SOSASensor"><code>Sensors</code></a> respond to a <a
-              href="#SOSAStimulus"><code>Stimulus</code></a>, e.g., a change in the environment, or 
-              input data composed from the <a
-              href="#SOSAResult"><code>Results</code></a> of prior <a
+              href="#SOSAStimulus"><code>Stimulus</code></a>, e.g., a change in the environment, or
+            input data composed from the <a href="#SOSAResult"><code>Results</code></a> of prior <a
               href="#SOSAObservation"><code>Observations</code></a>, and generate a <a
               href="#SOSAResult"><code>Result</code></a>. <a href="#SOSASensor"><code>Sensors</code></a> can be hosted
             by <a href="#SOSAPlatform"><code>Platforms</code></a>.</span>
@@ -2208,7 +2207,7 @@
           </div>
         </section>
 
-        <section class="specterm sosa" id="SOSAhasSampledFeature" about="sosa:hasSampledFeature"
+        <section class="informative specterm sosa" id="SOSAhasSampledFeature" about="sosa:hasSampledFeature"
           typeof="owl:ObjectProperty">
           <h5><a href="#SOSAhasSampledFeature">sosa:hasSampledFeature</a></h5>
           <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/hasSampledFeature</p>
@@ -3601,16 +3600,18 @@
         </section>
 
 
-        <section class="specterm" id="SOSAExecution" about="sosa:Execution" typeof="owl:Class rdfs:Class">
+        <section class="informative specterm" id="SOSAExecution" about="sosa:Execution" typeof="owl:Class rdfs:Class">
           <h5><a href="#SOSAExecution">sosa:Execution</a></h5>
           <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/Execution</p>
           <p><strong>an OWL Class</strong></p>
           <p class="note">Execution added in the 2024 Update</p>
+          <p class="note">This term is non-normative pending further implementation experience</p>
           <em property="rdfs:label">Procedure Execution</em> -
           <span property="rdfs:comment skos:definition">Act of carrying out a <a
               href="#SOSAProcedure"><code>Procedure</code></a>. This class generalizes the <a
               href="#SOSAObservation"><code>Observation</code></a>, <a href="#SOSAActuation"><code>Actuation</code></a>,
-            and <a href="#SOSASampling"><code>Sampling</code></a> classes.</span> <br>
+            and <a href="#SOSASampling"><code>Sampling</code></a> classes, and is not expected to be used
+            directly.</span> <br>
           <table>
             <tbody>
               <tr>
@@ -3678,15 +3679,19 @@
         </section>
 
 
-        <section class="specterm" id="SOSAhasInputValue" about="sosa:hasInputValue" typeof="owl:ObjectProperty">
+        <section class="informative specterm" id="SOSAhasInputValue" about="sosa:hasInputValue"
+          typeof="owl:ObjectProperty">
           <h5><a href="#SOSAhasInputValue">sosa:hasInputValue</a></h5>
           <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/hasInputValue</p>
           <p><strong>an OWL Object Property</strong></p>
           <p class="note">hasInputValue added in the 2024 Update</p>
+          <p class="note">This term is non-normative pending further implementation experience</p>
           <em property="rdfs:label">has Input Value</em> -
-          <span property="skos:definition">Relation between a <a href="#SOSAExecution"><code>Execution</code></a> (<a
-              href="#SOSAActuation"><code>Actuation</code></a>, <a href="#SOSAObservation"><code>Observation</code></a>,
-            <a ref="#SOSASampling"><code>Sampling</code></a>) and an input value to it.</span>
+          <span property="skos:definition">Assigns a value to an input defined by the <a
+              href="#SOSAProcedure"><code>Procedure</code></a> that is used in an <a
+              href="#SOSAExecution"><code>Execution</code></a> (<a href="#SOSAActuation"><code>Actuation</code></a>, <a
+              href="#SOSAObservation"><code>Observation</code></a>, <a
+              ref="#SOSASampling"><code>Sampling</code></a>).</span>
           <br><span property="rdfs:comment">The input value should be suitable for the input definition on the
             corresponding <a href="#SOSAusedProcedure"><code>usedProcedure</code></a>.</span>
           <table>
@@ -3707,15 +3712,19 @@
         </section>
 
 
-        <section class="specterm" id="SOSAhasOutputValue" about="sosa:hasOutputValue" typeof="owl:ObjectProperty">
+        <section class="informative specterm" id="SOSAhasOutputValue" about="sosa:hasOutputValue"
+          typeof="owl:ObjectProperty">
           <h5><a href="#SOSAhasOutputValue">sosa:hasOutputValue</a></h5>
           <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/hasOutputValue</p>
           <p><strong>an OWL Object Property</strong></p>
           <p class="note">hasOutputValue added in the 2024 Update</p>
+          <p class="note">This term is non-normative pending further implementation experience</p>
           <em property="rdfs:label">has Output Value</em> -
-          <span property="skos:definition">Relation between a <a href="#SOSAExecution"><code>Execution</code></a> (<a
-              href="#SOSAActuation"><code>Actuation</code></a>, <a href="#SOSAObservation"><code>Observation</code></a>,
-            <a href="#SOSASampling"><code>Sampling</code></a>) and an output value from it.</span>
+          <span property="skos:definition">Assigns a value to an output defined by the <a
+              href="#SOSAProcedure"><code>Procedure</code></a> that is used in an <a
+              href="#SOSAExecution"><code>Execution</code></a> (<a href="#SOSAActuation"><code>Actuation</code></a>, <a
+              href="#SOSAObservation"><code>Observation</code></a>, <a
+              ref="#SOSASampling"><code>Sampling</code></a>)..</span>
           <br><span property="rdfs:comment">The output value should be suitable for the output definition on the
             corresponding <a href="#SOSAusedProcedure"><code>usedProcedure</code></a>.</span>
           <table>
