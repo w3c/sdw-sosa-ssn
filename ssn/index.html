@@ -3202,7 +3202,8 @@
             <tbody>
               <tr>
                 <th>Example</th>
-                <td><span property="skos:example">For instance, the values 23 or true.</span></td>
+                <td><span property="skos:example"><pre>"23"^^xsd:integer 
+"true"^^xsd:boolean</pre></span></td>
               </tr>
               <tr>
                 <th>Domain Includes</th>
@@ -3222,21 +3223,32 @@
         </section>
 
 
-
-
         <section class="specterm sosa" id="SOSAresultTime" about="sosa:resultTime" typeof="owl:DatatypeProperty">
           <h5><a href="#SOSAresultTime">sosa:resultTime</a></h5>
           <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/resultTime</p>
           <p><strong>an OWL Datatype Property</strong></p>
 
           <em property="rdfs:label">result time</em> -
-          <span property="rdfs:comment skos:definition">The result time is the instant of time when the <a
+          <span property="skos:definition">The result time is the instant of time when the <a
               href="#SOSAObservation"><code>Observation</code></a>, <a href="#SOSAActuation"><code>Actuation</code></a>
             or <a href="#SOSASampling"><code>Sampling</code></a> activity was completed.</span> <br>
+          <span property="rdfs:comment">The value would usually be encoded using <a
+              href="https://www.w3.org/TR/xmlschema-2/#dateTime"><code>xsd:dateTime</code></a> <a
+              href="https://www.w3.org/TR/xmlschema-2/#date"><code>xsd:date</code></a> <a
+              href="https://www.w3.org/TR/xmlschema-2/#gYearMonth"><code>xsd:gYearMonth</code></a> <a
+              href="https://www.w3.org/TR/xmlschema-2/#gYear"><code>xsd:gYear</code></a>.</span> <br>
+
           <table>
             <tbody>
               <tr>
-                <th>Domain Includes</th>
+                <tr>
+                  <th>Example</th>
+                  <td><span property="skos:example"><pre>"2024-01-23T19:26:00+11:00"^^xsd:dateTime
+"2024-01-23"^^xsd:date
+"2024-01"^^xsd:gMonth
+"2024"^^xsd:gYear</pre></span></td>
+                </tr>
+                  <th>Domain Includes</th>
                 <td><span rel="schema:domainIncludes" resource="sosa:Actuation"><a
                       href="#SOSAActuation">sosa:Actuation</a></span>, <span rel="schema:domainIncludes"
                     resource="sosa:Observation"><a href="#SOSAObservation">sosa:Observation</a></span>, <span
@@ -3244,11 +3256,6 @@
                       href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>, <span
                     rel="schema:domainIncludes" resource="sosa:Sampling"><a
                       href="#SOSASampling">sosa:Sampling</a></span></td>
-              </tr>
-              <tr>
-                <th>Range</th>
-                <td><span rel="rdfs:range" resource="xsd:dateTime"><a
-                      href="https://www.w3.org/TR/xmlschema-2/#dateTime">xsd:dateTime</a></span></td>
               </tr>
             </tbody>
           </table>
@@ -9067,6 +9074,7 @@
       <li>Mark sosa:Result deprecated</li>
       <li>Update OBOE alignment - using ObservationCollection, SampleCollection, hasMember</li>
       the RDF alignment file. </li>
+      <li>remove rdfs:range on sosa:resultTime</li>
     </ol>
   </section>
 </body>
