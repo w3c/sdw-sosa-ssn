@@ -8430,6 +8430,33 @@
       <pre class="example" data-include="./examples/2017ex7.ttl" data-include-format="text"></pre>
     </section>
 
+    <section id="datasheet" class="informative">
+      <h3>Sensors, Procedures, Datasheets</h3>
+      <p>The relationships between and roles of indivdual Observations, Sensors (observers), and Procedures may follow a
+        number of patterns. </p>
+      <h4>Pattern 1: Use the <code>implements</code> association to provide the datasheet</h4>
+      <p>The pattern used by Connected Systems is to use the <code>implements</code> property on the <code>System</code>
+        class to point to a datasheet, while the <code>useProcedure</code> property on the <code>Observation</code>
+        or <code>ObservationCollection</code> is used to point to the procedure used for a particular measurement or
+        series of measurement (such procedure can include a specific sensor configuration). The same is done for actuators.
+        Below is a simple example illustrating this pattern:
+        <pre class="example" data-include="./examples/procedure-datasheet-pattern1.ttl" data-include-format="text"></pre>
+        This pattern has two caveats:
+        <ol>
+          <li>Properties defined in the System Capabilities module such as <code>ssn-system:hasOperatingRange</code> are not
+          available on a <code>Procedure</code> instance, so we have to make the datasheet a subclass of both
+          <code>Procedure</code> and <code>System</code>.</li>
+          <li>If other procedures are referenced using the <code>implements</code> relationship, there is no way to know
+          which one is the datasheet. That's why in connected systems, we reduced the cardinality of <code>implements</code>
+          to <code>MAX 1</code> and use it to point only to datasheets.</li>
+        </ol>
+      </p>
+
+      <h4>Pattern 2: ???</h4>
+
+      <p> ... More here from Maxime, Alex, Sylvain, Hylke ... </p>
+    </section>
+
   </section>
 
   <section class="appendix" id="wide-review">
