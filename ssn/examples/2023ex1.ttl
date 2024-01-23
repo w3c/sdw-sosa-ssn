@@ -1,11 +1,22 @@
-@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix sosa: <http://www.w3.org/ns/sosa/> .
-@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+# baseURI: file:///C:/dev/W3C/sdw-sosa-ssn/ssn/examples/2023ex1.ttl
+# imports: http://www.w3.org/ns/sosa/
 
-<earthAtmosphere_StE> a sosa:Sample ;
-  sosa:isSampleOf <earthAtmosphere> ;
-  geo:hasGeometry [ 
-    a geo:Point ;
-    geo:asWKT "POINT (4.387611 45.437772)"^^geo:WktLiteral ;
-  ] ;
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<file:///C:/dev/W3C/sdw-sosa-ssn/ssn/examples/2023ex1.ttl>
+  a owl:Ontology ;
+  owl:imports sosa: ;
+.
+<file:///C:/dev/W3C/sdw-sosa-ssn/ssn/examples/earthAtmosphere_StE>
+  a sosa:Sample ;
+  geo:hasGeometry [
+      a geo:Point ;
+      geo:asWKT "POINT (4.387611 45.437772)"^^geo:WktLiteral ;
+    ] ;
+  sosa:isSampleOf <file:///C:/dev/W3C/sdw-sosa-ssn/ssn/examples/earthAtmosphere> ;
 .
