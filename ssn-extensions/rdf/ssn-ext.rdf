@@ -15,15 +15,15 @@
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
   xml:base="http://www.w3.org/ns/ssn/ext">
   <owl:Ontology rdf:about="">
-    <dcterms:description>Some extensions to the SSN Ontology, to support&#xD;
-&#xD;
-1. discovery and use of observation and sample data through links to an ultimate feature-of-interest, or sample&#xD;
-2. observations are  made as part of a set or collection, in which one or more of the observation properties - hasFeatureOfInterest, observedProperty, madeBySensor, usedProcedure, phenomenonTime, resultTime - are shared by all members of the collection. &#xD;
-&#xD;
+    <dcterms:description>Some extensions to the SSN Ontology, to support
+
+1. discovery and use of observation and sample data through links to an ultimate feature-of-interest, or sample
+2. observations are  made as part of a set or collection, in which one or more of the observation properties - hasFeatureOfInterest, observedProperty, madeBySensor, usedProcedure, phenomenonTime, resultTime - are shared by all members of the collection. 
+
 These extensions to the SSN Ontology are packaged in a separate RDF graph to enable loading and use if required. </dcterms:description>
     <dcterms:rights>Copyright 2019 W3C/OGC.</dcterms:rights>
-    <rdfs:comment>The classes, properties, and axioms in this RDF graph are described in https://www.w3.org/TR/vocab-ssn-ext/&#xD;
-&#xD;
+    <rdfs:comment>The classes, properties, and axioms in this RDF graph are described in https://www.w3.org/TR/vocab-ssn-ext/
+
 Their status is non-normative, and SSN applications are not required to recognize or support them. </rdfs:comment>
     <dcterms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#date"
     >2018-03-08</dcterms:created>
@@ -177,13 +177,13 @@ Their status is non-normative, and SSN applications are not required to recogniz
                 >1</owl:minCardinality>
               </owl:Restriction>
             </rdfs:subClassOf>
-            <rdfs:comment>If values are not provided for the following Observation properties, they may be provided by the ObservationCollection of which it is a member:&#xD;
-- hasFeatureOfInterest&#xD;
-- hasUltimateFeatureOfInterest&#xD;
-- madeBySensor&#xD;
-- observedProperty&#xD;
-- phenomenonTime&#xD;
-- resultTime&#xD;
+            <rdfs:comment>If values are not provided for the following Observation properties, they may be provided by the ObservationCollection of which it is a member:
+- hasFeatureOfInterest
+- hasUltimateFeatureOfInterest
+- madeBySensor
+- observedProperty
+- phenomenonTime
+- resultTime
 - usedProcedure</rdfs:comment>
           </rdf:Description>
           <owl:Class rdf:about="http://www.w3.org/ns/sosa/ObservationCollection"/>
@@ -226,7 +226,7 @@ Their status is non-normative, and SSN applications are not required to recogniz
         </owl:unionOf>
       </owl:Class>
     </rdfs:domain>
-    <rdfs:comment>should match a property chain something like this but with sosa:isSampleOf*&#xD;
+    <rdfs:comment>should match a property chain something like this but with sosa:isSampleOf*
       owl:propertyChainAxiom ( sosa:hasFeatureOfInterest sosa:isSampleOf )</rdfs:comment>
     <schema:domainIncludes rdf:resource="http://www.w3.org/ns/sosa/Sampling"/>
     <rdfs:comment>link to the ultimate feature of interest of an observation or act of sampling. This is useful when the proximate feature of interest is a sample of the ultimate feature of interest, directly or trasntitively.</rdfs:comment>
