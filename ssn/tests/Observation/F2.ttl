@@ -1,0 +1,28 @@
+@base <https://example.org/ssn/test/observation/F2> .
+@prefix ex: <https://example.org/ssn/test/observation/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix time: <http://www.w3.org/2006/time#>.
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+ex:OF2 a sosa:Observation ;
+    rdfs:comment "Invalid observation - no FoI" ;
+    sosa:usedProcedure ex:T9 ;
+    sosa:madeBySensor ex:Th3 ;
+    sosa:phenomenonTime [
+        time:hasBeginning [
+            time:inXSDDateTime "2020-01-05T04:00:00"^^xsd:dateTime ;
+        ] ;
+        time:hasEnd [
+            time:inXSDDateTime "2020-01-05T04:30:00"^^xsd:dateTime ;
+        ] ;
+    ] ;
+    sosa:resultTime "2020-01-05T04:31:00"^^xsd:dateTime ;
+    sosa:observedProperty ex:Temperature ;
+    sosa:hasSimpleResult "-29.9"^^unit:DEG_C ;
+    .
+
+ex:Temperature a sosa:ObservableProperty .
+ex:T9 a sosa:Procedure .
+ex:Th3 a sosa:Sensor .

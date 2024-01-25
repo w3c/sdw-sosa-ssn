@@ -1,0 +1,19 @@
+@base <https://example.org/ssn/test/observation/P4> .
+@prefix ex: <https://example.org/ssn/test/observation/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+ex:OP4 a sosa:Observation ;
+    rdfs:comment "Minimal example of an observation with an object result" ;
+    sosa:observedProperty ex:Temperature ;
+    sosa:hasFeatureOfInterest ex:apartment134 ;
+    sosa:hasResult ex:r1 ;
+    .
+
+ex:Temperature a sosa:ObservableProperty .
+ex:apartment134 a sosa:FeatureOfInterest . 
+ex:r1 a owl:Individual .
