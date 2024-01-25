@@ -100,7 +100,6 @@ ssn-system:hasSystemCapability a owl:ObjectProperty ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:forProperty ; owl:allValuesFrom ssn:Property ] ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasSystemProperty ; owl:allValuesFrom ssn-system:SystemProperty ] ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:inCondition ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:inCondition ] ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf ssn-system:hasSystemCapability ] ; owl:allValuesFrom ssn:System ] ;
     rdfs:isDefinedBy ssn-system: .
 
@@ -254,7 +253,6 @@ ssn-system:hasOperatingRange a owl:ObjectProperty ;
 
     The System continues to operate as defined using SystemCapability. If, however, the SurvivalRange is violated, the System is 'damaged' and SystemCapability specifications may no longer hold."""@en ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:inCondition ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:inCondition ] ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf ssn-system:hasOperatingRange ] ; owl:allValuesFrom ssn:System ] ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasOperatingProperty ; owl:allValuesFrom ssn-system:OperatingProperty ] ;
     rdfs:subClassOf ssn:Property ;
@@ -315,7 +313,6 @@ ssn-system:hasSurvivalRange a owl:ObjectProperty ;
     rdfs:subClassOf ssn:Property ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:inCondition ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasSurvivalProperty ; owl:allValuesFrom ssn-system:SurvivalProperty ] ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:inCondition ] ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf ssn-system:hasSurvivalRange ] ; owl:allValuesFrom ssn:System ] ;
     rdfs:isDefinedBy ssn-system: .
 

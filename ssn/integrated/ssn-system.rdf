@@ -17,6 +17,7 @@
      xmlns:ssn-system="http://www.w3.org/ns/ssn/systems/"
      xmlns:sosa="http://www.w3.org/ns/sosa/">
     <owl:Ontology rdf:about="http://www.w3.org/ns/ssn/systems/">
+        <rdf:type rdf:resource="http://purl.org/vocommons/voaf#Vocabulary"/>
         <owl:imports rdf:resource="http://www.w3.org/ns/ssn/"/>
         <rdfs:seeAlso rdf:resource="https://www.w3.org/2015/spatial/wiki/Semantic_Sensor_Network_Ontology"/>
         <dcterms:license rdf:resource="http://www.opengeospatial.org/ogc/Software"/>
@@ -322,6 +323,7 @@
     <!-- http://www.w3.org/ns/ssn/systems/Condition -->
 
     <owl:Class rdf:about="http://www.w3.org/ns/ssn/systems/Condition">
+        <owl:deprecated rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:deprecated>
         <rdfs:subClassOf rdf:resource="http://www.w3.org/ns/ssn/Property"/>
         <rdfs:comment xml:lang="en">Used to specify ranges for qualities that act as conditions on a system/sensor&apos;s operation.  For example, wind speed of 10-60m/s may be used as the condition on a SystemProperty, for example, to state that a sensor has a particular accuracy in that condition.</rdfs:comment>
         <rdfs:isDefinedBy rdf:resource="http://www.w3.org/ns/ssn/systems/"/>
@@ -501,12 +503,6 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.w3.org/ns/ssn/systems/inCondition"/>
-                <owl:allValuesFrom rdf:resource="http://www.w3.org/ns/ssn/systems/Condition"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty>
                     <rdf:Description>
                         <owl:inverseOf rdf:resource="http://www.w3.org/ns/ssn/systems/hasOperatingRange"/>
@@ -661,12 +657,6 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.w3.org/ns/ssn/systems/inCondition"/>
-                <owl:allValuesFrom rdf:resource="http://www.w3.org/ns/ssn/systems/Condition"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty>
                     <rdf:Description>
                         <owl:inverseOf rdf:resource="http://www.w3.org/ns/ssn/systems/hasSurvivalRange"/>
@@ -711,12 +701,6 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.w3.org/ns/ssn/systems/hasSystemProperty"/>
                 <owl:allValuesFrom rdf:resource="http://www.w3.org/ns/ssn/systems/SystemProperty"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.w3.org/ns/ssn/systems/inCondition"/>
-                <owl:allValuesFrom rdf:resource="http://www.w3.org/ns/ssn/systems/Condition"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -794,29 +778,7 @@
     <!-- http://xmlns.com/foaf/0.1/Agent -->
 
     <owl:Class rdf:about="http://xmlns.com/foaf/0.1/Agent"/>
-    
 
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Individuals
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://www.w3.org/ns/ssn/systems/ -->
-
-    <owl:NamedIndividual rdf:about="http://www.w3.org/ns/ssn/systems/">
-        <rdf:type rdf:resource="http://purl.org/vocommons/voaf#Vocabulary"/>
-    </owl:NamedIndividual>
-    <rdf:Description>
-        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Agent"/>
-        <foaf:name xml:lang="en">W3C/OGC Spatial Data on the Web Working Group</foaf:name>
-    </rdf:Description>
 </rdf:RDF>
 
 
