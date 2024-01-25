@@ -57,6 +57,7 @@ sosa:SampleCollection
       ) ; 
     ] 
   ] ;
+  owl:disjointWith sosa:ActuationCollection ;
   owl:disjointWith sosa:ObservationCollection ;
   rdfs:subClassOf [ 
     a owl:Restriction ; 
@@ -98,6 +99,7 @@ sosa:ObservationCollection
       ) ;
     ] 
   ] ;
+  owl:disjointWith sosa:ActuationCollection ;
   owl:disjointWith sosa:SampleCollection ;
   rdfs:subClassOf [ 
     a owl:Restriction ; 
@@ -165,5 +167,66 @@ sosa:ObservationCollection
 #    owl:onProperty dqv:hasQualityMeasurement ; 
 #    owl:minCardinality "0"^^xsd:nonNegativeInteger 
 #  ] ;
+  rdfs:isDefinedBy sosa: .
+
+sosa:ActuationCollection 
+  rdfs:subClassOf rdf:Bag ;
+  rdfs:subClassOf [ 
+    a owl:Restriction ; 
+    owl:onProperty sosa:hasMember ; 
+    owl:allValuesFrom [ 
+      owl:unionOf ( 
+        sosa:Actuation 
+        sosa:ActuationCollection 
+      ) ;
+    ] 
+  ] ;
+  owl:disjointWith sosa:ObservationCollection ;
+  owl:disjointWith sosa:SampleCollection ;
+  rdfs:subClassOf [ 
+    a owl:Restriction ; 
+    owl:onProperty sosa:madeByActuator ; 
+    owl:minCardinality "0"^^xsd:nonNegativeInteger 
+  ] ;
+  rdfs:subClassOf [ 
+    a owl:Restriction ; 
+    owl:onProperty sosa:usedProcedure ; 
+    owl:minCardinality "0"^^xsd:nonNegativeInteger 
+  ] ;
+  rdfs:subClassOf [ 
+    a owl:Restriction ; 
+    owl:onProperty sosa:hasFeatureOfInterest ; 
+    owl:minCardinality "0"^^xsd:nonNegativeInteger 
+  ] ;
+  rdfs:subClassOf [ 
+    a owl:Restriction ; 
+    owl:onProperty sosa:hasUltimateFeatureOfInterest ; 
+    owl:minCardinality "0"^^xsd:nonNegativeInteger 
+  ] ;
+  rdfs:subClassOf [ 
+    a owl:Restriction ; 
+    owl:onProperty sosa:actsOnProperty ; 
+    owl:minCardinality "0"^^xsd:nonNegativeInteger 
+  ] ;
+  rdfs:subClassOf [ 
+    a owl:Restriction ; 
+    owl:onProperty sosa:phenomenonTime ; 
+    owl:minCardinality "0"^^xsd:nonNegativeInteger 
+  ] ;
+  rdfs:subClassOf [ 
+    a owl:Restriction ; 
+    owl:onProperty sosa:resultTime ; 
+    owl:minCardinality "0"^^xsd:nonNegativeInteger 
+  ] ;
+  rdfs:subClassOf [ 
+    a owl:Restriction ; 
+    owl:onProperty sosa:hasResult ; 
+    owl:minCardinality "0"^^xsd:nonNegativeInteger 
+  ] ;
+  rdfs:subClassOf [ 
+    a owl:Restriction ; 
+    owl:onProperty sosa:hasSimpleResult ; 
+    owl:minCardinality "0"^^xsd:nonNegativeInteger 
+  ] ;
   rdfs:isDefinedBy sosa: .
 
