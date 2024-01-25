@@ -403,7 +403,7 @@ sosa:ProcedureExecution a rdfs:Class , owl:Class ;
 sosa:Observation a rdfs:Class , owl:Class ;
   rdfs:label "Observation"@en ;
   skos:definition "Act of carrying out an (Observation) Procedure to estimate or calculate a value of a property of a FeatureOfInterest. Links to a Sensor to describe what made the Observation and how; links to an ObservableProperty to describe what the result is an estimate of, and to a FeatureOfInterest to detail what that property was associated with."@en ;
-  rdfs:comment "Act of carrying out an (Observation) Procedure to estimate or calculate a value of a property of a FeatureOfInterest. Links to a Sensor to describe what made the Observation and how; links to an ObservableProperty to describe what the result is an estimate of, and to a FeatureOfInterest to detail what that property was associated with."@en ;
+  rdfs:comment "An Observation concerns a single ObservableProperty of a single FeatureOfInterest. Observations of multiple properties, or other combinations of Observations, may be described in an ObservationCollection."@en ;
   skos:example "The activity of estimating the intensity of an Earthquake using the Mercalli intensity scale is an Observation as is measuring the moment magnitude, i.e., the energy released by said earthquake."@en ;
   rdfs:isDefinedBy sosa: .
 
@@ -448,7 +448,8 @@ sosa:Observation a rdfs:Class , owl:Class ;
 
 sosa:Actuation a owl:Class ;
   rdfs:label "Actuation"@en ;
-  skos:definition "An Actuation carries out an (Actuation) Procedure to change the state of the world using an Actuator. hasResult indicates the intended value of the ActuatableProperty at the completion of the Actuation"@en ;
+  skos:definition "An Actuation carries out an (Actuation) Procedure to change the state of something in the world using an Actuator. hasResult indicates the intended value of the ActuatableProperty at the completion of the Actuation"@en ;
+  rdfs:comment "An Actuation concerns a single ActuatableProperty of a single FeatureOfInterest. Changes to multiple properties, or other combinations of Actuations, may be described in an ActuationCollection."@en ;
   rdfs:comment "There may be an associated Observation to verify that the result has been obtained. "@en ;
   skos:example "The activity of automatically closing a window if the temperature in a room drops below 20 degree Celsius. The activity is the Actuation and the device that closes the window is the Actuator. The Procedure is the rule, plan, or specification that defines the conditions that triggers the Actuation, here a drop in temperature. "@en ;
   rdfs:isDefinedBy sosa: .

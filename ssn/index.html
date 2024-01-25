@@ -777,14 +777,22 @@
           <p><strong>an OWL Class</strong></p>
 
           <em property="rdfs:label">Observation</em> -
-          <span property="rdfs:comment skos:definition">Act of carrying out an (Observation) <a
+          <span property="skos:definition">Act of carrying out an (Observation) <a
               href="#SOSAProcedure"><code>Procedure</code></a> to estimate or calculate a value of a property of a <a
               href="#SOSAFeatureOfInterest"><code>FeatureOfInterest</code></a>. Links to a <a
               href="#SOSASensor"><code>Sensor</code></a> to describe what made the <a
               href="#SOSAObservation"><code>Observation</code></a> and how; links to an <a
               href="#SOSAObservableProperty"><code>ObservableProperty</code></a> to describe what the result is an
             estimate of, and to a <a href="#SOSAFeatureOfInterest"><code>FeatureOfInterest</code></a> to detail what
-            that property was associated with.</span><br>
+            that property was associated with.</span>
+          <br>
+          <br>
+          <span property="rdfs:comment">An <a href="#SOSAObservation"><code>Observation</code></a> concerns a single <a
+              href="#SOSAObservableProperty"><code>ObservableProperty</code></a> of a single <a
+              href="#SOSAFeatureOfInterest"><code>FeatureOfInterest</code></a>.
+            Observations of multiple properties, or other combinations of Observations, may be described in an <a
+              href="#SOSAObservationCollection"><code>ObservationCollection</code></a>.</span>
+          <br>
           <table>
             <tbody>
               <tr>
@@ -1510,12 +1518,21 @@
 
           <em property="rdfs:label">Actuation</em> -
           <span property="skos:definition">An <a href="#SOSAActuation"><code>Actuation</code></a> carries out an
-            (Actuation) <a href="#SOSAProcedure"><code>Procedure</code></a> to change the state of the world using an <a
-              href="#SOSAActuator"><code>Actuator</code></a>. <a href="#SOSAhasResult"><code>hasResult</code></a>
+            (Actuation) <a href="#SOSAProcedure"><code>Procedure</code></a> to change the state of something in the
+            world using an <a href="#SOSAActuator"><code>Actuator</code></a>. <a
+              href="#SOSAhasResult"><code>hasResult</code></a>
             indicates the intended value of the <a href="#SOSAActuatableProperty"><code>ActuatableProperty</code></a> at
-            the completion of the <a href="#SOSAActuation"><code>Actuation</code></a> </span> <br>
+            the completion of the <a href="#SOSAActuation"><code>Actuation</code></a> </span>
+          <br>
+          <br>
           <span property="rdfs:comment">There may be an associated <a
               href="#SOSAObservation"><code>Observation</code></a> to verify that the result has been obtained. </span>
+          <br>
+          <span property="rdfs:comment">An <a href="#SOSAActuation"><code>Actuation</code></a> concerns a single <a
+              href="#SOSAActuatableProperty"><code>ActuatableProperty</code></a> of a single <a
+              href="#SOSAFeatureOfInterest"><code>FeatureOfInterest</code></a>.
+            Changes to multiple properties, or other combinations of Actuations, may be described in an <a
+              href="#SOSAActuationCollection"><code>ActuationCollection</code></a>.</span>
           <br>
           <table>
             <tbody>
@@ -3211,8 +3228,10 @@
             <tbody>
               <tr>
                 <th>Example</th>
-                <td><span property="skos:example"><pre>"23"^^xsd:integer 
-"true"^^xsd:boolean</pre></span></td>
+                <td><span property="skos:example">
+                    <pre>"23"^^xsd:integer 
+"true"^^xsd:boolean</pre>
+                  </span></td>
               </tr>
               <tr>
                 <th>Domain Includes</th>
@@ -3250,21 +3269,23 @@
           <table>
             <tbody>
               <tr>
-                <tr>
-                  <th>Example</th>
-                  <td><span property="skos:example"><pre>"2024-01-23T19:26:00+11:00"^^xsd:dateTime
+              <tr>
+                <th>Example</th>
+                <td><span property="skos:example">
+                    <pre>"2024-01-23T19:26:00+11:00"^^xsd:dateTime
 "2024-01-23"^^xsd:date
 "2024-01"^^xsd:gMonth
-"2024"^^xsd:gYear</pre></span></td>
-                </tr>
-                  <th>Domain Includes</th>
-                <td><span rel="schema:domainIncludes" resource="sosa:Actuation"><a
-                      href="#SOSAActuation">sosa:Actuation</a></span>, <span rel="schema:domainIncludes"
-                    resource="sosa:Observation"><a href="#SOSAObservation">sosa:Observation</a></span>, <span
-                    rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a
-                      href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>, <span
-                    rel="schema:domainIncludes" resource="sosa:Sampling"><a
-                      href="#SOSASampling">sosa:Sampling</a></span></td>
+"2024"^^xsd:gYear</pre>
+                  </span></td>
+              </tr>
+              <th>Domain Includes</th>
+              <td><span rel="schema:domainIncludes" resource="sosa:Actuation"><a
+                    href="#SOSAActuation">sosa:Actuation</a></span>, <span rel="schema:domainIncludes"
+                  resource="sosa:Observation"><a href="#SOSAObservation">sosa:Observation</a></span>, <span
+                  rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a
+                    href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>, <span
+                  rel="schema:domainIncludes" resource="sosa:Sampling"><a href="#SOSASampling">sosa:Sampling</a></span>
+              </td>
               </tr>
             </tbody>
           </table>
@@ -4227,7 +4248,8 @@
           <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/ActuationCollection</p>
           <p><strong>an OWL Class</strong></p>
 
-          <p class="note">ActuationCollection added in 2024 update.<br><br>This term is non-normative pending further implementation experience</p>
+          <p class="note">ActuationCollection added in 2024 update.<br><br>This term is non-normative pending further
+            implementation experience</p>
 
           <p>
             <em property="rdfs:label">Actuation Collection</em> -
@@ -9213,7 +9235,8 @@
       <li>Mark sosa:Result deprecated</li>
       <li>Update OBOE alignment - using ObservationCollection, SampleCollection, hasMember</li>
       <li>remove rdfs:range on sosa:resultTime</li>
-      <li>Add ActuationCollection to provide basic support for sets of actuations on multiple properties with multiple results; clarify meaning of Actuation result</li>
+      <li>Add ActuationCollection to provide basic support for sets of actuations on multiple properties with multiple
+        results; clarify meaning of Actuation result</li>
     </ol>
   </section>
 </body>
