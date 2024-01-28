@@ -551,6 +551,7 @@
           <p>Datatype Properties:
             <a href="#SOSAhasSimpleResult">sosa:hasSimpleResult</a>
             , <a href="#SOSAresultTime">sosa:resultTime</a>
+            , <a href="#SOSAstartTime">sosa:startTime</a>
           </p>
         </div>
       </div>
@@ -1638,9 +1639,6 @@
             - <a href="#SOSAhasResult"><code>hasResult</code></a> shall indicate the intended value of the <a
               href="#SOSAActuatableProperty"><code>ActuatableProperty</code></a> at the completion of the <a
               href="#SOSAActuation"><code>Actuation</code></a>
-            <br>
-            - <a href="#SOSAresultTime"><code>resultTIme</code></a> shall indicate the time that the <a
-              href="#SOSAActuation"><code>Actuation</code></a> was initiated
           </span>
           <br>
           <br>
@@ -3255,6 +3253,7 @@
             , <a href="#SOSAisResultOf">sosa:isResultOf</a>
             , <a href="#SOSAhasSimpleResult">sosa:hasSimpleResult</a>
             , <a href="#SOSAresultTime">sosa:resultTime</a>
+            , <a href="#SOSAstartTime">sosa:startTime</a>
           </p>
         </div>
 
@@ -3421,10 +3420,10 @@
           <p><strong>an OWL Datatype Property</strong></p>
 
           <em property="rdfs:label">result time</em> -
-          <span property="skos:definition">The instant of time when
-            - the <a href="#SOSAActuation"><code>Actuation</code></a> was initiated or tasked
-            - the <a href="#SOSAObservation"><code>Observation</code></a> or <a
-              href="#SOSASampling"><code>Sampling</code></a> was completed</span> <br>
+          <span property="skos:definition">The instant of time when the <a
+              href="#SOSAActuation"><code>Actuation</code></a> or <a
+              href="#SOSAObservation"><code>Observation</code></a> or <a href="#SOSASampling"><code>Sampling</code></a>
+            was completed</span> <br>
           <span property="rdfs:comment">The value would usually be encoded using <a
               href="https://www.w3.org/TR/xmlschema-2/#dateTime"><code>xsd:dateTime</code></a> <a
               href="https://www.w3.org/TR/xmlschema-2/#date"><code>xsd:date</code></a> <a
@@ -3463,6 +3462,62 @@
             <span class="back">[<a href="#Results">Back to module overview and examples</a>]</span>
             <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
           </div>
+        </section>
+
+        <section class="informative specterm sosa" id="SOSAstartTime" about="sosa:startTime"
+          typeof="owl:DatatypeProperty">
+          <h5><a href="#SOSAresultTime">sosa:startTime</a></h5>
+          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/startTime</p>
+          <p><strong>an OWL Datatype Property</strong></p>
+
+          <p class="note">startTime added in 2024 update.
+
+            This term is non-normative pending further implementation experience</p>
+          <p>
+
+            <em property="rdfs:label">start time</em> -
+            <span property="skos:definition">The instant of time when the <a
+                href="#SOSAActuation"><code>Actuation</code></a> or <a
+                href="#SOSAObservation"><code>Observation</code></a> or <a
+                href="#SOSASampling"><code>Sampling</code></a> was initiated or tasked <br>
+              <span property="rdfs:comment">The value would usually be encoded using <a
+                  href="https://www.w3.org/TR/xmlschema-2/#dateTime"><code>xsd:dateTime</code></a> <a
+                  href="https://www.w3.org/TR/xmlschema-2/#date"><code>xsd:date</code></a> <a
+                  href="https://www.w3.org/TR/xmlschema-2/#gYearMonth"><code>xsd:gYearMonth</code></a> <a
+                  href="https://www.w3.org/TR/xmlschema-2/#gYear"><code>xsd:gYear</code></a>.</span> <br>
+
+              <table>
+                <tbody>
+                  <tr>
+                  <tr>
+                    <th>Example</th>
+                    <td><span property="skos:example">
+                        <pre>"2024-01-23T19:26:00+11:00"^^xsd:dateTime
+"2024-01-23"^^xsd:date
+"2024-01"^^xsd:gMonth
+"2024"^^xsd:gYear</pre>
+                      </span></td>
+                  </tr>
+                  <th>Domain Includes</th>
+                  <td>
+                    <span rel="schema:domainIncludes" resource="sosa:Actuation"><a
+                        href="#SOSAActuation">sosa:Actuation</a></span>
+                    , <span rel="schema:domainIncludes" resource="sosa:ActuationCollection"><a
+                        href="#SOSAActuationCollection">sosa:ActuationCollection</a></span>
+                    , <span rel="schema:domainIncludes" resource="sosa:Observation"><a
+                        href="#SOSAObservation">sosa:Observation</a></span>
+                    , <span rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a
+                        href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
+                    , <span rel="schema:domainIncludes" resource="sosa:Sampling"><a
+                        href="#SOSASampling">sosa:Sampling</a></span>
+                  </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="buttonpanel">
+                <span class="back">[<a href="#Results">Back to module overview and examples</a>]</span>
+                <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+              </div>
         </section>
 
       </section>
@@ -4497,7 +4552,7 @@
                 <th class="restrictions">Restrictions</th>
                 <td>
                   <span about="sosa:ActuationCollection" rel="rdfs:subClassOf"
-                    resource="[_:SOSAActuationCollection2]"></span>
+                    resource=" [_:SOSAActuationCollection2]"></span>
                   <span about="[_:SOSAActuationCollection]" typeof="owl:Restriction"></span>
                   <span about="[_:SOSAActuationCollection]" rel="owl:onProperty" resource="sosa:hasMember"><a
                       href="#SOSAhasMember">sosa:hasMember</a></span>

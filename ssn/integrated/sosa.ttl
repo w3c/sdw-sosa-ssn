@@ -470,10 +470,7 @@ sosa:Actuation a owl:Class ;
   rdfs:label "Actuation"@en ;
   skos:definition """An Actuation carries out an (Actuation) Procedure to change the state of something in the world using an Actuator. 
   
-  In this context 
-  - hasResult shall indicate the intended value of the ActuatableProperty at the completion of the Actuation
-  - resultTime shall indicate the time that the Actuation was initiated
-  
+  In this context hasResult shall indicate the intended value of the ActuatableProperty at the completion of the Actuation
   """@en ;
   rdfs:comment """An Actuation concerns a single ActuatableProperty of a single FeatureOfInterest. 
   Changes to multiple properties, or other combinations of Actuations, may be described in an ActuationCollection.
@@ -673,9 +670,20 @@ sosa:Result a rdfs:Class , owl:Class ;
 sosa:resultTime a owl:DatatypeProperty ;
   rdfs:label "result time"@en ;
   skos:definition """
-  The instant of time when 
-  - the Actuation was initiated or tasked
-  - the Observation or Sampling was completed
+  The instant of time when the Actuation or Observation or Sampling was completed 
+  """@en ;
+  rdfs:comment "The value would usually be encoded using xsd:dateTime xsd:date xsd:gYearMonth xsd:gYear"@en ;
+  schema:domainIncludes sosa:Actuation ;
+  schema:domainIncludes sosa:ActuationCollection ;
+  schema:domainIncludes sosa:Observation ;
+  schema:domainIncludes sosa:ObservationCollection ;
+  schema:domainIncludes sosa:Sampling ;
+  rdfs:isDefinedBy sosa: .
+
+sosa:startTime a owl:DatatypeProperty ;
+  rdfs:label "start time"@en ;
+  skos:definition """
+  The instant of time when the Actuation or Observation or Sampling was initiated or tasked
   """@en ;
   rdfs:comment "The value would usually be encoded using xsd:dateTime xsd:date xsd:gYearMonth xsd:gYear"@en ;
   schema:domainIncludes sosa:Actuation ;
