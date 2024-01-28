@@ -3236,8 +3236,10 @@
             <tbody>
               <tr>
                 <th>Example</th>
-                <td><span property="skos:example"><pre>"23"^^xsd:integer 
-"true"^^xsd:boolean</pre></span></td>
+                <td><span property="skos:example">
+                    <pre>"23"^^xsd:integer 
+"true"^^xsd:boolean</pre>
+                  </span></td>
               </tr>
               <tr>
                 <th>Domain Includes</th>
@@ -3275,21 +3277,23 @@
           <table>
             <tbody>
               <tr>
-                <tr>
-                  <th>Example</th>
-                  <td><span property="skos:example"><pre>"2024-01-23T19:26:00+11:00"^^xsd:dateTime
+              <tr>
+                <th>Example</th>
+                <td><span property="skos:example">
+                    <pre>"2024-01-23T19:26:00+11:00"^^xsd:dateTime
 "2024-01-23"^^xsd:date
 "2024-01"^^xsd:gMonth
-"2024"^^xsd:gYear</pre></span></td>
-                </tr>
-                  <th>Domain Includes</th>
-                <td><span rel="schema:domainIncludes" resource="sosa:Actuation"><a
-                      href="#SOSAActuation">sosa:Actuation</a></span>, <span rel="schema:domainIncludes"
-                    resource="sosa:Observation"><a href="#SOSAObservation">sosa:Observation</a></span>, <span
-                    rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a
-                      href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>, <span
-                    rel="schema:domainIncludes" resource="sosa:Sampling"><a
-                      href="#SOSASampling">sosa:Sampling</a></span></td>
+"2024"^^xsd:gYear</pre>
+                  </span></td>
+              </tr>
+              <th>Domain Includes</th>
+              <td><span rel="schema:domainIncludes" resource="sosa:Actuation"><a
+                    href="#SOSAActuation">sosa:Actuation</a></span>, <span rel="schema:domainIncludes"
+                  resource="sosa:Observation"><a href="#SOSAObservation">sosa:Observation</a></span>, <span
+                  rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a
+                    href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>, <span
+                  rel="schema:domainIncludes" resource="sosa:Sampling"><a href="#SOSASampling">sosa:Sampling</a></span>
+              </td>
               </tr>
             </tbody>
           </table>
@@ -4369,7 +4373,8 @@
           <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/ActuationCollection</p>
           <p><strong>an OWL Class</strong></p>
 
-          <p class="note">ActuationCollection added in 2024 update.<br><br>This term is non-normative pending further implementation experience</p>
+          <p class="note">ActuationCollection added in 2024 update.<br><br>This term is non-normative pending further
+            implementation experience</p>
 
           <p>
             <em property="rdfs:label">Actuation Collection</em> -
@@ -8650,6 +8655,7 @@
       <ul>
         <li>With QUDT, a quantitative result would be a <a href="http://qudt.org/"><code>qudt:QuantityValue</code></a>
         </li>
+        <li>Alternatively, a QUDT Unit could be used as the <i>Datatype</i> of a simple result</li>
         <li>With OM 2, a quantitative result would be a <a
             href="http://www.wurvoc.org/vocabularies/"><code>om:Measure</code> or <code>om:Point</code></a></li>
         <li>With CDT, the value of <a href="#SOSAhasSimpleResult"><code>sosa:hasSimpleResult</code></a> may be
@@ -8660,6 +8666,7 @@
       <p class="note">Custom datatypes are not strictly compatible with OWL, which restricts the set of datatypes that
         can be used. See sec. 5.2 in [[owl2-syntax]] for more details.</p>
       <pre class="example" data-include="./examples/2017ex1.ttl" data-include-format="text"></pre>
+      <pre class="example" data-include="./examples/2017ex3.1.ttl" data-include-format="text"></pre>
       <pre class="example" data-include="./examples/2017ex2.ttl" data-include-format="text"></pre>
       <pre class="example" data-include="./examples/2017ex3.ttl" data-include-format="text"></pre>
     </section>
@@ -9355,7 +9362,8 @@
       <li>Mark sosa:Result deprecated</li>
       <li>Update OBOE alignment - using ObservationCollection, SampleCollection, hasMember</li>
       <li>remove rdfs:range on sosa:resultTime</li>
-      <li>Add ActuationCollection to provide basic support for sets of actuations on multiple properties with multiple results; clarify meaning of Actuation result</li>
+      <li>Add ActuationCollection to provide basic support for sets of actuations on multiple properties with multiple
+        results; clarify meaning of Actuation result</li>
       <li>Add content model for Execution, including hasInputValue and hasOutputValue</li>
     </ol>
   </section>
