@@ -458,13 +458,17 @@
           <p>Classes:
             <a href="#SOSAActuatableProperty">sosa:ActuatableProperty</a>
             , <a href="#SOSAActuation">sosa:Actuation</a>
+            , <a href="#SOSAActuationProcedure">sosa:ActuationProcedure</a>
             , <a href="#SOSAActuator">sosa:Actuator</a>
             , <a href="#SOSADeployment">sosa:Deployment</a>
             , <a href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a>
+            , <a href="#SOSAMaterialSample">sosa:MaterialSample</a>
             , <a href="#SOSAObservableProperty">sosa:ObservableProperty</a>
             , <a href="#SOSAObservation">sosa:Observation</a>
             , <a href="#SOSAObservationCollection">sosa:ObservationCollection</a>
+            , <a href="#SOSAObservingProcedure">sosa:ObservingProcedure</a>
             , <a href="#SOSAPlatform">sosa:Platform</a>
+            , <a href="#SOSAPreparationProcedure">sosa:PreparationProcedure</a>
             , <a href="#SOSAProcedure">sosa:Procedure</a>
             , <a href="#SOSAProperty">sosa:Property</a>
             , <a href="#SOSAPropertyOfInterest">sosa:PropertyOfInterest</a>
@@ -472,7 +476,10 @@
             , <a href="#SOSASampleCollection">sosa:SampleCollection</a>
             , <a href="#SOSASampler">sosa:Sampler</a>
             , <a href="#SOSASampling">sosa:Sampling</a>
+            , <a href="#SOSASamplingProcedure">sosa:SamplingProcedure</a>
             , <a href="#SOSASensor">sosa:Sensor</a>
+            , <a href="#SOSASpatialSample">sosa:SpatialSample</a>
+            , <a href="#SOSAStatisticalSample">sosa:StatisticalSample</a>
             , <a href="#SOSAStimulus">sosa:Stimulus</a>
             , <a href="#SOSASystem">sosa:System</a>
           </p>
@@ -531,6 +538,8 @@
             , <a href="#SOSAobservedProperty">sosa:observedProperty</a>
             , <a href="#SOSAobserves">sosa:observes</a>
             , <a href="#SOSAphenomenonTime">sosa:phenomenonTime</a>
+            , <a href="#SOSArelatedObservation">sosa:relatedObservation</a>
+            , <a href="#SOSAresultQuality">sosa:resultQuality</a>
             , <a href="#SOSAusedProcedure">sosa:usedProcedure</a>
             , <a href="#SOSAwasOriginatedBy">sosa:wasOriginatedBy</a>
           </p>
@@ -676,6 +685,7 @@
             , <a href="#SOSAisProxyFor">sosa:isProxyFor</a>
             , <a href="#SOSAwasOriginatedBy">sosa:wasOriginatedBy</a>
             , <a href="#SOSAdetects">sosa:detects</a>
+            , <a href="#SOSArelatedObservation">sosa:relatedObservation</a>
           </p>
           <div class="buttonpanel">
             <span>
@@ -1387,6 +1397,62 @@
           </div>
         </section>
 
+        <section class="informative specterm sosa" id="SOSArelatedObservation" about="sosa:relatedObservation"
+          typeof="owl:ObjectProperty">
+          <h5><a href="#SOSArelatedObservation">sosa:relatedObservation</a></h5>
+          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/relatedObservation</p>
+          <p><strong>an OWL Object Property</strong></p>
+
+          <p class="note">relatedObservation added in 2024 update.
+
+            This term is non-normative pending further implementation experience</p>
+          <p>
+
+            <em property="rdfs:label">related observation</em> -
+            <span property="rdfs:comment skos:definition">Relation to an Observation.</span>
+          <table>
+            <tbody>
+              <tr>
+                <th>Domain Includes</th>
+                <td>
+                  <span rel="schema:domainIncludes" resource="sosa:Sample"><a href="#SOSASample">sosa:Sample</a></span>
+                  , <span rel="schema:domainIncludes" resource="sosa:ObservableProperty"><a
+                      href="#SOSAObservableProperty">sosa:ObservableProperty</a></span>
+                  , <span rel="schema:domainIncludes" resource="sosa:ObservingProcedure"><a
+                      href="#SOSAObservingProcedure">sosa:ObservingProcedure</a></span>
+                  , <span rel="schema:domainIncludes" resource="sosa:Sensor"><a
+                      href="#SOSASensor">sosa:Sensor</a></span>
+                  , <span rel="schema:domainIncludes" resource="sosa:Platform"><a
+                      href="#SOSAPlatform">sosa:Platform</a></span>
+                  , <span rel="schema:domainIncludes" resource="sosa:Observation"><a
+                      href="#SOSAObservation">sosa:Observation</a></span>
+                  , <span rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a
+                      href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
+                </td>
+              </tr>
+              <tr>
+                <th>Range Includes</th>
+                <td>
+                  <span rel="schema:rangeIncludes" resource="sosa:Observation"><a
+                      href="#SOSAObservation">sosa:Observation</a></span>
+                </td>
+              </tr>
+              <tr>
+                <th>is Defined By</th>
+                <td>
+                  <span rel="rdfs:isDefinedBy"><a
+                      href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="buttonpanel">
+            <span class="back">[<a href="#Observations">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+          </div>
+        </section>
+
       </section>
     </section>
 
@@ -1906,6 +1972,9 @@
         <div class="azlist">
           <p>
             <a href="#SOSASample">sosa:Sample</a>
+            , <a href="#SOSAMaterialSample">sosa:MaterialSample</a>
+            , <a href="#SOSASpatialSample">sosa:SpatialSample</a>
+            , <a href="#SOSAStatisticalSample">sosa:StatisticalSample</a>
             , <a href="#SOSAhasSample">sosa:hasSample</a>
             , <a href="#SOSAisSampleOf">sosa:isSampleOf</a>
             , <a href="#SOSASampling">sosa:Sampling</a>
@@ -2045,6 +2114,204 @@
                   additional SSN axioms</a>]</span>
             </span>
             <span class="back">[<a href="#Sampling">Back to module overview and examples</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+          </div>
+        </section>
+
+        <section class="informative specterm sosa" id="SOSAMaterialSample" about="sosa:MaterialSample"
+          typeof="owl:Class">
+          <h5><a href="#SOSAMaterialSample">sosa:MaterialSample</a></h5>
+          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/MaterialSample</p>
+          <p><strong>an OWL Class</strong></p>
+
+          <p class="note">MaterialSample added in 2024 update.
+
+            This term is non-normative pending further implementation experience</p>
+          <p>
+
+            <em property="rdfs:label">Material Sample</em> -
+            <span property="rdfs:comment skos:definition">A MaterialSample is a physical, tangible Sample.</span>
+          <table>
+            <tbody>
+              <tr class="ssn">
+                <th>Sub class of</th>
+                <td>
+                  <span rel="rdfs:subClassOf" resource="sosa:Sample">sosa:Sample</span>
+                </td>
+              </tr>
+              <tr>
+                <th>Examples</th>
+                <td>
+                  <span property="skos:example">A piece of rock</span>
+                  , <span property="skos:example">a blood sample</span>
+                  , <span property="skos:example">a water sample</span>
+                </td>
+              </tr>
+              <tr>
+                <th>Note</th>
+                <td>
+                  <span property="skos:note">MaterialSamples that are curated and preserved are sometimes known as
+                    'specimens'.</span>
+                  <br>
+                  <span property="skos:note">MaterialSamples may be destroyed in connexion with the observation act or a
+                    subsequent preparation step.</span>
+                </td>
+              </tr>
+              <tr>
+                <th>is Defined By</th>
+                <td>
+                  <span rel="rdfs:isDefinedBy"><a
+                      href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="buttonpanel">
+            <span>
+              <span class="sosa" style="display: none;">[<a href="#"
+                  onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
+                  additional SSN axioms</a>]</span>
+              <span class="ssn">[<a href="#"
+                  onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
+                  additional SSN axioms</a>]</span>
+            </span>
+            <span class="back">[<a href="#Sampling">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+          </div>
+        </section>
+
+        <section class="informative specterm sosa" id="SOSASpatialSample" about="sosa:SpatialSample" typeof="owl:Class">
+          <h5><a href="#SOSASpatialSample">sosa:SpatialSample</a></h5>
+          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/SpatialSample</p>
+          <p><strong>an OWL Class</strong></p>
+
+          <p class="note">SpatialSample added in 2024 update.
+
+            This term is non-normative pending further implementation experience</p>
+          <p>
+
+            <em property="rdfs:label">Spatial Sample</em> -
+            <span property="rdfs:comment skos:definition">A SpatialSample is a geospatial Sample. When observations are
+              made to estimate properties of a geospatial feature, in particular where the value of a property varies
+              within the scope of the feature, a SpatialSample is used.</span>
+          <table>
+            <tbody>
+              <tr class="ssn">
+                <th>Sub class of</th>
+                <td>
+                  <span rel="rdfs:subClassOf" resource="sosa:Sample">sosa:Sample</span>
+                </td>
+              </tr>
+              <tr>
+                <th>Examples</th>
+                <td>
+                  <span property="skos:example">borehole</span>
+                  , <span property="skos:example">interval</span>
+                  , <span property="skos:example">flightline</span>
+                  , <span property="skos:example">lidar cloud</span>
+                  , <span property="skos:example">map horizon</span>
+                  , <span property="skos:example">microscope slide</span>
+                  , <span property="skos:example">mine level</span>
+                  , <span property="skos:example">mine</span>
+                  , <span property="skos:example">observation well</span>
+                  , <span property="skos:example">profile</span>
+                  , <span property="skos:example">quadrat</span>
+                  , <span property="skos:example">scene</span>
+                  , <span property="skos:example">section</span>
+                  , <span property="skos:example">spot</span>
+                  , <span property="skos:example">station</span>
+                  , <span property="skos:example">swath</span>
+                  , <span property="skos:example">trajectory</span>
+                  , <span property="skos:example">traverse</span>
+                </td>
+              </tr>
+              <tr>
+                <th>Note</th>
+                <td>
+                  <span property="skos:note">Depending on accessibility and on the nature of the expected property
+                    variation, the SpatialSample may be extensive in one, two or three spatial dimensions.</span>
+                </td>
+              </tr>
+              <tr>
+                <th>is Defined By</th>
+                <td>
+                  <span rel="rdfs:isDefinedBy"><a
+                      href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="buttonpanel">
+            <span>
+              <span class="sosa" style="display: none;">[<a href="#"
+                  onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
+                  additional SSN axioms</a>]</span>
+              <span class="ssn">[<a href="#"
+                  onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
+                  additional SSN axioms</a>]</span>
+            </span>
+            <span class="back">[<a href="#Sampling">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+          </div>
+        </section>
+
+        <section class="informative specterm sosa" id="SOSAStatisticalSample" about="sosa:StatisticalSample"
+          typeof="owl:Class">
+          <h5><a href="#SOSAStatisticalSample">sosa:StatisticalSample</a></h5>
+          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/StatisticalSample</p>
+          <p><strong>an OWL Class</strong></p>
+
+          <p class="note">StatisticalSample added in 2024 update.
+
+            This term is non-normative pending further implementation experience</p>
+          <p>
+
+            <em property="rdfs:label">Statistical Sample</em> -
+            <span property="rdfs:comment skos:definition">A StatisticalSample is a statistical subset of a
+              feature-of-interest, defined for the purpose of creating Observation(s).</span>
+          <table>
+            <tbody>
+              <tr class="ssn">
+                <th>Sub class of</th>
+                <td>
+                  <span rel="rdfs:subClassOf" resource="sosa:Sample">sosa:Sample</span>
+                </td>
+              </tr>
+              <tr>
+                <th>Examples</th>
+                <td>
+                  <span property="skos:example">The male or female subset of a population.</span>
+                </td>
+              </tr>
+              <tr>
+                <th>Note</th>
+                <td>
+                  <span property="skos:note">StatisticalSamples usually apply to populations or other sets, of which
+                    certain subset may be of specific interest.</span>
+                </td>
+              </tr>
+              <tr>
+                <th>is Defined By</th>
+                <td>
+                  <span rel="rdfs:isDefinedBy"><a
+                      href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="buttonpanel">
+            <span>
+              <span class="sosa" style="display: none;">[<a href="#"
+                  onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
+                  additional SSN axioms</a>]</span>
+              <span class="ssn">[<a href="#"
+                  onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
+                  additional SSN axioms</a>]</span>
+            </span>
+            <span class="back">[<a href="#Sampling">Back to module overview</a>]</span>
             <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
           </div>
         </section>
@@ -2438,7 +2705,6 @@
             <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
           </div>
         </section>
-
 
         <section class="specterm sosa" id="SOSASampler" about="sosa:Sampler" typeof="owl:Class rdfs:Class">
           <h5><a href="#SOSASampler">sosa:Sampler</a></h5>
@@ -3102,6 +3368,7 @@
             , <a href="#SOSAisResultOf">sosa:isResultOf</a>
             , <a href="#SOSAhasSimpleResult">sosa:hasSimpleResult</a>
             , <a href="#SOSAresultTime">sosa:resultTime</a>
+            , <a href="#SOSAresultQuality">sosa:resultQuality</a>
           </p>
         </div>
 
@@ -3202,8 +3469,10 @@
             <tbody>
               <tr>
                 <th>Example</th>
-                <td><span property="skos:example"><pre>"23"^^xsd:integer 
-"true"^^xsd:boolean</pre></span></td>
+                <td><span property="skos:example">
+                    <pre>"23"^^xsd:integer 
+"true"^^xsd:boolean</pre>
+                  </span></td>
               </tr>
               <tr>
                 <th>Domain Includes</th>
@@ -3241,26 +3510,81 @@
           <table>
             <tbody>
               <tr>
-                <tr>
-                  <th>Example</th>
-                  <td><span property="skos:example"><pre>"2024-01-23T19:26:00+11:00"^^xsd:dateTime
+              <tr>
+                <th>Example</th>
+                <td><span property="skos:example">
+                    <pre>"2024-01-23T19:26:00+11:00"^^xsd:dateTime
 "2024-01-23"^^xsd:date
 "2024-01"^^xsd:gMonth
-"2024"^^xsd:gYear</pre></span></td>
-                </tr>
-                  <th>Domain Includes</th>
-                <td><span rel="schema:domainIncludes" resource="sosa:Actuation"><a
-                      href="#SOSAActuation">sosa:Actuation</a></span>, <span rel="schema:domainIncludes"
-                    resource="sosa:Observation"><a href="#SOSAObservation">sosa:Observation</a></span>, <span
-                    rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a
-                      href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>, <span
-                    rel="schema:domainIncludes" resource="sosa:Sampling"><a
-                      href="#SOSASampling">sosa:Sampling</a></span></td>
+"2024"^^xsd:gYear</pre>
+                  </span></td>
+              </tr>
+              <th>Domain Includes</th>
+              <td><span rel="schema:domainIncludes" resource="sosa:Actuation"><a
+                    href="#SOSAActuation">sosa:Actuation</a></span>, <span rel="schema:domainIncludes"
+                  resource="sosa:Observation"><a href="#SOSAObservation">sosa:Observation</a></span>, <span
+                  rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a
+                    href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>, <span
+                  rel="schema:domainIncludes" resource="sosa:Sampling"><a href="#SOSASampling">sosa:Sampling</a></span>
+              </td>
               </tr>
             </tbody>
           </table>
           <div class="buttonpanel">
             <span class="back">[<a href="#Results">Back to module overview and examples</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+          </div>
+        </section>
+
+        <section class="informative specterm sosa" id="SOSAresultQuality" about="sosa:resultQuality"
+          typeof="owl:ObjectProperty">
+          <h5><a href="#SOSAresultQuality">sosa:resultQuality</a></h5>
+          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/resultQuality</p>
+          <p><strong>an OWL Object Property</strong></p>
+
+          <p class="note">resultQuality added in 2024 update.
+
+            This term is non-normative pending further implementation experience</p>
+          <p>
+
+            <em property="rdfs:label">observation result quality</em> -
+            <span property="skos:definition">Information pertaining to the data quality of the result.</span>
+          <table>
+            <tbody>
+              <tr>
+                <th>Note</th>
+                <td>
+                  <span property="skos:scopeNote">This instance-specific description complements the description of the
+                    observation Procedure, which provides information concerning the quality of all observations using
+                    this procedure. </span>
+                  <span property="skos:note">The quality of a result can be assessed following the procedures in the ISO
+                    19157 series. Multiple measures can be provided.</span>
+                  <span property="skos:note"><a
+                      href="https://www.w3.org/TR/vocab-dqv/#dqv:hasQualityMeasurement">dqv:hasQualityMeasurement</a>
+                    from the Data Quality Vocabulary is equivalent</span>
+                </td>
+              </tr>
+              <tr>
+                <th>Domain Includes</th>
+                <td>
+                  <span rel="schema:domainIncludes" resource="sosa:Observation"><a
+                      href="#SOSAObservation">sosa:Observation</a></span>
+                  , <span rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a
+                      href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
+                </td>
+              </tr>
+              <tr>
+                <th>is Defined By</th>
+                <td>
+                  <span rel="rdfs:isDefinedBy"><a
+                      href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="buttonpanel">
+            <span class="back">[<a href="#Results">Back to module overview</a>]</span>
             <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
           </div>
         </section>
@@ -3298,6 +3622,10 @@
         <div class="azlist">
           <p>
             <a href="#SOSAProcedure">sosa:Procedure</a>
+            <a href="#SOSAActuationProcedure">sosa:ActuationProcedure</a>
+            , <a href="#SOSAObservingProcedure">sosa:ObservingProcedure</a>
+            , <a href="#SOSAPreparationProcedure">sosa:PreparationProcedure</a>
+            , <a href="#SOSASamplingProcedure">sosa:SamplingProcedure</a>
             , <a href="#SOSAProcedureExecution">sosa:ProcedureExecution</a>
             , <a href="#SOSAusedProcedure">sosa:usedProcedure</a>
             , <a href="#SOSAimplements">sosa:implements</a>
@@ -3316,6 +3644,7 @@
             </span>
           </div>
         </div>
+
         <section class="specterm sosa" id="SOSAProcedure" about="sosa:Procedure" typeof="owl:Class rdfs:Class">
           <h5><a href="#SOSAProcedure">sosa:Procedure</a></h5>
           <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/Procedure</p>
@@ -3384,6 +3713,206 @@
           </div>
         </section>
 
+        <section class="informative specterm sosa" id="SOSAActuationProcedure" about="sosa:ActuationProcedure"
+          typeof="owl:Class">
+          <h5><a href="#SOSAActuationProcedure">sosa:ActuationProcedure</a></h5>
+          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/ActuationProcedure</p>
+          <p><strong>an OWL Class</strong></p>
+
+          <p class="note">ActuationProcedure added in 2024 update.
+
+            This term is non-normative pending further implementation experience</p>
+          <p>
+
+            <em property="rdfs:label">Actuation Procedure</em> -
+            <span property="rdfs:comment skos:definition">The description of steps performed by an Actuator to change
+              the
+              ActuableProperty.</span>
+          <table>
+            <tbody>
+              <tr class="ssn">
+                <th>Sub class of</th>
+                <td>
+                  <span rel="rdfs:subClassOf" resource="sosa:Procedure">sosa:Procedure</span>
+                </td>
+              </tr>
+              <tr>
+                <th>is Defined By</th>
+                <td>
+                  <span rel="rdfs:isDefinedBy"><a
+                      href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="buttonpanel">
+            <span>
+              <span class="sosa" style="display: none;">[<a href="#"
+                  onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
+                  additional SSN axioms</a>]</span>
+              <span class="ssn">[<a href="#"
+                  onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
+                  additional SSN axioms</a>]</span>
+            </span>
+            <span class="back">[<a href="#Procedures">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+          </div>
+        </section>
+
+        <section class="informative specterm sosa" id="SOSAObservingProcedure" about="sosa:ObservingProcedure"
+          typeof="owl:Class">
+          <h5><a href="#SOSAObservingProcedure">sosa:ObservingProcedure</a></h5>
+          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/ObservingProcedure</p>
+          <p><strong>an OWL Class</strong></p>
+
+          <p class="note">ObservingProcedure added in 2024 update.
+
+            This term is non-normative pending further implementation experience</p>
+          <p>
+
+            <em property="rdfs:label">Observing Procedure</em> -
+            <span property="rdfs:comment skos:definition">The description of steps performed in order to determine the
+              value of an ObservableProperty by an Observer.</span>
+          <table>
+            <tbody>
+              <tr class="ssn">
+                <th>Sub class of</th>
+                <td>
+                  <span rel="rdfs:subClassOf" resource="sosa:Procedure">sosa:Procedure</span>
+                </td>
+              </tr>
+              <tr>
+                <th>Examples</th>
+                <td>
+                  <span property="skos:example">A workflow, protocol, plan, algorithm, or computational method
+                    specifying how to make an observation; the description of the process utilized by an observer. This
+                    could be a chemical analysis method, a protocol for measuring an object, but could also be a
+                    checklist utilized by a human observer during a biodiversity campaign.</span>
+                </td>
+              </tr>
+              <tr>
+                <th>Note</th>
+                <td>
+                  <span property="skos:note">The observing procedure cannot describe a sensor instance, but it can
+                    describe the sensor type.</span>
+                </td>
+              </tr>
+              <tr>
+                <th>is Defined By</th>
+                <td>
+                  <span rel="rdfs:isDefinedBy"><a
+                      href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="buttonpanel">
+            <span>
+              <span class="sosa" style="display: none;">[<a href="#"
+                  onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
+                  additional SSN axioms</a>]</span>
+              <span class="ssn">[<a href="#"
+                  onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
+                  additional SSN axioms</a>]</span>
+            </span>
+            <span class="back">[<a href="#Procedures">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+          </div>
+        </section>
+
+        <section class="informative specterm sosa" id="SOSAPreparationProcedure" about="sosa:PreparationProcedure"
+          typeof="owl:Class">
+          <h5><a href="#SOSAPreparationProcedure">sosa:PreparationProcedure</a></h5>
+          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/PreparationProcedure</p>
+          <p><strong>an OWL Class</strong></p>
+
+          <p class="note">PreparationProcedure added in 2024 update.
+
+            This term is non-normative pending further implementation experience</p>
+          <p>
+
+            <em property="rdfs:label">Preparation Procedure</em> -
+            <span property="rdfs:comment skos:definition">The description of preparation steps performed on a
+              Sample.</span>
+          <table>
+            <tbody>
+              <tr class="ssn">
+                <th>Sub class of</th>
+                <td>
+                  <span rel="rdfs:subClassOf" resource="sosa:Procedure">sosa:Procedure</span>
+                </td>
+              </tr>
+              <tr>
+                <th>is Defined By</th>
+                <td>
+                  <span rel="rdfs:isDefinedBy"><a
+                      href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="buttonpanel">
+            <span>
+              <span class="sosa" style="display: none;">[<a href="#"
+                  onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
+                  additional SSN axioms</a>]</span>
+              <span class="ssn">[<a href="#"
+                  onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
+                  additional SSN axioms</a>]</span>
+            </span>
+            <span class="back">[<a href="#Procedures">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+          </div>
+        </section>
+
+        <section class="informative specterm sosa" id="SOSASamplingProcedure" about="sosa:SamplingProcedure"
+          typeof="owl:Class">
+          <h5><a href="#SOSASamplingProcedure">sosa:SamplingProcedure</a></h5>
+          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/SamplingProcedure</p>
+          <p><strong>an OWL Class</strong></p>
+
+          <p class="note">SamplingProcedure added in 2024 update.
+
+            This term is non-normative pending further implementation experience</p>
+          <p>
+
+            <em property="rdfs:label">Sampling Procedure</em> -
+            <span property="rdfs:comment skos:definition">The description of steps performed by a Sampler in order to
+              extract a Sample from its sampled Feature in the frame of a Sampling.</span>
+          <table>
+            <tbody>
+              <tr class="ssn">
+                <th>Sub class of</th>
+                <td>
+                  <span rel="rdfs:subClassOf" resource="sosa:Procedure">sosa:Procedure</span>
+                </td>
+              </tr>
+              <tr>
+                <th>is Defined By</th>
+                <td>
+                  <span rel="rdfs:isDefinedBy"><a
+                      href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="buttonpanel">
+            <span>
+              <span class="sosa" style="display: none;">[<a href="#"
+                  onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
+                  additional SSN axioms</a>]</span>
+              <span class="ssn">[<a href="#"
+                  onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
+                  additional SSN axioms</a>]</span>
+            </span>
+            <span class="back">[<a href="#Procedures">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+          </div>
+        </section>
 
         <section class="specterm sosa" id="SOSAusedProcedure" about="sosa:usedProcedure" typeof="owl:ObjectProperty">
           <h5><a href="#SOSAusedProcedure">sosa:usedProcedure</a></h5>
@@ -6541,223 +7070,18 @@
         <p>This section introduces the following classes and properties:</p>
         <div class="azlist">
           <p>
-            <a href="#OMSActuationProcedure">sosa-oms:ActuationProcedure</a>
-            , <a href="#OMSMaterialSample">sosa-oms:MaterialSample</a>
-            , <a href="#OMSObservingProcedure">sosa-oms:ObservingProcedure</a>
-            , <a href="#OMSPreparationProcedure">sosa-oms:PreparationProcedure</a>
             , <a href="#OMSPreparationStep">sosa-oms:PreparationStep</a>
-            , <a href="#OMSSamplingProcedure">sosa-oms:SamplingProcedure</a>
-            , <a href="#OMSSpatialSample">sosa-oms:SpatialSample</a>
-            , <a href="#OMSStatisticalSample">sosa-oms:StatisticalSample</a>
             , <a href="#OMShasPreparationStep">sosa-oms:hasPreparationStep</a>
             , <a href="#OMSmadeOnPlatform">sosa-oms:madeOnPlatform</a>
             , <a href="#OMSmetadata">sosa-oms:metadata</a>,
             , <a href="#OMSobservationType">sosa-oms:observationType</a>
             , <a href="#OMSpreparedSample">sosa-oms:preparedSample</a>
             , <a href="#OMSprocessingDetails">sosa-oms:processingDetails</a>
-            , <a href="#OMSrelatedObservation">sosa-oms:relatedObservation</a>
             , <a href="#OMSrelatedSampling">sosa-oms:relatedSampling</a>
-            , <a href="#OMSresultQuality">sosa-oms:resultQuality</a>
             , <a href="#OMSsamplePreparationStep">sosa-oms:samplePreparationStep</a>
             , <a href="#OMSvalidTime">sosa-oms:validTime</a>
           </p>
         </div>
-
-        <section class="specterm sosa" id="OMSActuationProcedure" about="sosa-oms:ActuationProcedure"
-          typeof="owl:Class">
-          <h5><a href="#OMSActuationProcedure">sosa-oms:ActuationProcedure</a></h5>
-          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/ActuationProcedure</p>
-          <p><strong>an OWL Class</strong></p>
-
-          <em property="rdfs:label">Actuation Procedure</em> -
-          <span property="rdfs:comment skos:definition">The description of steps performed by an Actuator to change the
-            ActuableProperty.</span>
-          <table>
-            <tbody>
-              <tr class="ssn">
-                <th>Sub class of</th>
-                <td>
-                  <span rel="rdfs:subClassOf" resource="sosa:Procedure">sosa:Procedure</span>
-                </td>
-              </tr>
-              <tr>
-                <th>is Defined By</th>
-                <td>
-                  <span rel="rdfs:isDefinedBy"><a
-                      href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div class="buttonpanel">
-            <span>
-              <span class="sosa" style="display: none;">[<a href="#"
-                  onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
-                  additional SSN axioms</a>]</span>
-              <span class="ssn">[<a href="#"
-                  onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
-                  additional SSN axioms</a>]</span>
-            </span>
-            <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-          </div>
-        </section>
-
-        <section class="specterm sosa" id="OMSMaterialSample" about="sosa-oms:MaterialSample" typeof="owl:Class">
-          <h5><a href="#OMSMaterialSample">sosa-oms:MaterialSample</a></h5>
-          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/MaterialSample</p>
-          <p><strong>an OWL Class</strong></p>
-
-          <em property="rdfs:label">Material Sample</em> -
-          <span property="rdfs:comment skos:definition">A MaterialSample is a physical, tangible Sample.</span>
-          <table>
-            <tbody>
-              <tr class="ssn">
-                <th>Sub class of</th>
-                <td>
-                  <span rel="rdfs:subClassOf" resource="sosa:Sample">sosa:Sample</span>
-                </td>
-              </tr>
-              <tr>
-                <th>Examples</th>
-                <td>
-                  <span property="skos:example">A piece of rock</span>
-                  , <span property="skos:example">a blood sample</span>
-                  , <span property="skos:example">a water sample</span>
-                </td>
-              </tr>
-              <tr>
-                <th>Note</th>
-                <td>
-                  <span property="skos:note">MaterialSamples that are curated and preserved are sometimes known as
-                    'specimens'.</span>
-                  <br>
-                  <span property="skos:note">MaterialSamples may be destroyed in connexion with the observation act or a
-                    subsequent preparation step.</span>
-                </td>
-              </tr>
-              <tr>
-                <th>is Defined By</th>
-                <td>
-                  <span rel="rdfs:isDefinedBy"><a
-                      href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div class="buttonpanel">
-            <span>
-              <span class="sosa" style="display: none;">[<a href="#"
-                  onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
-                  additional SSN axioms</a>]</span>
-              <span class="ssn">[<a href="#"
-                  onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
-                  additional SSN axioms</a>]</span>
-            </span>
-            <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-          </div>
-        </section>
-
-        <section class="specterm sosa" id="OMSObservingProcedure" about="sosa-oms:ObservingProcedure"
-          typeof="owl:Class">
-          <h5><a href="#OMSObservingProcedure">sosa-oms:ObservingProcedure</a></h5>
-          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/ObservingProcedure</p>
-          <p><strong>an OWL Class</strong></p>
-
-          <em property="rdfs:label">Observing Procedure</em> -
-          <span property="rdfs:comment skos:definition">The description of steps performed in order to determine the
-            value of an ObservableProperty by an Observer.</span>
-          <table>
-            <tbody>
-              <tr class="ssn">
-                <th>Sub class of</th>
-                <td>
-                  <span rel="rdfs:subClassOf" resource="sosa:Procedure">sosa:Procedure</span>
-                </td>
-              </tr>
-              <tr>
-                <th>Examples</th>
-                <td>
-                  <span property="skos:example">A workflow, protocol, plan, algorithm, or computational method
-                    specifying how to make an observation; the description of the process utilized by an observer. This
-                    could be a chemical analysis method, a protocol for measuring an object, but could also be a
-                    checklist utilized by a human observer during a biodiversity campaign.</span>
-                </td>
-              </tr>
-              <tr>
-                <th>Note</th>
-                <td>
-                  <span property="skos:note">The observing procedure cannot describe a sensor instance, but it can
-                    describe the sensor type.</span>
-                </td>
-              </tr>
-              <tr>
-                <th>is Defined By</th>
-                <td>
-                  <span rel="rdfs:isDefinedBy"><a
-                      href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div class="buttonpanel">
-            <span>
-              <span class="sosa" style="display: none;">[<a href="#"
-                  onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
-                  additional SSN axioms</a>]</span>
-              <span class="ssn">[<a href="#"
-                  onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
-                  additional SSN axioms</a>]</span>
-            </span>
-            <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-          </div>
-        </section>
-
-        <section class="specterm sosa" id="OMSPreparationProcedure" about="sosa-oms:PreparationProcedure"
-          typeof="owl:Class">
-          <h5><a href="#OMSPreparationProcedure">sosa-oms:PreparationProcedure</a></h5>
-          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/PreparationProcedure</p>
-          <p><strong>an OWL Class</strong></p>
-
-          <em property="rdfs:label">Preparation Procedure</em> -
-          <span property="rdfs:comment skos:definition">The description of preparation steps performed on a
-            Sample.</span>
-          <table>
-            <tbody>
-              <tr class="ssn">
-                <th>Sub class of</th>
-                <td>
-                  <span rel="rdfs:subClassOf" resource="sosa:Procedure">sosa:Procedure</span>
-                </td>
-              </tr>
-              <tr>
-                <th>is Defined By</th>
-                <td>
-                  <span rel="rdfs:isDefinedBy"><a
-                      href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div class="buttonpanel">
-            <span>
-              <span class="sosa" style="display: none;">[<a href="#"
-                  onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
-                  additional SSN axioms</a>]</span>
-              <span class="ssn">[<a href="#"
-                  onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
-                  additional SSN axioms</a>]</span>
-            </span>
-            <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-          </div>
-        </section>
 
         <section class="specterm" id="OMSPreparationStep" about="sosa-oms:PreparationStep" typeof="owl:Class">
           <h5><a href="#OMSPreparationStep">sosa-oms:PreparationStep</a></h5>
@@ -6780,170 +7104,6 @@
           </table>
 
           <div class="buttonpanel">
-            <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-          </div>
-        </section>
-
-        <section class="specterm sosa" id="OMSSamplingProcedure" about="sosa-oms:SamplingProcedure" typeof="owl:Class">
-          <h5><a href="#OMSSamplingProcedure">sosa-oms:SamplingProcedure</a></h5>
-          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/SamplingProcedure</p>
-          <p><strong>an OWL Class</strong></p>
-
-          <em property="rdfs:label">Sampling Procedure</em> -
-          <span property="rdfs:comment skos:definition">The description of steps performed by a Sampler in order to
-            extract a Sample from its sampled Feature in the frame of a Sampling.</span>
-          <table>
-            <tbody>
-              <tr class="ssn">
-                <th>Sub class of</th>
-                <td>
-                  <span rel="rdfs:subClassOf" resource="sosa:Procedure">sosa:Procedure</span>
-                </td>
-              </tr>
-              <tr>
-                <th>is Defined By</th>
-                <td>
-                  <span rel="rdfs:isDefinedBy"><a
-                      href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div class="buttonpanel">
-            <span>
-              <span class="sosa" style="display: none;">[<a href="#"
-                  onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
-                  additional SSN axioms</a>]</span>
-              <span class="ssn">[<a href="#"
-                  onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
-                  additional SSN axioms</a>]</span>
-            </span>
-            <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-          </div>
-        </section>
-
-        <section class="specterm sosa" id="OMSSpatialSample" about="sosa-oms:SpatialSample" typeof="owl:Class">
-          <h5><a href="#OMSSpatialSample">sosa-oms:SpatialSample</a></h5>
-          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/SpatialSample</p>
-          <p><strong>an OWL Class</strong></p>
-
-          <em property="rdfs:label">Spatial Sample</em> -
-          <span property="rdfs:comment skos:definition">A SpatialSample is a geospatial Sample. When observations are
-            made to estimate properties of a geospatial feature, in particular where the value of a property varies
-            within the scope of the feature, a SpatialSample is used.</span>
-          <table>
-            <tbody>
-              <tr class="ssn">
-                <th>Sub class of</th>
-                <td>
-                  <span rel="rdfs:subClassOf" resource="sosa:Sample">sosa:Sample</span>
-                </td>
-              </tr>
-              <tr>
-                <th>Examples</th>
-                <td>
-                  <span property="skos:example">borehole</span>
-                  , <span property="skos:example">interval</span>
-                  , <span property="skos:example">flightline</span>
-                  , <span property="skos:example">lidar cloud</span>
-                  , <span property="skos:example">map horizon</span>
-                  , <span property="skos:example">microscope slide</span>
-                  , <span property="skos:example">mine level</span>
-                  , <span property="skos:example">mine</span>
-                  , <span property="skos:example">observation well</span>
-                  , <span property="skos:example">profile</span>
-                  , <span property="skos:example">quadrat</span>
-                  , <span property="skos:example">scene</span>
-                  , <span property="skos:example">section</span>
-                  , <span property="skos:example">spot</span>
-                  , <span property="skos:example">station</span>
-                  , <span property="skos:example">swath</span>
-                  , <span property="skos:example">trajectory</span>
-                  , <span property="skos:example">traverse</span>
-                </td>
-              </tr>
-              <tr>
-                <th>Note</th>
-                <td>
-                  <span property="skos:note">Depending on accessibility and on the nature of the expected property
-                    variation, the SpatialSample may be extensive in one, two or three spatial dimensions.</span>
-                </td>
-              </tr>
-              <tr>
-                <th>is Defined By</th>
-                <td>
-                  <span rel="rdfs:isDefinedBy"><a
-                      href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div class="buttonpanel">
-            <span>
-              <span class="sosa" style="display: none;">[<a href="#"
-                  onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
-                  additional SSN axioms</a>]</span>
-              <span class="ssn">[<a href="#"
-                  onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
-                  additional SSN axioms</a>]</span>
-            </span>
-            <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-          </div>
-        </section>
-
-        <section class="specterm sosa" id="OMSStatisticalSample" about="sosa-oms:StatisticalSample" typeof="owl:Class">
-          <h5><a href="#OMSStatisticalSample">sosa-oms:StatisticalSample</a></h5>
-          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/StatisticalSample</p>
-          <p><strong>an OWL Class</strong></p>
-
-          <em property="rdfs:label">Statistical Sample</em> -
-          <span property="rdfs:comment skos:definition">A StatisticalSample is a statistical subset of a
-            feature-of-interest, defined for the purpose of creating Observation(s).</span>
-          <table>
-            <tbody>
-              <tr class="ssn">
-                <th>Sub class of</th>
-                <td>
-                  <span rel="rdfs:subClassOf" resource="sosa:Sample">sosa:Sample</span>
-                </td>
-              </tr>
-              <tr>
-                <th>Examples</th>
-                <td>
-                  <span property="skos:example">The male or female subset of a population.</span>
-                </td>
-              </tr>
-              <tr>
-                <th>Note</th>
-                <td>
-                  <span property="skos:note">StatisticalSamples usually apply to populations or other sets, of which
-                    certain subset may be of specific interest.</span>
-                </td>
-              </tr>
-              <tr>
-                <th>is Defined By</th>
-                <td>
-                  <span rel="rdfs:isDefinedBy"><a
-                      href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div class="buttonpanel">
-            <span>
-              <span class="sosa" style="display: none;">[<a href="#"
-                  onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
-                  additional SSN axioms</a>]</span>
-              <span class="ssn">[<a href="#"
-                  onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
-                  additional SSN axioms</a>]</span>
-            </span>
             <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
             <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
           </div>
@@ -7196,57 +7356,6 @@
           </div>
         </section>
 
-        <section class="specterm" id="OMSrelatedObservation" about="sosa-oms:relatedObservation"
-          typeof="owl:ObjectProperty">
-          <h5><a href="#OMSrelatedObservation">sosa-oms:relatedObservation</a></h5>
-          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/relatedObservation</p>
-          <p><strong>an OWL Object Property</strong></p>
-
-          <em property="rdfs:label">related observation</em> -
-          <span property="rdfs:comment skos:definition">Relation to an Observation.</span>
-          <table>
-            <tbody>
-              <tr>
-                <th>Domain Includes</th>
-                <td>
-                  <span rel="schema:domainIncludes" resource="sosa:Sample"><a href="#SOSASample">sosa:Sample</a></span>
-                  , <span rel="schema:domainIncludes" resource="sosa:ObservableProperty"><a
-                      href="#SOSAObservableProperty">sosa:ObservableProperty</a></span>
-                  , <span rel="schema:domainIncludes" resource="sosa-oms:ObservingProcedure"><a
-                      href="#OMSObservingProcedure">sosa-oms:ObservingProcedure</a></span>
-                  , <span rel="schema:domainIncludes" resource="sosa:Sensor"><a
-                      href="#SOSASensor">sosa:Sensor</a></span>
-                  , <span rel="schema:domainIncludes" resource="sosa:Platform"><a
-                      href="#SOSAPlatform">sosa:Platform</a></span>
-                  , <span rel="schema:domainIncludes" resource="sosa:Observation"><a
-                      href="#SOSAObservation">sosa:Observation</a></span>
-                  , <span rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a
-                      href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
-                </td>
-              </tr>
-              <tr>
-                <th>Range Includes</th>
-                <td>
-                  <span rel="schema:rangeIncludes" resource="sosa:Observation"><a
-                      href="#SOSAObservation">sosa:Observation</a></span>
-                </td>
-              </tr>
-              <tr>
-                <th>is Defined By</th>
-                <td>
-                  <span rel="rdfs:isDefinedBy"><a
-                      href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div class="buttonpanel">
-            <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-          </div>
-        </section>
-
         <section class="specterm" id="OMSrelatedSampling" about="sosa-oms:relatedSampling" typeof="owl:ObjectProperty">
           <h5><a href="#OMSrelatedSampling">sosa-oms:relatedSampling</a></h5>
           <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/relatedSampling</p>
@@ -7286,53 +7395,6 @@
           </div>
         </section>
 
-        <section class="specterm" id="OMSresultQuality" about="sosa-oms:resultQuality" typeof="owl:ObjectProperty">
-          <h5><a href="#OMSresultQuality">sosa-oms:resultQuality</a></h5>
-          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/resultQuality</p>
-          <p><strong>an OWL Object Property</strong></p>
-
-          <em property="rdfs:label">observation result quality</em> -
-          <span property="skos:definition">Information pertaining to the data quality of the result.</span>
-          <table>
-            <tbody>
-              <tr>
-                <th>Note</th>
-                <td>
-                  <span property="skos:scopeNote">This instance-specific description complements the description of the
-                    observation Procedure, which provides information concerning the quality of all observations using
-                    this procedure. </span>
-                  <span property="skos:note">The quality of a result can be assessed following the procedures in the ISO
-                    19157 series. Multiple measures can be provided.</span>
-                  <span property="skos:note"><a
-                      href="https://www.w3.org/TR/vocab-dqv/#dqv:hasQualityMeasurement">dqv:hasQualityMeasurement</a>
-                    from the Data Quality Vocabulary is equivalent</span>
-                </td>
-              </tr>
-              <tr>
-                <th>Domain Includes</th>
-                <td>
-                  <span rel="schema:domainIncludes" resource="sosa:Observation"><a
-                      href="#SOSAObservation">sosa:Observation</a></span>
-                  , <span rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a
-                      href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
-                </td>
-              </tr>
-              <tr>
-                <th>is Defined By</th>
-                <td>
-                  <span rel="rdfs:isDefinedBy"><a
-                      href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div class="buttonpanel">
-            <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-          </div>
-        </section>
-
         <section class="specterm" id="OMSsamplePreparationStep" about="sosa-oms:samplePreparationStep"
           typeof="owl:ObjectProperty">
           <h5><a href="#OMSsamplePreparationStep">sosa-oms:samplePreparationStep</a></h5>
@@ -7346,8 +7408,8 @@
               <tr>
                 <th>Domain Includes</th>
                 <td>
-                  <span rel="schema:domainIncludes" resource="sosa-oms:PreparationProcedure"><a
-                      href="#OMSPreparationProcedure">sosa-oms:PreparationProcedure</a></span>
+                  <span rel="schema:domainIncludes" resource="sosa:PreparationProcedure"><a
+                      href="#SOSAPreparationProcedure">sosa-oms:PreparationProcedure</a></span>
                 </td>
               </tr>
               <tr>
@@ -7429,7 +7491,7 @@
               <td> obs-cpt:Deployment </td>
             </tr>
             <tr>
-              <td> <a href="#OMSMaterialSample">sosa-oms:MaterialSample</a> </td>
+              <td> <a href="#SOSAMaterialSample">sosa:MaterialSample</a> </td>
               <td> ogc-ms:implements </td>
               <td> sam-basic:MaterialSample </td>
             </tr>
@@ -7444,7 +7506,7 @@
               <td> obs-cpt:Observation </td>
             </tr>
             <tr>
-              <td> <a href="#OMSObservingProcedure">sosa-oms:ObservingProcedure</a> </td>
+              <td> <a href="#SOSAObservingProcedure">sosa:ObservingProcedure</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-cpt:ObservingProcedure </td>
             </tr>
@@ -7454,7 +7516,7 @@
               <td> obs-cpt:Host </td>
             </tr>
             <tr>
-              <td> <a href="#OMSPreparationProcedure">sosa-oms:PreparationProcedure</a> </td>
+              <td> <a href="#SOSAPreparationProcedure">sosa:PreparationProcedure</a> </td>
               <td> ogc-ms:implements </td>
               <td> sam-cpt:PreparationProcedure </td>
             </tr>
@@ -7489,7 +7551,7 @@
               <td> sam-cpt:Sampling </td>
             </tr>
             <tr>
-              <td> <a href="#OMSSamplingProcedure">sosa-oms:SamplingProcedure</a> </td>
+              <td> <a href="#SOSASamplingProcedure">sosa:SamplingProcedure</a> </td>
               <td> ogc-ms:implements </td>
               <td> sam-cpt:SamplingProcedure </td>
             </tr>
@@ -7499,12 +7561,12 @@
               <td> obs-cpt:Observer </td>
             </tr>
             <tr>
-              <td> <a href="#OMSSpatialSample">sosa-oms:SpatialSample</a> </td>
+              <td> <a href="#SOSASpatialSample">sosa:SpatialSample</a> </td>
               <td> ogc-ms:implements </td>
               <td> sam-basic:SpatialSample </td>
             </tr>
             <tr>
-              <td> <a href="#OMSStatisticalSample">sosa-oms:StatisticalSample</a> </td>
+              <td> <a href="#SOSAStatisticalSample">sosa:StatisticalSample</a> </td>
               <td> ogc-ms:implements </td>
               <td> sam-basic:StatisticalSample </td>
             </tr>
@@ -7669,7 +7731,7 @@
               <td> sam-cpt:PreparationStep/processingDetails-sem </td>
             </tr>
             <tr>
-              <td> <a href="#OMSrelatedObservation">sosa-oms:relatedObservation</a> </td>
+              <td> <a href="#SOSArelatedObservation">sosa:relatedObservation</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-cpt:gen/relatedObservation-sem </td>
             </tr>
@@ -7679,7 +7741,7 @@
               <td> sam-cpt:Sampling/relatedSampling-sem </td>
             </tr>
             <tr>
-              <td> <a href="#OMSresultQuality">sosa-oms:resultQuality</a> </td>
+              <td> <a href="#SOSAresultQuality">sosa:resultQuality</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-core:AbstractObservationCharacteristics/resultQuality-sem </td>
             </tr>
