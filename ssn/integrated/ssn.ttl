@@ -250,7 +250,7 @@ sosa:ObservingProcedure
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implementedBy ; owl:allValuesFrom sosa:Sensor ] ;
   rdfs:isDefinedBy sosa: .
 
-sosa:ActuationProcedure
+sosa:ActuatingProcedure
   rdfs:subClassOf sosa:Procedure ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implementedBy ; owl:allValuesFrom sosa:Actuator ] ;
   rdfs:isDefinedBy sosa: .
@@ -317,7 +317,7 @@ sosa:Sensor
 sosa:Actuator
   rdfs:subClassOf sosa:System ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implements ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implements ; owl:allValuesFrom sosa:ActuationProcedure ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implements ; owl:allValuesFrom sosa:ActuatingProcedure ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:forProperty ; owl:allValuesFrom sosa:ActuatableProperty ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeActuation ; owl:allValuesFrom sosa:Actuation ] ;
   rdfs:isDefinedBy sosa: .
@@ -399,7 +399,7 @@ sosa:Actuation a owl:Class ;
   rdfs:subClassOf sosa:ProcedureExecution ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeByActuator ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeByActuator ; owl:allValuesFrom sosa:Actuator ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:usedProcedure ; owl:allValuesFrom sosa:ActuationProcedure ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:usedProcedure ; owl:allValuesFrom sosa:ActuatingProcedure ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasFeatureOfInterest ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasFeatureOfInterest ; owl:allValuesFrom sosa:FeatureOfInterest ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasUltimateFeatureOfInterest ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
