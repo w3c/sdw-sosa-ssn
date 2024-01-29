@@ -402,7 +402,7 @@ sosa:ProcedureExecution a rdfs:Class , owl:Class ;
 
 sosa:Observation a rdfs:Class , owl:Class ;
   rdfs:label "Observation"@en ;
-  skos:definition "Act of carrying out an (Observation) Procedure to estimate or calculate a value of a property of a FeatureOfInterest. Links to a Sensor to describe what made the Observation and how; links to an ObservableProperty to describe what the result is an estimate of, and to a FeatureOfInterest to detail what that property was associated with."@en ;
+  skos:definition "Act of carrying out an (Observation) Procedure to estimate or calculate a value of a property of a FeatureOfInterest. Links to a Sensor to describe what made the Observation and how; links to an ObservableProperty to describe what the result is an estimate of, and to a FeatureOfInterest to detail what entity that property was associated with."@en ;
   rdfs:comment """An Observation concerns a single ObservableProperty of a single FeatureOfInterest. 
   Observations of multiple properties, or other combinations of Observations, may be described in an ObservationCollection. 
   
@@ -470,7 +470,7 @@ sosa:Actuation a owl:Class ;
   rdfs:label "Actuation"@en ;
   skos:definition """An Actuation carries out an (Actuation) Procedure to change the state of something in the world using an Actuator. 
   
-  In this context hasResult shall indicate the intended value of the ActuatableProperty at the completion of the Actuation
+  In this context hasResult shall indicate the expected value of the ActuatableProperty at the completion of the Actuation
   """@en ;
   rdfs:comment """An Actuation concerns a single ActuatableProperty of a single FeatureOfInterest. 
   Changes to multiple properties, or other combinations of Actuations, may be described in an ActuationCollection.
@@ -605,9 +605,9 @@ sosa:Result a rdfs:Class , owl:Class ;
     skos:definition """
     Relation linking an Actuation or Observation or act of Sampling to its result or Sample.
 
-    In the case of an Actuation, the result is the intended value of the ActuatableProperty following the execution of the Procedure by the Actuator. 
+    In the case of an Actuation, the result is the expected value of the ActuatableProperty following the execution of the Procedure by the Actuator. 
 
-    In the case of an Observation, the result is the value produced by the execution of the Procedure by the Sensor. 
+    In the case of an Observation, the result is the value of the ObservableProperty produced by the execution of the Procedure by the Sensor. 
     
     In the case of a Sampling, the result is the Sample produced by the execution of the Procedure by the Sampler. 
     """@en ;
@@ -635,9 +635,9 @@ sosa:Result a rdfs:Class , owl:Class ;
     skos:definition """
     The simple value of an Actuation or Observation.
 
-    In the case of an Actuation, the result is the intended value of the ActuatableProperty following the execution of the Procedure by the Actuator. 
+    In the case of an Actuation, the result is the expected value of the ActuatableProperty following the execution of the Procedure by the Actuator. 
 
-    In the case of an Observation, the result is the value produced by the execution of the Procedure by the Sensor. 
+    In the case of an Observation, the result is the value of the ObservableProperty produced by the execution of the Procedure by the Sensor. 
     """@en ;
     skos:example "For instance, the values 23 or true."@en ;
     schema:domainIncludes sosa:Actuation ;
