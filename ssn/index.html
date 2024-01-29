@@ -49,8 +49,8 @@
       involved procedures, the studied features of interest, the samples used to do so, and the observed properties, as
       well as actuators.
       SSN follows a horizontal and vertical modularization architecture, with the core classes and properties defined
-      using minimal axiomatization in a graph called SOSA (Sensor, Observation, Sample, and Actuator) supplemented with
-      additional axiomatization and terms in further graphs.
+      using minimal axiomatization in a module called SOSA (Sensor, Observation, Sample, and Actuator) supplemented with
+      additional axiomatization and terms in further modules.
       These allow SSN to support a wide range of applications and use cases, including satellite imagery, large-scale
       scientific monitoring, industrial and household infrastructures, social sensing, citizen science,
       observation-driven ontology engineering, and the Web of Things. </p>
@@ -60,9 +60,9 @@
     <p style="text-align: center;">The suggested prefix for the SOSA namespace is <span class="repeated"
         style="font-family: courier;">sosa</span>.</p>
     <p style="text-align: center;">
-      The SOSA graph containing the core definitions is available at <a
+      The SOSA module containing the core definitions is available at <a
         href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a>.<br>
-      The SSN graph with the full axiomatization of the core terms is available at <a
+      The SSN module with the full axiomatization of the core terms is available at <a
         href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>.
       <br>
     </p>
@@ -115,11 +115,11 @@
     <p>
       This specification document describes the SSN Ontology overall.
       The SSN Ontology is distributed through several modules, which are packaged as separate RDF graphs.
-      Each RDF graph packages a discrete set of concerns and conditions.
-      This allows an application to select the combination of graphs needed to satisfy their requirements.
-      Dependencies between the graphs are expressed using <code>owl:imports</code> statements.
+      Each module packages a discrete set of concerns and conditions.
+      This allows an application to select the combination of modules needed to satisfy their requirements.
+      Dependencies between the modules are expressed using <code>owl:imports</code> statements.
     </p>
-    <p class="note">OGC users may understand the different RDF graphs as <i>Conformance Classes</i></p>
+    <p class="note">OGC users may understand the different modules as <i>Conformance Classes</i></p>
     <p>
       We distinguish two modularization methods depending on the directionality of the segmentation: a vertical
       segmentation and a
@@ -135,7 +135,7 @@
       Lower level modules are independent of their higher level modules and logically consistent on their own.</p>
     <p>In particular,</p>
     <ol>
-      <li> the <i>SOSA graph</i> declares all the core classes and properties, and provides textual definitions and
+      <li> the <i>SOSA module</i> declares all the core classes and properties, and provides textual definitions and
         other annotations.
         Some semantic enrichment is provided using Schema.org properties, but there is no formal axiomatization.
         <br>
@@ -148,7 +148,7 @@
           Ontology, thus ensuring interoperability with SSN-based repositories</b>
       </li>
       <li>
-        the <i>SAMPLE-RELATIONS graph</i> imports <i>SOSA</i>, and adds terms for describing <i>relationships</i>
+        the <i>SAMPLE-RELATIONS module</i> imports <i>SOSA</i>, and adds terms for describing <i>relationships</i>
         between samples.
         <br>
         <br>
@@ -156,18 +156,18 @@
         namespace, for which the usual prefix is <code>sampling:</code>
       </li>
       <li>
-        the <i>SSN graph</i> imports <i>SOSA</i>, and adds OWL axioms that formally indicate how properties relate to
+        the <i>SSN module</i> imports <i>SOSA</i>, and adds OWL axioms that formally indicate how properties relate to
         classes, how classes relate to each other.
         <br>
         <br>
-        No new terms are introduced in the SSN graph.
+        No new terms are introduced in the SSN module.
         <br>
         <br>
         <b><i>SSN</i> may be used in semantic web systems that use inferencing and reasoning, and consistency checking
           for datasets</b>
       </li>
       <li>
-        the <i>SSN-SYSTEM graph</i> imports <i>SSN</i>, and adds terms for describing systems, including Sensors,
+        the <i>SSN-SYSTEM module</i> imports <i>SSN</i>, and adds terms for describing systems, including Sensors,
         Actuators, Platforms and related components.
         <i>SSN-SYSTEM</i> includes OWL axioms.
         <br>
@@ -179,7 +179,7 @@
         <b><i>SSN-SYSTEM</i> may be used in semantic web systems that use inferencing and reasoning</b>
       </li>
       <li>
-        the <i>SOSA-OMS graph</i> imports <i>SOSA</i> and describes the alignment of SOSA to [[OMS]], adding some
+        the <i>SOSA-OMS module</i> imports <i>SOSA</i> and describes the alignment of SOSA to [[OMS]], adding some
         additional terms used in OMS that are not otherwise included in SSN.
         <br>
         <br>
@@ -191,29 +191,29 @@
           19156:2023) is a requirement</b>
       </li>
       <li>
-        the <i>SSN-OMS graph</i> imports <i>SOSA-OMS</i> and <i>SSN</i> and describes the alignment of SSN to [[OMS]]
+        the <i>SSN-OMS module</i> imports <i>SOSA-OMS</i> and <i>SSN</i> and describes the alignment of SSN to [[OMS]]
         including OWL/RDFS axiomatization.
         <br>
         <br>
-        No new terms are introduced in the SSN-OMS graph.
+        No new terms are introduced in the SSN-OMS module.
         <br>
         <br>
         <b><i>SSN-OMS</i> may be used by audiences for whom strict conformance to [[OMS]] (also known as ISO 19156:2023)
           is a requirement, with reasoning support</b>
       </li>
       <li>
-        the <i>Dolce-UltraLite Alignment graph</i> imports the <i>SSN graph</i> which itself imports the <i>SOSA
-          graph</i>, and adds axioms that position SSN within <i>Dolce-UltraLite</i>.
+        the <i>Dolce-UltraLite Alignment module</i> imports the <i>SSN module</i> which itself imports the <i>SOSA
+          module</i>, and adds axioms that position SSN within <i>Dolce-UltraLite</i>.
         <br>
         <br>
-        No new terms are introduced in the Dolce-UltraLite Alignment graph.
+        No new terms are introduced in the Dolce-UltraLite Alignment module.
         <br>
         <br>
         <b><i>DUL-Alignment</i> may be used to integrate data designed using SSN into systems otherwise built in the
           <i>Dolce-UltraLite</i> framework</b>
       </li>
     </ol>
-    <p><i>SOSA</i> as the core graph, does not import any other ontologies, so it is truly independent of vertical
+    <p><i>SOSA</i> as the core module, does not import any other ontologies, so it is truly independent of vertical
       modules that add more expressivity and further ontological commitments to the lightweight semantics of
       <i>SOSA</i>.
     </p>
@@ -227,7 +227,7 @@
     <h3 id="horizontal-segmentation">Horizontal Segmentation</h3>
     <p>Modules that are horizontally layered may depend on each other, i.e., they may rely on the directional import of
       another horizontal module.</p>
-    <p>Other ontologies that add domain-specific terms to SSN, but require the import of the SOSA or SSN graphs, can be
+    <p>Other ontologies that add domain-specific terms to SSN, but require the import of the SOSA or SSN modules, can be
       considered horizontal modules.</p>
   </section>
   <section id="Developments" class="informative">
@@ -265,7 +265,7 @@
       community.
       The SSO was also aligned to the <em>Dolce-Ultralite </em>upper ontology (DUL). </p>
     <p>The SSN ontology described in this document is based on a revised and expanded version of this pattern.
-      The core terms are defined in a lightweight graph called SOSA, which acts as a central building block for the SSN
+      The core terms are defined in a lightweight module called SOSA, which acts as a central building block for the SSN
       but puts more emphasis on light-weight use and the ability to be used standalone.
       The axiomatization also changed to provide an experience more related to Schema.org.
       In particular we use the Schema.org <code>domainIncludes</code> and <code>rangeIncludes</code> annotation
@@ -292,11 +292,11 @@
             Due to the widespread adoption of SSNX, the increasing role of citizen science, the strong focus on
             lightweight vocabularies by the Linked Data community, and vocabularies such as Schema.org, the SSN ontology
             provides multiple modules serving as different entry points for different applications.
-            The SOSA graph was created as a core, and is also useful as a standalone ontology targeting Web developers,
+            The SOSA module was created as a core, and is also useful as a standalone ontology targeting Web developers,
             citizen
             science, lightweight Linked Data publishing, resource-constraint IoT devices, data intensive applications
             (with the possibility of using lightweight reasoning), and so on.
-            Additional graphs on top of SOSA add capabilities to suit more complex needs. </li>
+            Additional modules on top of SOSA add capabilities to suit more complex needs. </li>
           <li>Almost all scientific observations make heavy use of sampling strategies, and, therefore, the Sampling,
             Sampler, and Sample classes, as well as their corresponding properties, have been added to SSN.
           </li>
@@ -308,8 +308,8 @@
           <li>SSN streamlines the relations (and need for) the old Device, Platform, and Systems classes.</li>
           <li>SSNX was perceived as too heavyweight (on its axiomatization) and too dependent on OWL reasoning by
             some users.
-            To strike a balance, DL expressivity of the SOSA graph is ALI(D) which is efficiently
-            supported by modern triple stores, while the SSN graph is ALRIN(D).
+            To strike a balance, DL expressivity of the SOSA module is ALI(D) which is efficiently
+            supported by modern triple stores, while the SSN module is ALRIN(D).
             In contrast, SSNX was SRIQ.</li>
           <li>SSNX imported DUL and many SSNX terms inherited from DUL terms.
             This has been redesigned so that SSN can be used entirely independently of DUL.
@@ -335,7 +335,7 @@
       <li><strong>Addressing technical developments</strong>
         <ul>
           <li>SSNX used local/guarded domain and range restrictions.
-            SSN continues this in the SSN graph, but the lightweight SOSA graph uses an even more restrained
+            SSN continues this in the SSN module, but the lightweight SOSA module uses an even more restrained
             axiomatization to foster wide reuse and adaptation among an audience that is not necessarily familiar with
             OWL.
             SOSA makes use of the <code>domainIncludes</code> and <code>rangeIncludes</code> annotation properties
@@ -343,7 +343,7 @@
             These had not been available before.
           </li>
           <li>Given the increased interest in using Semantic Web technologies directly on the level of individual
-            sensors, actuators, or platforms, the SOSA graph does not use many of the more complex language
+            sensors, actuators, or platforms, the SOSA module does not use many of the more complex language
             elements introduced by SSN.</li>
         </ul>
     </ul>
@@ -376,51 +376,51 @@
     <section id="RDFdistribution">
       <h3>RDF distribution</h3>
       <p>
-        The SSN Ontology is distributed in several graphs, each packaged as an RDF file.
-        Within each graph, where further information (axioms and annotations) is added to an existing term,
-        <code>rdfs:isDefinedBy</code> indicates the graph where the term was originally defined.
+        The SSN Ontology is distributed in several modules, each packaged as an RDF file.
+        Within each module, where further information (axioms and annotations) is added to an existing term,
+        <code>rdfs:isDefinedBy</code> indicates the module where the term was originally defined.
       </p>
       <br>
-      <p>The first two graphs are specified in <a href="#Specification">this section</a>.</p>
+      <p>The first two modules are specified in <a href="#Specification">this section</a>.</p>
       <h4>SOSA</h4>
       <p>
-        The SOSA graph contains the basic definitions of the core terms with minimal axiomatization - only
+        The SOSA module contains the basic definitions of the core terms with minimal axiomatization - only
         <code>rdf:type</code> and <code>owl:inverseOf</code> - together with key annotations <code>rdfs:label</code> ,
         <code>skos:definition</code> , <code>schema:domainIncludes</code> , <code>schema:rangeIncludes</code>, plus
         other annotations as required.
       </p>
       <p style="text-align: center;">
-        The SOSA graph is available at <a href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a>.
+        The SOSA module is available at <a href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a>.
       </p>
       <h4>SSN</h4>
       <p>
-        The SSN graph contains the full axiomatization of the core terms, importing SOSA and using
+        The SSN module contains the full axiomatization of the core terms, importing SOSA and using
         <code>rdfs:subClassOf</code>, <code>rdfs:subPropertyOf</code>, <code>owl:Restriction</code> with the various
         associated RDFS and OWL structures.
       </p>
       <p style="text-align: center;">
-        The SSN graph is available at <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>.
+        The SSN module is available at <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>.
       </p>
       <br>
-      <p>The next two graphs are specified in the section <a href="#HorizontalSegmentation">Horizontal Segmentation</a>.
+      <p>The next two modules are specified in the section <a href="#HorizontalSegmentation">Horizontal Segmentation</a>.
       </p>
       <h4>SSN-System</h4>
       <p>
-        The SSN-System graph imports SOSA and SSN and contains additional definitions associated with the
+        The SSN-System module imports SOSA and SSN and contains additional definitions associated with the
         characteristics, composition
         and deployment of systems.
       </p>
       <p style="text-align: center;">
-        The SSN-System graph is available at <a
+        The SSN-System module is available at <a
           href="http://www.w3.org/ns/ssn-system/">http://www.w3.org/ns/ssn-system/</a>.
       </p>
       <h4>Sample-Relations</h4>
       <p>
-        The Sample-Relations graph imports SOSA and contains additional definitions associated with relationships
+        The Sample-Relations module imports SOSA and contains additional definitions associated with relationships
         between samples.
       </p>
       <p style="text-align: center;">
-        The Sample-Relations graph is available at <a
+        The Sample-Relations module is available at <a
           href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>.
       </p>
       <br>
@@ -428,25 +428,25 @@
         extensions.</p>
       <h4>SOSA-OMS</h4>
       <p>
-        The SOSA-OMS graph describes the alignment of SOSA to ISO 19156:2023 [[OMS]] using annotations to link SOSA
+        The SOSA-OMS module describes the alignment of SOSA to ISO 19156:2023 [[OMS]] using annotations to link SOSA
         terms to specific requirements in [[OMS]].
-        The SOSA-OMS graph imports SOSA and declares additional terms required for OMS.
+        The SOSA-OMS module imports SOSA and declares additional terms required for OMS.
       </p>
       <p>
-        <b>This graph is the canonical RDF implementation of OMS.</b>
+        <b>This module is the canonical RDF implementation of OMS.</b>
       </p>
       <p style="text-align: center;">
-        The SOSA-OMS graph is available at <a href="http://www.w3.org/ns/sosa-oms/">http://www.w3.org/ns/sosa-oms/</a>.
+        The SOSA-OMS module is available at <a href="http://www.w3.org/ns/sosa-oms/">http://www.w3.org/ns/sosa-oms/</a>.
       </p>
       <h4>SSN-OMS</h4>
       <p>
-        The SSN-OMS graph describes the alignment of SSN to ISO 19156:2023 [[OMS]] with RDFS/OWL axiomatization.
-        The SSN-OMS graph imports SSN and SOSA-OMS.</p>
+        The SSN-OMS module describes the alignment of SSN to ISO 19156:2023 [[OMS]] with RDFS/OWL axiomatization.
+        The SSN-OMS module imports SSN and SOSA-OMS.</p>
       <p>
-        <b>This graph is the canonical OWL implementation of OMS.</b>
+        <b>This module is the canonical OWL implementation of OMS.</b>
       </p>
       <p style="text-align: center;">
-        The SSN-OMS graph is available at <a href="http://www.w3.org/ns/ssn-oms/">http://www.w3.org/ns/ssn-oms/</a>.
+        The SSN-OMS module is available at <a href="http://www.w3.org/ns/ssn-oms/">http://www.w3.org/ns/ssn-oms/</a>.
       </p>
     </section>
 
@@ -4515,7 +4515,7 @@
       <p style="text-align: center;">The suggested prefix for the system capabilities, operating ranges, and survival
         ranges terms is <span class="repeated" style="font-family: courier;">ssn-system</span>
       </p>
-      <p>An <a href="http://w3c.github.io/sdw/ssn/integrated/ssn-system.ttl">ontology graph for this is
+      <p>An <a href="http://w3c.github.io/sdw/ssn/integrated/ssn-system.ttl">ontology module for this is
           available</a>. </p>
 
       <section class="informative">
@@ -6274,7 +6274,7 @@
       <p>The suggested prefix for the sample relationships namespace is <span class="repeated"
           style="font-family: courier;">sampling</span></p>
       <p>An <a href="http://w3c.github.io/sdw/ssn/rdf/sample-relations.ttl">ontology
-          graph for this is available</a>. </p>
+          module for this is available</a>. </p>
       <p>The following figure provides an overview on the classes
         and properties that are specifically related to modeling Sample relationships.</p>
       <figure>
@@ -8105,9 +8105,7 @@
             </tr>
           </tbody>
         </table>
-        <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/rdf/sosa-oboe-mapping.ttl">graph
-            corresponding to this alignment is available</a>. </p>
+        <p>An RDF file <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/rdf/sosa-oboe-mapping.ttl"> corresponding to this alignment is available</a>. </p>
       </section>
     </section>
 
@@ -8333,9 +8331,7 @@
           </tbody>
         </table>
 
-        <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/rdf/sosa-prov-mapping.ttl">graph corresponding to this
-            alignment is available</a>. </p>
+        <p>An RDF file <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/rdf/sosa-prov-mapping.ttl"> corresponding to this alignment is available</a>. </p>
 
       </section>
     </section>
@@ -8438,11 +8434,8 @@
       </p>
       <p>On the other hand, one SHOULD NOT use <a href="https://www.w3.org/TR/owl2-new-features/#F12:_Punning">OWL
           punning</a> to make <code>ex:Temperature</code> denote both a subclass of
-        <a href="#SOSAProperty"><code>sosa:Property</code></a> and an instance of sosa:Property. In fact, merging the
-        two examples below in a
-        single RDF Graph would make an OWL reasoner infer that <code>ex:TemperatureSensor</code>,
-        <code>&lt;TemperatureSensor/1&gt;</code>, and
-        <code>&lt;TemperatureSensor/2&gt;</code>, denote the same individual.
+        <a href="#SOSAProperty"><code>sosa:Property</code></a> and an instance of sosa:Property. 
+        In fact, merging the two examples below in a single RDF graph would make an OWL reasoner infer that <code>ex:TemperatureSensor</code>, <code>&lt;TemperatureSensor/1&gt;</code>, and       <code>&lt;TemperatureSensor/2&gt;</code>, denote the same individual.
       </p>
       <p>This also holds for subclasses of <a href="#SOSASystem"><code>sosa:System</code></a>: <a
           href="#SOSASensor"><code>sosa:Sensor</code></a>, <a href="#SOSAActuator"><code>sosa:Actuator</code></a>, and
@@ -8468,18 +8461,16 @@
     <section id="iphone_barometer-sosa">
       <h3>iPhone Barometer</h3>
       <div class="ssn">
-        <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/iphone_barometer-sosa.ttl">graph
-            corresponding to this example is available</a>. </p>
+        <p>
+          An RDF file <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/iphone_barometer-sosa.ttl"> corresponding to this example is available</a>. 
+        </p>
         <pre class="example" data-include="./examples/2017ex8.ttl" data-include-format="text"></pre>
       </div>
     </section>
     <section id="coil_oil_plant-sosa">
       <h3>Coal Oil Point Reserve</h3>
       <div class="ssn">
-        <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/IDEAS.ttl">graph corresponding to
-            this example is available</a>. </p>
+        <p>An RDF file <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/IDEAS.ttl"> corresponding to this example is available</a>. </p>
         <pre class="example" data-include="./examples/2017ex9.ttl" data-include-format="text"></pre>
       </div>
     </section>
@@ -8495,15 +8486,15 @@
         </span>
       </div>
       <div class="ssn">
-        <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/apartment-134.ttl">graph
-            corresponding to this example is available</a>. </p>
+        <p>
+          An RDF file <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/apartment-134.ttl"> corresponding to this example is available</a>. 
+        </p>
         <pre class="example" data-include="./examples/2017ex10.ttl" data-include-format="text"></pre>
       </div>
       <div class="sosa" style="display: none">
-        <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/apartment-134-sosa.ttl">graph
-            corresponding to this example is available</a>. </p>
+        <p>
+          An RDF file <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/apartment-134-sosa.ttl"> corresponding to this example is available</a>. 
+        </p>
         <pre class="example" data-include="./examples/2017ex11.ttl" data-include-format="text"></pre>
       </div>
       <div class="buttonpanel" style="justify-content: center;">
@@ -8529,15 +8520,15 @@
         </span>
       </div>
       <div class="ssn">
-        <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/tree-height.ttl">graph corresponding
-            to this example is available</a>. </p>
+        <p>
+          An RDF file <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/tree-height.ttl"> corresponding to this example is available</a>. 
+        </p>
         <pre class="example" data-include="./examples/2017ex12.ttl" data-include-format="text"></pre>
       </div>
       <div class="sosa" style="display: none">
-        <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/tree-height-sosa.ttl">graph
-            corresponding to this example is available</a>. </p>
+        <p>
+          An RDF file <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/tree-height-sosa.ttl"> corresponding to this example is available</a>. 
+        </p>
         <pre class="example" data-include="./examples/2017ex13.ttl" data-include-format="text"></pre>
       </div>
       <div class="buttonpanel" style="justify-content: center;">
@@ -8563,15 +8554,15 @@
         </span>
       </div>
       <div class="ssn">
-        <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/seismograph.ttl">graph corresponding
-            to this example is available</a>. </p>
+        <p>
+          An RDF file <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/seismograph.ttl"> corresponding to this example is available</a>. 
+        </p>
         <pre class="example" data-include="./examples/2017ex14.ttl" data-include-format="text"></pre>
       </div>
       <div class="sosa" style="display: none">
-        <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/seismograph-sosa.ttl">graph
-            corresponding to this example is available</a>. </p>
+        <p>
+          An RDF file <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/seismograph-sosa.ttl"> corresponding to this example is available</a>. 
+        </p>
         <pre class="example" data-include="./examples/2017ex15.ttl" data-include-format="text"></pre>
       </div>
       <div class="buttonpanel" style="justify-content: center;">
@@ -8587,9 +8578,9 @@
 
     <section id="sunspots">
       <h3>Number of sunspots</h3>
-      <p>An RDF file containing a <a
-          href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/sunspots.ttl">graph corresponding to
-          this example is available</a>. </p>
+      <p>
+        An RDF file containing a <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/sunspots.ttl"> corresponding to this example is available</a>. 
+      </p>
       <pre class="example" data-include="./examples/2017ex16.ttl" data-include-format="text"></pre>
     </section>
 
@@ -8605,15 +8596,15 @@
         </span>
       </div>
       <div class="ssn">
-        <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/spinning-cups.ttl">graph
-            corresponding to this example is available</a>. </p>
+        <p>
+          An RDF file <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/spinning-cups.ttl"> corresponding to this example is available</a>. 
+        </p>
         <pre class="example" data-include="./examples/2017ex17.ttl" data-include-format="text"></pre>
       </div>
       <div class="sosa" style="display: none">
-        <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/spinning-cups-sosa.ttl">graph
-            corresponding to this example is available</a>. </p>
+        <p>
+          An RDF file <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/spinning-cups-sosa.ttl"> corresponding to this example is available</a>. 
+          </p>
         <pre class="example" data-include="./examples/2017ex18.ttl" data-include-format="text"></pre>
       </div>
       <div class="buttonpanel" style="justify-content: center;">
@@ -8647,15 +8638,15 @@
           the ice core. </p>
         <p>A convenient side effect of this feature is that all observations related to the larger thing (the ice sheet)
           can be found, and then potentially joined together in a meta-analysis in order to characterize that. </p>
-        <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/ice-core.ttl">graph corresponding to
-            this example is available</a>. </p>
+        <p>
+          An RDF file <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/ice-core.ttl"> corresponding to this example is available</a>. 
+          </p>
         <pre class="example" data-include="./examples/2017ex19.ttl" data-include-format="text"></pre>
       </div>
       <div class="sosa" style="display: none">
-        <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/ice-core-sosa.ttl">graph
-            corresponding to this example is available</a>. </p>
+        <p>
+          An RDF file <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/ice-core-sosa.ttl"> corresponding to this example is available</a>. 
+          </p>
         <pre class="example" data-include="./examples/2017ex20.ttl" data-include-format="text"></pre>
       </div>
       <div class="buttonpanel" style="justify-content: center;">
@@ -8681,15 +8672,15 @@
         </span>
       </div>
       <div class="ssn">
-        <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/dht22.ttl">graph corresponding to
-            this example is available</a>. </p>
+        <p>
+          An RDF file <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/dht22.ttl"> corresponding to this example is available</a>. 
+        </p>
         <pre class="example" data-include="./examples/2017ex21.ttl" data-include-format="text"></pre>
       </div>
       <div class="sosa" style="display: none">
-        <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/dht22-sosa.ttl">graph corresponding
-            to this example is available</a>. </p>
+        <p>
+          An RDF file <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/dht22-sosa.ttl"> corresponding to this example is available</a>. 
+          </p>
         <pre class="example" data-include="./examples/2017ex22.ttl" data-include-format="text"></pre>
       </div>
       <div class="buttonpanel" style="justify-content: center;">
@@ -8723,15 +8714,15 @@
           across the room, and there are two sensors on different walls. In room 245 there is one sensor on the south
           wall. Each of these locations corresponds to a <code>sosa:Sample</code> of the entire room. The wall also
           serves as a <code>sosa:Platform</code> on which the sensors are mounted. </p>
-        <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/dht22-deployment.ttl">graph
-            corresponding to this example is available</a>. </p>
+        <p>
+          An RDF file <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/dht22-deployment.ttl"> corresponding to this example is available</a>. 
+          </p>
         <pre class="example" data-include="./examples/2017ex23.ttl" data-include-format="text"></pre>
       </div>
       <div class="sosa" style="display: none">
-        <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/dht22-deployment-sosa.ttl">graph
-            corresponding to this example is available</a>. </p>
+        <p>
+          An RDF file <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/dht22-deployment-sosa.ttl"> corresponding to this example is available</a>. 
+          </p>
         <pre class="example" data-include="./examples/2017ex24.ttl" data-include-format="text"></pre>
       </div>
     </section>
@@ -8740,9 +8731,9 @@
       <div>
         <p>This example describes the IP68 Smart Sensor that and some of its capabilities and operating ranges. A
           specific IP68 Smart Sensor observes the air temperature, and its own battery state.</p>
-        <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/ip68.ttl">graph corresponding to this
-            example is available</a>. </p>
+        <p>
+          An RDF file <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/ip68.ttl"> corresponding to this example is available</a>. 
+          </p>
         <pre class="example" data-include="./examples/2017ex25.ttl" data-include-format="text"></pre>
       </div>
     </section>
@@ -9088,10 +9079,10 @@
     <h3>Changes since W3C Recommendation 19 October 2017 <a href="https://www.w3.org/TR/2017/REC-vocab-ssn-20171019/">
         (https://www.w3.org/TR/2017/REC-vocab-ssn-20171019/)</a></h3>
     <ol>
-      <li>Updated Abstract to reflect the revised graph and axiomatization design</li>
-      <li>Updated Chapter 2 'Modularization' to simplify and to reflect the revised graph arrangement</li>
+      <li>Updated Abstract to reflect the revised modules and axiomatization design</li>
+      <li>Updated Chapter 2 'Modularization' to simplify and to reflect the revised module arrangement</li>
       <li>Changed title of Chapter 4 from 'Axiomatization' to 'RDF Implementation' and updated the summary of namespaces
-        and graphs</li>
+        and modules</li>
       <li>Adjust namespace of terms previously in sosa:</li>
       <li>Added OMS alignment modules to section 6. 'Vertical Segmentation'</li>
       <li>Added ObservationCollection, SampleCollection, hasMember</li>
