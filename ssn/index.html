@@ -924,10 +924,12 @@
                   <span about="[_:SOSAObservation11]" property="owl:minCardinality" content="1"
                     datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em></span>
                   <br>
-                  <span about="sosa:Observation" rel="rdfs:subClassOf" resource="[_:SOSAObservation12]"></span>
-                  <span about="[_:SOSAObservation12]" typeof="owl:Restriction"></span>
-                  <span about="[_:SOSAObservation12]" rel="owl:onProperty" resource="sosa:hasResult"><a
-                      href="#SOSAhasResult">sosa:hasResult</a></span>
+                  <span about="sosa:Observation" rel="rdfs:subClassOf" resource="[_:SOSAObservation17]"></span>
+                  <span about="[_:SOSAObservation17]" typeof="owl:Restriction"></span>
+                  <span about="[_:SOSAObservation17]" rel="owl:onProperty" resource="sosa:startTime"><a
+                      href="#SOSAstartTime">sosa:startTime</a></span>
+                  <span about="[_:SOSAObservation17]" property="owl:cardinality" content="1"
+                    datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em></span>
                   <br>
                   <span about="sosa:Observation" rel="rdfs:subClassOf" resource="[_:SOSAObservation13]"></span>
                   <span about="[_:SOSAObservation13]" typeof="owl:Restriction"></span>
@@ -1764,16 +1766,25 @@
                   <span about="[_:SOSAActuation11]" property="owl:minCardinality" content="1"
                     datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em></span>
                   <br>
-                  <span about="sosa:Actuation" rel="rdfs:subClassOf" resource="[_:SOSAActuation12]"></span>
-                  <span about="[_:SOSAActuation12]" typeof="owl:Restriction"></span>
-                  <span about="[_:SOSAActuation12]" rel="owl:onProperty" resource="sosa:hasResult"><a
-                      href="#SOSAhasResult">sosa:hasResult</a></span>
+                  <span about="sosa:Actuation" rel="rdfs:subClassOf" resource="[_:SOSAActuation14]"></span>
+                  <span about="[_:SOSAActuation14]" typeof="owl:Restriction"></span>
+                  <span about="[_:SOSAActuation14]" rel="owl:onProperty" resource="sosa:phenomenonTime"><a
+                      href="#SOSAphenomenonTime">sosa:phenomenonTime</a></span>
+                  <span about="[_:SOSAActuation14]" property="owl:cardinality" content="1"
+                    datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em></span>
                   <br>
                   <span about="sosa:Actuation" rel="rdfs:subClassOf" resource="[_:SOSAActuation13]"></span>
                   <span about="[_:SOSAActuation13]" typeof="owl:Restriction"></span>
                   <span about="[_:SOSAActuation13]" rel="owl:onProperty" resource="sosa:resultTime"><a
                       href="#SOSAresultTime">sosa:resultTime</a></span>
                   <span about="[_:SOSAActuation13]" property="owl:cardinality" content="1"
+                    datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em></span>
+                  <br>
+                  <span about="sosa:Actuation" rel="rdfs:subClassOf" resource="[_:SOSAActuation15]"></span>
+                  <span about="[_:SOSAActuation15]" typeof="owl:Restriction"></span>
+                  <span about="[_:SOSAActuation15]" rel="owl:onProperty" resource="sosa:startTime"><a
+                      href="#SOSAstartTime">sosa:startTime</a></span>
+                  <span about="[_:SOSAActuation15]" property="owl:cardinality" content="1"
                     datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em></span>
                 </td>
               </tr>
@@ -2596,6 +2607,13 @@
                   <span about="[_:SOSASampling13]" rel="owl:onProperty" resource="sosa:resultTime"><a
                       href="#SOSAresultTime">sosa:resultTime</a></span>
                   <span about="[_:SOSASampling13]" property="owl:cardinality" content="1"
+                    datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em></span>
+                  <br>
+                  <span about="sosa:Sampling" rel="rdfs:subClassOf" resource="[_:SOSASampling14]"></span>
+                  <span about="[_:SOSASampling14]" typeof="owl:Restriction"></span>
+                  <span about="[_:SOSASampling14]" rel="owl:onProperty" resource="sosa:startTime"><a
+                      href="#SOSAstartTime">sosa:startTime</a></span>
+                  <span about="[_:SOSASampling14]" property="owl:cardinality" content="1"
                     datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em></span>
                 </td>
               </tr>
@@ -8628,15 +8646,15 @@
         <table>
           <tbody>
             <tr>
-              <td> <a href="SOSAObservation">sosa:Observation</a> </td>
+              <td> <a href="#SOSAObservation">sosa:Observation</a> </td>
               <td rowspan="3"> subclass of </td>
               <td rowspan="3"> prov:Activity </td>
             </tr>
             <tr>
-              <td> <a href="SOSAActuation">sosa:Actuation</a> </td>
+              <td> <a href="#SOSAActuation">sosa:Actuation</a> </td>
             </tr>
             <tr>
-              <td> <a href="SOSASampling">sosa:Sampling</a> </td>
+              <td> <a href="#SOSASampling">sosa:Sampling</a> </td>
             </tr>
           </tbody>
         </table>
@@ -8645,15 +8663,15 @@
         <table>
           <tbody>
             <tr>
-              <td> <a href="SOSASensor">sosa:Sensor</a> </td>
+              <td> <a href="#SOSASensor">sosa:Sensor</a> </td>
               <td rowspan="3"> subclass of </td>
               <td rowspan="3"> prov:Agent , prov:Entity </td>
             </tr>
             <tr>
-              <td> <a href="SOSAActuator">sosa:Actuator</a> </td>
+              <td> <a href="#SOSAActuator">sosa:Actuator</a> </td>
             </tr>
             <tr>
-              <td> <a href="SOSASampler">sosa:Sampler</a> </td>
+              <td> <a href="#SOSASampler">sosa:Sampler</a> </td>
             </tr>
           </tbody>
         </table>
@@ -8661,7 +8679,7 @@
         <table>
           <tbody>
             <tr>
-              <td> <a href="SOSAProcedure">sosa:Procedure</a> </td>
+              <td> <a href="#SOSAProcedure">sosa:Procedure</a> </td>
               <td> subclass of </td>
               <td> prov:Plan </td>
             </tr>
@@ -8672,22 +8690,22 @@
         <table>
           <tbody>
             <tr>
-              <td> <a href="SOSAFeatureOfInterest">sosa:FeatureOfInterest</a> </td>
+              <td> <a href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a> </td>
               <td> subclass of </td>
               <td> prov:Entity </td>
             </tr>
             <tr>
-              <td> <a href="SOSAObservableProperty">sosa:ObservableProperty</a> </td>
+              <td> <a href="#SOSAObservableProperty">sosa:ObservableProperty</a> </td>
               <td> subclass of </td>
               <td> prov:Entity </td>
             </tr>
             <tr>
-              <td> <a href="SOSAPlatform">sosa:Platform</a> </td>
+              <td> <a href="#SOSAPlatform">sosa:Platform</a> </td>
               <td> subclass of </td>
               <td> prov:Entity </td>
             </tr>
             <tr>
-              <td> <a href="SOSASample">sosa:Sample</a> </td>
+              <td> <a href="#SOSASample">sosa:Sample</a> </td>
               <td> subclass of </td>
               <td> prov:Entity </td>
             </tr>
@@ -8700,52 +8718,52 @@
         <table>
           <tbody>
             <tr>
-              <td> <a href="SOSAmadeByActuator">sosa:madeByActuator</a> </td>
+              <td> <a href="#SOSAmadeByActuator">sosa:madeByActuator</a> </td>
               <td> subproperty of </td>
               <td> prov:wasAssociatedWith </td>
             </tr>
             <tr>
-              <td> <a href="SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a> </td>
+              <td> <a href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a> </td>
               <td> subproperty of </td>
               <td> prov:used </td>
             </tr>
             <tr>
-              <td> <a href="SOSAhasResult">sosa:hasResult</a> </td>
+              <td> <a href="#SOSAhasResult">sosa:hasResult</a> </td>
               <td> subproperty of </td>
               <td> prov:generated </td>
             </tr>
             <tr>
-              <td> <a href="SOSAinvokedBy">sosa:invokedBy</a> </td>
+              <td> <a href="#SOSAinvokedBy">sosa:invokedBy</a> </td>
               <td> subproperty of </td>
               <td> prov:wasAssociatedWith </td>
             </tr>
             <tr>
-              <td> <a href="SOSAisResultOf">sosa:isResultOf</a> </td>
+              <td> <a href="#SOSAisResultOf">sosa:isResultOf</a> </td>
               <td> subproperty of </td>
               <td> prov:wasGeneratedBy </td>
             </tr>
             <tr>
-              <td> <a href="SOSAisSampleOf">sosa:isSampleOf</a> </td>
+              <td> <a href="#SOSAisSampleOf">sosa:isSampleOf</a> </td>
               <td> subproperty of </td>
               <td> prov:wasDerivedFrom </td>
             </tr>
             <tr>
-              <td> <a href="SOSAmadeBySampler">sosa:madeBySampler</a> </td>
+              <td> <a href="#SOSAmadeBySampler">sosa:madeBySampler</a> </td>
               <td> subproperty of </td>
               <td> prov:wasAssociatedWith </td>
             </tr>
             <tr>
-              <td> <a href="SOSAmadeBySensor">sosa:madeBySensor</a> </td>
+              <td> <a href="#SOSAmadeBySensor">sosa:madeBySensor</a> </td>
               <td> subproperty of </td>
               <td> prov:wasAssociatedWith </td>
             </tr>
             <tr>
-              <td> <a href="SOSAstartTime">sosa:startTime</a> </td>
+              <td> <a href="#SOSAstartTime">sosa:startTime</a> </td>
               <td> subproperty of </td>
               <td> prov:startedAtTime </td>
             </tr>
             <tr>
-              <td> <a href="SOSAresultTime">sosa:resultTime</a> </td>
+              <td> <a href="#SOSAresultTime">sosa:resultTime</a> </td>
               <td> subproperty of </td>
               <td> prov:endedAtTime </td>
             </tr>
@@ -8772,7 +8790,7 @@
             </tr>
             <tr>
               <td> range </td>
-              <td> <a href="SOSAProcedure">sosa:Procedure</a> </td>
+              <td> <a href="#SOSAProcedure">sosa:Procedure</a> </td>
             </tr>
           </tbody>
         </table>
@@ -8782,7 +8800,7 @@
         <table>
           <tbody>
             <tr>
-              <td> <a href="SOSAusedProcedure">sosa:usedProcedure</a> </td>
+              <td> <a href="#SOSAusedProcedure">sosa:usedProcedure</a> </td>
               <td> property chain axiom </td>
               <td> [ sp:eventAssociation , sp:hadProcedure ] </td>
             </tr>
