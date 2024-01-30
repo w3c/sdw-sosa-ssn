@@ -362,6 +362,7 @@ sosa:Execution a owl:Class ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasFeatureOfInterest ; owl:allValuesFrom sosa:FeatureOfInterest ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasUltimateFeatureOfInterest ; owl:allValuesFrom sosa:FeatureOfInterest ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:resultTime ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:startTime ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:isDefinedBy sosa: .
 
 sosa:Observation a owl:Class ;
@@ -373,15 +374,15 @@ sosa:Observation a owl:Class ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:usedProcedure ; owl:allValuesFrom sosa-oms:ObservingProcedure ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasFeatureOfInterest ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasFeatureOfInterest ; owl:allValuesFrom sosa:FeatureOfInterest ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasUltimateFeatureOfInterest ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasUltimateFeatureOfInterest ; owl:allValuesFrom sosa:FeatureOfInterest ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:observedProperty ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:observedProperty ; owl:allValuesFrom sosa:ObservableProperty ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:wasOriginatedBy ; owl:cardinality "1"^^xsd:nonNegativeInteger] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:wasOriginatedBy ; owl:allValuesFrom ssn:Stimulus ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:phenomenonTime ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasResult ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasResult ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:resultTime ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:startTime ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:isDefinedBy sosa: .
 
   sosa:madeObservation
@@ -403,12 +404,13 @@ sosa:Actuation a owl:Class ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:usedProcedure ; owl:allValuesFrom sosa-oms:ActuationProcedure ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasFeatureOfInterest ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasFeatureOfInterest ; owl:allValuesFrom sosa:FeatureOfInterest ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasUltimateFeatureOfInterest ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasUltimateFeatureOfInterest ; owl:allValuesFrom sosa:FeatureOfInterest ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:actsOnProperty ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:actsOnProperty ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:actsOnProperty ; owl:allValuesFrom sosa:ActuatableProperty ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasResult ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasResult ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:phenomenonTime ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:resultTime ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:startTime ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:isDefinedBy sosa: .
 
   sosa:madeActuation
@@ -430,11 +432,11 @@ sosa:Sampling a owl:Class ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:usedProcedure ; owl:allValuesFrom sosa-oms:SamplingProcedure ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasFeatureOfInterest ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasFeatureOfInterest ; owl:allValuesFrom sosa:FeatureOfInterest ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasUltimateFeatureOfInterest ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasUltimateFeatureOfInterest ; owl:allValuesFrom sosa:FeatureOfInterest ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasResult ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasResult ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasResult ; owl:allValuesFrom sosa:Sample ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:resultTime ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:startTime ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:isDefinedBy sosa: .
 
   sosa:madeSampling 
@@ -531,6 +533,9 @@ sosa:Result
     rdfs:isDefinedBy sosa: .
 
   sosa:hasSimpleResult 
+    rdfs:isDefinedBy sosa: .
+
+  sosa:startTime
     rdfs:isDefinedBy sosa: .
 
   sosa:resultTime
@@ -693,7 +698,7 @@ sosa:forProperty a owl:ObjectProperty ;
 
 ## Collections 
 
-sosa:SampleCollection
+sosa:ActuationCollection
   a owl:Class ;
   rdfs:subClassOf rdf:Bag ;
   rdfs:subClassOf [ 
@@ -701,12 +706,12 @@ sosa:SampleCollection
     owl:onProperty sosa:hasMember ; 
     owl:allValuesFrom [ 
       owl:unionOf ( 
-        sosa:Sample 
-        sosa:SampleCollection 
+        sosa:Actuation 
+        sosa:ActuationCollection 
       ) ; 
     ] 
   ] ;
-  owl:disjointWith sosa:ObservationCollection ;
+  owl:disjointWith sosa:ObservationCollection , sosa:SampleCollection ;
   rdfs:isDefinedBy sosa: .
 
 sosa:ObservationCollection 
@@ -722,6 +727,22 @@ sosa:ObservationCollection
       ) ;
     ] 
   ] ;
-  owl:disjointWith sosa:SampleCollection ;
+  owl:disjointWith sosa:ActuationCollection , sosa:SampleCollection ;
+  rdfs:isDefinedBy sosa: .
+
+sosa:SampleCollection
+  a owl:Class ;
+  rdfs:subClassOf rdf:Bag ;
+  rdfs:subClassOf [ 
+    a owl:Restriction ; 
+    owl:onProperty sosa:hasMember ; 
+    owl:allValuesFrom [ 
+      owl:unionOf ( 
+        sosa:Sample 
+        sosa:SampleCollection 
+      ) ; 
+    ] 
+  ] ;
+  owl:disjointWith sosa:ActuationCollection , sosa:ObservationCollection ;
   rdfs:isDefinedBy sosa: .
 
