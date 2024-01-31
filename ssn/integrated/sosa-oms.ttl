@@ -272,23 +272,12 @@ sosa-oms:observationType a owl:ObjectProperty ;
     skos:definition "Relation between an Observation and the Platform the Sensor was attached to at the time the observation was made."@en ;
     schema:domainIncludes sosa:Observation ;
     schema:domainIncludes sosa:ObservationCollection ;
-    schema:domainIncludes sosa:ProcedureExecution ;
     schema:rangeIncludes sosa:Platform ;
     rdfs:isDefinedBy sosa-oms: .
 
-  sosa-oms:relatedObservation rdf:type owl:ObjectProperty ;
+  sosa:relatedObservation rdf:type owl:ObjectProperty ;
     ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/gen/relatedObservation-sem> ;
-    rdfs:label "related observation"@en ;
-    skos:definition "Relation to an Observation."@en ;
-    schema:domainIncludes sosa:Sample ;
-    schema:domainIncludes sosa:ObservableProperty ;
-    schema:domainIncludes sosa-oms:ObservingProcedure ;
-    schema:domainIncludes sosa:Sensor ;
-    schema:domainIncludes sosa:Platform ;
-    schema:domainIncludes sosa:Observation ;
-    schema:domainIncludes sosa:ObservationCollection ;
-    schema:rangeIncludes sosa:Observation ;
-    rdfs:isDefinedBy sosa-oms: .
+    rdfs:isDefinedBy sosa: .
 
 sosa:Sampling ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sampling> ;
   rdfs:isDefinedBy sosa: .

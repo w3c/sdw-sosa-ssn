@@ -534,6 +534,7 @@
             , <a href="#SOSAobservedProperty">sosa:observedProperty</a>
             , <a href="#SOSAobserves">sosa:observes</a>
             , <a href="#SOSAphenomenonTime">sosa:phenomenonTime</a>
+            , <a href="#SOSArelatedObservation">sosa:relatedObservation</a>
             , <a href="#SOSAusedProcedure">sosa:usedProcedure</a>
             , <a href="#SOSAwasOriginatedBy">sosa:wasOriginatedBy</a>
           </p>
@@ -552,6 +553,7 @@
           <p>Datatype Properties:
             <a href="#SOSAhasSimpleResult">sosa:hasSimpleResult</a>
             , <a href="#SOSAresultTime">sosa:resultTime</a>
+            , <a href="#SOSAstartTime">sosa:startTime</a>
           </p>
         </div>
       </div>
@@ -675,6 +677,7 @@
             , <a href="#SOSAisObservedBy">sosa:isObservedBy</a>
             , <a href="#SOSAmadeObservation">sosa:madeObservation</a>
             , <a href="#SOSAmadeBySensor">sosa:madeBySensor</a>
+            , <a href="#SOSArelatedObservation">sosa:relatedObservation</a>
             , <a href="#SOSAStimulus">sosa:Stimulus</a>
             , <a href="#SOSAisProxyFor">sosa:isProxyFor</a>
             , <a href="#SOSAwasOriginatedBy">sosa:wasOriginatedBy</a>
@@ -699,16 +702,23 @@
           <p><strong>an OWL Class</strong></p>
 
           <em property="rdfs:label">Observable Property</em> -
-          <span property="rdfs:comment skos:definition">An observable quality (property, characteristic) of a <a
+          <span property="skos:definition">An observable quality (property, characteristic) of a <a
               href="#SOSAFeatureOfInterest"><code>FeatureOfInterest</code></a>.</span>
+          <br>
+          <br>
+          <span property="rdfs:comment">'Observable' means that the value may be determined through an act of <a
+              href="#SOSAObservation"><code>Observation</code></a> using an <a
+              href="#SOSAProcedure"><code>ObservationProcedure</code></a> applied by a <a
+              href="#SOSASensor"><code>Sensor</code></a> or Observer.
+            This can be contrasted with properties whose value is assigned by some authority (e.g. price, ownership), or
+            whose value is a consequence of some other values (e.g. rank).</span>
           <table>
             <tbody>
               <tr>
                 <th>Example</th>
                 <td>
                   <span property="skos:example">The height of a tree, the depth of a water body, or the temperature of a
-                    surface are examples of observable properties, while the value of a classic car is not (directly)
-                    observable but asserted.</span>
+                    surface.</span>
                 </td>
               </tr>
               <tr class="ssn">
@@ -779,14 +789,27 @@
           <p><strong>an OWL Class</strong></p>
 
           <em property="rdfs:label">Observation</em> -
-          <span property="rdfs:comment skos:definition">Act of carrying out an (Observation) <a
+          <span property="skos:definition">Act of carrying out an (Observation) <a
               href="#SOSAProcedure"><code>Procedure</code></a> to estimate or calculate a value of a property of a <a
               href="#SOSAFeatureOfInterest"><code>FeatureOfInterest</code></a>. Links to a <a
               href="#SOSASensor"><code>Sensor</code></a> to describe what made the <a
               href="#SOSAObservation"><code>Observation</code></a> and how; links to an <a
               href="#SOSAObservableProperty"><code>ObservableProperty</code></a> to describe what the result is an
             estimate of, and to a <a href="#SOSAFeatureOfInterest"><code>FeatureOfInterest</code></a> to detail what
-            that property was associated with.</span><br>
+            that property was associated with.</span>
+          <br>
+          <br>
+          <span property="rdfs:comment">An <a href="#SOSAObservation"><code>Observation</code></a> concerns a single <a
+              href="#SOSAObservableProperty"><code>ObservableProperty</code></a> of a single <a
+              href="#SOSAFeatureOfInterest"><code>FeatureOfInterest</code></a>.
+            Observations of multiple properties, or other combinations of Observations, may be described in an <a
+              href="#SOSAObservationCollection"><code>ObservationCollection</code></a>.
+            <br>
+            <br>
+            Alternatively, applications may choose to encapsulate complexity by defining a complex property with
+            multiple individual components, and a corresponding complex result (e.g. a vector). This approach is not
+            prohibited by the SSN Ontology, but the details are beyond the scope of SSN.</span>
+          <br>
           <table>
             <tbody>
               <tr>
@@ -901,10 +924,12 @@
                   <span about="[_:SOSAObservation11]" property="owl:minCardinality" content="1"
                     datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em></span>
                   <br>
-                  <span about="sosa:Observation" rel="rdfs:subClassOf" resource="[_:SOSAObservation12]"></span>
-                  <span about="[_:SOSAObservation12]" typeof="owl:Restriction"></span>
-                  <span about="[_:SOSAObservation12]" rel="owl:onProperty" resource="sosa:hasResult"><a
-                      href="#SOSAhasResult">sosa:hasResult</a></span>
+                  <span about="sosa:Observation" rel="rdfs:subClassOf" resource="[_:SOSAObservation17]"></span>
+                  <span about="[_:SOSAObservation17]" typeof="owl:Restriction"></span>
+                  <span about="[_:SOSAObservation17]" rel="owl:onProperty" resource="sosa:startTime"><a
+                      href="#SOSAstartTime">sosa:startTime</a></span>
+                  <span about="[_:SOSAObservation17]" property="owl:cardinality" content="1"
+                    datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em></span>
                   <br>
                   <span about="sosa:Observation" rel="rdfs:subClassOf" resource="[_:SOSAObservation13]"></span>
                   <span about="[_:SOSAObservation13]" typeof="owl:Restriction"></span>
@@ -979,23 +1004,54 @@
           <p><strong>an OWL Object Property</strong></p>
 
           <em property="rdfs:label">phenomenon time</em> -
-          <span property="rdfs:comment skos:definition">The time that the <a href="#SOSAResult"><code>Result</code></a>
-            of an <a href="#SOSAObservation"><code>Observation</code></a>, <a
-              href="#SOSAActuation"><code>Actuation</code></a>, or <a href="#SOSASampling"><code>Sampling</code></a>
-            applies to the <a href="#SOSAFeatureOfInterest"><code>FeatureOfInterest</code></a>. Not necessarily the same
-            as the <a href="#SOSAresultTime"><code>resultTime</code></a>. May be an interval or an instant, or some
-            other compound temporal entity [[!owl-time]].</span> <br>
+          <span property="skos:definition">The time that the result of an <a
+              href="#SOSAActuation"><code>Actuation</code></a>, <a href="#SOSAObservation"><code>Observation</code></a>,
+            or <a href="#SOSASampling"><code>Sampling</code></a>
+            applies to the <a href="#SOSAFeatureOfInterest"><code>FeatureOfInterest</code></a>. It may be an interval or
+            an instant, or some
+            other compound temporal entity [[!owl-time]].</span>
+          <br>
+          <br>
+          <span property="rdfs:comment">The <a href="#SOSAphenomenonTime">sosa:phenomenonTime</a> is not necessarily the
+            same as the <a href="#SOSAresultTime">sosa:resultTime</a>.
+            <br>
+            <br>
+            In the case of <a href="#SOSAActuation">sosa:Actuation</a>, <a
+              href="#SOSAphenomenonTime">sosa:phenomenonTime</a> should indicate the time that the <a
+              href="#SOSAActuator">sosa:Actuator</a> was active.
+            <br>
+            <br>
+            In the case of <a href="#SOSAObservation">sosa:Observation</a>, the <a
+              href="#SOSAphenomenonTime">sosa:phenomenonTime</a> may be distant from the <a
+              href="#SOSAresultTime">sosa:resultTime</a>, for example in the case of forecasts the <a
+              href="#SOSAphenomenonTime">sosa:phenomenonTime</a> is after the <a
+              href="#SOSAresultTime">sosa:resultTime</a>, and in historical, geological and cosmological investigations
+            the <a href="#SOSAphenomenonTime">sosa:phenomenonTime</a> may be far in the past while the <a
+              href="#SOSAresultTime">sosa:resultTime</a> is contemporary.
+            <br>
+            <br>
+            In the case of <a href="#SOSASampling">sosa:Sampling</a> the <a
+              href="#SOSAphenomenonTime">sosa:phenomenonTime</a> should indicate the period during which the sampling <a
+              href="#SOSAProcedure">sosa:Procedure</a> was active, while the <a
+              href="#SOSAresultTime">sosa:resultTime</a> may indicate when the sample comes into the possession of the
+            operator. .</span>
+          <br>
           <table>
             <tbody>
               <tr>
                 <th>Domain Includes</th>
-                <td><span rel="schema:domainIncludes" resource="sosa:Actuation"><a
-                      href="#SOSAActuation">sosa:Actuation</a></span>, <span rel="schema:domainIncludes"
-                    resource="sosa:Observation"><a href="#SOSAObservation">sosa:Observation</a></span>, <span
-                    rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a
-                      href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>, <span
-                    rel="schema:domainIncludes" resource="sosa:Sampling"><a
-                      href="#SOSASampling">sosa:Sampling</a></span></td>
+                <td>
+                  <span rel="schema:domainIncludes" resource="sosa:Actuation"><a
+                      href="#SOSAActuation">sosa:Actuation</a></span>
+                  , <span rel="schema:domainIncludes" resource="sosa:ActuationCollection"><a
+                      href="#SOSAActuationCollection">sosa:ActuationCollection</a></span>
+                  , <span rel="schema:domainIncludes" resource="sosa:Observation"><a
+                      href="#SOSAObservation">sosa:Observation</a></span>
+                  , <span rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a
+                      href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
+                  , <span rel="schema:domainIncludes" resource="sosa:Sampling"><a
+                      href="#SOSASampling">sosa:Sampling</a></span>
+                </td>
               </tr>
               <tr>
                 <th>Range Includes</th>
@@ -1249,6 +1305,72 @@
           </table>
           <div class="buttonpanel">
             <span class="back">[<a href="#Observations">Back to module overview and examples</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+          </div>
+        </section>
+
+
+        <section class="informative specterm sosa" id="SOSArelatedObservation" about="sosa:relatedObservation"
+          typeof="owl:ObjectProperty">
+          <h5><a href="#SOSArelatedObservation">sosa:relatedObservation</a></h5>
+          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/relatedObservation</p>
+          <p><strong>an OWL Object Property</strong></p>
+
+          <p class="note">relatedObservation added in 2024 update.
+
+            This term is non-normative pending further implementation experience</p>
+          <p>
+            <em property="rdfs:label">related observation</em> -
+            <span property="rdfs:comment skos:definition">Relation to an <a
+                href="#SOSAObservation"><code>Observation</code></a> or <a
+                href="#SOSAObservationCollection"><code>ObservationCollection</code></a>.</span>
+          </p>
+          <table>
+            <tbody>
+              <tr>
+                <th>Domain Includes</th>
+                <td>
+                  <span rel="schema:domainIncludes" resource="sosa:Actuation"><a
+                      href="#SOSAActuation">sosa:Actuation</a></span>
+                  , <span rel="schema:domainIncludes" resource="sosa:ActuationCollection"><a
+                      href="#SOSAActuationCollection">sosa:ActuationCollection</a></span>
+                  , <span rel="schema:domainIncludes" resource="sosa:ObservableProperty"><a
+                      href="#SOSAObservableProperty">sosa:ObservableProperty</a></span>
+                  , <span rel="schema:domainIncludes" resource="sosa:Observation"><a
+                      href="#SOSAObservation">sosa:Observation</a></span>
+                  , <span rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a
+                      href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
+                  , <span rel="schema:domainIncludes" resource="sosa:Platform"><a
+                      href="#SOSAPlatform">sosa:Platform</a></span>
+                  , <span rel="schema:domainIncludes" resource="sosa:Procedure"><a
+                      href="#SOSAProcedure">sosa:Procedure</a></span>
+                  , <span rel="schema:domainIncludes" resource="sosa:Sample"><a
+                      href="#SOSASample">sosa:Sample</a></span>
+                  , <span rel="schema:domainIncludes" resource="sosa:Sensor"><a
+                      href="#SOSASensor">sosa:Sensor</a></span>
+                </td>
+              </tr>
+              <tr>
+                <th>Range Includes</th>
+                <td>
+                  <span rel="schema:rangeIncludes" resource="sosa:Observation"><a
+                      href="#SOSAObservation">sosa:Observation</a></span>
+                  , <span rel="schema:rangeIncludes" resource="sosa:ObservationCollection"><a
+                      href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
+                </td>
+              </tr>
+              <tr>
+                <th>is Defined By</th>
+                <td>
+                  <span rel="rdfs:isDefinedBy"><a
+                      href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a></span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="buttonpanel">
+            <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
             <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
           </div>
         </section>
@@ -1535,12 +1657,34 @@
 
           <em property="rdfs:label">Actuation</em> -
           <span property="skos:definition">An <a href="#SOSAActuation"><code>Actuation</code></a> carries out an
-            (Actuation) <a href="#SOSAProcedure"><code>Procedure</code></a> to change the state of the world using an <a
-              href="#SOSAActuator"><code>Actuator</code></a>. <a href="#SOSAhasResult"><code>hasResult</code></a>
-            indicates the intended value of the <a href="#SOSAActuatableProperty"><code>ActuatableProperty</code></a> at
-            the completion of the <a href="#SOSAActuation"><code>Actuation</code></a> </span> <br>
-          <span property="rdfs:comment">There may be an associated <a
-              href="#SOSAObservation"><code>Observation</code></a> to verify that the result has been obtained. </span>
+            (Actuation) <a href="#SOSAProcedure"><code>Procedure</code></a> to change the state of something in the
+            world using an <a href="#SOSAActuator"><code>Actuator</code></a>.
+            <br>
+            <br>
+            In this context,
+            <br>
+            - <a href="#SOSAhasResult"><code>hasResult</code></a> shall indicate the expected value of the <a
+              href="#SOSAActuatableProperty"><code>ActuatableProperty</code></a> at the completion of the <a
+              href="#SOSAActuation"><code>Actuation</code></a>
+          </span>
+          <br>
+          <br>
+          <span property="rdfs:comment"><a href="#SOSArelatedObservation"><code>relatedObservation</code></a> should be
+            used to link to an associated <a href="#SOSAObservation"><code>Observation</code></a> or <a
+              href="#SOSAObservationCollection"><code>ObservationCollection</code></a> that monitors the actuated
+            property to verify that the result value has been obtained</span>
+          <br>
+          <br>
+          <span property="rdfs:comment">An <a href="#SOSAActuation"><code>Actuation</code></a> concerns a single <a
+              href="#SOSAActuatableProperty"><code>ActuatableProperty</code></a> of a single <a
+              href="#SOSAFeatureOfInterest"><code>FeatureOfInterest</code></a>.
+            Changes to multiple properties, or other combinations of Actuations, may be described in an <a
+              href="#SOSAActuationCollection"><code>ActuationCollection</code></a>.
+            <br>
+            <br>
+            Alternatively, applications may choose to encapsulate complexity by defining a complex property with
+            multiple individual components, and a corresponding complex result (e.g. a vector). This approach is not
+            prohibited by the SSN Ontology, but the details are beyond the scope of SSN.</span>
           <br>
           <table>
             <tbody>
@@ -1622,16 +1766,25 @@
                   <span about="[_:SOSAActuation11]" property="owl:minCardinality" content="1"
                     datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em></span>
                   <br>
-                  <span about="sosa:Actuation" rel="rdfs:subClassOf" resource="[_:SOSAActuation12]"></span>
-                  <span about="[_:SOSAActuation12]" typeof="owl:Restriction"></span>
-                  <span about="[_:SOSAActuation12]" rel="owl:onProperty" resource="sosa:hasResult"><a
-                      href="#SOSAhasResult">sosa:hasResult</a></span>
+                  <span about="sosa:Actuation" rel="rdfs:subClassOf" resource="[_:SOSAActuation14]"></span>
+                  <span about="[_:SOSAActuation14]" typeof="owl:Restriction"></span>
+                  <span about="[_:SOSAActuation14]" rel="owl:onProperty" resource="sosa:phenomenonTime"><a
+                      href="#SOSAphenomenonTime">sosa:phenomenonTime</a></span>
+                  <span about="[_:SOSAActuation14]" property="owl:cardinality" content="1"
+                    datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em></span>
                   <br>
                   <span about="sosa:Actuation" rel="rdfs:subClassOf" resource="[_:SOSAActuation13]"></span>
                   <span about="[_:SOSAActuation13]" typeof="owl:Restriction"></span>
                   <span about="[_:SOSAActuation13]" rel="owl:onProperty" resource="sosa:resultTime"><a
                       href="#SOSAresultTime">sosa:resultTime</a></span>
                   <span about="[_:SOSAActuation13]" property="owl:cardinality" content="1"
+                    datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em></span>
+                  <br>
+                  <span about="sosa:Actuation" rel="rdfs:subClassOf" resource="[_:SOSAActuation15]"></span>
+                  <span about="[_:SOSAActuation15]" typeof="owl:Restriction"></span>
+                  <span about="[_:SOSAActuation15]" rel="owl:onProperty" resource="sosa:startTime"><a
+                      href="#SOSAstartTime">sosa:startTime</a></span>
+                  <span about="[_:SOSAActuation15]" property="owl:cardinality" content="1"
                     datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em></span>
                 </td>
               </tr>
@@ -2455,6 +2608,13 @@
                       href="#SOSAresultTime">sosa:resultTime</a></span>
                   <span about="[_:SOSASampling13]" property="owl:cardinality" content="1"
                     datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em></span>
+                  <br>
+                  <span about="sosa:Sampling" rel="rdfs:subClassOf" resource="[_:SOSASampling14]"></span>
+                  <span about="[_:SOSASampling14]" typeof="owl:Restriction"></span>
+                  <span about="[_:SOSASampling14]" rel="owl:onProperty" resource="sosa:startTime"><a
+                      href="#SOSAstartTime">sosa:startTime</a></span>
+                  <span about="[_:SOSASampling14]" property="owl:cardinality" content="1"
+                    datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em></span>
                 </td>
               </tr>
             </tbody>
@@ -3136,6 +3296,7 @@
             , <a href="#SOSAisResultOf">sosa:isResultOf</a>
             , <a href="#SOSAhasSimpleResult">sosa:hasSimpleResult</a>
             , <a href="#SOSAresultTime">sosa:resultTime</a>
+            , <a href="#SOSAstartTime">sosa:startTime</a>
           </p>
         </div>
 
@@ -3145,22 +3306,40 @@
           <p><strong>an OWL Object Property</strong></p>
 
           <em property="rdfs:label">has result</em> -
-          <span property="rdfs:comment skos:definition">Relation linking an <a
-              href="#SOSAObservation"><code>Observation</code></a> and a <a href="#SOSASensor"><code>Sensor</code></a>
-            or <a href="#SOSAActuator"><code>Actuator</code></a> and a <a href="#SOSAResult"><code>Result</code></a>,
-            which contains a value representing the value associated with the observed <code>Property</code>.</span>
+          <span property="skos:definition">Relation linking an <a href="#SOSAActuation"><code>Actuation</code></a> or <a
+              href="#SOSAObservation"><code>Observation</code></a> or act of <a
+              href="#SOSASampling"><code>Sampling</code></a> to its result or <a
+              href="#SOSASample"><code>Sample</code></a>.
+
+            In the case of an <a href="#SOSAActuation"><code>Actuation</code></a>, the result is the expected value of
+            the <a href="#SOSAActuatableProperty"><code>ActuatableProperty</code></a> following the execution of the <a
+              href="#SOSAProcedure"><code>Procedure</code></a> by the <a href="#SOSAActuator"><code>Actuator</code></a>.
+
+            In the case of an <a href="#SOSAObservation"><code>Observation</code></a>, the result is the value of
+            the <a href="#SOSAObservableProperty"><code>ObservableProperty</code></a> produced by the execution of the
+            <a href="#SOSAProcedure"><code>Procedure</code></a> by the <a href="#SOSASensor"><code>Sensor</code></a>.
+
+            In the case of a <a href="#SOSASampling"><code>Sampling</code></a>, the result is the <a
+              href="#SOSASample"><code>Sample</code></a> produced by the execution of the <a
+              href="#SOSAProcedure"><code>Procedure</code></a> by the <a href="#SOSASampler"><code>Sampler</code></a>.
+          </span>
           <br>
           <table>
             <tbody>
               <tr>
                 <th>Domain Includes</th>
-                <td><span rel="schema:domainIncludes" resource="sosa:Actuation"><a
-                      href="#SOSAActuation">sosa:Actuation</a></span>, <span rel="schema:domainIncludes"
-                    resource="sosa:Observation"><a href="#SOSAObservation">sosa:Observation</a></span>, <span
-                    rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a
-                      href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>, <span
-                    rel="schema:domainIncludes" resource="sosa:Sampling"><a
-                      href="#SOSASampling">sosa:Sampling</a></span></td>
+                <td>
+                  <span rel="schema:domainIncludes" resource="sosa:Actuation"><a
+                      href="#SOSAActuation">sosa:Actuation</a></span>
+                  , <span rel="schema:domainIncludes" resource="sosa:ActuationCollection"><a
+                      href="#SOSAActuationCollection">sosa:ActuationCollection</a></span>
+                  , <span rel="schema:domainIncludes" resource="sosa:Observation"><a
+                      href="#SOSAObservation">sosa:Observation</a></span>
+                  , <span rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a
+                      href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
+                  , <span rel="schema:domainIncludes" resource="sosa:Sampling"><a
+                      href="#SOSASampling">sosa:Sampling</a></span>
+                </td>
               </tr>
               <tr>
                 <th>Range Includes</th>
@@ -3189,9 +3368,10 @@
           <p><strong>an OWL Object Property</strong></p>
 
           <em property="rdfs:label">is result of</em> -
-          <span property="rdfs:comment skos:definition">Relation linking a <a href="#SOSAResult"><code>Result</code></a>
-            to the <a href="#SOSAObservation"><code>Observation</code></a> or <a
-              href="#SOSAActuation"><code>Actuation</code></a> that created or caused it.</span> <br>
+          <span property="skos:definition">Relation linking a result to the <a
+              href="#SOSAActuation"><code>Actuation</code></a> or <a
+              href="#SOSAObservation"><code>Observation</code></a> or act of <a
+              href="#SOSASampling"><code>Sampling</code></a> that created or caused it.</span> <br>
           <table>
             <tbody>
               <tr>
@@ -3201,10 +3381,13 @@
               </tr>
               <tr>
                 <th>Range Includes</th>
-                <td><span rel="schema:rangeIncludes" resource="sosa:Actuation"><a
-                      href="#SOSAActuation">sosa:Actuation</a></span>, <span rel="schema:rangeIncludes"
-                    resource="sosa:Observation"><a href="#SOSAObservation">sosa:Observation</a></span>, <span
-                    rel="schema:rangeIncludes" resource="sosa:Sampling"><a href="#SOSASampling">sosa:Sampling</a></span>
+                <td>
+                  <span rel="schema:rangeIncludes" resource="sosa:Actuation"><a
+                      href="#SOSAActuation">sosa:Actuation</a></span>
+                  , <span rel="schema:rangeIncludes" resource="sosa:Observation"><a
+                      href="#SOSAObservation">sosa:Observation</a></span>
+                  , <span rel="schema:rangeIncludes" resource="sosa:Sampling"><a
+                      href="#SOSASampling">sosa:Sampling</a></span>
                 </td>
               </tr>
               <tr>
@@ -3229,9 +3412,20 @@
           <p><strong>an OWL Datatype Property</strong></p>
 
           <em property="rdfs:label">has simple result</em> -
-          <span property="rdfs:comment skos:definition">The simple value of an <a
-              href="#SOSAObservation"><code>Observation</code></a> or <a
-              href="#SOSAActuation"><code>Actuation</code></a>.</span> <br>
+          <span property="skos:definition">The simple value of an <a href="#SOSAActuation"><code>Actuation</code></a> or
+            <a href="#SOSAObservation"><code>Observation</code></a> .
+
+            In the case of an <a href="#SOSAActuation">sosa:Actuation</a>, the result is the intended value of the <a
+              href="#SOSAActuatableProperty">sosa:ActuatableProperty</a> following the
+            execution of the <a href="#SOSAProcedure"><code>Procedure</code></a> by the <a
+              href="#SOSAActuator"><code>Actuator</code></a>.
+
+            In the case of an <a href="#SOSAObservation"><code>Observation</code></a>, the result is the value produced
+            by the execution of the <a href="#SOSAProcedure"><code>Procedure</code></a> by the <a
+              href="#SOSASensor"><code>Sensor</code></a>.
+          </span>
+
+          <br>
           <table>
             <tbody>
               <tr>
@@ -3243,12 +3437,16 @@
               </tr>
               <tr>
                 <th>Domain Includes</th>
-                <td><span rel="schema:domainIncludes" resource="sosa:Observation"><a
-                      href="#SOSAObservation">sosa:Observation</a></span>, <span rel="schema:domainIncludes"
-                    resource="sosa:ObservationCollection"><a
-                      href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>, <span
-                    rel="schema:domainIncludes" resource="sosa:Actuation"><a
-                      href="#SOSAActuation">sosa:Actuation</a></span></td>
+                <td>
+                  <span rel="schema:domainIncludes" resource="sosa:Actuation"><a
+                      href="#SOSAActuation">sosa:Actuation</a></span>
+                  , <span rel="schema:domainIncludes" resource="sosa:ActuationCollection"><a
+                      href="#SOSAActuationCollection">sosa:ActuationCollection</a></span>
+                  , <span rel="schema:domainIncludes" resource="sosa:Observation"><a
+                      href="#SOSAObservation">sosa:Observation</a></span>
+                  , <span rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a
+                      href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -3265,9 +3463,10 @@
           <p><strong>an OWL Datatype Property</strong></p>
 
           <em property="rdfs:label">result time</em> -
-          <span property="skos:definition">The result time is the instant of time when the <a
-              href="#SOSAObservation"><code>Observation</code></a>, <a href="#SOSAActuation"><code>Actuation</code></a>
-            or <a href="#SOSASampling"><code>Sampling</code></a> activity was completed.</span> <br>
+          <span property="skos:definition">The instant of time when the <a
+              href="#SOSAActuation"><code>Actuation</code></a> or <a
+              href="#SOSAObservation"><code>Observation</code></a> or <a href="#SOSASampling"><code>Sampling</code></a>
+            was completed</span> <br>
           <span property="rdfs:comment">The value would usually be encoded using <a
               href="https://www.w3.org/TR/xmlschema-2/#dateTime"><code>xsd:dateTime</code></a> <a
               href="https://www.w3.org/TR/xmlschema-2/#date"><code>xsd:date</code></a> <a
@@ -3287,12 +3486,17 @@
                   </span></td>
               </tr>
               <th>Domain Includes</th>
-              <td><span rel="schema:domainIncludes" resource="sosa:Actuation"><a
-                    href="#SOSAActuation">sosa:Actuation</a></span>, <span rel="schema:domainIncludes"
-                  resource="sosa:Observation"><a href="#SOSAObservation">sosa:Observation</a></span>, <span
-                  rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a
-                    href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>, <span
-                  rel="schema:domainIncludes" resource="sosa:Sampling"><a href="#SOSASampling">sosa:Sampling</a></span>
+              <td>
+                <span rel="schema:domainIncludes" resource="sosa:Actuation"><a
+                    href="#SOSAActuation">sosa:Actuation</a></span>
+                , <span rel="schema:domainIncludes" resource="sosa:ActuationCollection"><a
+                    href="#SOSAActuationCollection">sosa:ActuationCollection</a></span>
+                , <span rel="schema:domainIncludes" resource="sosa:Observation"><a
+                    href="#SOSAObservation">sosa:Observation</a></span>
+                , <span rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a
+                    href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
+                , <span rel="schema:domainIncludes" resource="sosa:Sampling"><a
+                    href="#SOSASampling">sosa:Sampling</a></span>
               </td>
               </tr>
             </tbody>
@@ -3301,6 +3505,62 @@
             <span class="back">[<a href="#Results">Back to module overview and examples</a>]</span>
             <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
           </div>
+        </section>
+
+        <section class="informative specterm sosa" id="SOSAstartTime" about="sosa:startTime"
+          typeof="owl:DatatypeProperty">
+          <h5><a href="#SOSAresultTime">sosa:startTime</a></h5>
+          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/startTime</p>
+          <p><strong>an OWL Datatype Property</strong></p>
+
+          <p class="note">startTime added in 2024 update.
+
+            This term is non-normative pending further implementation experience</p>
+          <p>
+
+            <em property="rdfs:label">start time</em> -
+            <span property="skos:definition">The instant of time when the <a
+                href="#SOSAActuation"><code>Actuation</code></a> or <a
+                href="#SOSAObservation"><code>Observation</code></a> or <a
+                href="#SOSASampling"><code>Sampling</code></a> was initiated or tasked <br>
+              <span property="rdfs:comment">The value would usually be encoded using <a
+                  href="https://www.w3.org/TR/xmlschema-2/#dateTime"><code>xsd:dateTime</code></a> <a
+                  href="https://www.w3.org/TR/xmlschema-2/#date"><code>xsd:date</code></a> <a
+                  href="https://www.w3.org/TR/xmlschema-2/#gYearMonth"><code>xsd:gYearMonth</code></a> <a
+                  href="https://www.w3.org/TR/xmlschema-2/#gYear"><code>xsd:gYear</code></a>.</span> <br>
+
+              <table>
+                <tbody>
+                  <tr>
+                  <tr>
+                    <th>Example</th>
+                    <td><span property="skos:example">
+                        <pre>"2024-01-23T19:26:00+11:00"^^xsd:dateTime
+"2024-01-23"^^xsd:date
+"2024-01"^^xsd:gMonth
+"2024"^^xsd:gYear</pre>
+                      </span></td>
+                  </tr>
+                  <th>Domain Includes</th>
+                  <td>
+                    <span rel="schema:domainIncludes" resource="sosa:Actuation"><a
+                        href="#SOSAActuation">sosa:Actuation</a></span>
+                    , <span rel="schema:domainIncludes" resource="sosa:ActuationCollection"><a
+                        href="#SOSAActuationCollection">sosa:ActuationCollection</a></span>
+                    , <span rel="schema:domainIncludes" resource="sosa:Observation"><a
+                        href="#SOSAObservation">sosa:Observation</a></span>
+                    , <span rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a
+                        href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
+                    , <span rel="schema:domainIncludes" resource="sosa:Sampling"><a
+                        href="#SOSASampling">sosa:Sampling</a></span>
+                  </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="buttonpanel">
+                <span class="back">[<a href="#Results">Back to module overview and examples</a>]</span>
+                <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+              </div>
         </section>
 
       </section>
@@ -3626,7 +3886,7 @@
           <p><strong>an OWL Class</strong></p>
           <p class="note">Execution added in the 2024 Update.<br><br>This term is non-normative pending further
             implementation experience</p>
-          <em property="rdfs:label">Procedure Execution</em> -
+          <em property="rdfs:label">Execution of a Procedure</em> -
           <span property="rdfs:comment skos:definition">Act of carrying out a <a
               href="#SOSAProcedure"><code>Procedure</code></a>. This class generalizes the <a
               href="#SOSAObservation"><code>Observation</code></a>, <a href="#SOSAActuation"><code>Actuation</code></a>,
@@ -3711,7 +3971,7 @@
               href="#SOSAProcedure"><code>Procedure</code></a> that is used in an <a
               href="#SOSAExecution"><code>Execution</code></a> (<a href="#SOSAActuation"><code>Actuation</code></a>, <a
               href="#SOSAObservation"><code>Observation</code></a>, <a
-              ref="#SOSASampling"><code>Sampling</code></a>).</span>
+              href="#SOSASampling"><code>Sampling</code></a>).</span>
           <br><span property="rdfs:comment">The input value should be suitable for the input definition on the
             corresponding <a href="#SOSAusedProcedure"><code>usedProcedure</code></a>.</span>
           <table>
@@ -3744,7 +4004,7 @@
               href="#SOSAProcedure"><code>Procedure</code></a> that is used in an <a
               href="#SOSAExecution"><code>Execution</code></a> (<a href="#SOSAActuation"><code>Actuation</code></a>, <a
               href="#SOSAObservation"><code>Observation</code></a>, <a
-              ref="#SOSASampling"><code>Sampling</code></a>)..</span>
+              href="#SOSASampling"><code>Sampling</code></a>)..</span>
           <br><span property="rdfs:comment">The output value should be suitable for the output definition on the
             corresponding <a href="#SOSAusedProcedure"><code>usedProcedure</code></a>.</span>
           <table>
@@ -4452,7 +4712,7 @@
                 <th class="restrictions">Restrictions</th>
                 <td>
                   <span about="sosa:ActuationCollection" rel="rdfs:subClassOf"
-                    resource="[_:SOSAActuationCollection2]"></span>
+                    resource=" [_:SOSAActuationCollection2]"></span>
                   <span about="[_:SOSAActuationCollection]" typeof="owl:Restriction"></span>
                   <span about="[_:SOSAActuationCollection]" rel="owl:onProperty" resource="sosa:hasMember"><a
                       href="#SOSAhasMember">sosa:hasMember</a></span>
@@ -4483,8 +4743,9 @@
           <h5><a href="#SOSAObservationCollection">sosa:ObservationCollection</a></h5>
           <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/ObservationCollection</p>
           <p><strong>an OWL Class</strong></p>
-          <p class="note">ObservationCollection added in the 2024 Update</p>
+          <p class="note">ObservationCollection added in the 2024 Update
 
+            This term is non-normative pending further implementation experience</p>
           <p>
             <em property="rdfs:label">Observation Collection</em> -
             <span property="skos:definition">A <a
@@ -4597,7 +4858,9 @@
           <h5><a href="#SOSASampleCollection">sosa:SampleCollection</a></h5>
           <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/SampleCollection</p>
           <p><strong>an OWL Class</strong></p>
-          <p class="note">SampleCollection added in the 2024 Update</p>
+          <p class="note">SampleCollection added in the 2024 Update
+
+            This term is non-normative pending further implementation experience</p>
           <p>
             <em property="rdfs:label">Sample Collection</em> -
             <span property="skos:definition">A <a href="#SOSASampleCollection"><code>SampleCollection</code></a> is a
@@ -6841,7 +7104,7 @@
             , <a href="#OMSobservationType">sosa-oms:observationType</a>
             , <a href="#OMSpreparedSample">sosa-oms:preparedSample</a>
             , <a href="#OMSprocessingDetails">sosa-oms:processingDetails</a>
-            , <a href="#OMSrelatedObservation">sosa-oms:relatedObservation</a>
+            , <a href="#SOSArelatedObservation">sosa:relatedObservation</a>
             , <a href="#OMSrelatedSampling">sosa-oms:relatedSampling</a>
             , <a href="#OMSresultQuality">sosa-oms:resultQuality</a>
             , <a href="#OMSsamplePreparationStep">sosa-oms:samplePreparationStep</a>
@@ -7482,57 +7745,6 @@
           </div>
         </section>
 
-        <section class="specterm" id="OMSrelatedObservation" about="sosa-oms:relatedObservation"
-          typeof="owl:ObjectProperty">
-          <h5><a href="#OMSrelatedObservation">sosa-oms:relatedObservation</a></h5>
-          <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/relatedObservation</p>
-          <p><strong>an OWL Object Property</strong></p>
-
-          <em property="rdfs:label">related observation</em> -
-          <span property="rdfs:comment skos:definition">Relation to an Observation.</span>
-          <table>
-            <tbody>
-              <tr>
-                <th>Domain Includes</th>
-                <td>
-                  <span rel="schema:domainIncludes" resource="sosa:Sample"><a href="#SOSASample">sosa:Sample</a></span>
-                  , <span rel="schema:domainIncludes" resource="sosa:ObservableProperty"><a
-                      href="#SOSAObservableProperty">sosa:ObservableProperty</a></span>
-                  , <span rel="schema:domainIncludes" resource="sosa-oms:ObservingProcedure"><a
-                      href="#OMSObservingProcedure">sosa-oms:ObservingProcedure</a></span>
-                  , <span rel="schema:domainIncludes" resource="sosa:Sensor"><a
-                      href="#SOSASensor">sosa:Sensor</a></span>
-                  , <span rel="schema:domainIncludes" resource="sosa:Platform"><a
-                      href="#SOSAPlatform">sosa:Platform</a></span>
-                  , <span rel="schema:domainIncludes" resource="sosa:Observation"><a
-                      href="#SOSAObservation">sosa:Observation</a></span>
-                  , <span rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a
-                      href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
-                </td>
-              </tr>
-              <tr>
-                <th>Range Includes</th>
-                <td>
-                  <span rel="schema:rangeIncludes" resource="sosa:Observation"><a
-                      href="#SOSAObservation">sosa:Observation</a></span>
-                </td>
-              </tr>
-              <tr>
-                <th>is Defined By</th>
-                <td>
-                  <span rel="rdfs:isDefinedBy"><a
-                      href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div class="buttonpanel">
-            <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-          </div>
-        </section>
-
         <section class="specterm" id="OMSrelatedSampling" about="sosa-oms:relatedSampling" typeof="owl:ObjectProperty">
           <h5><a href="#OMSrelatedSampling">sosa-oms:relatedSampling</a></h5>
           <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/relatedSampling</p>
@@ -7955,7 +8167,7 @@
               <td> sam-cpt:PreparationStep/processingDetails-sem </td>
             </tr>
             <tr>
-              <td> <a href="#OMSrelatedObservation">sosa-oms:relatedObservation</a> </td>
+              <td> <a href="#SOSArelatedObservation">sosa:relatedObservation</a> </td>
               <td> ogc-ms:implements </td>
               <td> obs-cpt:gen/relatedObservation-sem </td>
             </tr>
@@ -8434,15 +8646,15 @@
         <table>
           <tbody>
             <tr>
-              <td> sosa:Observation </td>
+              <td> <a href="#SOSAObservation">sosa:Observation</a> </td>
               <td rowspan="3"> subclass of </td>
               <td rowspan="3"> prov:Activity </td>
             </tr>
             <tr>
-              <td> sosa:Actuation </td>
+              <td> <a href="#SOSAActuation">sosa:Actuation</a> </td>
             </tr>
             <tr>
-              <td> sosa:Sampling </td>
+              <td> <a href="#SOSASampling">sosa:Sampling</a> </td>
             </tr>
           </tbody>
         </table>
@@ -8451,15 +8663,15 @@
         <table>
           <tbody>
             <tr>
-              <td> sosa:Sensor </td>
+              <td> <a href="#SOSASensor">sosa:Sensor</a> </td>
               <td rowspan="3"> subclass of </td>
               <td rowspan="3"> prov:Agent , prov:Entity </td>
             </tr>
             <tr>
-              <td> sosa:Actuator </td>
+              <td> <a href="#SOSAActuator">sosa:Actuator</a> </td>
             </tr>
             <tr>
-              <td> sosa:Sampler </td>
+              <td> <a href="#SOSASampler">sosa:Sampler</a> </td>
             </tr>
           </tbody>
         </table>
@@ -8467,7 +8679,7 @@
         <table>
           <tbody>
             <tr>
-              <td> sosa:Procedure </td>
+              <td> <a href="#SOSAProcedure">sosa:Procedure</a> </td>
               <td> subclass of </td>
               <td> prov:Plan </td>
             </tr>
@@ -8478,22 +8690,22 @@
         <table>
           <tbody>
             <tr>
-              <td> sosa:FeatureOfInterest </td>
+              <td> <a href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a> </td>
               <td> subclass of </td>
               <td> prov:Entity </td>
             </tr>
             <tr>
-              <td> sosa:ObservableProperty </td>
+              <td> <a href="#SOSAObservableProperty">sosa:ObservableProperty</a> </td>
               <td> subclass of </td>
               <td> prov:Entity </td>
             </tr>
             <tr>
-              <td> sosa:Platform </td>
+              <td> <a href="#SOSAPlatform">sosa:Platform</a> </td>
               <td> subclass of </td>
               <td> prov:Entity </td>
             </tr>
             <tr>
-              <td> sosa:Sample </td>
+              <td> <a href="#SOSASample">sosa:Sample</a> </td>
               <td> subclass of </td>
               <td> prov:Entity </td>
             </tr>
@@ -8506,47 +8718,52 @@
         <table>
           <tbody>
             <tr>
-              <td> sosa:madeByActuator </td>
+              <td> <a href="#SOSAmadeByActuator">sosa:madeByActuator</a> </td>
               <td> subproperty of </td>
               <td> prov:wasAssociatedWith </td>
             </tr>
             <tr>
-              <td> sosa:hasFeatureOfInterest </td>
+              <td> <a href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a> </td>
               <td> subproperty of </td>
               <td> prov:used </td>
             </tr>
             <tr>
-              <td> sosa:hasResult </td>
+              <td> <a href="#SOSAhasResult">sosa:hasResult</a> </td>
               <td> subproperty of </td>
               <td> prov:generated </td>
             </tr>
             <tr>
-              <td> sosa:invokedBy </td>
+              <td> <a href="#SOSAinvokedBy">sosa:invokedBy</a> </td>
               <td> subproperty of </td>
               <td> prov:wasAssociatedWith </td>
             </tr>
             <tr>
-              <td> sosa:isResultOf </td>
+              <td> <a href="#SOSAisResultOf">sosa:isResultOf</a> </td>
               <td> subproperty of </td>
               <td> prov:wasGeneratedBy </td>
             </tr>
             <tr>
-              <td> sosa:isSampleOf </td>
+              <td> <a href="#SOSAisSampleOf">sosa:isSampleOf</a> </td>
               <td> subproperty of </td>
               <td> prov:wasDerivedFrom </td>
             </tr>
             <tr>
-              <td> sosa:madeBySampler </td>
+              <td> <a href="#SOSAmadeBySampler">sosa:madeBySampler</a> </td>
               <td> subproperty of </td>
               <td> prov:wasAssociatedWith </td>
             </tr>
             <tr>
-              <td> sosa:madeBySensor </td>
+              <td> <a href="#SOSAmadeBySensor">sosa:madeBySensor</a> </td>
               <td> subproperty of </td>
               <td> prov:wasAssociatedWith </td>
             </tr>
             <tr>
-              <td> sosa:resultTime </td>
+              <td> <a href="#SOSAstartTime">sosa:startTime</a> </td>
+              <td> subproperty of </td>
+              <td> prov:startedAtTime </td>
+            </tr>
+            <tr>
+              <td> <a href="#SOSAresultTime">sosa:resultTime</a> </td>
               <td> subproperty of </td>
               <td> prov:endedAtTime </td>
             </tr>
@@ -8573,7 +8790,7 @@
             </tr>
             <tr>
               <td> range </td>
-              <td> sosa:Procedure </td>
+              <td> <a href="#SOSAProcedure">sosa:Procedure</a> </td>
             </tr>
           </tbody>
         </table>
@@ -8583,7 +8800,7 @@
         <table>
           <tbody>
             <tr>
-              <td> sosa:usedProcedure </td>
+              <td> <a href="#SOSAusedProcedure">sosa:usedProcedure</a> </td>
               <td> property chain axiom </td>
               <td> [ sp:eventAssociation , sp:hadProcedure ] </td>
             </tr>
@@ -9364,9 +9581,11 @@
       <li>Mark sosa:Result deprecated</li>
       <li>Update OBOE alignment - using ObservationCollection, SampleCollection, hasMember</li>
       <li>remove rdfs:range on sosa:resultTime</li>
+      <li>Add content model for Execution, including hasInputValue and hasOutputValue</li>
       <li>Add ActuationCollection to provide basic support for sets of actuations on multiple properties with multiple
         results; clarify meaning of Actuation result</li>
-      <li>Add content model for Execution, including hasInputValue and hasOutputValue</li>
+      <li>Clarify meaning of hasResult, resultTime, phenomenonTime in the context of Actuations</li>
+      <li>introduced startTime property</li>
     </ol>
   </section>
 </body>
