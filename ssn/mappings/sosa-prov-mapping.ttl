@@ -91,6 +91,7 @@ sp:eventAssociation
   rdfs:domain [
       rdf:type owl:Class ;
       owl:unionOf (
+          sosa:Execution
           sosa:Observation
           sosa:Actuation
           sosa:Sampling
@@ -105,6 +106,9 @@ sp:hadProcedure
 .
 sosa:resultTime
   rdfs:subPropertyOf prov:endedAtTime ;
+.
+sosa:startTime
+  rdfs:subPropertyOf prov:startedAtTime ;
 .
 sosa:usedProcedure
   owl:propertyChainAxiom (
