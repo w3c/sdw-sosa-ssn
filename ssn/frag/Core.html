@@ -157,6 +157,20 @@
             <table>
                 <tbody>
                     <tr>
+                        <th>Domain Includes</th>
+                        <td>
+                            <span rel="schema:domainIncludes" resource="sosa:FeatureOfInterest"><a
+                                    href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Range Includes</th>
+                        <td>
+                            <span rel="schema:rangeIncludes" resource="sosa:Property"><a
+                                    href="#SOSAProperty">sosa:Property</a></span>
+                        </td>
+                    </tr>
+                    <tr>
                         <th>Inverse property of</th>
                         <td>
                             <span rel="owl:inverseOf" resource="sosa:isPropertyOf"><a
@@ -365,6 +379,20 @@
             <table>
                 <tbody>
                     <tr>
+                        <th>Domain Includes</th>
+                        <td>
+                            <span rel="schema:domainIncludes" resource="sosa:Property"><a
+                                    href="#SOSAProperty">sosa:Property</a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Range Includes</th>
+                        <td>
+                            <span rel="schema:rangeIncludes" resource="sosa:FeatureOfInterest"><a
+                                    href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a></span>
+                        </td>
+                    </tr>
+                    <tr>
                         <th>Inverse property of</th>
                         <td>
                             <span rel="owl:inverseOf" resource="sosa:hasProperty"><a
@@ -408,6 +436,13 @@
                                     href="#SSNSYSTEMSystemCapability"><code>SystemCapability</code></a> to the <a
                                     href="#SOSAProperty"><code>Property</code></a> the capability is described
                                 for.</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Range Includes</th>
+                        <td>
+                            <span rel="schema:rangeIncludes" resource="sosa:Property"><a
+                                    href="#SOSAProperty">sosa:Property</a></span>
                         </td>
                     </tr>
                     <tr>
@@ -698,7 +733,7 @@
             </p>
         </div>
 
-        <section class="informative specterm" id="SOSAExecution" about="sosa:Execution" typeof="owl:Class">
+        <section class="informative specterm sosa" id="SOSAExecution" about="sosa:Execution" typeof="owl:Class">
             <h6><a href="#SOSAExecution">sosa:Execution</a></h6>
             <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/Execution</p>
             <p><strong>an OWL Class</strong></p>
@@ -797,15 +832,15 @@
             <p><strong>an OWL Object Property</strong></p>
 
             <em property="rdfs:label">used procedure</em> -
-            <span property="rdfs:comment skos:definition">A relation to link to a re-usable <a
-                    href="#SOSAProcedure"><code>Procedure</code></a> used in making an <a
-                    href="#SOSAExecution"><code>Execution</code></a>, i.e. an <a
-                    href="#SOSAActuation"><code>Actuation</code></a>, an <a
-                    href="#SOSAObservation"><code>Observation</code></a>, or a <a
-                    href="#SOSASampling"><code>Sampling</code></a>,
-                typically through a <a href="#SOSASensor"><code>Sensor</code></a>, <a
-                    href="#SOSAActuator"><code>Actuator</code></a> or <a
-                    href="#SOSASampler"><code>Sampler</code></a>.</span>
+            <span property="rdfs:comment skos:definition">A relation to link to a re-usable
+                <a href="#SOSAProcedure"><code>Procedure</code></a> used in making an
+                <a href="#SOSAExecution"><code>Execution</code></a>, i.e. an
+                <a href="#SOSAActuation"><code>Actuation</code></a>, an
+                <a href="#SOSAObservation"><code>Observation</code></a>, or a
+                <a href="#SOSASampling"><code>Sampling</code></a>, typically using a
+                <a href="#SOSAActuator"><code>Actuator</code></a>,
+                <a href="#SOSASensor"><code>Sensor</code></a>, or
+                <a href="#SOSASampler"><code>Sampler</code></a>.</span>
             <br>
             <table>
                 <tbody>
@@ -815,6 +850,8 @@
                                     href="#SOSAExecution">sosa:Execution</a></span>
                             , <span rel="schema:domainIncludes" resource="sosa:Actuation"><a
                                     href="#SOSAActuation">sosa:Actuation</a></span>
+                            , <span rel="schema:domainIncludes" resource="sosa:ActuationCollection"><a
+                                    href="#SOSAActuationCollection">sosa:ActuationCollection</a></span>
                             , <span rel="schema:domainIncludes" resource="sosa:Observation"><a
                                     href="#SOSAObservation">sosa:Observation</a></span>
                             , <span rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a
@@ -1100,12 +1137,11 @@
             <p><strong>an OWL Object Property</strong></p>
 
             <em property="rdfs:label">has feature of interest</em> -
-            <span property="skos:definition">A relation between
-                an <a href="#SOSAActuation"><code>Actuation</code></a> and the entity whose property was modified,
-                or between an <a href="#SOSAObservation"><code>Observation</code></a> and the entity whose quality was
-                observed,
-                or between an act of <a href="#SOSASampling"><code>Sampling</code></a> and the entity that was
-                sampled.</span>
+            <span property="skos:definition">A relation between an
+                <a href="#SOSAExecution"><code>Execution</code></a> and its target entity
+                i.e. an <a href="#SOSAActuation"><code>Actuation</code></a> and the entity whose property was modified,
+                or an <a href="#SOSAObservation"><code>Observation</code></a> and the entity whose quality was observed,
+                or an act of <a href="#SOSASampling"><code>Sampling</code></a> and the entity that was sampled.</span>
             <table>
                 <tbody>
                     <tr>
@@ -1145,8 +1181,8 @@
                         <td>
                             <span rel="schema:rangeIncludes" resource="sosa:FeatureOfInterest"><a
                                     href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a></span>
-                            , <span rel="schema:rangeIncludes" resource="sosa:Sample"><a
-                                    href="#SOSASample">sosa:Sample</a></span>
+                            (includes <span rel="schema:rangeIncludes" resource="sosa:Sample"><a
+                                    href="#SOSASample">sosa:Sample</a></span> )
                         </td>
                     </tr>
                     <tr>
@@ -1183,14 +1219,14 @@
                 This term is non-normative pending further implementation experience</p>
             <p>
                 <em property="rdfs:label">has ultimate feature of interest</em> -
-                <span property="skos:definition">A relation between
-                    an <a href="#SOSAActuation"><code>Actuation</code></a> and the ultimate entity whose property was
-                    modified,
-                    or between an <a href="#SOSAObservation"><code>Observation</code></a> and the ultimate entity whose
-                    quality was observed,
-                    or between an act of <a href="#SOSASampling"><code>Sampling</code></a> and the ultimate entity that
-                    was sampled.</span>
-                <span property="rdfs:comment skos:definition">
+                <span property="skos:definition">A relation between an
+                    <a href="#SOSAExecution"><code>Execution</code></a> and its ultimate target entity
+                    i.e. an <a href="#SOSAActuation"><code>Actuation</code></a> and the ultimate entity whose property
+                    was modified,
+                    or an <a href="#SOSAObservation"><code>Observation</code></a> and the ultimate entity whose quality
+                    was observed,
+                    or an act of <a href="#SOSASampling"><code>Sampling</code></a> and the ultimate entity that was
+                    sampled.</span>
             </p>
             <table>
                 <tbody>
@@ -1219,8 +1255,8 @@
                         <td>
                             <span rel="schema:rangeIncludes" resource="sosa:FeatureOfInterest"><a
                                     href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a></span>
-                            , <span rel="schema:rangeIncludes" resource="sosa:Sample"><a
-                                    href="#SOSASample">sosa:Sample</a></span>
+                            (includes <span rel="schema:rangeIncludes" resource="sosa:Sample"><a
+                                    href="#SOSASample">sosa:Sample</a></span> )
                         </td>
                     </tr>
                     <tr>
@@ -1711,6 +1747,18 @@
             <table>
                 <tbody>
                     <tr>
+                        <th>Domain Includes</th>
+                        <td><span rel="schema:domainIncludes" resource="sosa:System"><a
+                                    href="#SOSASystem">sosa:System</a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Range Includes</th>
+                        <td><span rel="schema:rangeIncludes" resource="sosa:Procedure"><a
+                                    href="#SOSAProcedure">sosa:Procedure</a></span>
+                        </td>
+                    </tr>
+                    <tr>
                         <th>Inverse property of</th>
                         <td>
                             <span rel="owl:inverseOf" resource="sosa:implementedBy"><a
@@ -1744,6 +1792,18 @@
             <table>
                 <tbody>
                     <tr>
+                        <th>Domain Includes</th>
+                        <td><span rel="schema:domainIncludes" resource="sosa:System"><a
+                                    href="#SOSASystem">sosa:System</a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Range Includes</th>
+                        <td><span rel="schema:rangeIncludes" resource="sosa:System"><a
+                                    href="#SOSASystem">sosa:System</a></span>
+                        </td>
+                    </tr>
+                    <tr>
                         <th>is Defined By</th>
                         <td>
                             <span rel="rdfs:isDefinedBy"><a
@@ -1776,12 +1836,16 @@
                 <tbody>
                     <tr>
                         <th>Domain Includes</th>
-                        <td><span rel="schema:domainIncludes" resource="sosa:Actuator"><a
-                                    href="#SOSAActuator">sosa:Actuator</a></span>, <span rel="schema:domainIncludes"
-                                resource="sosa:Sensor"><a href="#SOSASensor">sosa:Sensor</a></span>, <span
-                                rel="schema:domainIncludes" resource="sosa:Sampler"><a
-                                    href="#SOSASampler">sosa:Sampler</a></span>,
-                            <span rel="schema:domainIncludes" resource="sosa:Platform"><a
+                        <td>
+                            <span rel="schema:rangeIncludes" resource="sosa:System"><a
+                                    href="#SOSASystem">sosa:System</a></span>
+                            (includes <span rel="schema:domainIncludes" resource="sosa:Actuator"><a
+                                    href="#SOSAActuator">sosa:Actuator</a></span>
+                            , <span rel="schema:domainIncludes" resource="sosa:Sensor"><a
+                                    href="#SOSASensor">sosa:Sensor</a></span>
+                            , <span rel="schema:domainIncludes" resource="sosa:Sampler"><a
+                                    href="#SOSASampler">sosa:Sampler</a></span> )
+                            , <span rel="schema:domainIncludes" resource="sosa:Platform"><a
                                     href="#SOSAPlatform">sosa:Platform</a></span>
                         </td>
                     </tr>
@@ -1826,6 +1890,18 @@
             <table>
                 <tbody>
                     <tr>
+                        <th>Domain Includes</th>
+                        <td><span rel="schema:domainIncludes" resource="sosa:System"><a
+                                    href="#SOSASystem">sosa:System</a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Range Includes</th>
+                        <td><span rel="schema:rangeIncludes" resource="sosa:Deployment"><a
+                                    href="#SOSADeployment">sosa:Deployment</a></span>
+                        </td>
+                    </tr>
+                    <tr>
                         <th>Inverse property of</th>
                         <td>
                             <span rel="owl:inverseOf" resource="sosa:deployedSystem"><a
@@ -1865,15 +1941,12 @@
                 <tbody>
                     <tr>
                         <th>Example</th>
-                        <td><span property="skos:example">A post, buoy, vehicle, ship, aircraft, satellite,
-                                cell-phone,
-                                human
-                                or
-                                animal may act as <a href="#SOSAPlatform"><code>Platforms</code></a> for
-                                (technical or
-                                biological)
-                                <a href="#SOSASensor"><code>Sensors</code></a> or <a
-                                    href="#SOSAActuator"><code>Actuators</code></a>.</span></td>
+                        <td>
+                            <span property="skos:example">A post, buoy, vehicle, ship, aircraft, satellite, cell-phone,
+                                human or animal may act as <a href="#SOSAPlatform"><code>Platforms</code></a> for
+                                (technical or biological) <a href="#SOSASensor"><code>Sensors</code></a> or <a
+                                    href="#SOSAActuator"><code>Actuators</code></a>.</span>
+                        </td>
                     </tr>
                     <tr class="ssn">
                         <th class="restrictions">Restrictions</th>
@@ -1938,12 +2011,15 @@
                     </tr>
                     <tr>
                         <th>Range Includes</th>
-                        <td><span rel="schema:rangeIncludes" resource="sosa:Actuator"><a
-                                    href="#SOSAActuator">sosa:Actuator</a></span>, <span rel="schema:rangeIncludes"
-                                resource="sosa:Sensor"><a href="#SOSASensor">sosa:Sensor</a></span>, <span
-                                rel="schema:rangeIncludes" resource="sosa:Sampler"><a
-                                    href="#SOSASampler">sosa:Sampler</a></span>,
-                            <span rel="schema:rangeIncludes" resource="sosa:Platform"><a
+                        <td><span rel="schema:rangeIncludes" resource="sosa:System"><a
+                                    href="#SOSASystem">sosa:System</a></span>
+                            (includes <span rel="schema:rangeIncludes" resource="sosa:Actuator"><a
+                                    href="#SOSAActuator">sosa:Actuator</a></span>
+                            , <span rel="schema:rangeIncludes" resource="sosa:Sensor"><a
+                                    href="#SOSASensor">sosa:Sensor</a></span>
+                            , <span rel="schema:rangeIncludes" resource="sosa:Sampler"><a
+                                    href="#SOSASampler">sosa:Sampler</a></span>)
+                            , <span rel="schema:rangeIncludes" resource="sosa:Platform"><a
                                     href="#SOSAPlatform">sosa:Platform</a></span>
                         </td>
                     </tr>
@@ -2011,6 +2087,17 @@
                             <span rel="skos:example">For example, a relation between a buoy and a <a
                                     href="#SOSADeployment"><code>Deployment</code></a> of several <a
                                     href="#SOSASensor"><code>Sensors</code></a>.</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Domain Includes</th>
+                        <td><span rel="schema:domainIncludes" resource="sosa:Platform"><a
+                                    href="#SOSAPlatform">sosa:Platform</a></span></td>
+                    </tr>
+                    <tr>
+                        <th>Range Includes</th>
+                        <td><span rel="schema:rangeIncludes" resource="sosa:Deployment"><a
+                                    href="#SOSADeployment">sosa:Deployment</a></span>
                         </td>
                     </tr>
                     <tr>
@@ -2119,6 +2206,18 @@
             <table>
                 <tbody>
                     <tr>
+                        <th>Domain Includes</th>
+                        <td><span rel="schema:domainIncludes" resource="sosa:Deployment"><a
+                                    href="#SOSADeployment">sosa:Deployment</a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Range Includes</th>
+                        <td><span rel="schema:rangeIncludes" resource="sosa:System"><a
+                                    href="#SOSASystem">sosa:System</a></span>
+                        </td>
+                    </tr>
+                    <tr>
                         <th>Inverse property of</th>
                         <td>
                             <span rel="owl:inverseOf" resource="sosa:hasDeployment"><a
@@ -2154,6 +2253,18 @@
             <br>
             <table>
                 <tbody>
+                    <tr>
+                        <th>Domain Includes</th>
+                        <td><span rel="schema:domainIncludes" resource="sosa:Deployment"><a
+                                    href="#SOSADeployment">sosa:Deployment</a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Range Includes</th>
+                        <td><span rel="schema:rangeIncludes" resource="sosa:Platform"><a
+                                    href="#SOSAPlatform">sosa:Platform</a></span>
+                        </td>
+                    </tr>
                     <tr>
                         <th>Inverse property of</th>
                         <td>
