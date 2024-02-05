@@ -42,6 +42,62 @@ sosa:ObservingProcedure
   skos:note "The observing procedure cannot describe a sensor instance, but it can describe the sensor type."@en ;
   rdfs:isDefinedBy sosa-obs: .
 
+sosa:Observation 
+  a owl:Class ;
+  rdfs:label "Observation"@en ;
+  skos:definition "Act of carrying out an (Observation) Procedure to estimate or calculate a value of a property of a FeatureOfInterest. Links to a Sensor to describe what made the Observation and how; links to an ObservableProperty to describe what the result is an estimate of, and to a FeatureOfInterest to detail what entity that property was associated with."@en ;
+  rdfs:comment """An Observation concerns a single ObservableProperty of a single FeatureOfInterest. 
+  Observations of multiple properties, or other combinations of Observations, may be described in an ObservationCollection. 
+  
+  Alternatively, applications may choose to encapsulate complexity by defining a complex property with multiple individual components, and a corresponding complex result (e.g. a vector). 
+  This approach is not prohibited by the SSN Ontology, but the details are beyond the scope of SSN."""@en ;
+  skos:example "The activity of estimating the intensity of an Earthquake using the Mercalli intensity scale is an Observation as is measuring the moment magnitude, i.e., the energy released by said earthquake."@en ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:ObservationCollection 
+  a owl:Class ;
+  rdfs:label "Observation Collection"@en ;
+  skos:definition """Collection of one or more observations or observation collections, i.e. collections may be nested. 
+
+  The following Observation properties may appear in an Observation Collection: 
+  hasFeatureOfInterest , hasUltimateFeatureOfInterest , usedProcedure , madeBySensor , madeOnPlatform ,  observedProperty , phenomenonTime , resultTime , validTime , hasResult , hasSimpleResult , observationType , hasQualityMeasurement . 
+  If it is present, the value of a property summarizes the values of the matching properties of the member observations, where membership is either direct or transitive through one or more member observation collections. 
+  The following consistency rules apply with respect to the Observation properties listed above: 
+  
+  1. Where an individual Observation Collection omits a property, a member Observation (direct or transitive) MAY have any value for that property.
+
+  2. Where an individual Observation Collection has a single value for a property, each member Observation(direct or transitive) MUST have that same value for the property - i.e. the collection is homogeneous in that property.  That property MAY be omitted in any member Observation or Observation Collection.
+
+  3. Where an individual Observation Collection has more than one value for a property, each member Observation (direct or transitive) MUST have a value for that property that matches one of the values for the property in the collection. 
+  
+  4. Where an individual Observation Collection has a value for a property that is a range or interval, each member Observation (direct or transitive) MUST have a value for that property that matches or falls within that range or interval.
+
+  5. Where an individual Observation Collection has more than one value for a property that is a range or interval, each member Observation (direct or transitive) MUST have a value for that property that either matches or falls within one of those ranges or intervals.
+  """@en ;
+  skos:note """The members of a collection do not necessarily share a common value for any property. """@en ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:observedProperty 
+  a owl:ObjectProperty ;
+  rdfs:label "observed property"@en ;
+  skos:definition "Relation linking an Observation to the property that was observed. The ObservableProperty should be a property of the FeatureOfInterest (linked by hasFeatureOfInterest) of this Observation."@en ;
+  rdfs:comment "Relation linking an Observation to the property that was observed. The ObservableProperty should be a property of the FeatureOfInterest (linked by hasFeatureOfInterest) of this Observation."@en ;
+  schema:domainIncludes sosa:Observation ;
+  schema:domainIncludes sosa:ObservationCollection ;
+  schema:rangeIncludes sosa:ObservableProperty ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:resultQuality 
+  a owl:ObjectProperty ;
+  rdfs:label "observation result quality" ;
+  skos:definition "Information pertaining to the data quality of the result." ;
+  skos:scopeNote """This instance-specific description complements the description of the observation Procedure, which provides information concerning the quality of all observations using this procedure.""" ; 
+  skos:note  """The quality of a result can be assessed following the procedures in the ISO 19157 series. Multiple measures can be provided.""" ;
+  skos:note  """dqv:hasQualityMeasurement from the Data Quality Vocabulary is equivalent""" ;
+  schema:domainIncludes sosa:Observation ;
+  schema:domainIncludes sosa:ObservationCollection ;
+  rdfs:isDefinedBy sosa-obs: .
+
 sosa:Sensor 
   a owl:Class ;
   rdfs:label "Sensor or Observer"@en ;
@@ -78,18 +134,6 @@ sosa:isObservedBy
   owl:inverseOf sosa:observes ;
   rdfs:isDefinedBy sosa-obs: .
 
-sosa:Observation 
-  a owl:Class ;
-  rdfs:label "Observation"@en ;
-  skos:definition "Act of carrying out an (Observation) Procedure to estimate or calculate a value of a property of a FeatureOfInterest. Links to a Sensor to describe what made the Observation and how; links to an ObservableProperty to describe what the result is an estimate of, and to a FeatureOfInterest to detail what entity that property was associated with."@en ;
-  rdfs:comment """An Observation concerns a single ObservableProperty of a single FeatureOfInterest. 
-  Observations of multiple properties, or other combinations of Observations, may be described in an ObservationCollection. 
-  
-  Alternatively, applications may choose to encapsulate complexity by defining a complex property with multiple individual components, and a corresponding complex result (e.g. a vector). 
-  This approach is not prohibited by the SSN Ontology, but the details are beyond the scope of SSN."""@en ;
-  skos:example "The activity of estimating the intensity of an Earthquake using the Mercalli intensity scale is an Observation as is measuring the moment magnitude, i.e., the energy released by said earthquake."@en ;
-  rdfs:isDefinedBy sosa-obs: .
-
 sosa:madeObservation 
   a owl:ObjectProperty ;
   rdfs:label "made observation"@en ;
@@ -98,27 +142,6 @@ sosa:madeObservation
   schema:domainIncludes sosa:Sensor ;
   schema:rangeIncludes sosa:Observation ;
   owl:inverseOf sosa:madeBySensor ;
-  rdfs:isDefinedBy sosa-obs: .
-
-sosa:madeBySensor 
-  a owl:ObjectProperty ;
-  rdfs:label "made by sensor or observer"@en ;
-  skos:definition "Relation between an Observation and the Sensor or Observer which made the Observation."@en ;
-  rdfs:comment "Relation between an Observation and the Sensor or Observer which made the Observation."@en ;
-  schema:domainIncludes sosa:Observation ;
-  schema:domainIncludes sosa:ObservationCollection ;
-  schema:rangeIncludes sosa:Sensor ;
-  owl:inverseOf sosa:madeObservation ;
-  rdfs:isDefinedBy sosa-obs: .
-
-sosa:observedProperty 
-  a owl:ObjectProperty ;
-  rdfs:label "observed property"@en ;
-  skos:definition "Relation linking an Observation to the property that was observed. The ObservableProperty should be a property of the FeatureOfInterest (linked by hasFeatureOfInterest) of this Observation."@en ;
-  rdfs:comment "Relation linking an Observation to the property that was observed. The ObservableProperty should be a property of the FeatureOfInterest (linked by hasFeatureOfInterest) of this Observation."@en ;
-  schema:domainIncludes sosa:Observation ;
-  schema:domainIncludes sosa:ObservationCollection ;
-  schema:rangeIncludes sosa:ObservableProperty ;
   rdfs:isDefinedBy sosa-obs: .
 
 sosa:madeBySensor 
@@ -146,13 +169,21 @@ sosa:relatedObservation
   schema:rangeIncludes sosa:ObservationCollection ;
   rdfs:isDefinedBy sosa-obs: .
 
-## Stimulus
-
 sosa:Stimulus 
   a owl:Class ;
   rdfs:label "Stimulus"@en ;
   skos:definition "An event in the real world that 'triggers' the Sensor. The properties associated to the Stimulus may be different to the eventual observed ObservableProperty. It is the event, not the object, that triggers the Sensor."@en ;
   rdfs:comment "An event in the real world that 'triggers' the Sensor. The properties associated to the Stimulus may be different to the eventual observed ObservableProperty. It is the event, not the object, that triggers the Sensor."@en ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:isProxyFor 
+  a owl:ObjectProperty ;
+  rdfs:label "is proxy for"@en ;
+  skos:definition "A relation from a Stimulus to the Property that the Stimulus is serving as a proxy for."@en ;
+  rdfs:comment "A relation from a Stimulus to the Property that the Stimulus is serving as a proxy for."@en ;
+  skos:example "For example, the expansion of quicksilver is a stimulus that serves as a proxy for some temperature property. An increase or decrease in the velocity of spinning cups on a wind sensor is serving as a proxy for the wind speed."@en ;
+  schema:domainIncludes sosa:Stimulus ;
+  schema:rangeIncludes sosa:ObservableProperty ;
   rdfs:isDefinedBy sosa-obs: .
 
 sosa:wasOriginatedBy 
@@ -172,53 +203,6 @@ sosa:detects
   schema:domainIncludes sosa:Sensor ;
   schema:rangeIncludes sosa:Stimulus ;
   rdfs:isDefinedBy sosa-obs: .
-
-sosa:isProxyFor 
-  a owl:ObjectProperty ;
-  rdfs:label "is proxy for"@en ;
-  skos:definition "A relation from a Stimulus to the Property that the Stimulus is serving as a proxy for."@en ;
-  rdfs:comment "A relation from a Stimulus to the Property that the Stimulus is serving as a proxy for."@en ;
-  skos:example "For example, the expansion of quicksilver is a stimulus that serves as a proxy for some temperature property. An increase or decrease in the velocity of spinning cups on a wind sensor is serving as a proxy for the wind speed."@en ;
-  schema:domainIncludes sosa:Stimulus ;
-  schema:rangeIncludes sosa:ObservableProperty ;
-  rdfs:isDefinedBy sosa-obs: .
-
-sosa:resultQuality 
-  a owl:ObjectProperty ;
-  rdfs:label "observation result quality" ;
-  skos:definition "Information pertaining to the data quality of the result." ;
-  skos:scopeNote """This instance-specific description complements the description of the observation Procedure, which provides information concerning the quality of all observations using this procedure.""" ; 
-  skos:note  """The quality of a result can be assessed following the procedures in the ISO 19157 series. Multiple measures can be provided.""" ;
-  skos:note  """dqv:hasQualityMeasurement from the Data Quality Vocabulary is equivalent""" ;
-  schema:domainIncludes sosa:Observation ;
-  schema:domainIncludes sosa:ObservationCollection ;
-  rdfs:isDefinedBy sosa-obs: .
-
-## Observation Collection
-
-sosa:ObservationCollection 
-  a owl:Class ;
-  rdfs:label "Observation Collection"@en ;
-  skos:definition """Collection of one or more observations or observation collections, i.e. collections may be nested. 
-
-  The following Observation properties may appear in an Observation Collection: 
-  hasFeatureOfInterest , hasUltimateFeatureOfInterest , usedProcedure , madeBySensor , madeOnPlatform ,  observedProperty , phenomenonTime , resultTime , validTime , hasResult , hasSimpleResult , observationType , hasQualityMeasurement . 
-  If it is present, the value of a property summarizes the values of the matching properties of the member observations, where membership is either direct or transitive through one or more member observation collections. 
-  The following consistency rules apply with respect to the Observation properties listed above: 
-  
-  1. Where an individual Observation Collection omits a property, a member Observation (direct or transitive) MAY have any value for that property.
-
-  2. Where an individual Observation Collection has a single value for a property, each member Observation(direct or transitive) MUST have that same value for the property - i.e. the collection is homogeneous in that property.  That property MAY be omitted in any member Observation or Observation Collection.
-
-  3. Where an individual Observation Collection has more than one value for a property, each member Observation (direct or transitive) MUST have a value for that property that matches one of the values for the property in the collection. 
-  
-  4. Where an individual Observation Collection has a value for a property that is a range or interval, each member Observation (direct or transitive) MUST have a value for that property that matches or falls within that range or interval.
-
-  5. Where an individual Observation Collection has more than one value for a property that is a range or interval, each member Observation (direct or transitive) MUST have a value for that property that either matches or falls within one of those ranges or intervals.
-  """@en ;
-  skos:note """The members of a collection do not necessarily share a common value for any property. """@en ;
-  rdfs:isDefinedBy sosa-obs: .
-
 
 ## End of observation schema
 ## ---------------------------------------------------- ##

@@ -43,14 +43,6 @@ sosa:Sample
   skos:note "A transient sample, such as a ships-track or flight-line, might be identified and described, but is unlikely to be revisited exactly."@en ;
   rdfs:isDefinedBy sosa-sam: .
 
-sosa:SpatialSample 
-  a owl:Class ;
-  rdfs:label "Spatial Sample"@en ;
-  skos:definition "A SpatialSample is a geospatial Sample. When observations are made to estimate properties of a geospatial feature, in particular where the value of a property varies within the scope of the feature, a SpatialSample is used."@en ;
-  skos:example "Some common names for spatial samples include: borehole, flightline, interval, lidar cloud, map horizon, microscope slide, mine level, mine, observation well, profile,  quadrat, scene, section, ship track, spot, station, swath, trajectory, traverse, etc..."@en ;
-  skos:note "Depending on accessibility and on the nature of the expected property variation, the SpatialSample may be extensive in one, two or three spatial dimensions."@en ;
-  rdfs:isDefinedBy sosa-sam: .
-
 sosa:MaterialSample 
   a owl:Class ;
   rdfs:label "Material Sample"@en ;
@@ -60,12 +52,45 @@ sosa:MaterialSample
   skos:note "MaterialSamples may be destroyed in connexion with the observation act or a subsequent preparation step."@en ;
   rdfs:isDefinedBy sosa-sam: .
 
+sosa:SpatialSample 
+  a owl:Class ;
+  rdfs:label "Spatial Sample"@en ;
+  skos:definition "A SpatialSample is a geospatial Sample. When observations are made to estimate properties of a geospatial feature, in particular where the value of a property varies within the scope of the feature, a SpatialSample is used."@en ;
+  skos:example "Some common names for spatial samples include: borehole, flightline, interval, lidar cloud, map horizon, microscope slide, mine level, mine, observation well, profile,  quadrat, scene, section, ship track, spot, station, swath, trajectory, traverse, etc..."@en ;
+  skos:note "Depending on accessibility and on the nature of the expected property variation, the SpatialSample may be extensive in one, two or three spatial dimensions."@en ;
+  rdfs:isDefinedBy sosa-sam: .
+
 sosa:StatisticalSample 
   a owl:Class ;
   rdfs:label "Statistical Sample"@en ;
   skos:definition "A StatisticalSample is a statistical subset of a feature-of-interest, defined for the purpose of creating Observation(s)."@en ;
   skos:example "The male or female subset of a population."@en ;
   skos:note "StatisticalSamples usually apply to populations or other sets, of which certain subset may be of specific interest."@en ;
+  rdfs:isDefinedBy sosa-sam: .
+
+sosa:SampleCollection 
+  a owl:Class ;
+  rdfs:label "Sample Collection"@en ;
+  skos:definition """Collection of one or more samples or sample collections, i.e. collections may be nested. 
+
+  The following Sample properties may appear in a Sample Collection: 
+  hasOriginalSample , hasSampledFeature , isSampleOf , isResultOfUsedProcedure , isResultOfMadeBySampler . 
+  If it is present, the value of a property summarizes the values of the matching properties of the member samples, where membership is either direct or transitive through onw or more member sample collections. 
+
+  The following consistency rules apply with respect to the Sample properties listed above: 
+  
+  1. Where an individual Sample Collection omits a property, a member Sample (direct or transitive) MAY have any value for that property.
+
+  2. Where an individual Sample Collection has a single value for a property, each member Sample (direct or transitive) MUST have that same value for the property - i.e. the collection is homogeneous in that property.  That property MAY be omitted in any member Sample or Sample Collection.
+
+  3. Where an individual Sample Collection has more than one value for a property, each member Sample (direct or transitive) MUST have a value for that property that matches one of the values for the property in the collection. 
+  
+  4. Where an individual Sample Collection has a value for a property that is a range or interval, each member Sample (direct or transitive) MUST have a value for that property that either matches or falls within that range or interval.
+
+  5. Where an individual Sample Collection has more than one value for a property that is a range or interval, each member Sample (direct or transitive) MUST have a value for that property that either matches or falls within one of those ranges or intervals.
+  """@en ;
+  skos:note """The members of a collection do not necessarily share a common value for any property. 
+  """ ;
   rdfs:isDefinedBy sosa-sam: .
 
 sosa:hasSample 
@@ -135,14 +160,6 @@ sosa:SamplingProcedure
   skos:definition "The description of steps performed by a Sampler in order to extract a Sample from its sampled Feature in the frame of a Sampling."@en ;
   rdfs:isDefinedBy sosa-sam: .
 
-sosa:Sampler 
-  a owl:Class ;
-  rdfs:label "Sampler"@en ;
-  skos:definition "A device that is used by, or implements, a Sampling Procedure to create or transform one or more samples."@en ;
-  rdfs:comment "A device that is used by, or implements, a Sampling Procedure to create or transform one or more samples."@en ;
-  skos:example "A ball mill, diamond drill, hammer, hypodermic syringe and needle, image Sensor or a soil auger can all act as sampling devices (i.e., be Samplers). However, sometimes the distinction between the Sampler and the Sensor is not evident, as they are packaged as a unit. A Sampler need not be a physical device."@en ;
-  rdfs:isDefinedBy sosa-sam: .
-
 sosa:Sampling 
   a owl:Class ;
   rdfs:label "Sampling"@en ;
@@ -159,6 +176,14 @@ sosa:Sampling
   skos:example "Selecting a subset of a population."@en ;
   skos:example "Splitting a piece of drill-core to create two new samples."@en ;
   skos:example "Taking a diamond-drill core from a rock outcrop."@en ;
+  rdfs:isDefinedBy sosa-sam: .
+
+sosa:Sampler 
+  a owl:Class ;
+  rdfs:label "Sampler"@en ;
+  skos:definition "A device that is used by, or implements, a Sampling Procedure to create or transform one or more samples."@en ;
+  rdfs:comment "A device that is used by, or implements, a Sampling Procedure to create or transform one or more samples."@en ;
+  skos:example "A ball mill, diamond drill, hammer, hypodermic syringe and needle, image Sensor or a soil auger can all act as sampling devices (i.e., be Samplers). However, sometimes the distinction between the Sampler and the Sensor is not evident, as they are packaged as a unit. A Sampler need not be a physical device."@en ;
   rdfs:isDefinedBy sosa-sam: .
 
 sosa:madeSampling 
@@ -201,31 +226,6 @@ sosa:madeBySampler
 #    schema:rangeIncludes sosa:Sampling ;
 #    owl:inverseOf sosa:hasResultingSample ;
 #    rdfs:isDefinedBy sosa-sam: .
-
-sosa:SampleCollection 
-  a owl:Class ;
-  rdfs:label "Sample Collection"@en ;
-  skos:definition """Collection of one or more samples or sample collections, i.e. collections may be nested. 
-
-  The following Sample properties may appear in a Sample Collection: 
-  hasOriginalSample , hasSampledFeature , isSampleOf , isResultOfUsedProcedure , isResultOfMadeBySampler . 
-  If it is present, the value of a property summarizes the values of the matching properties of the member samples, where membership is either direct or transitive through onw or more member sample collections. 
-
-  The following consistency rules apply with respect to the Sample properties listed above: 
-  
-  1. Where an individual Sample Collection omits a property, a member Sample (direct or transitive) MAY have any value for that property.
-
-  2. Where an individual Sample Collection has a single value for a property, each member Sample (direct or transitive) MUST have that same value for the property - i.e. the collection is homogeneous in that property.  That property MAY be omitted in any member Sample or Sample Collection.
-
-  3. Where an individual Sample Collection has more than one value for a property, each member Sample (direct or transitive) MUST have a value for that property that matches one of the values for the property in the collection. 
-  
-  4. Where an individual Sample Collection has a value for a property that is a range or interval, each member Sample (direct or transitive) MUST have a value for that property that either matches or falls within that range or interval.
-
-  5. Where an individual Sample Collection has more than one value for a property that is a range or interval, each member Sample (direct or transitive) MUST have a value for that property that either matches or falls within one of those ranges or intervals.
-  """@en ;
-  skos:note """The members of a collection do not necessarily share a common value for any property. 
-  """ ;
-  rdfs:isDefinedBy sosa-sam: .
 
 
 ## End of sampling schema
