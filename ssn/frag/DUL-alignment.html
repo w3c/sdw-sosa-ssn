@@ -1,0 +1,196 @@
+<section id="DUL_Alignment" class="informative">
+    <h3>Dolce-Ultralite Alignment Module</h3>
+    <p>This section introduces the alignment of SSN to the DOLCE UltraLite upper ontology (DUL) which is the core
+      dependency of the previous version of SSN. This serves to
+      axiomatically clarify the intended meaning of SSN terms and will assist
+      SSN users wishing to interoperate with other DUL-aligned ontologies. Note, however, that the DUL alignment can
+      be used independently to align SSN with more generic concepts/properties of DUL.</p>
+    The DUL alignment, known as "ssn-dul" is available at <a
+      href="http://www.w3.org/ns/ssn/dul">http://www.w3.org/ns/ssn/dul</a>.
+    <section id="DUL_Alignment-namespaces" class="informative">
+      <h4>Namespaces</h4>
+      <p>The following namespace prefixes are used in the alignment to SOSA
+        and SSN</p>
+      <table>
+        <tbody>
+          <tr>
+            <th> Prefix </th>
+            <th> Namespace </th>
+          </tr>
+          <tr>
+            <td> sosa: </td>
+            <td> <a href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a>
+            </td>
+          </tr>
+          <tr>
+            <td> ssn: </td>
+            <td> <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>
+            </td>
+          </tr>
+          <tr>
+            <td> dul: </td>
+            <td> <a
+                href="http://www.ontologydesignpatterns.org/ont/dul/DUL.owl">http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section id="DUL-Classes-Alignment" class="informative">
+      <h4>Class Alignments</h4>
+      <p>The following classes in SOSA and SSN can be aligned via a subclass relation as follows. </p>
+      <table>
+        <tbody>
+          <tr>
+            <td> <a href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a> </td>
+            <td> subclass of </td>
+            <td> dul:Entity </td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAProcedure">sosa:Procedure</a> </td>
+            <td> subclass of </td>
+            <td> dul:Method </td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSASensor">sosa:Sensor</a> </td>
+            <td> subclass of </td>
+            <td> dul:Object</td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAObservation">sosa:Observation</a> </td>
+            <td> subclass of </td>
+            <td> dul:Event</td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAProperty">sosa:Property</a> </td>
+            <td> subclass of </td>
+            <td> dul:Quality</td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAStimulus">sosa:Stimulus</a> </td>
+            <td> subclass of </td>
+            <td> dul:Event</td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSASystem">sosa:System</a> </td>
+            <td> subclass of </td>
+            <td> dul:Object</td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAPlatform">sosa:Platform</a> </td>
+            <td> subclass of </td>
+            <td> dul:Object</td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSADeployment">sosa:Deployment</a> </td>
+            <td> subclass of </td>
+            <td> dul:Event</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>For more complex alignments, the axiomatic alignments are defined as follows.</p>
+      <table>
+        <tbody>
+          <tr>
+            <td> (not (oldsosa:Observation)) and (old-sosa:observationResult some owl:Thing)</td>
+            <td> subclass of </td>
+            <td> <a href="#SOSAObservation">sosa:Observation</a> </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section id="DUL_Alignment_property" class="informative">
+      <h4>Property Alignments</h4>
+      <p>Additional alignments from SOSA/SSN to DUL properties are defined as
+        follows. </p>
+      <table>
+        <tbody>
+          <tr>
+            <td> <a href="#SOSAhasProperty">sosa:hasProperty</a> </td>
+            <td> sub-property of </td>
+            <td> dul:hasQuality </td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAisPropertyOf">sosa:isPropertyOf</a> </td>
+            <td> sub-property of </td>
+            <td> dul:isQualityOf </td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAhosts">sosa:hosts</a> </td>
+            <td> sub-property of </td>
+            <td> dul:isLocationOf </td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAisHostedBy">sosa:isHostedBy</a> </td>
+            <td> sub-property of </td>
+            <td> dul:hasLocation </td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAimplementedBy">sosa:implementedBy</a> </td>
+            <td> sub-property of </td>
+            <td> dul:describes </td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAimplements">sosa:implements</a> </td>
+            <td> sub-property of </td>
+            <td> dul:isDescribedBy </td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAusedProcedure">sosa:usedProcedure</a> </td>
+            <td> sub-property of </td>
+            <td> dul:hasParticipant </td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAmadeObservation">sosa:madeObservation</a> </td>
+            <td> sub-property of </td>
+            <td> dul:associatedWith </td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAmadeBySensor">sosa:madeBySensor</a> </td>
+            <td> sub-property of </td>
+            <td> dul:associatedWith </td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAobservedProperty">sosa:observedProperty</a> </td>
+            <td> sub-property of </td>
+            <td> dul:associatedWith </td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAhasResult">sosa:hasResult</a> </td>
+            <td> sub-property of </td>
+            <td> dul:associatedWith </td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAphenomenonTime">sosa:phenomenonTime</a> </td>
+            <td> sub-property of </td>
+            <td> dul:hasRegion </td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAhasSubSystem">sosa:hasSubSystem</a> </td>
+            <td> sub-property of </td>
+            <td> dul:hasPart </td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAdeployedOnPlatform">sosa:deployedOnPlatform</a> </td>
+            <td> sub-property of </td>
+            <td> dul:associatedWith</td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAdeployedSystem">sosa:deployedSystem</a> </td>
+            <td> sub-property of </td>
+            <td> dul:associatedWith</td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAhasDeployment">sosa:hasDeployment</a> </td>
+            <td> sub-property of </td>
+            <td> dul:associatedWith </td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAinDeployment">sosa:inDeployment</a> </td>
+            <td> sub-property of </td>
+            <td> dul:associatedWith </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </section>

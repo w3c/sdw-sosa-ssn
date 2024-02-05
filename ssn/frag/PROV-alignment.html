@@ -1,0 +1,237 @@
+<section id="PROV_Alignment" class="informative">
+    <h3>PROV Alignment Module</h3>
+    <p>This section introduces the alignment of SOSA to W3C PROV ([[prov-overview]], [[prov-dm]], [[prov-o]]).</p>
+    <p>The underlying structure of PROV is based around a process-flow model, with three base classes: <a
+        href="https://www.w3.org/TR/prov-o/#Entity">Entity</a>, which is the class of physical, digital, conceptual,
+      or other kinds of things with some fixed aspects; <a
+        href="https://www.w3.org/TR/prov-o/#Activity">Activity</a>,
+      which is the class of things that occur over a period of time and act upon or with entities, and it may
+      include
+      consuming, processing, transforming, modifying, relocating, using, or generating entities; and <a
+        href="https://www.w3.org/TR/prov-o/#Agent">Agent</a>, the class of things that bear some form of
+      responsibility for an activity taking place, for the existence of an entity, or for another agent's activity.
+    </p>
+    <figure>
+      <a href="images/prov-o.png"><img src="images/prov-o.png" alt="PROV-O" width="350" /></a>
+      <a href="images/observation-prov.png"><img src="images/observation-prov.png" alt="Observation PROV-O"
+          width="350" /></a>
+      <a href="images/actuation-prov.png"><img src="images/actuation-prov.png" alt="Actuation PROV-O"
+          width="350" /></a>
+      <a href="images/sampling-prov.png"><img src="images/sampling-prov.png" alt="Sampling PROV-O"
+          width="350" /></a>
+      <figcaption>Core PROV classes and some of the properties that relate them, shown alongside the core SOSA
+        structure for observation, actuation and sampling. Classes generally aligned with prov:Entity in yellow
+        ellipses; with prov:Activity in purple boxes; with prov:Agent in orange boxes.</figcaption>
+    </figure>
+
+    <p>The SOSA/SSN ontologies conceive observations, actuations, and acts of sampling as activities or events, that
+      results in information being produced, or a change in the world, or the production or transformation of a
+      sample.
+      Thus, an alignment of SOSA to PROV is natural.
+      Compton et al. [[SSN-PROV]] and Cox [[OM-Lite]] have previously described alignments of the SSNX and O&amp;M
+      models with [[prov-o]].
+      The alignment here is based on that work, also extended to consider actuation. </p>
+
+    <section id="PROV_Alignment_ns" class="informative">
+      <h4>Namespaces</h4>
+      <p>The following namespace prefixes are used in the alignment of SOSA to PROV.</p>
+      <table>
+        <tbody>
+          <tr>
+            <th> Prefix </th>
+            <th> Namespace </th>
+          </tr>
+          <tr>
+            <td> sosa: </td>
+            <td> <a href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a>
+            </td>
+          </tr>
+          <tr>
+            <td> prov: </td>
+            <td> <a href="http://www.w3.org/ns/prov">http://www.w3.org/ns/prov#</a>
+            </td>
+          </tr>
+          <tr>
+            <td> sp: </td>
+            <td> <a href="http://www.w3.org/ns/sosa/prov/">http://www.w3.org/ns/sosa/prov/</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section id="PROV_Alignment_class" class="informative">
+      <h4>Class Alignments</h4>
+      <p>The primary classes from SOSA are aligned with the PROV classes as
+        follows. </p>
+      <p>1. Acts of Observation, Actuation and Sampling are each kinds of Activity, thus:</p>
+      <table>
+        <tbody>
+          <tr>
+            <td> <a href="#SOSAObservation">sosa:Observation</a> </td>
+            <td rowspan="3"> subclass of </td>
+            <td rowspan="3"> prov:Activity </td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAActuation">sosa:Actuation</a> </td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSASampling">sosa:Sampling</a> </td>
+          </tr>
+        </tbody>
+      </table>
+      <p>2. Sensors, Actuators and Samplers are entities that are responsible for the corresponding activities,
+        thus:
+      </p>
+      <table>
+        <tbody>
+          <tr>
+            <td> <a href="#SOSASensor">sosa:Sensor</a> </td>
+            <td rowspan="3"> subclass of </td>
+            <td rowspan="3"> prov:Agent , prov:Entity </td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAActuator">sosa:Actuator</a> </td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSASampler">sosa:Sampler</a> </td>
+          </tr>
+        </tbody>
+      </table>
+      <p>3. Procedures for observation, actuation or sampling are a kind of prov:Plan, thus:</p>
+      <table>
+        <tbody>
+          <tr>
+            <td> <a href="#SOSAProcedure">sosa:Procedure</a> </td>
+            <td> subclass of </td>
+            <td> prov:Plan </td>
+          </tr>
+        </tbody>
+      </table>
+      <p>4. The other classes from the core SOSA ontology represent either real or information resources, so are
+        interpreted as kinds of prov:Entity, thus: </p>
+      <table>
+        <tbody>
+          <tr>
+            <td> <a href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a> </td>
+            <td> subclass of </td>
+            <td> prov:Entity </td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAObservableProperty">sosa:ObservableProperty</a> </td>
+            <td> subclass of </td>
+            <td> prov:Entity </td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAPlatform">sosa:Platform</a> </td>
+            <td> subclass of </td>
+            <td> prov:Entity </td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSASample">sosa:Sample</a> </td>
+            <td> subclass of </td>
+            <td> prov:Entity </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section id="PROV_Alignment_property" class="informative">
+      <h4>Property Alignments</h4>
+      <p>The following properties from SOSA have simple alignments with PROV properties: </p>
+      <table>
+        <tbody>
+          <tr>
+            <td> <a href="#SOSAmadeByActuator">sosa:madeByActuator</a> </td>
+            <td> subproperty of </td>
+            <td> prov:wasAssociatedWith </td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a> </td>
+            <td> subproperty of </td>
+            <td> prov:used </td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAhasResult">sosa:hasResult</a> </td>
+            <td> subproperty of </td>
+            <td> prov:generated </td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAinvokedBy">sosa:invokedBy</a> </td>
+            <td> subproperty of </td>
+            <td> prov:wasAssociatedWith </td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAisResultOf">sosa:isResultOf</a> </td>
+            <td> subproperty of </td>
+            <td> prov:wasGeneratedBy </td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAisSampleOf">sosa:isSampleOf</a> </td>
+            <td> subproperty of </td>
+            <td> prov:wasDerivedFrom </td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAmadeBySampler">sosa:madeBySampler</a> </td>
+            <td> subproperty of </td>
+            <td> prov:wasAssociatedWith </td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAmadeBySensor">sosa:madeBySensor</a> </td>
+            <td> subproperty of </td>
+            <td> prov:wasAssociatedWith </td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAstartTime">sosa:startTime</a> </td>
+            <td> subproperty of </td>
+            <td> prov:startedAtTime </td>
+          </tr>
+          <tr>
+            <td> <a href="#SOSAresultTime">sosa:resultTime</a> </td>
+            <td> subproperty of </td>
+            <td> prov:endedAtTime </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>The final property alignment first requires some sub-properties of PROV properties to be defined: </p>
+
+      <table>
+        <tbody>
+          <tr>
+            <td rowspan="2"> sp:eventAssociation </td>
+            <td> subproperty of </td>
+            <td> prov:qualifiedAssociation </td>
+          </tr>
+          <tr>
+            <td> domain </td>
+            <td> Union of ( sosa:Observation or sosa:Actuation or sosa:Sampling ) </td>
+          </tr>
+          <tr>
+            <td rowspan="2"> sp:hadProcedure </td>
+            <td> subproperty of </td>
+            <td> prov:hadPlan </td>
+          </tr>
+          <tr>
+            <td> range </td>
+            <td> <a href="#SOSAProcedure">sosa:Procedure</a> </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>Then sosa:usedProcedure is given by a property chain axiom: </p>
+
+      <table>
+        <tbody>
+          <tr>
+            <td> <a href="#SOSAusedProcedure">sosa:usedProcedure</a> </td>
+            <td> property chain axiom </td>
+            <td> [ sp:eventAssociation , sp:hadProcedure ] </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>An RDF file containing a <a
+          href="https://github.com/w3c/sdw/blob/gh-pages/ssn/rdf/sosa-prov-mapping.ttl">graph corresponding to this
+          alignment is available</a>. </p>
+
+    </section>
+  </section>
