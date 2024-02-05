@@ -10,7 +10,7 @@
 @prefix schema: <http://schema.org/> .
 
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
-@prefix sosa-core: <http://www.w3.org/ns/sosa/core/> .
+@prefix sosa-base: <http://www.w3.org/ns/sosa/base/> .
 @prefix sosa-sam: <http://www.w3.org/ns/sosa/sam/> .
 
 
@@ -23,7 +23,7 @@ sosa-sam:
   dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
   dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
   dcterms:created "2024-02-02"^^xsd:date ;
-  owl:imports sosa-core: ;
+  owl:imports sosa-base: ;
   .
 
 sosa:Sample 
@@ -230,7 +230,7 @@ sosa:madeBySampler
 
 ## End of sampling schema
 ## ---------------------------------------------------- ##
-## additional domains and ranges for sosa-core: terms
+## additional domains and ranges for sosa-base: terms
 
 ## Utility terms 
 
@@ -238,83 +238,83 @@ sosa:hasMember
   schema:domainIncludes sosa:SampleCollection ;
   schema:rangeIncludes sosa:Sample ;
   schema:rangeIncludes sosa:SampleCollection ;
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 
 ## Features of interest and Property
 
 sosa:FeatureOfInterest 
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 sosa:hasFeatureOfInterest 
   schema:domainIncludes sosa:Sampling ;
   schema:rangeIncludes sosa:Sample ;
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 sosa:hasUltimateFeatureOfInterest 
   schema:domainIncludes sosa:Sampling ;
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 sosa:isFeatureOfInterestOf 
   schema:domainIncludes sosa:Sample ;
   schema:rangeIncludes sosa:Sampling ;
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 sosa:Property 
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 sosa:PropertyOfInterest 
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 sosa:hasProperty 
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 sosa:isPropertyOf 
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 sosa:forProperty 
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 
 ## Procedures
 
 sosa:Procedure 
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 sosa:hasInput 
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 sosa:hasOutput 
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 sosa:usedProcedure 
   schema:domainIncludes sosa:Sampling ;
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 ## Executions
 
 sosa:Execution 
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 sosa:hasInputValue 
   schema:domainIncludes sosa:Sampling ;
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 sosa:hasOutputValue 
   schema:domainIncludes sosa:Sampling ;
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 sosa:startTime 
   schema:domainIncludes sosa:Sampling ;
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 sosa:resultTime 
   schema:domainIncludes sosa:Sampling ;
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 sosa:phenomenonTime 
   schema:domainIncludes sosa:Sampling ;
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 
 ## Result 
@@ -322,64 +322,64 @@ sosa:phenomenonTime
 sosa:hasResult 
   schema:domainIncludes sosa:Sampling ;
   schema:rangeIncludes sosa:Sample ;
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 sosa:isResultOf 
   schema:domainIncludes sosa:Sample ;
   schema:rangeIncludes sosa:Sampling ;
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 sosa:hasSimpleResult 
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 
 ## Systems
 
 sosa:System 
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 sosa:hasSubSystem 
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 sosa:implements 
   schema:domainIncludes sosa:Sampler ;
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 sosa:implementedBy 
   schema:rangeIncludes sosa:Sampler ;
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 
 ## Deployment
 
 sosa:Deployment 
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 sosa:deployedAsset 
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 sosa:deployedSystem 
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 sosa:hasDeployment 
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 sosa:deployedOnPlatform 
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 sosa:inDeployment 
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 ## Platform 
 
 sosa:Platform 
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 sosa:hosts 
   schema:rangeIncludes sosa:Sampler ;
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
 sosa:isHostedBy 
   schema:domainIncludes sosa:Sampler ;
-  rdfs:isDefinedBy sosa-core: .
+  rdfs:isDefinedBy sosa-base: .
 
