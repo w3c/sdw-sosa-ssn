@@ -1,0 +1,233 @@
+<!--  <section id="Sample_Relations" class="informative">  -->
+<h3>Sample Relations Module</h3>
+<p>Samples are often related to other samples, by sub-sampling,
+    topological relationships (stations along a traverse, pixels within an
+    image, probe spots on a polished section, specimens retrieved within a
+    borehole) or as parts of sample processing chains (crushing,
+    splitting, dissecting, disolving). There are an essentially unlimited
+    set of relationships between samples, so the nature of the
+    relationship has its own class. This section describes a flexible
+    model to describe such relationships between samples. The model is
+    based on the <a href="http://patterns.dataincubator.org/book/qualified-relation.html">QualifiedRelation
+        pattern</a>. </p>
+<p style="text-align: center;">The namespace for Sample relationships
+    terms is <span class="repeated" style="font-family: courier;">http://www.w3.org/ns/sosa/sampling/</span>
+</p>
+<p>The suggested prefix for the sample relationships namespace is <span class="repeated"
+        style="font-family: courier;">sampling</span></p>
+<p>An <a href="http://w3c.github.io/sdw/ssn/rdf/sample-relations.ttl">ontology
+        graph for this is available</a>. </p>
+<p>The following figure provides an overview on the classes
+    and properties that are specifically related to modeling Sample relationships.</p>
+<figure>
+    <a href="images/sample-relationships.png"><img alt="Sample relationships" src="images/sample-relationships.png"></a>
+    <figcaption>Model of sample relationships</figcaption>
+</figure>
+
+<section id="sample_relationships_def">
+    <h4 id="SAMPglance">Sample Relationships Specification</h4>
+    <p>This section introduces the following classes and properties:</p>
+    <div class="azlist">
+        <p>
+            <a href="#SAMPRelationshipNature">sampling:RelationshipNature</a>
+            , <a href="#SAMPhasSampleRelationship">sampling:hasSampleRelationship</a>
+            , <a href="#SAMPnatureOfRelationship">sampling:natureOfRelationship</a>
+            , <a href="#SAMPrelatedSample">sampling:relatedSample</a>
+        </p>
+    </div>
+
+    <section class="specterm" id="SAMPRelationshipNature" about="sampling:RelationshipNature" typeof="owl:Class">
+        <h5><a href="#SAMPRelationshipNature">sampling:RelationshipNature</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/sampling/RelationshipNature</p>
+        <p><strong>an OWL Class</strong></p>
+
+        <em property="rdfs:label">Nature of relationship (between samples)</em> -
+        <span property="rdfs:comment skos:definition">Members of this class indicate the nature of a relationship
+            between two <a href="#SOSASample"><code>Samples.</code></a></span>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Sub class of</th>
+                    <td>
+                        <span rel="rdfs:subClassOf" resource="skos:Concept">skos:Concept</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Examples</th>
+                    <td><span property="skos:example">Adjacent flight-line</span>
+                        <br>
+                        <span property="skos:example">Females</span>
+                        <br>
+                        <span property="skos:example">Juveniles</span>
+                        <br>
+                        <span property="skos:example">Males</span>
+                        <br>
+                        <span property="skos:example">Pixel within image or scene</span>
+                        <br>
+                        <span property="skos:example">Probe spot on polished specimen</span>
+                        <br>
+                        <span property="skos:example">Specimen taken from borehole</span>
+                        <br>
+                        <span property="skos:example">Split of core sample</span>
+                        <br>
+                        <span property="skos:example">Station along a traverse</span>
+                        <br>
+                        <span property="skos:example">Sub-sample with grain size smaller than specified seive
+                            mesh</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Sample_Relations">Back to module overview</a>]</span>
+        </div>
+    </section>
+
+    <section class="specterm" id="SAMPSampleRelationship" about="sampling:SampleRelationship" typeof="owl:Class">
+        <h5><a href="#SAMPSampleRelationship">sampling:SampleRelationship</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/sampling/SampleRelationship</p>
+        <p><strong>an OWL Class</strong></p>
+
+        <em property="rdfs:label">Sample relationship</em> -
+        <span property="rdfs:comment skos:definition">Members of this class represent a relationship between a <a
+                href="#SOSASample"><code>Sample</code></a> and another.</span>
+        <table>
+            <tbody>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Sample_Relations">Back to module overview</a>]</span>
+        </div>
+    </section>
+
+
+    <section class="specterm" id="SAMPhasSampleRelationship" about="sampling:hasSampleRelationship"
+        typeof="owl:ObjectProperty">
+        <h5><a href="#SAMPhasSampleRelationship">sampling:hasSampleRelationship</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/sampling/hasSampleRelationship</p>
+        <p><strong>an OWL Object Property</strong></p>
+
+        <em property="rdfs:label">has sample relationship</em> -
+        <span property="rdfs:comment skos:definition">Links a sample to a <a
+                href="#SAMPSampleRelationship"><code>Sample Relationship</code></a> (which links to a related <a
+                href="#SOSASample"><code>Sample</code></a>).</span>
+        <br>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Domain Includes</th>
+                    <td><span rel="schema:domainIncludes" resource="sosa:Sample"><a
+                                href="#SOSASample">sosa:Sample</a></span></td>
+                </tr>
+                <tr>
+                    <th>Range Includes</th>
+                    <td><span rel="schema:rangeIncludes" resource="sampling:SampleRelationship"><a
+                                href="#SAMPSampleRelationship">sampling:SampleRelationship</a></span></td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Sample_Relations">Back to module overview</a>]</span>
+        </div>
+    </section>
+
+    <section class="specterm" id="SAMPnatureOfRelationship" about="sampling:natureOfRelationship"
+        typeof="owl:ObjectProperty">
+        <h5><a href="#SAMPnatureOfRelationship">sampling:natureOfRelationship</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/sampling/natureOfRelationship</p>
+        <p><strong>an OWL Object Property</strong></p>
+
+        <em property="rdfs:label">nature of (sample) relationship</em> -
+        <span property="rdfs:comment skos:definition">Links a <a
+                href="#SAMPSampleRelationship"><code>Sample Relationship</code></a> to an indication of the nature
+            of
+            the
+            relationship.</span>
+        <br>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Domain Includes</th>
+                    <td><span rel="schema:domainIncludes" resource="sampling:SampleRelationship"><a
+                                href="#SAMPSampleRelationship">sampling:SampleRelationship</a></span></td>
+                </tr>
+                <tr>
+                    <th>Range Includes</th>
+                    <td><span rel="schema:rangeIncludes" resource="sampling:RelationshipNature"><a
+                                href="#SAMPRelationshipNature">sampling:SampleRelationship</a></span></td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Sample_Relations">Back to module overview</a>]</span>
+        </div>
+    </section>
+
+    <section class="specterm" id="SAMPrelatedSample" about="sampling:relatedSample" typeof="owl:ObjectProperty">
+        <h5><a href="#SAMPrelatedSample">sampling:relatedSample</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/sampling/relatedSample</p>
+        <p><strong>an OWL Object Property</strong></p>
+
+        <em property="rdfs:label">related sample</em> -
+        <span property="rdfs:comment skos:definition">Links a <a
+                href="#SAMPSampleRelationship"><code>Sample Relationship</code></a> to the related <a
+                href="#SOSASample"><code>Sample.</code></a></span>
+        <br>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Domain Includes</th>
+                    <td><span rel="schema:domainIncludes" resource="sampling:SampleRelationship"><a
+                                href="#SAMPSampleRelationship">sampling:SampleRelationship</a></span></td>
+                </tr>
+                <tr>
+                    <th>Range Includes</th>
+                    <td><span rel="schema:rangeIncludes" resource="sosa:Sample"><a
+                                href="#SOSASample">sosa:Sample</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Sample_Relations">Back to module overview</a>]</span>
+        </div>
+    </section>
+
+
+</section>
+<!--  </section>  -->
