@@ -12,41 +12,24 @@
 @prefix sp: <http://www.w3.org/ns/sosa/prov/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-sosa:Actuation
+sosa:Execution
   rdfs:subClassOf prov:Activity ;
 .
-sosa:Actuator
+sosa:System
   rdfs:subClassOf prov:Agent ;
   rdfs:subClassOf prov:Entity ;
 .
 sosa:FeatureOfInterest
   rdfs:subClassOf prov:Entity ;
 .
-sosa:ObservableProperty
+sosa:Property
   rdfs:subClassOf prov:Entity ;
-.
-sosa:Observation
-  rdfs:subClassOf prov:Activity ;
 .
 sosa:Platform
   rdfs:subClassOf prov:Entity ;
 .
 sosa:Procedure
   rdfs:subClassOf prov:Plan ;
-.
-sosa:Result
-  rdfs:subClassOf prov:Entity ;
-.
-sosa:Sampler
-  rdfs:subClassOf prov:Agent ;
-  rdfs:subClassOf prov:Entity ;
-.
-sosa:Sampling
-  rdfs:subClassOf prov:Activity ;
-.
-sosa:Sensor
-  rdfs:subClassOf prov:Agent ;
-  rdfs:subClassOf prov:Entity ;
 .
 sosa:hasFeatureOfInterest
   rdfs:subPropertyOf prov:used ;
@@ -79,8 +62,8 @@ sosa:prov
     ] ;
   dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
   dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
-  dcterms:modified "2017-04-13"^^xsd:date ;
-  dcterms:rights "Copyright 2017 W3C/OGC." ;
+  dcterms:modified "2024-02-06"^^xsd:date ;
+  dcterms:rights "Copyright 2017, 2024 W3C/OGC." ;
   rdfs:comment "Alignment of the the W3C/OGC SOSA Ontology with the W3C PROV-O Ontology"@en ;
   rdfs:label "Alignment of SOSA with PROV-O"@en ;
   owl:imports <http://www.w3.org/ns/prov-o#> ;
@@ -88,20 +71,16 @@ sosa:prov
 .
 sp:eventAssociation
   rdf:type owl:ObjectProperty ;
-  rdfs:domain [
-      rdf:type owl:Class ;
-      owl:unionOf (
-          sosa:Observation
-          sosa:Actuation
-          sosa:Sampling
-        ) ;
-    ] ;
+  rdfs:domain sosa:Execution ;
   rdfs:subPropertyOf prov:qualifiedAssociation ;
 .
 sp:hadProcedure
   rdf:type owl:ObjectProperty ;
   rdfs:range sosa:Procedure ;
   rdfs:subPropertyOf prov:hadPlan ;
+.
+sosa:startTime
+  rdfs:subPropertyOf prov:startedAtTime ;
 .
 sosa:resultTime
   rdfs:subPropertyOf prov:endedAtTime ;

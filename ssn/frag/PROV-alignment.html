@@ -60,34 +60,40 @@
   <h4>Class Alignments</h4>
   <p>The primary classes from SOSA are aligned with the PROV classes as
     follows. </p>
-  <p>1. Acts of Observation, Actuation and Sampling are each kinds of Activity, thus:</p>
+  <p>1. Execution (acts of Observation, Actuation and Sampling) is a kind of Activity, thus:</p>
   <table>
     <tbody>
       <tr>
-        <td> <a href="#SOSAObservation">sosa:Observation</a> </td>
-        <td rowspan="3"> subclass of </td>
-        <td rowspan="3"> prov:Activity </td>
+        <td> <a href="#SOSAExecution">sosa:Execution</a> </td>
+        <td rowspan="4"> subclass of </td>
+        <td rowspan="4"> prov:Activity </td>
       </tr>
       <tr>
         <td> <a href="#SOSAActuation">sosa:Actuation</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAObservation">sosa:Observation</a> </td>
       </tr>
       <tr>
         <td> <a href="#SOSASampling">sosa:Sampling</a> </td>
       </tr>
     </tbody>
   </table>
-  <p>2. Sensors, Actuators and Samplers are entities that are responsible for the corresponding activities,
+  <p>2. Systems (Sensors, Actuators and Samplers) are entities that are responsible for the corresponding activities,
     thus:
   </p>
   <table>
     <tbody>
       <tr>
-        <td> <a href="#SOSASensor">sosa:Sensor</a> </td>
-        <td rowspan="3"> subclass of </td>
-        <td rowspan="3"> prov:Agent , prov:Entity </td>
+        <td> <a href="#SOSASystem">sosa:System</a> </td>
+        <td rowspan="4"> subclass of </td>
+        <td rowspan="4"> prov:Agent , prov:Entity </td>
       </tr>
       <tr>
         <td> <a href="#SOSAActuator">sosa:Actuator</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSASensor">sosa:Sensor</a> </td>
       </tr>
       <tr>
         <td> <a href="#SOSASampler">sosa:Sampler</a> </td>
@@ -99,8 +105,17 @@
     <tbody>
       <tr>
         <td> <a href="#SOSAProcedure">sosa:Procedure</a> </td>
-        <td> subclass of </td>
-        <td> prov:Plan </td>
+        <td rowspan="4"> subclass of </td>
+        <td rowspan="4"> prov:Plan </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAActuatingProcedure">sosa:ActuatingProcedure</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAObservingProcedure">sosa:ObservingProcedure</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSASamplingProcedure">sosa:SamplingProcedure</a> </td>
       </tr>
     </tbody>
   </table>
@@ -110,21 +125,25 @@
     <tbody>
       <tr>
         <td> <a href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a> </td>
-        <td> subclass of </td>
-        <td> prov:Entity </td>
-      </tr>
-      <tr>
-        <td> <a href="#SOSAObservableProperty">sosa:ObservableProperty</a> </td>
-        <td> subclass of </td>
-        <td> prov:Entity </td>
-      </tr>
-      <tr>
-        <td> <a href="#SOSAPlatform">sosa:Platform</a> </td>
-        <td> subclass of </td>
-        <td> prov:Entity </td>
+        <td rowspan="2"> subclass of </td>
+        <td rowspan="2"> prov:Entity </td>
       </tr>
       <tr>
         <td> <a href="#SOSASample">sosa:Sample</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAProperty">sosa:Property</a> </td>
+        <td rowspan="3"> subclass of </td>
+        <td rowspan="3"> prov:Entity </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAActuatableProperty">sosa:ActuatableProperty</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAObservableProperty">sosa:ObservableProperty</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAPlatform">sosa:Platform</a> </td>
         <td> subclass of </td>
         <td> prov:Entity </td>
       </tr>
@@ -136,11 +155,6 @@
   <p>The following properties from SOSA have simple alignments with PROV properties: </p>
   <table>
     <tbody>
-      <tr>
-        <td> <a href="#SOSAmadeByActuator">sosa:madeByActuator</a> </td>
-        <td> subproperty of </td>
-        <td> prov:wasAssociatedWith </td>
-      </tr>
       <tr>
         <td> <a href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a> </td>
         <td> subproperty of </td>
@@ -167,12 +181,17 @@
         <td> prov:wasDerivedFrom </td>
       </tr>
       <tr>
-        <td> <a href="#SOSAmadeBySampler">sosa:madeBySampler</a> </td>
+        <td> <a href="#SOSAmadeByActuator">sosa:madeByActuator</a> </td>
         <td> subproperty of </td>
         <td> prov:wasAssociatedWith </td>
       </tr>
       <tr>
         <td> <a href="#SOSAmadeBySensor">sosa:madeBySensor</a> </td>
+        <td> subproperty of </td>
+        <td> prov:wasAssociatedWith </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAmadeBySampler">sosa:madeBySampler</a> </td>
         <td> subproperty of </td>
         <td> prov:wasAssociatedWith </td>
       </tr>
@@ -200,7 +219,7 @@
       </tr>
       <tr>
         <td> domain </td>
-        <td> Union of ( sosa:Observation or sosa:Actuation or sosa:Sampling ) </td>
+        <td> <a href="#SOSAExecution">sosa:Execution</a> </td>
       </tr>
       <tr>
         <td rowspan="2"> sp:hadProcedure </td>
