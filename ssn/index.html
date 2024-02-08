@@ -86,326 +86,257 @@
   </section>
   <section id="intro" class="informative">
     <h2>Introduction</h2>
-    <p>Sensors are a major source of data available on the Web
-      today. While sensor data may be published as mere values, searching, reusing, integrating, and interpreting these
-      data requires more than just the observation results. Of equal
-      importance for the proper interpretation of these values is information
-      about the studied feature of interest, such as a river, the observed
-      property, such as flow velocity, the utilized sampling strategy, such as
-      the specific locations and times at which the velocity was measured, and
-      a variety of other information. OGC's Sensor Web Enablement standards
-      [[OandM]], [[SensorML]] provide a means to annotate sensors and their
-      observations. However, these standards are not integrated and
-      aligned with W3C Semantic Web technologies and Linked Data in
-      particular, which are key drivers for creating and maintaining a global
-      and densely interconnected graph of data. With the rise of the Web of
-      Things and smart cities and homes more generally, actuators and the data
-      they produce also become first-class citizens of the Web. Given their
-      close relation to sensors, observations, procedures, and features of
-      interest, it is desirable to provide a common ontology that also
-      includes actuators and actuation. Finally, with the increasing diversity
-      of data and data providers, definitions such as those for sensors need
-      to be broadened, e.g., to include social sensing. The following
-      specifications introduce the new Semantic Sensor Network (SSN) and
-      Sensor, Observation, Sample, and Actuator (SOSA) ontologies that are set
-      out to provide flexible but coherent perspectives for representing the
-      entities, relations, and activities involved in sensing, sampling, and
-      actuation. SOSA provides a lightweight core for SSN and aims at broadening
-      the target audience and application areas that can make use of Semantic Web ontologies.
-      At the same time, SOSA acts as minimal interoperability fall-back level, i.e.,
-      it defines those common classes and properties for which data can be safely
-      exchanged across all uses of SSN, its modules, and SOSA.</p>
+    <p>Sensors are a major source of data available on the Web today.
+      While sensor data may be published merely as values, searching, reusing, integrating, and interpreting these data
+      requires more than just the observation results.
+      For the proper interpretation of these values, information about the studied feature of interest, such as a river,
+      the observed property, such as flow velocity, the utilized sampling strategy, such as the specific locations and
+      times at which the velocity was measured, and a variety of other information are required.
+      OGC's Sensor Web Enablement standards [[[SWE]]], [[[SensorML]]], [[[OandM]]], [[[OMS]]], [[[STA]]] provide
+      conceptual models
+      and some encodings for the annotation of sensors and their observations.
+      Integration and alignment with W3C Semantic Web technologies and Linked Data embeds this in a global and densely
+      interconnected graph of data.
+      With the rise of the Web of Things and smart cities and homes more generally, actuators and the data they produce
+      also become first-class citizens of the Web.
+      Given their close relation to sensors and observations, it is desirable to provide a common ontology that also
+      includes actuators and actuation.
+      Finally, with the increasing diversity of data and data providers, definitions for sensors need to be broadened,
+      to include human agents and social sensing.
+      The following specification introduces the Semantic Sensor Network (SSN) ontology that sets out to provide
+      flexible but coherent perspectives for representing the entities, relations, and activities involved in sensing,
+      sampling, and actuation.
+      A lightweight core for SSN, known as SOSA (Sensor, Observation, Sample, and Actuator) aims at broadening the
+      target audience and application areas that do not need the full capabilities of Semantic Web ontologies.
+      SOSA acts as minimal interoperability fall-back level, i.e., it defines those common classes and properties for
+      which data can be safely exchanged across all uses of SSN, its modules, and SOSA.</p>
   </section>
 
   <section id="Modularization" class="informative">
     <h2>Modularization</h2>
-    <p> <b>########## Revise this section #################</b> </p>
-    <p>Ontology modularization is commonly used
-      to segment an ontology to provide users with the knowledge
-      they require, reducing the scope as much as possible to what is strictly
-      necessary in a given use case. </p>
+
     <p>The SSN Ontology is distributed in several modules.
-      RDF representations of these use <code>owl:imports</code> statements.
+      The segmentation allows users to access the knowledge they require, reducing the scope to what is necessary in a
+      given use case.
+      Lower level modules are independent of their higher level modules and logically consistent on their own.</p>
+    <p class="note">Higher level here is not to be confused with <i>upper level ontologies</i>.
+      Upper level ontologies are <i>general knowledge</i> ontologies that can be directionally imported in many domains.
+    </p>
+    <p>
+      This figure summarizes the modules and dependencies within the SSN Ontology, along with extensions and alignments
+      described in this document.
+    </p>
+    <!-- <b>########## Not sure about the vertical and horizontal thing here - just seems like modules and dependencies to me #################</b> </p>
+      <p>
       We distinguish two methods depending on the
       directionality of the segmentation: a vertical segmentation and a
-      horizontal segmentation.</p>
-    <figure>
-      <img alt="Ontology Modules" src="images/modular_ontology.png">
-      <figcaption>The SOSA and SSN ontologies and their vertical and horizontal modules.
-        <br>TODO: re-draw to include SOSA-OMS, SSN-OMS
+      horizontal segmentation.</p> -->
+    <figure id="module-dependencies">
+      <img alt="Ontology Modules" src="images/SSN-packages.png">
+      <figcaption>The modular SSN ontology with extensions and alignments.
       </figcaption>
     </figure>
-    <h3 id="vertical-segmentation">Vertical Segmentation</h3>
-    <p>Vertical modules build upon each other, i.e., they directionally <code>owl:import</code>
-      lower level modules. Lower level modules are independent of their higher
-      level modules and logically consistent on their own.</p>
-    <p>In particular,</p>
+
+    <h3 id="sosa-module">SOSA</h3>
+    <p>The <i>SOSA Module</i> (Sensors, Observations, Samples and Actuations) defines the <b>core</b> classes and
+      properties, and provides textual definitions and other annotations.
+      Some semantic enrichment is provided using Schema.org [[schema-org]] properties, but there is no formal
+      axiomatization.
+      SOSA may be used <i>as-is</i> by an audience who wish to use terminology consistent with the SSN Ontology, thus
+      ensuring interoperability with SSN-based repositories. </p>
+    <p><b>SOSA</b> is composed of four lower level modules: </p>
     <ol>
       <li>
-        the <i>SOSA graph</i> declares all the core classes and properties, and provides textual definitions and other
-        annotations.
-        Some semantic enrichment is provided using Schema.org properties, but there is no formal axiomatization.
-        <b><i>SOSA</i> may be used <i>as-is</i> by an audience who wish to use terminology consistent with the SSN
-          Ontology, thus ensuring interoperability with SSN-based repositories</b>
+        <b>SOSA Base</b> defines classes and properties that are common across Actuation, Observation and Sampling
+        applications
       </li>
       <li>
-        the <i>SSN graph</i> imports <i>SOSA</i>, and adds axioms that formally indicate how properties relate to
-        classes, how classes relate to each other. <b><i>SSN</i> may be used in semantic web systems that use
-          inferencing and reasoning, and consistency checking for datasets</b>
+        <b>SOSA Actuation</b> imports <b>SOSA Base</b> and defines classes and properties used in Actuations
       </li>
       <li>
-        the <i>SOSA-OMS graph</i> imports <i>SOSA</i> and describes the alignment of SOSA to [[OMS]], adding some
-        additional terms used in OMS that are not otherwise included in SSN. <b><i>SOSA-OMS</i> may be used by audiences
-          for whom strict conformance to [[OMS]] (also known as ISO 19156:2023) is a requirement</b>
+        <b>SOSA Observation</b> imports <b>SOSA Base</b> and defines classes and properties used in Observations
       </li>
       <li>
-        the <i>SSN-OMS graph</i> imports <i>SOSA-OMS</i> and <i>SSN</i> and describes the alignment of SSN to [[OMS]]
-        including OWL/RDFS axiomatization. <b><i>SSN-OMS</i> may be used by audiences for whom strict conformance to
-          [[OMS]] (also known as ISO 19156:2023) is a requirement, with reasoning support</b>
-      </li>
-      <li>
-        the <i>Dolce-UltraLite Alignment graph</i> imports the <i>SSN graph</i> which itself imports the <i>SOSA
-          graph</i>, and adds axioms that position SSN within <i>Dolce-UltraLite</i>. <b><i>DUL-Alignment</i> may be
-          used to integrate data designed using SSN into systems otherwise built in the <i>Dolce-UltraLite</i>
-          framework</b>
+        <b>SOSA Sampling</b> imports <b>SOSA Base</b> and defines classes and properties used in Samplings
       </li>
     </ol>
-    <p><i>SOSA</i> as the core, does not
-      import any other ontologies, so it is truly independent of
-      vertical modules that add more expressivity and further ontological
-      commitments to the lightweight semantics of <i>SOSA</i>.</p>
+    <p>Finally, <i>SOSA</i> imports <b>SOSA Actuation</b> , <b>SOSA Observation</b> and <b>SOSA Sampling</b> .</p>
+    <p><i>SOSA</i> as the core, does not import any other ontologies, so it is truly independent of modules that add
+      more expressivity and further ontological commitments to the lightweight semantics of <i>SOSA</i>.</p>
+
+    <h3 id="ssn-module">SSN</h3>
+    <p>The <i>SSN Module</i> adds axioms that formally indicate how properties relate to classes, how classes relate to
+      each other. SSN may be used in semantic web systems that use inferencing and reasoning, and consistency checking
+      for datasets. </p>
+    <p>The modularization of <b>SSN</b> mirrors <b>SOSA</b>.
+      <b>SSN</b> is composed of four lower level modules:
+    </p>
+    <ol>
+      <li>
+        <b>SSN Base</b> imports <b>SOSA Base</b> and axiomatizes classes and properties that are common across
+        Actuation, Observation and Sampling
+        applications
+      </li>
+      <li>
+        <b>SSN Actuation</b> imports <b>SSN Base</b> and <b>SOSA Actuation</b>, and axiomatizes classes and properties
+        used in Actuations
+      </li>
+      <li>
+        <b>SSN Observation</b> imports <b>SSN Base</b> and <b>SOSA Observation</b>, and axiomatizes classes and
+        properties used in Observations
+      </li>
+      <li>
+        <b>SSN Sampling</b> imports <b>SSN Base</b> and <b>SOSA Sampling</b>, and axiomatizes classes and properties
+        used in Samplings
+      </li>
+    </ol>
+    <p>Finally, <i>SSN</i> imports <b>SSN Actuation</b> , <b>SSN Observation</b> and <b>SSN Sampling</b> .</p>
     <p class="note">Readers who do not wish to view the SSN axioms may hide them by selecting the button [Show only core
       SOSA terms] at the top of the <a href="#overview-of-classes-and-properties">Overview of Classes and Properties</a>
       or [Hide additional SSN axioms] on each individual specification block.</p>
-    <p>Note that higher level here is not to be confused with upper level
-      ontologies. Upper level ontologies are general knowledge ontologies that
-      can be directionally imported in many domains, whereas our definition of
-      higher level ontologies here refers to an ontology that extends one or
-      several ontology modules to capture a larger part of a knowledge domain
-      and/or combine knowledge domains.</p>
-    <h3 id="horizontal-segmentation">Horizontal Segmentation</h3>
-    <p>Modules that are horizontally layered may depend on each other, i.e.,
-      they may rely on the directional import of another horizontal module.
-      Two horizontal modules that are dependent on the SOSA and SSN ontologies are
-      presented in this specification,</p>
-    <ol>
-      <li>the <i>Sample Relations Module</i></li>
-      <li>the SSN System module</li>
-    </ol>
-    <p>Other ontologies that add domain-specific terms to SOSA and SSN, but require the
-      import of SOSA or SSN, can be considered horizontal modules.</p>
-  </section>
-  <section id="Developments" class="informative">
-    <h2>Origins of SSN and SOSA</h2>
-    <p>Here we briefly review the origins of SSN and SOSA, namely the initial
-      SSN version published by the <em>W3C Semantic Sensor Network Incubator
-        Group </em> [[SSNX]] and work on Sensor Web Enablement by the OGC. We
-      also highlight the most substantial changes made since the initial
-      release of the SSN ontology.</p>
-    <p>Starting in 2002, the OGC's Sensor Web Enablement initiative has developed
-      a generic framework for delivering sensor data, dealing with
-      remote-sensing, moving platforms, and in-situ monitoring and sensing.
-      The Sensor Observation Service defines a standard query interface for
-      sensor and observation data, following the pattern established by OGC
-      for their Web Services. The returned XML data conforms with the Sensor Model
-      Language [[SensorML]] and OMXML [[OMXML]], whereby the latter implements
-      Observations and Measurements [[OandM]]. </p>
-    <p>SensorML and O&amp;M are complementary viewpoints. SensorML
-      is 'provider-centric' and encodes details of the sensor along with raw
-      observation data. SensorML is self-contained and highly flexible. This
-      makes life easy for data producers but is demanding on consumers.
-      SensorML provides extensive support for serialization of numeric data arrays
-      and is particularly optimized for data that includes multiple parallel
-      streams that must be processed together. For example, the data collected
-      by cameras on airborne vehicles must be geo-referenced based on the
-      instantaneous position of the platform and orientation of the camera. In
-      contrast, O&amp;M was designed to be more 'user-centric' with the target
-      of the observation and the observed property as first-class objects.
-      O&amp;M works at a higher semantic level than SensorML, but only
-      provides abstract classes for sensors, features of interest and
-      observable properties, expecting the details to be provided by specific
-      applications and domains. O&amp;M also provided a model for sampling,
-      since almost all scientific observations are made on a subset of, or
-      proxy for, the ultimate feature of interest. </p>
-    <p>The initial <em>W3C Semantic Sensor Network Incubator Group</em>ontology
-      (SSNX) was built around an ontology design pattern called the <em>Stimulus
-        Sensor Observation</em> (SSO) pattern [[SSO-Pattern]]. The SSO was
-      developed as a minimal and common ground for heavy-weight ontologies
-      for the use on the Semantic Sensor Web as well as to explicitly
-      address the need for light-weight semantics requested by the Linked
-      Data community. The SSO was also aligned to the <em>Dolce-Ultralite </em>upper
-      ontology (DUL). </p>
-    <p>The SSN ontology described in this document is based on a revised and
-      expanded version of this pattern, namely the <em>Sensor, Observation,
-        Sample, and Actuator</em> (SOSA) ontology.
-      Similar to SSNX, SOSA acts as a central building block for the SSN but puts more
-      emphasis on light-weight use and the ability to be used standalone.
-      The axiomatization also changed to provide an experience more related
-      to Schema.org. Notable differences include the usage of the Schema.org
-      <code>domainIncludes</code> and <code>rangeIncludes</code> annotation
-      properties that provide an informal semantics compared to the
-      inferential semantics of their OWL 2 counterparts. In line with the
-      changes implemented for the new SSN, SOSA also drops the direct DUL
-      alignment although an optional alignment can be achieved via the
-      SSN-DUL alignment provided in <a href="#DUL-alignment">Section 6.1</a>. SOSA is also more explicit than SSO in its
-      support for virtual and human sensor. Finally,
-      and most notably, SOSA extends SSO's original scope beyond sensors and
-      their observations by including classes and properties for actuators
-      and sampling. SOSA also distinguishes between <code>phenomenonTime</code> and
-      <code>resultTime</code>.
+
+    <h3 id="sosa-oms-module">SOSA-OMS</h3>
+    <p>
+      The <i>SOSA-OMS module</i> imports <b>SOSA Observation</b> and <b>SOSA Sampling</b> and describes the alignment of
+      SOSA to [[[OMS]]], adding some
+      additional terms used in OMS that are not otherwise included in SSN.
+      <b><i>SOSA-OMS</i> may be used by audiences for whom strict conformance to [[OMS]] (also known as ISO 19156:2023)
+        is a requirement</b>
     </p>
-    <p>Drawing on considerable implementation and application experience with SSN and sensor and observation ontologies
-      more broadly, the new SSN and SOSA ontologies presented here are set out to address changes in scope and audience,
-      shortcomings of the initial work, as well as new technical developments. The list below highlights the most
-      important (but by far not exclusive) updates.</p>
-    <ul>
-      <li><strong>Addressing changes in scope and audience</strong>
-        <ul>
-          <li>The initial SSN was developed with ontology engineers in mind as the primary audience. Due to the
-            widespread adoption of SSN, the increasing role of citizen science, the strong focus on lightweight
-            vocabularies by the Linked Data community, and vocabularies such as Schema.org, the ontology was
-            streamlined. SOSA is added as a core, and is also useful as a standalone ontology targeting Web developers,
-            citizen science, lightweight Linked Data publishing, resource-constraint IoT devices, data intensive
-            applications (with the possibility of using lightweight reasoning), and so on. The new SSN introduces
-            additional classes and relations on top of SOSA to model the capabilities of sensors and actuators, the
-            compositionality of systems, and so forth to suit more complex needs or cases in which more provenance data
-            is required, e.g., to improve reproducibility. </li>
-          <li>Almost all scientific observations make heavy use of sampling strategies, and, therefore, the Sampling,
-            Sampler, and Sample classes, as well as their corresponding properties, have been added to SOSA and SSN.
-          </li>
-          <li>Due to the increasing importance of the Web of Things and smart instrumentation and environments more
-            generally, the classes Actuator and Actuation have been added to SOSA and SSN.</li>
-        </ul>
-      <li><strong>Addressing shortcomings of the initial SSN</strong>
-        <ul>
-          <li>The new SSN streamlines the relations (and need for) the old Device, Platform, and Systems classes.</li>
-          <li>The old SSN was perceived as too heavyweight (on its axiomatization) and too dependent on OWL reasoning by
-            some users. To strike a balance, DL expressivity of the new lightweight SOSA ontology is ALI(D) which is
-            efficiently supported by modern triple stores, while the new SSN is ALRIN(D). In contrast, the old SSN is
-            SRIQ.</li>
-          <li>The SSN previously imported DUL and many SSN terms inherited from DUL terms. Due to frequent user
-            requests, this has been redesigned so that SSN (and SOSA) can be used entirely independently of DUL if
-            desired. Some of the alignments with DUL have been reconsidered. Those parts of SSN that use DUL terms have
-            been separated into the <a href="http://www.w3.org/ns/ssn/dul">SSN Alignment with DUL ontology.</a> This
-            alignment and therefore the role of DUL in SSN have been declared non-normative.</li>
-          <li>The definitions for many classes and properties have changed slightly to improve explanation or to correct
-            minor errors. Examples have been separated from the main definitions.</li>
-          <li>The initial SSN has been criticized for its partially inconsistent handling of virtual sensors (including
-            software and simulations) and related classes and properties. The new SSN and SOSA address this issue by
-            allowing all major classes to be virtual, and to better support humans and other animals as agents.</li>
-          <li>The notion of Procedure (formerly Plan) has been clarified to describe a workflow, protocol, plan,
-            algorithm, or computational method specifying how to make an Observation, create a Sample, or make a change
-            to the state of the world via an Actuator.</li>
-          <li>The Observation class in the initial SSN was conceptualized as a subclass of the DUL Situation class. To
-            improve alignment with O&amp;M and user expectations, as well as to follow a consistent modeling strategy
-            for observations, sampling, and actuation, the Observation class defined in SOSA and the new SSN are now
-            conceptualized as activities. </li>
-        </ul>
-      <li><strong>Addressing technical developments</strong>
-        <ul>
-          <li>The initial SSN used local/guarded domain and range restrictions. The lightweight SOSA ontology uses an
-            even more restrained axiomatization to foster wide reuse and adaptation among an audience that is not
-            necessarily familiar with OWL. SOSA makes use of the <code>domainIncludes</code> and
-            <code>rangeIncludes</code> annotation properties defined in Schema.org. These had not been available before.
-          </li>
-          <li>Given the increased interest in using Semantic Web technologies directly on the level of individual
-            sensors, actuators, or platforms, SOSA's axiomatization does not use many of the more complex language
-            elements introduced by SSN.</li>
-        </ul>
-    </ul>
+
+    <h3 id="system-capabilities-module">System Capabilities</h3>
+    <p>
+      The <i>System Capabilities module</i> imports <i>SSN Actuation</i> and <i>SSN Observation</i>, and adds classes
+      and properties required for the description of the capabilities of systems, in particular Sensors and Actuators.
+    </p>
+
+
+    <h3 id="sample-relations-module">Sample Relations</h3>
+    <p>
+      The <i>Sample Relations module</i> imports <i>SOSA Sampling</i>, and adds classes and properties required for the
+      description of networks of samples.
+    </p>
+
+
+    <h3 id="ssn-oms-module">SSN-OMS</h3>
+    <p>
+      The <i>SSN-OMS module</i> imports <i>SOSA-OMS</i> and <b>SSN Observation</b> and <b>SSN Sampling</b> and describes
+      the alignment of SSN to [[OMS]] including OWL/RDFS axiomatization.
+      <b><i>SSN-OMS</i> may be used by audiences for whom strict conformance to [[OMS]] (also known as ISO 19156:2023)
+        is a requirement, with reasoning support</b>
+    </p>
+
+    <h3 id="ssn-dul-module">SSN-DUL</h3>
+    <p>
+      The <i>SSN-DUL module</i> imports <b>SSN</b>, and adds axioms that position SSN within <i>Dolce-UltraLite</i>.
+      <i>SSN-DUL</i> may be used to integrate data designed using SSN into systems otherwise built in the
+      <i>Dolce-UltraLite</i> framework.
+    </p>
+
+    <h3 id="sosa-oboe-module">SOSA-OBOE</h3>
+    <p>
+      The <i>SOSA-OBOE module</i> imports <b>SOSA Observation</b>, and describes the alignment of SOSA to [[[OBOE]]].
+      <i>SOSA-OBOE</i> may be used to integrate observation data structured using OBOE with data using SOSA.
+    </p>
+
+    <h3 id="sosa-prov-module">SOSA-PROV</h3>
+    <p>
+      The <i>SOSA-PROV module</i> imports <b>SOSA Base</b>, and describes the alignment of SOSA to [[[prov-o]]].
+      <i>SOSA-PROV</i> may be used to integrate data designed using SSN into provenance systems.
+    </p>
+
   </section>
+
+  <section id="Origins" class="normative" data-include="frag/Origins.html"></section>
 
   <section id="Specification" class="normative">
     <h2>Specification</h2>
-    <p>This section introduces the specifications for the RDF implementation of the Semantic Sensor Network Ontology as
-      SOSA and the axiomatization as SSN.</p>
+    <p>This section introduces the specifications for the RDF implementation of the Semantic Sensor Network Ontology.
+    </p>
 
     <section id="namespaces">
       <h3>Namespaces</h3>
+
       <p style="text-align: center;">
         The namespace for the core terms is <span class="repeated"
-          style="font-family: courier;">http://www.w3.org/ns/sosa/</span>.
-      </p>
-      <p style="text-align: center;">
+          style="font-family: courier;">http://www.w3.org/ns/sosa/</span>
+        <br>
         The suggested prefix for the SOSA namespace is <span class="repeated"
           style="font-family: courier;">sosa:</span>.
       </p>
+
       <aside class="note">
         <p>In previous editions of SSN, the namespace <span class="repeated"
             style="font-family: courier;">http://www.w3.org/ns/ssn/</span> was used for some terms.
-          In this edition all terms are consolidated into a single namespace.
+          In this edition all core terms are consolidated into a single namespace.
           The terms in the <code>ssn:</code> namespaces remain in the RDF artefacts to protect backward compatibility of
           existing deployments, but are marked <code>deprecated</code>.
         </p>
       </aside>
+
     </section>
+
     <section id="RDFdistribution">
-      <h3>RDF distribution</h3>
+      <h3>RDF implementation</h3>
+
+      <h4>Dependencies</h4>
       <p>
-        The SSN Ontology is distributed in several graphs, each packaged as an RDF file.
+        Each <a href="#Modularization">module of the SSN Ontology</a> is packaged as an RDF file.
+        The RDF representations use <code>owl:imports</code> statements to implement the <a
+          href="#module-dependencies">dependencies</a>.
         Within each graph, where further information (axioms and annotations) is added to an existing term,
-        <code>rdfs:isDefinedBy</code> indicates the graph where the term was originally defined.
+        <code>rdfs:isDefinedBy</code> indicates the module where the term was originally defined.
       </p>
-      <p> <b>########## Revise this section #################</b> </p>
-      <p>The first two graphs are specified in <a href="#Specification">this section</a>.</p>
-      <h4>SOSA</h4>
+
+      <h4>Expressivity</h4>
       <p>
-        The SOSA graph contains the basic definitions of the core terms with minimal axiomatization - only
+        The SOSA modules contains the basic definitions of the core terms with minimal axiomatization - only
         <code>rdf:type</code> and <code>owl:inverseOf</code> - together with key annotations <code>rdfs:label</code> ,
         <code>skos:definition</code> , <code>schema:domainIncludes</code> , <code>schema:rangeIncludes</code>, plus
         other annotations as required.
       </p>
-      <p style="text-align: center;">
-        The SOSA graph is available at <a href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a>.
-      </p>
-      <h4>SSN</h4>
       <p>
-        The SSN graph contains the full axiomatization of the core terms, importing SOSA and using
+        The SSN modules contains the full axiomatization of the core terms, importing SOSA modules and using
         <code>rdfs:subClassOf</code>, <code>rdfs:subPropertyOf</code>, <code>owl:Restriction</code> with the various
         associated RDFS and OWL structures.
       </p>
+
+      <h4>Distribution</h4>
+
+      <h5>SOSA</h5>
       <p style="text-align: center;">
-        The SSN graph is available at <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>.
-      </p>
-      <p>The next two graphs are specified in the section <a href="#HorizontalSegmentation">Horizontal Segmentation</a>.
-      </p>
-      <h4>SSN-System</h4>
-      <p>
-        The SSN-System graph imports SOSA and SSN and contains additional definitions associated with the composition
-        and deployment of systems.
+        SOSA Base is available at <a href="http://www.w3.org/ns/sosa/base/">http://www.w3.org/ns/sosa/base</a>.
       </p>
       <p style="text-align: center;">
-        The SSN-System graph is available at <a
-          href="http://www.w3.org/ns/ssn-system/">http://www.w3.org/ns/ssn-system/</a>.
-      </p>
-      <h4>Sample-Relations</h4>
-      <p>
-        The Sample-Relations graph imports SOSA and contains additional definitions associated with relationships
-        between samples.
+        SOSA Actuation is available at <a href="http://www.w3.org/ns/sosa/act/">http://www.w3.org/ns/sosa/act/</a>.
       </p>
       <p style="text-align: center;">
-        The Sample-Relations graph is available at <a
-          href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>.
-      </p>
-      <p>The section <a href="#VerticalSegmentation">Vertical Segmentation</a> describes various alignements and
-        extensions.</p>
-      <h4>SOSA-OMS</h4>
-      <p>
-        The SOSA-OMS graph describes the alignment of SOSA to ISO 19156:2023 [[OMS]] using annotations to link SOSA
-        terms to specific requirements in [[OMS]]. SOSA-OMS imports SOSA and declares additional terms required for OMS.
-        <b>This graph is the canonical RDF implementation of OMS.</b>
+        SOSA Observation is available at <a href="http://www.w3.org/ns/sosa/obs/">http://www.w3.org/ns/sosa/obs/</a>.
       </p>
       <p style="text-align: center;">
-        The SOSA-OMS graph is available at <a href="http://www.w3.org/ns/sosa-oms/">http://www.w3.org/ns/sosa-oms/</a>.
-      </p>
-      <h4>SSN-OMS</h4>
-      <p>
-        The SSN-OMS graph describes the alignment of SSN to ISO 19156:2023 [[OMS]] with RDFS/OWL axiomatization. This
-        graph imports SSN and SOSA-OMS. <b>This graph is the canonical OWL implementation of OMS.</b>
+        SOSA Sampling is available at <a href="http://www.w3.org/ns/sosa/sam/">http://www.w3.org/ns/sosa/sam/</a>.
       </p>
       <p style="text-align: center;">
-        The SSN-OMS graph is available at <a href="http://www.w3.org/ns/ssn-oms/">http://www.w3.org/ns/ssn-oms/</a>.
+        The complete SOSA is available at <a href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a>.
       </p>
+
+      <h5>SSN</h5>
+      <p style="text-align: center;">
+        SSN Base is available at <a href="http://www.w3.org/ns/ssn/base/">http://www.w3.org/ns/ssn/base</a>.
+      </p>
+      <p style="text-align: center;">
+        SSN Actuation is available at <a href="http://www.w3.org/ns/ssn/act/">http://www.w3.org/ns/ssn/act/</a>.
+      </p>
+      <p style="text-align: center;">
+        SSN Observation is available at <a href="http://www.w3.org/ns/ssn/obs/">http://www.w3.org/ns/ssn/obs/</a>.
+      </p>
+      <p style="text-align: center;">
+        SSN Sampling is available at <a href="http://www.w3.org/ns/ssn/sam/">http://www.w3.org/ns/ssn/sam/</a>.
+      </p>
+      <p style="text-align: center;">
+        The complete SSN is available at <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>.
+      </p>
+
     </section>
 
     <section class="informative" id="overview-of-classes-and-properties">
@@ -501,15 +432,10 @@
           </p>
         </div>
       </div>
-      <p>Several conceptual modules have been defined to cover key sensor, actuation and sampling concepts.
-        The different conceptual modules of SOSA/SSN can be seen in the following figure.
-      </p>
-      <figure>
-        <img alt="SOSA/SSN ontology modules - overview" src="images/SSN-OntStructure-Overview.png">
-        <figcaption>Overview of the SOSA/SSN ontology modules</figcaption>
-      </figure>
-      <p>An overview of the main classes and properties inside the ontology modules can be seen in the following
-        figures, from the perspectives of Observation, Actuation and Sampling.
+
+      <p><b> --- revise this section --- </b></p>
+      <p>The following figures give an overview of the main classes and properties inside the ontology modules, from the
+        perspectives of Actuation, Observation, and Sampling.
         In the figures, and in the rest of the document, SOSA-related components and restrictions are shown in green,
         while SSN-only components are shown in blue.
       </p>
@@ -559,8 +485,6 @@
       </figure>
     </section>
 
-    <p> <b>########## Re-arrangement starts here #################</b> </p>
-
     <section id="Base" class="normative" data-include="frag/Base.html"></section>
 
     <section id="Actuation" class="normative" data-include="frag/Actuation.html"></section>
@@ -571,10 +495,9 @@
 
   </section>
 
-  <section id="HorizontalSegmentation" class="informative">
-    <h2>Horizontal Segmentation</h2>
-    This section provides details on the currently available
-    horizontal segmentation modules.
+  <section id="Extensions" class="informative">
+    <h2>SSN Extensions</h2>
+    This section provides details on modules that extend the scope and capabilities of SSN.
 
     <section id="System-capabilities" class="normative" data-include="frag/System-capabilities.html"></section>
 
@@ -582,10 +505,10 @@
 
   </section>
 
-  <section id="VerticalSegmentation">
-    <h2>Vertical Segmentation</h2>
-    <p>This section introduces the specifications for the vertical segmentation modules that align SOSA and SSN to a
-      variety of related ontologies and specifications. </p>
+  <section id="Alignments">
+    <h2>Alignments</h2>
+    <p>This section introduces the specifications for the modules that align SOSA and SSN to a variety of related
+      ontologies and specifications. </p>
 
     <section id="OMS-alignment" class="normative" data-include="frag/OMS-alignment.html"></section>
 
@@ -607,19 +530,19 @@
 
     <section id="location">
       <h3>Location</h3>
-      <p>Many of the key classes provided by SOSA and SSN represent entities that can be located in space
-        such as sensors, features of interest, actuators, samples, and so forth, or activities that can be
-        located via their participating entities, e.g., platforms. These entities will usually be described using
-        models and ontologies defined for application domains, including technical disciplines, social and business
-        contexts. In these contexts there are a number of implementations that support the expression of spatial
-        properties, including location. These are discussed further in the Spatial Data on the Web Best Practices
-        note [[SDW-BP]]. </p>
+      <p>Many of the key classes provided by SOSA and SSN represent entities that can be located in space such as
+        sensors, features of interest, actuators, samples, and so forth, or activities that can be located via their
+        participating entities, e.g., platforms.
+        These entities will usually be described using models and ontologies defined for application domains, including
+        technical disciplines, social and business contexts.
+        In these contexts there are a number of implementations that support the expression of spatial properties,
+        including location.
+        These are discussed further in the Spatial Data on the Web Best Practices note [[SDW-BP]]. </p>
       <p>In particular, GeoSPARQL [[GeoSPARQL]] provides a flexible and relatively complete platform for geospatial
-        objects, that fosters interoperability
-        between geo-datasets. To do so, these entities can be declared as instances of geo:Feature and geometries can
-        be
-        assigned to them via the geo:hasGeometry property. In case of classes, e.g., specific features of
-        interests such as rivers, these can be defined as subclasses of geo:Feature.</p>
+        objects, that fosters interoperability between geo-datasets. To do so, these entities can be declared as
+        instances of geo:Feature and geometries can be assigned to them via the geo:hasGeometry property.
+        In case of classes, e.g., specific features of interests such as rivers, these can be defined as subclasses of
+        geo:Feature.</p>
       <p>For example, if observations are made of the atmosphere at a specific location, it might be described as a
         Sample using the following pattern:</p>
       <pre class="example" data-include="./examples/2023ex1.ttl" data-include-format="text"></pre>
@@ -628,29 +551,24 @@
 
     <section id="forecasts" class="informative">
       <h3>Forecasts</h3>
-      <p>One may also represent forecasts as observations if the value of <code>sosa:phenomenonTime</code>
-        is later in time than the <code>sosa:resultTime</code>. Given the
-        definition of these terms, it means that: <em>The time when the
-          Observation act was completed is before the time that the Result of
-          the observation applies to the FeatureOfInterest.</em></p>
-      <p class="note"> Other means to represent forecasts are reported, but
-        not in the scope of this specification. For example
-        [[Lefrancois-et-al-2017]] derives the SSN <code>Sensing/Sensor/Observation</code>
-        pattern and define <code>Forecasting/Forecaster/Forecast</code>
-        classes.</p>
-      <p class="note">Describing a plan for some actuation or observation in
-        the future is not covered by this specification.</p>
+      <p>One may also represent forecasts as observations if the value of <code>sosa:phenomenonTime</code> is later in
+        time than the <code>sosa:resultTime</code>.
+        Given the definition of these terms, it means that: <em>The time when the Observation act was completed is
+          before the time that the Result of the observation applies to the FeatureOfInterest.</em></p>
+      <p class="note"> Other means to represent forecasts are reported, but not in the scope of this specification.
+        For example [[Lefrancois-et-al-2017]] derives the SSN <code>Sensing/Sensor/Observation</code>
+        pattern and define <code>Forecasting/Forecaster/Forecast</code> classes.</p>
+      <p class="note">Describing a plan for some actuation or observation in the future is not covered by this
+        specification.</p>
     </section>
 
     <section id="quantity-values-and-unit-of-measures" class="informative">
       <h3>Quantity Values and Unit of Measures</h3>
       <p>The result of an <a href="#SOSAObservation"><code>sosa:Observation</code></a> or an <a
-          href="#SOSAActuation"><code>sosa:Actuation</code></a> can be a quantity value with a numeric value and a
-        unit
+          href="#SOSAActuation"><code>sosa:Actuation</code></a> can be a quantity value with a numeric value and a unit
         of measure.
 
-      <p class="note">It is not in the scope of this specification to recommend any particular way of expressing
-        results
+      <p class="note">It is not in the scope of this specification to recommend any particular way of expressing results
         as quantity values.
         There exist external vocabularies that are specifically designed for modeling quantity values as OWL
         individuals, or as datatypes.
