@@ -49,6 +49,8 @@ var respecConfig = {
         {
           value: "Rob Atkinson, Metalinkage"
         }, {
+          value: "Luis de Sousa, ISRIC"
+        }, {
           value: "Sylvan Grellet, BRGM"
         }, {
           value: "Kathi Schleidt, Datacove"
