@@ -10,24 +10,27 @@ var respecConfig = {
   // crEnd: "3000-01-01",
   editors: [
     {
-      name: "Simon Cox",
-      company: "CSIRO",
-      companyURL: "http://csiro.au/"
+      name: "Simon J D Cox",
+      company: "OGC",
+      companyURL: "https://ogc.org/",
+      orcid: "0000-0002-3884-3420"
     },
     {
       name: "Maxime Lefrançois",
       company: "École Nationale Supérieure des Mines de Saint-Étienne",
-      companyURL: "http://www.mines-stetienne.fr/"
+      companyURL: "https://www.mines-stetienne.fr/",
+      orcid: "0000-0001-9814-8991"
+    },
+    {
+      name: "Krzysztof Janowicz",
+      company: "Universität Wien",
+      companyURL: "https://www.univie.ac.at/",
+      orcid: "0009-0003-1968-887X"
     },
     {
       name: "Armin Haller",
       company: "Australian National University",
       companyURL: "https://www.cbe.anu.edu.au/"
-    },
-    {
-      name: "Krzysztof Janowicz",
-      company: "University of California, Santa Barbara",
-      companyURL: "http://geog.ucsb.edu/"
     },
     {
       name: "Danh Le Phuoc",
