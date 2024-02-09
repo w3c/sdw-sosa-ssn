@@ -10,7 +10,13 @@
 @prefix time: <http://www.w3.org/2006/time#> .
 
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix sosa-common: <http://www.w3.org/ns/sosa/common/> .
+@prefix sosa-act: <http://www.w3.org/ns/sosa/act/> .
+@prefix sosa-obs: <http://www.w3.org/ns/sosa/obs/> .
 @prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix ssn-act: <http://www.w3.org/ns/ssn/act/> .
+@prefix ssn-dep: <http://www.w3.org/ns/ssn/dep/> .
+@prefix ssn-obs: <http://www.w3.org/ns/ssn/obs/> .
 @prefix ssn-system: <http://www.w3.org/ns/ssn/systems/> .
 
 
@@ -41,7 +47,7 @@ ssn-system: a owl:Ontology , voaf:Vocabulary ;
   dcterms:created "2017-05-14"^^xsd:date ;
   vann:preferredNamespacePrefix "ssn-system" ;
   vann:preferredNamespaceUri "http://www.w3.org/ns/ssn/systems/" ;
-  owl:imports ssn: .
+  owl:imports ssn-act: , ssn-obs: , ssn-dep: .
 
 
 # Quality of Observation
@@ -59,7 +65,13 @@ ssn:System
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasSystemCapability ; owl:allValuesFrom ssn-system:SystemCapability ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasOperatingRange ; owl:allValuesFrom ssn-system:OperatingRange ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasSurvivalRange ; owl:allValuesFrom ssn-system:SurvivalRange ] ;
-  rdfs:isDefinedBy ssn: .
+  rdfs:isDefinedBy ssn-dep: .
+
+sosa:System 
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasSystemCapability ; owl:allValuesFrom ssn-system:SystemCapability ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasOperatingRange ; owl:allValuesFrom ssn-system:OperatingRange ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasSurvivalRange ; owl:allValuesFrom ssn-system:SurvivalRange ] ;
+  rdfs:isDefinedBy sosa-common: .
 
 
 # Conditions
