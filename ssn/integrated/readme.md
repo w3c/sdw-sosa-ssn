@@ -85,7 +85,7 @@ Notes about the integration of new OMS v3 concepts into the SOSA/SSN ontology (2
 ### New concepts introduced for consistency
 
 #### Classes:
- - ActuationProcedure
+ - ActuatingProcedure
 
 #### Associations:
  - Actuation usedProcedure ActuatingProcedure

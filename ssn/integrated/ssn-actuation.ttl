@@ -1,0 +1,228 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix time: <http://www.w3.org/2006/time#> .
+
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix sosa-common: <http://www.w3.org/ns/sosa/common/> .
+@prefix sosa-act: <http://www.w3.org/ns/sosa/act/> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix ssn-base: <http://www.w3.org/ns/ssn/common/> .
+@prefix ssn-act: <http://www.w3.org/ns/ssn/act/> .
+
+
+ssn-act: 
+  a owl:Ontology ;
+  dcterms:title "Sensor, Observation, Sample, and Actuator (SOSA) Ontology - actuation module"@en ;
+  dcterms:description "Actuation classes and properties for the SSN Ontology."@en ;
+  dcterms:title "SSN Ontology - actuation module"@en ;
+  dcterms:description """Actuation classes and properties for the SSN Ontology.
+  This module adds RDFS and OWL axioms to the terms defined in SOSA Actuation
+  """@en ;
+  dcterms:creator [ a foaf:Agent ; foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en ] ;
+  dcterms:rights "Copyright 2024 W3C/OGC." ;
+  dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
+  dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
+  dcterms:created "2024-02-02"^^xsd:date ;
+  owl:imports sosa-act: , ssn-base: ;
+  .
+
+sosa:ActuatableProperty 
+    rdfs:subClassOf ssn:Property ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isActedOnBy ; owl:allValuesFrom sosa:Actuation ] ;
+  rdfs:isDefinedBy sosa-act: .
+
+sosa:ActuatingProcedure 
+  rdfs:subClassOf sosa:Procedure ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implementedBy ; owl:allValuesFrom sosa:Actuator ] ;
+  rdfs:isDefinedBy sosa-act: .
+
+sosa:Actuator 
+  rdfs:subClassOf sosa:System ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implements ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implements ; owl:allValuesFrom sosa:ActuatingProcedure ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:forProperty ; owl:allValuesFrom sosa:ActuatableProperty ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeActuation ; owl:allValuesFrom sosa:Actuation ] ;
+  rdfs:isDefinedBy sosa-act: .
+
+sosa:Actuation 
+  rdfs:subClassOf sosa:Execution ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeByActuator ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeByActuator ; owl:allValuesFrom sosa:Actuator ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:usedProcedure ; owl:allValuesFrom sosa:ActuatingProcedure ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasFeatureOfInterest ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasFeatureOfInterest ; owl:allValuesFrom sosa:FeatureOfInterest ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasUltimateFeatureOfInterest ; owl:allValuesFrom sosa:FeatureOfInterest ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:actsOnProperty ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:actsOnProperty ; owl:allValuesFrom sosa:ActuatableProperty ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasResult ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:phenomenonTime ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:resultTime ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:startTime ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:isDefinedBy sosa-act: .
+
+sosa:madeActuation 
+  rdfs:isDefinedBy sosa-act: .
+
+sosa:madeByActuator 
+  rdfs:isDefinedBy sosa-act: .
+
+sosa:actsOnProperty 
+  rdfs:isDefinedBy sosa-act: .
+
+sosa:isActedOnBy 
+  rdfs:isDefinedBy sosa-act: .
+
+## Actuation Collection
+
+sosa:ActuationCollection 
+  rdfs:subClassOf rdf:Bag ;
+  rdfs:subClassOf [ 
+    a owl:Restriction ; 
+    owl:onProperty sosa:hasMember ; 
+    owl:allValuesFrom [ 
+      owl:unionOf ( 
+        sosa:Actuation 
+        sosa:ActuationCollection 
+      ) ; 
+    ] 
+  ] ;
+  rdfs:isDefinedBy sosa-act: .
+
+## End of actuation schema
+## -------------------------------------------------------- ##
+## additional axioms for sosa-common: terms in actuation context
+
+## Utility terms 
+
+sosa:hasMember 
+  rdfs:isDefinedBy sosa-common: .
+
+
+## Features of interest and Property
+
+sosa:FeatureOfInterest 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasFeatureOfInterest 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasUltimateFeatureOfInterest 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:isFeatureOfInterestOf 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:Property 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:PropertyOfInterest 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasProperty 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:isPropertyOf 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:forProperty 
+  rdfs:isDefinedBy sosa-common: .
+
+
+## Procedures
+
+sosa:Procedure 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasInput 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasOutput 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:usedProcedure 
+  owl:propertyChainAxiom ( sosa:madeByActuator sosa:implements ) ;
+  rdfs:isDefinedBy sosa-common: .
+
+## Executions
+
+sosa:Execution 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasInputValue 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasOutputValue 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:startTime 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:resultTime 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:phenomenonTime 
+  rdfs:isDefinedBy sosa-common: .
+
+
+## Result 
+
+sosa:hasResult 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:isResultOf 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasSimpleResult 
+  rdfs:isDefinedBy sosa-common: .
+
+
+## Systems
+
+sosa:System 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasSubSystem 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:implements 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:implementedBy 
+  rdfs:isDefinedBy sosa-common: .
+
+
+## Deployment
+
+sosa:Deployment 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:deployedAsset 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:deployedSystem 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasDeployment 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:deployedOnPlatform 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:inDeployment 
+  rdfs:isDefinedBy sosa-common: .
+
+## Platform 
+
+sosa:Platform 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hosts 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:isHostedBy 
+  rdfs:isDefinedBy sosa-common: .
