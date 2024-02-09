@@ -1,0 +1,263 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix time: <http://www.w3.org/2006/time#> .
+
+@prefix schema: <http://schema.org/> .
+
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix sosa-common: <http://www.w3.org/ns/sosa/common/> .
+@prefix sosa-obs: <http://www.w3.org/ns/sosa/obs/> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix ssn-base: <http://www.w3.org/ns/ssn/common/> .
+@prefix ssn-obs: <http://www.w3.org/ns/ssn/obs/> .
+
+
+ssn-obs: 
+  a owl:Ontology ;
+  dcterms:title "Sensor, Observation, Sample, and Actuator (SOSA) Ontology - actuation module"@en ;
+  dcterms:description "Observation classes and properties for the SSN Ontology."@en ;
+  dcterms:creator [ a foaf:Agent ; foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en ] ;
+  dcterms:rights "Copyright 2024 W3C/OGC." ;
+  dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
+  dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
+  dcterms:created "2024-02-02"^^xsd:date ;
+  owl:imports sosa-obs: , ssn-base: ;
+  .
+
+sosa:ObservableProperty 
+  rdfs:subClassOf ssn:Property ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isObservedBy ; owl:allValuesFrom sosa:Sensor ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sosa:observedProperty ] ; owl:allValuesFrom sosa:Observation ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sosa:isProxyFor ] ; owl:allValuesFrom sosa:Stimulus ] ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:ObservingProcedure 
+  rdfs:subClassOf sosa:Procedure ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implementedBy ; owl:allValuesFrom sosa:Sensor ] ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:Sensor 
+  rdfs:subClassOf sosa:System ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:detects ; owl:allValuesFrom sosa:Stimulus ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implements ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implements ; owl:allValuesFrom sosa:ObservingProcedure ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:observes ; owl:allValuesFrom sosa:ObservableProperty ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeObservation ; owl:allValuesFrom sosa:Observation ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isHostedBy ; owl:allValuesFrom sosa:Platform ]  ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:observes 
+  rdfs:subPropertyOf ssn:forProperty ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:isObservedBy 
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:Observation 
+  rdfs:subClassOf sosa:Execution ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeBySensor ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeBySensor ; owl:allValuesFrom sosa:Sensor ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:usedProcedure ; owl:allValuesFrom sosa:ObservingProcedure ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasFeatureOfInterest ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasFeatureOfInterest ; owl:allValuesFrom sosa:FeatureOfInterest ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasUltimateFeatureOfInterest ; owl:allValuesFrom sosa:FeatureOfInterest ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:observedProperty ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:observedProperty ; owl:allValuesFrom sosa:ObservableProperty ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:wasOriginatedBy ; owl:cardinality "1"^^xsd:nonNegativeInteger] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:wasOriginatedBy ; owl:allValuesFrom ssn:Stimulus ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:phenomenonTime ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasResult ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:resultTime ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:startTime ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:madeObservation 
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:madeBySensor 
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:observedProperty 
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:madeBySensor 
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:relatedObservation 
+  rdfs:isDefinedBy sosa-obs: .
+
+## Stimulus
+
+sosa:Stimulus 
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sosa:wasOriginatedBy ] ; owl:allValuesFrom sosa:Observation ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sosa:detects ] ; owl:allValuesFrom sosa:Sensor ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isProxyFor ; owl:allValuesFrom sosa:ObservableProperty ] ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:wasOriginatedBy 
+  a owl:FunctionalProperty ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:detects 
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:isProxyFor 
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:resultQuality 
+  rdfs:isDefinedBy sosa-obs: .
+
+## Observation Collection
+
+sosa:ObservationCollection 
+  rdfs:subClassOf rdf:Bag ;
+  rdfs:subClassOf [ 
+    a owl:Restriction ; 
+    owl:onProperty sosa:hasMember ; 
+    owl:allValuesFrom [ 
+      owl:unionOf ( 
+        sosa:Observation 
+        sosa:ObservationCollection 
+      ) ;
+    ] 
+  ] ;
+  rdfs:isDefinedBy sosa-obs: .
+
+## End of observation schema
+## -------------------------------------------------------- ##
+## additional axioms for sosa-common: terms in observation context
+
+## Utility terms 
+
+sosa:hasMember 
+  rdfs:isDefinedBy sosa-common: .
+
+
+## Features of interest and Property
+
+sosa:FeatureOfInterest 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasFeatureOfInterest 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasUltimateFeatureOfInterest 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:isFeatureOfInterestOf 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:Property 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:PropertyOfInterest 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasProperty 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:isPropertyOf 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:forProperty 
+  rdfs:isDefinedBy sosa-common: .
+
+
+## Procedures
+
+sosa:Procedure 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasInput 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasOutput 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:usedProcedure 
+  owl:propertyChainAxiom ( sosa:madeBySensor sosa:implements ) ;
+  rdfs:isDefinedBy sosa-common: .
+
+## Executions
+
+sosa:Execution 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasInputValue 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasOutputValue 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:startTime 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:resultTime 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:phenomenonTime 
+  rdfs:isDefinedBy sosa-common: .
+
+
+## Result 
+
+sosa:hasResult 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:isResultOf 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasSimpleResult 
+  rdfs:isDefinedBy sosa-common: .
+
+
+## Systems
+
+sosa:System 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasSubSystem 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:implements 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:implementedBy 
+  rdfs:isDefinedBy sosa-common: .
+
+
+## Deployment
+
+sosa:Deployment 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:deployedAsset 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:deployedSystem 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasDeployment 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:deployedOnPlatform 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:inDeployment 
+  rdfs:isDefinedBy sosa-common: .
+
+## Platform 
+
+sosa:Platform 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hosts 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:isHostedBy 
+  rdfs:isDefinedBy sosa-common: .

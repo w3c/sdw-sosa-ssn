@@ -6,7 +6,8 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix sampling: <http://www.w3.org/ns/sosa/sampling/> .
+@prefix sosa-rel: <http://www.w3.org/ns/sosa/sampling/> .
+@prefix sosa-sam: <http://www.w3.org/ns/sosa/sam/> .
 @prefix schema: <http://schema.org/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
@@ -14,7 +15,7 @@
 
 sosa:sampling
   rdf:type owl:Ontology ;
-  owl:imports <http://www.w3.org/ns/ssn/> ;
+  owl:imports sosa-sam: ;
   dcterms:creator [
       rdf:type foaf:Agent ;
       foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en ;
@@ -23,7 +24,7 @@ sosa:sampling
   dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
   dcterms:rights "Copyright 2017 W3C/OGC." ;
 .
-sampling:RelationshipNature
+sosa-rel:RelationshipNature
   rdf:type owl:Class ;
   rdfs:label "Nature of relationship (between samples)"@en ;
   rdfs:subClassOf skos:Concept ;
@@ -38,30 +39,35 @@ sampling:RelationshipNature
   skos:example "Split of core sample" ;
   skos:example "Station along a traverse" ;
   skos:example "Sub-sample with grain size smaller than specified seive mesh" ;
+  rdfs:isDefinedBy sosa-rel: ;
 .
-sampling:SampleRelationship
+sosa-rel:SampleRelationship
   rdf:type owl:Class ;
   rdfs:label "Sample relationship"@en ;
   skos:definition "Members of this class represent a relationship between a sample and another"@en ;
+  rdfs:isDefinedBy sosa-rel: ;
 .
-sampling:hasSampleRelationship
+sosa-rel:hasSampleRelationship
   rdf:type owl:ObjectProperty ;
   schema:domainIncludes sosa:Sample ;
-  schema:rangeIncludes sampling:SampleRelationship ;
+  schema:rangeIncludes sosa-rel:SampleRelationship ;
   rdfs:label "has sample relationship"@en ;
   skos:definition "Links a sample to a sample relationship (which links to a related sample)"@en ;
+  rdfs:isDefinedBy sosa-rel: ;
 .
-sampling:natureOfRelationship
+sosa-rel:natureOfRelationship
   rdf:type owl:ObjectProperty ;
-  schema:domainIncludes sampling:SampleRelationship ;
-  schema:rangeIncludes sampling:RelationshipNature ;
+  schema:domainIncludes sosa-rel:SampleRelationship ;
+  schema:rangeIncludes sosa-rel:RelationshipNature ;
   rdfs:label "nature of (sample) relationship"@en ;
   skos:definition "Links a SampleRelationship to an indication of the nature of the relationship"@en ;
+  rdfs:isDefinedBy sosa-rel: ;
 .
-sampling:relatedSample
+sosa-rel:relatedSample
   rdf:type owl:ObjectProperty ;
-  schema:domainIncludes sampling:SampleRelationship ;
+  schema:domainIncludes sosa-rel:SampleRelationship ;
   schema:rangeIncludes sosa:Sample ;
   rdfs:label "related sample"@en ;
   skos:definition "Links a sample relationship to the related sample"@en ;
+  rdfs:isDefinedBy sosa-rel: ;
 .
