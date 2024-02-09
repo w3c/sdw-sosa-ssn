@@ -15,6 +15,9 @@
 
 @prefix ogc-ms: <http://www.opengis.net/def/ont/modspec/> . 
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix sosa-common: <http://www.w3.org/ns/sosa/common/> .
+@prefix sosa-obs: <http://www.w3.org/ns/sosa/obs/> .
+@prefix sosa-sam: <http://www.w3.org/ns/sosa/sam/> .
 @prefix sosa-oms: <http://www.w3.org/ns/sosa/oms/> .
 
 dcterms:title a owl:AnnotationProperty .
@@ -43,7 +46,7 @@ sosa-oms: a owl:Ontology ;
   dcterms:created "2023-10-07"^^xsd:date ;
   dcterms:source <https://docs.ogc.org/as/20-082r4/20-082r4.html> ;
   rdfs:comment "The original source of each resource is indicated by the rdfs:isDefinedBy property" ;
-  owl:imports sosa: .
+  owl:imports sosa-obs: , sosa-sam: .
 
 ogc-ms:implements a owl:ObjectProperty ;
     skos:definition "link from an RDFS/OWL class or property to a requirement linked to an element in a UML model which it implements" ;
@@ -72,43 +75,36 @@ sosa-oms:metadata a owl:ObjectProperty ;
 ## largely defined in ISO 19103 and ISO 19109
 
 sosa:FeatureOfInterest 
-  rdfs:isDefinedBy sosa: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:ObservableProperty ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/ObservableProperty> ;
-    rdfs:isDefinedBy sosa: .
-
-sosa:ActuatableProperty 
-    rdfs:isDefinedBy sosa: .
+    rdfs:isDefinedBy sosa-obs: .
 
 sosa:Property 
-  rdfs:isDefinedBy sosa: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:hasProperty 
-    owl:inverseOf sosa:isPropertyOf ;
-    rdfs:isDefinedBy sosa: .
+    rdfs:isDefinedBy sosa-common: .
 
 sosa:isPropertyOf 
-    owl:inverseOf sosa:hasProperty ; 
-    rdfs:isDefinedBy sosa: .
+    rdfs:isDefinedBy sosa-common: .
 
 ## Sample 
 
 sosa:Sample ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sample> ;
-  rdfs:isDefinedBy sosa: .
+  rdfs:isDefinedBy sosa-sam: .
 
 sosa:hasSample 
-    owl:inverseOf sosa:isSampleOf ;
-    rdfs:isDefinedBy sosa: .
+    rdfs:isDefinedBy sosa-sam: .
 
 sosa:isSampleOf ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sample/sampledFeature-sem> ;
-    owl:inverseOf sosa:hasSample ;
-    rdfs:isDefinedBy sosa: .
+    rdfs:isDefinedBy sosa-sam: .
 
 sosa:hasOriginalSample 
-  rdfs:isDefinedBy sosa: .
+  rdfs:isDefinedBy sosa-sam: .
 
 sosa:hasSampledFeature ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sample/sampledFeature-sem> ;
-  rdfs:isDefinedBy sosa: .
+  rdfs:isDefinedBy sosa-sam: .
 
 sosa-oms:hasPreparationStep a owl:ObjectProperty ;
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sample/preparationStep-sem> ;
@@ -118,41 +114,45 @@ sosa-oms:hasPreparationStep a owl:ObjectProperty ;
   schema:rangeIncludes sosa-oms:PreparationStep ;
   rdfs:isDefinedBy sosa-oms: .
 
-sosa:SpatialSample a owl:Class ;
+sosa:SpatialSample 
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/SpatialSample> ;
-  rdfs:isDefinedBy sosa: .
+  rdfs:isDefinedBy sosa-sam: .
 
-sosa:MaterialSample a owl:Class ;
+sosa:MaterialSample 
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/MaterialSample> ;
-  rdfs:isDefinedBy sosa: .
+  rdfs:isDefinedBy sosa-sam: .
 
-sosa:StatisticalSample a owl:Class ;
+sosa:StatisticalSample 
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/StatisticalSample> ;
-  rdfs:isDefinedBy sosa: .
+  rdfs:isDefinedBy sosa-sam: .
 
-sosa:SampleCollection ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/SampleCollection> ;
-  rdfs:isDefinedBy sosa: .
+sosa:SampleCollection 
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/SampleCollection> ;
+  rdfs:isDefinedBy sosa-sam: .
 
-sosa:hasMember ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/SampleCollection/member-sem> ;
-  rdfs:isDefinedBy sosa: .
+sosa:hasMember 
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/SampleCollection/member-sem> ;
+  rdfs:isDefinedBy sosa-common: .
 
 ## Platform 
 
-sosa:Platform ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Host> ;
-  rdfs:isDefinedBy sosa: .
+sosa:Platform 
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Host> ;
+  rdfs:isDefinedBy sosa-common: .
 
 ## Procedures
 
-sosa:Procedure ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Procedure> ;
-  rdfs:isDefinedBy sosa: .
+sosa:Procedure 
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Procedure> ;
+  rdfs:isDefinedBy sosa-common: .
 
-sosa:ObservingProcedure a owl:Class ;
+sosa:ObservingProcedure 
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/ObservingProcedure> ;
-  rdfs:isDefinedBy sosa: .
+  rdfs:isDefinedBy sosa-obs: .
 
-sosa:SamplingProcedure a owl:Class ;
+sosa:SamplingProcedure  
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/SamplingProcedure> ;
-  rdfs:isDefinedBy sosa: .
+  rdfs:isDefinedBy sosa-sam: .
 
 sosa-oms:PreparationProcedure a owl:Class ;
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/PreparationProcedure> ;
@@ -163,54 +163,59 @@ sosa-oms:PreparationProcedure a owl:Class ;
 
 ## ProcedureExecutors
 
-sosa:Sensor ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observer> ;
-  rdfs:isDefinedBy sosa: .
+sosa:Sensor 
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observer> ;
+  rdfs:isDefinedBy sosa-obs: .
 
-  sosa:observes ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observer/observableProperty-sem> ;
-    owl:inverseOf sosa:isObservedBy ;
-    rdfs:isDefinedBy sosa: .
+  sosa:observes 
+    ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observer/observableProperty-sem> ;
+    rdfs:isDefinedBy sosa-obs: .
 
-  sosa:isObservedBy ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/ObservableProperty/observer-sem> ;
-    owl:inverseOf sosa:observes ;
-    rdfs:isDefinedBy sosa: .
+  sosa:isObservedBy 
+    ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/ObservableProperty/observer-sem> ;
+    rdfs:isDefinedBy sosa-obs: .
 
-sosa:Sampler ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sampler> ;
-  rdfs:isDefinedBy sosa: .
+sosa:Sampler 
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sampler> ;
+  rdfs:isDefinedBy sosa-sam: .
 
-sosa:implements  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observer/observingProcedure-sem>  ,
+sosa:implements  
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observer/observingProcedure-sem>  ,
                                 <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sampling/samplingProcedure-sem> ;
-  owl:inverseOf sosa:implementedBy ;
-  rdfs:isDefinedBy sosa: .
+  rdfs:isDefinedBy sosa-common: .
 
-sosa:implementedBy ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/ObservingProcedure/observer-sem> ,
+sosa:implementedBy 
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/ObservingProcedure/observer-sem> ,
                                   <http://www.opengis.net/spec/om/3.0/req/sam-cpt/SamplingProcedure/sampler-sem> ,
                                   <http://www.opengis.net/spec/om/3.0/req/sam-cpt/PreparationStep/processingDetails-sem>;
   owl:inverseOf sosa:implements ;
-  rdfs:isDefinedBy sosa: .
+  rdfs:isDefinedBy sosa-common: .
 
 
 ## ProcedureExecutions
 
-sosa:usedProcedure ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/observingProcedure-sem> ,
+sosa:usedProcedure 
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/observingProcedure-sem> ,
                                   <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sampling/samplingProcedure-sem> ;
-  rdfs:isDefinedBy sosa: .
+  rdfs:isDefinedBy sosa-common: .
 
-sosa:hasFeatureOfInterest ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/featureOfInterest-sem> 
+sosa:hasFeatureOfInterest 
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/featureOfInterest-sem> 
                                 , <http://www.opengis.net/spec/om/3.0/req/obs-core/AbstractObservationCharacteristics/pFoI-sem> 
                                 , <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sampling/featureOfInterest-sem>;
-  owl:inverseOf sosa:isFeatureOfInterestOf ;
-  rdfs:isDefinedBy sosa: .
+  rdfs:isDefinedBy sosa-common: .
 
-sosa:hasUltimateFeatureOfInterest ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-core/AbstractObservationCharacteristics/uFoI-sem> ;
-  rdfs:isDefinedBy sosa: .
+sosa:hasUltimateFeatureOfInterest 
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-core/AbstractObservationCharacteristics/uFoI-sem> ;
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:isFeatureOfInterestOf 
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/gen/relatedObservation-sem> ;
-  owl:inverseOf sosa:hasFeatureOfInterest ;
-  rdfs:isDefinedBy sosa: .
+  rdfs:isDefinedBy sosa-common: .
 
-sosa:Observation ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation> ;
-  rdfs:isDefinedBy sosa: .
+sosa:Observation 
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation> ;
+  rdfs:isDefinedBy sosa-obs: .
 
 sosa-oms:observationType a owl:ObjectProperty ;
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-core/AbstractObservationCharacteristics/type-sem> ;
@@ -220,19 +225,17 @@ sosa-oms:observationType a owl:ObjectProperty ;
   rdfs:isDefinedBy sosa-oms: .
 
   sosa:madeObservation ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/gen/relatedObservation-sem> ;
-    owl:inverseOf sosa:madeBySensor ;
-    rdfs:isDefinedBy sosa: .
+    rdfs:isDefinedBy sosa-obs: .
 
   sosa:madeBySensor ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/observer-sem> ;
-    owl:inverseOf sosa:madeObservation ;
-    rdfs:isDefinedBy sosa: .
+    rdfs:isDefinedBy sosa-obs: .
 
   sosa:observedProperty ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/observedProperty-sem> ;
-    rdfs:isDefinedBy sosa: .
+    rdfs:isDefinedBy sosa-obs: .
 
  sosa:resultQuality a owl:ObjectProperty ;
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-core/AbstractObservationCharacteristics/resultQuality-sem> ;
-    rdfs:isDefinedBy sosa: .
+    rdfs:isDefinedBy sosa-obs: .
 
   sosa-oms:madeOnPlatform rdf:type owl:ObjectProperty ;
     ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/host-sem> ;
@@ -245,18 +248,16 @@ sosa-oms:observationType a owl:ObjectProperty ;
 
   sosa:relatedObservation rdf:type owl:ObjectProperty ;
     ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/gen/relatedObservation-sem> ;
-    rdfs:isDefinedBy sosa: .
+    rdfs:isDefinedBy sosa-obs: .
 
 sosa:Sampling ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sampling> ;
-  rdfs:isDefinedBy sosa: .
+  rdfs:isDefinedBy sosa-sam: .
 
   sosa:madeSampling ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sampler/sampling-sem> ;
-    owl:inverseOf sosa:madeBySampler ;
-    rdfs:isDefinedBy sosa: .
+    rdfs:isDefinedBy sosa-sam: .
 
   sosa:madeBySampler ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sampling/sampler-sem> ;
-    owl:inverseOf sosa:madeSampling ;
-    rdfs:isDefinedBy sosa: .
+    rdfs:isDefinedBy sosa-sam: .
 
   sosa-oms:relatedSampling rdf:type owl:ObjectProperty ;
     ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sampling/relatedSampling-sem> ;
@@ -300,30 +301,29 @@ sosa-oms:PreparationStep a owl:Class ;
 
 ## Observation Collection
 
-sosa:ObservationCollection ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-core/AbstractObservationCollection> ;
-  rdfs:isDefinedBy sosa: .
+sosa:ObservationCollection 
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-core/AbstractObservationCollection> ;
+  rdfs:isDefinedBy sosa-obs: .
 
-sosa:hasMember ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-core/AbstractObservationCollection/member-sem> ;
-  rdfs:isDefinedBy sosa: .
+sosa:hasMember 
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-core/AbstractObservationCollection/member-sem> ;
+  rdfs:isDefinedBy sosa-common: .
 
 
 ## Result 
 
-sosa:Result 
-  rdfs:isDefinedBy sosa: .
-
-  sosa:hasResult ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/result-sem> ,
+  sosa:hasResult 
+    ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/result-sem> ,
                                 <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sampling/sample-sem>;
-    owl:inverseOf sosa:isResultOf ;
-    rdfs:isDefinedBy sosa: .
+    rdfs:isDefinedBy sosa-common: .
 
   sosa:isResultOf 
     ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/gen/relatedObservation-sem> ;
-    owl:inverseOf sosa:hasResult ;
-    rdfs:isDefinedBy sosa: .
+    rdfs:isDefinedBy sosa-common: .
 
-  sosa:hasSimpleResult ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/result-sem> ;
-    rdfs:isDefinedBy sosa: .
+  sosa:hasSimpleResult 
+    ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/result-sem> ;
+    rdfs:isDefinedBy sosa-common: .
 
   # for sampling
 
@@ -346,11 +346,13 @@ sosa:Result
 #    rdfs:isDefinedBy sosa: .
 
 
-sosa:resultTime ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/resultTime-sem> ;
-  rdfs:isDefinedBy sosa: .
+sosa:resultTime 
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/resultTime-sem> ;
+  rdfs:isDefinedBy sosa-common: .
 
-sosa:phenomenonTime ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/phenomenonTime-sem> ;
-  rdfs:isDefinedBy sosa: .
+sosa:phenomenonTime 
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/phenomenonTime-sem> ;
+  rdfs:isDefinedBy sosa-common: .
 
 sosa-oms:validTime a owl:ObjectProperty ;
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/validTime-sem> ;
@@ -365,22 +367,23 @@ sosa-oms:validTime a owl:ObjectProperty ;
 
 ## Deployment
 
-sosa:Deployment ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Deployment> ;
-  rdfs:isDefinedBy sosa: .
+sosa:Deployment 
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Deployment> ;
+  rdfs:isDefinedBy sosa-common: .
 
-  sosa:deployedOnPlatform ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Deployment/host-sem> ;
-    owl:inverseOf sosa:inDeployment ;
-    rdfs:isDefinedBy sosa: .
+  sosa:deployedOnPlatform 
+    ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Deployment/host-sem> ;
+    rdfs:isDefinedBy sosa-common: .
 
-  sosa:deployedSystem ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Deployment/observer-sem> ;
-    owl:inverseOf sosa:hasDeployment ;
-    rdfs:isDefinedBy sosa: .
+  sosa:deployedSystem 
+    ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Deployment/observer-sem> ;
+    rdfs:isDefinedBy sosa-common: .
 
-  sosa:hasDeployment ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observer/deployment-sem> ;
-    owl:inverseOf sosa:deployedSystem ;
-    rdfs:isDefinedBy sosa: .
+  sosa:hasDeployment 
+    ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observer/deployment-sem> ;
+    rdfs:isDefinedBy sosa-common: .
 
-  sosa:inDeployment ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Host/deployment-sem> ;
-    owl:inverseOf sosa:deployedOnPlatform ;
-    rdfs:isDefinedBy sosa: .
+  sosa:inDeployment 
+    ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Host/deployment-sem> ;
+    rdfs:isDefinedBy sosa-common: .
 
