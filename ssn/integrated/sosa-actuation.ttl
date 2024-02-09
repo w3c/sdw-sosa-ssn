@@ -10,7 +10,7 @@
 @prefix schema: <http://schema.org/> .
 
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
-@prefix sosa-base: <http://www.w3.org/ns/sosa/base/> .
+@prefix sosa-common: <http://www.w3.org/ns/sosa/common/> .
 @prefix sosa-act: <http://www.w3.org/ns/sosa/act/> .
 
 
@@ -23,7 +23,7 @@ sosa-act:
   dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
   dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
   dcterms:created "2024-02-02"^^xsd:date ;
-  owl:imports sosa-base: ;
+  owl:imports sosa-common: ;
   .
 
 sosa:ActuatableProperty 
@@ -136,7 +136,7 @@ sosa:madeByActuator
 
 ## End of actuation schema
 ## ---------------------------------------------------- ##
-## additional domains and ranges for sosa-base: terms
+## additional domains and ranges for sosa-common: terms
 
 ## Utility terms 
 
@@ -144,87 +144,87 @@ sosa:hasMember
   schema:domainIncludes sosa:ActuationCollection ;
   schema:rangeIncludes sosa:Actuation ;
   schema:rangeIncludes sosa:ActuationCollection ;
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 
 ## Features of interest and Property
 
 sosa:FeatureOfInterest 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:hasFeatureOfInterest 
   schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:ActuationCollection ;
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:hasUltimateFeatureOfInterest 
   schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:ActuationCollection ;
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:isFeatureOfInterestOf 
   schema:rangeIncludes sosa:Actuation ;
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:Property 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:PropertyOfInterest 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:hasProperty 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:isPropertyOf 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:forProperty 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 
 ## Procedures
 
 sosa:Procedure 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:hasInput 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:hasOutput 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:usedProcedure 
   schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:ActuationCollection ;
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 ## Executions
 
 sosa:Execution 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:hasInputValue 
   schema:domainIncludes sosa:Actuation ;
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:hasOutputValue 
   schema:domainIncludes sosa:Actuation ;
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:startTime 
   schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:ActuationCollection ;
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:resultTime 
   schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:ActuationCollection ;
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:phenomenonTime 
   schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:ActuationCollection ;
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 
 ## Result 
@@ -232,64 +232,64 @@ sosa:phenomenonTime
 sosa:hasResult 
   schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:ActuationCollection ;
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:isResultOf 
   schema:rangeIncludes sosa:Actuation ;
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:hasSimpleResult 
   schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:ActuationCollection ;
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 
 ## Systems
 
 sosa:System 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:hasSubSystem 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:implements 
   schema:domainIncludes sosa:Actuator ;
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:implementedBy 
   schema:rangeIncludes sosa:Actuator ;
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 
 ## Deployment
 
 sosa:Deployment 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:deployedAsset 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:deployedSystem 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:hasDeployment 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:deployedOnPlatform 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:inDeployment 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 ## Platform 
 
 sosa:Platform 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:hosts 
   schema:rangeIncludes sosa:Actuator ;
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:isHostedBy 
   schema:domainIncludes sosa:Actuator ;
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .

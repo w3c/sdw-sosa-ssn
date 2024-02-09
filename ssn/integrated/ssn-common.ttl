@@ -8,9 +8,9 @@
 @prefix time: <http://www.w3.org/2006/time#> .
 
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
-@prefix sosa-base: <http://www.w3.org/ns/sosa/base/> .
+@prefix sosa-common: <http://www.w3.org/ns/sosa/common/> .
 @prefix ssn: <http://www.w3.org/ns/ssn/> .
-@prefix ssn-base: <http://www.w3.org/ns/ssn/base/> .
+@prefix ssn-base: <http://www.w3.org/ns/ssn/common/> .
 
 
 ssn-base: 
@@ -24,14 +24,14 @@ ssn-base:
   dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
   dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
   dcterms:created "2024-02-03"^^xsd:date ;
-  owl:imports sosa-base: ;
+  owl:imports sosa-common: ;
   .
 
 ## Utility terms 
 
 sosa:hasMember 
   rdfs:subPropertyOf rdfs:member ;
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 
 ## Features of interest and Property
@@ -39,34 +39,34 @@ sosa:hasMember
 sosa:FeatureOfInterest 
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasProperty ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ; 
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasProperty ; owl:allValuesFrom sosa:Property ]  ;
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:hasFeatureOfInterest 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:hasUltimateFeatureOfInterest 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:isFeatureOfInterestOf 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:Property 
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isPropertyOf ; owl:allValuesFrom sosa:FeatureOfInterest ]  ;
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:PropertyOfInterest 
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:isPropertyOf ; owl:allValuesFrom sosa:FeatureOfInterest ]  ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:isPropertyOf ; owl:cardinality "1"^^xsd:nonNegativeInteger ]  ;
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:hasProperty 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:isPropertyOf 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:forProperty 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 
 ## Procedures
@@ -74,16 +74,16 @@ sosa:forProperty
 sosa:Procedure 
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasInput ]  ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasOutput ]  ;
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:hasInput 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:hasOutput 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:usedProcedure 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 ## Executions
 
@@ -93,22 +93,22 @@ sosa:Execution
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasUltimateFeatureOfInterest ; owl:allValuesFrom sosa:FeatureOfInterest ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:resultTime ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:startTime ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:hasInputValue 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:hasOutputValue 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:startTime 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:resultTime 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:phenomenonTime 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 
 ## Result 
@@ -116,17 +116,17 @@ sosa:phenomenonTime
 sosa:Result 
   owl:deprecated true ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isResultOf ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:hasResult 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:isResultOf 
   a owl:InverseFunctionalProperty ;
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:hasSimpleResult 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 
 ## Systems
@@ -137,16 +137,16 @@ sosa:System
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasSubSystem ; owl:allValuesFrom sosa:System ]  ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sosa:hasSubSystem ] ; owl:allValuesFrom sosa:System ]  ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasDeployment ; owl:allValuesFrom sosa:Deployment ]  ;
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:hasSubSystem 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:implements 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:implementedBy 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 
 ## Deployment
@@ -156,34 +156,34 @@ sosa:Deployment
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:deployedAsset ; owl:allValuesFrom [ a owl:Class ; owl:unionOf ( sosa:Sensor sosa:Platform sosa:System ) ] ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:deployedOnPlatform ; owl:allValuesFrom sosa:Platform ]  ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:forProperty ; owl:allValuesFrom sosa:Property ]  ;
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:deployedAsset 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:deployedSystem 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:hasDeployment 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:deployedOnPlatform 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:inDeployment 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 ## Platform 
 
 sosa:Platform 
   rdfs:subClassOf ssn:System ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hosts ; owl:allValuesFrom sosa:System ]  ;
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:hosts 
   owl:propertyChainAxiom ( sosa:inDeployment sosa:deployedSystem ) ;
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:isHostedBy 
-  rdfs:isDefinedBy sosa-base: .
+  rdfs:isDefinedBy sosa-common: .
 

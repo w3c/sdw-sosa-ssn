@@ -99,7 +99,7 @@
       interconnected graph of data.
       With the rise of the Web of Things and smart cities and homes more generally, actuators and the data they produce
       also become first-class citizens of the Web.
-      Given their close relation to sensors and observations, it is desirable to provide a common ontology that also
+      Given their close relation to sensors and observations, it is desirable to provide an ontology that also
       includes actuators and actuation.
       Finally, with the increasing diversity of data and data providers, definitions for sensors need to be broadened,
       to include human agents and social sensing.
@@ -108,7 +108,7 @@
       sampling, and actuation.
       A lightweight core for SSN, known as SOSA (Sensor, Observation, Sample, and Actuator) aims at broadening the
       target audience and application areas that do not need the full capabilities of Semantic Web ontologies.
-      SOSA acts as minimal interoperability fall-back level, i.e., it defines those common classes and properties for
+      SOSA acts as minimal interoperability fall-back level, i.e., it defines those classes and properties for
       which data can be safely exchanged across all uses of SSN, its modules, and SOSA.</p>
   </section>
 
@@ -147,17 +147,17 @@
     <p><b>SOSA</b> is composed of four lower level modules: </p>
     <ol>
       <li>
-        <b>SOSA Base</b> defines classes and properties that are common across Actuation, Observation and Sampling
+        <b>SOSA Common</b> defines classes and properties that are shared across Actuation, Observation and Sampling
         applications
       </li>
       <li>
-        <b>SOSA Actuation</b> imports <b>SOSA Base</b> and defines classes and properties used in Actuations
+        <b>SOSA Actuation</b> imports <b>SOSA Common</b> and defines classes and properties used in Actuations
       </li>
       <li>
-        <b>SOSA Observation</b> imports <b>SOSA Base</b> and defines classes and properties used in Observations
+        <b>SOSA Observation</b> imports <b>SOSA Common</b> and defines classes and properties used in Observations
       </li>
       <li>
-        <b>SOSA Sampling</b> imports <b>SOSA Base</b> and defines classes and properties used in Samplings
+        <b>SOSA Sampling</b> imports <b>SOSA Common</b> and defines classes and properties used in Samplings
       </li>
     </ol>
     <p>Finally, <i>SOSA</i> imports <b>SOSA Actuation</b> , <b>SOSA Observation</b> and <b>SOSA Sampling</b> .</p>
@@ -173,20 +173,20 @@
     </p>
     <ol>
       <li>
-        <b>SSN Base</b> imports <b>SOSA Base</b> and axiomatizes classes and properties that are common across
+        <b>SSN Common</b> imports <b>SOSA Common</b> and axiomatizes classes and properties that are shared across
         Actuation, Observation and Sampling
         applications
       </li>
       <li>
-        <b>SSN Actuation</b> imports <b>SSN Base</b> and <b>SOSA Actuation</b>, and axiomatizes classes and properties
+        <b>SSN Actuation</b> imports <b>SSN Common</b> and <b>SOSA Actuation</b>, and axiomatizes classes and properties
         used in Actuations
       </li>
       <li>
-        <b>SSN Observation</b> imports <b>SSN Base</b> and <b>SOSA Observation</b>, and axiomatizes classes and
+        <b>SSN Observation</b> imports <b>SSN Common</b> and <b>SOSA Observation</b>, and axiomatizes classes and
         properties used in Observations
       </li>
       <li>
-        <b>SSN Sampling</b> imports <b>SSN Base</b> and <b>SOSA Sampling</b>, and axiomatizes classes and properties
+        <b>SSN Sampling</b> imports <b>SSN Common</b> and <b>SOSA Sampling</b>, and axiomatizes classes and properties
         used in Samplings
       </li>
     </ol>
@@ -241,7 +241,7 @@
 
     <h3 id="sosa-prov-module">SOSA-PROV</h3>
     <p>
-      The <i>SOSA-PROV module</i> imports <b>SOSA Base</b>, and describes the alignment of SOSA to [[[prov-o]]].
+      The <i>SOSA-PROV module</i> imports <b>SOSA Common</b>, and describes the alignment of SOSA to [[[prov-o]]].
       <i>SOSA-PROV</i> may be used to integrate data designed using SSN into provenance systems.
     </p>
 
@@ -311,7 +311,8 @@
         <section id="SOSAdistribution">
           <h5>SOSA</h5>
           <p style="text-align: center;">
-            SOSA Base is available at <a href="http://www.w3.org/ns/sosa/base/">http://www.w3.org/ns/sosa/base/</a>.
+            SOSA Common is available at <a
+              href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>.
           </p>
           <p style="text-align: center;">
             SOSA Actuation is available at <a href="http://www.w3.org/ns/sosa/act/">http://www.w3.org/ns/sosa/act/</a>.
@@ -331,7 +332,7 @@
         <section id="SSNdistribution">
           <h5>SSN</h5>
           <p style="text-align: center;">
-            SSN Base is available at <a href="http://www.w3.org/ns/ssn/base/">http://www.w3.org/ns/ssn/base/</a>.
+            SSN Common is available at <a href="http://www.w3.org/ns/ssn/common/">http://www.w3.org/ns/ssn/common/</a>.
           </p>
           <p style="text-align: center;">
             SSN Actuation is available at <a href="http://www.w3.org/ns/ssn/act/">http://www.w3.org/ns/ssn/act/</a>.
@@ -497,7 +498,7 @@
       </figure>
     </section>
 
-    <section id="Base" class="normative" data-include="frag/Base.html"></section>
+    <section id="Common" class="normative" data-include="frag/Common.html"></section>
 
     <section id="Actuation" class="normative" data-include="frag/Actuation.html"></section>
 
@@ -1320,7 +1321,8 @@
         relatedObservation resultQuality to SOSA graph and sosa: namespace, removed from SOSA-OMS graph and sosa:oms:
         ns
       </li>
-      <li>Refactored SOSA and SSN into modules - sosa-base sosa-actuation sosa-observation sosa-sampling sosa (all), and
+      <li>Refactored SOSA and SSN into modules - sosa-common sosa-actuation sosa-observation sosa-sampling sosa (all),
+        and
         matching ssn-* files (also ssn-deprecated). Refactored HTML sources to match. </li>
     </ol>
   </section>
