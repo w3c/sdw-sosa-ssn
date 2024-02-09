@@ -18,7 +18,7 @@
     terms is <span class="repeated" style="font-family: courier;">http://www.w3.org/ns/sosa/sampling/</span>
 </p>
 <p>The suggested prefix for the sample relationships namespace is <span class="repeated"
-        style="font-family: courier;">sampling</span></p>
+        style="font-family: courier;">sosa-rel</span></p>
 <p>An <a href="http://w3c.github.io/sdw/ssn/rdf/sample-relations.ttl">ontology
         graph for this is available</a>. </p>
 <p style="text-align: center;">
@@ -33,19 +33,19 @@
 </figure>
 
 <section id="sample_relationships_def">
-    <h4 id="SAMPglance">Sample Relationships Specification</h4>
+    <h4 id="SAMRglance">Sample Relationships Specification</h4>
     <p>This section introduces the following classes and properties:</p>
     <div class="azlist">
         <p>
-            <a href="#SAMPRelationshipNature">sampling:RelationshipNature</a>
-            , <a href="#SAMPhasSampleRelationship">sampling:hasSampleRelationship</a>
-            , <a href="#SAMPnatureOfRelationship">sampling:natureOfRelationship</a>
-            , <a href="#SAMPrelatedSample">sampling:relatedSample</a>
+            <a href="#SAMRRelationshipNature">sosa-rel:RelationshipNature</a>
+            , <a href="#SAMRhasSampleRelationship">sosa-rel:hasSampleRelationship</a>
+            , <a href="#SAMRnatureOfRelationship">sosa-rel:natureOfRelationship</a>
+            , <a href="#SAMRrelatedSample">sosa-rel:relatedSample</a>
         </p>
     </div>
 
-    <section class="specterm" id="SAMPRelationshipNature" about="sampling:RelationshipNature" typeof="owl:Class">
-        <h5><a href="#SAMPRelationshipNature">sampling:RelationshipNature</a></h5>
+    <section class="specterm" id="SAMRRelationshipNature" about="sosa-rel:RelationshipNature" typeof="owl:Class">
+        <h5><a href="#SAMRRelationshipNature">sosa-rel:RelationshipNature</a></h5>
         <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/sampling/RelationshipNature</p>
         <p><strong>an OWL Class</strong></p>
 
@@ -98,8 +98,8 @@
         </div>
     </section>
 
-    <section class="specterm" id="SAMPSampleRelationship" about="sampling:SampleRelationship" typeof="owl:Class">
-        <h5><a href="#SAMPSampleRelationship">sampling:SampleRelationship</a></h5>
+    <section class="specterm" id="SAMRSampleRelationship" about="sosa-rel:SampleRelationship" typeof="owl:Class">
+        <h5><a href="#SAMRSampleRelationship">sosa-rel:SampleRelationship</a></h5>
         <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/sampling/SampleRelationship</p>
         <p><strong>an OWL Class</strong></p>
 
@@ -123,15 +123,15 @@
     </section>
 
 
-    <section class="specterm" id="SAMPhasSampleRelationship" about="sampling:hasSampleRelationship"
+    <section class="specterm" id="SAMRhasSampleRelationship" about="sosa-rel:hasSampleRelationship"
         typeof="owl:ObjectProperty">
-        <h5><a href="#SAMPhasSampleRelationship">sampling:hasSampleRelationship</a></h5>
+        <h5><a href="#SAMRhasSampleRelationship">sosa-rel:hasSampleRelationship</a></h5>
         <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/sampling/hasSampleRelationship</p>
         <p><strong>an OWL Object Property</strong></p>
 
         <em property="rdfs:label">has sample relationship</em> -
         <span property="rdfs:comment skos:definition">Links a sample to a <a
-                href="#SAMPSampleRelationship"><code>Sample Relationship</code></a> (which links to a related <a
+                href="#SAMRSampleRelationship"><code>Sample Relationship</code></a> (which links to a related <a
                 href="#SOSASample"><code>Sample</code></a>).</span>
         <br>
         <table>
@@ -143,8 +143,8 @@
                 </tr>
                 <tr>
                     <th>Range Includes</th>
-                    <td><span rel="schema:rangeIncludes" resource="sampling:SampleRelationship"><a
-                                href="#SAMPSampleRelationship">sampling:SampleRelationship</a></span></td>
+                    <td><span rel="schema:rangeIncludes" resource="sosa-rel:SampleRelationship"><a
+                                href="#SAMRSampleRelationship">sosa-rel:SampleRelationship</a></span></td>
                 </tr>
                 <tr>
                     <th>is Defined By</th>
@@ -160,15 +160,15 @@
         </div>
     </section>
 
-    <section class="specterm" id="SAMPnatureOfRelationship" about="sampling:natureOfRelationship"
+    <section class="specterm" id="SAMRnatureOfRelationship" about="sosa-rel:natureOfRelationship"
         typeof="owl:ObjectProperty">
-        <h5><a href="#SAMPnatureOfRelationship">sampling:natureOfRelationship</a></h5>
+        <h5><a href="#SAMRnatureOfRelationship">sosa-rel:natureOfRelationship</a></h5>
         <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/sampling/natureOfRelationship</p>
         <p><strong>an OWL Object Property</strong></p>
 
         <em property="rdfs:label">nature of (sample) relationship</em> -
         <span property="rdfs:comment skos:definition">Links a <a
-                href="#SAMPSampleRelationship"><code>Sample Relationship</code></a> to an indication of the nature
+                href="#SAMRSampleRelationship"><code>Sample Relationship</code></a> to an indication of the nature
             of
             the
             relationship.</span>
@@ -177,13 +177,13 @@
             <tbody>
                 <tr>
                     <th>Domain Includes</th>
-                    <td><span rel="schema:domainIncludes" resource="sampling:SampleRelationship"><a
-                                href="#SAMPSampleRelationship">sampling:SampleRelationship</a></span></td>
+                    <td><span rel="schema:domainIncludes" resource="sosa-rel:SampleRelationship"><a
+                                href="#SAMRSampleRelationship">sosa-rel:SampleRelationship</a></span></td>
                 </tr>
                 <tr>
                     <th>Range Includes</th>
-                    <td><span rel="schema:rangeIncludes" resource="sampling:RelationshipNature"><a
-                                href="#SAMPRelationshipNature">sampling:SampleRelationship</a></span></td>
+                    <td><span rel="schema:rangeIncludes" resource="sosa-rel:RelationshipNature"><a
+                                href="#SAMRRelationshipNature">sosa-rel:SampleRelationship</a></span></td>
                 </tr>
                 <tr>
                     <th>is Defined By</th>
@@ -199,22 +199,22 @@
         </div>
     </section>
 
-    <section class="specterm" id="SAMPrelatedSample" about="sampling:relatedSample" typeof="owl:ObjectProperty">
-        <h5><a href="#SAMPrelatedSample">sampling:relatedSample</a></h5>
+    <section class="specterm" id="SAMRrelatedSample" about="sosa-rel:relatedSample" typeof="owl:ObjectProperty">
+        <h5><a href="#SAMRrelatedSample">sosa-rel:relatedSample</a></h5>
         <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/sampling/relatedSample</p>
         <p><strong>an OWL Object Property</strong></p>
 
         <em property="rdfs:label">related sample</em> -
         <span property="rdfs:comment skos:definition">Links a <a
-                href="#SAMPSampleRelationship"><code>Sample Relationship</code></a> to the related <a
+                href="#SAMRSampleRelationship"><code>Sample Relationship</code></a> to the related <a
                 href="#SOSASample"><code>Sample.</code></a></span>
         <br>
         <table>
             <tbody>
                 <tr>
                     <th>Domain Includes</th>
-                    <td><span rel="schema:domainIncludes" resource="sampling:SampleRelationship"><a
-                                href="#SAMPSampleRelationship">sampling:SampleRelationship</a></span></td>
+                    <td><span rel="schema:domainIncludes" resource="sosa-rel:SampleRelationship"><a
+                                href="#SAMRSampleRelationship">sosa-rel:SampleRelationship</a></span></td>
                 </tr>
                 <tr>
                     <th>Range Includes</th>

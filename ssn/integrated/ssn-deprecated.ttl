@@ -48,7 +48,7 @@ ssn-dep: a owl:Ontology ;
 ssn:Property a owl:Class ;
   owl:deprecated true ;
   owl:equivalentClass sosa:Property ;
-  rdfs:isDefinedBy ssn: .
+  rdfs:isDefinedBy ssn-dep: .
 
   ssn:hasProperty a owl:ObjectProperty ; 
     owl:equivalentProperty sosa:hasProperty ;
@@ -57,7 +57,7 @@ ssn:Property a owl:Class ;
     skos:definition "Relation between an entity and a Property of that entity."@en ;
     rdfs:comment "Relation between an entity and a Property of that entity."@en ;
     owl:inverseOf ssn:isPropertyOf ;
-    rdfs:isDefinedBy ssn: .
+    rdfs:isDefinedBy ssn-dep: .
 
   ssn:isPropertyOf a owl:ObjectProperty ;
     owl:equivalentProperty sosa:isPropertyOf ;
@@ -66,7 +66,7 @@ ssn:Property a owl:Class ;
     skos:definition "Relation between a Property and the entity it belongs to."@en ;
     rdfs:comment "Relation between a Property and the entity it belongs to."@en ;
     owl:inverseOf ssn:hasProperty ; 
-    rdfs:isDefinedBy ssn: .
+    rdfs:isDefinedBy ssn-dep: .
 
 ssn:forProperty a owl:ObjectProperty ;
   owl:equivalentProperty sosa:forProperty ;
@@ -75,7 +75,7 @@ ssn:forProperty a owl:ObjectProperty ;
   skos:definition "A relation between some aspect of an entity and a Property."@en ;
   rdfs:comment "A relation between some aspect of an entity and a Property."@en ;
   skos:example "For example, from a Sensor to the properties it can observe; from an Actuator to the properties it can act on; from a Deployment to the properties it was installed to observe or act on; from a SystemCapability to the Property the capability is described for."@en ;
-  rdfs:isDefinedBy ssn: .
+  rdfs:isDefinedBy ssn-dep: .
 
   ssn:hasInput a owl:ObjectProperty ;
     owl:equivalentProperty sosa:hasInput ;
@@ -83,7 +83,7 @@ ssn:forProperty a owl:ObjectProperty ;
     rdfs:label "has input"@en ;
     skos:definition "Relation between a Procedure and an Input to it."@en ;
     rdfs:comment "Relation between a Procedure and an Input to it."@en ;
-    rdfs:isDefinedBy ssn: .
+    rdfs:isDefinedBy ssn-dep: .
 
     ssn:Input a owl:Class ;
       owl:deprecated true ;
@@ -92,7 +92,7 @@ ssn:forProperty a owl:ObjectProperty ;
       rdfs:comment "Any information that is provided to a Procedure for its use."@en ;
       rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf ssn:hasInput ] ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
       rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf ssn:hasInput ] ; owl:allValuesFrom sosa:Procedure ] ;
-      rdfs:isDefinedBy ssn: .
+      rdfs:isDefinedBy ssn-dep: .
 
   ssn:hasOutput a owl:ObjectProperty ;
     owl:equivalentProperty sosa:hasOutput ;
@@ -100,7 +100,7 @@ ssn:forProperty a owl:ObjectProperty ;
     rdfs:label "has output"@en ;
     skos:definition "Relation between a Procedure and an Output of it."@en ;
     rdfs:comment "Relation between a Procedure and an Output of it."@en ;
-    rdfs:isDefinedBy ssn: .
+    rdfs:isDefinedBy ssn-dep: .
 
     ssn:Output a owl:Class ;
       owl:deprecated true ;
@@ -109,7 +109,7 @@ ssn:forProperty a owl:ObjectProperty ;
       rdfs:comment "Any information that is reported from a Procedure."@en ;
       rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf ssn:hasOutput ] ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
       rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf ssn:hasOutput ] ; owl:allValuesFrom sosa:Procedure ] ;
-      rdfs:isDefinedBy ssn: .
+      rdfs:isDefinedBy ssn-dep: .
 
 ssn:System a owl:Class ;
   owl:equivalentClass sosa:System ;
@@ -122,7 +122,7 @@ ssn:System a owl:Class ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:hasSubSystem ; owl:allValuesFrom ssn:System ]  ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf ssn:hasSubSystem ] ; owl:allValuesFrom ssn:System ]  ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:hasDeployment ; owl:allValuesFrom ssn:Deployment ]  ;
-  rdfs:isDefinedBy ssn: .
+  rdfs:isDefinedBy ssn-dep: .
 
   ssn:hasSubSystem a owl:ObjectProperty ;
     owl:equivalentProperty sosa:hasSubSystem ;
@@ -130,7 +130,7 @@ ssn:System a owl:Class ;
     rdfs:label "has subsystem"@en ;
     skos:definition "Relation between a System and its component parts."@en ;
     rdfs:comment "Relation between a System and its component parts."@en ;
-    rdfs:isDefinedBy ssn: .
+    rdfs:isDefinedBy ssn-dep: .
 
 ssn:implements a owl:ObjectProperty ;
   owl:equivalentProperty sosa:implements ;
@@ -140,7 +140,7 @@ ssn:implements a owl:ObjectProperty ;
   rdfs:comment "Relation between an entity that implements a Procedure in some executable way and the Procedure (an algorithm, procedure or method)."@en ;
   skos:example "For example, the relationship between a sensor and the scientific measuring Procedure via which it senses."@en ;
   owl:inverseOf ssn:implementedBy ;
-  rdfs:isDefinedBy ssn: .
+  rdfs:isDefinedBy ssn-dep: .
 
 ssn:implementedBy a owl:ObjectProperty ;
   owl:equivalentProperty sosa:implementedBy ;
@@ -150,7 +150,7 @@ ssn:implementedBy a owl:ObjectProperty ;
   rdfs:comment "Relation between a Procedure (an algorithm, procedure or method) and an entity that implements that Procedure in some executable way."@en ;
   skos:example "For example, the relationship between a scientific measuring Procedure and a sensor that senses via that Procedure."@en ;
   owl:inverseOf ssn:implements ;
-  rdfs:isDefinedBy ssn: .
+  rdfs:isDefinedBy ssn-dep: .
 
 ssn:Deployment a owl:Class ;
   owl:equivalentClass sosa:Deployment ;
@@ -163,7 +163,7 @@ ssn:Deployment a owl:Class ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:deployedAsset ; owl:allValuesFrom [ a owl:Class ; owl:unionOf ( sosa:Sensor sosa:Platform ssn:System ) ] ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:deployedOnPlatform ; owl:allValuesFrom sosa:Platform ]  ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:forProperty ; owl:allValuesFrom ssn:Property ]  ;
-  rdfs:isDefinedBy ssn: .
+  rdfs:isDefinedBy ssn-dep: .
 
   ssn:deployedAsset a owl:ObjectProperty ;
     owl:equivalentProperty sosa:deployedAsset ;
@@ -171,7 +171,7 @@ ssn:Deployment a owl:Class ;
     rdfs:label "deployed asset"@en ;
     skos:definition "Relation between a Deployment and a deployed asset."@en ;
     rdfs:comment "Relation between a Deployment and a deployed asset."@en ;
-    rdfs:isDefinedBy ssn: .
+    rdfs:isDefinedBy ssn-dep: .
 
   ssn:deployedOnPlatform a owl:ObjectProperty ;
     owl:equivalentProperty sosa:deployedOnPlatform ;
@@ -180,7 +180,7 @@ ssn:Deployment a owl:Class ;
     skos:definition "Relation between a Deployment and the Platform on which the Systems are deployed."@en ;
     rdfs:comment "Relation between a Deployment and the Platform on which the Systems are deployed."@en ;
     owl:inverseOf ssn:inDeployment ;
-    rdfs:isDefinedBy ssn: .
+    rdfs:isDefinedBy ssn-dep: .
 
   ssn:deployedSystem a owl:ObjectProperty ;
     owl:equivalentProperty sosa:deployedSystem ;
@@ -190,7 +190,7 @@ ssn:Deployment a owl:Class ;
     skos:definition "Relation between a Deployment and a deployed System."@en ;
     rdfs:comment "Relation between a Deployment and a deployed System."@en ;
     owl:inverseOf ssn:hasDeployment ;
-    rdfs:isDefinedBy ssn: .
+    rdfs:isDefinedBy ssn-dep: .
 
   ssn:hasDeployment a owl:ObjectProperty ;
     owl:equivalentProperty sosa:hasDeployment ;
@@ -199,7 +199,7 @@ ssn:Deployment a owl:Class ;
     skos:definition "Relation between a System and a Deployment, recording that the System is deployed in that Deployment."@en ;
     rdfs:comment "Relation between a System and a Deployment, recording that the System is deployed in that Deployment."@en ;
     owl:inverseOf ssn:deployedSystem ;
-    rdfs:isDefinedBy ssn: .
+    rdfs:isDefinedBy ssn-dep: .
 
   ssn:inDeployment a owl:ObjectProperty ;
     owl:equivalentProperty sosa:inDeployment ;
@@ -209,7 +209,7 @@ ssn:Deployment a owl:Class ;
     rdfs:comment "Relation between a Platform and a Deployment, meaning that the deployedSystems of the Deployment are hosted on the Platform."@en ;
     skos:example "For example, a relation between a buoy and a deployment of several Sensors."@en ;
     owl:inverseOf ssn:deployedOnPlatform ;
-    rdfs:isDefinedBy ssn: .
+    rdfs:isDefinedBy ssn-dep: .
 
 
 ### these terms were defined in ssn: namespace in 2017
@@ -224,7 +224,7 @@ ssn:Deployment a owl:Class ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf ssn:wasOriginatedBy ] ; owl:allValuesFrom sosa:Observation ] ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf ssn:detects ] ; owl:allValuesFrom sosa:Sensor ] ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:isProxyFor ; owl:allValuesFrom sosa:ObservableProperty ] ;
-    rdfs:isDefinedBy ssn: .
+    rdfs:isDefinedBy ssn-dep: .
 
   ssn:wasOriginatedBy a owl:ObjectProperty , owl:FunctionalProperty ;
     owl:equivalentProperty sosa:wasOriginatedBy ;
@@ -232,7 +232,7 @@ ssn:Deployment a owl:Class ;
     rdfs:label "was originated by"@en ;
     skos:definition "Relation between an Observation and the Stimulus that originated it."@en ;
     rdfs:comment "Relation between an Observation and the Stimulus that originated it."@en ;
-    rdfs:isDefinedBy ssn: .
+    rdfs:isDefinedBy ssn-dep: .
 
   ssn:detects a owl:ObjectProperty ;
     owl:equivalentProperty sosa:detects ;
@@ -240,7 +240,7 @@ ssn:Deployment a owl:Class ;
     rdfs:label "detects"@en ;
     skos:definition "A relation from a Sensor to the Stimulus that the Sensor detects. The Stimulus itself will be serving as a proxy for some ObservableProperty."@en ;
     rdfs:comment "A relation from a Sensor to the Stimulus that the Sensor detects. The Stimulus itself will be serving as a proxy for some ObservableProperty."@en ;
-    rdfs:isDefinedBy ssn: .
+    rdfs:isDefinedBy ssn-dep: .
 
   ssn:isProxyFor a owl:ObjectProperty ;
     owl:equivalentProperty sosa:isProxyFor ;
@@ -249,5 +249,5 @@ ssn:Deployment a owl:Class ;
     skos:definition "A relation from a Stimulus to the Property that the Stimulus is serving as a proxy for."@en ;
     rdfs:comment "A relation from a Stimulus to the Property that the Stimulus is serving as a proxy for."@en ;
     skos:example "For example, the expansion of quicksilver is a stimulus that serves as a proxy for some temperature property. An increase or decrease in the velocity of spinning cups on a wind sensor is serving as a proxy for the wind speed."@en ;
-    rdfs:isDefinedBy ssn: .
+    rdfs:isDefinedBy ssn-dep: .
 
