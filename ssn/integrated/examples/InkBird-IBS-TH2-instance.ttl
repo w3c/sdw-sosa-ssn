@@ -1,0 +1,212 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <http://schema.org/> .
+@prefix gs1: <https://gs1.org/voc/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rel: <http://id.loc.gov/vocabulary/relators/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix equipment: <https://rdf.ag/o/equipment/> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix beer: <https://rdf.ag/o/beer#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix ssn-system: <http://www.w3.org/ns/ssn/systems/> .
+@prefix ex: <http://example.org/> .
+
+@base <http://example.org/data/> .
+
+# This example represents a specific InkBird IBS-TH2 sensor that is performing
+# measurements in multiple locations where the results are owned by different
+# entities.
+
+<acmeBreweryCo> a org:Organization, beer:Brewery ;
+	foaf:name "Acme Brewery Co." .
+
+<acmeBrewerCooler> a equipment:Cooler .
+
+<alice> a foaf:Person, prov:Agent ;
+	foaf:name "Alice" .
+
+<acmeDelivery> a org:Organization ;
+	foaf:name "Acme Delivery Co." .
+
+<acmeTruck> a ex:RefrigeratedTruck .
+
+<acmeSupermarket> a <org:Organization> ;
+	foaf:name "Acme Supermarket Co." .
+
+<acmeSupermarketCooler> a <equipment:Cooler> .
+
+# An instance of a six pack of Porter Beers 
+<acmePorterSixPack> a beer:Porter, gs1:Product ;
+    gs1:lot "00001" .
+
+# Alice packages the Beer.
+
+<someTH2> a equipment:InkBird-IBS-TH2 ;
+    rel:own <acmeBreweryCo> ; # Sensor may be returned.
+    rdfs:label "InkBird Sensor that Alice bought to track beer storage."@en ;
+    sosa:hosts <thisBatterySensor>, <thisHumiditySensor>, <thisTemperatureSensor> ;
+    equipment:deviceAddress "00:00:00:00:00:00" .
+
+<packingSixPack> a prov:Activity ;
+    rdfs:comment "When Alice packaged Porter bottles into the box, she added a InkBird logger to check that the beer wasn't getting too warm in transit and storage." ;    
+    prov:wasAssociatedWith <alice> ;
+    prov:used <someTH2> ;
+    prov:startedAtTime "2024-02-20T01:35:00Z"^^xsd:dateTime;
+    prov:endedAtTime   "2024-02-20T01:40:00Z"^^xsd:dateTime;   
+    prov:atLocation <acmeBreweryCo> ;
+    prov:generated <acmePorterSixPack> .
+
+# These definitions look redundant; but you are now dealing with the physical instance of the sensor
+# not its definition.
+
+<batteryPack> a equipment:IBSTH2Battery;
+    rdfs:label "IBSTH2 Battery. 2 AAA Batteries. 3.0V Nominal."@en ;
+    skos:editorialNote "Alice doesn't quite believe the battery lifetime claims, so she's tracking every set of batteries she uses and a new battery instances is generated each time." ;
+    dcterms:created "2024-02-20T01:35:45Z"^^xsd:dateTime .
+
+<thisBatterySensor> a equipment:IBSTH2BatteryVoltageSensor;
+    rdf:comment "This is the instance of the physical sensor instance."@en ;
+    sosa:observes <batteryPack> .
+
+<thisBatterysHealth> rdfs:subClass equipment:IBSTH2BatteryHealth ;
+    ssn:isPropertyOf <batteryPack> .
+
+<thisHumiditySensor> a equipment:IBSTH2HumiditySensor ;
+    rdf:comment "This is the instance of the humidity sensor instance."@en .
+
+<thisTemperatureSensor> a equipment:IBSTH2TemperatureSensor ;
+    rdf:comment "This is the instance of the temperature sensor instance."@en .
+
+<airTemperatureOfProduct> rdfs:subClassOf equipment:airTemperature ;
+    ssn:isPropertyOf <acmePorterSixPack> .
+
+<airRelativeHumidityOfProduct> rdfs:subClassOf equipment:airRelativeHumidity;
+    ssn:isPropertyOf <acmePorterSixPack> .
+#
+# Sensor activates and records temperature while in the brewery cooler.
+    
+<observation1a> a sosa:Observation ;
+    rel:own <acmeBreweryCo> ;
+    sosa:observedProperty <airTemperatureOfProduct> ;
+    sosa:madeBySensor <thisTemperatureSensor>  ;
+    sosa:hasFeatureOfInterest <acmePorterSixPack> ;
+    sosa:resultTime "2024-02-20T01:35:45Z"^^xsd:dateTime ;
+    sosa:hasSimpleResult "12"^^unit:DEG_C .
+
+<observation1b> rdf:type sosa:Observation ;
+    rel:own <acmeBreweryCo> ;
+    sosa:observedProperty <airRelativeHumidityOfProduct> ;
+    sosa:madeBySensor <thisHumiditySensor>  ;
+    sosa:hasFeatureOfInterest <acmePorterSixPack> ;
+    sosa:resultTime "2024-02-20T01:35:45Z"^^xsd:dateTime ;
+    sosa:hasSimpleResult "60"^^unit:PERCENT .
+
+# The battery is a special case because it's property is linked to the battery, not to the environment.
+
+<observation1c> rdf:type sosa:Observation ;
+    rel:own <acmeBreweryCo> ;
+    sosa:observedProperty  <batteryPack>;
+    sosa:madeBySensor <thisBatterySensor>  ;
+    sosa:hasFeatureOfInterest <thisBatterysHealth> ;
+    sosa:resultTime "2024-02-20T01:35:45Z"^^xsd:dateTime ;
+    sosa:hasSimpleResult "99"^^unit:PERCENT .
+
+<breweryObserver> a prov:Activity ;
+    rdfs:comment "Brewery operating system logging process." ;
+    prov:atLocation <acmeBreweryCo> ;
+    prov:generated <observation1a> ;
+    prov:generated <observation1b> ;
+    prov:generated <observation1c> ;
+    prov:wasStartedBy <alice> . # She turned it on last time.     
+
+#
+# Product is loaded on the truck
+#
+
+    
+<observation67a> a sosa:Observation, prov:Entity ;
+    rel:own <acmeBreweryCo> ;
+    rel:own <acmeDelivery> ;
+    sosa:observedProperty <airTemperatureOfProduct> ;
+    sosa:madeBySensor <thisTemperatureSensor>  ;
+    sosa:hasFeatureOfInterest <acmePorterSixPack> ;
+    sosa:resultTime "2024-02-22T04:15:05Z"^^xsd:dateTime ;
+    sosa:hasSimpleResult "19"^^unit:DEG_C .
+
+<observation67b> rdf:type sosa:Observation,prov:Entity ;
+    rel:own <acmeBreweryCo> ;
+    rel:own <acmeDelivery> ;
+    sosa:observedProperty <airRelativeHumidityOfProduct> ;
+    sosa:madeBySensor <thisHumiditySensor>  ;
+    sosa:hasFeatureOfInterest <acmePorterSixPack> ;
+    sosa:resultTime "2024-02-22T04:15:05Z"^^xsd:dateTime ;
+    sosa:hasSimpleResult "74"^^unit:PERCENT .
+
+<observation67c> rdf:type sosa:Observation,prov:Entity ;
+    rel:own <acmeBreweryCo> ;
+    rel:own <acmeDelivery> ;
+    sosa:observedProperty  <batteryPack>;
+    sosa:madeBySensor <thisBatterySensor>  ;
+    sosa:hasFeatureOfInterest <thisBatterysHealth> ;
+    sosa:resultTime "2024-02-22T04:15:05Z"^^xsd:dateTime ;
+    sosa:hasSimpleResult "99"^^unit:PERCENT .
+
+<TruckObserver> a prov:Activity ;
+    rdfs:comment "Truck onboard monitoring system" ;
+    prov:atLocation <acmeTruck> ;
+    prov:generated <observation67a> ;
+    prov:generated <observation67b> ;
+    prov:generated <observation67c> ;
+    prov:startedAtTime "2024-02-22T04:15:05Z"^^xsd:dateTime ;
+    prov:endedAtTime "2024-02-22T05:55:38Z"^^xsd:dateTime ;
+    prov:wasStartedBy <driver> ;
+    prov:atLocation <parkingLot> .
+
+<parkingLot> a prov:Location, geosparql:Geometry; 
+   geosparql:asWKT "POINT(-79.35553 43.66372)"^^geosparql:wktLiteral .
+
+# 
+# Product is now in display cooler at supermarket. Ownership of product has
+# changed and observation data is now only being recorded / owned by supermarket.
+#
+    
+<observation98a> rdf:type sosa:Observation,prov:Entity ;
+    rel:own <acmeSupermarket> ;
+    sosa:observedProperty <airTemperatureOfProduct> ;
+    sosa:madeBySensor <thisTemperatureSensor>  ;
+    sosa:hasFeatureOfInterest <acmePorterSixPack> ;
+    sosa:resultTime "2024-02-22T06:00:13Z"^^xsd:dateTime ;
+    sosa:hasSimpleResult "12"^^unit:DEG_C .
+
+<observation98b> rdf:type sosa:Observation,prov:Entity ;
+    rel:own <acmeSupermarket> ;
+    sosa:observedProperty <airRelativeHumidityOfProduct> ;
+    sosa:madeBySensor <thisHumiditySensor>  ;
+    sosa:hasFeatureOfInterest <acmePorterSixPack> ;
+    sosa:resultTime "2024-02-22T06:00:13Z"^^xsd:dateTime ;
+    sosa:hasSimpleResult "55"^^unit:PERCENT .
+
+<observation98c> rdf:type sosa:Observation,prov:Entity ;
+    rel:own <acmeSupermarket> ;
+    sosa:observedProperty  <batteryPack>;
+    sosa:madeBySensor <thisBatterySensor>  ;
+    sosa:hasFeatureOfInterest <thisBatterysHealth> ;
+    sosa:resultTime "2024-02-22T06:00:13Z"^^xsd:dateTime ;
+    sosa:hasSimpleResult "99"^^unit:PERCENT .
+
+<CoolerMonitoringProcess> a prov:Activity ;
+    rdfs:comment "Smart cooler monitoring system" ;
+    prov:atLocation <acmeSupermarketCooler> ;
+    prov:generated <observation98a> ;
+    prov:generated <observation98b> ;
+    prov:generated <observation98c> ;
+    prov:wasStartedBy <acmeSupermarket> .
