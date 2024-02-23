@@ -1,0 +1,145 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <http://schema.org/> .
+@prefix gs1: <https://gs1.org/voc/> .
+@prefix equipement: <https://rdf.ag/o/equipement/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix ssn-system: <http://www.w3.org/ns/ssn/systems/> .
+@base <https://rdf.ag/o/equipement/> .
+
+# This example is a specification for a common over-the-shelf temperature and humidity sensor 
+
+<InkBird-IBS-TH2> a owl:Class, gs1:Product ;
+    rdfs:label "Inkbird IBS-TH2"@en ;
+    rdfs:subClassOf sosa:Platform, equipement:Equipment, <https://w3id.org/seas/BluetoothCommunicationDevice> ;
+    gs1:pip <https://inkbird.com/products/hygrometer-ibs-th2> ;
+    sosa:hosts <IBSTH2BatteryVoltageSensor>, <IBSTH2HumiditySensor>, <IBSTH2TemperatureSensor> ;
+    ssn:implements <InkBird-IBS-TH2-Procedure> ;
+    gs1:brand <InkBird> .
+
+<InkBird> a gs1:Brand ;
+    rdfs:label "Inkbird"@en ;
+    rdfs:comment "This is a commercial product."@en ;
+    gs1:brandName "Inkbird"@en .
+
+<HWAddress> a owl:DatatypeProperty ;
+    rdfs:label "Device Hardware Address"@en ;
+    rdfs:range <InkBird-IBS-TH2> .
+
+<IBSTH2Battery>
+    a owl:Class ;
+    rdfs:label "IBSTH2 Battery. 2 AAA Batteries. 3.0V Nominal."@en ;
+    skos:definition "A generic description of the battery pack that needs to be installed in it."@en ;
+    rdfs:subClassOf sosa:FeatureOfInterest .
+
+<IBSTH2BatteryLimits>
+    skos:editorialNote "Of course, we'd never receive a 0% battery reading..."@en ;
+    schema:maxValue "100" ;
+    schema:minValue "0" ;
+    schema:unitCode unit:PERCENT ;
+    a schema:PropertyValue, ssn:Property, ssn-system:Accuracy ;
+    rdfs:label "IBSTH2 Battery Limits"@en .
+
+<IBSTH2BatteryVoltageSensor> a owl:Class ;
+    skos:editorialNote "Percentage is derived from the battery voltage."@en ;
+    rdfs:label "IBSTH2 Battery Voltage"@en ;
+    rdfs:subClassOf sosa:Sensor ;
+    ssn-system:hasOperatingRange <IBSTH2BatteryLimits> ;
+    ssn:implements <InkBird-IBS-TH2-Procedure> ;
+    sosa:observes <IBSTH2Battery> .
+
+<IBSTH2BatteryHealth>
+    schema:unitCode unit:PERCENT ;
+    a sosa:ObservableProperty, ssn:Property ;
+    rdfs:label "Battery Health"@en ;
+    skos:definition "Battery Health expressed as a percentage."@en .
+
+
+<IBSTH2HumiditySensor> a owl:Class ;
+    rdfs:label "Inkbird IBS-TH2 built-in Humidity Sensor"@en ;
+    rdfs:subClassOf sosa:Sensor ;
+    sosa:observes <airRelativeHumidity> ;
+    ssn-system:hasOperatingRange <IBSTH2HumiditySensorLimits>, <IBSTH2TemperatureSensorLimits> ;
+    ssn:implements <InkBird-IBS-TH2-Procedure> ;
+    ssn-system:hasSystemCapability <IBSTH2HumiditySensorCapability> .
+
+<IBSTH2HumiditySensorAccuracy>
+    schema:maxValue "0.5" ;
+    schema:minValue "-0.5" ;
+    schema:unitCode unit:Percent ;
+    a schema:PropertyValue, ssn:Property, ssn-system:Accuracy ;
+    skos:definition "The accuracy of the humidity sensor is +-0.5 °C in normal temperature and humidity conditions."@en .
+
+<IBSTH2HumiditySensorCapability>
+    a schema:PropertyValue, ssn:Property, ssn-system:SystemCapability ;
+    skos:definition "The capabilities of the humidity sensor in normal temperature and humidity conditions."@en ;
+    ssn-system:hasSystemProperty <IBSTH2HumiditySensorAccuracy> ;
+    ssn-system:inCondition <IBSTH2HumiditySensorNormalLimits>, <IBSTH2TemperatureSensorNormalLimits> .
+
+<IBSTH2HumiditySensorLimits>
+    a ssn-system:OperatingRange ;
+    rdfs:label "Inkbird IBS-TH2 Humidity Sensor Limits"@en ;
+    ssn-system:inCondition <IBSTH2HumiditySensorNormalLimits> .
+
+<IBSTH2HumiditySensorNormalLimits>
+    schema:maxValue "100" ;
+    schema:minValue "0" ;
+    schema:unitCode unit:PERCENT ;
+    a schema:PropertyValue, ssn-system:Condition .
+
+<IBSTH2TemperatureSensor>
+    a owl:Class ;
+    rdfs:label "Inkbird IBS-TH2 built-in Temperature Sensor"@en ;
+    rdfs:subClassOf sosa:Sensor ;
+    sosa:observes <airTemperature> ;
+    ssn-system:hasOperatingRange <IBSTH2HumiditySensorLimits>, <IBSTH2TemperatureSensorLimits> ;
+    ssn:implements <InkBird-IBS-TH2-Procedure> ;
+    ssn-system:hasSystemCapability <IBSTH2TemperatureSensorCapability> .
+
+<IBSTH2TemperatureSensorAccuracy>
+    schema:maxValue "0.5" ;
+    schema:minValue "-0.5" ;
+    schema:unitCode unit:DEG_C ;
+    a schema:PropertyValue, ssn:Property, ssn-system:Accuracy ;
+    skos:definition "The accuracy of the temperature sensor is +-0.5 °C in normal temperature and humidity conditions."@en .
+
+<IBSTH2TemperatureSensorCapability>
+    a schema:PropertyValue, ssn:Property, ssn-system:SystemCapability ;
+    skos:definition "The capabilities of the temperature sensor in normal temperature and humidity conditions."@en ;
+    ssn-system:hasSystemProperty <IBSTH2TemperatureSensorAccuracy> ;
+    ssn-system:inCondition <IBSTH2HumiditySensorNormalLimits>, <IBSTH2TemperatureSensorNormalLimits> .
+
+<IBSTH2TemperatureSensorLimits>
+    a ssn-system:OperatingRange ;
+    rdfs:label "Inkbird IBS-TH2 Temperature Sensor Limits"@en ;
+    ssn-system:inCondition <IBSTH2TemperatureSensorNormalLimits> .
+
+<IBSTH2TemperatureSensorNormalLimits>
+    schema:maxValue "60" ;
+    schema:minValue "-40" ;
+    schema:unitCode unit:DEG_C ;
+    a schema:PropertyValue, ssn-system:Condition .
+
+<InkBird-IBS-TH2-Procedure> a sosa:Procedure ;
+  foaf:isPrimaryTopicOf <https://fcc.report/FCC-ID/2AYZD-IBSTH2/5436475.pdf> ;
+  skos:editorialNote "This is the manufacturer's data sheet as submitted to the FCC."@en .
+
+<airRelativeHumidity>
+    schema:unitCode unit:PERCENT ;
+    a sosa:ObservableProperty, ssn:Property ;
+    rdfs:label "Humidité Relative"@fr, "Relative Humidity"@en, "Relative Luftfeuchtigkeit"@de ;
+    skos:definition "The amount of water vapor present in air expressed as a percentage of the amount needed for saturation at the same temperature."@en .
+
+<airTemperature>
+    schema:unitCode unit:DEG_C ;
+    a sosa:ObservableProperty, ssn:Property ;
+    rdfs:label "Lufttemperatur"@de, "Air Temperature"@en, "Température Ambiante"@fr ;
+    skos:definition "Temperature of the air."@en .
+
