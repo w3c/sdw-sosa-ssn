@@ -31,74 +31,69 @@
     involved in sensing, sampling, and actuation.
     A lightweight core for SSN, known as <b>SOSA</b> (Sensor, Observation, Sample, and Actuator) aims at broadening the
     target audience and application areas that do not need the full capabilities of Semantic Web ontologies.
-    SOSA acts as minimal interoperability fall-back level, i.e., it defines terms (classes and properties) with which data
+    SOSA acts as minimal interoperability fall-back level, i.e., it defines terms (classes and properties) with which
+    data
     can be safely exchanged across all uses of SSN, its modules, and SOSA.</p>
 </section>
 
 <section id="origins">
 
   <h3>Origins of SSN and SOSA</h3>
-  <p>Here we briefly review the origins of SSN and SOSA, namely the initial
-    SSN version published by the <em>W3C Semantic Sensor Network Incubator
-      Group </em> [[SSNX]] and work on Sensor Web Enablement by the OGC. We
-    also highlight the most substantial changes made since the initial
-    release of the SSN ontology.</p>
-  <p>Starting in 2002, the OGC's Sensor Web Enablement initiative has developed
-    a generic framework for delivering sensor data, dealing with
-    remote-sensing, moving platforms, and in-situ monitoring and sensing.
-    The Sensor Observation Service defines a standard query interface for
-    sensor and observation data, following the pattern established by OGC
-    for their Web Services. The returned XML data conforms with the Sensor Model
-    Language [[SensorML]] and OMXML [[OMXML]], whereby the latter implements
-    Observations and Measurements [[OandM]]. </p>
-  <p>SensorML and O&amp;M are complementary viewpoints. SensorML
-    is 'provider-centric' and encodes details of the sensor along with raw
-    observation data. SensorML is self-contained and highly flexible. This
-    makes life easy for data producers but is demanding on consumers.
-    SensorML provides extensive support for serialization of numeric data arrays
-    and is particularly optimized for data that includes multiple parallel
-    streams that must be processed together. For example, the data collected
-    by cameras on airborne vehicles must be geo-referenced based on the
-    instantaneous position of the platform and orientation of the camera. In
-    contrast, O&amp;M was designed to be more 'user-centric' with the target
-    of the observation and the observed property as first-class objects.
-    O&amp;M works at a higher semantic level than SensorML, but only
-    provides abstract classes for sensors, features of interest and
-    observable properties, expecting the details to be provided by specific
-    applications and domains. O&amp;M also provided a model for sampling,
-    since almost all scientific observations are made on a subset of, or
-    proxy for, the ultimate feature of interest. </p>
-  <p>The initial <em>W3C Semantic Sensor Network Incubator Group</em>ontology
-    (SSNX) was built around an ontology design pattern called the <em>Stimulus
-      Sensor Observation</em> (SSO) pattern [[SSO-Pattern]]. The SSO was
-    developed as a minimal and common ground for heavy-weight ontologies
-    for the use on the Semantic Sensor Web as well as to explicitly
-    address the need for light-weight semantics requested by the Linked
-    Data community. The SSO was also aligned to the <em>Dolce-Ultralite </em>upper
-    ontology (DUL). </p>
-  <p>The SSN ontology described in this document is based on a revised and
-    expanded version of this pattern, namely the <em>Sensor, Observation,
-      Sample, and Actuator</em> (SOSA) ontology.
-    Similar to SSNX, SOSA acts as a central building block for the SSN but puts more
-    emphasis on light-weight use and the ability to be used standalone.
-    The axiomatization also changed to provide an experience more related
-    to Schema.org. Notable differences include the usage of the Schema.org
-    <code>domainIncludes</code> and <code>rangeIncludes</code> annotation
-    properties that provide an informal semantics compared to the
-    inferential semantics of their OWL 2 counterparts. In line with the
-    changes implemented for the new SSN, SOSA also drops the direct DUL
-    alignment although an optional alignment can be achieved via the
-    SSN-DUL alignment provided in <a href="#DUL-alignment">Section 6.1</a>. SOSA is also more explicit than SSO in its
-    support for virtual and human sensor. Finally,
-    and most notably, SOSA extends SSO's original scope beyond sensors and
-    their observations by including classes and properties for actuators
-    and sampling. SOSA also distinguishes between <code>phenomenonTime</code> and
-    <code>resultTime</code>.
+  <p>The initial SSN - now known as [[SSNX]] - was based on work by the <a
+      href="https://www.w3.org/2005/Incubator/ssn/wiki/Main_Page">W3C Semantic Sensor Network Incubator Group</a> and
+    the OGC's Sensor Web Enablement [[SWE]].
   </p>
-  <p>Drawing on considerable implementation and application experience with SSN and sensor and observation ontologies
-    more broadly, the new SSN and SOSA ontologies presented here are set out to address changes in scope and audience,
-    shortcomings of the initial work, as well as new technical developments. The list below highlights the most
-    important (but by far not exclusive) updates.</p>
+  <p>Starting in 2002, the OGC's Sensor Web Enablement initiative [[SWE]] developed a generic framework for delivering
+    sensor data, dealing with remote-sensing, moving platforms, and in-situ monitoring and sensing.
+    In particular, the key standards SensorML and O&amp;M provided complementary viewpoints:</p>
+  <ol>
+    <li>
+      [[SensorML]] is 'provider-centric' and encodes details of the sensor along with raw observation data
+    </li>
+    <li>
+      O&amp;M [[OandM]] was designed to be more 'user-centric' with the target of the observation and the observed
+      property as first-class objects.
+    </li>
+  </ol>
+  <p>
+    O&amp;M also provided a model for sampling, since almost all scientific observations are made on a subset of, or
+    proxy for, the ultimate feature of interest.
+  </p>
+
+
+  <p>The initial Semantic Sensor Network ontology [[SSNX]] developed by the <a
+      href="https://www.w3.org/2005/Incubator/ssn/wiki/Main_Page">W3C Semantic Sensor Network Incubator Group</a> was
+    built around the <em>Stimulus Sensor Observation</em> (SSO) ontology design pattern [[SSO-Pattern]].
+    The SSO was also aligned to the <em>Dolce-Ultralite </em>upper
+    ontology [[DUL]]. </p>
+
+  <p>The SSN ontology [[vocab-ssn-20171019]] combined key elements of SWE and SSNX, and added Actuation and Sampling as
+    additional procedure execution types.
+    The core classes and properties comprise the <em>Sensor, Observation, Sample, and Actuator</em> (SOSA) module.
+    SOSA acts as the central building block for the SSN and is packaged with very lightweight axiomatization so as to
+    support use by web-developers.
+  </p>
+
+  <p>
+    Following experience with O&amp;M since its publication as an ISO and OGC standard in 2011 [[OandM]], a revised
+    edition was developed and published in 2023 [[OMS]].
+    The new edition notably incorporated the Sampling class from SSN, as well as Sample and Observation collections,
+    which had been proposed in an Extension to SSN [[vocab-ssn-ext-20200116]].
+  </p>
+
+  <p>
+    This edition of the SSN Ontology has been primarily driven by a desire to incorporate elements from OMS, so that SSN
+    may serve as the RDF implementation of OMS.
+    In addition, developments in Internet of Things implementations, in particular [[SAREF]], [[STA]] and the OGC
+    Connected Systems project.
+    Finally, direct experience with SSN has uncovered a variety of issues that have been fixed or accommodated.
+  </p>
+
+
+  <p>The list below highlights the most important (but by far not exclusive) updates.</p>
+
+  <hr />
+  <p><b>Further work needed below here</b></p>
   <ul>
     <li><strong>Addressing changes in scope and audience</strong>
       <ul>
