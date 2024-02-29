@@ -31,17 +31,20 @@ var respecConfig = {
     {
       name: "Armin Haller",
       company: "Australian National University",
-      companyURL: "https://www.cbe.anu.edu.au/"
+      companyURL: "https://www.cbe.anu.edu.au/",
+      orcid: "0000-0003-3425-0780"
     },
     {
       name: "Danh Le Phuoc",
       company: "Technical University of Berlin",
-      companyURL: "http://www.tu-berlin.de/"
+      companyURL: "http://www.tu-berlin.de/",
+      orcid: "0000-0003-2480-9261"
     },
     {
       name: "Kerry Taylor",
       company: "Australian National University",
-      companyURL: "https://cecs.anu.edu.au/"
+      companyURL: "https://cecs.anu.edu.au/",
+      orcid: "0000-0003-2447-1088"
     }],
   otherLinks: [
     {
