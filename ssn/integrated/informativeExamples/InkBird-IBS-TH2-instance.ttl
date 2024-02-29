@@ -58,7 +58,7 @@
 <12345/someTH2> a equipment:InkBird-IBS-TH2 ;
     rel:own <acmeBreweryCo> ; # Sensor may be returned.
     rdfs:label "InkBird Sensor that Alice bought to track beer storage."@en ;
-    sosa:hosts <12345/BatterySensor>, <12345/HumiditySensor>, <12345/thisTemperatureSensor> ;
+    sosa:hosts <12345/BatterySensor>, <12345/HumiditySensor>, <12345/TemperatureSensor> ;
     gs1:hasSerialNumber "12345" ;
     equipment:deviceAddress "00:00:00:00:00:00" .
 
@@ -93,7 +93,7 @@
     rdf:comment "This is the instance of the physical sensor instance."@en ;
     sosa:observes <2024/02/batteryPack> .
 
-<12345/BatteryHealth> rdfs:subClass equipment:IBSTH2BatteryHealth ;
+<12345/BatteryHealth> a equipment:IBSTH2BatteryHealth ;
     ssn:isPropertyOf <2024/02/batteryPack> .
 
 <12345/HumiditySensor> a equipment:IBSTH2HumiditySensor ;
@@ -130,9 +130,9 @@
 
 <observation1c> rdf:type sosa:Observation ;
     rel:own <acmeBreweryCo> ;
-    sosa:observedProperty  <2024/02/batteryPack>;
+    sosa:observedProperty <12345/BatteryHealth>
     sosa:madeBySensor <12345/BatterySensor>  ;
-    sosa:hasFeatureOfInterest <12345/BatteryHealth> ;
+    sosa:hasFeatureOfInterest <2024/02/batteryPack> ;
     sosa:resultTime "2024-02-20T01:35:45Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "99"^^unit:PERCENT .
 
@@ -170,9 +170,9 @@
 <observation67c> rdf:type sosa:Observation,prov:Entity ;
     rel:own <acmeBreweryCo> ;
     rel:own <acmeDelivery> ;
-    sosa:observedProperty  <2024/02/batteryPack>;
+    sosa:observedProperty <12345/BatteryHealth>;
     sosa:madeBySensor <12345/BatterySensor>  ;
-    sosa:hasFeatureOfInterest <12345/BatteryHealth> ;
+    sosa:hasFeatureOfInterest <2024/02/batteryPack> ;
     sosa:resultTime "2024-02-22T04:15:05Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "99"^^unit:PERCENT .
 
@@ -213,9 +213,9 @@
 
 <observation98c> rdf:type sosa:Observation,prov:Entity ;
     rel:own <acmeSupermarket> ;
-    sosa:observedProperty  <2024/02/batteryPack>;
+    sosa:observedProperty <12345/BatteryHealth>;
     sosa:madeBySensor <12345/BatterySensor>  ;
-    sosa:hasFeatureOfInterest <thisBatteryHealth> ;
+    sosa:hasFeatureOfInterest <2024/02/batteryPack> ;
     sosa:resultTime "2024-02-22T06:00:13Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "99"^^unit:PERCENT .
 
