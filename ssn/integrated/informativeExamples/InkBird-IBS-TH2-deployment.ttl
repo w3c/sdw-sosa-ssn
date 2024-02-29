@@ -1,0 +1,71 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <http://schema.org/> .
+@prefix gs1: <https://gs1.org/voc/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rel: <http://id.loc.gov/vocabulary/relators/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix equipment: <https://rdf.ag/o/equipment/> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix beer: <https://rdf.ag/o/beer#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix ssn-system: <http://www.w3.org/ns/ssn/systems/> .
+@prefix ex: <http://example.org/> .
+
+@base <http://example.org/data/> .
+
+# This example represents the same data using deployments on platforms, which can make
+# the modeling a bit more intuitive.
+
+
+# Alice packaged the sensor in the box.
+
+<acmePorterSixPackDeployment> a prov:Activity, ssn:Deployment;
+    prov:startedAtTime "2024-02-20T01:35:00Z"^^xsd:dateTime;
+    prov:wasAssociatedWith <alice> ;
+    ssn:deployedOnPlatform <00001/acmePorterSixPack> ;
+    ssn:deployedSystem <12345/someTH2> ;
+    ssn:forProperty <12345/BatteryHealth>, <airTemperatureOfProduct>, <airRelativeHumidityOfProduct>;
+    prov:generated <observation1a>, <observation1b>, <observation1c> ;
+    prov:generated <observation67a>, <observation67b>, <observation67c> ;
+    prov:generated <observation98a>, <observation98b>,  <observation98c> .
+
+# Beer in the cooler.
+
+<acmeCoolerDeployment> a prov:Activity, ssn:Deployment;
+    prov:startedAtTime "2024-02-20T01:35:00Z"^^xsd:dateTime;
+    prov:endedAtTime   "2024-02-20T01:40:00Z"^^xsd:dateTime;   
+    ssn:deployedOnPlatform <acmeBrewerCooler> ;
+    ssn:deployedSystem <12345/someTH2> ;
+    ssn:forProperty <12345/BatteryHealth>, <airTemperatureOfProduct>, <airRelativeHumidityOfProduct>;
+    prov:generated <observation1a>, <observation1b>, <observation1c> .
+
+# Beer in the delivery truck.
+
+<acmeTruckDeployment> a prov:Activity, ssn:Deployment;
+    prov:startedAtTime "2024-02-22T04:15:05Z"^^xsd:dateTime ;
+    prov:endedAtTime "2024-02-22T05:55:38Z"^^xsd:dateTime ;
+    ssn:deployedOnPlatform <acmeTruck> ;
+    ssn:deployedSystem <12345/someTH2> ;
+    ssn:forProperty <12345/BatteryHealth>, <airTemperatureOfProduct>, <airRelativeHumidityOfProduct>;
+    prov:generated <observation67a>, <observation67b>, <observation67c> .
+
+# Beer in the supermarket cooler.
+
+<acmeSupermarketCoolerDeployment> a prov:Activity, ssn:Deployment;
+    rdfs:comment "Smart cooler monitoring system" ;
+    prov:startedAtTime "2024-02-22T06:00:13Z"^^xsd:dateTime ;
+    ssn:deployedOnPlatform <acmeSupermarketCooler> ;
+    ssn:deployedSystem <12345/someTH2> ;
+    ssn:forProperty <12345/BatteryHealth>, <airTemperatureOfProduct>, <airRelativeHumidityOfProduct>;
+    prov:generated <observation98a>, <observation98b>,  <observation98c> .
+
+
