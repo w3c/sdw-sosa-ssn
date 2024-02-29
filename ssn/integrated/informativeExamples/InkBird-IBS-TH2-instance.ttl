@@ -53,7 +53,7 @@
 <12345/someTH2> a equipment:InkBird-IBS-TH2 ;
     rel:own <acmeBreweryCo> ; # Sensor may be returned.
     rdfs:label "InkBird Sensor that Alice bought to track beer storage."@en ;
-    sosa:hosts <thisBatterySensor>, <thisHumiditySensor>, <thisTemperatureSensor> ;
+    sosa:hosts <12345/BatterySensor>, <thisHumiditySensor>, <thisTemperatureSensor> ;
     gs1:hasSerialNumber "12345" ;
     equipment:deviceAddress "00:00:00:00:00:00" .
 
@@ -85,17 +85,17 @@
     rdfs:label "Acme Branded Battery"@en ;
     gs1:brandName "Acme"@en .
 
-<thisBatterySensor> a equipment:IBSTH2BatteryVoltageSensor;
+<12345/BatterySensor> a equipment:IBSTH2BatteryVoltageSensor;
     rdf:comment "This is the instance of the physical sensor instance."@en ;
     sosa:observes <2024/02/batteryPack> .
 
-<thisBatterysHealth> rdfs:subClass equipment:IBSTH2BatteryHealth ;
+<12345/BatterysHealth> rdfs:subClass equipment:IBSTH2BatteryHealth ;
     ssn:isPropertyOf <2024/02/batteryPack> .
 
-<thisHumiditySensor> a equipment:IBSTH2HumiditySensor ;
+<12345/HumiditySensor> a equipment:IBSTH2HumiditySensor ;
     rdf:comment "This is the instance of the humidity sensor instance."@en .
 
-<thisTemperatureSensor> a equipment:IBSTH2TemperatureSensor ;
+<12345/TemperatureSensor> a equipment:IBSTH2TemperatureSensor ;
     rdf:comment "This is the instance of the temperature sensor instance."@en .
 
 <airTemperatureOfProduct> rdfs:subClassOf equipment:airTemperature ;
@@ -109,7 +109,7 @@
 <observation1a> a sosa:Observation ;
     rel:own <acmeBreweryCo> ;
     sosa:observedProperty <airTemperatureOfProduct> ;
-    sosa:madeBySensor <thisTemperatureSensor>  ;
+    sosa:madeBySensor <12345/TemperatureSensor>  ;
     sosa:hasFeatureOfInterest <00001/acmePorterSixPack> ;
     sosa:resultTime "2024-02-20T01:35:45Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "12"^^unit:DEG_C .
@@ -117,7 +117,7 @@
 <observation1b> rdf:type sosa:Observation ;
     rel:own <acmeBreweryCo> ;
     sosa:observedProperty <airRelativeHumidityOfProduct> ;
-    sosa:madeBySensor <thisHumiditySensor>  ;
+    sosa:madeBySensor <12345/HumiditySensor>  ;
     sosa:hasFeatureOfInterest <00001/acmePorterSixPack> ;
     sosa:resultTime "2024-02-20T01:35:45Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "60"^^unit:PERCENT .
@@ -127,8 +127,8 @@
 <observation1c> rdf:type sosa:Observation ;
     rel:own <acmeBreweryCo> ;
     sosa:observedProperty  <2024/02/batteryPack>;
-    sosa:madeBySensor <thisBatterySensor>  ;
-    sosa:hasFeatureOfInterest <thisBatterysHealth> ;
+    sosa:madeBySensor <12345/BatterySensor>  ;
+    sosa:hasFeatureOfInterest <12345/BatterysHealth> ;
     sosa:resultTime "2024-02-20T01:35:45Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "99"^^unit:PERCENT .
 
@@ -149,7 +149,7 @@
     rel:own <acmeBreweryCo> ;
     rel:own <acmeDelivery> ;
     sosa:observedProperty <airTemperatureOfProduct> ;
-    sosa:madeBySensor <thisTemperatureSensor>  ;
+    sosa:madeBySensor <12345/TemperatureSensor>  ;
     sosa:hasFeatureOfInterest <00001/acmePorterSixPack> ;
     sosa:resultTime "2024-02-22T04:15:05Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "19"^^unit:DEG_C .
@@ -158,7 +158,7 @@
     rel:own <acmeBreweryCo> ;
     rel:own <acmeDelivery> ;
     sosa:observedProperty <airRelativeHumidityOfProduct> ;
-    sosa:madeBySensor <thisHumiditySensor>  ;
+    sosa:madeBySensor <12345/HumiditySensor>  ;
     sosa:hasFeatureOfInterest <00001/acmePorterSixPack> ;
     sosa:resultTime "2024-02-22T04:15:05Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "74"^^unit:PERCENT .
@@ -167,8 +167,8 @@
     rel:own <acmeBreweryCo> ;
     rel:own <acmeDelivery> ;
     sosa:observedProperty  <2024/02/batteryPack>;
-    sosa:madeBySensor <thisBatterySensor>  ;
-    sosa:hasFeatureOfInterest <thisBatterysHealth> ;
+    sosa:madeBySensor <12345/BatterySensor>  ;
+    sosa:hasFeatureOfInterest <12345/BatterysHealth> ;
     sosa:resultTime "2024-02-22T04:15:05Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "99"^^unit:PERCENT .
 
@@ -194,7 +194,7 @@
 <observation98a> rdf:type sosa:Observation,prov:Entity ;
     rel:own <acmeSupermarket> ;
     sosa:observedProperty <airTemperatureOfProduct> ;
-    sosa:madeBySensor <thisTemperatureSensor>  ;
+    sosa:madeBySensor <12345/TemperatureSensor>  ;
     sosa:hasFeatureOfInterest <00001/acmePorterSixPack> ;
     sosa:resultTime "2024-02-22T06:00:13Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "12"^^unit:DEG_C .
@@ -202,7 +202,7 @@
 <observation98b> rdf:type sosa:Observation,prov:Entity ;
     rel:own <acmeSupermarket> ;
     sosa:observedProperty <airRelativeHumidityOfProduct> ;
-    sosa:madeBySensor <thisHumiditySensor>  ;
+    sosa:madeBySensor <12345/HumiditySensor>  ;
     sosa:hasFeatureOfInterest <00001/acmePorterSixPack> ;
     sosa:resultTime "2024-02-22T06:00:13Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "55"^^unit:PERCENT .
@@ -210,7 +210,7 @@
 <observation98c> rdf:type sosa:Observation,prov:Entity ;
     rel:own <acmeSupermarket> ;
     sosa:observedProperty  <2024/02/batteryPack>;
-    sosa:madeBySensor <thisBatterySensor>  ;
+    sosa:madeBySensor <12345/BatterySensor>  ;
     sosa:hasFeatureOfInterest <thisBatterysHealth> ;
     sosa:resultTime "2024-02-22T06:00:13Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "99"^^unit:PERCENT .
