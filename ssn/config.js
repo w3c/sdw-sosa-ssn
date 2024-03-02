@@ -149,7 +149,9 @@ var respecConfig = {
       title: "ISO 19156:2023 - Geographic information - Observations, measurements and samples",
       publisher: "International Organization for Standardization",
       aliasOf: "OMS",
-      obsoletes: "ISO-OandM",
+      obsoletes: [
+        "ISO-OandM"
+      ],
       date: "2023"
     },
     "OMS": {
@@ -159,7 +161,9 @@ var respecConfig = {
       publisher: "Open Geospatial Consortium",
       ogcNumber: "20-082r4",
       aliasOf: "ISO-OMS",
-      obsoletes: "OandM",
+      obsoletes: [
+        "OandM"
+      ],
       date: "2023"
     },
     "SAREF": {
