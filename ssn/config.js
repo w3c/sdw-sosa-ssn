@@ -122,11 +122,20 @@ var respecConfig = {
       authors: ["Nicholas J Car", "Timo Homburg", "Matthew Perry", "Frans Knibbe", "Simon J.D. Cox", "Joseph Abhayaratna", "Mathias Bonduel", "Paul J. Cripps", "Krzysztof Janowicz"],
       date: "29 January 2024"
     },
+    "ISO-OandM": {
+      href: "https://portal.ogc.org/files/?artifact_id=41579",
+      title: "ISO 19156:2011 - Geographic information - Observations and measurements",
+      publisher: "International Organization for Standardization",
+      aliasOf: "OandM",
+      date: "2011"
+    },
     "OandM": {
       href: "https://portal.ogc.org/files/?artifact_id=41579",
-      title: "Observations and Measurements (O&M) v2",
+      title: "Observations and Measurements (O&M) v2, OGC Abstract Specification Topic 20",
       authors: ["Simon Cox"],
       publisher: "Open Geospatial Consortium",
+      ogcNumber: "10-004r3",
+      aliasOf: "ISO-OandM",
       date: "2011"
     },
     "OBOE": {
@@ -135,11 +144,22 @@ var respecConfig = {
       authors: ["Mark Schildhauer", "Matthew B. Jones", "Shawn Bowers", "Joshua Madin", "Sergeui Krivov", "Deana Pennington", "Ferdinando Villa", "Benjamin Leinfelder", "Christopher Jones", "Margaret O'Brien"],
       title: "OBOE: the Extensible Observation Ontology, version 1.1"
     },
+    "ISO-OMS": {
+      href: "https://www.iso.org/standard/82463.html",
+      title: "ISO 19156:2023 - Geographic information - Observations, measurements and samples",
+      publisher: "International Organization for Standardization",
+      aliasOf: "OMS",
+      obsoletes: "ISO-OandM",
+      date: "2023"
+    },
     "OMS": {
       href: "https://docs.ogc.org/as/20-082r4/20-082r4.html",
-      title: "Observations, measurements and samples (OMS)",
+      title: "Observations, measurements and samples (OMS), OGC Abstract Specification Topic 20",
       authors: ["Katharina Schleidt", "Ilkka Rinne"],
       publisher: "Open Geospatial Consortium",
+      ogcNumber: "20-082r4",
+      aliasOf: "ISO-OMS",
+      obsoletes: "OandM",
       date: "2023"
     },
     "SAREF": {
