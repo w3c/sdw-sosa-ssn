@@ -10,7 +10,7 @@
     times at which the velocity was measured, and a variety of other information are required.
   </p>
   <p>
-    OGC's Sensor Web Enablement standards [[[SWE]]], [[[SensorML]]], [[[OandM]]], [[[OMS]]], [[[STA]]] provide
+    OGC's Sensor Web Enablement standards [[SWE]], [[SensorML]], [[OandM]], [[OMS]], [[STA]] provide
     conceptual models, as well as some encodings for the annotation of sensors and their observations.
     Integration and alignment of these with W3C Semantic Web technologies and Linked Data embeds this in a global and
     densely interconnected graph of data.
@@ -39,19 +39,17 @@
 <section id="origins">
 
   <h3>Origins of SSN and SOSA</h3>
-  <p>The initial SSN - now known as <b>SSNX</b> [[[SSNX]]] - was based on work by the <a
-      href="https://www.w3.org/2005/Incubator/ssn/wiki/Main_Page">W3C Semantic Sensor Network Incubator Group</a> and
-    the OGC's Sensor Web Enablement [[[SWE]]].
-  </p>
-  <p>Starting in 2002, the OGC's Sensor Web Enablement initiative [[[SWE]]] developed a generic framework for delivering
+
+  <h4>Sensor Web Enablement</h4>
+  <p>Starting in 2002, the OGC's Sensor Web Enablement initiative [[SWE]] developed a generic framework for delivering
     sensor data, dealing with remote-sensing, moving platforms, and in-situ monitoring and sensing.
     In particular, the key standards SensorML and O&amp;M provided complementary viewpoints:</p>
   <ol>
     <li>
-      SensorML [[[SensorML]]] is 'provider-centric' and encodes details of the sensor along with raw observation data
+      SensorML [[SensorML]] is 'provider-centric' and encodes details of the sensor along with raw observation data
     </li>
     <li>
-      O&amp;M [[[OandM]]] was designed to be more 'user-centric' with the target of the observation and the observed
+      O&amp;M [[OandM]] was designed to be more 'user-centric' with the target of the observation and the observed
       property as first-class objects.
     </li>
   </ol>
@@ -60,94 +58,46 @@
     proxy for, the ultimate feature of interest.
   </p>
 
+  <h4>Semantic Sensor Network</h4>
+  <p>The initial Semantic Sensor Network ontology - now known as <b>SSNX</b> [[SSNX]] - was developed by the <a
+      href="https://www.w3.org/2005/Incubator/ssn/wiki/Main_Page">W3C Semantic Sensor Network Incubator Group</a>.
+    SSNX was influenced by SWE, but was primarily built around the <em>Stimulus Sensor Observation</em> (SSO) ontology
+    design pattern [[SSO-Pattern]].
+    The SSO was also aligned to the <em>Dolce-Ultralite </em>upper ontology [[DUL]]. </p>
 
-  <p>The initial Semantic Sensor Network ontology [[[SSNX]]] developed by the <a
-      href="https://www.w3.org/2005/Incubator/ssn/wiki/Main_Page">W3C Semantic Sensor Network Incubator Group</a> was
-    built around the <em>Stimulus Sensor Observation</em> (SSO) ontology design pattern [[[SSO-Pattern]]].
-    The SSO was also aligned to the <em>Dolce-Ultralite </em>upper
-    ontology [[[DUL]]]. </p>
-
-  <p>The SSN ontology [[[vocab-ssn-20171019]]] combined key elements of SWE and SSNX, and added Actuation and Sampling as
+  <h4>SSN Ontology</h4>
+  <p>The SSN Ontology [[vocab-ssn-20171019]] combined key elements of SWE and SSNX, and added Actuation and Sampling as
     additional procedure execution types.
-    The core classes and properties comprise the <em>Sensor, Observation, Sample, and Actuator</em> (SOSA) module.
+    The core classes and properties comprised the <em>Sensor, Observation, Sample, and Actuator</em> (SOSA) module.
     SOSA acts as the central building block for the SSN and is packaged with very lightweight axiomatization so as to
     support use by web-developers.
   </p>
 
+  <p>For details on the design philosophy and decisions around the SSN Ontology, please consult chapter "3. Origins of
+    SSN and SOSA" in [[[vocab-ssn-20171019]]].</p>
+
+  <h4>New edition of the SSN Ontology</h4>
   <p>
-    Following experience with O&amp;M since its publication as an ISO and OGC standard in 2011 [[[OandM]]], a revised
-    edition was developed and published in 2023 [[[OMS]]].
-    The new edition notably incorporated the Sampling class from SSN, as well as Sample and Observation collections,
-    which had been proposed in an Extension to SSN [[[vocab-ssn-ext-20200116]]].
+    Following experience with O&amp;M since its publication as an ISO and OGC standard in 2011 [[OandM]], a revised
+    edition was developed and published in 2023 [[OMS]].
+    The new edition notably incorporated the <code>Sampling</code> class from SSN, as well as some features which had
+    been proposed in an Extension to SSN [[vocab-ssn-ext-20200116]], in particular the notion of <i>ultimate</i>
+    feature-of-interest, as well as Sample and Observation <i>collections</i>.
   </p>
 
   <p>
-    This edition of the SSN Ontology has been primarily driven by a desire to incorporate elements from OMS, so that SSN
-    may serve as the RDF implementation of OMS.
+    This new edition of the SSN Ontology has been primarily driven by a desire to align with OMS, so that SSN may serve
+    as the RDF implementation of OMS.
     In addition, developments in Internet of Things implementations, in particular [[[SAREF]]], [[[STA]]] and the OGC
-    Connected Systems project.
-    Finally, direct experience with SSN has uncovered a variety of issues that have been fixed or accommodated.
+    Connected Systems project have contributed some ideas particularly around actuation.
+    Finally, direct experience with SSN has uncovered a variety of more minor issues that have been addressed or
+    accommodated.
   </p>
 
+  <p>A change log is provided in an Annex of this document. 
+    The current change log describes the changes since the 2017 edition [[vocab-ssn-20171019]]. 
+    For earlier changes during the development of the SSN Ontology, please consult Annex "D. Change History" in [[[vocab-ssn-20171019]]].
+  </p>
 
-  <p>The list below highlights the most important (but by far not exclusive) updates.</p>
-
-  <hr />
-  <p><b>Further work needed below here</b></p>
-  <ul>
-    <li><strong>Addressing changes in scope and audience</strong>
-      <ul>
-        <li>The initial SSN was developed with ontology engineers in mind as the primary audience. Due to the
-          widespread adoption of SSN, the increasing role of citizen science, the strong focus on lightweight
-          vocabularies by the Linked Data community, and vocabularies such as Schema.org, the ontology was
-          streamlined. SOSA is added as a core, and is also useful as a standalone ontology targeting Web developers,
-          citizen science, lightweight Linked Data publishing, resource-constraint IoT devices, data intensive
-          applications (with the possibility of using lightweight reasoning), and so on. The new SSN introduces
-          additional classes and relations on top of SOSA to model the capabilities of sensors and actuators, the
-          compositionality of systems, and so forth to suit more complex needs or cases in which more provenance data
-          is required, e.g., to improve reproducibility. </li>
-        <li>Almost all scientific observations make heavy use of sampling strategies, and, therefore, the Sampling,
-          Sampler, and Sample classes, as well as their corresponding properties, have been added to SOSA and SSN.
-        </li>
-        <li>Due to the increasing importance of the Web of Things and smart instrumentation and environments more
-          generally, the classes Actuator and Actuation have been added to SOSA and SSN.</li>
-      </ul>
-    <li><strong>Addressing shortcomings of the initial SSN</strong>
-      <ul>
-        <li>The new SSN streamlines the relations (and need for) the old Device, Platform, and Systems classes.</li>
-        <li>The old SSN was perceived as too heavyweight (on its axiomatization) and too dependent on OWL reasoning by
-          some users. To strike a balance, DL expressivity of the new lightweight SOSA ontology is ALI(D) which is
-          efficiently supported by modern triple stores, while the new SSN is ALRIN(D). In contrast, the old SSN is
-          SRIQ.</li>
-        <li>The SSN previously imported DUL and many SSN terms inherited from DUL terms. Due to frequent user
-          requests, this has been redesigned so that SSN (and SOSA) can be used entirely independently of DUL if
-          desired. Some of the alignments with DUL have been reconsidered. Those parts of SSN that use DUL terms have
-          been separated into the <a href="http://www.w3.org/ns/ssn/dul">SSN Alignment with DUL ontology.</a> This
-          alignment and therefore the role of DUL in SSN have been declared non-normative.</li>
-        <li>The definitions for many classes and properties have changed slightly to improve explanation or to correct
-          minor errors. Examples have been separated from the main definitions.</li>
-        <li>The initial SSN has been criticized for its partially inconsistent handling of virtual sensors (including
-          software and simulations) and related classes and properties. The new SSN and SOSA address this issue by
-          allowing all major classes to be virtual, and to better support humans and other animals as agents.</li>
-        <li>The notion of Procedure (formerly Plan) has been clarified to describe a workflow, protocol, plan,
-          algorithm, or computational method specifying how to make an Observation, create a Sample, or make a change
-          to the state of the world via an Actuator.</li>
-        <li>The Observation class in the initial SSN was conceptualized as a subclass of the DUL Situation class. To
-          improve alignment with O&amp;M and user expectations, as well as to follow a consistent modeling strategy
-          for observations, sampling, and actuation, the Observation class defined in SOSA and the new SSN are now
-          conceptualized as activities. </li>
-      </ul>
-    <li><strong>Addressing technical developments</strong>
-      <ul>
-        <li>The initial SSN used local/guarded domain and range restrictions. The lightweight SOSA ontology uses an
-          even more restrained axiomatization to foster wide reuse and adaptation among an audience that is not
-          necessarily familiar with OWL. SOSA makes use of the <code>domainIncludes</code> and
-          <code>rangeIncludes</code> annotation properties defined in Schema.org. These had not been available before.
-        </li>
-        <li>Given the increased interest in using Semantic Web technologies directly on the level of individual
-          sensors, actuators, or platforms, SOSA's axiomatization does not use many of the more complex language
-          elements introduced by SSN.</li>
-      </ul>
-  </ul>
 </section>
 <!--  </section>  -->
