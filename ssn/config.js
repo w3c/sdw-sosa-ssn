@@ -82,7 +82,7 @@ var respecConfig = {
           value: "OGC NN-NNN"
         }]
     }],
-  group: "sdw",
+  group: "wg/sdw",
   wgPublicList: "public-sdw-comments",
   implementationReportURI: "https://w3c.github.io/sdw-sosa-ssn/ssn-usage/",
   inlineCSS: true,
