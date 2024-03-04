@@ -90,17 +90,10 @@ var respecConfig = {
   noLegacyStyle: false,
   logos: [
     {
-      src: "https://www.w3.org/StyleSheets/TR/2016/logos/W3C",
-      alt: "W3C",
-      height: "48",
-      width: "72",
-      url: "https://www.w3.org/"
-    },
-    {
-      src: "https://www.ogc.org/wp-content/uploads/2023/03/OGC-1.svg",
+      src: "https://raw.githubusercontent.com/w3c/sdw-sosa-ssn/gh-pages/ssn/images/OGC-1.png",
       alt: "OGC",
-      height: "68",
-      width: "147",
+      height: "70",
+      width: "215",
       url: "https://www.ogc.org/"
     }
   ],
@@ -111,12 +104,6 @@ var respecConfig = {
       title: "Custom Datatypes - Towards a web of Linked Datatypes",
       authors: ["Maxime Lefrançois", "Antoine Zimmermann"],
       date: "19 July 2021"
-    },
-    "GeoSPARQL": {
-      href: "https://docs.ogc.org/is/22-047r1/22-047r1.html",
-      title: "GeoSPARQL - A Geographic Query Language for RDF Data v1.1",
-      authors: ["Nicholas J Car", "Timo Homburg", "Matthew Perry", "Frans Knibbe", "Simon J.D. Cox", "Joseph Abhayaratna", "Mathias Bonduel", "Paul J. Cripps", "Krzysztof Janowicz"],
-      date: "29 January 2024"
     },
     "OBOE": {
       href: "http://dx.doi.org/10.5063/F11C1TTM",
@@ -210,39 +197,6 @@ var respecConfig = {
       volume: "8",
       page: "453-470",
       authors: ["S.J.D. Cox"]
-    },
-    "OMXML": {
-      href: "http://portal.opengeospatial.org/files/41510",
-      title: "Observations and Measurements - XML Implementation",
-      publisher: "Open Geospatial Consortium",
-      date: "2010",
-      authors: ["S.J.D. Cox"]
-    },
-    "ISO-19150-2": {
-      href: "https://www.iso.org/standard/57466.html",
-      title: "Geographic information -- Ontology -- Part 2: Rules for developing ontologies in the Web Ontology Language (OWL)",
-      publisher: "ISO",
-      date: "July 2015"
-    },
-    "ISO-19109": {
-      href: "https://www.iso.org/standard/59193.html",
-      title: "Geographic information -- Rules for application schema",
-      publisher: "ISO",
-      date: "December 2015"
-    },
-    "ISO-19156": {
-      href: "https://www.iso.org/standard/32574.html",
-      title: "Geographic information -- Observations and measurements",
-      publisher: "ISO",
-      date: "December 2011"
-    },
-    "SensorML": {
-      href: "http://portal.opengeospatial.org/files/55939",
-      publisher: "OGC",
-      title: "SensorML: Model and XML Encoding Standard 2.0",
-      authors: ["Mike Botts", "Alex Robin"],
-      status: "Encoding Standard, OGC 12-000",
-      date: "2014"
     },
     "SSN-PROV": {
       href: "http://ceur-ws.org/Vol-1401/paper-05.pdf",
