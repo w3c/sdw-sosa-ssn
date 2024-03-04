@@ -90,10 +90,10 @@ var respecConfig = {
   noLegacyStyle: false,
   logos: [
     {
-      src: "https://raw.githubusercontent.com/w3c/sdw-sosa-ssn/gh-pages/ssn/images/OGC-1.png",
+      src: "https://raw.githubusercontent.com/w3c/sdw-sosa-ssn/gh-pages/ssn/images/OGC-0.png",
       alt: "OGC",
       height: "70",
-      width: "215",
+      width: "62",
       url: "https://www.ogc.org/"
     }
   ],
