@@ -1,0 +1,57 @@
+{
+  "@graph" : [ 
+  {
+    "@id" : "http://example.org/data/Observation/234534",
+    "@type" : "sosa:Observation",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "Observation of the difference between the outside temperature and the inside temperature."
+    },
+    "hasFeatureOfInterest" : "http://example.org/data/apartment/134",
+    "hasResult" : {
+      "@type" : "qudt:QuantityValue",
+      "hasUnit" : "unit:DEG_C",
+      "value" : "-29.9"
+    }
+  }, {
+    "@id" : "http://example.org/data/Observation/83985",
+    "@type" : "sosa:Observation",
+    "comment" : {
+      "@language" : "en",
+      "@value" : "Observation of the temperature inside apartment #134."
+    },
+    "hasFeatureOfInterest" : "http://example.org/data/apartment/134",
+    "hasResult" :   {
+      "@id" : "_:b1",
+      "@type" : "qudt:QuantityValue",
+      "hasUnit" : "unit:DEG_C",
+      "value" : "22.4"
+    }
+  } ],
+  "@context" : {
+    "value" : {
+      "@id" : "http://qudt.org/schema/qudt/value",
+      "@type" : "http://www.w3.org/2001/XMLSchema#decimal"
+    },
+    "hasUnit" : {
+      "@id" : "http://qudt.org/schema/qudt/hasUnit",
+      "@type" : "@id"
+    },
+    "hasResult" : {
+      "@id" : "http://www.w3.org/ns/sosa/hasResult",
+      "@type" : "@id"
+    },
+    "hasFeatureOfInterest" : {
+      "@id" : "http://www.w3.org/ns/sosa/hasFeatureOfInterest",
+      "@type" : "@id"
+    },
+    "comment" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#comment"
+    },
+    "qudt" : "http://qudt.org/schema/qudt/",
+    "unit" : "http://qudt.org/vocab/unit/",
+    "rdf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
+    "sosa" : "http://www.w3.org/ns/sosa/"
+  }
+}
