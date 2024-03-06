@@ -50,27 +50,30 @@
         (CDT, [[CDT]]).
     </p>
 
+    <h4>Simple Result</h4>
     <p>
         For a compact representation using <a href="#SOSAhasSimpleResult">sosa:hasSimpleResult</a> it is recommended to
         use a QUDT Unit as its <i>Datatype</i>.
     </p>
-    <h4>Simple Result serialised in Turtle</h4>
+    <h5>Serialised in Turtle</h5>
     <pre class="example" data-include="./examples/2024ex-uomtype.ttl" data-include-format="text"></pre>
-    <h4>Simple Result serialised in JSON-LD</h4>
+    <h5>Serialised in JSON-LD</h5>
     <pre class="example" data-include="./examples/2024ex-uomtype.jsonld" data-include-format="text"></pre>
     <p class="note">When the datatype is not one of the numeric types, the value is cast as a string literal.</p>
+
+    <h4>Structured Result</h4>
     <p>
         Alternatively, a <a href="http://qudt.org/"><code>qudt:QuantityValue</code></a> can represent a quantitative
-        result as an object.
+        result structured as an object.
     </p>
-    <h4>Object Result serialised in Turtle</h4>
+    <h5>Serialised in Turtle</h5>
     <pre class="example" data-include="./examples/2017ex-uomobject.ttl" data-include-format="text"></pre>
-    <h4>Object Result serialised in JSON-LD</h4>
+    <h5>Serialised in JSON-LD</h5>
     <pre class="example" data-include="./examples/2017ex-uomobject.jsonld" data-include-format="text"></pre>
 </section>
 
 <section id="location">
-    <h3>Location, sampling location</h3>
+    <h3>Location</h3>
     <p>
         Many of the key classes provided by SOSA and SSN represent entities that can be located in space such as
         sensors, features of interest, actuators, samples, or activities that can be located via their participating
@@ -84,15 +87,16 @@
         objects, to support interoperability between geo-datasets.
         Using GeoSPARQL, geometries can be assigned to entities using the geo:hasGeometry property.
     </p>
+
+    <h4>Sample with location</h4>
     <p>
         For example, if observations are made of the atmosphere at a specific location, it is recommended that this be
         defined as a Sample whose location is given using GeoSPARQL with the following pattern:
     </p>
-
-    <h4>Sample with location serialised in Turtle</h4>
+    <h5>Serialised in Turtle</h5>
     <pre class="example" data-include="./examples/2023ex-location.ttl" data-include-format="text"></pre>
 
-    <h4>Sample with location serialised in JSON-LD</h4>
+    <h5>Serialised in JSON-LD</h5>
     <pre class="example" data-include="./examples/2023ex-location.jsonld" data-include-format="text"></pre>
 
 </section>
@@ -102,12 +106,14 @@
     <p>
         A forecast may be represented as an observation where the value of <code>sosa:phenomenonTime</code> is later in
         time than the <code>sosa:resultTime</code>.
-        This means that: <em>The time when the Observation act was completed is before the time that the Result of the
-            observation applies to the FeatureOfInterest.</em>
+        This means that: The time when the Observation execution was completed is before the time that the Result of the
+        observation applies to the FeatureOfInterest.
     </p>
-    <h4>Forecast serialised in Turtle</h4>
+    <h4>Forecast</h4>
+    <h5>Serialised in Turtle</h5>
     <pre class="example" data-include="./examples/2024ex-forecast.ttl" data-include-format="text"></pre>
-    <h4>Forecast serialised in JSON-LD</h4>
+
+    <h5>Serialised in JSON-LD</h5>
     <pre class="example" data-include="./examples/2024ex-forecast.jsonld" data-include-format="text"></pre>
 
     <p class="note">
