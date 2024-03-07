@@ -1,0 +1,42 @@
+@prefix sensor: <https://example.com/sensors/> .
+@prefix property: <https://example.com/properties/> .
+@prefix procedure: <https://example.com/procedures/> .
+
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix qb: <http://purl.org/linked-data/cube#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+
+sensor:BME280 a owl:Class ;
+    dct:description """This sensor measures:
+     - temperature in degrees celsius
+     - PM10
+    """ ;
+    rdfs:subClassOf sosa:Sensor ;
+    skos:prefLabel "BME280" ;
+    sosa:observes [ qudt:hasUnit unit:DEG_C ;
+            skos:broader property:temperature ] ,
+          [ qudt:hasUnit unit:MicroGM-PER-M3 ;
+            skos:broader property:pm10 ;
+            ssn:implements [ qb:order 1 ;
+                    skos:broader procedure:pm-humidity-correction ] ] ;
+.
+
+property:pm10 a sosa:ObservableProperty ;
+  rdfs:label "Particulate matter < 10 µm" ;
+.
+
+property:temperature a sosa:ObservableProperty ;
+  rdfs:label "Air temperature" ;
+.
+
+procedure:pm-humidity-correction a sosa:Procedure ;
+  rdfs:label "Humidity correction for Particulate Matter" ;
+.
