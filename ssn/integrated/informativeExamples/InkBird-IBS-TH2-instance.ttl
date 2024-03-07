@@ -49,9 +49,14 @@
 
 <acmeSupermarketCooler> a <equipment:Cooler> .
 
-# An instance of a six pack of Porter Beers 
+# A specific (instance) six pack of Acme Porter Beers 
 <00001/acmePorterSixPack> a beer:Porter, gs1:Product ;
     gs1:lot "00001" .
+
+# A sample of air within the six pack
+<00001/acmePorterSixPackAirSample> a sosa:Sample ;
+    rdfs:label "Air within the six pack"@en ;
+    sosa:isSampleOf <00001/acmePorterSixPack> .
 
 # Alice packages the Beer.
 
@@ -102,27 +107,42 @@
 <12345/TemperatureSensor> a equipment:IBSTH2TemperatureSensor ;
     rdf:comment "This is the instance of the temperature sensor instance."@en .
 
-<airTemperatureOfProduct> rdfs:subClassOf equipment:airTemperature ;
+<TemperatureOfProduct> rdfs:subClassOf equipment:airTemperature ;
     ssn:isPropertyOf <00001/acmePorterSixPack> .
 
-<airRelativeHumidityOfProduct> rdfs:subClassOf equipment:airRelativeHumidity;
+<airRelativeHumidityInProductPackaging> rdfs:subClassOf equipment:airRelativeHumidity;
     ssn:isPropertyOf <00001/acmePorterSixPack> .
+
+<airRelativeHumidityInProductPackaging>
+    schema:unitCode unit:PERCENT ;
+    a sosa:ObservableProperty, ssn:Property ;
+    rdfs:label "Humidité relative de l'emballage du produit"@fr, "Relative Humidity of Product Packaging"@en, "Relative Luftfeuchtigkeit der Produktverpackung"@de ;
+    skos:definition "The amount of water vapor present in air around the product packaging"@en .
+
+<BeerTemperature>
+    schema:unitCode unit:DEG_C ;
+    a sosa:ObservableProperty, ssn:Property ;
+    rdfs:label "Biertemperatur"@de, "Beer Temperature"@en, "Température de la bière"@fr ;
+    skos:definition "Temperature of the Beer."@en .
+
 #
 # Sensor activates and records temperature while in the brewery cooler.
     
 <observation1a> a sosa:Observation ;
     rel:own <acmeBreweryCo> ;
-    sosa:observedProperty <airTemperatureOfProduct> ;
+    sosa:observedProperty equipment:airTemperature ;
+    sosa:hasUltimateFeatureOfInterest <BeerTemperature> ; 
     sosa:madeBySensor <12345/TemperatureSensor>  ;
-    sosa:hasFeatureOfInterest <00001/acmePorterSixPack> ;
+    sosa:hasFeatureOfInterest <00001/acmePorterSixPackAirSample> ;
     sosa:resultTime "2024-02-20T01:35:45Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "12"^^unit:DEG_C .
 
 <observation1b> rdf:type sosa:Observation ;
     rel:own <acmeBreweryCo> ;
-    sosa:observedProperty <airRelativeHumidityOfProduct> ;
+    sosa:observedProperty equipment:airTemperature ;
+    sosa:hasUltimateFeatureOfInterest <airRelativeHumidityInProductPackaging> ;
     sosa:madeBySensor <12345/HumiditySensor>  ;
-    sosa:hasFeatureOfInterest <00001/acmePorterSixPack> ;
+    sosa:hasFeatureOfInterest <00001/acmePorterSixPackAirSample> ;
     sosa:resultTime "2024-02-20T01:35:45Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "60"^^unit:PERCENT .
 
@@ -130,7 +150,7 @@
 
 <observation1c> rdf:type sosa:Observation ;
     rel:own <acmeBreweryCo> ;
-    sosa:observedProperty <12345/BatteryHealth>
+    sosa:observedProperty <12345/BatteryHealth> ;
     sosa:madeBySensor <12345/BatterySensor>  ;
     sosa:hasFeatureOfInterest <2024/02/batteryPack> ;
     sosa:resultTime "2024-02-20T01:35:45Z"^^xsd:dateTime ;
@@ -152,18 +172,20 @@
 <observation67a> a sosa:Observation, prov:Entity ;
     rel:own <acmeBreweryCo> ;
     rel:own <acmeDelivery> ;
-    sosa:observedProperty <airTemperatureOfProduct> ;
+    sosa:observedProperty equipment:airTemperature ;
+    sosa:hasUltimateFeatureOfInterest <BeerTemperature> ;
     sosa:madeBySensor <12345/TemperatureSensor>  ;
-    sosa:hasFeatureOfInterest <00001/acmePorterSixPack> ;
+    sosa:hasFeatureOfInterest <00001/acmePorterSixPackAirSample> ;
     sosa:resultTime "2024-02-22T04:15:05Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "19"^^unit:DEG_C .
 
 <observation67b> rdf:type sosa:Observation,prov:Entity ;
     rel:own <acmeBreweryCo> ;
     rel:own <acmeDelivery> ;
-    sosa:observedProperty <airRelativeHumidityOfProduct> ;
+    sosa:observedProperty equipment:airTemperature ;
+    sosa:hasUltimateFeatureOfInterest <airRelativeHumidityInProductPackaging> ;
     sosa:madeBySensor <12345/HumiditySensor>  ;
-    sosa:hasFeatureOfInterest <00001/acmePorterSixPack> ;
+    sosa:hasFeatureOfInterest <00001/acmePorterSixPackAirSample> ;
     sosa:resultTime "2024-02-22T04:15:05Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "74"^^unit:PERCENT .
 
@@ -187,6 +209,9 @@
     prov:wasStartedBy <driver> ;
     prov:atLocation <gpsLocation> .
 
+# This is the output from the truck's GPS receiver. We only get coordinates
+# from it.
+
 <gpsLocation> a prov:Location, geosparql:Geometry; 
    geosparql:asWKT "POINT(-79.35553 43.66372)"^^geosparql:wktLiteral .
 
@@ -197,17 +222,19 @@
     
 <observation98a> rdf:type sosa:Observation,prov:Entity ;
     rel:own <acmeSupermarket> ;
-    sosa:observedProperty <airTemperatureOfProduct> ;
+    sosa:observedProperty equipment:airTemperature ;
+    sosa:hasUltimateFeatureOfInterest <BeerTemperature> ;    
     sosa:madeBySensor <12345/TemperatureSensor>  ;
-    sosa:hasFeatureOfInterest <00001/acmePorterSixPack> ;
+    sosa:hasFeatureOfInterest <00001/acmePorterSixPackAirSample> ;
     sosa:resultTime "2024-02-22T06:00:13Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "12"^^unit:DEG_C .
 
 <observation98b> rdf:type sosa:Observation,prov:Entity ;
     rel:own <acmeSupermarket> ;
-    sosa:observedProperty <airRelativeHumidityOfProduct> ;
+    sosa:observedProperty equipment:airTemperature ;
+    sosa:hasUltimateFeatureOfInterest <airRelativeHumidityInProductPackaging> ;
     sosa:madeBySensor <12345/HumiditySensor>  ;
-    sosa:hasFeatureOfInterest <00001/acmePorterSixPack> ;
+    sosa:hasFeatureOfInterest <00001/acmePorterSixPackAirSample> ;
     sosa:resultTime "2024-02-22T06:00:13Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "55"^^unit:PERCENT .
 
