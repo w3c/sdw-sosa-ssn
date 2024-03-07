@@ -44,7 +44,17 @@
 <body
   prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# owl: http://www.w3.org/2002/07/owl# xsd: http://www.w3.org/2001/XMLSchema# skos: http://www.w3.org/2004/02/skos/core# dcterms: http://purl.org/dc/terms/ foaf: http://xmlns.com/foaf/0.1/>. vann: http://purl.org/vocab/vann/ voaf: http://purl.org/vocommons/voaf# time: http://www.w3.org/2006/time# sosa: http://www.w3.org/ns/sosa/ sosa-oms: http://www.w3.org/ns/sosa/oms/ ssn: http://www.w3.org/ns/ssn/ ssn-oms: http://www.w3.org/ns/ssn/oms/ ssn-system: http://www.w3.org/ns/ssn/systems/  sampling: http://www.w3.org/ns/sosa/sampling/ vs: http://www.w3.org/2003/06/sw-vocab-status/ns#">
 
-<p class='copyright'><a href='https://www.w3.org/Consortium/Legal/ipr-notice#Copyright'>Copyright</a> © 2024 <a href='https://www.ogc.org/'>OGC</a> &amp; <a href='https://www.w3.org/'> <abbr title='World Wide Web Consortium'>W3C</abbr> </a><sup>®</sup> (<a href='https://www.csail.mit.edu/'><abbr title='Massachusetts Institute of Technology'>MIT</abbr></a>, <a href='https://www.ercim.eu/'><abbr title='European Research Consortium for Informatics and Mathematics'>ERCIM</abbr></a>, <a href='https://www.keio.ac.jp/'>Keio</a>, <a href='https://ev.buaa.edu.cn/'>Beihang</a>), <abbr title='World Wide Web Consortium'>W3C</abbr> <a href='https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer'>liability</a>, <a href='https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks'>trademark</a>, <a href='https://www.w3.org/Consortium/Legal/copyright-documents'>W3C</a> and <a href='https://www.ogc.org/ogc/document'>OGC</a> document use rules apply.</p>",
+  <p class='copyright'><a href='https://www.w3.org/Consortium/Legal/ipr-notice#Copyright'>Copyright</a> © 2024 <a
+      href='http://www.opengeospatial.org/'>OGC</a> &amp; <a href='https://www.w3.org/'> <abbr
+        title='World Wide Web Consortium'>W3C</abbr> </a><sup>®</sup> (<a href='https://www.csail.mit.edu/'><abbr
+        title='Massachusetts Institute of Technology'>MIT</abbr></a>, <a href='https://www.ercim.eu/'><abbr
+        title='European Research Consortium for Informatics and Mathematics'>ERCIM</abbr></a>, <a
+      href='https://www.keio.ac.jp/'>Keio</a>, <a href='https://ev.buaa.edu.cn/'>Beihang</a>), <abbr
+      title='World Wide Web Consortium'>W3C</abbr> <a
+      href='https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer'>liability</a>, <a
+      href='https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks'>trademark</a>, <a
+      href='https://www.w3.org/Consortium/Legal/copyright-documents'>W3C</a> and <a
+      href='https://www.ogc.org/ogc/document'>OGC</a> document use rules apply.</p>
 
   <section id="abstract">
     <p>The Semantic Sensor Network (SSN) ontology is an ontology for describing
@@ -90,6 +100,8 @@
   <section id="Introduction" class="informative" data-include="frag/Introduction.html"></section>
 
   <section id="Modularization" class="informative" data-include="frag/Modularization.html"></section>
+
+  <section id="conformance" class="normative" data-include="frag/Conformance.html"></section>
 
   <section id="Specification" class="normative">
     <h2>Specification</h2>
@@ -406,7 +418,7 @@
 
     <section id="forecasts" class="informative">
       <h3>Forecasts</h3>
-      <p>One may also represent forecasts as observations if the value of <code>sosa:phenomenonTime</code> is later in
+      <p>One MAY also represent forecasts as observations if the value of <code>sosa:phenomenonTime</code> is later in
         time than the <code>sosa:resultTime</code>.
         Given the definition of these terms, it means that: <em>The time when the Observation act was completed is
           before the time that the Result of the observation applies to the FeatureOfInterest.</em></p>
@@ -435,7 +447,7 @@
         </li>
         <li>With OM 2, a quantitative result would be a <a
             href="http://www.wurvoc.org/vocabularies/"><code>om:Measure</code> or <code>om:Point</code></a></li>
-        <li>With CDT, the value of <a href="#SOSAhasSimpleResult"><code>sosa:hasSimpleResult</code></a> may be
+        <li>With CDT, the value of <a href="#SOSAhasSimpleResult"><code>sosa:hasSimpleResult</code></a> can be
           structured to match <a
             href="https://ci.mines-stetienne.fr/lindt/v4/custom_datatypes#ucum"><code>cdt:ucum</code></a> which
           encodes
@@ -680,7 +692,7 @@
       </div>
       <div class="ssn">
         <p>In order to characterize a thing with a large extent, or which is not directly accessible, the usual
-          observational strategy is to obtain one or more samples. Observations may then be made more conveniently on
+          observational strategy is to obtain one or more samples. Observations can then be made more conveniently on
           the samples, with the intention of characterizing the larger thing. This intentionality is captured using
           the
           property <code>sosa:isSampleOf</code>. </p>
@@ -759,7 +771,7 @@
         </span>
       </div>
       <div class="ssn">
-        <p>This example shows how the conditions (temperature and humidity) in a room may be measured using one or
+        <p>This example shows how the conditions (temperature and humidity) in a room can be measured using one or
           more sensors.
           Each sensor observes the conditions in its immediate vicinity, and the values are then used to characterize
           the room. </p>
@@ -843,6 +855,7 @@
       </li>
       <li>Refactored SOSA and SSN into modules - sosa-common sosa-actuation sosa-observation sosa-sampling sosa (all),
         and matching ssn-* files (also ssn-deprecated). Refactored HTML sources to match. </li>
+      <li>Add conformance clause</li>
       <li>Merged and streamlined Introduction and Origins section. </li>
     </ol>
   </section>
