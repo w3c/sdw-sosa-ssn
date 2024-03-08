@@ -1,121 +1,56 @@
 <!--  <section id="Introduction" class="informative">  -->
 <h2>Introduction</h2>
 
-<section id="sensorData">
-  <h3>Sensor data and related concepts</h3>
+<p>
+  Sensors are a major source of data available on the Web today.
+  However, searching, reusing, integrating, and interpreting sensor data requires more than just the sensing results.
+  For the proper interpretation of these values, knowledge of the feature of interest, such as a river, the observed
+  property, such as flow velocity, the sampling strategy, such as the specific locations and
+  times at which the velocity was measured, and a variety of other information are required.
+</p>
+<p>
+  OGC's Sensor Web Enablement standards [[SWE]], [[SensorML]], [[OandM]], [[OMS]], [[STA]] provide
+  conceptual models, as well as some encodings for the annotation of sensors and their observations.
+  Integration and alignment of these with W3C Semantic Web technologies and Linked Data embeds this in a global and
+  densely interconnected graph of data.
+</p>
+<p>
+  With the rise of the Web of Things and smart cities and homes more generally, actuators and the data they produce
+  also become first-class citizens of the Web.
+  Given their close relation to sensors and observations, it is desirable to provide an ontology that also includes
+  actuators and actuation.
+</p>
+<p>
+  Finally, with the increasing diversity of data and data providers, definitions for sensors need to be broadened, to
+  include human agents and social sensing.
+</p>
+<p>
+  This specification defines the Semantic Sensor Network (<b>SSN</b>) ontology.
+  It sets out to provide flexible but coherent perspectives for representing the entities, relations, and activities
+  involved in sensing, sampling, and actuation.
+  A lightweight core for SSN, known as <b>SOSA</b> (Sensor, Observation, Sample, and Actuator) aims at broadening the
+  target audience and application areas that do not need the full capabilities of Semantic Web ontologies.
+  SOSA acts as minimal interoperability fall-back level, i.e., it defines terms (classes and properties) with which
+  data can be safely exchanged across all uses of SSN, its modules, and SOSA.
+</p>
+<p>
+  A new edition of the OGC/ISO standard [[[OMS]]] updated [[[OandM]]] with a number of additional features arising from more than 10  years implementation experience.
+  Production of this new edition of the SSN Ontology is primarily driven by a desire to align with OMS,
+  so that SSN may serve as the canonical RDF implementation of OMS.
+  In addition, developments in Internet of Things implementations, in particular [[SAREF]], [[STA]] and the OGC
+  Connected Systems project have contributed some ideas particularly around actuation.
+  Finally, direct experience with SSN has uncovered a variety of more minor issues that have been addressed or
+  accommodated.
+</p>
+<p>
+  A <a href="#changes">change log</a> is provided in an Annex of this document.
+  The current change log describes the changes since the 2017 edition [[vocab-ssn-20171019]].
+  For earlier changes during the development of the SSN Ontology, please consult Annex "D. Change History" in
+  [[vocab-ssn-20171019]].
+</p>
+<p class="note">
+  An <a href="#origins">Annex to this document</a> provides a brief account of the origins of the SSN ontology through
+  various OGC and W3C initiatives.
+</p>
 
-  <p>
-    Sensors are a major source of data available on the Web today.
-    However, searching, reusing, integrating, and interpreting sensor data requires more than just the sensing results.
-    For the proper interpretation of these values, knowledge of the feature of interest, such as a river, the observed
-    property, such as flow velocity, the sampling strategy, such as the specific locations and
-    times at which the velocity was measured, and a variety of other information are required.
-  </p>
-  <p>
-    OGC's Sensor Web Enablement standards [[SWE]], [[SensorML]], [[OandM]], [[OMS]], [[STA]] provide
-    conceptual models, as well as some encodings for the annotation of sensors and their observations.
-    Integration and alignment of these with W3C Semantic Web technologies and Linked Data embeds this in a global and
-    densely interconnected graph of data.
-  </p>
-  <p>
-    With the rise of the Web of Things and smart cities and homes more generally, actuators and the data they produce
-    also become first-class citizens of the Web.
-    Given their close relation to sensors and observations, it is desirable to provide an ontology that also includes
-    actuators and actuation.
-  </p>
-  <p>
-    Finally, with the increasing diversity of data and data providers, definitions for sensors need to be broadened, to
-    include human agents and social sensing.
-  </p>
-  <p>
-    This specification defines the Semantic Sensor Network (<b>SSN</b>) ontology.
-    It sets out to provide flexible but coherent perspectives for representing the entities, relations, and activities
-    involved in sensing, sampling, and actuation.
-    A lightweight core for SSN, known as <b>SOSA</b> (Sensor, Observation, Sample, and Actuator) aims at broadening the
-    target audience and application areas that do not need the full capabilities of Semantic Web ontologies.
-    SOSA acts as minimal interoperability fall-back level, i.e., it defines terms (classes and properties) with which
-    data can be safely exchanged across all uses of SSN, its modules, and SOSA.</p>
-</section>
-
-<section id="origins">
-
-  <h3>Origins of SSN and SOSA</h3>
-
-  <h4>Sensor Web Enablement</h4>
-
-  <p>
-    Starting in 2002, the OGC's Sensor Web Enablement initiative [[SWE]] developed a generic framework for delivering
-    sensor data, dealing with remote-sensing, moving platforms, and in-situ monitoring and sensing.
-    In particular, the key standards SensorML and O&amp;M provided complementary viewpoints:</p>
-  <ol>
-    <li>
-      <b>SensorML</b> [[SensorML]] is 'provider-centric' and encodes details of the sensor along with raw observation
-      data
-    </li>
-    <li>
-      Observations and Measurements (<b>O&amp;M</b>) [[OandM]] [[iso-19156-2011]] was designed to be more
-      'user-centric', with the target of the observation and the observed property as first-class objects.
-    </li>
-  </ol>
-  <p>
-    O&amp;M also provided a model for sampling, since almost all scientific observations are made on a subset of, or
-    proxy for, the ultimate feature of interest.
-  </p>
-
-  <h4>Semantic Sensor Network</h4>
-
-  <p>
-    The initial Semantic Sensor Network ontology - now known as <b>SSNX</b> [[SSNX]] - was developed by the <a
-      href="https://www.w3.org/2005/Incubator/ssn/wiki/Main_Page">W3C Semantic Sensor Network Incubator Group</a>.
-    SSNX was influenced by SWE, but was primarily built around the <em>Stimulus Sensor Observation</em> (SSO) ontology
-    design pattern [[SSO-Pattern]].
-    The SSO was also aligned to the <em>Dolce-Ultralite </em>upper ontology [[DUL]].
-  </p>
-
-  <h4>SSN Ontology, including SOSA</h4>
-
-  <p>
-    The <b>SSN Ontology</b> [[vocab-ssn-20171019]] combined key elements of SWE and SSNX, and added Actuation and Sampling as
-    additional procedure execution types.
-    The core classes and properties comprised the <em>Sensor, Observation, Sample, and Actuator</em> (<b>SOSA</b>) module.
-    SOSA acts as the central building block for the SSN and is packaged with very lightweight axiomatization so as to
-    support use by web-developers.
-  </p>
-
-  <p>For details on the design philosophy and decisions around the SSN Ontology, please consult chapter "3. Origins of
-    SSN and SOSA" in [[[vocab-ssn-20171019]]].
-  </p>
-
-  <h4>New edition of the SSN Ontology</h4>
-
-  <p>
-    Following experience with O&amp;M since its publication as an ISO and OGC standard in 2011 [[OandM]]
-    [[iso-19156-2011]],
-    a revised edition <em>Observations, Measurements and Samples</em> (<b>OMS</b>) was developed and published in 2023 [[OMS]]
-    [[iso-19156-2023]].
-    The new edition notably incorporated the <code>Sampling</code> class from SSN, as well as some features which had
-    been proposed in an Extension to SSN [[vocab-ssn-ext-20200116]], in particular the notion of <i>ultimate
-      feature-of-interest</i>, as well as Sample and Observation <i>collections</i>.
-  </p>
-
-  <p class="note">OMS was published by ISO 19156:2023 [[iso-19156-2023]], but is freely available as OGC Abstract
-    Specification - Topic 20 [[OMS]].</p>
-
-  <p>
-    This new edition of the SSN Ontology has been primarily driven by a desire to align with OMS, so that SSN may serve
-    as the RDF implementation of OMS.
-    In addition, developments in Internet of Things implementations, in particular [[SAREF]], [[STA]] and the OGC
-    Connected Systems project have contributed some ideas particularly around actuation.
-    Finally, direct experience with SSN has uncovered a variety of more minor issues that have been addressed or
-    accommodated.
-  </p>
-
-  <p>
-    A <a href="#changes">change log</a> is provided in an Annex of this document.
-    The current change log describes the changes since the 2017 edition [[vocab-ssn-20171019]].
-    For earlier changes during the development of the SSN Ontology, please consult Annex "D. Change History" in
-    [[vocab-ssn-20171019]].
-  </p>
-
-</section>
 <!--  </section>  -->

@@ -449,8 +449,7 @@
             href="http://www.wurvoc.org/vocabularies/"><code>om:Measure</code> or <code>om:Point</code></a></li>
         <li>With CDT, the value of <a href="#SOSAhasSimpleResult"><code>sosa:hasSimpleResult</code></a> can be
           structured to match <a
-            href="https://ci.mines-stetienne.fr/lindt/v4/custom_datatypes#ucum"><code>cdt:ucum</code></a> which
-          encodes
+            href="https://ci.mines-stetienne.fr/lindt/v4/custom_datatypes#ucum"><code>cdt:ucum</code></a> which encodes
           the unit-of-measure using UCUM (UCUM, [[UCUM]])</li>
       </ul>
       <p class="note">Custom datatypes are not strictly compatible with OWL, which restricts the set of datatypes that
@@ -466,8 +465,7 @@
           href="#SOSAProperty"><code>sosa:Property</code></a> should be generic to all features of interest (e.g.,
         <code>ex:Temperature</code>,
         <code>ex:OnOffStatus</code>), or specific to a single feature of interest (e.g.,
-        <code>&lt;myBodyTemperature&gt;</code>, <code>&lt;LightStatus&gt;</code>). This version solves the ambiguity
-        by
+        <code>&lt;myBodyTemperature&gt;</code>, <code>&lt;LightStatus&gt;</code>). This version solves the ambiguity by
         differentiating:
       </p>
       <ul>
@@ -480,18 +478,18 @@
     <section id="SOSASystem-instances" class="informative">
       <h3>Generic or Specific Instances of sosa:System</h3>
       <p>This specification does not specify whether an instance of <a href="#SOSASystem"><code>sosa:System</code></a>
-        should be generic (e.g., <code>ex:TemperatureSensor</code>,
-        <code>ex:LightActuator</code>), or specific to a single feature of interest (e.g.,
+        should be generic (e.g., <code>ex:TemperatureSensor</code>, <code>ex:LightActuator</code>), or specific to a
+        single feature of interest (e.g.,
         <code>&lt;temperatureSensor/84&gt;</code>, <code>&lt;light/112&gt;</code>).
         Implementers are free to choose one way of modeling things or the other.
       </p>
       <p>On the other hand, one SHOULD NOT use <a href="https://www.w3.org/TR/owl2-new-features/#F12:_Punning">OWL
           punning</a> to make <code>ex:Temperature</code> denote both a subclass of
-        <a href="#SOSAProperty"><code>sosa:Property</code></a> and an instance of sosa:Property. In fact, merging the
-        two examples below in a
-        single RDF Graph would make an OWL reasoner infer that <code>ex:TemperatureSensor</code>,
-        <code>&lt;TemperatureSensor/1&gt;</code>, and
-        <code>&lt;TemperatureSensor/2&gt;</code>, denote the same individual.
+        <a href="#SOSAProperty"><code>sosa:Property</code></a> and an instance of sosa:Property.
+        In fact, merging the two examples below in a single RDF Graph would make an OWL reasoner infer that
+        <code>ex:TemperatureSensor</code>,
+        <code>&lt;TemperatureSensor/1&gt;</code>, and <code>&lt;TemperatureSensor/2&gt;</code>, denote the same
+        individual.
       </p>
       <p>This also holds for subclasses of <a href="#SOSASystem"><code>sosa:System</code></a>: <a
           href="#SOSASensor"><code>sosa:Sensor</code></a>, <a href="#SOSAActuator"><code>sosa:Actuator</code></a>, and
@@ -528,8 +526,8 @@
       <h3>Coal Oil Point Reserve</h3>
       <div class="ssn">
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/IDEAS.ttl">graph corresponding to
-            this example is available</a>. </p>
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/IDEAS.ttl">graph
+            corresponding to this example is available</a>. </p>
         <pre class="example" data-include="./examples/2017ex9.ttl" data-include-format="text"></pre>
       </div>
     </section>
@@ -581,8 +579,7 @@
       <div class="ssn">
         <p>An RDF file containing a <a
             href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/tree-height.ttl">graph
-            corresponding
-            to this example is available</a>. </p>
+            corresponding to this example is available</a>. </p>
         <pre class="example" data-include="./examples/2017ex12.ttl" data-include-format="text"></pre>
       </div>
       <div class="sosa" style="display: none">
@@ -616,8 +613,7 @@
       <div class="ssn">
         <p>An RDF file containing a <a
             href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/seismograph.ttl">graph
-            corresponding
-            to this example is available</a>. </p>
+            corresponding to this example is available</a>. </p>
         <pre class="example" data-include="./examples/2017ex14.ttl" data-include-format="text"></pre>
       </div>
       <div class="sosa" style="display: none">
@@ -640,7 +636,8 @@
     <section id="sunspots">
       <h3>Number of sunspots</h3>
       <p>An RDF file containing a <a
-          href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/sunspots.ttl">graph corresponding to
+          href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/sunspots.ttl">graph
+          corresponding to
           this example is available</a>. </p>
       <pre class="example" data-include="./examples/2017ex16.ttl" data-include-format="text"></pre>
     </section>
@@ -694,17 +691,15 @@
         <p>In order to characterize a thing with a large extent, or which is not directly accessible, the usual
           observational strategy is to obtain one or more samples. Observations can then be made more conveniently on
           the samples, with the intention of characterizing the larger thing. This intentionality is captured using
-          the
-          property <code>sosa:isSampleOf</code>. </p>
+          the property <code>sosa:isSampleOf</code>. </p>
         <p>In the following example, the ice core is a sample of the Antarctic ice sheet, and observations are made on
           the ice core. </p>
         <p>A convenient side effect of this feature is that all observations related to the larger thing (the ice
-          sheet)
-          can be found, and then potentially joined together in a meta-analysis in order to characterize that. </p>
+          sheet) can be found, and then potentially joined together in a meta-analysis in order to characterize that.
+        </p>
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/ice-core.ttl">graph corresponding
-            to
-            this example is available</a>. </p>
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/ice-core.ttl">graph
+            corresponding to this example is available</a>. </p>
         <pre class="example" data-include="./examples/2017ex19.ttl" data-include-format="text"></pre>
       </div>
       <div class="sosa" style="display: none">
@@ -737,14 +732,14 @@
       </div>
       <div class="ssn">
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/dht22.ttl">graph corresponding to
-            this example is available</a>. </p>
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/dht22.ttl">graph
+            corresponding to this example is available</a>. </p>
         <pre class="example" data-include="./examples/2017ex21.ttl" data-include-format="text"></pre>
       </div>
       <div class="sosa" style="display: none">
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/dht22-sosa.ttl">graph corresponding
-            to this example is available</a>. </p>
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/dht22-sosa.ttl">graph
+            corresponding to this example is available</a>. </p>
         <pre class="example" data-include="./examples/2017ex22.ttl" data-include-format="text"></pre>
       </div>
       <div class="buttonpanel" style="justify-content: center;">
@@ -798,12 +793,14 @@
         <p>This example describes the IP68 Smart Sensor that and some of its capabilities and operating ranges.
           A specific IP68 Smart Sensor observes the air temperature, and its own battery state.</p>
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/ip68.ttl">graph corresponding to
-            this example is available</a>. </p>
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/ip68.ttl">graph
+            corresponding to this example is available</a>. </p>
         <pre class="example" data-include="./examples/2017ex25.ttl" data-include-format="text"></pre>
       </div>
     </section>
   </section>
+
+  <section class="appendix" id="origins" data-include="frag/Origins.html"></section>
 
   <section class="appendix" id="acknowledgments">
     <h2>Acknowledgments</h2>
