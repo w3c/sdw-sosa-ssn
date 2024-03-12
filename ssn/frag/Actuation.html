@@ -10,11 +10,11 @@
         <a href="images/Actuation.png"><img alt="Actuation" src="images/Actuation.png"></a>
         <figcaption>
             Classes and relationships involved in Actuation
+            <br>
+            <em>See <a href="#figure-notation">explanation of the notation used in class diagrams</a></em>.
         </figcaption>
     </figure>
 
-    <section id="notation" class="note" data-include="frag/figure-notation.html"></section>
-        
 </section>
 
 <section id="Actuations-specification">
@@ -40,8 +40,9 @@
         <p><strong>an OWL Class</strong></p>
 
         <em property="rdfs:label">Actuatable Property</em> -
-        <span property="rdfs:comment skos:definition">An actuatable quality (property, characteristic) of a <a
-                href="#SOSAFeatureOfInterest"><code>FeatureOfInterest</code></a>.</span> <br>
+        <span property="skos:definition">A quality (property, characteristic) of a <a
+                href="#SOSAFeatureOfInterest"><code>FeatureOfInterest</code></a> that can be changed by an <a
+                href="#SOSAActuator"><code>Actuator</code></a>.</span> <br>
         <table>
             <tbody>
                 <tr>
@@ -100,7 +101,7 @@
         <p><strong>an OWL Object Property</strong></p>
 
         <em property="rdfs:label">is acted on by</em> -
-        <span property="rdfs:comment skos:definition">Relation between an
+        <span property="skos:definition">Relation between an
             <a href="#SOSAActuatableProperty"><code>ActuatableProperty</code></a> of a
             <a href="#SOSAFeatureOfInterest"><code>FeatureOfInterest</code></a> and an
             <a href="#SOSAActuation"><code>Actuation</code></a> changing its state.</span> <br>
@@ -161,7 +162,7 @@
             This term is non-normative pending further implementation experience</p>
         <p>
             <em property="rdfs:label">Actuation Procedure</em> -
-            <span property="rdfs:comment skos:definition">The description of steps performed by an Actuator to change
+            <span property="skos:definition">The description of steps performed by an Actuator to change
                 the ActuableProperty.</span>
         </p>
         <table>
@@ -203,8 +204,9 @@
 
         <em property="rdfs:label">Actuation</em> -
         <span property="skos:definition">An <a href="#SOSAActuation"><code>Actuation</code></a> carries out an
-            (Actuation) <a href="#SOSAProcedure"><code>Procedure</code></a> to change the state of something in the
-            world using an <a href="#SOSAActuator"><code>Actuator</code></a>.
+            (Actuation) <a href="#SOSAProcedure"><code>Procedure</code></a> to change the value of an <a
+                href="#SOSAActuatableProperty"><code>ActuatableProperty</code></a> using an <a
+                href="#SOSAActuator"><code>Actuator</code></a>.
             <br>
             <br>
             In this context,
@@ -221,9 +223,9 @@
             property to verify that the result value has been obtained</span>
         <br>
         <br>
-        <span property="rdfs:comment">An <a href="#SOSAActuation"><code>Actuation</code></a> concerns a single
-            <a href="#SOSAActuatableProperty"><code>ActuatableProperty</code></a> of a single
-            <a href="#SOSAFeatureOfInterest"><code>FeatureOfInterest</code></a>.
+        <span property="skos:scopeNote">An <a href="#SOSAActuation"><code>Actuation</code></a> concerns a single <a
+                href="#SOSAActuatableProperty"><code>ActuatableProperty</code></a> of a single <a
+                href="#SOSAFeatureOfInterest"><code>FeatureOfInterest</code></a>.
             Changes to multiple properties, or other combinations of Actuations, may be described in an
             <a href="#SOSAActuationCollection"><code>ActuationCollection</code></a>.
             <br>
@@ -232,6 +234,12 @@
             multiple individual components, and a corresponding complex result (e.g. a vector). This approach is not
             prohibited by the SSN Ontology, but the details are beyond the scope of SSN.</span>
         <br>
+        <span property="skos:note"><a href="#SOSArelatedObservation"><code>relatedObservation</code></a> should be used
+            to link to an associated <a href="#SOSAObservation"><code>Observation</code></a> or <a
+                href="#SOSAActuationCollection"><code>ObservationCollection</code></a> that monitors the actuated
+            property to verify that the result value has been obtained..
+        </span>
+
         <table>
             <tbody>
                 <tr>
@@ -371,8 +379,8 @@
             This term is non-normative pending further implementation experience</p>
         <p>
             <em property="rdfs:label">Actuation Collection</em> -
-            <span property="skos:definition">A <a href="#SOSAActuationCollection"><code>ActuationCollection</code></a>
-                is a collection of one or more <a href="#SOSAActuation"><code>Actuations</code></a> or <a
+            <span property="skos:definition">Collection of one or more <a
+                    href="#SOSAActuation"><code>Actuations</code></a> or <a
                     href="#SOSAActuationCollection"><code>ActuationCollections</code></a>, i.e. collections may be
                 nested.
                 <br><br>
@@ -388,7 +396,7 @@
                 , <a href="#SOSAhasResult"><code>hasResult</code></a>
                 , <a href="#SOSAhasSimpleResult"><code>hasSimpleResult</code></a>
                 .
-                If they are present, the values of these properties summarize the values of the matching properties of
+                If it is present, the value of a property summarizes the values of the matching properties of
                 the member actuations, where membership is either direct or transitive through one or more member
                 actuation collections.
                 <br><br>
@@ -402,8 +410,8 @@
                     single value for a property</i>, each member <a href="#SOSAActuation"><code>Actuation</code></a>
                 (direct or transitive) MUST have that same value for that property - i.e. the collection is homogeneous
                 in that property.
-                That property MAY be omitted in any member <a href="#SOSAActuation"><code>Actuation</code></a> or <a
-                    href="#SOSAActuationCollection"><code>ActuationCollection</code></a>.
+                That property MAY then be omitted in any member <a href="#SOSAActuation"><code>Actuation</code></a> or
+                <a href="#SOSAActuationCollection"><code>ActuationCollection</code></a>.
                 <br><br>
                 3. Where an individual <a href="#SOSAActuationCollection"><code>ActuationCollection</code></a> has
                 <i>more than one value for a property</i>, each member <a
@@ -488,9 +496,9 @@
         <p><strong>an OWL Object Property</strong></p>
 
         <em property="rdfs:label">acts on property</em> -
-        <span property="rdfs:comment skos:definition">Relation between an <a
-                href="#SOSAActuation"><code>Actuation</code></a> and the property of a <a
-                href="#SOSAFeatureOfInterest"><code>FeatureOfInterest</code></a> it is acting upon.</span> <br>
+        <span property="skos:definition">Relation between an <a href="#SOSAActuation"><code>Actuation</code></a> and the
+            property of a <a href="#SOSAFeatureOfInterest"><code>FeatureOfInterest</code></a> it is acting upon.</span>
+        <br>
         <table>
             <tbody>
                 <tr>
@@ -547,8 +555,9 @@
         <p><strong>an OWL Class</strong></p>
 
         <em property="rdfs:label">Actuator</em> -
-        <span property="rdfs:comment skos:definition">A device that is used by, or implements, an (Actuation) <a
-                href="#SOSAProcedure"><code>Procedure</code></a> that changes the state of the world.</span> <br>
+        <span property="skos:definition">A device or system that is used by, or implements, an (Actuation) <a
+                href="#SOSAProcedure"><code>Procedure</code></a> that changes the value of an <a
+                href="#SOSAActuatableProperty"><code>ActuatableProperty</code></a></span> <br>
         <table>
             <tbody>
                 <tr>
@@ -620,9 +629,8 @@
         <p><strong>an OWL Object Property</strong></p>
 
         <em property="rdfs:label">made actuation</em> -
-        <span property="rdfs:comment skos:definition">Relation between an <a
-                href="#SOSAActuator"><code>Actuator</code></a> and the <a
-                href="#SOSAActuation"><code>Actuation</code></a>
+        <span property="skos:definition">Relation between an <a href="#SOSAActuator"><code>Actuator</code></a> and an
+            <a href="#SOSAActuation"><code>Actuation</code></a>
             made by the <a href="#SOSAActuator"><code>Actuator</code></a>.</span> <br>
         <table>
             <tbody>
@@ -668,10 +676,9 @@
         <p><strong>an OWL Object Property</strong></p>
 
         <em property="rdfs:label">made by actuator</em> -
-        <span property="rdfs:comment skos:definition">Relation linking an <a
-                href="#SOSAActuation"><code>Actuation</code></a> to the <a
-                href="#SOSAActuator"><code>Actuator</code></a>
-            that made that <a href="#SOSAActuation"><code>Actuation</code></a>.</span>
+        <span property="skos:definition">Relation linking an <a href="#SOSAActuation"><code>Actuation</code></a> to the
+            <a href="#SOSAActuator"><code>Actuator</code></a>
+            that made it.</span>
         <br>
         <table>
             <tbody>

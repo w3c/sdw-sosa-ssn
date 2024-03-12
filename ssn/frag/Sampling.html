@@ -9,10 +9,10 @@
     <figure>
         <a href="images/Sampling.png"><img alt="Sampling and samples" src="images/Sampling.png"></a>
         <figcaption>Classes and relationships involved in Sampling
+            <br>
+            <em>See <a href="#figure-notation">explanation of the notation used in class diagrams</a></em>.
         </figcaption>
     </figure>
-
-    <section id="notation" class="note" data-include="frag/figure-notation.html"></section>
 
 </section>
 
@@ -46,7 +46,7 @@
         <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/Sample</p>
         <p><strong>an OWL Class</strong></p>
         <em property="rdfs:label">Sample</em> -
-        <span property="rdfs:comment skos:definition">Feature which is intended to be representative of a <a
+        <span property="skos:definition">Feature which is intended to be representative of a <a
                 href="#SOSAFeatureOfInterest"><code>FeatureOfInterest</code></a> on which <a
                 href="#SOSAObservation"><code>Observations</code></a> may be made.</span> <br>
         <table>
@@ -54,26 +54,19 @@
                 <tr>
                     <th>Comment</th>
                     <td><span property="rdfs:comment">Samples are typically subsets or extracts from the feature of
-                            interest
-                            of an observation. They are used in situations where observations cannot be made
-                            directly on the
-                            ultimate feature of interest, either because the entire feature cannot be observed, or
-                            because it
-                            is
-                            more convenient to use a proxy. Samples are thus artifacts of an observational strategy,
-                            and
-                            usually
-                            have no significant function outside of their role in the observation process. The
-                            characteristics
-                            of the samples themselves are generally of little interest, except to the manager of a
-                            sampling
-                            campaign, or sample curator.
+                            interest of an observation.
+                            They are used in situations where observations cannot be made directly on the ultimate
+                            feature of interest, either because the entire feature cannot be observed, or because it is
+                            more convenient to use a proxy.
+                            Samples are thus artifacts of an observational strategy, and usually have no significant
+                            function outside of their role in the observation process.
+                            The characteristics of the samples themselves are generally of little interest, except to
+                            the manager of a sampling campaign, or sample curator.
                             <br>
                             A Sample is intended to sample some FeatureOfInterest, so there is an expectation of at
-                            least one
-                            isSampleOf property. However, in some cases the identity, and even the exact type, of
-                            the sampled
-                            feature may not be known when observations are made using the sampling features.</span>
+                            least one isSampleOf property.
+                            However, in some cases the identity, and even the exact type, of the sampled feature may not
+                            be known when observations are made using the sample.</span>
                         <br>
                         <span property="rdfs:comment">Physical samples are sometimes known as 'specimens'.</span>
                     </td>
@@ -81,21 +74,16 @@
                 <tr>
                     <th>Example</th>
                     <td><span property="skos:example">A 'station' is essentially an identifiable locality where a <a
-                                href="#SOSASensor"><code>Sensor</code></a> system or procedure may be deployed and
-                            an
-                            observation
-                            made. In the context of the observation model, it connotes the 'world in the vicinity of
-                            the
-                            station', so the observed properties relate to the physical medium at the station, and
-                            not to any
-                            physical artifact such as a mooring, buoy, benchmark, monument, well, etc.</span>
+                                href="#SOSASensor"><code>Sensor</code></a> system or procedure may be deployed and an
+                            observation made.
+                            In the context of the observation model, it connotes the 'world in the vicinity of the
+                            station', so the observed properties relate to the physical medium at the station, and not
+                            to any physical artifact such as a mooring, buoy, benchmark, monument, well, etc.</span>
                         <br>
-                        <span property="skos:example">A statistical sample is often designed to be characteristic of
-                            an
-                            entire
-                            population, so that <a href="#SOSAObservation"><code>Observations</code></a> can be made
-                            regarding
-                            the sample that provide a good estimate of the properties of the population.</span>
+                        <span property="skos:example">A statistical sample is often designed to be characteristic of an
+                            entire population, so that <a href="#SOSAObservation"><code>Observations</code></a> can be
+                            made regarding the sample that provide a good estimate of the properties of the
+                            population.</span>
                     </td>
                 </tr>
                 <tr class="ssn">
@@ -204,7 +192,7 @@
             This term is non-normative pending further implementation experience</p>
         <p>
             <em property="rdfs:label">Material Sample</em> -
-            <span property="rdfs:comment skos:definition">A MaterialSample is a physical, tangible Sample.</span>
+            <span property="skos:definition">A MaterialSample is a physical, tangible Sample.</span>
         </p>
         <table>
             <tbody>
@@ -268,11 +256,9 @@
             This term is non-normative pending further implementation experience</p>
         <p>
             <em property="rdfs:label">Spatial Sample</em> -
-            <span property="rdfs:comment skos:definition">A SpatialSample is a geospatial Sample. When observations
-                are
-                made to estimate properties of a geospatial feature, in particular where the value of a property
-                varies
-                within the scope of the feature, a SpatialSample is used.</span>
+            <span property="skos:definition">A SpatialSample is a geospatial Sample.
+                When observations are made to estimate properties of a geospatial feature, in particular where the value
+                of a property varies within the scope of the feature, a SpatialSample is used.</span>
         </p>
         <table>
             <tbody>
@@ -309,8 +295,7 @@
                     <th>Note</th>
                     <td>
                         <span property="skos:note">Depending on accessibility and on the nature of the expected
-                            property
-                            variation, the SpatialSample may be extensive in one, two or three spatial
+                            property variation, the SpatialSample may be extensive in one, two or three spatial
                             dimensions.</span>
                     </td>
                 </tr>
@@ -348,7 +333,7 @@
             This term is non-normative pending further implementation experience</p>
         <p>
             <em property="rdfs:label">Statistical Sample</em> -
-            <span property="rdfs:comment skos:definition">A StatisticalSample is a statistical subset of a
+            <span property="skos:definition">A StatisticalSample is a statistical subset of a
                 feature-of-interest, defined for the purpose of creating Observation(s).</span>
         </p>
         <table>
@@ -467,6 +452,10 @@
                     <th>Example</th>
                     <td><span property="skos:example">... TODO ...</span></td>
                 </tr>
+                <tr>
+                    <th>Note</th>
+                    <td><span property="skos:note">The members of a collection do not necessarily share a common value for any property.</span></td>
+                </tr>
                 <tr class="ssn">
                     <th>Sub class of</th>
                     <td>
@@ -525,9 +514,10 @@
         <p><strong>an OWL Object Property</strong></p>
 
         <em property="rdfs:label">has sample</em> -
-        <span property="rdfs:comment skos:definition">Relation between a <a
+        <span property="skos:definition">Relation between a <a
                 href="#SOSAFeatureOfInterest"><code>FeatureOfInterest</code></a> and the <a
-                href="#SOSASample"><code>Sample</code></a> used to represent it.</span>
+                href="#SOSASample"><code>Sample</code></a> or <a
+                href="#SOSASampleCollection"><code>SampleCollection</code></a> used to represent it.</span>
         <br>
         <table>
             <tbody>
@@ -583,10 +573,8 @@
         <p><strong>an OWL Object Property</strong></p>
 
         <em property="rdfs:label">is sample of</em> -
-        <span property="rdfs:comment skos:definition">Relation from a <a href="#SOSASample"><code>Sample</code></a>
-            to
-            the <a href="#SOSAFeatureOfInterest"><code>FeatureOfInterest</code></a> that it is intended to be
-            representative of.</span> <br>
+        <span property="skos:definition">Relation from a <a href="#SOSASample"><code>Sample</code></a> or <a
+            href="#SOSASampleCollection"><code>SampleCollection</code></a>            to            the <a href="#SOSAFeatureOfInterest"><code>FeatureOfInterest</code></a> that it is intended to be            representative of.</span> <br>
         <table>
             <tbody>
                 <tr>
@@ -647,11 +635,7 @@
             This term is non-normative pending further implementation experience</p>
         <p>
             <em property="rdfs:label">has original sample</em> -
-            <span property="rdfs:comment skos:definition">Relation from a <a href="#SOSASample"><code>Sample</code></a>
-                or
-                <a href="#SOSASampleCollection"><code>SampleCollection</code></a> to the original <a
-                    href="#SOSASample"><code>Sample</code></a> collected from the ultimate feature of
-                interest.</span>
+            <span property="skos:definition">Relation from a <a href="#SOSASample"><code>Sample</code></a>                or                <a href="#SOSASampleCollection"><code>SampleCollection</code></a> to the original <a                    href="#SOSASample"><code>Sample</code></a> collected from the ultimate feature of                interest.</span>
             <br>
         </p>
         <table>
@@ -695,11 +679,7 @@
             This term is non-normative pending further implementation experience</p>
         <p>
             <em property="rdfs:label">has ultimate sampled feature</em> -
-            <span property="rdfs:comment skos:definition">Relation from a <a href="#SOSASample"><code>Sample</code></a>
-                or
-                <a href="#SOSASampleCollection"><code>SampleCollection</code></a> to the ultimate <a
-                    href="#SOSAFeatureOfInterest"><code>FeatureOfInterest</code></a> that it is intended to be
-                representative
+            <span property="skos:definition">Relation from a <a href="#SOSASample"><code>Sample</code></a>                or                <a href="#SOSASampleCollection"><code>SampleCollection</code></a> to the ultimate <a                    href="#SOSAFeatureOfInterest"><code>FeatureOfInterest</code></a> that it is intended to be                representative
                 of - i.e. the end of a chain of isSampleOf relations.</span> <br>
         </p>
         <table>
@@ -742,10 +722,7 @@
             This term is non-normative pending further implementation experience</p>
         <p>
             <em property="rdfs:label">is a result of made by sampler</em> -
-            <span property="rdfs:comment skos:definition">Relation from a <a href="#SOSASample"><code>Sample</code></a>
-                or
-                <a href="#SOSASampleCollection"><code>SampleCollection</code></a> to the <a
-                    href="#SOSASampler"><code>Sampler</code></a> (sampling device or entity) that made it.</span>
+            <span property="skos:definition">Relation from a <a href="#SOSASample"><code>Sample</code></a>                or                <a href="#SOSASampleCollection"><code>SampleCollection</code></a> to the <a                    href="#SOSASampler"><code>Sampler</code></a> (sampling device or entity) that made it.</span>
             <br>
         </p>
         <table>
@@ -809,10 +786,7 @@
             This term is non-normative pending further implementation experience</p>
         <p>
             <em property="rdfs:label">is a result of used procedure</em> -
-            <span property="rdfs:comment skos:definition">Relation from a <a href="#SOSASample"><code>Sample</code></a>
-                or
-                <a href="#SOSASampleCollection"><code>SampleCollection</code></a> to the <a
-                    href="#SOSAProcedure"><code>Procedure</code></a> (plan) used to make it.</span> <br>
+            <span property="skos:definition">Relation from a <a href="#SOSASample"><code>Sample</code></a>                or                <a href="#SOSASampleCollection"><code>SampleCollection</code></a> to the <a                    href="#SOSAProcedure"><code>Procedure</code></a> (plan) used to make it.</span> <br>
         </p>
         <table>
             <tbody>
@@ -875,10 +849,8 @@
             This term is non-normative pending further implementation experience</p>
         <p>
             <em property="rdfs:label">Sampling Procedure</em> -
-            <span property="rdfs:comment skos:definition">The description of steps performed by a Sampler in
-                order
-                to
-                extract a Sample from its sampled Feature in the frame of a Sampling.</span>
+            <span property="skos:definition">The description of steps performed by a <a href="#SOSASampler"><code>Sampler</code></a> in                order                to
+                extract a <a href="#SOSASample"><code>Sample</code></a> from its sampled Feature in the frame of a <a href="#SOSASampling"><code>Sampling</code></a>.</span>
         </p>
         <table>
             <tbody>
@@ -918,10 +890,7 @@
         <p><strong>an OWL Class</strong></p>
 
         <em property="rdfs:label">Sampling</em> -
-        <span property="rdfs:comment skos:definition">An act of <a href="#SOSASampling"><code>Sampling</code></a>
-            carries out a (Sampling) <a href="#SOSAProcedure"><code>Procedure</code></a> to create or transform one
-            or
-            more <a href="#SOSASample"><code>Samples</code></a>.</span>
+        <span property="skos:definition">An act of <a href="#SOSASampling"><code>Sampling</code></a>            carries out a (Sampling) <a href="#SOSAProcedure"><code>Procedure</code></a> to create one            or            more <a href="#SOSASample"><code>Samples</code></a>.</span>
         <table>
             <tbody>
                 <tr>
@@ -1048,24 +1017,16 @@
         <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/Sampler</p>
         <p><strong>an OWL Class</strong></p>
         <em property="rdfs:label">Sampler</em> -
-        <span property="rdfs:comment skos:definition">A device that is used by, or implements, a (Sampling) <a
+        <span property="skos:definition">A device that implements a (Sampling) <a
                 href="#SOSAProcedure"><code>Procedure</code></a> to create or transform one or more samples.</span>
         <br>
         <table>
             <tbody>
                 <tr>
                     <th>Example</th>
-                    <td><span property="skos:example">A ball mill, diamond drill, hammer, hypodermic syringe and
-                            needle,
-                            image <a href="#SOSASensor"><code>Sensor</code></a> or a soil auger can all act as
-                            sampling
-                            devices
-                            (i.e., be <a href="#SOSASampler"><code>Samplers</code></a>). However, sometimes the
-                            distinction
-                            between the <a href="#SOSASampler"><code>Sampler</code></a> and the <a
-                                href="#SOSASampler"><code>Sensor</code></a> is not evident, as they are packaged as
-                            a unit. A <a href="#SOSASampler"><code>Sampler</code></a> need not be a physical
-                            device.</span></td>
+                    <td><span property="skos:example">A ball mill, diamond drill, hammer, hypodermic syringe and                            needle,                            image <a href="#SOSASensor"><code>Sensor</code></a> or a soil auger can all act as                            sampling                            devices                            (i.e., be <a href="#SOSASampler"><code>Samplers</code></a>). 
+                        However, sometimes the                            distinction                            between the <a href="#SOSASampler"><code>Sampler</code></a> and the <a                                href="#SOSASampler"><code>Sensor</code></a> is not evident, as they are packaged as                            a unit. 
+                        A <a href="#SOSASampler"><code>Sampler</code></a> need not be a physical                            device.</span></td>
                 </tr>
                 <tr class="ssn">
                     <th>Sub class of</th>
@@ -1121,9 +1082,7 @@
         <p><strong>an OWL Object Property</strong></p>
 
         <em property="rdfs:label">made sampling</em> -
-        <span property="rdfs:comment skos:definition">Relation between a <a href="#SOSASampler"><code>Sampler</code></a>
-            (sampling device or entity) and the <a href="#SOSASampling"><code>Sampling</code></a> act it
-            performed.</span>
+        <span property="skos:definition">Relation between a <a href="#SOSASampler"><code>Sampler</code></a>            (sampling device or entity) and the <a href="#SOSASampling"><code>Sampling</code></a> act it            performed.</span>
         <table>
             <tbody>
                 <tr>
@@ -1165,9 +1124,7 @@
         <p><strong>an OWL Object Property</strong></p>
 
         <em property="rdfs:label">made by sampler</em> -
-        <span property="rdfs:comment skos:definition">Relation linking an act of <a
-                href="#SOSASampling"><code>Sampling</code></a> to the <a href="#SOSASampler"><code>Sampler</code></a>
-            (sampling device or entity) that made it.</span> <br>
+        <span property="skos:definition">Relation linking an act of <a href="#SOSASampling"><code>Sampling</code></a> to            the <a href="#SOSASampler"><code>Sampler</code></a>            (sampling device or entity) that made it.</span> <br>
         <table>
             <tbody>
                 <tr>

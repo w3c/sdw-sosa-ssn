@@ -10,11 +10,11 @@
         <figure>
             <a href="images/Observation.png"><img alt="Observation" src="images/Observation.png"></a>
             <figcaption>Classes and relationships involved in Observation
+                <br>
+                <em>See <a href="#figure-notation">explanation of the notation used in class diagrams</a></em>.
             </figcaption>
         </figure>
     </div>
-
-    <section id="notation" class="note" data-include="frag/figure-notation.html"></section>
 
 </section>
 
@@ -52,7 +52,7 @@
                 href="#SOSAFeatureOfInterest"><code>FeatureOfInterest</code></a>.</span>
         <br>
         <br>
-        <span property="rdfs:comment">'Observable' means that the value may be determined through an act of
+        <span property="skos:note">'Observable' means that the value can be determined through an act of
             <a href="#SOSAObservation"><code>Observation</code></a> using an
             <a href="#SOSAProcedure"><code>ObservationProcedure</code></a> applied by a
             <a href="#SOSASensor"><code>Sensor</code></a> or Observer.
@@ -140,8 +140,11 @@
             This term is non-normative pending further implementation experience</p>
         <p>
             <em property="rdfs:label">Observing Procedure</em> -
-            <span property="rdfs:comment skos:definition">The description of steps performed in order to determine the
-                value of an ObservableProperty by an Observer.</span>
+            <span property="skos:definition">The description of steps performed in order to determine the value of an
+                ObservableProperty by an Observer.</span>
+            <br><br>
+            <span property="skos:scopeNote">The observing procedure cannot describe a sensor instance, but it can
+                describe the sensor type.</span>
         </p>
         <table>
             <tbody>
@@ -209,7 +212,7 @@
             associated with.</span>
         <br>
         <br>
-        <span property="rdfs:comment">An <a href="#SOSAObservation"><code>Observation</code></a> concerns a single
+        <span property="skos:scopeNote">An <a href="#SOSAObservation"><code>Observation</code></a> concerns a single
             <a href="#SOSAObservableProperty"><code>ObservableProperty</code></a> of a single
             <a href="#SOSAFeatureOfInterest"><code>FeatureOfInterest</code></a>.
             Observations of multiple properties, or other combinations of Observations, may be described in an
@@ -386,9 +389,8 @@
             This term is non-normative pending further implementation experience</p>
         <p>
             <em property="rdfs:label">Observation Collection</em> -
-            <span property="skos:definition">A
-                <a href="#SOSAObservationCollection"><code>ObservationCollection</code></a>
-                is a collection of one or more <a href="#SOSAObservation"><code>Observations</code></a> or
+            <span property="skos:definition">Collection of one or more <a
+                    href="#SOSAObservation"><code>Observations</code></a> or
                 <a href="#SOSAObservationCollection"><code>ObservationCollections</code></a>, i.e. collections may be
                 nested.
                 <br><br>
@@ -421,8 +423,8 @@
                     href="#SOSAObservation"><code>Observation</code></a> (direct or transitive) MUST have that same
                 value
                 for that property - i.e. the collection is homogeneous in that property.
-                That property MAY be omitted in any member <a href="#SOSAObservation"><code>Observation</code></a> or <a
-                    href="#SOSAObservationCollection"><code>ObservationCollection</code></a>.
+                That property MAY then be omitted in any member <a href="#SOSAObservation"><code>Observation</code></a>
+                or <a href="#SOSAObservationCollection"><code>ObservationCollection</code></a>.
                 <br><br>
                 3. Where an individual <a href="#SOSAObservationCollection"><code>ObservationCollection</code></a> has
                 <i>more than one value for a property</i>, each member <a
@@ -509,8 +511,10 @@
         <p><strong>an OWL Object Property</strong></p>
 
         <em property="rdfs:label">observed property</em> -
-        <span property="rdfs:comment skos:definition">Relation linking an
-            <a href="#SOSAObservation"><code>Observation</code></a> to the property that was observed.
+        <span property="skos:definition">Relation linking an
+            <a href="#SOSAObservation"><code>Observation</code></a> or <a
+                href="#SOSAObservationCollection"><code>ObservationCollection</code></a> to the property that was
+            observed.
             The <a href="#SOSAObservableProperty"><code>ObservableProperty</code></a> should be a property of the
             <a href="#SOSAFeatureOfInterest"><code>FeatureOfInterest</code></a> (linked by
             <a href="#SOSAhasFeatureOfInterest"><code>hasFeatureOfInterest</code></a>) of this
@@ -569,8 +573,7 @@
                             of the observation Procedure, which provides information concerning the quality of all
                             observations using this procedure. </span>
                         <span property="skos:note">The quality of a result can be assessed following the procedures in
-                            the ISO
-                            19157 series.
+                            the ISO 19157 series.
                             Multiple measures can be provided.</span>
                         <span property="skos:note"><a
                                 href="https://www.w3.org/TR/vocab-dqv/#dqv:hasQualityMeasurement">dqv:hasQualityMeasurement</a>
@@ -606,16 +609,35 @@
         <h5><a href="#SOSASensor">sosa:Sensor</a></h5>
         <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/Sensor</p>
         <p><strong>an OWL Class</strong></p>
-
-        <em property="rdfs:label">Sensor</em> -
-        <span property="rdfs:comment skos:definition">Device, agent (including humans), or software (simulation)
-            involved in, or implementing, a <a href="#SOSAProcedure"><code>Procedure</code></a>.
-            <a href="#SOSASensor"><code>Sensors</code></a> respond to a
-            <a href="#SOSAStimulus"><code>Stimulus</code></a>, e.g., a change in the environment, or input data composed
-            from the <a href="#SOSAResult"><code>Results</code></a> of prior <a
-                href="#SOSAObservation"><code>Observations</code></a>, and generate a result.
-            <a href="#SOSASensor"><code>Sensors</code></a> can be hosted by <a
-                href="#SOSAPlatform"><code>Platforms</code></a>.</span>
+        <p>
+            <em property="rdfs:label">Sensor</em> -
+            <span property="skos:definition">An identifiable entity that can generate <a
+                    href="#SOSAObservation"><code>Observations</code></a> pertaining to an <a
+                    href="#SOSAObservableProperty"><code>ObservableProperty</code></a> by implementing an <a
+                    href="#SOSAObservingProcedure"><code>ObservingProcedure</code></a>.
+                Device, agent (including humans), or software (simulation)
+                involved in, or implementing, a <a href="#SOSAProcedure"><code>Procedure</code></a>.
+                <a href="#SOSASensor"><code>Sensors</code></a> respond to a
+                <a href="#SOSAStimulus"><code>Stimulus</code></a>, e.g., a change in the environment, or input data
+                composed
+                from the <a href="#SOSAResult"><code>Results</code></a> of prior <a
+                    href="#SOSAObservation"><code>Observations</code></a>, and generate a result.
+                <a href="#SOSASensor"><code>Sensors</code></a> can be hosted by <a
+                    href="#SOSAPlatform"><code>Platforms</code></a>.</span>
+            <br><br>
+            <span property="skos:scopeNote">The Sensor is the entity instance, not the entity type. Pertaining to
+                sensors, the Sensor would reference the explicit sensor, while the Procedure would reference the
+                methodology utilized by that sensor type</span>
+            <br><br>
+            <span property="skos:note">Different Sensors can follow the same (reusable) observing Procedure for the
+                creation of different Observations.</span>
+            <br><br>
+            <span property="skos:note">A Sensor can be hosted by one or more Platform.</span>
+            <br><br>
+            <span property="skos:note">The UML class 'Observer' from ISO 19156:2023 is implemented in SOSA by the
+                OWL/RDFS class 'Sensor'. The class name 'Sensor' is preferred for backward compatibility with existing
+                SOSA deployments.</span>
+        </p>
         <table>
             <tbody>
                 <tr>
@@ -698,7 +720,7 @@
         <p><strong>an OWL Object Property</strong></p>
 
         <em property="rdfs:label">observes</em> -
-        <span property="rdfs:comment skos:definition">Relation between a <a href="#SOSASensor"><code>Sensor</code></a>
+        <span property="skos:definition">Relation between a <a href="#SOSASensor"><code>Sensor</code></a>
             and an <a href="#SOSAObservableProperty"><code>ObservableProperty</code></a> that it is capable of
             sensing.</span> <br>
         <table>
@@ -755,7 +777,7 @@
         <p><strong>an OWL Object Property</strong></p>
 
         <em property="rdfs:label">is observed by</em> -
-        <span property="rdfs:comment skos:definition">Relation between an <a
+        <span property="skos:definition">Relation between an <a
                 href="#SOSAObservableProperty"><code>ObservableProperty</code></a> and the <a
                 href="#SOSASensor"><code>Sensor</code></a> able to observe it.</span>
         <br>
@@ -800,7 +822,7 @@
         <p><strong>an OWL Object Property</strong></p>
 
         <em property="rdfs:label">made observation</em> -
-        <span property="rdfs:comment skos:definition">Relation between a <a href="#SOSASensor"><code>Sensor</code></a>
+        <span property="skos:definition">Relation between a <a href="#SOSASensor"><code>Sensor</code></a>
             and an <a href="#SOSAObservation"><code>Observation</code></a> made by the <a
                 href="#SOSASensor"><code>Sensor</code></a>.</span> <br>
         <table>
@@ -843,9 +865,8 @@
         <p><strong>an OWL Object Property</strong></p>
 
         <em property="rdfs:label">made by <a href="#SOSASensor"><code>Sensor</code></a></em> -
-        <span property="rdfs:comment skos:definition">Relation between an <a
-                href="#SOSAObservation"><code>Observation</code></a> and the <a
-                href="#SOSASensor"><code>Sensor</code></a>
+        <span property="skos:definition">Relation between an <a href="#SOSAObservation"><code>Observation</code></a> and
+            the <a href="#SOSASensor"><code>Sensor</code></a>
             which made the <a href="#SOSAObservation"><code>Observations</code></a>.</span> <br>
         <table>
             <tbody>
@@ -894,9 +915,8 @@
             This term is non-normative pending further implementation experience</p>
         <p>
             <em property="rdfs:label">related observation</em> -
-            <span property="rdfs:comment skos:definition">Relation to an <a
-                    href="#SOSAObservation"><code>Observation</code></a> or <a
-                    href="#SOSAObservationCollection"><code>ObservationCollection</code></a>.</span>
+            <span property="skos:definition">Relation to an <a href="#SOSAObservation"><code>Observation</code></a> or
+                <a href="#SOSAObservationCollection"><code>ObservationCollection</code></a>.</span>
         </p>
         <table>
             <tbody>
@@ -954,7 +974,7 @@
         <p><strong>an OWL Class</strong></p>
 
         <em property="rdfs:label">Stimulus</em> -
-        <span property="rdfs:comment skos:definition">An event in the real world that 'triggers' the
+        <span property="skos:definition">An event in the real world that 'triggers' the
             <a href="#SOSASensor"><code>Sensor</code></a>. The properties associated to the
             <a href="#SOSAStimulus"><code>Stimulus</code></a> may be different to the eventual observed
             <a href="#SOSAObservableProperty"><code>ObservableProperty</code></a>.
@@ -1022,8 +1042,8 @@
         <p><strong>an OWL Object Property</strong></p>
 
         <em property="rdfs:label">isProxyFor</em> -
-        <span property="rdfs:comment skos:definition">A relation from a <a
-                href="#SOSAStimulus"><code>Stimulus</code></a> to the <a href="#SOSAProperty"><code>Property</code></a>
+        <span property="skos:definition">A relation from a <a href="#SOSAStimulus"><code>Stimulus</code></a> to the <a
+                href="#SOSAProperty"><code>Property</code></a>
             that the <a href="#SOSAStimulus"><code>Stimulus</code></a> is serving as a proxy for.</span>
         <table>
             <tbody>
@@ -1072,9 +1092,8 @@
         <p><strong>an OWL Object Property</strong></p>
 
         <em property="rdfs:label">was originated by</em> -
-        <span property="rdfs:comment skos:definition">Relation between an <a
-                href="#SOSAObservation"><code>Observation</code></a> and the <a
-                href="#SOSAStimulus"><code>Stimulus</code></a> that originated it.</span>
+        <span property="skos:definition">Relation between an <a href="#SOSAObservation"><code>Observation</code></a> and
+            the <a href="#SOSAStimulus"><code>Stimulus</code></a> that originated it.</span>
         <table>
             <tbody>
                 <tr>
@@ -1109,7 +1128,7 @@
         <p><strong>an OWL Object Property</strong></p>
 
         <em property="rdfs:label">detects</em> -
-        <span property="rdfs:comment skos:definition">A relation from a <a href="#SOSASensor"><code>Sensor</code></a>
+        <span property="skos:definition">A relation from a <a href="#SOSASensor"><code>Sensor</code></a>
             to the <a href="#SOSAStimulus"><code>Stimulus</code></a> that the <a
                 href="#SOSASensor"><code>Sensor</code></a> detects. The <a
                 href="#SOSAStimulus"><code>Stimulus</code></a>
