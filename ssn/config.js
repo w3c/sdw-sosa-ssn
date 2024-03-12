@@ -76,10 +76,8 @@ var respecConfig = {
           value: "OGC NN-NNN"
         }]
     }],
-  wg: "Spatial Data on the Web Working Group",
-  wgURI: "https://www.w3.org/2015/spatial/",
+  group: "wg/sdw",
   wgPublicList: "public-sdw-comments",
-  wgPatentURI: "https://www.w3.org/2004/01/pp-impl/75471/status",
   implementationReportURI: "https://w3c.github.io/sdw/ssn-usage/",
   inlineCSS: true,
   noIDLIn: true,
