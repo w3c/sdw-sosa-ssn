@@ -107,23 +107,17 @@
 <12345/TemperatureSensor> a equipment:IBSTH2TemperatureSensor ;
     rdf:comment "This is the instance of the temperature sensor instance."@en .
 
-<TemperatureOfProduct> rdfs:subClassOf equipment:airTemperature ;
-    ssn:isPropertyOf <PO202402/acmePorterSixPack> .
-
-<airRelativeHumidityInProductPackaging> rdfs:subClassOf equipment:airRelativeHumidity;
-    ssn:isPropertyOf <PO202402/acmePorterSixPack> .
-
-<airRelativeHumidityInProductPackaging>
+<PO202402/airRelativeHumidityInProductPackaging> a equipment:airRelativeHumidity, sosa:ObservableProperty;;
     schema:unitCode unit:PERCENT ;
-    a sosa:ObservableProperty, ssn:Property ;
+    ssn:isPropertyOf <PO202402/acmePorterSixPack> ;
     rdfs:label "Humidité relative de l'emballage du produit"@fr, "Relative Humidity of Product Packaging"@en, "Relative Luftfeuchtigkeit der Produktverpackung"@de ;
     skos:definition "The amount of water vapor present in air around the product packaging"@en .
 
-<BeerTemperature>
+<PO202402/BeerTemperature> a sosa:ObservableProperty;
     schema:unitCode unit:DEG_C ;
-    a sosa:ObservableProperty, ssn:Property ;
+    ssn:isPropertyOf <PO202402/acmePorterSixPack> ;
     rdfs:label "Biertemperatur"@de, "Beer Temperature"@en, "Température de la bière"@fr ;
-    skos:definition "Temperature of the Beer."@en .
+    skos:definition "Temperature of the Beer in carton."@en .
 
 #
 # Sensor activates and records temperature while in the brewery cooler.
@@ -131,7 +125,7 @@
 <observation1a> a sosa:Observation ;
     rel:own <acmeBreweryCo> ;
     sosa:observedProperty equipment:airTemperature ;
-    sosa:hasUltimateFeatureOfInterest <BeerTemperature> ; 
+    sosa:hasUltimateFeatureOfInterest <PO202402/BeerTemperature> ; 
     sosa:madeBySensor <12345/TemperatureSensor>  ;
     sosa:hasFeatureOfInterest <PO202402/acmePorterSixPackAirSample> ;
     sosa:resultTime "2024-02-20T01:35:45Z"^^xsd:dateTime ;
@@ -140,7 +134,7 @@
 <observation1b> rdf:type sosa:Observation ;
     rel:own <acmeBreweryCo> ;
     sosa:observedProperty equipment:airRelativeHumidity ;
-    sosa:hasUltimateFeatureOfInterest <airRelativeHumidityInProductPackaging> ;
+    sosa:hasUltimateFeatureOfInterest <PO202402/airRelativeHumidityInProductPackaging> ;
     sosa:madeBySensor <12345/HumiditySensor>  ;
     sosa:hasFeatureOfInterest <PO202402/acmePorterSixPackAirSample> ;
     sosa:resultTime "2024-02-20T01:35:45Z"^^xsd:dateTime ;
@@ -173,7 +167,7 @@
     rel:own <acmeBreweryCo> ;
     rel:own <acmeDelivery> ;
     sosa:observedProperty equipment:airTemperature ;
-    sosa:hasUltimateFeatureOfInterest <BeerTemperature> ;
+    sosa:hasUltimateFeatureOfInterest <PO202402/BeerTemperature> ;
     sosa:madeBySensor <12345/TemperatureSensor>  ;
     sosa:hasFeatureOfInterest <PO202402/acmePorterSixPackAirSample> ;
     sosa:resultTime "2024-02-22T04:15:05Z"^^xsd:dateTime ;
@@ -183,7 +177,7 @@
     rel:own <acmeBreweryCo> ;
     rel:own <acmeDelivery> ;
     sosa:observedProperty equipment:airRelativeHumidity ;
-    sosa:hasUltimateFeatureOfInterest <airRelativeHumidityInProductPackaging> ;
+    sosa:hasUltimateFeatureOfInterest <PO202402/airRelativeHumidityInProductPackaging> ;
     sosa:madeBySensor <12345/HumiditySensor>  ;
     sosa:hasFeatureOfInterest <PO202402/acmePorterSixPackAirSample> ;
     sosa:resultTime "2024-02-22T04:15:05Z"^^xsd:dateTime ;
@@ -223,7 +217,7 @@
 <observation98a> rdf:type sosa:Observation,prov:Entity ;
     rel:own <acmeSupermarket> ;
     sosa:observedProperty equipment:airTemperature ;
-    sosa:hasUltimateFeatureOfInterest <BeerTemperature> ;    
+    sosa:hasUltimateFeatureOfInterest <PO202402/BeerTemperature> ;    
     sosa:madeBySensor <12345/TemperatureSensor>  ;
     sosa:hasFeatureOfInterest <PO202402/acmePorterSixPackAirSample> ;
     sosa:resultTime "2024-02-22T06:00:13Z"^^xsd:dateTime ;
@@ -232,7 +226,7 @@
 <observation98b> rdf:type sosa:Observation,prov:Entity ;
     rel:own <acmeSupermarket> ;
     sosa:observedProperty equipment:airRelativeHumidity ;
-    sosa:hasUltimateFeatureOfInterest <airRelativeHumidityInProductPackaging> ;
+    sosa:hasUltimateFeatureOfInterest <PO202402/airRelativeHumidityInProductPackaging> ;
     sosa:madeBySensor <12345/HumiditySensor>  ;
     sosa:hasFeatureOfInterest <PO202402/acmePorterSixPackAirSample> ;
     sosa:resultTime "2024-02-22T06:00:13Z"^^xsd:dateTime ;
