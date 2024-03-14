@@ -166,16 +166,33 @@ battery life performance of individual battery lots.</p>
      store.  The truck's cooling management system is recording the sensor readings for both the shipping company and the brewery.
      An on-board GPS unit is annotating the activity of recording observations as the truck moves from location to location. This
      position information represents the location of the shipping truck itself without making reference to the beer carton or the
-     platform generating the readings. This is important in that the underlying properties and features have not changed, even
+     platform generating the readings. This is important in that the underlying properties and features referenced by the sensors
+     of the platform have not changed, even
      through the beer carton and the platform have obviously changed physical location.</p>
 
-     <p class="note">An important issue in Sosa modeling is that the previous notion of Sensor, Platform and Measurement locations are not always
-     aligned with those of everyday vernacular descriptions or of the implicit design decision of non-semantically enabled systems.
-     Previous approaches, lacking the notion of property and features,  would often conflate the location of both sensor location and reading
-     location. The result is that notions of location and deployment need to be carefully examined during design to ensure clear
-     communication with data consumers.</p>
+     <p>The information recorded during this time period would be:</p>
  
-     <pre>&lt;TruckObserver&gt;  a prov:Activity ;
+     <pre>&lt;observation67a&gt; a sosa:Observation, prov:Entity ;
+    rel:own &lt;acmeBreweryCo&gt; ;
+    rel:own &lt;acmeDelivery&gt; ;
+    sosa:observedProperty equipment:airTemperature ;
+    sosa:hasUltimateFeatureOfInterest &lt;PO202402/BeerTemperature&gt; ;
+    sosa:madeBySensor &lt;12345/TemperatureSensor&gt;  ;
+    sosa:hasFeatureOfInterest &lt;PO202402/acmePorterSixPackAirSample&gt; ;
+    sosa:resultTime "2024-02-22T04:15:05Z"^^xsd:dateTime ;
+    sosa:hasSimpleResult "19"^^unit:DEG_C .
+
+&lt;observation67b&gt; rdf:type sosa:Observation,prov:Entity ;
+    rel:own &lt;acmeBreweryCo&gt; ;
+    rel:own &lt;acmeDelivery&gt; ;
+    sosa:observedProperty equipment:airRelativeHumidity ;
+    sosa:hasUltimateFeatureOfInterest &lt;PO202402/airRelativeHumidityInProductPackaging&gt; ;
+    sosa:madeBySensor &lt;12345/HumiditySensor&gt;  ;
+    sosa:hasFeatureOfInterest &lt;PO202402/acmePorterSixPackAirSample&gt; ;
+    sosa:resultTime "2024-02-22T04:15:05Z"^^xsd:dateTime ;
+    sosa:hasSimpleResult "74"^^unit:PERCENT .
+     
+     &lt;TruckObserver&gt;  a prov:Activity ;
     rdfs:comment "Truck onboard monitoring system" ;
     prov:used &lt;acmeTruck&gt;  ;
     prov:generated &lt;observation67a&gt;  ;
@@ -186,7 +203,18 @@ battery life performance of individual battery lots.</p>
     prov:wasStartedBy &lt;driver&gt;  ;
     prov:atLocation &lt;gpsLocation&gt; .
     </pre>
-    <p>We record the observation ... TODO</p> 
+    <p>The sensors of the platform are reporting values for the same properties of the same features of interest; the physical
+    location of the carton of beer does not effect the process because the platform monitors the inside of the carton itself. Modeling
+    its location and the process of (un)loading of the carton from the truck is done through other rdf nodes.</p> 
+    <p>The truck onboard monitoring system does report a GPS geometry as a Location. This is the location at which the data was
+    recorded from the platform. It is concivable that the geomtry node is shared with a vehicule tracking system rdf representation
+    or the vehicule's delivery scheduling application but it is not mandated by Sosa.</p> 
+
+     <p class="note">An important issue is that previous notions of Sensor, Platform and Measurement locations were often conflated
+     by non-semantically enabled systems. Semantics were often implicitly assumed and unrecorded in data systems design that
+     appeared obvious to domain experts while being opaque to outsides.</p>
+
+
  
  
      <h3>Display in Retail Store Cooler</h3> 
