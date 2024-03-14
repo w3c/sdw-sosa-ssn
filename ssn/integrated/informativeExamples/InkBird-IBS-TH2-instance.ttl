@@ -113,7 +113,11 @@
     rdfs:label "Humidité relative de l'emballage du produit"@fr, "Relative Humidity of Product Packaging"@en, "Relative Luftfeuchtigkeit der Produktverpackung"@de ;
     skos:definition "The amount of water vapor present in air around the product packaging"@en .
 
-<PO202402/BeerTemperature> a sosa:ObservableProperty;
+<BeerTemperature> a sosa:ObservableProperty, ssn:Property ;
+    schema:unitCode unit:DEG_C ;
+    rdfs:label "Biertemperatur"@de, "Beer Temperature"@en, "Température de la bière"@fr .
+  
+<PO202402/BeerTemperature> a sosa:ObservableProperty, <BeerTemperature> ;
     schema:unitCode unit:DEG_C ;
     ssn:isPropertyOf <PO202402/acmePorterSixPack> ;
     rdfs:label "Biertemperatur"@de, "Beer Temperature"@en, "Température de la bière"@fr ;
@@ -194,7 +198,7 @@
 
 <TruckObserver> a prov:Activity ;
     rdfs:comment "Truck onboard monitoring system" ;
-    prov:atLocation <acmeTruck> ;
+    prov:used <acmeTruck> ;
     prov:generated <observation67a> ;
     prov:generated <observation67b> ;
     prov:generated <observation67c> ;
