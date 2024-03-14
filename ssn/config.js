@@ -135,10 +135,17 @@ var respecConfig = {
       publisher: "Open Geospatial Consortium",
       date: "2023"
     },
-    "SAREF": {
+    "SAREF_Patterns": {
       href: "https://www.etsi.org/deliver/etsi_ts/103500_103599/103548/01.02.01_60/ts_103548v010201p.pdf",
       title: "SmartM2M; SAREF reference ontology patterns",
-      id: "ETSI TS 103 548 (V1.2.1)",
+      id: "ETSI TS 103 548 ",
+      publisher: "ETSI",
+      date: "2024"
+    },
+    "SAREF": {
+      href: "https://www.etsi.org/deliver/etsi_ts/103200_103299/103264/03.02.01_60/ts_103264v030201p.pdf",
+      title: "SmartM2M; Smart Applications; Reference Ontology and oneM2M Mapping",
+      id: "ETSI TS 103 264 (V3.2.1)",
       publisher: "ETSI",
       date: "2024"
     },
