@@ -1,0 +1,24 @@
+@prefix sensor: <https://example.com/sensors/> .
+@prefix property: <https://example.com/properties/> .
+@prefix procedure: <https://example.com/procedures/> .
+
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix qb: <http://purl.org/linked-data/cube#> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+
+_:obs75134 a sosa:Observation ;
+  sosa:madeBySensor [
+    a sensor:BME280 ;
+    dct:identifier "SN/2313Q432"
+  ] ;
+  sosa:observedProperty property:pm10 ;
+  sosa:hasSimpleResult 0.323 ;
+  sosa:hasResult [
+    qudt:numericValue 0.323 ;
+    qudt:unit unit:MicroGM-PER-M3 ;
+  ] ;
+  sosa:usedProcedure [ qb:order 1 ; skos:broader procedure:pm-humidity-correction ] ;
+.
