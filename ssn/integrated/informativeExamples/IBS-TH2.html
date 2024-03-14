@@ -1,0 +1,200 @@
+      <h3>IBS-TH2 Temperature and Humidity Sensor</h3>
+      <div>
+      <p>This section is a series of examples that represent a IBS-TH2 sensor.  At the time of this publication it is a commercially available consumer grade temperature and humidity sensor.  The sensor is modeled here as a <a href="#SOSAPlatform">sosa:Plaform</a> that <a href="#SOSAhosts">sosa:hosts</a> three different <a href="#SOSASensor">sosa:Sensor</a>s, one measuring air temperature, another air relative humidity and a third for battery health.</p>
+
+      <p>The sensors have operating limits and accuracies that are described in the
+literature of the manufacturer.  These values are represented within the
+ontology for querying as nominal platform values.  Importantly, the primary
+source for these operating values, the manufacturer's literature, is directly
+referenced in the <a href="#SOSAProcedure">sosa:Procedure</a>
+node of
+the description as a means of providing full documentation for the sensor.</p>
+
+<p>The result is a complete ontological description of the IBS-TH2 sensor using
+the core Sosa ontology.  As it represents the ontological concept of the
+product, they are subClasses of the Sosa Classes that are meant to be
+instantiated for individual sensors.</p>
+
+<p class="note">This example focuses on the platform, its sensor and their performance. The Bluetooth data-link is not documented
+here. Furthermore, while in both vernacular and marketing speech the IBS-TH2 is referred to as a &quot;Sensor&quot;, we use the word
+<i>Platform</i> to align to Sosa nomenclature.</p>
+
+
+<p>An RDF file containing a <a
+            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/informativeExamples/InkBird-IBS-TH2.ttl">graph corresponding to
+            this example is available</a>. </p>
+
+        <pre class="example" data-include="./integrated/informativeExamples/InkBird-IBS-TH2.ttl" data-include-format="text"></pre>
+        
+        <p>A simple instantiation of a sensor would be:</p>
+        <pre>_:InkBirdSensorSer9885 a equipment:InkBird-IBS-TH2 ;
+        rdfs:label "InkBird Sensor that Bob bought."@en ;
+        sosa:hosts _:BatterySensorOfSer9885;
+        sosa:hosts _:HumiditySensorOfSer9885;
+        soSA:hosts _:TemperatureSensorOfSer9885 ;
+        gs1:hasSerialNumber "9885" ;
+        equipment:deviceAddress "12:34:56:12:34:56" .
+        </pre>        
+        
+        <p>Note that because the IBS-TH2 is instantiated, so are all of the hosted <a href="#SOSASensor">sosa:Sensor</a>s on the <a href="#SOSAPlatform">sosa:Platform</a>.  While this seems initially
+redundant, these instances represent the physical sensors on that specific physical platform along with
+their performance idiosyncrasies due to manufacturing variance,
+defects or outright wear and tear.  This makes it possible to record device-level inaccuracies, limitations as well as tracking the
+battery life performance of individual battery lots.</p>
+      </div>
+     </section>
+
+    <section id="beerTemp">
+    <h3>Tracking Beer temperature</h3>
+
+    <p>An RDF file containing a <a
+            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/informativeExamples/InkBird-IBS-TH2-instance.ttl">graph corresponding to
+            this example is available</a>. </p>
+    <div>
+     <p>The following is a full example where a BS-TH2 sensor is used to monitor a crate (carton) of beers from the time of its
+     packaging at a brewery up until its display in the supermarket cooler where it is ready to be purchased.  Beer degrades both
+     at high and low temperatures.  This requires that it be kept cool during storage and shipping to preserve the freshness of the
+     product.  Humidity has no effect the beer owing to sealed containers through excess humidity will weaken cardboard and break
+     down it's adhesives, potentially resulting in product breakage.  Brewers will on occasion insert a temperature logger into
+     their shipping process as part of their quality control program and we present such a hypothetical situation here.<p>
+
+     <p>This use case is of interest because it highlights the repurposing of a consumer-grade platform to a domain specific problem,
+     the movement of a platform from environment to environment and the possible ambiguity of data-ownership in each of these
+     environments.</p>
+     </div>
+     
+     <h3>Packaging and initial storage</h3>
+     <div>
+      <figure id="InkBird_IBS_TH2-packaging" style="float: right; max-width: 40%; height: auto;vertical-align: top;margin: -10% 15px 0px 15px;">
+      <img src="./integrated/informativeExamples/assets/InkBird_IBS_TH2-packaging.png"> 
+      <figcaption>The platform and beer are
+      packages into the product.</figcaption> 
+     </figure>
+     <p>Alice works for Acme Brewery Co., she procures an InkBird IBS-TH2 Platform (Serial Number: 12345) and places it inside a beer carton with six
+     bottles (a &quot;six-pack&quot;) of Acme Brewery's famous Porter beers with a product lot code of PO202402. She seals the packaging and places it inside of Acme
+     Brewery's cooler while awaiting shipment.</p>
+     <p>We make use of [[[prov-o]]] as a mechanism to model the packaging activity and the placement of the Platform into the
+     crate before it is sealed. The platform is thus monitoring the ambient air temperature and the relative humidity from within
+     the beer crate every few minutes. In the following snippet we instantiate both the IBS-TH2 Platform, the carton and the
+     activity that represents the packaging of the beer and the creation of the beer carton as a product:<p>
+     </div>     
+     <div>
+     <pre>&lt;12345/someTH2&gt; a equipment:InkBird-IBS-TH2;
+     rel:own &lt;acmeBreweryCo&gt; ; # Sensor may be returned.
+     rdfs:label "InkBird Sensor that Alice bought to track beer storage."@en ;
+     sosa:hosts &lt;12345/BatterySensor&gt;, &lt;12345/HumiditySensor&gt;, &lt;12345/TemperatureSensor&gt; ;
+     gs1:hasSerialNumber "12345" ;
+     equipment:deviceAddress "12:34:56:12:34:56" .
+
+&lt;00001/packingSixPack&gt; a prov:Activity ;
+     rdfs:comment "When Alice packaged Porter bottles into the box, she added a InkBird logger to check that the beer wasn't getting too warm in transit and storage." ; 
+     prov:wasAssociatedWith &lt;alice&gt; ;
+     prov:used &lt;12345/someTH2&gt; ;
+     prov:startedAtTime "2024-02-20T01:35:00Z"^^xsd:dateTime ;
+     prov:endedAtTime   "2024-02-20T01:40:00Z"^^xsd:dateTime ;
+     prov:atLocation &lt;acmeBreweryCo&gt; ;
+     prov:generated &lt;PO202402/acmePorterSixPack&gt; .
+
+&lt;PO202402/acmePorterSixPack&gt; a beer:Porter, gs1:Product ;
+     gs1:hasBatchLotNumber "PO202402" .
+     
+     </pre>
+     
+     <p>The platform then begins to take measurements which we record as part of a second activity.</p>
+     
+     <pre>&lt;observation1a&gt; a sosa:Observation ;
+    rel:own &lt;acmeBreweryCo&gt; ;
+    sosa:observedProperty equipment:airTemperature ;
+    sosa:hasUltimateFeatureOfInterest &lt;BeerTemperature&gt; ; 
+    sosa:madeBySensor &lt;12345/TemperatureSensor&gt;  ;
+    sosa:hasFeatureOfInterest &lt;PO202402/acmePorterSixPackAirSample&gt; ;
+    sosa:resultTime "2024-02-20T01:35:45Z"^^xsd:dateTime ;
+    sosa:hasSimpleResult "12"^^unit:DEG_C .
+
+&lt;observation1b&gt; rdf:type sosa:Observation ;
+    rel:own &lt;acmeBreweryCo&gt; ;
+    sosa:observedProperty equipment:airRelativeHumidity ;
+    sosa:hasUltimateFeatureOfInterest &lt;airRelativeHumidityInProductPackaging&gt; ;
+    sosa:madeBySensor &lt;12345/HumiditySensor&gt;  ;
+    sosa:hasFeatureOfInterest &lt;PO202402/acmePorterSixPackAirSample&gt; ;
+    sosa:resultTime "2024-02-20T01:35:45Z"^^xsd:dateTime ;
+    sosa:hasSimpleResult "60"^^unit:PERCENT .
+
+&lt;observation1c&gt; rdf:type sosa:Observation ;
+    rel:own &lt;acmeBreweryCo&gt; ;
+    sosa:observedProperty &lt;12345/BatteryHealth&gt; ;
+    sosa:madeBySensor &lt;12345/BatterySensor&gt;  ;
+    sosa:hasFeatureOfInterest &lt;2024/02/batteryPack&gt; ;
+    sosa:resultTime "2024-02-20T01:35:45Z"^^xsd:dateTime ;
+    sosa:hasSimpleResult "99"^^unit:PERCENT .
+
+&lt;breweryObserver&gt; a prov:Activity ;
+    rdfs:comment "Brewery operating system logging process." ;
+    prov:atLocation &lt;acmeBreweryCo&gt; ;
+    prov:generated &lt;observation1a&gt; ;
+    prov:generated &lt;observation1b&gt; ;
+    prov:generated &lt;observation1c&gt; ;
+    prov:wasStartedBy &lt;alice&gt; . # She turned it on last time.</pre>
+
+   <p>In the above example the concurrent use of the <a href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a> and <a
+   href="#SOSAhasUltimateFeatureOfInterest">sosa:hasUltimateFeatureOfInterest</a> properties is made to account for the repurposing of a generic
+   sensor. The actual measurement being performed by the platform is the air temperature within the carton as a proxy for the beer
+   temperature within each container. Modeling the full thermodynamics activity relating one measurement to the other is beyond the
+   scope of this document but can be implemented as a second order &quot;virtual&quot; <a href="#SOSASensor">sosa:Sensor</a> or a
+   sophisticated <a href="#SOSAProcedure">sosa:Procedure</a>. Thus the use of the <a href="#SOSAhasUltimateFeatureOfInterest">sosa:hasUltimateFeatureOfInterest</a> property allows for flexibility in the interpretation of the measurement
+   within a context <i>not necessarily intended by the original sensor design itself</i>.</p>
+
+   <p>An issue is whether the complexity incurred in recording measurements in this way is an additional burden on consumers of the
+   data. Previous approaches to data storage had an observation centric approach that was partially dictated by relational
+   databases. The Sosa ontology takes a &quot;thing and property&quot; approach that is then referenced by observations. This
+   approach aligns well to both ontological and object oriented methodologies: Based on a thing, the individual beer carton product (&lt;PO202402/acmePorterSixPack&gt;)
+   and the specific property wanted, the (&lt;BeerTemperature&gt;) one can find the specific identifier for the property of that
+   specific product which in then referenced by multiple <a href="#SOSAObservation">sosa:Observation</a>s. It also permits the
+   seamless querying of direct measurement sensors through the <a href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a>
+   property and indirect measurements through <a href="#SOSAhasUltimateFeatureOfInterest">sosa:hasUltimateFeatureOfInterest</a>
+   properties.</p>     
+     </div> 
+
+     <h3>Shipping to Retail Store</h3>
+     <div>
+      <figure id="InkBird_IBS_TH2-shipping" style="float: right; max-width: 40%; height: auto;vertical-align: top;margin: -10% 15px 0px 15px;">
+      <img src="./integrated/informativeExamples/assets/InkBird_IBS_TH2-shipping.png"> 
+      <figcaption>The beer carton is being moved from the brewery to the retail location.</figcaption> 
+      </figure> 
+      <p>After being
+     chilled in the brewery cooler, the beer carton is then loaded on one of the Acme delivery trucks for shipment to the retail
+     store.  The truck's cooling management system is recording the sensor readings for both the shipping company and the brewery.
+     An on-board GPS unit is annotating the activity of recording observations as the truck moves from location to location. This
+     position information represents the location of the shipping truck itself without making reference to the beer carton or the
+     platform generating the readings. This is important in that the underlying properties and features have not changed, even
+     through the beer carton and the platform have obviously changed physical location.</p>
+
+     <p class="note">An important issue in Sosa modeling is that the previous notion of Sensor, Platform and Measurement locations are not always
+     aligned with those of everyday vernacular descriptions or of the implicit design decision of non-semantically enabled systems.
+     Previous approaches, lacking the notion of property and features,  would often conflate the location of both sensor location and reading
+     location. The result is that notions of location and deployment need to be carefully examined during design to ensure clear
+     communication with data consumers.</p>
+ 
+     <pre>&lt;TruckObserver&gt;  a prov:Activity ;
+    rdfs:comment "Truck onboard monitoring system" ;
+    prov:used &lt;acmeTruck&gt;  ;
+    prov:generated &lt;observation67a&gt;  ;
+    prov:generated &lt;observation67b&gt;  ;
+    prov:generated &lt;observation67c&gt;  ;
+    prov:startedAtTime "2024-02-22T04:15:05Z"^^xsd:dateTime ;
+    prov:endedAtTime "2024-02-22T05:55:38Z"^^xsd:dateTime ;
+    prov:wasStartedBy &lt;driver&gt;  ;
+    prov:atLocation &lt;gpsLocation&gt; .
+    </pre>
+    <p>We record the observation ... TODO</p> 
+ 
+ 
+     <h3>Display in Retail Store Cooler</h3> 
+    </section>
+    
+    <section id="IBS-TH2-deployment">
+      <h3>Notes on deployment and observation aggregation</h3>
+      TODO
+    </section>
+
+    
