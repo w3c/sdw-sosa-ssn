@@ -2,26 +2,32 @@
 <h3>OMS Alignment Module</h3>
 <p>
   This section introduces the alignment of SOSA and SSN to [[[OMS]]] (ISO 19156:2023).
+</p>
+<p>
   OMS is the latest edition of the OGC and ISO standard previously known as Observations and Measurements [[OandM]],
   which was a key influence and input in the development of SSN.
   This module serves to provide a detailed mapping of SOSA terms to discrete requirements in [[OMS]] thus
   explaining how SOSA and SSN provide an RDF and OWL/RDFS implementation of OMS (repectively).
 </p>
+<p class="note">
+  OMS was published by ISO 19156:2023 [[iso-19156-2023]], but is freely available as OGC Abstract
+  Specification - Topic 20 [[OMS]].
+</p>
+
 <p>
-  Note that [[OMS]] is formalized using UML, which does not provide accessible global identifiers for terms in
-  the
+  Note that [[OMS]] is formalized using UML, which does not provide accessible global identifiers for terms in the
   structure model.
   Here we use the URI for each formal Requirement relating to a class or property in [[OMS]] to denote the UML
   class or property.
-  Within the RDF representation of the alignment, we use the predicate <code>ogc-ms:implements</code> to link a
-  SOSA term to the corresponding OMS class or property, defined as follows: </p>
+  Within the RDF representation of the alignment, we use the predicate <code>ogc-ms:implements</code> to link a SOSA
+  term to the corresponding OMS class or property, defined as follows: </p>
 <pre>ogc-ms:implements an OWL:ObjectProperty ;
   rdfs:subPropertyOf dcterms:source , prov:wasDerivedFrom , doap:implements . </pre>
 
-  <h4>SOSA-OMS</h4>
-  <p>
+<h4>SOSA-OMS</h4>
+<p>
   SOSA-OMS describes the alignment of SOSA to ISO 19156:2023 [[OMS]] using annotations to link SOSA
-  terms to specific requirements in [[OMS]]. 
+  terms to specific requirements in [[OMS]].
   SOSA-OMS imports SOSA Observation and SOSA Sampling and declares additional terms required for OMS.
   <b>SOSA-OMS is the canonical RDF implementation of OMS.</b>
 </p>
@@ -31,8 +37,8 @@
 
 <h4>SSN-OMS</h4>
 <p>
-  SSN-OMS describes the alignment of SSN to ISO 19156:2023 [[OMS]] with RDFS/OWL axiomatization. 
-  SSN-OMS imports SOSA-OMS and SSN Observation and SSN Sampling. 
+  SSN-OMS describes the alignment of SSN to ISO 19156:2023 [[OMS]] with RDFS/OWL axiomatization.
+  SSN-OMS imports SOSA-OMS and SSN Observation and SSN Sampling.
   <b>SSN-OMS is the canonical OWL implementation of OMS.</b>
 </p>
 <p style="text-align: center;">
@@ -41,8 +47,7 @@
 
 <section id="OMS_Alignment-namespaces">
   <h4>Namespaces</h4>
-  <p>The following namespace prefixes are used in the alignment of SOSA
-    and SSN to OMS</p>
+  <p>The following namespace prefixes are used in the alignment of SOSA and SSN to OMS</p>
   <table>
     <tbody>
       <tr>
