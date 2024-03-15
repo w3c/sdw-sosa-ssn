@@ -1,0 +1,36 @@
+ex:ObservationEntailments
+  a sh:NodeShape ;
+  sh:targetClass sosa:Observation ;
+  sh:rule [
+    a sh:SPARQLRule ;
+    sh:construct """
+        CONSTRUCT {
+            $this sosa:hasResult [
+                  qudt:numericValue ?simpleResult ;
+                  qudt:unit ?unit ;
+                ] ;
+                sosa:usedProcedure ?procedure ;
+            .
+        } WHERE {
+            $this sosa:madeBySensor/rdf:type ?sensorClass ;
+                sosa:observedProperty ?observedProperty ;
+                sosa:hasSimpleResult ?simpleResult .
+            {
+              ?sensorClass rdfs:subClassOf sosa:Sensor ;
+                sosa:observes ?observedProperty .
+              OPTIONAL { ?sensorClass qudt:unit ?unit }
+              OPTIONAL { ?sensorClass sosa:implements ?procedure }
+            } UNION {
+              ?sensorClass rdfs:subClassOf sosa:Platform ;
+                owl:equivalentClass ?restriction .
+              ?restriction a owl:Restriction ;
+                owl:onProperty sosa:hosts ;
+                owl:allValuesFrom/owl:unionOf/rdf:rest*/rdf:first ?actualSensorClass .
+              ?actualSensorClass sosa:observes ?observedProperty .
+              OPTIONAL { ?actualSensorClass qudt:unit ?unit }
+              OPTIONAL { ?actualSensorClass sosa:implements ?procedure }
+            }
+        }
+    """ ;
+  ] ;
+.
