@@ -280,7 +280,7 @@ Content-Disposition: filename= sosa-om.rdf;
 
 *Turtle representation:* 
 
-When operating a GET at http://www.w3.org/ns/sosa/om with a Accept header that is compatible with `text/turtle`, serve sosa-om-mapping.ttl, with headers:
+When operating a GET at http://www.w3.org/ns/sosa/om with a Accept header that is compatible with `text/turtle`, serve sosa-om.ttl, with headers:
 
 ```
 Content-Type: text/turtle
@@ -288,7 +288,7 @@ Content-Location: http://www.w3.org/ns/sosa/om.ttl
 Content-Disposition: filename= sosa-om.ttl;
 ```
 
-When operating a GET at http://www.w3.org/ns/sosa/om.ttl with a Accept header that is compatible with `text/turtle`, serve sosa-om-mapping.ttl, with headers:
+When operating a GET at http://www.w3.org/ns/sosa/om.ttl with a Accept header that is compatible with `text/turtle`, serve sosa-om.ttl, with headers:
 
 ```
 Content-Type: text/turtle
@@ -325,7 +325,7 @@ Content-Disposition: filename= sosa-oboe.rdf;
 
 *Turtle representation:* 
 
-When operating a GET at http://www.w3.org/ns/sosa/oboe with a Accept header that is compatible with `text/turtle`, serve sosa-oboe-mapping.ttl, with headers:
+When operating a GET at http://www.w3.org/ns/sosa/oboe with a Accept header that is compatible with `text/turtle`, serve sosa-oboe.ttl, with headers:
 
 ```
 Content-Type: text/turtle
@@ -333,7 +333,7 @@ Content-Location: http://www.w3.org/ns/sosa/oboe.ttl
 Content-Disposition: filename= sosa-oboe.ttl;
 ```
 
-When operating a GET at http://www.w3.org/ns/sosa/oboe.ttl with a Accept header that is compatible with `text/turtle`, serve sosa-oboe-mapping.ttl, with headers:
+When operating a GET at http://www.w3.org/ns/sosa/oboe.ttl with a Accept header that is compatible with `text/turtle`, serve sosa-oboe.ttl, with headers:
 
 ```
 Content-Type: text/turtle
@@ -370,7 +370,7 @@ Content-Disposition: filename= sosa-prov.rdf;
 
 *Turtle representation:* 
 
-When operating a GET at http://www.w3.org/ns/sosa/prov with a Accept header that is compatible with `text/turtle`, serve sosa-prov-mapping.ttl, with headers:
+When operating a GET at http://www.w3.org/ns/sosa/prov with a Accept header that is compatible with `text/turtle`, serve sosa-prov.ttl, with headers:
 
 ```
 Content-Type: text/turtle
@@ -378,7 +378,7 @@ Content-Location: http://www.w3.org/ns/sosa/prov.ttl
 Content-Disposition: filename= sosa-prov.ttl;
 ```
 
-When operating a GET at http://www.w3.org/ns/sosa/prov.ttl with a Accept header that is compatible with `text/turtle`, serve sosa-prov-mapping.ttl, with headers:
+When operating a GET at http://www.w3.org/ns/sosa/prov.ttl with a Accept header that is compatible with `text/turtle`, serve sosa-prov.ttl, with headers:
 
 ```
 Content-Type: text/turtle
