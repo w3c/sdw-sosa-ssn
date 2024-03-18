@@ -19,6 +19,11 @@ instantiated for individual sensors.</p>
 here. Furthermore, while in both vernacular and marketing speech the IBS-TH2 is referred to as a &quot;Sensor&quot;, we use the word
 <i>Platform</i> to align to Sosa nomenclature.</p>
 
+<p>The ability to encode sensor limitation and precision as part of its ontological definition is <b>not</b> a redudant when linking to a
+manufacturer's data sheet. This allows for the automated procurement or deployment of sensors according to task requirements. It
+also allows for tight integration with sophisticated data consumers that can evaluate data quality based on nominal sensors limits.
+A typical use case is software reporting impossible numbers of decimal precision as a computing artifact, the sensor accuracy
+can be used to truncate these numbers at the appropriate number of significant digits.</p>
 
 <p>An RDF file containing a <a
             href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/informativeExamples/InkBird-IBS-TH2.ttl">graph corresponding to
@@ -41,6 +46,9 @@ redundant, these instances represent the physical sensors on that specific physi
 their performance idiosyncrasies due to manufacturing variance,
 defects or outright wear and tear.  This makes it possible to record device-level inaccuracies, limitations as well as tracking the
 battery life performance of individual battery lots.</p>
+
+  <!-- BatteryLifetime -->
+
       </div>
      </section>
 
@@ -161,6 +169,7 @@ battery life performance of individual battery lots.</p>
       <img src="./integrated/informativeExamples/assets/InkBird_IBS_TH2-shipping.png"> 
       <figcaption>The beer carton is being moved from the brewery to the retail location.</figcaption> 
       </figure> 
+     </div> 
       <p>After being
      chilled in the brewery cooler, the beer carton is then loaded on one of the Acme delivery trucks for shipment to the retail
      store.  The truck's cooling management system is recording the sensor readings for both the shipping company and the brewery.
@@ -192,7 +201,7 @@ battery life performance of individual battery lots.</p>
     sosa:resultTime "2024-02-22T04:15:05Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "74"^^unit:PERCENT .
      
-     &lt;TruckObserver&gt;  a prov:Activity ;
+&lt;TruckObserver&gt;  a prov:Activity ;
     rdfs:comment "Truck onboard monitoring system" ;
     prov:used &lt;acmeTruck&gt;  ;
     prov:generated &lt;observation67a&gt;  ;
@@ -210,19 +219,88 @@ battery life performance of individual battery lots.</p>
     recorded from the platform. It is concivable that the geomtry node is shared with a vehicule tracking system rdf representation
     or the vehicule's delivery scheduling application but it is not mandated by Sosa.</p> 
 
-     <p class="note">An important issue is that previous notions of Sensor, Platform and Measurement locations were often conflated
-     by non-semantically enabled systems. Semantics were often implicitly assumed and unrecorded in data systems design that
-     appeared obvious to domain experts while being opaque to outsides.</p>
-
-
- 
- 
+     <p class="note">Locations of Platform, Sensors, and measured samples are often conflated in
+     non-semantically enabled systems and the semantics often implicitly assumed by the application. The deep semantic modelling
+     within Sosa makes no such implicit assumptions and locations can be assigned to all elements independently.</p>
+      
      <h3>Display in Retail Store Cooler</h3> 
+     <p style="margin-bottom: 0.5cm"></p>
+     <div>
+      <figure id="InkBird_IBS_TH2-receiving" style="float: right; max-width: 40%; height: auto;vertical-align: top; margin: -10px 15px 0px 15px;">
+      <img src="./integrated/informativeExamples/assets/InkBird_IBS_TH2-receiving.png"> 
+      <figcaption>The beer carton is stored in the display cooler for retail sale.</figcaption> 
+      </figure> 
+      <p>When received at the retail store from the delivery company, the beer is displayed for sale in retail coolers which log
+      the sensors. The data is being held by the retail store. The notion of relative location and containment is loose here as
+      the activity is taking place within the supermarket cooler; not the supermarket itself. </p>
+      </div>
+      <p>The information recorded during this time period would be:</p>
+      <pre>
+&lt;observation98a&gt; rdf:type sosa:Observation,prov:Entity ;
+    rel:own &lt;acmeSupermarket&gt; ;
+    sosa:observedProperty equipment:airTemperature ;
+    sosa:hasUltimateFeatureOfInterest &lt;PO202402/BeerTemperature&gt; ;    
+    sosa:madeBySensor &lt;12345/TemperatureSensor&gt;  ;
+    sosa:hasFeatureOfInterest &lt;PO202402/acmePorterSixPackAirSample&gt; ;
+    sosa:resultTime "2024-02-22T06:00:13Z"^^xsd:dateTime ;
+    sosa:hasSimpleResult "12"^^unit:DEG_C .
+
+&lt;observation98b&gt; rdf:type sosa:Observation,prov:Entity ;
+    rel:own &lt;acmeSupermarket&gt; ;
+    sosa:observedProperty equipment:airRelativeHumidity ;
+    sosa:hasUltimateFeatureOfInterest &lt;PO202402/airRelativeHumidityInProductPackaging&gt; ;
+    sosa:madeBySensor &lt;12345/HumiditySensor&gt;  ;
+    sosa:hasFeatureOfInterest &lt;PO202402/acmePorterSixPackAirSample&gt; ;
+    sosa:resultTime "2024-02-22T06:00:13Z"^^xsd:dateTime ;
+    sosa:hasSimpleResult "55"^^unit:PERCENT .
+
+&lt;observation98c&gt; rdf:type sosa:Observation,prov:Entity ;
+    rel:own &lt;acmeSupermarket&gt; ;
+    sosa:observedProperty &lt;12345/BatteryHealth&gt;;
+    sosa:madeBySensor &lt;12345/BatterySensor&gt;  ;
+    sosa:hasFeatureOfInterest &lt;2024/02/batteryPack&gt; ;
+    sosa:resultTime "2024-02-22T06:00:13Z"^^xsd:dateTime ;
+    sosa:hasSimpleResult "99"^^unit:PERCENT .
+
+&lt;CoolerMonitoringProcess&gt; a prov:Activity ;
+    rdfs:comment "Smart cooler monitoring system" ;
+    prov:startedAtTime "2024-02-22T06:00:13Z"^^xsd:dateTime ;
+    prov:atLocation &lt;acmeSupermarketCooler&gt; ;
+    prov:generated &lt;observation98a&gt; ;
+    prov:generated &lt;observation98b&gt; ;
+    prov:generated &lt;observation98c&gt; ;
+    prov:wasStartedBy &lt;acmeSupermarket&gt; .      
+      
+      </pre>
+     
+      </div>
+
+
     </section>
     
     <section id="IBS-TH2-deployment">
       <h3>Notes on deployment and observation aggregation</h3>
+      Previous examples have focused on the reporting of results from 
       TODO
+      
+      <h4>Recording data through a sensor deployment</h4>
+      
+      <p>Sosa provides a notion of Deployment. This includes the tasking of sensors to different environments, purposes, locations or
+      owners.</p>
+      
+      
+      <h4>Recording data using observation collection</h4>
+
+      <p>Sosa provides a observation collection class that can be used to group observations that have some kind of common
+      relationship.</p>
+      
+      
+      <h4>Recording data using provenance activities</h4>
+      
+      <p>As the previous examples, the provenance ontology can be used. </p>
+
+
+      
     </section>
 
     
