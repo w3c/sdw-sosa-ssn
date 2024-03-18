@@ -250,7 +250,7 @@ Content-Disposition: filename= ssn-dul.ttl;
 
 *URI:* http(s)://www.w3.org/ns/sosa/om
 
-*Version to use for publication:* http://w3c.github.io/sdw/ssn/rdf/sosa-om-mapping.ttl
+*Version to use for publication:* http://w3c.github.io/sdw/ssn/rdf/alignments/sosa-om.ttl
 
 
 ### The ontology document:
@@ -300,7 +300,7 @@ Content-Disposition: filename= sosa-om.ttl;
 
 *URI:* http(s)://www.w3.org/ns/sosa/oboe
 
-*Version to use for publication:* http://w3c.github.io/sdw/ssn/rdf/sosa-oboe-mapping.ttl
+*Version to use for publication:* http://w3c.github.io/sdw/ssn/rdf/alignments/sosa-oboe.ttl
 
 
 ### The ontology document:
@@ -345,7 +345,7 @@ Content-Disposition: filename= sosa-oboe.ttl;
 
 *URI:* http://www.w3.org/ns/sosa/prov
 
-*Version to use for publication:* http://w3c.github.io/sdw/ssn/rdf/sosa-prov-mapping.ttl
+*Version to use for publication:* http://w3c.github.io/sdw/ssn/rdf/alignments/sosa-prov.ttl
 
 
 ### The ontology document:
