@@ -1,6 +1,6 @@
 # baseURI: http://www.w3.org/ns/sosa/prov
 # imports: http://www.w3.org/ns/prov-o#
-# imports: http://www.w3.org/ns/sosa/common/
+# imports: http://www.w3.org/ns/sosa/
 
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
@@ -9,7 +9,6 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
-@prefix sosa-common: <http://www.w3.org/ns/sosa/common/> .
 @prefix sp: <http://www.w3.org/ns/sosa/prov/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
@@ -70,7 +69,7 @@ sosa:prov
   owl:imports <http://www.w3.org/ns/prov-o#> ;
   owl:imports sosa: ;
 .
-sp:eventAssociation
+sp:executionAssociation
   rdf:type owl:ObjectProperty ;
   rdfs:domain sosa:Execution ;
   rdfs:subPropertyOf prov:qualifiedAssociation ;
@@ -88,7 +87,7 @@ sosa:resultTime
 .
 sosa:usedProcedure
   owl:propertyChainAxiom (
-      sp:eventAssociation
+      sp:executionAssociation
       sp:hadProcedure
     ) ;
 .
