@@ -19,11 +19,18 @@ instantiated for individual sensors.</p>
 here. Furthermore, while in both vernacular and marketing speech the IBS-TH2 is referred to as a &quot;Sensor&quot;, we use the word
 <i>Platform</i> to align to Sosa nomenclature.</p>
 
-<p>The ability to encode sensor limitation and precision as part of its ontological definition is <b>not</b> a redudant when linking to a
-manufacturer's data sheet. This allows for the automated procurement or deployment of sensors according to task requirements. It
-also allows for tight integration with sophisticated data consumers that can evaluate data quality based on nominal sensors limits.
-A typical use case is software reporting impossible numbers of decimal precision as a computing artifact, the sensor accuracy
-can be used to truncate these numbers at the appropriate number of significant digits.</p>
+<p>The ability to encode sensor operating characteristics and limitations as part of its ontological definition is <b>not</b>
+redudant even when linking to a manufacturer's data sheet.  Its availability in a machine readable markup allows for tight
+integration with sophisticated data consumers that can evaluate data quality and predict performance based on nominal sensors
+limits. A direct use case is the problem of software libraries reporting numbers with an impossible number of decimal digits due to
+internal binary representations. The sensor accuracy properties can be used to truncate these numbers at the appropriate significant
+digit.</p>
+
+<p>Lastly, the encoding of performance and behaviour data in a machine readable way is of significant use when selecting <a
+href="#SOSAPlatorm">sosa:Platform</a>s for specific tasks: a working set of <a href="#SOSAPlatorm">sosa:Platform</a>s responsive to
+the problem specifications can be queried directly.  The use of SOSA to describe the <a href="#SOSAPlatorm">sosa:Platform</a>s
+concurrently with commercial availability vocabularies such as schema.org or GS1 Webvoc would be greatly useful for computer-aided
+manufacturing and sourcing.</a>
 
 <p>An RDF file containing a <a
             href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/informativeExamples/InkBird-IBS-TH2.ttl">graph corresponding to
@@ -31,21 +38,21 @@ can be used to truncate these numbers at the appropriate number of significant d
 
         <pre class="example" data-include="./integrated/informativeExamples/InkBird-IBS-TH2.ttl" data-include-format="text"></pre>
         
-        <p>A simple instantiation of a sensor would be:</p>
-        <pre>_:InkBirdSensorSer9885 a equipment:InkBird-IBS-TH2 ;
+        <p>A simple instantiation of a specific sensor would be:</p>
+        <pre>_:9885/InkBird-IBS-TH2 a equipment:InkBird-IBS-TH2 ;
         rdfs:label "InkBird Sensor that Bob bought."@en ;
-        sosa:hosts _:BatterySensorOfSer9885;
-        sosa:hosts _:HumiditySensorOfSer9885;
-        soSA:hosts _:TemperatureSensorOfSer9885 ;
+        sosa:hosts _:9885/InkBird-IBS-TH2-BatterySensor;
+        sosa:hosts _:9885/InkBird-IBS-TH2-HumiditySensor;
+        soSA:hosts _:9885/InkBird-IBS-TH2-TemperatureSensor;
         gs1:hasSerialNumber "9885" ;
         equipment:deviceAddress "12:34:56:12:34:56" .
         </pre>        
         
-        <p>Note that because the IBS-TH2 is instantiated, so are all of the hosted <a href="#SOSASensor">sosa:Sensor</a>s on the <a href="#SOSAPlatform">sosa:Platform</a>.  While this seems initially
-redundant, these instances represent the physical sensors on that specific physical platform along with
-their performance idiosyncrasies due to manufacturing variance,
-defects or outright wear and tear.  This makes it possible to record device-level inaccuracies, limitations as well as tracking the
-battery life performance of individual battery lots.</p>
+        <p>Note that because the IBS-TH2 is instantiated, so are all of the hosted <a href="#SOSASensor">sosa:Sensor</a>s on the <a
+href="#SOSAPlatform">sosa:Platform</a>.  While this seems redundant at face value, these instances represent the actual physical
+sensors on that specific physical platform instance along with their performance idiosyncrasies due to manufacturing variance,
+defects, configuration, or outright wear and tear.  This makes it possible to record device-level deviations from expected nominal
+performance and perform deployment analyses on, for example, battery life performance of individual battery lots.</p>
 
   <!-- BatteryLifetime -->
 
@@ -59,17 +66,19 @@ battery life performance of individual battery lots.</p>
             href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/informativeExamples/InkBird-IBS-TH2-instance.ttl">graph corresponding to
             this example is available</a>. </p>
     <div>
-     <p>The following is a full example where a BS-TH2 sensor is used to monitor a crate (carton) of beers from the time of its
+     <p>The following is a detailed example where a IBS-TH2 sensor is used to monitor a crate (carton) of beers from the time of its
      packaging at a brewery up until its display in the supermarket cooler where it is ready to be purchased.  Beer degrades both
      at high and low temperatures.  This requires that it be kept cool during storage and shipping to preserve the freshness of the
-     product.  Humidity has no effect the beer owing to sealed containers through excess humidity will weaken cardboard and break
-     down it's adhesives, potentially resulting in product breakage.  Brewers will on occasion insert a temperature logger into
+     product. Humidity has no effect the beer owing to sealed containers through excess humidity will weaken cardboard and degrade
+     the adhesives potentially resulting in product breakage.  Brewers will on occasion insert a temperature logger into
      their shipping process as part of their quality control program and we present such a hypothetical situation here.<p>
 
-     <p>This use case is of interest because it highlights the repurposing of a consumer-grade platform to a domain specific problem,
-     the movement of a platform from environment to environment and the possible ambiguity of data-ownership in each of these
-     environments.</p>
-     </div>
+     <p>This example is also of interest because it involves the repurposing of a consumer-grade <a
+     href="#SOSAPlatform">sosa:Platform</a> to a domain specific problem, the movement of a platform from environment to
+     environment and the possible ambiguity of data-ownership in each of these environments. It also demontrates the location ambuiguity
+     that can sometimes be present in modeling sensor readings.</p>
+     
+      </div>
      
      <h3>Packaging and initial storage</h3>
      <div>
@@ -101,30 +110,36 @@ battery life performance of individual battery lots.</p>
      prov:startedAtTime "2024-02-20T01:35:00Z"^^xsd:dateTime ;
      prov:endedAtTime   "2024-02-20T01:40:00Z"^^xsd:dateTime ;
      prov:atLocation &lt;acmeBreweryCo&gt; ;
-     prov:generated &lt;PO202402/acmePorterSixPack&gt; .
+     prov:generated &lt;10/PO202402/21/0001/acmePorterSixPack&gt; .
 
-&lt;PO202402/acmePorterSixPack&gt; a beer:Porter, gs1:Product ;
-     gs1:hasBatchLotNumber "PO202402" .
+# A specific (instance) six pack of Acme Porter Beers
+# We use GS1-style lot and serial numbers as part of the 
+# identifier to highlight that the carton is a physical instance.
+# 
+# 
+&lt;10/PO202402/21/0001/acmePorterSixPack&gt; a beer:Porter, gs1:Product ;
+     gs1:hasBatchLotNumber "PO202402" ;
+     gs1:hasSerialNumber "0001" .
      
      </pre>
      
-     <p>The platform then begins to take measurements which we record as part of a second activity.</p>
+     <p>The platform then begins to take measurements which we record as part of another activity.</p>
      
      <pre>&lt;observation1a&gt; a sosa:Observation ;
     rel:own &lt;acmeBreweryCo&gt; ;
     sosa:observedProperty equipment:airTemperature ;
-    sosa:hasUltimateFeatureOfInterest &lt;BeerTemperature&gt; ; 
+    sosa:hasUltimateFeatureOfInterest &lt;10/PO202402/21/0001/BeerTemperature&gt; ; 
     sosa:madeBySensor &lt;12345/TemperatureSensor&gt;  ;
-    sosa:hasFeatureOfInterest &lt;PO202402/acmePorterSixPackAirSample&gt; ;
+    sosa:hasFeatureOfInterest &lt;10/PO202402/21/0001/acmePorterSixPackAirSample&gt; ;
     sosa:resultTime "2024-02-20T01:35:45Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "12"^^unit:DEG_C .
 
 &lt;observation1b&gt; rdf:type sosa:Observation ;
     rel:own &lt;acmeBreweryCo&gt; ;
     sosa:observedProperty equipment:airRelativeHumidity ;
-    sosa:hasUltimateFeatureOfInterest &lt;airRelativeHumidityInProductPackaging&gt; ;
+    sosa:hasUltimateFeatureOfInterest &lt;10/PO202402/21/0001/airRelativeHumidityInProductPackaging&gt; ;
     sosa:madeBySensor &lt;12345/HumiditySensor&gt;  ;
-    sosa:hasFeatureOfInterest &lt;PO202402/acmePorterSixPackAirSample&gt; ;
+    sosa:hasFeatureOfInterest &lt;10/PO202402/21/0001/acmePorterSixPackAirSample&gt; ;
     sosa:resultTime "2024-02-20T01:35:45Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "60"^^unit:PERCENT .
 
@@ -147,10 +162,14 @@ battery life performance of individual battery lots.</p>
    <p>In the above example the concurrent use of the <a href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a> and <a
    href="#SOSAhasUltimateFeatureOfInterest">sosa:hasUltimateFeatureOfInterest</a> properties is made to account for the repurposing of a generic
    sensor. The actual measurement being performed by the platform is the air temperature within the carton as a proxy for the beer
-   temperature within each container. Modeling the full thermodynamics activity relating one measurement to the other is beyond the
-   scope of this document but can be implemented as a second order &quot;virtual&quot; <a href="#SOSASensor">sosa:Sensor</a> or a
+   temperature within each beer vessel. Modeling the full thermodynamics activity relating one measurement to the other is beyond the
+   scope of this document but could be implemented as a second order &quot;virtual&quot; <a href="#SOSASensor">sosa:Sensor</a> or a
    sophisticated <a href="#SOSAProcedure">sosa:Procedure</a>. Thus the use of the <a href="#SOSAhasUltimateFeatureOfInterest">sosa:hasUltimateFeatureOfInterest</a> property allows for flexibility in the interpretation of the measurement
    within a context <i>not necessarily intended by the original sensor design itself</i>.</p>
+   
+   <p>Physically, both &lt;12345/HumiditySensor&gt; and &lt;12345/TemperatureSensor&gt; are monitoring the ambient air within the
+   specific Porter carton which we define as &lt;10/PO202402/21/0001/acmePorterSixPackAirSample&gt; which resolve the issue of the
+   location of the reading when the carton is moving.</p>
 
    <p>An issue is whether the complexity incurred in recording measurements in this way is an additional burden on consumers of the
    data. Previous approaches to data storage had an observation centric approach that was partially dictated by relational
@@ -279,9 +298,16 @@ battery life performance of individual battery lots.</p>
     </section>
     
     <section id="IBS-TH2-deployment">
+
       <h3>Notes on deployment and observation aggregation</h3>
       Previous examples have focused on the reporting of results from 
       TODO
+
+      <h4>Recording data using provenance activities</h4>
+      
+      <p>In previous examples, <a href="https://www.w3.org/TR/prov-o/Activity">prov:Activity</a> was used as a means of aggregating
+      results as an archiving reception.   </p>
+
       
       <h4>Recording data through a sensor deployment</h4>
       
@@ -295,9 +321,6 @@ battery life performance of individual battery lots.</p>
       relationship.</p>
       
       
-      <h4>Recording data using provenance activities</h4>
-      
-      <p>As the previous examples, the provenance ontology can be used. </p>
 
 
       

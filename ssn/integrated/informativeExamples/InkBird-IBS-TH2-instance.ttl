@@ -48,12 +48,19 @@
 	foaf:name "Acme Supermarket Co." .
 
 <acmeSupermarketCooler> a <equipment:Cooler> .
-# A specific (instance) six pack of Acme Porter Beers 
-<PO202402/acmePorterSixPack> a beer:Porter, gs1:Product ;
-    gs1:hasBatchLotNumber "PO202402" .
+
+# A specific (instance) six pack of Acme Porter Beers
+# We use GS1-style lot and serial numbers as part of the 
+# identifier to highlight that the carton is a physical instance.
+# 
+# 
+<10/PO202402/21/0001/acmePorterSixPack> a beer:Porter, gs1:Product ;
+    gs1:hasBatchLotNumber "PO202402" ;
+    gs1:hasSerialNumber "0001" .
+
 
 # A sample of air within the six pack
-<PO202402/acmePorterSixPackAirSample> a sosa:Sample ;
+<10/PO202402/21/0001/acmePorterSixPackAirSample> a sosa:Sample ;
     rdfs:label "Air within the six pack"@en ;
     sosa:isSampleOf <PO202402/acmePorterSixPack> .
 
@@ -73,7 +80,7 @@
     prov:startedAtTime "2024-02-20T01:35:00Z"^^xsd:dateTime;
     prov:endedAtTime   "2024-02-20T01:40:00Z"^^xsd:dateTime;   
     prov:atLocation <acmeBreweryCo> ;
-    prov:generated <PO202402/acmePorterSixPack> .
+    prov:generated <10/PO202402/21/0001/acmePorterSixPack> .
 
 # These definitions look redundant; but they represent the specific, physical instantiation of the sensors.
 
@@ -107,19 +114,21 @@
 <12345/TemperatureSensor> a equipment:IBSTH2TemperatureSensor ;
     rdf:comment "This is the instance of the temperature sensor instance."@en .
 
-<PO202402/airRelativeHumidityInProductPackaging> a equipment:airRelativeHumidity, sosa:ObservableProperty;;
+<10/PO202402/21/0001/airRelativeHumidityInProductPackaging> a equipment:airRelativeHumidity, sosa:ObservableProperty;;
     schema:unitCode unit:PERCENT ;
-    ssn:isPropertyOf <PO202402/acmePorterSixPack> ;
+    ssn:isPropertyOf <10/PO202402/21/0001/acmePorterSixPack> ;
     rdfs:label "Humidité relative de l'emballage du produit"@fr, "Relative Humidity of Product Packaging"@en, "Relative Luftfeuchtigkeit der Produktverpackung"@de ;
     skos:definition "The amount of water vapor present in air around the product packaging"@en .
 
+# Generic beer temperature
 <BeerTemperature> a sosa:ObservableProperty, ssn:Property ;
     schema:unitCode unit:DEG_C ;
     rdfs:label "Biertemperatur"@de, "Beer Temperature"@en, "Température de la bière"@fr .
-  
-<PO202402/BeerTemperature> a sosa:ObservableProperty, <BeerTemperature> ;
+
+# The overall beer temperature of the beer within the carton containers.  
+<10/PO202402/21/0001/BeerTemperature> a sosa:ObservableProperty, <BeerTemperature> ;
     schema:unitCode unit:DEG_C ;
-    ssn:isPropertyOf <PO202402/acmePorterSixPack> ;
+    ssn:isPropertyOf <10/PO202402/21/0001/acmePorterSixPack> ;
     rdfs:label "Biertemperatur"@de, "Beer Temperature"@en, "Température de la bière"@fr ;
     skos:definition "Temperature of the Beer in carton."@en .
 
@@ -129,18 +138,18 @@
 <observation1a> a sosa:Observation ;
     rel:own <acmeBreweryCo> ;
     sosa:observedProperty equipment:airTemperature ;
-    sosa:hasUltimateFeatureOfInterest <PO202402/BeerTemperature> ; 
+    sosa:hasUltimateFeatureOfInterest <10/PO202402/21/0001/BeerTemperature> ; 
     sosa:madeBySensor <12345/TemperatureSensor>  ;
-    sosa:hasFeatureOfInterest <PO202402/acmePorterSixPackAirSample> ;
+    sosa:hasFeatureOfInterest <10/PO202402/21/0001/acmePorterSixPackAirSample> ;
     sosa:resultTime "2024-02-20T01:35:45Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "12"^^unit:DEG_C .
 
 <observation1b> rdf:type sosa:Observation ;
     rel:own <acmeBreweryCo> ;
     sosa:observedProperty equipment:airRelativeHumidity ;
-    sosa:hasUltimateFeatureOfInterest <PO202402/airRelativeHumidityInProductPackaging> ;
+    sosa:hasUltimateFeatureOfInterest <10/PO202402/21/0001/airRelativeHumidityInProductPackaging> ;
     sosa:madeBySensor <12345/HumiditySensor>  ;
-    sosa:hasFeatureOfInterest <PO202402/acmePorterSixPackAirSample> ;
+    sosa:hasFeatureOfInterest <10/PO202402/21/0001/acmePorterSixPackAirSample> ;
     sosa:resultTime "2024-02-20T01:35:45Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "60"^^unit:PERCENT .
 
@@ -171,9 +180,9 @@
     rel:own <acmeBreweryCo> ;
     rel:own <acmeDelivery> ;
     sosa:observedProperty equipment:airTemperature ;
-    sosa:hasUltimateFeatureOfInterest <PO202402/BeerTemperature> ;
+    sosa:hasUltimateFeatureOfInterest <10/PO202402/21/0001/BeerTemperature> ;
     sosa:madeBySensor <12345/TemperatureSensor>  ;
-    sosa:hasFeatureOfInterest <PO202402/acmePorterSixPackAirSample> ;
+    sosa:hasFeatureOfInterest <10/PO202402/21/0001/acmePorterSixPackAirSample> ;
     sosa:resultTime "2024-02-22T04:15:05Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "19"^^unit:DEG_C .
 
@@ -181,9 +190,9 @@
     rel:own <acmeBreweryCo> ;
     rel:own <acmeDelivery> ;
     sosa:observedProperty equipment:airRelativeHumidity ;
-    sosa:hasUltimateFeatureOfInterest <PO202402/airRelativeHumidityInProductPackaging> ;
+    sosa:hasUltimateFeatureOfInterest <10/PO202402/21/0001/airRelativeHumidityInProductPackaging> ;
     sosa:madeBySensor <12345/HumiditySensor>  ;
-    sosa:hasFeatureOfInterest <PO202402/acmePorterSixPackAirSample> ;
+    sosa:hasFeatureOfInterest <10/PO202402/21/0001/acmePorterSixPackAirSample> ;
     sosa:resultTime "2024-02-22T04:15:05Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "74"^^unit:PERCENT .
 
@@ -221,18 +230,18 @@
 <observation98a> rdf:type sosa:Observation,prov:Entity ;
     rel:own <acmeSupermarket> ;
     sosa:observedProperty equipment:airTemperature ;
-    sosa:hasUltimateFeatureOfInterest <PO202402/BeerTemperature> ;    
+    sosa:hasUltimateFeatureOfInterest <10/PO202402/21/0001/BeerTemperature> ;    
     sosa:madeBySensor <12345/TemperatureSensor>  ;
-    sosa:hasFeatureOfInterest <PO202402/acmePorterSixPackAirSample> ;
+    sosa:hasFeatureOfInterest <10/PO202402/21/0001/acmePorterSixPackAirSample> ;
     sosa:resultTime "2024-02-22T06:00:13Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "12"^^unit:DEG_C .
 
 <observation98b> rdf:type sosa:Observation,prov:Entity ;
     rel:own <acmeSupermarket> ;
     sosa:observedProperty equipment:airRelativeHumidity ;
-    sosa:hasUltimateFeatureOfInterest <PO202402/airRelativeHumidityInProductPackaging> ;
+    sosa:hasUltimateFeatureOfInterest <10/PO202402/21/0001/airRelativeHumidityInProductPackaging> ;
     sosa:madeBySensor <12345/HumiditySensor>  ;
-    sosa:hasFeatureOfInterest <PO202402/acmePorterSixPackAirSample> ;
+    sosa:hasFeatureOfInterest <10/PO202402/21/0001/acmePorterSixPackAirSample> ;
     sosa:resultTime "2024-02-22T06:00:13Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "55"^^unit:PERCENT .
 
