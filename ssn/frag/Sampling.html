@@ -65,6 +65,7 @@
             , <a href="#SOSASamplingProcedure">sosa:SamplingProcedure</a>
             , <a href="#SOSASampling">sosa:Sampling</a>
             , <a href="#SOSASampler">sosa:Sampler</a>
+            , <a href="#SOSASamplerKind">sosa:SamplerKind</a>
             , <a href="#SOSAmadeSampling">sosa:madeSampling</a>
             , <a href="#SOSAmadeBySampler">sosa:madeBySampler</a>
         </p>
@@ -1105,12 +1106,21 @@
                 <tr class="ssn">
                     <th class="restrictions">Restrictions</th>
                     <td>
+                        <span about="sosa:Sampler" rel="rdfs:subClassOf" resource="[_:SOSASampler2]"></span>
+                        <span about="[_:SOSASampler2]" typeof="owl:Restriction"></span>
+                        <span about="[_:SOSASampler2]" rel="owl:onProperty" resource="sosa:hasSystemKind"><a
+                                href="#SOSAhasSystemKind">sosa:hasSystemKind</a></span>
+                        <span about="[_:SOSASampler2]" property="owl:maxCardinality" content="1"
+                            datatype="xsd:nonNegativeInteger"><em><b>MAX 1</b></em> <a
+                                href="#SOSASamplerKind">sosa:SamplerKind</a></span>
+                        <br>
                         <span about="sosa:Sampler" rel="rdfs:subClassOf" resource="[_:SOSASampler4]"></span>
                         <span about="[_:SOSASampler4]" typeof="owl:Restriction"></span>
                         <span about="[_:SOSASampler4]" rel="owl:onProperty" resource="sosa:implements"><a
                                 href="#SOSAimplements">sosa:implements</a></span>
                         <span about="[_:SOSASampler4]" property="owl:minCardinality" content="1"
-                            datatype="xsd:nonNegativeInteger"><em><b>MIN 1</b></em></span>
+                            datatype="xsd:nonNegativeInteger"><em><b>MIN 1</b></em> <a
+                                href="#SOSASampling">sosa:SamplingProcedure</a></span>
                         <br>
                         <span about="sosa:Sampler" rel="rdfs:subClassOf" resource="[_:SOSASampler1]"></span>
                         <span about="[_:SOSASampler1]" typeof="owl:Restriction"></span>
@@ -1119,6 +1129,49 @@
                         <span about="[_:SOSASampler1]" property="owl:allValuesFrom"
                             resource="sosa:Sampling"><em><b>ONLY</b></em> <a
                                 href="#SOSASampling">sosa:Sampling</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span>
+                <span class="sosa" style="display: none;">[<a href="#"
+                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
+                        additional SSN axioms</a>]</span>
+                <span class="ssn">[<a href="#"
+                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
+                        additional SSN axioms</a>]</span>
+            </span>
+            <span class="back">[<a href="#Sampling">Back to module overview and examples</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="specterm sosa" id="SOSASamplerKind" about="sosa:SamplerKind" typeof="owl:Class">
+        <h5><a href="#SOSASamplerKind">sosa:SamplerKind</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/SamplerKind</p>
+        <p><strong>an OWL Class</strong></p>
+        <em property="rdfs:label">SamplerKind</em> -
+        <span property="rdfs:comment skos:definition">A <code>SamplerKind</code> describes a type of <a href="#SOSASampler"><code>Sampler</code></a>.
+        Several <a href="#SOSASampler"><code>Sampler</code></a> instances may reference the same <code>SamplerKind</code>.</span>
+        <br>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Example</th>
+                    <td><span property="skos:example">A specific model of automatic water sampler.</span></td>
+                </tr>
+                <tr class="ssn">
+                    <th>Sub class of</th>
+                    <td>
+                        <span rel="rdfs:subClassOf" resource="sosa:SystemKind"><a href="#SOSASystemKind">sosa:SystemKind</a></span>
                     </td>
                 </tr>
                 <tr>
