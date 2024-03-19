@@ -17,6 +17,11 @@ data: [
       orcid: "0000-0001-7656-1830"
     },
     {
+      name: "Alex Robin",
+      company: "GeoRobotix Inc.",
+      companyURL: "https://www.georobotix.com"
+    },
+    {
       name: "Kathi Schleidt",
       company: "Datacove",
       companyURL: "https://www.datacove.eu/",
