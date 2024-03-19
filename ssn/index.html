@@ -4,7 +4,7 @@
 <head>
   <meta content="text/html; charset=utf-8" http-equiv="content-type">
   <title>Semantic Sensor Network Ontology</title>
-  <script class="remove" src="https://www.w3.org/Tools/respec/respec-w3c-common"></script>
+  <script class="remove" src="https://www.w3.org/Tools/respec/respec-w3c"></script>
   <script class="remove" src="config.js"></script>
   <script src="https://www.w3.org/2007/OWL/toggles.js"></script>
   <script>
@@ -43,6 +43,18 @@
 
 <body
   prefix="rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns# rdfs: http://www.w3.org/2000/01/rdf-schema# owl: http://www.w3.org/2002/07/owl# xsd: http://www.w3.org/2001/XMLSchema# skos: http://www.w3.org/2004/02/skos/core# dcterms: http://purl.org/dc/terms/ foaf: http://xmlns.com/foaf/0.1/>. vann: http://purl.org/vocab/vann/ voaf: http://purl.org/vocommons/voaf# time: http://www.w3.org/2006/time# sosa: http://www.w3.org/ns/sosa/ sosa-oms: http://www.w3.org/ns/sosa/oms/ ssn: http://www.w3.org/ns/ssn/ ssn-oms: http://www.w3.org/ns/ssn/oms/ ssn-system: http://www.w3.org/ns/ssn/systems/  sampling: http://www.w3.org/ns/sosa/sampling/ vs: http://www.w3.org/2003/06/sw-vocab-status/ns#">
+
+  <p class='copyright'><a href='https://www.w3.org/Consortium/Legal/ipr-notice#Copyright'>Copyright</a> © 2024 <a
+      href='http://www.opengeospatial.org/'>OGC</a> &amp; <a href='https://www.w3.org/'> <abbr
+        title='World Wide Web Consortium'>W3C</abbr> </a><sup>®</sup> (<a href='https://www.csail.mit.edu/'><abbr
+        title='Massachusetts Institute of Technology'>MIT</abbr></a>, <a href='https://www.ercim.eu/'><abbr
+        title='European Research Consortium for Informatics and Mathematics'>ERCIM</abbr></a>, <a
+      href='https://www.keio.ac.jp/'>Keio</a>, <a href='https://ev.buaa.edu.cn/'>Beihang</a>), <abbr
+      title='World Wide Web Consortium'>W3C</abbr> <a
+      href='https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer'>liability</a>, <a
+      href='https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks'>trademark</a>, <a
+      href='https://www.w3.org/Consortium/Legal/copyright-documents'>W3C</a> and <a
+      href='https://www.ogc.org/ogc/document'>OGC</a> document use rules apply.</p>
 
   <section id="abstract">
     <p>The Semantic Sensor Network (SSN) ontology is an ontology for describing
@@ -84,183 +96,12 @@
       The document is prepared following W3C conventions. The document is
       released at this time to solicit public comment.</p>
   </section>
-  <section id="intro" class="informative">
-    <h2>Introduction</h2>
-    <p>Sensors are a major source of data available on the Web today.
-      While sensor data may be published merely as values, searching, reusing, integrating, and interpreting these data
-      requires more than just the observation results.
-      For the proper interpretation of these values, information about the studied feature of interest, such as a river,
-      the observed property, such as flow velocity, the utilized sampling strategy, such as the specific locations and
-      times at which the velocity was measured, and a variety of other information are required.
-      OGC's Sensor Web Enablement standards [[[SWE]]], [[[SensorML]]], [[[OandM]]], [[[OMS]]], [[[STA]]] provide
-      conceptual models
-      and some encodings for the annotation of sensors and their observations.
-      Integration and alignment with W3C Semantic Web technologies and Linked Data embeds this in a global and densely
-      interconnected graph of data.
-      With the rise of the Web of Things and smart cities and homes more generally, actuators and the data they produce
-      also become first-class citizens of the Web.
-      Given their close relation to sensors and observations, it is desirable to provide an ontology that also
-      includes actuators and actuation.
-      Finally, with the increasing diversity of data and data providers, definitions for sensors need to be broadened,
-      to include human agents and social sensing.
-      The following specification introduces the Semantic Sensor Network (SSN) ontology that sets out to provide
-      flexible but coherent perspectives for representing the entities, relations, and activities involved in sensing,
-      sampling, and actuation.
-      A lightweight core for SSN, known as SOSA (Sensor, Observation, Sample, and Actuator) aims at broadening the
-      target audience and application areas that do not need the full capabilities of Semantic Web ontologies.
-      SOSA acts as minimal interoperability fall-back level, i.e., it defines those classes and properties for
-      which data can be safely exchanged across all uses of SSN, its modules, and SOSA.</p>
-  </section>
 
-  <section id="Modularization" class="informative">
-    <h2>Modularization</h2>
+  <section id="Introduction" class="informative" data-include="frag/Introduction.html"></section>
 
-    <p>The SSN Ontology is distributed in several modules.
-      The segmentation allows users to access the knowledge they require, reducing the scope to what is necessary in a
-      given use case.
-      Lower level modules are independent of their higher level modules and logically consistent on their own.</p>
-    <p class="note">Higher level here is not to be confused with <i>upper level ontologies</i>.
-      Upper level ontologies are <i>general knowledge</i> ontologies that can be directionally imported in many domains.
-    </p>
+  <section id="Modularization" class="informative" data-include="frag/Modularization.html"></section>
 
-    <p>
-      This figure summarizes the modules and dependencies within the SSN Ontology.
-    </p>
-    <figure id="ssn-module-dependencies">
-      <img alt="SSN Ontology Modules" src="images/SSN-core-packages.png">
-      <figcaption>The modular SSN ontology - core packages, showing classes and dependencies.
-      </figcaption>
-    </figure>
-
-    <p>
-      This figure summarizes the extension modules and dependencies described in this document.
-    </p>
-    <figure id="ssn-module-extensions">
-      <img alt="SSN Extension Modules" src="images/SSN-extensions.png">
-      <figcaption>The modular SSN ontology - extensions.
-      </figcaption>
-    </figure>
-
-    <p>
-      This figure summarizes the alignments with the SSN Ontology described in this document.
-    </p>
-    <figure id="ssn-module-alignments">
-      <img alt="SSN Alignment Modules" src="images/SSN-alignments.png">
-      <figcaption>The modular SSN ontology - alignments.
-      </figcaption>
-    </figure>
-
-    <h3 id="sosa-module">SOSA</h3>
-    <p>The <i>SOSA Module</i> (Sensors, Observations, Samples and Actuations) defines the <b>core</b> classes and
-      properties, and provides textual definitions and other annotations.
-      Some semantic enrichment is provided using Schema.org [[schema-org]] properties, but there is no formal
-      axiomatization.
-      SOSA may be used <i>as-is</i> by an audience who wish to use terminology consistent with the SSN Ontology, thus
-      ensuring interoperability with SSN-based repositories. </p>
-    <p><b>SOSA</b> is composed of four lower level modules: </p>
-    <ol>
-      <li>
-        <b>SOSA Common</b> defines classes and properties that are shared across Actuation, Observation and Sampling
-        applications
-      </li>
-      <li>
-        <b>SOSA Actuation</b> imports <b>SOSA Common</b> and defines classes and properties used in Actuations
-      </li>
-      <li>
-        <b>SOSA Observation</b> imports <b>SOSA Common</b> and defines classes and properties used in Observations
-      </li>
-      <li>
-        <b>SOSA Sampling</b> imports <b>SOSA Common</b> and defines classes and properties used in Samplings
-      </li>
-    </ol>
-    <p>Finally, <i>SOSA</i> imports <b>SOSA Actuation</b> , <b>SOSA Observation</b> and <b>SOSA Sampling</b> .</p>
-    <p><i>SOSA</i> as the core, does not import any other ontologies, so it is truly independent of modules that add
-      more expressivity and further ontological commitments to the lightweight semantics of <i>SOSA</i>.</p>
-
-    <h3 id="ssn-module">SSN</h3>
-    <p>The <i>SSN Module</i> adds axioms that formally indicate how properties relate to classes, how classes relate to
-      each other. SSN may be used in semantic web systems that use inferencing and reasoning, and consistency checking
-      for datasets. </p>
-    <p>The modularization of <b>SSN</b> mirrors <b>SOSA</b>.
-      <b>SSN</b> is composed of four lower level modules:
-    </p>
-    <ol>
-      <li>
-        <b>SSN Common</b> imports <b>SOSA Common</b> and axiomatizes classes and properties that are shared across
-        Actuation, Observation and Sampling
-        applications
-      </li>
-      <li>
-        <b>SSN Actuation</b> imports <b>SSN Common</b> and <b>SOSA Actuation</b>, and axiomatizes classes and properties
-        used in Actuations
-      </li>
-      <li>
-        <b>SSN Observation</b> imports <b>SSN Common</b> and <b>SOSA Observation</b>, and axiomatizes classes and
-        properties used in Observations
-      </li>
-      <li>
-        <b>SSN Sampling</b> imports <b>SSN Common</b> and <b>SOSA Sampling</b>, and axiomatizes classes and properties
-        used in Samplings
-      </li>
-    </ol>
-    <p>Finally, <i>SSN</i> imports <b>SSN Actuation</b> , <b>SSN Observation</b> and <b>SSN Sampling</b> .</p>
-    <p class="note">Readers who do not wish to view the SSN axioms may hide them by selecting the button [Show only core
-      SOSA terms] at the top of the <a href="#overview-of-classes-and-properties">Overview of Classes and Properties</a>
-      or [Hide additional SSN axioms] on each individual specification block.</p>
-
-    <h3 id="system-capabilities-module">System Capabilities</h3>
-    <p>
-      The <i>System Capabilities module</i> imports <i>SSN Actuation</i> and <i>SSN Observation</i>, and adds classes
-      and properties required for the description of the capabilities of systems, in particular Sensors and Actuators.
-    </p>
-
-
-    <h3 id="sample-relations-module">Sample Relations</h3>
-    <p>
-      The <i>Sample Relations module</i> imports <i>SOSA Sampling</i>, and adds classes and properties required for the
-      description of networks of samples.
-    </p>
-
-
-    <h3 id="sosa-oms-module">SOSA-OMS</h3>
-    <p>
-      The <i>SOSA-OMS module</i> imports <b>SOSA Observation</b> and <b>SOSA Sampling</b> and describes the alignment of
-      SOSA to [[[OMS]]], adding some
-      additional terms used in OMS that are not otherwise included in SSN.
-      <b><i>SOSA-OMS</i> may be used by audiences for whom strict conformance to [[OMS]] (also known as ISO 19156:2023)
-        is a requirement</b>
-    </p>
-
-    <h3 id="ssn-oms-module">SSN-OMS</h3>
-    <p>
-      The <i>SSN-OMS module</i> imports <i>SOSA-OMS</i> and <b>SSN Observation</b> and <b>SSN Sampling</b> and describes
-      the alignment of SSN to [[OMS]] including OWL/RDFS axiomatization.
-      <b><i>SSN-OMS</i> may be used by audiences for whom strict conformance to [[OMS]] (also known as ISO 19156:2023)
-        is a requirement, with reasoning support</b>
-    </p>
-
-    <h3 id="ssn-dul-module">SSN-DUL</h3>
-    <p>
-      The <i>SSN-DUL module</i> imports <b>SSN</b>, and adds axioms that position SSN within <i>Dolce-UltraLite</i>.
-      <i>SSN-DUL</i> may be used to integrate data designed using SSN into systems otherwise built in the
-      <i>Dolce-UltraLite</i> framework.
-    </p>
-
-    <h3 id="sosa-oboe-module">SOSA-OBOE</h3>
-    <p>
-      The <i>SOSA-OBOE module</i> imports <b>SOSA Observation</b>, and describes the alignment of SOSA to [[[OBOE]]].
-      <i>SOSA-OBOE</i> may be used to integrate observation data structured using OBOE with data using SOSA.
-    </p>
-
-    <h3 id="sosa-prov-module">SOSA-PROV</h3>
-    <p>
-      The <i>SOSA-PROV module</i> imports <b>SOSA Common</b>, and describes the alignment of SOSA to [[[prov-o]]].
-      <i>SOSA-PROV</i> may be used to integrate data designed using SSN into provenance systems.
-    </p>
-
-  </section>
-
-  <section id="Origins" class="normative" data-include="frag/Origins.html"></section>
+  <section id="conformance" class="normative" data-include="frag/Conformance.html"></section>
 
   <section id="Specification" class="normative">
     <h2>Specification</h2>
@@ -538,13 +379,13 @@
 
     <section id="OMS-alignment" class="normative" data-include="frag/OMS-alignment.html"></section>
 
-    <section id="DUL-alignment" class="normative" data-include="frag/DUL-alignment.html"></section>
-
-    <section id="SSNX-alignment" class="normative" data-include="frag/SSNX-alignment.html"></section>
+    <section id="PROV-alignment" class="normative" data-include="frag/PROV-alignment.html"></section>
 
     <section id="OBOE-alignment" class="normative" data-include="frag/OBOE-alignment.html"></section>
 
-    <section id="PROV-alignment" class="normative" data-include="frag/PROV-alignment.html"></section>
+    <section id="DUL-alignment" class="normative" data-include="frag/DUL-alignment.html"></section>
+
+    <section id="SSNX-alignment" class="normative" data-include="frag/SSNX-alignment.html"></section>
 
   </section>
 
@@ -577,7 +418,7 @@
 
     <section id="forecasts" class="informative">
       <h3>Forecasts</h3>
-      <p>One may also represent forecasts as observations if the value of <code>sosa:phenomenonTime</code> is later in
+      <p>One MAY also represent forecasts as observations if the value of <code>sosa:phenomenonTime</code> is later in
         time than the <code>sosa:resultTime</code>.
         Given the definition of these terms, it means that: <em>The time when the Observation act was completed is
           before the time that the Result of the observation applies to the FeatureOfInterest.</em></p>
@@ -606,10 +447,9 @@
         </li>
         <li>With OM 2, a quantitative result would be a <a
             href="http://www.wurvoc.org/vocabularies/"><code>om:Measure</code> or <code>om:Point</code></a></li>
-        <li>With CDT, the value of <a href="#SOSAhasSimpleResult"><code>sosa:hasSimpleResult</code></a> may be
+        <li>With CDT, the value of <a href="#SOSAhasSimpleResult"><code>sosa:hasSimpleResult</code></a> can be
           structured to match <a
-            href="https://ci.mines-stetienne.fr/lindt/v4/custom_datatypes#ucum"><code>cdt:ucum</code></a> which
-          encodes
+            href="https://ci.mines-stetienne.fr/lindt/v4/custom_datatypes#ucum"><code>cdt:ucum</code></a> which encodes
           the unit-of-measure using UCUM (UCUM, [[UCUM]])</li>
       </ul>
       <p class="note">Custom datatypes are not strictly compatible with OWL, which restricts the set of datatypes that
@@ -625,8 +465,7 @@
           href="#SOSAProperty"><code>sosa:Property</code></a> should be generic to all features of interest (e.g.,
         <code>ex:Temperature</code>,
         <code>ex:OnOffStatus</code>), or specific to a single feature of interest (e.g.,
-        <code>&lt;myBodyTemperature&gt;</code>, <code>&lt;LightStatus&gt;</code>). This version solves the ambiguity
-        by
+        <code>&lt;myBodyTemperature&gt;</code>, <code>&lt;LightStatus&gt;</code>). This version solves the ambiguity by
         differentiating:
       </p>
       <ul>
@@ -639,18 +478,18 @@
     <section id="SOSASystem-instances" class="informative">
       <h3>Generic or Specific Instances of sosa:System</h3>
       <p>This specification does not specify whether an instance of <a href="#SOSASystem"><code>sosa:System</code></a>
-        should be generic (e.g., <code>ex:TemperatureSensor</code>,
-        <code>ex:LightActuator</code>), or specific to a single feature of interest (e.g.,
+        should be generic (e.g., <code>ex:TemperatureSensor</code>, <code>ex:LightActuator</code>), or specific to a
+        single feature of interest (e.g.,
         <code>&lt;temperatureSensor/84&gt;</code>, <code>&lt;light/112&gt;</code>).
         Implementers are free to choose one way of modeling things or the other.
       </p>
       <p>On the other hand, one SHOULD NOT use <a href="https://www.w3.org/TR/owl2-new-features/#F12:_Punning">OWL
           punning</a> to make <code>ex:Temperature</code> denote both a subclass of
-        <a href="#SOSAProperty"><code>sosa:Property</code></a> and an instance of sosa:Property. In fact, merging the
-        two examples below in a
-        single RDF Graph would make an OWL reasoner infer that <code>ex:TemperatureSensor</code>,
-        <code>&lt;TemperatureSensor/1&gt;</code>, and
-        <code>&lt;TemperatureSensor/2&gt;</code>, denote the same individual.
+        <a href="#SOSAProperty"><code>sosa:Property</code></a> and an instance of sosa:Property.
+        In fact, merging the two examples below in a single RDF Graph would make an OWL reasoner infer that
+        <code>ex:TemperatureSensor</code>,
+        <code>&lt;TemperatureSensor/1&gt;</code>, and <code>&lt;TemperatureSensor/2&gt;</code>, denote the same
+        individual.
       </p>
       <p>This also holds for subclasses of <a href="#SOSASystem"><code>sosa:System</code></a>: <a
           href="#SOSASensor"><code>sosa:Sensor</code></a>, <a href="#SOSAActuator"><code>sosa:Actuator</code></a>, and
@@ -678,7 +517,7 @@
       <h3>iPhone Barometer</h3>
       <div class="ssn">
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/iphone_barometer-sosa.ttl">graph
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/iphone_barometer-sosa.ttl">graph
             corresponding to this example is available</a>. </p>
         <pre class="example" data-include="./examples/2017ex8.ttl" data-include-format="text"></pre>
       </div>
@@ -687,8 +526,8 @@
       <h3>Coal Oil Point Reserve</h3>
       <div class="ssn">
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/IDEAS.ttl">graph corresponding to
-            this example is available</a>. </p>
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/IDEAS.ttl">graph
+            corresponding to this example is available</a>. </p>
         <pre class="example" data-include="./examples/2017ex9.ttl" data-include-format="text"></pre>
       </div>
     </section>
@@ -705,13 +544,13 @@
       </div>
       <div class="ssn">
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/apartment-134.ttl">graph
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/apartment-134.ttl">graph
             corresponding to this example is available</a>. </p>
         <pre class="example" data-include="./examples/2017ex10.ttl" data-include-format="text"></pre>
       </div>
       <div class="sosa" style="display: none">
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/apartment-134-sosa.ttl">graph
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/apartment-134-sosa.ttl">graph
             corresponding to this example is available</a>. </p>
         <pre class="example" data-include="./examples/2017ex11.ttl" data-include-format="text"></pre>
       </div>
@@ -739,14 +578,13 @@
       </div>
       <div class="ssn">
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/tree-height.ttl">graph
-            corresponding
-            to this example is available</a>. </p>
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/tree-height.ttl">graph
+            corresponding to this example is available</a>. </p>
         <pre class="example" data-include="./examples/2017ex12.ttl" data-include-format="text"></pre>
       </div>
       <div class="sosa" style="display: none">
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/tree-height-sosa.ttl">graph
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/tree-height-sosa.ttl">graph
             corresponding to this example is available</a>. </p>
         <pre class="example" data-include="./examples/2017ex13.ttl" data-include-format="text"></pre>
       </div>
@@ -774,14 +612,13 @@
       </div>
       <div class="ssn">
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/seismograph.ttl">graph
-            corresponding
-            to this example is available</a>. </p>
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/seismograph.ttl">graph
+            corresponding to this example is available</a>. </p>
         <pre class="example" data-include="./examples/2017ex14.ttl" data-include-format="text"></pre>
       </div>
       <div class="sosa" style="display: none">
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/seismograph-sosa.ttl">graph
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/seismograph-sosa.ttl">graph
             corresponding to this example is available</a>. </p>
         <pre class="example" data-include="./examples/2017ex15.ttl" data-include-format="text"></pre>
       </div>
@@ -799,7 +636,8 @@
     <section id="sunspots">
       <h3>Number of sunspots</h3>
       <p>An RDF file containing a <a
-          href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/sunspots.ttl">graph corresponding to
+          href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/sunspots.ttl">graph
+          corresponding to
           this example is available</a>. </p>
       <pre class="example" data-include="./examples/2017ex16.ttl" data-include-format="text"></pre>
     </section>
@@ -817,13 +655,13 @@
       </div>
       <div class="ssn">
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/spinning-cups.ttl">graph
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/spinning-cups.ttl">graph
             corresponding to this example is available</a>. </p>
         <pre class="example" data-include="./examples/2017ex17.ttl" data-include-format="text"></pre>
       </div>
       <div class="sosa" style="display: none">
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/spinning-cups-sosa.ttl">graph
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/spinning-cups-sosa.ttl">graph
             corresponding to this example is available</a>. </p>
         <pre class="example" data-include="./examples/2017ex18.ttl" data-include-format="text"></pre>
       </div>
@@ -851,24 +689,22 @@
       </div>
       <div class="ssn">
         <p>In order to characterize a thing with a large extent, or which is not directly accessible, the usual
-          observational strategy is to obtain one or more samples. Observations may then be made more conveniently on
+          observational strategy is to obtain one or more samples. Observations can then be made more conveniently on
           the samples, with the intention of characterizing the larger thing. This intentionality is captured using
-          the
-          property <code>sosa:isSampleOf</code>. </p>
+          the property <code>sosa:isSampleOf</code>. </p>
         <p>In the following example, the ice core is a sample of the Antarctic ice sheet, and observations are made on
           the ice core. </p>
         <p>A convenient side effect of this feature is that all observations related to the larger thing (the ice
-          sheet)
-          can be found, and then potentially joined together in a meta-analysis in order to characterize that. </p>
+          sheet) can be found, and then potentially joined together in a meta-analysis in order to characterize that.
+        </p>
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/ice-core.ttl">graph corresponding
-            to
-            this example is available</a>. </p>
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/ice-core.ttl">graph
+            corresponding to this example is available</a>. </p>
         <pre class="example" data-include="./examples/2017ex19.ttl" data-include-format="text"></pre>
       </div>
       <div class="sosa" style="display: none">
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/ice-core-sosa.ttl">graph
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/ice-core-sosa.ttl">graph
             corresponding to this example is available</a>. </p>
         <pre class="example" data-include="./examples/2017ex20.ttl" data-include-format="text"></pre>
       </div>
@@ -896,14 +732,14 @@
       </div>
       <div class="ssn">
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/dht22.ttl">graph corresponding to
-            this example is available</a>. </p>
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/dht22.ttl">graph
+            corresponding to this example is available</a>. </p>
         <pre class="example" data-include="./examples/2017ex21.ttl" data-include-format="text"></pre>
       </div>
       <div class="sosa" style="display: none">
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/dht22-sosa.ttl">graph corresponding
-            to this example is available</a>. </p>
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/dht22-sosa.ttl">graph
+            corresponding to this example is available</a>. </p>
         <pre class="example" data-include="./examples/2017ex22.ttl" data-include-format="text"></pre>
       </div>
       <div class="buttonpanel" style="justify-content: center;">
@@ -930,7 +766,7 @@
         </span>
       </div>
       <div class="ssn">
-        <p>This example shows how the conditions (temperature and humidity) in a room may be measured using one or
+        <p>This example shows how the conditions (temperature and humidity) in a room can be measured using one or
           more sensors.
           Each sensor observes the conditions in its immediate vicinity, and the values are then used to characterize
           the room. </p>
@@ -940,13 +776,13 @@
           Each of these locations corresponds to a <code>sosa:Sample</code> of the entire room.
           The wall also serves as a <code>sosa:Platform</code> on which the sensors are mounted. </p>
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/dht22-deployment.ttl">graph
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/dht22-deployment.ttl">graph
             corresponding to this example is available</a>. </p>
         <pre class="example" data-include="./examples/2017ex23.ttl" data-include-format="text"></pre>
       </div>
       <div class="sosa" style="display: none">
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/dht22-deployment-sosa.ttl">graph
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/dht22-deployment-sosa.ttl">graph
             corresponding to this example is available</a>. </p>
         <pre class="example" data-include="./examples/2017ex24.ttl" data-include-format="text"></pre>
       </div>
@@ -957,354 +793,34 @@
         <p>This example describes the IP68 Smart Sensor that and some of its capabilities and operating ranges.
           A specific IP68 Smart Sensor observes the air temperature, and its own battery state.</p>
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/ssn/integrated/examples/ip68.ttl">graph corresponding to
-            this example is available</a>. </p>
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/ip68.ttl">graph
+            corresponding to this example is available</a>. </p>
         <pre class="example" data-include="./examples/2017ex25.ttl" data-include-format="text"></pre>
       </div>
     </section>
   </section>
 
+  <section class="appendix" id="origins" data-include="frag/Origins.html"></section>
+
   <section class="appendix" id="acknowledgments">
     <h2>Acknowledgments</h2>
-    The Editors recognize the major contribution of the members of the
-    original W3C Semantic Sensor Networks Incubator Group. The editors also
-    gratefully acknowledge the contributions made to this document by all
-    members of the SSN subgroup of the Spatial Data on the Web working
-    group.
+    <p>
+      The editors recognize the major contribution of the members of the
+      original W3C Semantic Sensor Networks Incubator Group. The editors also
+      gratefully acknowledge the contributions made to this document by all
+      members of the SSN subgroup of the Spatial Data on the Web working
+      group.
+    </p>
+    <p>
+      For this new edition of SSN, in addition to the contributors listed at the top of the document, the editors
+      acknowledge the work of the editors of ISO 19156:2023 [[OMS]].
+    </p>
   </section>
 
   <section class="appendix" id="changes">
     <h2>Change History</h2>
-    <p>A full change-log is available on <a href="https://github.com/w3c/sdw/commits/gh-pages/ssn">GitHub</a>.</p>
-    <h3>Changes since Original <a href="https://www.w3.org/2005/Incubator/ssn/XGR-ssn-20110628/">
-        (https://www.w3.org/2005/Incubator/ssn/XGR-ssn-20110628/)</a></h3>
-    <ol>
-      <li>The DUL ontology, that was imported in SSN, is no
-        longer imported and all axioms using terms from DUL have been
-        removed from SSN and collected in the DUL-SSN alignment module. </li>
-      <li>The namespace was changed to match the planned namespace for this
-        publication. </li>
-      <li>The modularization as presented here, including the core, is
-        entirely new. </li>
-    </ol>
-    <h3>Changes since 1st Public Working Draft <a href="http://www.w3.org/TR/2016/WD-vocab-ssn-20160531/">
-        (http://www.w3.org/TR/2016/WD-vocab-ssn-20160531/)</a></h3>
-    <ol>
-      <li>Correction to include some SSN terms that were unintentionally
-        dropped from the FPWD. Correction to remove an asserted subclass of
-        owl:Thing that was introduced into FPWD (these were both by-products
-        of the DUL removal). </li>
-      <li>Correction to some https namespace usage that crept into the FPWD.</li>
-      <li>Transition to the new namespace used by the DUL module.</li>
-      <li>Inclusion of the DUL alignment and the old SSN (of the SSN-XG)
-        alignment. </li>
-      <li> sosa:Sensor has been changed to be a subclass of dul:Object
-        instead of dul:Physical Object.</li>
-      <li>Various typography and spelling errors and consistency of
-        expression in annotation properties have been improved. These do not
-        induce any changes in the intended meaning of the terms. </li>
-      <li>Specgen 6 has been used to generate the ontology documentation.
-        The popular sketch of SSN structure has been removed. </li>
-      <li>Object properties sosa:isValueOf, sosa:produces and
-        sosa:featureInObservation, along with a propertychain subproperty of
-        produces and another propertychain subproperty of hasProperty, were
-        introduced unintentionally in the FPWD.</li>
-    </ol>
-    <h3>Changes since 2nd Public Working Draft <a href="https://www.w3.org/TR/2017/WD-vocab-ssn-20170105/">
-        (https://www.w3.org/TR/2017/WD-vocab-ssn-20170105/)</a></h3>
-    <ol>
-      <li>Changed meta prefix declaration to schema</li>
-      <li>Added voaf:Vocabulary class to ontology instances</li>
-      <li>Added dcterms:license statements</li>
-      <li>Added vann:preferredNamespacePrefix and vann:preferredNamespaceUri
-        statements</li>
-      <li>Added SOSA and SSN alignment</li>
-      <li>Added SSN/SOSA alignments with O&amp;M</li>
-      <li>Consistently added Capitalization of all ontology terms in all
-        rdfs:comments</li>
-      <li>Addressed naming inconsistency with changes in name to
-        isObservedBy/observes, madeBySensor/madeObservation</li>
-      <li>Use skos:examples to describe examples of classes/properties</li>
-      <li>Removed history skos:historyNote</li>
-      <li>SOSA-specific changes:
-        <ul>
-          <li>Various typography and spelling errors and consistency of
-            expression in annotation properties have been improved</li>
-          <li>Added "sosa:hasResult meta:domainIncludes sosa:Actuation" and
-            "sosa:isResultOf meta:rangeIncludes sosa:Actuation"</li>
-          <li>Changed the defintion of FeatureofInterest to account for
-            actuators</li>
-          <li>Introduced sosa:actsOnProperty and its inverse property
-            sosa:isActedOnBy</li>
-          <li>Added madeBySensor property</li>
-          <li>Renamed invokes and invokedBy to madeActuation and
-            madeByActuator</li>
-          <li>Changed hostedBy to isHostedBy</li>
-          <li>Added Sampler (device) and Sampling (act) to SOSA</li>
-          <li>Added madeSampling and madeBySampler properties</li>
-          <li>Added Sample to range of hasResult, and to domain or isResultOf</li>
-          <li>Added hasSimpleResult and hasResult instead of hasValue</li>
-          <li>Added ObservableProperty and ActuatableProperty</li>
-          <li>Changed rdfs:comment and skos:definition of sosa:Platform</li>
-          <li>Refined sosa:Result</li>
-          <li>Changed sosa:madeByActuator to sosa:actuationMadeBy</li>
-          <li>Added schema:domainIncludes sosa:Sampling to
-            sosa:observedProperty</li>
-          <li>Added schema:rangeIncludes time:TemporalEntity and
-            schema:domainIncludes sosa:Sampling to sosa:phenomenonTime</li>
-          <li>Changed sosa:actuationMadeBy to sosa:madeByActuator</li>
-        </ul>
-      </li>
-      <li>SSN-specific changes:
-        <ul>
-          <li>Changed syntax and layout in the alignment to SSN of the
-            SSN-XG</li>
-          <li>Refine sosa:Property: ObservableProperty in sosa, Property in
-            ssn, old SSN Property equivalent with sosa:Property</li>
-          <li>Import sosa: "sosa: a owl:Ontology ; owl:imports sosa:."</li>
-          <li>Update prefix for featureOfInterest in sosa:Observation and
-            sosa:Property definition</li>
-          <li>Added skos:examples to several rdfs:comments</li>
-          <li>Changed sub class relation of Accuracy from
-            sosa:MeasurementProperty to sosa:SystemProperty</li>
-          <li>Changed sub class of sosa:Deployment from
-            DeploymentRelatedProcess to DeploymentRelatedProcedure</li>
-          <li>Changed DeploymentRelatedProcess Class to
-            DeploymentRelatedProcedure</li>
-          <li>Changed sub class of sosa:DetectionLimit from
-            sosa:MeasurementProperty to sosa:SystemProperty</li>
-          <li>Deprecated the sosa:Device class</li>
-          <li>Changed sub class of sosa:Drift from sosa:MeasurementProperty to
-            sosa:SystemProperty</li>
-          <li>Changed the rdfs:comment of sosa:Drift to include Actuators</li>
-          <li>Changed sub class of sosa:Frequency from
-            sosa:MeasurementProperty to sosa:SystemProperty</li>
-          <li>Changed sub class of sosa:Latency from sosa:MeasurementProperty
-            to sosa:SystemProperty</li>
-          <li>Changed the rdfs:comment of sosa:Latency to include Actuators</li>
-          <li>Changed the rdfs:comment of sosa:MaintenanceSchedule to
-            reference the System class only</li>
-          <li>Changed MeasurementCapability to SystemCapability and changed
-            its axiom from hasMeasurementProperty to hasSystemProperty</li>
-          <li>Changed MeasurementProperty to SystemProperty</li>
-          <li>Changed sub class of sosa:MeasurementRange from
-            sosa:MeasurementProperty to sosa:SystemProperty and changed its
-            rdfs:comment</li>
-          <li>Changed the Observation’s classes qualified property
-            restriction from sosa:featureOfInterest to
-            sosa:hasFeatureOfInterest and sosa:FeatureOfInterest to
-            sosa:FeatureOfInterest</li>
-          <li>Changed the Observation’s class universal property
-            restrictions from sosa:observationResult to sosa:hasResult and
-            sosa:SensorOutput to sosa:Result</li>
-          <li>Changed the Observation’s class universal property restriction
-            from sosa:observedProperty to sosa:observedProperty and
-            sosa:ObservedProperty to sosa:ObservableProperty</li>
-          <li>Changed the Observation’s class qualified property restriction
-            from sosa:observedProperty to sosa:observedProperty and
-            sosa:ObservedProperty to sosa:ObservableProperty</li>
-          <li>Changed the Observation’s class qualified property
-            restrictions from sosa:observedBy to sosa:madeBySensor and
-            sosa:Sensor to sosa:Sensor</li>
-          <li>Changed the Observation’s class universal property
-            restrictions from sosa:sensingMethodUsed to sosa:usedProcedure
-            and sosa:usedProcedure</li>
-          <li>Changed the Observation’s class qualified property
-            restrictions from sosa:sensingMethodUsed to sosa:usedProcedure
-            and sosa:usedProcedure</li>
-          <li>Changed the minimum cardinality restriction on the Observation
-            class from sosa:observationSamplingTime to sosa:resultTime</li>
-          <li>Removed sosa:ObservationValue Class</li>
-          <li>Changed rdfs:comment of sosa:OperatingPowerRange</li>
-          <li>Changed rdfs:comment of sosa:OperatingProperty</li>
-          <li>Changed rdfs:comment of sosa:OperatingRange</li>
-          <li>Changed rdfs:comment of sosa:Output</li>
-          <li>Changed the Platform’s class universal property restrictions
-            from sosa:attachedSystem</li>
-          <li>Changed sub class of sosa:Precision from
-            sosa:MeasurementProperty to sosa:SystemProperty</li>
-          <li>Changed sosa:Process to sosa:Procedure</li>
-          <li>Changed rdfs:comment for sosa:Property</li>
-          <li>Changed the Property’s class existential property restrictions
-            class range from sosa:FeatureOfInterest to sosa:FeatureOfInterest</li>
-          <li>Changed rdfs:comment for sosa:Resolution</li>
-          <li>Changed sub class of sosa:Resolution from
-            sosa:MeasurementProperty to sosa:SystemProperty</li>
-          <li>Changed rdfs:comment for sosa:ResponseTime</li>
-          <li>Changed sub class of sosa:ResponseTime from
-            sosa:MeasurementProperty to sosa:SystemProperty</li>
-          <li>Changed rdfs:comment for sosa:Selectivity</li>
-          <li>Changed sub class of sosa:Selectivitye from
-            sosa:MeasurementProperty to sosa:SystemProperty</li>
-          <li>Removed sosa:Sensing Class</li>
-          <li>Removed sosa:SensingDevice Class</li>
-          <li>Changed the Sensor classes existential property restrictions
-            from sosa:hasMeasurementCapability to sosa:SystemCapability and
-            sosa:MeasurementCapability to sosa:SystemCapability</li>
-          <li>Changed the Sensor classes universal property restriction on
-            sosa:observes to sosa:observes</li>
-          <li>Changed the Sensor classes existential property restrictions
-            range class from sosa:Sensing to sosa:Procedure</li>
-          <li>Removed sosa:SensorDataSheet Class</li>
-          <li>Removed sosa:SensorInput Class</li>
-          <li>Removed sosa:SensorOutput Class</li>
-          <li>Changed rdfs:comment for sosa:Stimulus</li>
-          <li>Changed rdfs:comment for sosa:SurvivalProperty</li>
-          <li>Changed rdfs:comment for sosa:SurvivalRange</li>
-          <li>Changed rdfs:comment for sosa:System</li>
-          <li>Changed the System’s class universal property restriction from
-            sosa:onPlatform to sosa:isHostedBy and sosa:Platform to
-            sosa:Platform</li>
-          <li>Added a universal property restriction to the System’s class
-            on the hasSystemCapability property with a class range of
-            SystemCapability</li>
-          <li>Changed rdfs:comment for sosa:SystemLifetime</li>
-          <li>Added Property Restrictions to SOSA:ActuatableProperty for
-            sosa:isActedOnBy</li>
-          <li>Added Property Restrictions to SOSA:Actuation for sosa:hasFeatureOfInterest, sosa:hasResult,
-            sosa:resultTime, sosa:usedProcedure, sosa:hasFeatureOfInterest
-            and sosa:actuationMadeBy </li>
-          <li>Added sosa:ActuationRange Class</li>
-          <li>Added Property Restrictions to sosa:Actuator for
-            sosa:implements, sosa:forProperty and sosa:MadeActuation and
-            sosa:hasResult</li>
-          <li>Removed sosa:DeploymentRelatedProcess</li>
-          <li>Added Property Restrictions to sosa:Input for sosa:hasInput</li>
-          <li>Added Property Restriction to sosa:MeasurementRange</li>
-          <li>Added Property Restrictions to sosa:ObservableProperty for
-            isObservedBy, inverseOf sosa:observedProperty and inverseOf
-            sosa:isProxyFor</li>
-          <li>Added Property Restrictions to sosa:OperatingProperty</li>
-          <li>Added Property Restrictions to sosa:Precision</li>
-          <li>Added Property Restrictions to sosa:Result</li>
-          <li>Added Property Restrictions to sosa:Sample</li>
-          <li>Added Property Restrictions to sosa:Sampler</li>
-          <li>Added Property Restrictions to sosa:Sampling</li>
-          <li>Added Property Restrictions to sosa:SystemProperty</li>
-          <li>Added sub class of System relation to sosa:Sensor</li>
-          <li>Added Property Restrictions to sosa:Stimulus</li>
-          <li>Added Property Restrictions to sosa:SurvivalProperty</li>
-          <li>Added Property Restrictions to sosa:SurvivalRange</li>
-          <li>Added Property Restrictions to sosa:System</li>
-          <li>Removed attachedSystem property</li>
-          <li>Changed rdfs:comment for sosa:deployedOnPlatform</li>
-          <li>Removed sosa:deploymentProcessPart</li>
-          <li>Changed rdfs:comment for sosa:detects</li>
-          <li>Removed sosa:featureOfInterest property</li>
-          <li>Changed rdfs:comment for sosa:forProperty and added a
-            skos:example property</li>
-          <li>Changed rdfs:comment for sosa:hasDeployment</li>
-          <li>Renamed sosa:hasMeasurementCapability to
-            sosa:hasSystemCapability and changed its rdf:comment</li>
-          <li>Renamed sosa:hasMeasurementProperty to sosa:hasSystemProperty
-            and changed its rdf:comment</li>
-          <li>Changed rdfs:comment for sosa:hasOperatingProperty</li>
-          <li>Changed rdfs:comment for sosa:hasSurvivalProperty</li>
-          <li>Changed rdfs:comment for sosa:hasSurvivalRange</li>
-          <li>Changed rdfs:comment for sosa:implementedBy</li>
-          <li>Changed rdfs:comment for sosa:implements</li>
-          <li>Changed rdfs:comment for sosa:inCondition and added
-            skos:example property</li>
-          <li>Changed rdfs:comment for sosa:inDeployment and added
-            skos:example property</li>
-          <li>Removed sosa:isProducedBy property</li>
-          <li>Changed rdfs:comment for sosa:isPropertyOf</li>
-          <li>Changed rdfs:comment for sosa:isProxyFor and added skos:example
-            property</li>
-          <li>Removed sosa:madeObservation property</li>
-          <li>Removed sosa:observationResult property</li>
-          <li>Removed sosa:observationResultTime property</li>
-          <li>Removed sosa:observationSamplingTime property</li>
-          <li>Removed sosa:observedProperty property</li>
-          <li>Changed sosa:observes to sosa:observes, removed sub-property
-            chain for sosa:observes and defined it as sub-property of
-            sosa:forProperty</li>
-          <li>Removed sosa:ofFeature property</li>
-          <li>Removed sosa:onPlatform property</li>
-          <li>Changed rdfs:comment for sosa:qualityOfObservation</li>
-          <li>Removed sosa:sensingMethodUsed property</li>
-          <li>Added rdfs:comment for sosa:hasInput</li>
-          <li>Changed sosa:Platform subclass of dul:PhysicalObject </li>
-          <li>Removed axiom FunctionalProperty(sosa:isPropertyOf) to account for generic modeling of sosa:Property
-            such
-            as ex:Temperature</li>
-        </ul>
-      </li>
-    </ol>
-    <h3>Changes since 3rd Public Working Draft <a href="https://www.w3.org/TR/2017/WD-vocab-ssn-20170504/">
-        (https://www.w3.org/TR/2017/WD-vocab-ssn-20170504/)</a></h3>
-    <ol>
-      <li>Fixed colouring of O&amp;M module in Figure 1 to be normative</li>
-      <li>Updated figures in the Axiomatization section</li>
-      <li>Added examples to Appendix</li>
-      <li>Added a "at risk" section in Status of This Document section</li>
-      <li>Reorganized specification sections to have:
-        <ul>
-          <li>One non-normative overview section, with links to the examples that showcase the terms in that section
-          </li>
-          <li>The normative specification section</li>
-          <li>Moved sosa:qualityOfObservation, properties related to system capabilities, operating range, and
-            survival
-            range, to horizontal ontology module http://www.w3.org/ns/ssn/systems/ marked at risk</li>
-        </ul>
-      </li>
-      <li>Added new horizontal module for System Capabilities to Figure 1</li>
-      <li>Fixed errors in class alignments in Dolce-Ultralite Alignment Module, sosa:Sensor to sosa:Sensor,
-        sosa:FeatureOfInterest to sosa:FeatureOfInterest and sosa:Deployment to sosa:Deployment</li>
-      <li>Fixed errors in property alignments in Dolce-Ultralite Alignment Module, sosa:usedProcedure to
-        sosa:usedProcedure</li>
-      <li>Applied consistent use of Manchester OWL Syntax in all axioms in SSN/SOSA</li>
-      <li>Fixed error in sosa:actsOnProperty axiom of sosa:Actuation, i.e. changed Qualified Cardinality to Minimum
-        Cardinality</li>
-      <li>Fixed error in the use of Hash URIs and SlashURIs in the System Capabilities module</li>
-      <li>Combined Location and Forecasting in one section and added an example how to model Quantity Values and Unit
-        of
-        Measures</li>
-      <li>Added Wide Review Section and Exit Criteria Section</li>
-      <li>Switched Horizontal Segmentation and Vertical Segmentation sections around</li>
-      <li>Requested bug fixes to correct the SSN/SOSA alignment to DUL</li>
-    </ol>
-    <h3>Changes since W3C Candidate Recommendation 11 July 2017 <a
-        href="https://www.w3.org/TR/2017/CR-vocab-ssn-20170711/">
-        (https://www.w3.org/TR/2017/CR-vocab-ssn-20170711/)</a></h3>
-    <ol>
-      <li>Made System Capabilities Module informative as of exit criteria</li>
-      <li>Fixed wrong link in Origins of SSN and SOSA Section to point to Section 6.1</li>
-      <li>Added Coal Oil Point Reserve and IP68 Smart Sensor examples</li>
-      <li>Fixed inconsistency in Fig. 6 &amp; 7, i.e. defined the range of property sosa:isActedOnBy as sosa:Actuation
-      </li>
-      <li>Removed Features at Risk section</li>
-      <li>Removed Candidate Recommendation Exit Criteria section</li>
-    </ol>
-    <h3>Changes since W3C Recommendation 19 October 2017 <a href="https://www.w3.org/TR/2017/REC-vocab-ssn-20171019/">
-        (https://www.w3.org/TR/2017/REC-vocab-ssn-20171019/)</a></h3>
-    <ol>
-      <li>Fixed remaining broken links to ontology graph and namespaces and "specifically" typo</li>
-      <li>Fixed Seismographs example, replacing the final <code>;</code> with a <code>.</code></li>
-      <li>Fixed targets of <code>sosa:hosts</code> and <code>sosa:hasSubSystem</code> in DHT Deployment example</li>
-      <li>Fixed domain/range for <code>actsOnProperty</code> and <code>isActedOnBy</code> in actuation diagrams</li>
-      <li>Fixed <code>sosa:hasSimplResult</code> syntax errors in apartment 134 examples</li>
-      <li>Replaced inexistent <code>sosa:actuationMadeBy</code> by <code>sosa:madeByActuator</code> in apartment 134
-        example</li>
-      <li>Relaxed axioms in 6.2 SSNX Alignment Module:
-        <ul>
-          <li><code>oldsosa:FeatureOfInterest</code> is a sub-class of <code>sosa:FeatureOfInterest</code> (instead of
-            equivalent)</li>
-          <li><code>oldsosa:hasValue</code> is a sub-property of <code>sosa:hasResult</code> (instead of equivalent)
-          </li>
-          <li><code>oldsosa:observationResult</code> is a sub-property of <code>sosa:hasResult</code> (instead of
-            equivalent)</li>
-        </ul>
-      </li>
-      <li>Relaxed axioms in 6.1 Dolce-Ultralite Alignment Module:
-        <ul>
-          <li><code>sosa:FeatureOfInterest</code> is a sub-class of <code>dul:Entity</code></li>
-        </ul>
-      </li>
-      <li>Replaced inexistent <code>qudt-1-1:numericalValue</code> by <code>qudt-1-1:numericValue</code> in tree
-        height
-        measurement example</li>
-    </ol>
+    <p>A full change-log is available on <a href="https://github.com/w3c/sdw-sosa-ssn/commits/gh-pages/ssn">GitHub</a>.
+    </p>
     <h3>Changes since W3C Recommendation 19 October 2017 <a href="https://www.w3.org/TR/2017/REC-vocab-ssn-20171019/">
         (https://www.w3.org/TR/2017/REC-vocab-ssn-20171019/)</a></h3>
     <ol>
@@ -1335,8 +851,9 @@
         ns
       </li>
       <li>Refactored SOSA and SSN into modules - sosa-common sosa-actuation sosa-observation sosa-sampling sosa (all),
-        and
-        matching ssn-* files (also ssn-deprecated). Refactored HTML sources to match. </li>
+        and matching ssn-* files (also ssn-deprecated). Refactored HTML sources to match. </li>
+      <li>Add conformance clause</li>
+      <li>Update and streamline Introduction; move Origins section to an Annex. </li>
     </ol>
   </section>
 </body>

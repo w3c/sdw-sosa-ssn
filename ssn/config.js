@@ -26,21 +26,25 @@ var respecConfig = {
       company: "Universität Wien",
       companyURL: "https://www.univie.ac.at/",
       orcid: "0009-0003-1968-887X"
-    },
+    }],
+  formerEditors: [
     {
       name: "Armin Haller",
       company: "Australian National University",
-      companyURL: "https://www.cbe.anu.edu.au/"
+      companyURL: "https://www.cbe.anu.edu.au/",
+      orcid: "0000-0003-3425-0780"
     },
     {
       name: "Danh Le Phuoc",
       company: "Technical University of Berlin",
-      companyURL: "http://www.tu-berlin.de/"
+      companyURL: "http://www.tu-berlin.de/",
+      orcid: "0000-0003-2480-9261"
     },
     {
       name: "Kerry Taylor",
       company: "Australian National University",
-      companyURL: "https://cecs.anu.edu.au/"
+      companyURL: "https://cecs.anu.edu.au/",
+      orcid: "0000-0003-2447-1088"
     }],
   otherLinks: [
     {
@@ -51,11 +55,13 @@ var respecConfig = {
         }, {
           value: "Luis de Sousa, ISRIC"
         }, {
-          value: "Sylvan Grellet, BRGM"
+          value: "Sylvain Grellet, BRGM"
         }, {
           value: "Kathi Schleidt, Datacove"
         }, {
           value: "Hylke van der Schaaf, Fraunhofer IOSB"
+        }, {
+          value: "Rob Warren, Glengarry Agriculture and Farming"
         }]
     },
     {
@@ -76,33 +82,22 @@ var respecConfig = {
           value: "OGC NN-NNN"
         }]
     }],
-  wg: "Spatial Data on the Web Working Group",
-  wgURI: "https://www.w3.org/2015/spatial/",
+  group: "wg/sdw",
   wgPublicList: "public-sdw-comments",
-  wgPatentURI: "https://www.w3.org/2004/01/pp-impl/75471/status",
-  implementationReportURI: "https://w3c.github.io/sdw/ssn-usage/",
+  implementationReportURI: "https://w3c.github.io/sdw-sosa-ssn/ssn-usage/",
   inlineCSS: true,
   noIDLIn: true,
   noLegacyStyle: false,
   logos: [
     {
-      src: "https://www.w3.org/StyleSheets/TR/2016/logos/W3C",
-      alt: "W3C",
-      height: "48",
-      width: "72",
-      url: "https://www.w3.org/"
-    },
-    {
-      src: "https://www.w3.org/2017/01/ogc_logo.png",
+      src: "https://raw.githubusercontent.com/w3c/sdw-sosa-ssn/gh-pages/ssn/images/OGC-0.png",
       alt: "OGC",
-      height: "68",
-      width: "147",
-      url: "http://www.opengeospatial.org/"
+      height: "70",
+      width: "62",
+      url: "https://www.ogc.org/"
     }
   ],
   noRecTrack: false,
-  overrideCopyright: "<p class='copyright'><a href='https://www.w3.org/Consortium/Legal/ipr-notice#Copyright'>Copyright</a> © 2020 <a href='http://www.opengeospatial.org/'>OGC</a> &amp; <a href='https://www.w3.org/'> <abbr title='World Wide Web Consortium'>W3C</abbr> </a><sup>®</sup> (<a href='https://www.csail.mit.edu/'><abbr title='Massachusetts Institute of Technology'>MIT</abbr></a>, <a href='https://www.ercim.eu/'><abbr title='European Research Consortium for Informatics and Mathematics'>ERCIM</abbr></a>, <a href='https://www.keio.ac.jp/'>Keio</a>, <a href='https://ev.buaa.edu.cn/'>Beihang</a>), <abbr title='World Wide Web Consortium'>W3C</abbr> <a href='https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer'>liability</a>, <a href='https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks'>trademark</a>, <a href='https://www.w3.org/Consortium/Legal/copyright-documents'>W3C</a> and <a href='https://www.ogc.org/ogc/document'>OGC</a> document use rules apply.</p>",
-
   localBiblio: {
     "CDT": {
       href: "https://w3id.org/lindt/v4/custom_datatypes",
@@ -110,31 +105,11 @@ var respecConfig = {
       authors: ["Maxime Lefrançois", "Antoine Zimmermann"],
       date: "19 July 2021"
     },
-    "GeoSPARQL": {
-      href: "https://docs.ogc.org/is/22-047r1/22-047r1.html",
-      title: "GeoSPARQL - A Geographic Query Language for RDF Data v1.1",
-      authors: ["Nicholas J Car", "Timo Homburg", "Matthew Perry", "Frans Knibbe", "Simon J.D. Cox", "Joseph Abhayaratna", "Mathias Bonduel", "Paul J. Cripps", "Krzysztof Janowicz"],
-      date: "29 January 2024"
-    },
-    "OandM": {
-      href: "https://portal.ogc.org/files/?artifact_id=41579",
-      title: "Observations and Measurements (O&M) v2",
-      authors: ["Simon Cox"],
-      publisher: "Open Geospatial Consortium",
-      date: "2011"
-    },
     "OBOE": {
       href: "http://dx.doi.org/10.5063/F11C1TTM",
       date: "2016",
       authors: ["Mark Schildhauer", "Matthew B. Jones", "Shawn Bowers", "Joshua Madin", "Sergeui Krivov", "Deana Pennington", "Ferdinando Villa", "Benjamin Leinfelder", "Christopher Jones", "Margaret O'Brien"],
       title: "OBOE: the Extensible Observation Ontology, version 1.1"
-    },
-    "OMS": {
-      href: "https://docs.ogc.org/as/20-082r4/20-082r4.html",
-      title: "Observations, measurements and samples (OMS)",
-      authors: ["Katharina Schleidt", "Ilkka Rinne"],
-      publisher: "Open Geospatial Consortium",
-      date: "2023"
     },
     "SAREF": {
       href: "https://www.etsi.org/deliver/etsi_ts/103500_103599/103548/01.02.01_60/ts_103548v010201p.pdf",
@@ -222,39 +197,6 @@ var respecConfig = {
       volume: "8",
       page: "453-470",
       authors: ["S.J.D. Cox"]
-    },
-    "OMXML": {
-      href: "http://portal.opengeospatial.org/files/41510",
-      title: "Observations and Measurements - XML Implementation",
-      publisher: "Open Geospatial Consortium",
-      date: "2010",
-      authors: ["S.J.D. Cox"]
-    },
-    "ISO-19150-2": {
-      href: "https://www.iso.org/standard/57466.html",
-      title: "Geographic information -- Ontology -- Part 2: Rules for developing ontologies in the Web Ontology Language (OWL)",
-      publisher: "ISO",
-      date: "July 2015"
-    },
-    "ISO-19109": {
-      href: "https://www.iso.org/standard/59193.html",
-      title: "Geographic information -- Rules for application schema",
-      publisher: "ISO",
-      date: "December 2015"
-    },
-    "ISO-19156": {
-      href: "https://www.iso.org/standard/32574.html",
-      title: "Geographic information -- Observations and measurements",
-      publisher: "ISO",
-      date: "December 2011"
-    },
-    "SensorML": {
-      href: "http://portal.opengeospatial.org/files/55939",
-      publisher: "OGC",
-      title: "SensorML: Model and XML Encoding Standard 2.0",
-      authors: ["Mike Botts", "Alex Robin"],
-      status: "Encoding Standard, OGC 12-000",
-      date: "2014"
     },
     "SSN-PROV": {
       href: "http://ceur-ws.org/Vol-1401/paper-05.pdf",
