@@ -1,0 +1,25 @@
+# SSN Ontology diagrams
+
+The diagrams can be edited using Lucid:
+
+- [Actuation](https://lucid.app/documents/view/aafb2606-71e5-44c5-abc3-04db7ef63864)
+- [Actuation-overview](https://lucid.app/documents/view/ec5010fe-c46a-4097-b838-9ed973235a40)
+- [ClassKey](https://lucid.app/documents/view/21da42cd-66c2-4047-b103-3674bce62eae)
+- [Collections](https://lucid.app/documents/view/4fd1f77f-93ce-44d2-a78b-a6d8942f6d65)
+- [Execution](https://lucid.app/documents/view/643fda5c-2c8f-4edf-bcad-f7fb333b4d5f)
+- [FeatureOfInterest](https://lucid.app/documents/view/47acc6fe-51af-4363-a504-dbf5ba4b26c3)
+- [ModuleKey](https://lucid.app/documents/view/8dc8c85a-f9fb-438a-8b6b-30731b14be28)
+- [OBOE-alignment](https://lucid.app/documents/view/34f877a2-cb7b-4695-87eb-fb386176c5f1)
+- [Observation](https://lucid.app/documents/view/d12097eb-9b01-47b4-a643-7b0ae0589861)
+- [Observation-overview](https://lucid.app/documents/view/ebdd5ef5-4a34-4780-9d88-7d12e415e0ee)
+- [Procedure](https://lucid.app/documents/view/b1dfad4b-65c2-40aa-9d12-5c1ccd41cd08)
+- [Prov-alignment](https://lucid.app/documents/view/bab6cd20-3217-4252-8a9a-eeb47b16533a)
+- [SampleRelations](https://lucid.app/documents/view/fbc3d481-9879-431d-872c-510bd3d54a47)
+- [Sampling](https://lucid.app/documents/view/1119c3e7-e6b4-4941-b99b-ca05fed51dd6)
+- [Sampling-overview](https://lucid.app/documents/view/952ebac5-5984-4266-9c5e-12290d4610ae)
+- [SSN-alignments](https://lucid.app/documents/view/506f4ca8-be9b-43a7-aa57-6617b0820373)
+- [SSN-core-packages](https://lucid.app/documents/view/e809c13a-660a-4485-99ab-e7f00418a22a)
+- [SSN-extensions](https://lucid.app/documents/view/4197a640-03a2-48b4-943b-5cb37753f4c5)
+- [System](https://lucid.app/documents/view/fbf27f3f-ad02-4f81-bae2-616de65e0961)
+- [System-capabilities](https://lucid.app/documents/view/9385b52a-1ba7-44f3-a581-078d98572a6f)
+- [System-capabilities-subclasses](https://lucid.app/documents/view/3ea60e27-a16d-460b-bc5c-5146fe168995)
