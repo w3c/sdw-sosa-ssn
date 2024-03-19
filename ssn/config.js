@@ -105,19 +105,6 @@ var respecConfig = {
       authors: ["Maxime Lefrançois", "Antoine Zimmermann"],
       date: "19 July 2021"
     },
-    "OBOE": {
-      href: "http://dx.doi.org/10.5063/F11C1TTM",
-      date: "2016",
-      authors: ["Mark Schildhauer", "Matthew B. Jones", "Shawn Bowers", "Joshua Madin", "Sergeui Krivov", "Deana Pennington", "Ferdinando Villa", "Benjamin Leinfelder", "Christopher Jones", "Margaret O'Brien"],
-      title: "OBOE: the Extensible Observation Ontology, version 1.1"
-    },
-    "OMS": {
-      href: "https://docs.ogc.org/as/20-082r4/20-082r4.html",
-      title: "Observations, measurements and samples (OMS)",
-      authors: ["Katharina Schleidt", "Ilkka Rinne"],
-      publisher: "Open Geospatial Consortium",
-      date: "2023"
-    },
     "SAREF_Patterns": {
       href: "https://www.etsi.org/deliver/etsi_ts/103500_103599/103548/01.02.01_60/ts_103548v010201p.pdf",
       title: "SmartM2M; SAREF reference ontology patterns",
@@ -138,13 +125,6 @@ var respecConfig = {
       id: "ETSI TS 103 264 (V3.2.1)",
       publisher: "ETSI",
       date: "2024"
-    },
-    "SensorML": {
-      href: "https://www.ogc.org/standard/sensorml/",
-      title: "Sensor Model Language (SensorML)",
-      authors: ["Mike Botts", "Alexandre Robin"],
-      publisher: "Open Geospatial Consortium",
-      date: "2010"
     },
     "SWE": {
       href: "https://www.ogc.org/about-ogc/domains/swe/",
