@@ -44,6 +44,7 @@ sosa:ObservingProcedure
 sosa:Sensor 
   rdfs:subClassOf sosa:System ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasSystemKind ; owl:allValuesFrom sosa:SensorKind ]  ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasSystemKind ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:detects ; owl:allValuesFrom sosa:Stimulus ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implements ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implements ; owl:allValuesFrom sosa:ObservingProcedure ] ;

@@ -81,6 +81,7 @@ sosa:SamplingProcedure
 sosa:Sampler 
   rdfs:subClassOf sosa:System ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasSystemKind ; owl:allValuesFrom sosa:SamplerKind ]  ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasSystemKind ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implements ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implements ; owl:allValuesFrom sosa:SamplingProcedure ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeSampling ; owl:allValuesFrom sosa:Sampling ] ;

@@ -44,6 +44,7 @@ sosa:ActuatingProcedure
 sosa:Actuator 
   rdfs:subClassOf sosa:System ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasSystemKind ; owl:allValuesFrom sosa:ActuatorKind ]  ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasSystemKind ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implements ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implements ; owl:allValuesFrom sosa:ActuatingProcedure ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:forProperty ; owl:allValuesFrom sosa:ActuatableProperty ] ;
