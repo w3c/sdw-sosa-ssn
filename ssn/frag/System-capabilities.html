@@ -5,8 +5,7 @@
     The System Capabilities Module imports SOSA and SSN and contains additional definitions associated with the
     composition and deployment of systems.
 </p>
-<p style="text-align: center;">The namespace for system capabilities, operating ranges, and survival ranges
-    terms is
+<p style="text-align: center;">The namespace for system capabilities, operating ranges, and survival ranges terms is
     <span class="repeated" style="font-family: courier;">http://www.w3.org/ns/ssn/systems/</span>
     <br>
     The suggested prefix for the system capabilities, operating ranges, and survival ranges terms is <span
@@ -25,16 +24,22 @@
             and properties that are specifically related to modeling System capabilities,
             operating ranges, and survival ranges, under given conditions.</p>
         <figure class="ssn">
-            <a href="images/SSN-Conditions.png"><img alt="Conditions" src="images/SSN-Conditions.png"></a>
-            <figcaption>Classes and relationships related to system capabilities,
-                operating ranges, and survival ranges, under given conditions</figcaption>
+            <a href="images/System-capabilities.png"><img alt="Conditions" src="images/System-capabilities.png"></a>
+            <figcaption>
+                Classes and relationships related to system capabilities, operating ranges, and survival ranges, under
+                given conditions
+                <br>
+                <em><a href="#class-diagram">Explanation of the notation used in class diagrams</a></em>.
+            </figcaption>
         </figure>
 
         <figure class="ssn">
-            <a href="images/SSN-System-Properties.png"><img alt="System properties"
-                    src="images/SSN-System-Properties.png"></a>
-            <figcaption>Classes and relationships related to system capabilities, operating ranges and survival
-                ranges
+            <a href="images/System-capabilities-subclasses.png"><img alt="System properties"
+                    src="images/System-capabilities-subclasses.png"></a>
+            <figcaption>
+                Detailed classes and relationships related to system capabilities, operating ranges and survival ranges
+                <br>
+                <em><a href="#class-diagram">Explanation of the notation used in class diagrams</a></em>.
             </figcaption>
         </figure>
     </div>
@@ -92,8 +97,8 @@
 
         <em property="rdfs:label">System</em> -
         <span property="rdfs:comment skos:definition">System is a unit of abstraction for pieces of infrastructure
-            that implement <a href="#SOSAProcedure"><code>Procedures</code></a>. A System may have components, its
-            subsystems, which are other Systems.</span>
+            that implement <a href="#SOSAProcedure">Procedures</a>. A System may have components, its subsystems, which
+            are other Systems.</span>
         <table>
             <tbody>
                 <tr class="ssn">
@@ -153,19 +158,17 @@
         <p><strong>an OWL Object Property</strong></p>
 
         <em property="rdfs:label">in condition</em> -
-        <span property="rdfs:comment skos:definition">Describes the prevailing environmental conditions for <a
-                href="#SSNSYSTEMSystemCapability"><code>SystemCapabilites</code></a>, <a
-                href="#SSNSYSTEMOperatingRange"><code>OperatingRanges</code></a> and <a
-                href="#SSNSYSTEMSurvivalRange"><code>SurvivalRanges</code></a>.</span>
+        <span property="rdfs:comment skos:definition">Describes the prevailing environmental conditions for
+            <a href="#SSNSYSTEMSystemCapability">SystemCapabilites</a>
+            , <a href="#SSNSYSTEMOperatingRange">OperatingRanges</a>
+            and <a href="#SSNSYSTEMSurvivalRange">SurvivalRanges</a>.</span>
         <table>
             <tbody>
                 <tr>
                     <th>Example</th>
                     <td>
-                        <span rel="skos:example">Used for example to say that a <a
-                                href="#SOSASensor"><code>Sensor</code></a>
-                            has a particular accuracy in particular
-                            conditions.</span>
+                        <span rel="skos:example">Used for example to say that a <a href="#SOSASensor">Sensor</a>
+                            has a particular accuracy in particular conditions.</span>
                     </td>
                 </tr>
                 <tr>
@@ -190,10 +193,10 @@
         <p><strong>an OWL Object Property</strong></p>
 
         <em property="rdfs:label">has system capability</em> -
-        <span property="rdfs:comment skos:definition">Relation from a <a href="#SOSASystem"><code>System</code></a>
-            to a <a href="#SSNSYSTEMSystemCapability"><code>SystemCapability</code></a> describing the capabilities
+        <span property="rdfs:comment skos:definition">Relation from a <a href="#SOSASystem">System</a>
+            to a <a href="#SSNSYSTEMSystemCapability">SystemCapability</a> describing the capabilities
             of
-            the <a href="#SOSASystem"><code>System</code></a> under certain conditions.</span>
+            the <a href="#SOSASystem">System</a> under certain conditions.</span>
         <table>
             <tbody>
                 <tr class="ssn">
@@ -234,16 +237,13 @@
 
         <em property="rdfs:label">System Capability</em> -
         <span property="rdfs:comment skos:definition">Describes normal measurement, actuation, sampling properties
-            such as accuracy, range, precision, etc. of a <a href="#SOSASystem"><code>System</code></a> under some
-            specified conditions such as a temperature range.
+            such as accuracy, range, precision, etc. of a <a href="#SOSASystem">System</a> under some specified
+            conditions such as a temperature range.
             <br>
             The capabilities specified here are those that affect the primary purpose of the <a
-                href="#SOSASystem"><code>System</code></a>, while those in <a
-                href="#SSNSYSTEMOperatingRange"><code>OperatingRange</code></a> represent the system's normal
-            operating
-            environment, including conditions that don't affect the <a
-                href="#SOSAObservation"><code>Observations</code></a> or the <a
-                href="#SOSAActuation"><code>Actuations</code></a>.</span>
+                href="#SOSASystem">System</a>, while those in <a href="#SSNSYSTEMOperatingRange">OperatingRange</a>
+            represent the system's normal operating environment, including conditions that don't affect the <a
+                href="#SOSAObservation">Observations</a> or the <a href="#SOSAActuation">Actuations</a>.</span>
         <table>
             <tbody>
                 <tr class="ssn">
@@ -332,10 +332,9 @@
 
         <em property="rdfs:label">has system property</em> -
         <span property="rdfs:comment skos:definition">Relation from an <a
-                href="#SSNSYSTEMSystemCapability"><code>SystemCapability</code></a> of a <a
-                href="#SOSASystem"><code>System</code></a> to a <a
-                href="#SSNSYSTEMSystemProperty"><code>SystemProperty</code></a> describing the capabilities of the
-            <a href="#SOSASystem"><code>System</code></a>.</span>
+                href="#SSNSYSTEMSystemCapability">SystemCapability</a> of a <a href="#SOSASystem">System</a> to a <a
+                href="#SSNSYSTEMSystemProperty">SystemProperty</a> describing the capabilities of the
+            <a href="#SOSASystem">System</a>.</span>
         <table>
             <tbody>
                 <tr class="ssn">
@@ -375,13 +374,12 @@
 
         <em property="rdfs:label">System Property</em> -
         <span property="rdfs:comment skos:definition">An identifiable and observable characteristic that represents
-            the <a href="#SOSASystem"><code>System</code></a>'s ability to operate its primary purpose: a <a
-                href="#SOSASensor"><code>Sensor</code></a> to make <a
-                href="#SOSAObservation"><code>Observations</code></a>, an <a
-                href="#SOSAActuator"><code>Actuator</code></a> to make <a
-                href="#SOSAActuation"><code>Actuations</code></a>, or a <a href="#SOSASampler"><code>Sampler</code></a>
+            the <a href="#SOSASystem">System</a>'s ability to operate its primary purpose: a <a
+                href="#SOSASensor">Sensor</a> to make <a href="#SOSAObservation">Observations</a>, an <a
+                href="#SOSAActuator">Actuator</a> to make <a href="#SOSAActuation">Actuations</a>, or a <a
+                href="#SOSASampler">Sampler</a>
             to
-            make <a href="#SOSASampling"><code>Sampling</code></a>.</span>
+            make <a href="#SOSASampling">Sampling</a>.</span>
         <table>
             <tbody>
                 <tr class="ssn">
@@ -447,9 +445,8 @@
         <p><strong>an OWL Class</strong></p>
 
         <em property="rdfs:label">Measurement Range</em> -
-        <span property="rdfs:comment skos:definition">The set of values that the <a
-                href="#SOSASensor"><code>Sensor</code></a> can return as the result of an <a
-                href="#SOSAObservation"><code>Observation</code></a>
+        <span property="rdfs:comment skos:definition">The set of values that the <a href="#SOSASensor">Sensor</a> can
+            return as the result of an <a href="#SOSAObservation">Observation</a>
             under the defined conditions with the defined system properties.</span>
         <table>
             <tbody>
@@ -511,8 +508,8 @@
         <p><strong>an OWL Class</strong></p>
 
         <em property="rdfs:label">Actuation Range</em> -
-        <span property="rdfs:comment skos:definition">The range of <a href="#SOSAProperty"><code>Property</code></a>
-            values that can be the result of an <a href="#SOSAActuation"><code>Actuation</code></a> under the
+        <span property="rdfs:comment skos:definition">The range of <a href="#SOSAProperty">Property</a>
+            values that can be the result of an <a href="#SOSAActuation">Actuation</a> under the
             defined
             conditions.</span>
         <table>
@@ -577,10 +574,10 @@
 
         <em property="rdfs:label">Accuracy</em> -
         <span property="rdfs:comment skos:definition">The closeness of agreement between the result of an <a
-                href="#SOSAObservation"><code>Observation</code></a>
-            (resp. the command of an <a href="#SOSAActuation"><code>Actuation</code></a>)
-            and the true value of the observed <a href="#SOSAObservableProperty"><code>ObservableProperty</code></a>
-            (resp. of the acted on <a href="#SOSAActuatableProperty"><code>ActuatableProperty</code></a>)
+                href="#SOSAObservation">Observation</a>
+            (resp. the command of an <a href="#SOSAActuation">Actuation</a>)
+            and the true value of the observed <a href="#SOSAObservableProperty">ObservableProperty</a>
+            (resp. of the acted on <a href="#SOSAActuatableProperty">ActuatableProperty</a>)
             under the defined conditions.</span>
         <table>
             <tbody>
@@ -684,15 +681,15 @@
         <p><strong>an OWL Class</strong></p>
 
         <em property="rdfs:label">Drift</em> -
-        <span property="rdfs:comment skos:definition">As a <a href="#SOSASensor"><code>Sensor</code></a> <a
-                href="#SOSAProperty"><code>Property</code></a>: a continuous or incremental change in the reported
-            values of <a href="#SOSAObservation"><code>Observations</code></a> over time for an unchanging <a
-                href="#SOSAProperty"><code>Property</code></a> under the defined conditions.
+        <span property="rdfs:comment skos:definition">As a <a href="#SOSASensor">Sensor</a> <a
+                href="#SOSAProperty">Property</a>: a continuous or incremental change in the reported
+            values of <a href="#SOSAObservation">Observations</a> over time for an unchanging <a
+                href="#SOSAProperty">Property</a> under the defined conditions.
             <br>
-            As an <a href="#SOSAActuator"><code>Actuator</code></a> <a href="#SOSAProperty"><code>Property</code></a>:
+            As an <a href="#SOSAActuator">Actuator</a> <a href="#SOSAProperty">Property</a>:
             a
             continuous or incremental change in the true value of the acted on <a
-                href="#SOSAActuatableProperty"><code>ActuatableProperty</code></a> over time for an unchanging
+                href="#SOSAActuatableProperty">ActuatableProperty</a> over time for an unchanging
             command
             under the defined conditions.</span>
         <table>
@@ -734,9 +731,8 @@
 
         <em property="rdfs:label">Frequency</em> -
         <span property="rdfs:comment skos:definition">The smallest possible time between one <a
-                href="#SOSAObservation"><code>Observation</code></a>, <a
-                href="#SOSAActuation"><code>Actuation</code></a>,
-            or <a href="#SOSASampling"><code>Sampling</code></a>
+                href="#SOSAObservation">Observation</a>, <a href="#SOSAActuation">Actuation</a>,
+            or <a href="#SOSASampling">Sampling</a>
             and the next, under the defined conditions.</span>
         <table>
             <tbody>
@@ -777,11 +773,10 @@
 
         <em property="rdfs:label">Latency</em> -
         <span property="rdfs:comment skos:definition">The time between a command for an <a
-                href="#SOSAObservation"><code>Observation</code></a>
-            (resp. <a href="#SOSAActuation"><code>Actuation</code></a>)
-            and the <a href="#SOSASensor"><code>Sensor</code></a> providing a result
-            (resp. the <a href="#SOSAActuator"><code>Actuator</code></a> operating the <a
-                href="#SOSAActuation"><code>Actuation</code></a>),
+                href="#SOSAObservation">Observation</a>
+            (resp. <a href="#SOSAActuation">Actuation</a>)
+            and the <a href="#SOSASensor">Sensor</a> providing a result
+            (resp. the <a href="#SOSAActuator">Actuator</a> operating the <a href="#SOSAActuation">Actuation</a>),
             under the defined conditions.</span>
         <table>
             <tbody>
@@ -822,17 +817,17 @@
 
         <em property="rdfs:label">Precision</em> -
         <span property="rdfs:comment skos:definition">As a sensor capability:
-            The closeness of agreement between replicate <a href="#SOSAObservation"><code>Observations</code></a> on
+            The closeness of agreement between replicate <a href="#SOSAObservation">Observations</a> on
             an unchanged or similar quality value:
-            i.e., a measure of a <a href="#SOSASensor"><code>Sensor</code></a>'s ability to consistently reproduce
+            i.e., a measure of a <a href="#SOSASensor">Sensor</a>'s ability to consistently reproduce
             an
-            <a href="#SOSAObservation"><code>Observation</code></a>, under the defined conditions.
+            <a href="#SOSAObservation">Observation</a>, under the defined conditions.
             <br>
             As an actuator capability:
-            The closeness of agreement between replicate <a href="#SOSAActuation"><code>Actuations</code></a> for an
+            The closeness of agreement between replicate <a href="#SOSAActuation">Actuations</a> for an
             unchanged or similar command:
-            i.e., a measure of an <a href="#SOSAActuator"><code>Actuator</code></a>'s ability to consistently
-            reproduce an <a href="#SOSAActuation"><code>Actuations</code></a>, under the defined conditions.</span>
+            i.e., a measure of an <a href="#SOSAActuator">Actuator</a>'s ability to consistently
+            reproduce an <a href="#SOSAActuation">Actuations</a>, under the defined conditions.</span>
         <table>
             <tbody>
                 <tr class="ssn">
@@ -871,18 +866,18 @@
         <p><strong>an OWL Class</strong></p>
 
         <em property="rdfs:label">Resolution</em> -
-        <span property="rdfs:comment skos:definition">As a <a href="#SOSASensor"><code>Sensor</code></a> <a
-                href="#SOSAProperty"><code>Property</code></a>:
-            the smallest difference in the value of a <a
-                href="#SOSAObservableProperty"><code>ObservableProperty</code></a> being observed that would result
+        <span property="rdfs:comment skos:definition">As a <a href="#SOSASensor">Sensor</a> <a
+                href="#SOSAProperty">Property</a>:
+            the smallest difference in the value of a <a href="#SOSAObservableProperty">ObservableProperty</a> being
+            observed that would result
             in
-            perceptably different values of <a href="#SOSAObservation"><code>Observation</code></a> <a
-                href="#SOSAResult"><code>Results</code></a>, under the defined conditions.
+            perceptably different values of <a href="#SOSAObservation">Observation</a> <a
+                href="#SOSAResult">Results</a>, under the defined conditions.
             <br>
-            As an <a href="#SOSAActuator"><code>Actuator</code></a> <a href="#SOSAProperty"><code>Property</code></a>:
-            the smallest difference in the value of an <a href="#SOSAActuation"><code>Actuation</code></a> command
-            that would result in a value change of the <a
-                href="#SOSAActuatableProperty"><code>ActuatableProperty</code></a> being acted on, under the defined
+            As an <a href="#SOSAActuator">Actuator</a> <a href="#SOSAProperty">Property</a>:
+            the smallest difference in the value of an <a href="#SOSAActuation">Actuation</a> command
+            that would result in a value change of the <a href="#SOSAActuatableProperty">ActuatableProperty</a> being
+            acted on, under the defined
             conditions. </span>
         <table>
             <tbody>
@@ -922,16 +917,16 @@
         <p><strong>an OWL Class</strong></p>
 
         <em property="rdfs:label">Response time</em> -
-        <span property="rdfs:comment skos:definition">As a <a href="#SOSASensor"><code>Sensor</code></a> <a
-                href="#SOSAProperty"><code>Property</code></a>: the time between a (step) change in the value of an
-            observed <a href="#SOSAObservableProperty"><code>ObservableProperty</code></a> and a <a
-                href="#SOSASensor"><code>Sensor</code></a> (possibly with specified error) 'settling' on an observed
+        <span property="rdfs:comment skos:definition">As a <a href="#SOSASensor">Sensor</a> <a
+                href="#SOSAProperty">Property</a>: the time between a (step) change in the value of an
+            observed <a href="#SOSAObservableProperty">ObservableProperty</a> and a <a href="#SOSASensor">Sensor</a>
+            (possibly with specified error) 'settling' on an observed
             value, under the defined conditions.
             <br>
-            As an <a href="#SOSAActuator"><code>Actuator</code></a> <a href="#SOSAProperty"><code>Property</code></a>:
-            the time between a (step) change in the command of an <a href="#SOSAActuator"><code>Actuator</code></a>
-            and the 'settling' of the value of the acted on <a
-                href="#SOSAActuatableProperty"><code>ActuatableProperty</code></a>, under the defined
+            As an <a href="#SOSAActuator">Actuator</a> <a href="#SOSAProperty">Property</a>:
+            the time between a (step) change in the command of an <a href="#SOSAActuator">Actuator</a>
+            and the 'settling' of the value of the acted on <a href="#SOSAActuatableProperty">ActuatableProperty</a>,
+            under the defined
             conditions.</span>
         <table>
             <tbody>
@@ -971,25 +966,23 @@
         <p><strong>an OWL Class</strong></p>
 
         <em property="rdfs:label">Selectivity</em> -
-        <span property="rdfs:comment skos:definition">As a <a href="#SOSASensor"><code>Sensor</code></a> <a
-                href="#SOSAProperty"><code>Property</code></a>: Selectivity is a <a
-                href="#SOSAProperty"><code>Property</code></a> of a <a href="#SOSASensor"><code>Sensor</code></a>
+        <span property="rdfs:comment skos:definition">As a <a href="#SOSASensor">Sensor</a> <a
+                href="#SOSAProperty">Property</a>: Selectivity is a <a href="#SOSAProperty">Property</a> of a <a
+                href="#SOSASensor">Sensor</a>
             whereby it provides observed values for one or more <a
-                href="#SOSAObservableProperty"><code>ObservableProperties</code></a> such that the result for each
-            <a href="#SOSAObservableProperty"><code>ObservableProperty</code></a> are independent of other <a
-                href="#SOSAProperty"><code>Properties</code></a> in the <a
-                href="#SOSAFeatureOfInterest"><code>FeatureOfInterest</code></a> being investigated, under the
+                href="#SOSAObservableProperty">ObservableProperties</a> such that the result for each
+            <a href="#SOSAObservableProperty">ObservableProperty</a> are independent of other <a
+                href="#SOSAProperty">Properties</a> in the <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a> being
+            investigated, under the
             defined
             conditions.
             <br>
-            As an <a href="#SOSAActuator"><code>Actuator</code></a> <a href="#SOSAProperty"><code>Property</code></a>:
-            Selectivity is a <a href="#SOSAProperty"><code>Property</code></a> of an <a
-                href="#SOSAActuator"><code>Actuator</code></a> whereby it acts on one or more <a
-                href="#SOSAActuatableProperty"><code>ActuatableProperties</code></a> such as the <a
-                href="#SOSAResult"><code>Results</code></a> for each <a
-                href="#SOSAActuatableProperty"><code>ActuatableProperty</code></a> are independent of other <a
-                href="#SOSAProperty"><code>Properties</code></a> in the <a
-                href="#SOSAFeatureOfInterest"><code>FeatureOfInterest</code></a> being acted on, under the defined
+            As an <a href="#SOSAActuator">Actuator</a> <a href="#SOSAProperty">Property</a>:
+            Selectivity is a <a href="#SOSAProperty">Property</a> of an <a href="#SOSAActuator">Actuator</a> whereby it
+            acts on one or more <a href="#SOSAActuatableProperty">ActuatableProperties</a> such as the <a
+                href="#SOSAResult">Results</a> for each <a href="#SOSAActuatableProperty">ActuatableProperty</a> are
+            independent of other <a href="#SOSAProperty">Properties</a> in the <a
+                href="#SOSAFeatureOfInterest">FeatureOfInterest</a> being acted on, under the defined
             conditions.</span>
         <table>
             <tbody>
@@ -1029,17 +1022,17 @@
         <p><strong>an OWL Class</strong></p>
 
         <em property="rdfs:label">Sensitivity</em> -
-        <span property="rdfs:comment skos:definition">As a <a href="#SOSASensor"><code>Sensor</code></a> <a
-                href="#SOSAProperty"><code>Property</code></a>: Sensitivity is the quotient of the change in a
+        <span property="rdfs:comment skos:definition">As a <a href="#SOSASensor">Sensor</a> <a
+                href="#SOSAProperty">Property</a>: Sensitivity is the quotient of the change in a
             result of
-            <a href="#SOSAObservation"><code>Observations</code></a> and the corresponding change in a value of an
-            <a href="#SOSAObservableProperty"><code>ObservableProperty</code></a> being observed, under the defined
+            <a href="#SOSAObservation">Observations</a> and the corresponding change in a value of an
+            <a href="#SOSAObservableProperty">ObservableProperty</a> being observed, under the defined
             conditions.
             <br>
-            As an <a href="#SOSAActuator"><code>Actuator</code></a> <a href="#SOSAProperty"><code>Property</code></a>:
-            Sensitivity is the quotient of the change in a command of <a
-                href="#SOSAActuation"><code>Actuation</code></a> and the corresponding change in a value of an <a
-                href="#SOSAActuatableProperty"><code>ActuatableProperty</code></a> being acted on, under the defined
+            As an <a href="#SOSAActuator">Actuator</a> <a href="#SOSAProperty">Property</a>:
+            Sensitivity is the quotient of the change in a command of <a href="#SOSAActuation">Actuation</a> and the
+            corresponding change in a value of an <a href="#SOSAActuatableProperty">ActuatableProperty</a> being acted
+            on, under the defined
             conditions.</span>
         <table>
             <tbody>
@@ -1080,10 +1073,10 @@
         <p><strong>an OWL Object Property</strong></p>
 
         <em property="rdfs:label">has operating range</em> -
-        <span property="rdfs:comment skos:definition">Relation from a <a href="#SOSASystem"><code>System</code></a>
+        <span property="rdfs:comment skos:definition">Relation from a <a href="#SOSASystem">System</a>
             to
-            an <a href="#SSNSYSTEMOperatingRange"><code>OperatingRange</code></a> describing the normal operating
-            environment of the <a href="#SOSASystem"><code>System</code></a>.</span>
+            an <a href="#SSNSYSTEMOperatingRange">OperatingRange</a> describing the normal operating
+            environment of the <a href="#SOSASystem">System</a>.</span>
         <table>
             <tbody>
                 <tr class="ssn">
@@ -1124,20 +1117,18 @@
 
         <em property="rdfs:label">Operating Range</em> -
         <span property="rdfs:comment skos:definition">Describes normal <a
-                href="#SSNSYSTEMOperatingProperty"><code>OperatingProperties</code></a> of a <a
-                href="#SOSASystem"><code>System</code></a> under some specified conditions. For example, to the
-            power
-            requirement or maintenance schedule of a <code>System</code> under a specified temperature range.
+                href="#SSNSYSTEMOperatingProperty">OperatingProperties</a> of a <a href="#SOSASystem">System</a> under
+            some specified conditions. For example, to the power requirement or maintenance schedule of a <a
+                href="#SOSASystem">System</a> under a specified temperature range.
             <br>
-            In the absence of <a href="#SSNSYSTEMOperatingProperty"><code>OperatingProperties</code></a>, it simply
-            describes the conditions in which a <a href="#SOSASystem"><code>System</code></a> is expected to
-            operate.
+            In the absence of <a href="#SSNSYSTEMOperatingProperty">OperatingProperties</a>, it simply
+            describes the conditions in which a <a href="#SOSASystem">System</a> is expected to operate.
             <br>
-            The <a href="#SOSASystem"><code>System</code></a> continues to operate as defined using <a
-                href="#SSNSYSTEMSystemCapability"><code>SystemCapability</code></a>. If, however, the <a
-                href="#SSNSYSTEMOperatingProperty"><code>OperatingProperty</code></a> is violated, the System is
+            The <a href="#SOSASystem">System</a> continues to operate as defined using <a
+                href="#SSNSYSTEMSystemCapability">SystemCapability</a>. If, however, the <a
+                href="#SSNSYSTEMOperatingProperty">OperatingProperty</a> is violated, the System is
             operating
-            'out of operating range' and <a href="#SSNSYSTEMSystemCapability"><code>SystemCapability</code></a>
+            'out of operating range' and <a href="#SSNSYSTEMSystemCapability">SystemCapability</a>
             specifications may no longer hold.</span>
         <table>
             <tbody>
@@ -1217,11 +1208,10 @@
 
         <em property="rdfs:label">has operating property</em> -
         <span property="rdfs:comment skos:definition">Relation from an <a
-                href="#SSNSYSTEMOperatingRange"><code>OperatingRange</code></a> of a <a
-                href="#SOSASystem"><code>System</code></a> to an <a
-                href="#SSNSYSTEMOperatingProperty"><code>OperatingProperty</code></a> describing the operating range
+                href="#SSNSYSTEMOperatingRange">OperatingRange</a> of a <a href="#SOSASystem">System</a> to an <a
+                href="#SSNSYSTEMOperatingProperty">OperatingProperty</a> describing the operating range
             of
-            the <a href="#SOSASystem"><code>System</code></a>.</span>
+            the <a href="#SOSASystem">System</a>.</span>
         <table>
             <tbody>
                 <tr class="ssn">
@@ -1262,7 +1252,7 @@
 
         <em property="rdfs:label">Operating Property</em> -
         <span property="rdfs:comment skos:definition">An identifiable characteristic that represents how the <a
-                href="#SOSASystem"><code>System</code></a> operates under the specified conditions.
+                href="#SOSASystem">System</a> operates under the specified conditions.
             May describe power ranges, power sources, standard configurations, attachments and the like.</span>
         <table>
             <tbody>
@@ -1329,8 +1319,8 @@
         <p><strong>an OWL Class</strong></p>
 
         <em property="rdfs:label">Maintenance Schedule</em> -
-        <span property="rdfs:comment skos:definition">Schedule of maintenance for a <a
-                href="#SOSASystem"><code>System</code></a> in the specified conditions.</span>
+        <span property="rdfs:comment skos:definition">Schedule of maintenance for a <a href="#SOSASystem">System</a> in
+            the specified conditions.</span>
         <table>
             <tbody>
                 <tr class="ssn">
@@ -1370,7 +1360,7 @@
         <p><strong>an OWL Class</strong></p>
 
         <em property="rdfs:label">Operating Power Range</em> -
-        <span property="rdfs:comment skos:definition">Power range in which <a href="#SOSASystem"><code>System</code></a>
+        <span property="rdfs:comment skos:definition">Power range in which <a href="#SOSASystem">System</a>
             is expected to operate in the specified
             conditions.</span>
         <table>
@@ -1412,9 +1402,9 @@
         <p><strong>an OWL Object Property</strong></p>
 
         <em property="rdfs:label">has survival range</em> -
-        <span property="rdfs:comment skos:definition">Relation from a <a href="#SOSASystem"><code>System</code></a>
+        <span property="rdfs:comment skos:definition">Relation from a <a href="#SOSASystem">System</a>
             to
-            a <a href="#SSNSYSTEMSurvivalRange"><code>SurvivalRange</code></a>.</span>
+            a <a href="#SSNSYSTEMSurvivalRange">SurvivalRange</a>.</span>
         <table>
             <tbody>
                 <tr class="ssn">
@@ -1454,20 +1444,19 @@
 
         <em property="rdfs:label">Survival Range</em> -
         <span property="rdfs:comment skos:definition">Describes <a
-                href="#SSNSYSTEMSurvivalProperty"><code>SurvivalProperties</code></a> of a <a
-                href="#SOSASystem"><code>System</code></a> under some specified conditions.
+                href="#SSNSYSTEMSurvivalProperty">SurvivalProperties</a> of a <a href="#SOSASystem">System</a> under
+            some specified conditions.
             For example, the lifetime of a System under a specified temperature range.
             <br>
-            In the absence of <a href="#SSNSYSTEMSurvivalProperty"><code>SurvivalProperties</code></a>, simply
-            describes the conditions a <a href="#SOSASystem"><code>System</code></a> can be exposed to without
+            In the absence of <a href="#SSNSYSTEMSurvivalProperty">SurvivalProperties</a>, simply
+            describes the conditions a <a href="#SOSASystem">System</a> can be exposed to without
             damage.
             For example, the temperature range a System can withstand before being considered damaged.
             <br>
-            The System continues to operate as defined using <a
-                href="#SSNSYSTEMSystemCapability"><code>SystemCapability</code></a>.
-            If, however, the SurvivalRange is violated, the <a href="#SOSASystem"><code>System</code></a> is
+            The System continues to operate as defined using <a href="#SSNSYSTEMSystemCapability">SystemCapability</a>.
+            If, however, the SurvivalRange is violated, the <a href="#SOSASystem">System</a> is
             'damaged'
-            and <a href="#SSNSYSTEMSystemCapability"><code>SystemCapability</code></a> specifications may no longer
+            and <a href="#SSNSYSTEMSystemCapability">SystemCapability</a> specifications may no longer
             hold.</span> <br>
         <table>
             <tbody>
@@ -1547,11 +1536,10 @@
 
         <em property="rdfs:label">has survival property</em> -
         <span property="rdfs:comment skos:definition">Relation from a <a
-                href="#SSNSYSTEMSurvivalRange"><code>SurvivalRange</code></a> of a <a
-                href="#SOSASystem"><code>System</code></a> to a <a
-                href="#SSNSYSTEMSurvivalProperty"><code>SurvivalProperty</code></a> describing the survival range of
+                href="#SSNSYSTEMSurvivalRange">SurvivalRange</a> of a <a href="#SOSASystem">System</a> to a <a
+                href="#SSNSYSTEMSurvivalProperty">SurvivalProperty</a> describing the survival range of
             the
-            <a href="#SOSASystem"><code>System</code></a>.</span>
+            <a href="#SOSASystem">System</a>.</span>
         <table>
             <tbody>
                 <tr class="ssn">
@@ -1592,10 +1580,10 @@
 
         <em property="rdfs:label">Survival Property</em> -
         <span property="rdfs:comment skos:definition">An identifiable characteristic that represents the extent of
-            the <a href="#SOSASystem"><code>System</code></a>'s useful life under the specified conditions.
+            the <a href="#SOSASystem">System</a>'s useful life under the specified conditions.
             May describe for example total battery life or number of recharges, or, for <a
-                href="#SOSASensor"><code>Sensors</code></a> that are used only a fixed number of times, the number
-            of <a href="#SOSAObservation"><code>Observations</code></a> that can be made before the sensing
+                href="#SOSASensor">Sensors</a> that are used only a fixed number of times, the number
+            of <a href="#SOSAObservation">Observations</a> that can be made before the sensing
             capability is
             depleted.</span>
         <table>
@@ -1662,8 +1650,8 @@
         <p><strong>an OWL Class</strong></p>
 
         <em property="rdfs:label">System Lifetime</em> -
-        <span property="rdfs:comment skos:definition">Total useful life of a <a
-                href="#SOSASystem"><code>System</code></a> (expressed as total life since manufacture, time in use,
+        <span property="rdfs:comment skos:definition">Total useful life of a <a href="#SOSASystem">System</a> (expressed
+            as total life since manufacture, time in use,
             number of operations, etc.) in the specified conditions.</span>
         <table>
             <tbody>
@@ -1703,8 +1691,8 @@
         <p><strong>an OWL Class</strong></p>
 
         <em property="rdfs:label">Battery Lifetime</em> -
-        <span property="rdfs:comment skos:definition">Total useful life of a <a
-                href="#SOSASystem"><code>System</code></a>'s battery in the specified conditions.</span>
+        <span property="rdfs:comment skos:definition">Total useful life of a <a href="#SOSASystem">System</a>'s battery
+            in the specified conditions.</span>
         <table>
             <tbody>
                 <tr class="ssn">
@@ -1744,11 +1732,11 @@
         <p><strong>an OWL Object Property</strong></p>
 
         <em property="rdfs:label">quality of observation</em> -
-        <span property="rdfs:comment skos:definition">Relation linking an <a
-                href="#SOSAObservation"><code>Observation</code></a> to the adjudged quality of the result.
-            This is complementary to the <a href="#SSNSYSTEMSystemCapability"><code>SystemCapability</code></a>
-            information recorded for the <a href="#SOSASensor"><code>Sensor</code></a> that made the <a
-                href="#SOSAObservation"><code>Observation</code></a>.</span>
+        <span property="rdfs:comment skos:definition">Relation linking an <a href="#SOSAObservation">Observation</a> to
+            the adjudged quality of the result.
+            This is complementary to the <a href="#SSNSYSTEMSystemCapability">SystemCapability</a>
+            information recorded for the <a href="#SOSASensor">Sensor</a> that made the <a
+                href="#SOSAObservation">Observation</a>.</span>
         <table>
             <tbody>
                 <tr class="ssn">
