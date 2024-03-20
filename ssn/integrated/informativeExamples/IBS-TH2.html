@@ -12,7 +12,7 @@ the description as a means of providing full documentation for the sensor.</p>
 
 <p>The result is a complete ontological description of the IBS-TH2 sensor using
 the core Sosa ontology.  As it represents the ontological concept of the
-product, they are subClasses of the Sosa Classes that are meant to be
+product, they are sub-Classes of the Sosa Classes that are meant to be
 instantiated for individual sensors.</p>
 
 <p class="note">This example focuses on the platform, its sensor and their performance. The Bluetooth data-link is not documented
@@ -20,13 +20,13 @@ here. Furthermore, while in both vernacular and marketing speech the IBS-TH2 is 
 <i>Platform</i> to align to Sosa nomenclature.</p>
 
 <p>The ability to encode sensor operating characteristics and limitations as part of its ontological definition is <b>not</b>
-redudant even when linking to a manufacturer's data sheet.  Its availability in a machine readable markup allows for tight
+redundant even when linking to a manufacturer's data sheet.  Its availability in a machine readable mark-up allows for tight
 integration with sophisticated data consumers that can evaluate data quality and predict performance based on nominal sensors
 limits. A direct use case is the problem of software libraries reporting numbers with an impossible number of decimal digits due to
 internal binary representations. The sensor accuracy properties can be used to truncate these numbers at the appropriate significant
 digit.</p>
 
-<p>Lastly, the encoding of performance and behaviour data in a machine readable way is of significant use when selecting <a
+<p>Lastly, the encoding of performance and behavior data in a machine readable way is of significant use when selecting <a
 href="#SOSAPlatorm">sosa:Platform</a>s for specific tasks: a working set of <a href="#SOSAPlatorm">sosa:Platform</a>s responsive to
 the problem specifications can be queried directly.  The use of SOSA to describe the <a href="#SOSAPlatorm">sosa:Platform</a>s
 concurrently with commercial availability vocabularies such as schema.org or GS1 Webvoc would be greatly useful for computer-aided
@@ -68,17 +68,17 @@ performance and perform deployment analyses on, for example, battery life perfor
     <div>
      <p>The following is a detailed example where a IBS-TH2 sensor is used to monitor a crate (carton) of beers from the time of its
      packaging at a brewery up until its display in the supermarket cooler where it is ready to be purchased.  Beer degrades both
-     at high and low temperatures.  This requires that it be kept cool during storage and shipping to preserve the freshness of the
+     at high and low temperatures.  This requires that it be kept cool during storage and shipping to preserve the
      product. Humidity has no effect the beer owing to sealed containers through excess humidity will weaken cardboard and degrade
      the adhesives potentially resulting in product breakage.  Brewers will on occasion insert a temperature logger into
      their shipping process as part of their quality control program and we present such a hypothetical situation here.<p>
 
-     <p>This example is also of interest because it involves the repurposing of a consumer-grade <a
+     <p>This example is of interest because it involves the repurposing of a commodity, consumer-grade <a
      href="#SOSAPlatform">sosa:Platform</a> to a domain specific problem, the movement of a platform from environment to
-     environment and the possible ambiguity of data-ownership in each of these environments. It also demontrates the location ambuiguity
-     that can sometimes be present in modeling sensor readings.</p>
+     environment and the possible ambiguity of data-ownership in each of these environments. It also demonstrates the location 
+     ambiguity that can sometimes be present in modeling sensor readings.</p>
 
-     <p class="note">The use of long identifiers is made for readability and is non-normative.</p>
+     <p class="note">The use of long identifiers is made for readability purposes and is non-normative.</p>
      
       </div>
      
@@ -109,6 +109,7 @@ performance and perform deployment analyses on, for example, battery life perfor
      rdfs:comment "When Alice packaged Porter bottles into the box, she added a InkBird logger to check that the beer wasn't getting too warm in transit and storage." ; 
      prov:wasAssociatedWith &lt;alice&gt; ;
      prov:used &lt;12345/someTH2&gt; ;
+     prov:used &lt;0001/ProductPackaging&gt; ;
      prov:startedAtTime "2024-02-20T01:35:00Z"^^xsd:dateTime ;
      prov:endedAtTime   "2024-02-20T01:40:00Z"^^xsd:dateTime ;
      prov:atLocation &lt;acmeBreweryCo&gt; ;
@@ -120,32 +121,35 @@ performance and perform deployment analyses on, for example, battery life perfor
 # 
 # 
 &lt;10/PO202402/21/0001/acmePorterSixPack&gt; a beer:Porter, gs1:Product ;
+     rdfs:subClassOf &lt;acmePorterSixPack&gt;
      gs1:hasBatchLotNumber "PO202402" ;
      gs1:hasSerialNumber "0001" .
      
      </pre>
      
-     <p>The platform then begins to take measurements which we record as part of another activity.</p>
+     <p>The platform then begins to take measurements that are recorded as part of a data logging activity.</p>
      
-     <pre>&lt;observation1a&gt; rdf:type sosa:Observation ;
+     <pre>&lt;1a/observation&gt; a sosa:Observation ;
     rel:own &lt;acmeBreweryCo&gt; ;
-    sosa:observedProperty equipment:airTemperature ;
-    sosa:hasUltimateFeatureOfInterest &lt;10/PO202402/21/0001/BeerTemperature&gt; ; 
+    sosa:observedProperty &lt;10/PO202402/21/0001/BeerTemperature&gt; ;
+    sosa:hasUltimateFeatureOfInterest &lt;10/PO202402/21/0001/acmePorterSixPackBeerSample&gt; ; 
     sosa:madeBySensor &lt;12345/TemperatureSensor&gt;  ;
     sosa:hasFeatureOfInterest &lt;10/PO202402/21/0001/acmePorterSixPackAirSample&gt; ;
     sosa:resultTime "2024-02-20T01:35:45Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "12"^^unit:DEG_C .
 
-&lt;observation1b&gt; rdf:type sosa:Observation ;
+&lt;1b/observation&gt; rdf:type sosa:Observation ;
     rel:own &lt;acmeBreweryCo&gt; ;
     sosa:observedProperty equipment:airRelativeHumidity ;
-    sosa:hasUltimateFeatureOfInterest &lt;10/PO202402/21/0001/airRelativeHumidityInProductPackaging&gt; ;
+    sosa:hasUltimateFeatureOfInterest &lt;0001/ProductPackaging&gt; 
     sosa:madeBySensor &lt;12345/HumiditySensor&gt;  ;
     sosa:hasFeatureOfInterest &lt;10/PO202402/21/0001/acmePorterSixPackAirSample&gt; ;
     sosa:resultTime "2024-02-20T01:35:45Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "60"^^unit:PERCENT .
 
-&lt;observation1c&gt; rdf:type sosa:Observation ;
+# The battery is a special case because it's property is linked to the battery, not to the environment.
+
+&lt;1c/observation&gt; rdf:type sosa:Observation ;
     rel:own &lt;acmeBreweryCo&gt; ;
     sosa:observedProperty &lt;12345/BatteryHealth&gt; ;
     sosa:madeBySensor &lt;12345/BatterySensor&gt;  ;
@@ -153,13 +157,14 @@ performance and perform deployment analyses on, for example, battery life perfor
     sosa:resultTime "2024-02-20T01:35:45Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "99"^^unit:PERCENT .
 
-&lt;breweryObserver&gt; rdf:type prov:Activity ;
+&lt;1/breweryObserver&gt; a prov:Activity ;
     rdfs:comment "Brewery operating system logging process." ;
     prov:atLocation &lt;acmeBreweryCo&gt; ;
-    prov:generated &lt;observation1a&gt; ;
-    prov:generated &lt;observation1b&gt; ;
-    prov:generated &lt;observation1c&gt; ;
-    prov:wasStartedBy &lt;alice&gt; . # She turned it on last time.</pre>
+    prov:generated &lt;1a/observation&gt; ;
+    prov:generated &lt;1b/observation&gt; ;
+    prov:generated &lt;1c/observation&gt; ;
+    prov:wasStartedBy &lt;alice&gt; . # She turned it on last time.
+    </pre>
 
    <p>In the above example the concurrent use of the <a href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a> and <a
    href="#SOSAhasUltimateFeatureOfInterest">sosa:hasUltimateFeatureOfInterest</a> properties is made to account for the repurposing of a generic
@@ -170,39 +175,37 @@ performance and perform deployment analyses on, for example, battery life perfor
    within a context <i>not necessarily intended by the original sensor design itself</i>.</p>
    
    <p>Physically, both &lt;12345/HumiditySensor&gt; and &lt;12345/TemperatureSensor&gt; are monitoring the ambient air within the
-   specific Porter carton which we define as &lt;10/PO202402/21/0001/acmePorterSixPackAirSample&gt; which resolve the issue of the
+   specific Porter carton which we define as &lt;10/PO202402/21/0001/acmePorterSixPackAirSample&gt; which resolves the issue of the
    location of the measurement when the carton itself is in motion. The <a href="#SOSAhasUltimateFeatureOfInterest">sosa:hasUltimateFeatureOfInterest</a> property
    then targets the beer temperature within that carton and the humidity the cardboard of the carton was subject to.</p>
    
-   <pre># Generic beer temperature
-&lt;BeerTemperature&gt; a sosa:ObservableProperty, ssn:Property ;
+   <pre># We define this as the beer temperature, but ontologically it is a 
+# generic definition for the temperature of the sample.
+&lt;10/PO202402/21/0001/BeerTemperature&gt; a sosa:ObservableProperty, ssn:Property ;
     schema:unitCode unit:DEG_C ;
-    rdfs:label "Biertemperatur"@de, "Beer Temperature"@en, "Température de la bière"@fr .
-
-# The overall beer temperature of the beer within the carton containers.  
-&lt;10/PO202402/21/0001/BeerTemperature&gt; a sosa:ObservableProperty, &lt;BeerTemperature&gt; ;
-    schema:unitCode unit:DEG_C ;
-    ssn:isPropertyOf &lt;10/PO202402/21/0001/acmePorterSixPack&gt; ;
+    ssn:isPropertyOf &lt;10/PO202402/21/0001/acmePorterSixPackBeerSample&gt; ;
     rdfs:label "Biertemperatur"@de, "Beer Temperature"@en, "Température de la bière"@fr ;
-    skos:definition "Temperature of the Beer in carton."@en .
+    skos:definition "Temperature of Beer."@en .
 
-&lt;10/PO202402/21/0001/airRelativeHumidityInProductPackaging&gt; a equipment:airRelativeHumidity, sosa:ObservableProperty;;
-    schema:unitCode unit:PERCENT ;
-    ssn:isPropertyOf &lt;10/PO202402/21/0001/acmePorterSixPack&gt; ;
-    rdfs:label "Humidité relative de l'emballage du produit"@fr, "Relative Humidity of Product Packaging"@en, "Relative Luftfeuchtigkeit 
-    skos:definition "The amount of water vapor present in air around the product packaging"@en .
+# A (virtual) sample of the beer from the six pack, implicitly assumes that the
+# sample is representative from all containers. 
+&lt;10/PO202402/21/0001/acmePorterSixPackBeerSample&gt; a  sosa:FeatureOfInterest, sosa:Sample, beer:Porter ;
+    rdfs:label "A sample of beer within the six pack"@en ;
+    sosa:isSampleOf &lt;10/PO202402/21/0001/acmePorterSixPack&gt; .
+
+#This is the carton packaging itself which is a feature that is affected by the relative humidity.
+&lt;0001/ProductPackaging&gt; a gs1:PackagingDetails, sosa:FeatureOfInterest ;  
+    rdfs:label "An instance of a beer carton used to package a six pack."@en .
 </pre>
 
 
-   <p>An issue is whether the complexity incurred in recording measurements in this way is an additional burden on consumers of the
-   data. Previous approaches to data storage had an observation centric approach that was partially dictated by relational
-   databases. The Sosa ontology takes a &quot;thing and property&quot; approach that is then referenced by observations. This
-   approach aligns well to both ontological and object oriented methodologies: Based on a thing, the individual beer carton product (&lt;PO202402/acmePorterSixPack&gt;)
-   and the specific property wanted, the (&lt;BeerTemperature&gt;) one can find the specific identifier for the property of that
-   specific product which in then referenced by multiple <a href="#SOSAObservation">sosa:Observation</a>s. It also permits the
-   seamless querying of direct measurement sensors through the <a href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a>
-   property and indirect measurements through <a href="#SOSAhasUltimateFeatureOfInterest">sosa:hasUltimateFeatureOfInterest</a>
-   properties.</p>     
+   <p>The Sosa ontology takes a &quot;feature and property&quot; approach that is then referenced by observations. The
+   feature of interest, in this case the ambient air within the carton (&lt;10/PO202402/21/0001/acmePorterSixPackAirSample&gt;) is
+   the feature that the Platform is concerned with. However, it really is a proxy for both the temperature of the beer within the
+   individual containers (&lt;10/PO202402/21/0001/acmePorterSixPackBeerSample&gt;) within the carton and the relative humidity that
+   the packaging (&lt;0001/ProductPackaging&gt;) is being exposed to. The beer &quot;sample&quot; in this case is virtual; the node
+   serves only to semantically link the observation to the beer liquid itself without any physical sample being taken. A more
+   detailed example with physical beer samples is listed in [[[#beerCollections]]].</p>     
      </div> 
 
      <h3>Shipping to Retail Store</h3>
@@ -223,7 +226,7 @@ performance and perform deployment analyses on, for example, battery life perfor
 
      <p>The information recorded during this time period would be:</p>
  
-     <pre>&lt;observation67a&gt; a sosa:Observation, prov:Entity ;
+     <pre>&lt;67a/observation&gt; a sosa:Observation, prov:Entity ;
     rel:own &lt;acmeBreweryCo&gt; ;
     rel:own &lt;acmeDelivery&gt; ;
     sosa:observedProperty equipment:airTemperature ;
@@ -233,17 +236,17 @@ performance and perform deployment analyses on, for example, battery life perfor
     sosa:resultTime "2024-02-22T04:15:05Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "19"^^unit:DEG_C .
 
-&lt;observation67b&gt; rdf:type sosa:Observation,prov:Entity ;
+&lt;67b/observation&gt; rdf:type sosa:Observation,prov:Entity ;
     rel:own &lt;acmeBreweryCo&gt; ;
     rel:own &lt;acmeDelivery&gt; ;
     sosa:observedProperty equipment:airRelativeHumidity ;
-    sosa:hasUltimateFeatureOfInterest &lt;PO202402/airRelativeHumidityInProductPackaging&gt; ;
+    sosa:hasUltimateFeatureOfInterest  &lt;0001/ProductPackaging&gt;;
     sosa:madeBySensor &lt;12345/HumiditySensor&gt;  ;
     sosa:hasFeatureOfInterest &lt;PO202402/acmePorterSixPackAirSample&gt; ;
     sosa:resultTime "2024-02-22T04:15:05Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "74"^^unit:PERCENT .
      
-&lt;TruckObserver&gt;  a prov:Activity ;
+&lt;67/TruckObserver&gt;  a prov:Activity ;
     rdfs:comment "Truck onboard monitoring system" ;
     prov:used &lt;acmeTruck&gt;  ;
     prov:generated &lt;observation67a&gt;  ;
@@ -257,12 +260,12 @@ performance and perform deployment analyses on, for example, battery life perfor
     <p>The sensors of the platform are reporting values for the same properties of the same features of interest; the physical
     location of the carton of beer does not effect the process because the platform monitors the inside of the carton itself. Modeling
     its location and the process of (un)loading of the carton from the truck is done through other rdf nodes.</p> 
-    <p>The truck onboard monitoring system does report a GPS geometry as a Location. This is the location at which the data was
-    recorded from the platform. It is concivable that the geomtry node is shared with a vehicule tracking system rdf representation
-    or the vehicule's delivery scheduling application but it is not mandated by Sosa.</p> 
+    <p>The truck on-board monitoring system does report a GPS geometry as a Location. This is the location at which the data was
+    recorded from the platform. It is conceivable that the geometry node is shared with a vehicle tracking system rdf representation
+    or the vehicle's delivery scheduling application but it is not mandated by Sosa.</p> 
 
      <p class="note">Locations of Platform, Sensors, and measured samples are often conflated in
-     non-semantically enabled systems and the semantics often implicitly assumed by the application. The deep semantic modelling
+     non-semantically enabled systems and the semantics often implicitly assumed by the application. The deep semantic modeling
      within Sosa makes no such implicit assumptions and locations can be assigned to all elements independently.</p>
       
      <h3>Display in Retail Store Cooler</h3> 
@@ -273,14 +276,14 @@ performance and perform deployment analyses on, for example, battery life perfor
       <figcaption>The beer carton is stored in the display cooler for retail sale.</figcaption> 
       </figure> 
       <p>When received at the retail store from the delivery company, the beer is displayed for sale in retail coolers which log
-      the sensors, the data being held by the retail store. We notice again the semantics of location and contaiment; the sensor is
+      the sensors, the data being held by the retail store. We notice again the semantics of location and containment; the sensor is
       contained within the carton which is contained within the cooler which is located within the store. However, none of this
       semantic is recorded. The only location activity is 
       the activity is taking place within the supermarket cooler; not the supermarket itself. </p>
       </div>
       <p>The information recorded during this time period would be:</p>
       <pre>
-&lt;observation98a&gt; rdf:type sosa:Observation,prov:Entity ;
+&lt;98a/observation&gt; rdf:type sosa:Observation,prov:Entity ;
     rel:own &lt;acmeSupermarket&gt; ;
     sosa:observedProperty equipment:airTemperature ;
     sosa:hasUltimateFeatureOfInterest &lt;PO202402/BeerTemperature&gt; ;    
@@ -289,16 +292,16 @@ performance and perform deployment analyses on, for example, battery life perfor
     sosa:resultTime "2024-02-22T06:00:13Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "12"^^unit:DEG_C .
 
-&lt;observation98b&gt; rdf:type sosa:Observation,prov:Entity ;
+&lt;98b/observation&gt; rdf:type sosa:Observation,prov:Entity ;
     rel:own &lt;acmeSupermarket&gt; ;
     sosa:observedProperty equipment:airRelativeHumidity ;
-    sosa:hasUltimateFeatureOfInterest &lt;PO202402/airRelativeHumidityInProductPackaging&gt; ;
+    sosa:hasUltimateFeatureOfInterest  &lt;0001/ProductPackaging&gt;;
     sosa:madeBySensor &lt;12345/HumiditySensor&gt;  ;
     sosa:hasFeatureOfInterest &lt;PO202402/acmePorterSixPackAirSample&gt; ;
     sosa:resultTime "2024-02-22T06:00:13Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "55"^^unit:PERCENT .
 
-&lt;observation98c&gt; rdf:type sosa:Observation,prov:Entity ;
+&lt;98c/observation&gt; rdf:type sosa:Observation,prov:Entity ;
     rel:own &lt;acmeSupermarket&gt; ;
     sosa:observedProperty &lt;12345/BatteryHealth&gt;;
     sosa:madeBySensor &lt;12345/BatterySensor&gt;  ;
@@ -306,20 +309,19 @@ performance and perform deployment analyses on, for example, battery life perfor
     sosa:resultTime "2024-02-22T06:00:13Z"^^xsd:dateTime ;
     sosa:hasSimpleResult "99"^^unit:PERCENT .
 
-&lt;CoolerMonitoringProcess&gt; a prov:Activity ;
+&lt;98/CoolerMonitoringProcess&gt; a prov:Activity ;
     rdfs:comment "Smart cooler monitoring system" ;
     prov:startedAtTime "2024-02-22T06:00:13Z"^^xsd:dateTime ;
     prov:atLocation &lt;acmeSupermarketCooler&gt; ;
-    prov:generated &lt;observation98a&gt; ;
-    prov:generated &lt;observation98b&gt; ;
-    prov:generated &lt;observation98c&gt; ;
+    prov:generated &lt;98a/observation&gt; ;
+    prov:generated &lt;98b/observation&gt; ;
+    prov:generated &lt;98c/observation&gt; ;
     prov:wasStartedBy &lt;acmeSupermarket&gt; .      
       
       </pre>
      
       </div>
 
-     <p>Finding things in sosa. Feature lists and samples.</p>
     </section>
     
     <section id="IBS-TH2-deployment">
@@ -339,75 +341,75 @@ performance and perform deployment analyses on, for example, battery life perfor
       for example by recording different configuration parameters, thought deployments may be concurrent. Reusing the example of [[[#beerTemp]]], the sensor can be seen to be concurrently deployed within the
       beer carton and multiple coolers / storage sites:</p>
       
-      <pre>#Make coolers and carton a sosa:Platform.
-&lt;10/PO202402/21/0001/acmePorterSixPack&gt; a sosa:Platform;
-&lt;acmeBrewerCooler&gt; a sosa:Platform;
-&lt;acmeTruck&gt; a sosa:Platform;
-&lt;acmeSupermarketCooler&gt; a sosa:Platform;
+      <pre># Make coolers and carton a sosa:Platform.
+&lt;10/PO202402/21/0001/acmePorterSixPack&gt; a sosa:Platform .
+&lt;acmeBrewerCooler&gt; a sosa:Platform .
+&lt;acmeTruck&gt; a sosa:Platform .
+&lt;acmeSupermarketCooler&gt; a sosa:Platform .
 
-&lt;acmePorterSixPackDeployment&gt; a prov:Activity, sosa:Deployment;
+&lt;00/acmePorterSixPackDeployment&gt; a prov:Activity, sosa:Deployment;
     prov:startedAtTime "2024-02-20T01:35:00Z"^^xsd:dateTime;
     prov:wasAssociatedWith &lt;alice&gt; ;
     sosa:deployedOnPlatform &lt;10/PO202402/21/0001/acmePorterSixPack&gt; ;
     sosa:deployedSystem &lt;12345/someTH2&gt; ;
-    sosa:forProperty &lt;10/PO202402/21/0001/airRelativeHumidityInProductPackaging&gt;, &lt;10/PO202402/21/0001/BeerTemperature&gt;, &lt;12345/BatteryHealth&gt;;
-    prov:generated &lt;observation1a&gt;, &lt;observation1b&gt;, &lt;observation1c&gt; ;
-    prov:generated &lt;observation67a&gt;, &lt;observation67b&gt;, &lt;observation67c&gt; ;
-    prov:generated &lt;observation98a&gt;, &lt;observation98b&gt;,  &lt;observation98c&gt; .
+    sosa:forProperty equipment:airRelativeHumidity, &lt;10/PO202402/21/0001/BeerTemperature&gt;, &lt;12345/BatteryHealth&gt;;
+    prov:generated &lt;1a/observation&gt;, &lt;1b/observation&gt;, &lt;1c/observation&gt; ;
+    prov:generated &lt;67a/observation&gt;, &lt;67b/observation&gt;, &lt;67c/observation&gt; ;
+    prov:generated &lt;98a/observation&gt;, &lt;98b/observation&gt;,  &lt;98c/observation&gt; .
 
 # Beer in the cooler.
 
-&lt;acmeCoolerDeployment&gt; a prov:Activity, sosa:Deployment;
+&lt;00/acmeCoolerDeployment&gt; a prov:Activity, sosa:Deployment;
     prov:startedAtTime "2024-02-20T01:35:00Z"^^xsd:dateTime;
     prov:endedAtTime   "2024-02-20T01:40:00Z"^^xsd:dateTime;   
     sosa:deployedOnPlatform &lt;acmeBrewerCooler&gt; ;
     sosa:deployedSystem &lt;12345/someTH2&gt; ;
-    sosa:forProperty &lt;10/PO202402/21/0001/airRelativeHumidityInProductPackaging&gt;, &lt;10/PO202402/21/0001/BeerTemperature&gt;, &lt;12345/BatteryHealth&gt;;
-    prov:generated &lt;observation1a&gt;, &lt;observation1b&gt;, &lt;observation1c&gt; .
+    sosa:forProperty equipment:airRelativeHumidity, &lt;10/PO202402/21/0001/BeerTemperature&gt;, &lt;12345/BatteryHealth&gt;;
+    prov:generated &lt;1a/observation&gt;, &lt;1b/observation&gt;, &lt;1c/observation1c&gt; .
 
 # Beer in the delivery truck.
 
-&lt;acmeTruckDeployment&gt; a prov:Activity, sosa:Deployment;
+&lt;00/acmeTruckDeployment&gt; a prov:Activity, sosa:Deployment;
     prov:startedAtTime "2024-02-22T04:15:05Z"^^xsd:dateTime ;
     prov:endedAtTime "2024-02-22T05:55:38Z"^^xsd:dateTime ;
     sosa:deployedOnPlatform &lt;acmeTruck&gt; ;
     sosa:deployedSystem &lt;12345/someTH2&gt; ;
-    sosa:forProperty &lt;10/PO202402/21/0001/airRelativeHumidityInProductPackaging&gt;, &lt;10/PO202402/21/0001/BeerTemperature&gt;, &lt;12345/BatteryHealth&gt;;
-    prov:generated &lt;observation67a&gt;, &lt;observation67b&gt;, &lt;observation67c&gt; .
+    sosa:forProperty equipment:airRelativeHumidity, &lt;10/PO202402/21/0001/BeerTemperature&gt;, &lt;12345/BatteryHealth&gt;;
+    prov:generated &lt;67a/observation&gt;, &lt;67b/observation&gt;, &lt;67c/observation&gt; .
 
 # Beer in the supermarket cooler.
 
-&lt;acmeSupermarketCoolerDeployment&gt; a prov:Activity, sosa:Deployment;
+&lt;00/acmeSupermarketCoolerDeployment&gt; a prov:Activity, sosa:Deployment;
     rdfs:comment "Smart cooler monitoring system" ;
     prov:startedAtTime "2024-02-22T06:00:13Z"^^xsd:dateTime ;
     sosa:deployedOnPlatform &lt;acmeSupermarketCooler&gt; ;
     sosa:deployedSystem &lt;12345/someTH2&gt; ;
-    sosa:forProperty &lt;10/PO202402/21/0001/airRelativeHumidityInProductPackaging&gt;, &lt;10/PO202402/21/0001/BeerTemperature&gt;, &lt;12345/BatteryHealth&gt;;
-    prov:generated &lt;observation98a&gt;, &lt;observation98b&gt;,  &lt;observation98c&gt; .
+    sosa:forProperty equipment:airRelativeHumidity, &lt;10/PO202402/21/0001/BeerTemperature&gt;, &lt;12345/BatteryHealth&gt;;
+    prov:generated &lt;98a/observation&gt;, &lt;98b/observation&gt;,  &lt;98c/observation&gt; .
       </pre>
       
       
       <h4 id="beerCollections">Recording data using observation collection</h4>
 
-      <p>Sosa provides a lightweight capability to aggregate members for convinience. In previous examples observations where
-      clustered according to Deployment or recording Activity. In some circumstances it is usefull to aggregate observations
+      <p>Sosa provides a lightweight capability to aggregate members for convenience. In previous examples observations where
+      clustered according to Deployment or recording Activity. In some circumstances it is useful to aggregate observations
       according to an ad-hoc classification, here following the location storage of the carton while dispensing with geospatial
       data:</p>
       
       <pre>#All data from the carton
-&lt;acmePorterSixPackObservations&gt; a sosa:ObservationCollection;
-    sosa:hasMember &lt;observation1a&gt; , &lt;observation1b&gt; , &lt;observation1c&gt; ;
-    sosa:hasMember &lt;observation67a&gt; , &lt;observation67b&gt; , &lt;observation67c&gt; ;
-    sosa:hasMember &lt;observation98a&gt; , &lt;observation98b&gt; ,  &lt;observation98c&gt; .
+&lt;00/acmePorterSixPackObservations&gt; a sosa:ObservationCollection;
+    sosa:hasMember &lt;1a/observation&gt; , &lt;1b/observation&gt; , &lt;1c/observation&gt; ;
+    sosa:hasMember &lt;67a/observation&gt; , &lt;67b/observation&gt; , &lt;67c/observation&gt; ;
+    sosa:hasMember &lt;98a/observation&gt; , &lt;98b/observation&gt; ,  &lt;98c/observation&gt; .
 # All data from the Acme cooler.
-&lt;acmeCoolerObservaions&gt; a sosa:ObservationCollection;
-    sosa:hasMember &lt;observation1a&gt; , &lt;observation1b&gt; , &lt;observation1c&gt; .
+&lt;00/acmeCoolerObservaions&gt; a sosa:ObservationCollection;
+    sosa:hasMember &lt;1a/observation&gt; , &lt;1b/observation&gt; , &lt;1c/observation&gt; .
 # All data from  the delivery truck.
-&lt;acmeTruckObservations&gt; a sosa:ObservationCollection;
-    sosa:hasMember &lt;observation67a&gt; , &lt;observation67b&gt; , &lt;observation67c&gt; .
+&lt;00/acmeTruckObservations&gt; a sosa:ObservationCollection;
+    sosa:hasMember &lt;67a/observation&gt; , &lt;67b/observation&gt; , &lt;67c/observation&gt; .
 #All data from the supermarket cooler.
-&lt;acmeSupermarketCoolerObservations&gt; a sosa:ObservationCollection;
-    sosa:hasMember &lt;observation98a&gt; , &lt;observation98b&gt; ,  &lt;observation98c&gt; .
+&lt;00/acmeSupermarketCoolerObservations&gt; a sosa:ObservationCollection;
+    sosa:hasMember &lt;98a/observation&gt; , &lt;98b/observation&gt; ,  &lt;98c/observation&gt; .
 </pre>
 
     <p>A similar class <a href="http://www.w3.org/ns/sosa/SampleCollection">sosa:SampleCollection</a> allows for the aggregation of <a
