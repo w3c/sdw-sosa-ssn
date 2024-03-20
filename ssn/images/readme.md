@@ -1,6 +1,8 @@
-# SSN Ontology diagrams
+# Diagrams from the Semantic Sensor Network Ontology recommendation
 
-Comment on the diagrams using Lucid:
+This folder contains diagrams from the **2024 Edition** of the **Semantic Sensor Network Ontology** (SSN). 
+
+Please comment on the diagrams using Lucid:
 
 - [Actuation](https://lucid.app/lucidchart/aafb2606-71e5-44c5-abc3-04db7ef63864/edit?invitationId=inv_90e3501b-a7c9-4f91-bd68-fc172c2bfa6d)
 - [Actuation-overview](https://lucid.app/lucidchart/ec5010fe-c46a-4097-b838-9ed973235a40/edit?invitationId=inv_99cc56cc-128b-43ef-8a1e-9e3d0d3f2174)
