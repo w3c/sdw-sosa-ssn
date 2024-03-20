@@ -1,0 +1,112 @@
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix ex: <http://example.org/> .
+
+ex:OC1
+  a sosa:ObservationCollection ;
+  sosa:hasFeatureOfInterest ex:Sample_1 ;
+  sosa:observedProperty ex:op2 ;
+  sosa:usedProcedure ex:p3 ;
+  sosa:madeBySensor ex:s4 ;
+  sosa:madeBySensor ex:s5 ;
+  sosa:phenomenonTime [
+      time:hasBeginning [
+          time:inXSDDateTime "2018-03-10T15:09:00+10:00"^^xsd:dateTime ;
+        ] ;
+      time:hasEnd [
+          time:inXSDDateTime "2018-03-10T15:12:00+10:00"^^xsd:dateTime ;
+        ] ;
+    ] ;
+  sosa:hasMember ex:OC2 ;
+  sosa:hasMember ex:OC3 ;
+  skos:note """general collection - member observations have a common FoI, oP and Procedure
+  `madeBySensor` is repeated to enumerate the sensors used in the member observations
+  `phenomenonTime` is a time interval that encompasses the times of the member observations""" ;
+.
+ex:OC2
+  a sosa:ObservationCollection ;
+  sosa:madeBySensor ex:s4 ;
+  sosa:hasMember ex:O2 ;
+  sosa:hasMember ex:O3 ;
+  skos:note """homogeneous collection - member observations have a common Sensor""" ;
+.
+ex:OC3
+  a sosa:ObservationCollection ;
+  sosa:madeBySensor ex:s5 ;
+  sosa:hasMember ex:O4 ;
+  sosa:hasMember ex:O5 ;
+  skos:note """homogeneous collection - member observations have a common Sensor""" ;
+.
+ex:O2
+  a sosa:Observation ;
+  sosa:hasResult ex:r96 ;
+  sosa:phenomenonTime [
+      time:inXSDDateTime "2018-03-10T15:09:00+10:00"^^xsd:dateTime ;
+    ] ;
+.
+ex:O3
+  a sosa:Observation ;
+  sosa:hasResult ex:r97 ;
+  sosa:phenomenonTime [
+      time:inXSDDateTime "2018-03-10T15:10:00+10:00"^^xsd:dateTime ;
+    ] ;
+.
+ex:O4
+  a sosa:Observation ;
+  sosa:hasResult ex:r98 ;
+  sosa:phenomenonTime [
+      time:inXSDDateTime "2018-03-10T15:11:00+10:00"^^xsd:dateTime ;
+    ] ;
+.
+ex:O5
+  a sosa:Observation ;
+  sosa:hasResult ex:r99 ;
+  sosa:phenomenonTime [
+      time:inXSDDateTime "2018-03-10T15:12:00+10:00"^^xsd:dateTime ;
+    ] ;
+.
+ex:Sample_1
+  a sosa:Sample ;
+  sosa:isSampleOf ex:foia ;
+  geo:hasGeometry [ 
+    a geo:Point ;
+    geo:asWKT "POINT (4.387611 45.437772)"^^geo:WktLiteral ;
+  ] ;
+.
+ex:foia
+  a sosa:FeatureOfInterest ;
+  sosa:hasProperty ex:op2 ;
+.
+ex:s4
+  a sosa:Sensor ;
+  sosa:implements ex:p3 ;
+.
+ex:s5
+  a sosa:Sensor ;
+  sosa:implements ex:p3 ;
+.
+ex:op2
+  a sosa:ObservableProperty ;
+.
+ex:p3
+  a sosa:Procedure ;
+.
+ex:examples-collection-obs-1
+  a owl:Ontology ;
+  dcterms:created "2023-11-04"^^xsd:date ;
+  dcterms:modified "2024-01-22"^^xsd:date ;
+  dcterms:creator <http://orcid.org/0000-0002-3884-3420> ;
+  rdfs:comment "Small dataset to test rules in SOSA Collections" ;
+  owl:imports <http://www.w3.org/ns/sosa/> , 
+    <http://www.w3.org/2006/time> , 
+    <http://purl.org/dc/elements/1.1/> ;
+.

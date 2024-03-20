@@ -1,0 +1,74 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
+
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix ssn-act: <http://www.w3.org/ns/ssn/act/> .
+@prefix ssn-dep: <http://www.w3.org/ns/ssn/dep/> .
+@prefix ssn-obs: <http://www.w3.org/ns/ssn/obs/> .
+@prefix ssn-sam: <http://www.w3.org/ns/ssn/sam/> .
+
+
+dcterms:title a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:rights a owl:AnnotationProperty .
+dcterms:license a owl:AnnotationProperty .
+dcterms:created a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+foaf:Agent a owl:Class .
+foaf:name a owl:AnnotationProperty .
+skos:definition a owl:AnnotationProperty .
+skos:example a owl:AnnotationProperty .
+
+
+ssn: a owl:Ontology ;
+  dcterms:title "Semantic Sensor Network Ontology"@en ;
+  dcterms:description "This ontology describes sensors, actuators and observations, and related concepts. It does not describe domain concepts, time, locations, etc. these are intended to be included from other ontologies via OWL imports."@en ;
+  dcterms:description """
+  This module imports all the axiomatizations of the SOSA terms, and adds cross-module axioms. 
+  """@en ;
+  dcterms:creator [ a foaf:Agent ; foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en ] ;
+  dcterms:rights "Copyright 2017 W3C/OGC." ;
+  dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
+  dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
+  owl:versionInfo """New modular version of the SSN ontology. 
+
+This ontology was originally developed in 2009-2011 by the W3C Semantic Sensor Networks Incubator Group (SSN-XG). For more information on the group's activities see: http://www.w3.org/2005/Incubator/ssn/. The ontology was revised and modularized in 2015-2017 by the W3C/OGC Spatial Data on the Web Working Group, see: https://www.w3.org/2015/spatial/wiki/Semantic_Sensor_Network_Ontology. 
+
+In particular, (a) the scope is extended to include actuation and sampling; (b) the core concepts and properties are factored out into the SOSA ontology. The SSN ontology imports SOSA and adds formal axiomatization consistent with the text definitions in SOSA, and adds classes and properties to accommodate the scope of the original SSN ontology. """@en ;
+  rdfs:comment "Please report any errors to the W3C Spatial Data on the Web Working Group via the SDW WG Public List public-sdw-wg@w3.org"@en ;
+  skos:scopeNote "The SSN module contains an axiomatization of the core terms from the SOSA module (serialized in the sosa:ttl file) plus some deprecated terms in the ssn: namespace. " ;
+  skos:historyNote """
+  Terms in the ssn: namespace have equivalence axioms to terms declared in the sosa: namespace, and are marked 'deprecated'. 
+  The axiomatization from the 2017 version of the standard is preserved. 
+
+  Terms in the sosa: namespace do not carry symmetric equivalent axioms. 
+  Axiomatization only uses sosa: terms. 
+  """ ;
+  rdfs:seeAlso <https://www.w3.org/2015/spatial/wiki/Semantic_Sensor_Network_Ontology> ;
+  dcterms:created "2017-04-17"^^xsd:date ;
+  dcterms:modified "2024-02-03"^^xsd:date ;
+  owl:imports ssn-act: , ssn-obs: , ssn-sam: , ssn-dep: .
+
+
+## Collections 
+
+sosa:ActuationCollection
+  owl:disjointWith sosa:ObservationCollection , sosa:SampleCollection ;
+  rdfs:isDefinedBy sosa: .
+
+sosa:ObservationCollection 
+  owl:disjointWith sosa:ActuationCollection , sosa:SampleCollection ;
+  rdfs:isDefinedBy sosa: .
+
+sosa:SampleCollection
+  owl:disjointWith sosa:ActuationCollection , sosa:ObservationCollection ;
+  rdfs:isDefinedBy sosa: .
+
