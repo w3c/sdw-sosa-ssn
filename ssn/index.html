@@ -97,11 +97,13 @@
       released at this time to solicit public comment.</p>
   </section>
 
-  <section id="Introduction" class="informative" data-include="frag/Introduction.html"></section>
+  <section id="Introduction" class="informative" data-include="./chapters/Introduction.html"></section>
 
-  <section id="Modularization" class="informative" data-include="frag/Modularization.html"></section>
+  <section id="Notation" class="normative" data-include="./chapters/notation.html"></section>
 
-  <section id="conformance" class="normative" data-include="frag/Conformance.html"></section>
+  <section id="conformance" class="normative" data-include="./chapters/Conformance.html"></section>
+
+  <section id="Modularization" class="informative" data-include="./chapters/Modularization.html"></section>
 
   <section id="Specification" class="normative">
     <h2>Specification</h2>
@@ -138,7 +140,7 @@
         <p>
           Each <a href="#Modularization">module of the SSN Ontology</a> is packaged as an RDF file.
           The RDF representations use <code>owl:imports</code> statements to implement the <a
-            href="#module-dependencies">dependencies</a>.
+            href="#ssn-module-dependencies">dependencies</a>.
           Within each graph, where further information (axioms and annotations) is added to an existing term,
           <code>rdfs:isDefinedBy</code> indicates the module where the term was originally defined.
         </p>
@@ -208,9 +210,42 @@
 
     <section class="informative" id="overview-of-classes-and-properties">
       <h3>Overview of Classes and Properties</h3>
+      <p>
+        The following figures show the key classes and properties in the ontology modules, from the perspectives of
+        Actuation, Observation, and Sampling.
+      </p>
+      <figure>
+        <img alt="SSN ontology modules - Actuation" src="./images/Actuation-overview.png">
+        <figcaption>
+          Overview of the key classes and properties (actuation perspective)
+          <br>
+          <em><a href="#class-diagram">Explanation of the notation used in class diagrams</a></em>.
+        </figcaption>
+      </figure>
+
+      <figure>
+        <img alt="SSN ontology modules - Observation" src="./images/Observation-overview.png">
+        <figcaption>
+          Overview of the key classes and properties (observation perspective)
+          <br>
+          <em><a href="#class-diagram">Explanation of the notation used in class diagrams</a></em>.
+        </figcaption>
+      </figure>
+
+      <figure>
+        <img alt="SSN ontology modules - Sampling" src="./images/Sampling-overview.png">
+        <figcaption>
+          Overview of the key classes and properties (sampling perspective)
+          <br>
+          <em><a href="#class-diagram">Explanation of the notation used in class diagrams</a></em>.
+        </figcaption>
+      </figure>
       <div id="index-of-classes-and-properties">
+        <p>
+          The following are alphabetical lists of the classes and properties in the SSN Ontology.
+        </p>
         <div class="azlist">
-          <p>Classes:
+          <p><b>Classes:</b>
             <a href="#SOSAActuatableProperty">sosa:ActuatableProperty</a>
             , <a href="#SOSAActuation">sosa:Actuation</a>
             , <a href="#SOSAActuatingProcedure">sosa:ActuatingProcedure</a>
@@ -240,7 +275,7 @@
           </p>
         </div>
         <div class="azlist">
-          <p>Object Properties:
+          <p><b>Object Properties:</b>
             <a href="#SOSAactsOnProperty">sosa:actsOnProperty</a>
             , <a href="#SOSAdeployedOnPlatform">sosa:deployedOnPlatform</a>
             , <a href="#SOSAdeployedSystem">sosa:deployedSystem</a>
@@ -292,7 +327,7 @@
           </p>
         </div>
         <div class="azlist">
-          <p>Datatype Properties:
+          <p><b>Datatype Properties:</b>
             <a href="#SOSAhasSimpleResult">sosa:hasSimpleResult</a>
             , <a href="#SOSAresultTime">sosa:resultTime</a>
             , <a href="#SOSAstartTime">sosa:startTime</a>
@@ -300,65 +335,19 @@
         </div>
       </div>
 
-      <p><b> --- revise this section --- </b></p>
-      <p>The following figures give an overview of the main classes and properties inside the ontology modules, from the
-        perspectives of Actuation, Observation, and Sampling.
-        In the figures, and in the rest of the document, SOSA-related components and restrictions are shown in green,
-        while SSN-only components are shown in blue.
+      <p>
+        The SSN classes and properties are described in the following sections, organized by module as described in <a
+          href="#Modularization">Modularization above</a>.
       </p>
-      <figure>
-        <img alt="SOSA ontology modules - Observation" src="images/SOSA-OntStructure-Observation.png">
-        <figcaption>Overview of the SOSA classes and properties (observation perspective)
-          <br>TODO Add UltimateFoI
-
-        </figcaption>
-      </figure>
-      <figure>
-        <img alt="SSN ontology modules - Observation" src="images/SSN-OntStructure-Observation.png">
-        <figcaption>Overview of the SSN classes and properties (observation perspective)
-          <br>TODO Add UltimateFoI
-
-        </figcaption>
-      </figure>
-
-      <figure>
-        <img alt="SOSA ontology modules - Actuation" src="images/SOSA-OntStructure-Actuation.png">
-        <figcaption>Overview of the SOSA classes and properties (actuation perspective)
-          <br>TODO Add UltimateFoI
-
-        </figcaption>
-      </figure>
-      <figure>
-        <img alt="SSN ontology modules - Actuation" src="images/SSN-OntStructure-Actuation.png">
-        <figcaption>Overview of the SSN classes and properties (actuation perspective)
-          <br>TODO Add UltimateFoI
-
-        </figcaption>
-      </figure>
-
-      <figure>
-        <img alt="SOSA ontology modules - Sampling" src="images/SOSA-OntStructure-Sampling.png">
-        <figcaption>Overview of the SOSA classes and properties (sampling perspective)
-          <br>TODO Add UltimateFoI, hasOriginalSample, hasSampledFeature
-
-        </figcaption>
-      </figure>
-      <figure>
-        <img alt="SSN ontology modules - Sampling" src="images/SSN-OntStructure-Sampling.png">
-        <figcaption>Overview of the SSN classes and properties (sampling perspective)
-          <br>TODO Add UltimateFoI, hasOriginalSample, hasSampledFeature
-
-        </figcaption>
-      </figure>
     </section>
 
-    <section id="Common" class="normative" data-include="frag/Common.html"></section>
+    <section id="Common" class="normative" data-include="./chapters/Common.html"></section>
 
-    <section id="Actuation" class="normative" data-include="frag/Actuation.html"></section>
+    <section id="Actuation" class="normative" data-include="./chapters/Actuation.html"></section>
 
-    <section id="Observation" class="normative" data-include="frag/Observation.html"></section>
+    <section id="Observation" class="normative" data-include="./chapters/Observation.html"></section>
 
-    <section id="Sampling" class="normative" data-include="frag/Sampling.html"></section>
+    <section id="Sampling" class="normative" data-include="./chapters/Sampling.html"></section>
 
   </section>
 
@@ -366,9 +355,9 @@
     <h2>SSN Extensions</h2>
     This section provides details on modules that extend the scope and capabilities of SSN.
 
-    <section id="System-capabilities" class="normative" data-include="frag/System-capabilities.html"></section>
+    <section id="System-capabilities" class="normative" data-include="./chapters/System-capabilities.html"></section>
 
-    <section id="Sample-Relations" class="normative" data-include="frag/Sample-Relations.html"></section>
+    <section id="Sample-Relations" class="normative" data-include="./chapters/Sample-Relations.html"></section>
 
   </section>
 
@@ -377,15 +366,15 @@
     <p>This section introduces the specifications for the modules that align SOSA and SSN to a variety of related
       ontologies and specifications. </p>
 
-    <section id="OMS-alignment" class="normative" data-include="frag/OMS-alignment.html"></section>
+    <section id="OMS-alignment" class="normative" data-include="./chapters/OMS-alignment.html"></section>
 
-    <section id="PROV-alignment" class="normative" data-include="frag/PROV-alignment.html"></section>
+    <section id="PROV-alignment" class="normative" data-include="./chapters/PROV-alignment.html"></section>
 
-    <section id="OBOE-alignment" class="normative" data-include="frag/OBOE-alignment.html"></section>
+    <section id="OBOE-alignment" class="normative" data-include="./chapters/OBOE-alignment.html"></section>
 
-    <section id="DUL-alignment" class="normative" data-include="frag/DUL-alignment.html"></section>
+    <section id="DUL-alignment" class="normative" data-include="./chapters/DUL-alignment.html"></section>
 
-    <section id="SSNX-alignment" class="normative" data-include="frag/SSNX-alignment.html"></section>
+    <section id="SSNX-alignment" class="normative" data-include="./chapters/SSNX-alignment.html"></section>
 
   </section>
 
@@ -403,18 +392,18 @@
       <h3>iPhone Barometer</h3>
       <div class="ssn">
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/iphone_barometer-sosa.ttl">graph
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/ssn/rdf/examples/iphone_barometer-sosa.ttl">graph
             corresponding to this example is available</a>. </p>
-        <pre class="example" data-include="./examples/2017ex8.ttl" data-include-format="text"></pre>
+        <pre class="example" data-include="./rdf/examples/2017ex8.ttl" data-include-format="text"></pre>
       </div>
     </section>
     <section id="coil_oil_plant-sosa">
       <h3>Coal Oil Point Reserve</h3>
       <div class="ssn">
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/IDEAS.ttl">graph
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/ssn/rdf/examples/IDEAS.ttl">graph
             corresponding to this example is available</a>. </p>
-        <pre class="example" data-include="./examples/2017ex9.ttl" data-include-format="text"></pre>
+        <pre class="example" data-include="./rdf/examples/2017ex9.ttl" data-include-format="text"></pre>
       </div>
     </section>
     <section id="apartment-134">
@@ -430,15 +419,15 @@
       </div>
       <div class="ssn">
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/apartment-134.ttl">graph
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/ssn/rdf/examples/apartment-134.ttl">graph
             corresponding to this example is available</a>. </p>
-        <pre class="example" data-include="./examples/2017ex10.ttl" data-include-format="text"></pre>
+        <pre class="example" data-include="./rdf/examples/2017ex10.ttl" data-include-format="text"></pre>
       </div>
       <div class="sosa" style="display: none">
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/apartment-134-sosa.ttl">graph
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/ssn/rdf/examples/apartment-134-sosa.ttl">graph
             corresponding to this example is available</a>. </p>
-        <pre class="example" data-include="./examples/2017ex11.ttl" data-include-format="text"></pre>
+        <pre class="example" data-include="./rdf/examples/2017ex11.ttl" data-include-format="text"></pre>
       </div>
       <div class="buttonpanel" style="justify-content: center;">
         <span>
@@ -464,15 +453,15 @@
       </div>
       <div class="ssn">
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/tree-height.ttl">graph
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/ssn/rdf/examples/tree-height.ttl">graph
             corresponding to this example is available</a>. </p>
-        <pre class="example" data-include="./examples/2017ex12.ttl" data-include-format="text"></pre>
+        <pre class="example" data-include="./rdf/examples/2017ex12.ttl" data-include-format="text"></pre>
       </div>
       <div class="sosa" style="display: none">
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/tree-height-sosa.ttl">graph
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/ssn/rdf/examples/tree-height-sosa.ttl">graph
             corresponding to this example is available</a>. </p>
-        <pre class="example" data-include="./examples/2017ex13.ttl" data-include-format="text"></pre>
+        <pre class="example" data-include="./rdf/examples/2017ex13.ttl" data-include-format="text"></pre>
       </div>
       <div class="buttonpanel" style="justify-content: center;">
         <span>
@@ -498,15 +487,15 @@
       </div>
       <div class="ssn">
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/seismograph.ttl">graph
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/ssn/rdf/examples/seismograph.ttl">graph
             corresponding to this example is available</a>. </p>
-        <pre class="example" data-include="./examples/2017ex14.ttl" data-include-format="text"></pre>
+        <pre class="example" data-include="./rdf/examples/2017ex14.ttl" data-include-format="text"></pre>
       </div>
       <div class="sosa" style="display: none">
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/seismograph-sosa.ttl">graph
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/ssn/rdf/examples/seismograph-sosa.ttl">graph
             corresponding to this example is available</a>. </p>
-        <pre class="example" data-include="./examples/2017ex15.ttl" data-include-format="text"></pre>
+        <pre class="example" data-include="./rdf/examples/2017ex15.ttl" data-include-format="text"></pre>
       </div>
       <div class="buttonpanel" style="justify-content: center;">
         <span>
@@ -522,10 +511,10 @@
     <section id="sunspots">
       <h3>Number of sunspots</h3>
       <p>An RDF file containing a <a
-          href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/sunspots.ttl">graph
+          href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/ssn/rdf/examples/sunspots.ttl">graph
           corresponding to
           this example is available</a>. </p>
-      <pre class="example" data-include="./examples/2017ex16.ttl" data-include-format="text"></pre>
+      <pre class="example" data-include="./rdf/examples/2017ex16.ttl" data-include-format="text"></pre>
     </section>
 
     <section id="spinning-cups">
@@ -541,15 +530,15 @@
       </div>
       <div class="ssn">
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/spinning-cups.ttl">graph
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/ssn/rdf/examples/spinning-cups.ttl">graph
             corresponding to this example is available</a>. </p>
-        <pre class="example" data-include="./examples/2017ex17.ttl" data-include-format="text"></pre>
+        <pre class="example" data-include="./rdf/examples/2017ex17.ttl" data-include-format="text"></pre>
       </div>
       <div class="sosa" style="display: none">
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/spinning-cups-sosa.ttl">graph
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/ssn/rdf/examples/spinning-cups-sosa.ttl">graph
             corresponding to this example is available</a>. </p>
-        <pre class="example" data-include="./examples/2017ex18.ttl" data-include-format="text"></pre>
+        <pre class="example" data-include="./rdf/examples/2017ex18.ttl" data-include-format="text"></pre>
       </div>
       <div class="buttonpanel" style="justify-content: center;">
         <span>
@@ -584,15 +573,15 @@
           sheet) can be found, and then potentially joined together in a meta-analysis in order to characterize that.
         </p>
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/ice-core.ttl">graph
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/ssn/rdf/examples/ice-core.ttl">graph
             corresponding to this example is available</a>. </p>
-        <pre class="example" data-include="./examples/2017ex19.ttl" data-include-format="text"></pre>
+        <pre class="example" data-include="./rdf/examples/2017ex19.ttl" data-include-format="text"></pre>
       </div>
       <div class="sosa" style="display: none">
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/ice-core-sosa.ttl">graph
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/ssn/rdf/examples/ice-core-sosa.ttl">graph
             corresponding to this example is available</a>. </p>
-        <pre class="example" data-include="./examples/2017ex20.ttl" data-include-format="text"></pre>
+        <pre class="example" data-include="./rdf/examples/2017ex20.ttl" data-include-format="text"></pre>
       </div>
       <div class="buttonpanel" style="justify-content: center;">
         <span>
@@ -618,15 +607,15 @@
       </div>
       <div class="ssn">
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/dht22.ttl">graph
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/ssn/rdf/examples/dht22.ttl">graph
             corresponding to this example is available</a>. </p>
-        <pre class="example" data-include="./examples/2017ex21.ttl" data-include-format="text"></pre>
+        <pre class="example" data-include="./rdf/examples/2017ex21.ttl" data-include-format="text"></pre>
       </div>
       <div class="sosa" style="display: none">
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/dht22-sosa.ttl">graph
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/ssn/rdf/examples/dht22-sosa.ttl">graph
             corresponding to this example is available</a>. </p>
-        <pre class="example" data-include="./examples/2017ex22.ttl" data-include-format="text"></pre>
+        <pre class="example" data-include="./rdf/examples/2017ex22.ttl" data-include-format="text"></pre>
       </div>
       <div class="buttonpanel" style="justify-content: center;">
         <span>
@@ -662,15 +651,15 @@
           Each of these locations corresponds to a <code>sosa:Sample</code> of the entire room.
           The wall also serves as a <code>sosa:Platform</code> on which the sensors are mounted. </p>
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/dht22-deployment.ttl">graph
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/ssn/rdf/examples/dht22-deployment.ttl">graph
             corresponding to this example is available</a>. </p>
-        <pre class="example" data-include="./examples/2017ex23.ttl" data-include-format="text"></pre>
+        <pre class="example" data-include="./rdf/examples/2017ex23.ttl" data-include-format="text"></pre>
       </div>
       <div class="sosa" style="display: none">
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/dht22-deployment-sosa.ttl">graph
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/ssn/rdf/examples/dht22-deployment-sosa.ttl">graph
             corresponding to this example is available</a>. </p>
-        <pre class="example" data-include="./examples/2017ex24.ttl" data-include-format="text"></pre>
+        <pre class="example" data-include="./rdf/examples/2017ex24.ttl" data-include-format="text"></pre>
       </div>
     </section>
     <section id="ip68-smart-sensor">
@@ -679,14 +668,14 @@
         <p>This example describes the IP68 Smart Sensor that and some of its capabilities and operating ranges.
           A specific IP68 Smart Sensor observes the air temperature, and its own battery state.</p>
         <p>An RDF file containing a <a
-            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/integrated/examples/ip68.ttl">graph
+            href="https://github.com/w3c/sdw/blob/gh-pages/sdw-sosa-ssn/ssn/rdf/examples/ip68.ttl">graph
             corresponding to this example is available</a>. </p>
-        <pre class="example" data-include="./examples/2017ex25.ttl" data-include-format="text"></pre>
+        <pre class="example" data-include="./rdf/examples/2017ex25.ttl" data-include-format="text"></pre>
       </div>
     </section>
   </section>
 
-  <section class="appendix" id="origins" data-include="frag/Origins.html"></section>
+  <section class="appendix" id="origins" data-include="./chapters/Origins.html"></section>
 
   <section class="appendix" id="acknowledgments">
     <h2>Acknowledgments</h2>
@@ -740,6 +729,7 @@
         and matching ssn-* files (also ssn-deprecated). Refactored HTML sources to match. </li>
       <li>Add conformance clause</li>
       <li>Update and streamline Introduction; move Origins section to an Annex. </li>
+      <li>re-drafted all figures; added a clause on notation</li>
       <li>Make patterns for Location, UoM more prescriptive</li>
     </ol>
   </section>
