@@ -26,6 +26,11 @@ var respecConfig = {
       company: "Universität Wien",
       companyURL: "https://www.univie.ac.at/",
       orcid: "0009-0003-1968-887X"
+    },
+    {
+      name: "Alex Robin",
+      company: "GeoRobotix Inc",
+      companyURL: "https://www.georobotix.com"
     }],
   formerEditors: [
     {
