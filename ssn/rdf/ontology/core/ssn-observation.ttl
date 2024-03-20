@@ -38,6 +38,7 @@ sosa:ObservableProperty
 
 sosa:ObservingProcedure 
   rdfs:subClassOf sosa:Procedure ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:forProperty ; owl:allValuesFrom sosa:ObservableProperty ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implementedBy ; owl:allValuesFrom sosa:Sensor ] ;
   rdfs:isDefinedBy sosa-obs: .
 
@@ -49,6 +50,7 @@ sosa:Sensor
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:observes ; owl:allValuesFrom sosa:ObservableProperty ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeObservation ; owl:allValuesFrom sosa:Observation ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isHostedBy ; owl:allValuesFrom sosa:Platform ]  ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:forProperty ; owl:allValuesFrom sosa:ObservableProperty ] ;
   rdfs:isDefinedBy sosa-obs: .
 
 sosa:observes 
