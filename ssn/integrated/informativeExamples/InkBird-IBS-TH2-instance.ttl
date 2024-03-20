@@ -49,20 +49,44 @@
 
 <acmeSupermarketCooler> a <equipment:Cooler> .
 
+# A six pack as packaged and sold by Acme Brewery Co.
+
+<acmePorterSixPack> a beer:Porter, gs1:Product, schema:Product ;
+    skos:definition "A six pack of Acme Porter."@en .
+
 # A specific (instance) six pack of Acme Porter Beers
 # We use GS1-style lot and serial numbers as part of the 
 # identifier to highlight that the carton is a physical instance.
-# 
-# 
+ 
 <10/PO202402/21/0001/acmePorterSixPack> a beer:Porter, gs1:Product ;
+    rdfs:subClassOf <acmePorterSixPack>
     gs1:hasBatchLotNumber "PO202402" ;
     gs1:hasSerialNumber "0001" .
-
 
 # A sample of air within the six pack
 <10/PO202402/21/0001/acmePorterSixPackAirSample> a sosa:Sample ;
     rdfs:label "Air within the six pack"@en ;
-    sosa:isSampleOf <PO202402/acmePorterSixPack> .
+    sosa:isSampleOf <10/PO202402/21/0001/acmePorterSixPack> .
+
+# A (virtual) sample of the beer from the six pack, implicitly assumes that the
+# sample is representative from all bottles. 
+<10/PO202402/21/0001/acmePorterSixPackBeerSample> a sosa:Sample, beer:Porter ;
+    rdfs:label "A sample of beer within the six pack"@en ;
+    sosa:isSampleOf <10/PO202402/21/0001/acmePorterSixPack> .
+
+<10/PO202402/21/0001/airRelativeHumidityInProductPackaging> a equipment:airRelativeHumidity, sosa:ObservableProperty;
+    schema:unitCode unit:PERCENT ;
+    ssn:isPropertyOf <10/PO202402/21/0001/acmePorterSixPack> ;
+    rdfs:label "Humidité relative de l'emballage du produit"@fr, "Relative Humidity of Product Packaging"@en, "Relative Luftfeuchtigkeit der Produktverpackung"@de ;
+    skos:definition "The amount of water vapor present in air around the product packaging"@en .
+
+# We define this as the beer temperature, but ontologically it is a 
+# generic definition for the temperature of the sample.
+<10/PO202402/21/0001/BeerTemperature> a sosa:ObservableProperty, ssn:Property ;
+    schema:unitCode unit:DEG_C ;
+    ssn:isPropertyOf <10/PO202402/21/0001/acmePorterSixPackBeerSample> ;
+    rdfs:label "Biertemperatur"@de, "Beer Temperature"@en, "Température de la bière"@fr ;
+    skos:definition "Temperature of Beer."@en .
 
 # Alice packages the Beer.
 
@@ -113,32 +137,13 @@
 
 <12345/TemperatureSensor> a equipment:IBSTH2TemperatureSensor ;
     rdf:comment "This is the instance of the temperature sensor instance."@en .
-
-<10/PO202402/21/0001/airRelativeHumidityInProductPackaging> a equipment:airRelativeHumidity, sosa:ObservableProperty;;
-    schema:unitCode unit:PERCENT ;
-    ssn:isPropertyOf <10/PO202402/21/0001/acmePorterSixPack> ;
-    rdfs:label "Humidité relative de l'emballage du produit"@fr, "Relative Humidity of Product Packaging"@en, "Relative Luftfeuchtigkeit der Produktverpackung"@de ;
-    skos:definition "The amount of water vapor present in air around the product packaging"@en .
-
-# Generic beer temperature
-<BeerTemperature> a sosa:ObservableProperty, ssn:Property ;
-    schema:unitCode unit:DEG_C ;
-    rdfs:label "Biertemperatur"@de, "Beer Temperature"@en, "Température de la bière"@fr .
-
-# The overall beer temperature of the beer within the carton containers.  
-<10/PO202402/21/0001/BeerTemperature> a sosa:ObservableProperty, <BeerTemperature> ;
-    schema:unitCode unit:DEG_C ;
-    ssn:isPropertyOf <10/PO202402/21/0001/acmePorterSixPack> ;
-    rdfs:label "Biertemperatur"@de, "Beer Temperature"@en, "Température de la bière"@fr ;
-    skos:definition "Temperature of the Beer in carton."@en .
-
 #
 # Sensor activates and records temperature while in the brewery cooler.
     
 <observation1a> a sosa:Observation ;
     rel:own <acmeBreweryCo> ;
-    sosa:observedProperty equipment:airTemperature ;
-    sosa:hasUltimateFeatureOfInterest <10/PO202402/21/0001/BeerTemperature> ; 
+    sosa:observedProperty <10/PO202402/21/0001/BeerTemperature> ;
+    sosa:hasUltimateFeatureOfInterest <10/PO202402/21/0001/acmePorterSixPackBeerSample> ; 
     sosa:madeBySensor <12345/TemperatureSensor>  ;
     sosa:hasFeatureOfInterest <10/PO202402/21/0001/acmePorterSixPackAirSample> ;
     sosa:resultTime "2024-02-20T01:35:45Z"^^xsd:dateTime ;
@@ -179,8 +184,8 @@
 <observation67a> a sosa:Observation, prov:Entity ;
     rel:own <acmeBreweryCo> ;
     rel:own <acmeDelivery> ;
-    sosa:observedProperty equipment:airTemperature ;
-    sosa:hasUltimateFeatureOfInterest <10/PO202402/21/0001/BeerTemperature> ;
+    sosa:observedProperty <10/PO202402/21/0001/BeerTemperature> ;
+    sosa:hasUltimateFeatureOfInterest <10/PO202402/21/0001/acmePorterSixPackBeerSample> ;
     sosa:madeBySensor <12345/TemperatureSensor>  ;
     sosa:hasFeatureOfInterest <10/PO202402/21/0001/acmePorterSixPackAirSample> ;
     sosa:resultTime "2024-02-22T04:15:05Z"^^xsd:dateTime ;
@@ -229,8 +234,8 @@
     
 <observation98a> rdf:type sosa:Observation,prov:Entity ;
     rel:own <acmeSupermarket> ;
-    sosa:observedProperty equipment:airTemperature ;
-    sosa:hasUltimateFeatureOfInterest <10/PO202402/21/0001/BeerTemperature> ;    
+    sosa:observedProperty <10/PO202402/21/0001/BeerTemperature> ;
+    sosa:hasUltimateFeatureOfInterest <10/PO202402/21/0001/acmePorterSixPackBeerSample> ;    
     sosa:madeBySensor <12345/TemperatureSensor>  ;
     sosa:hasFeatureOfInterest <10/PO202402/21/0001/acmePorterSixPackAirSample> ;
     sosa:resultTime "2024-02-22T06:00:13Z"^^xsd:dateTime ;
