@@ -99,9 +99,11 @@
 
   <section id="Introduction" class="informative" data-include="./chapters/Introduction.html"></section>
 
-  <section id="Modularization" class="informative" data-include="./chapters/Modularization.html"></section>
+  <section id="Notation" class="normative" data-include="frag/notation.html"></section>
 
   <section id="conformance" class="normative" data-include="./chapters/Conformance.html"></section>
+
+  <section id="Modularization" class="informative" data-include="frag/Modularization.html"></section>
 
   <section id="Specification" class="normative">
     <h2>Specification</h2>
@@ -138,7 +140,7 @@
         <p>
           Each <a href="#Modularization">module of the SSN Ontology</a> is packaged as an RDF file.
           The RDF representations use <code>owl:imports</code> statements to implement the <a
-            href="#module-dependencies">dependencies</a>.
+            href="#ssn-module-dependencies">dependencies</a>.
           Within each graph, where further information (axioms and annotations) is added to an existing term,
           <code>rdfs:isDefinedBy</code> indicates the module where the term was originally defined.
         </p>
@@ -208,9 +210,42 @@
 
     <section class="informative" id="overview-of-classes-and-properties">
       <h3>Overview of Classes and Properties</h3>
+      <p>
+        The following figures show the key classes and properties in the ontology modules, from the perspectives of
+        Actuation, Observation, and Sampling.
+      </p>
+      <figure>
+        <img alt="SSN ontology modules - Actuation" src="images/Actuation-overview.png">
+        <figcaption>
+          Overview of the key classes and properties (actuation perspective)
+          <br>
+          <em><a href="#class-diagram">Explanation of the notation used in class diagrams</a></em>.
+        </figcaption>
+      </figure>
+
+      <figure>
+        <img alt="SSN ontology modules - Observation" src="images/Observation-overview.png">
+        <figcaption>
+          Overview of the key classes and properties (observation perspective)
+          <br>
+          <em><a href="#class-diagram">Explanation of the notation used in class diagrams</a></em>.
+        </figcaption>
+      </figure>
+
+      <figure>
+        <img alt="SSN ontology modules - Sampling" src="images/Sampling-overview.png">
+        <figcaption>
+          Overview of the key classes and properties (sampling perspective)
+          <br>
+          <em><a href="#class-diagram">Explanation of the notation used in class diagrams</a></em>.
+        </figcaption>
+      </figure>
       <div id="index-of-classes-and-properties">
+        <p>
+          The following are alphabetical lists of the classes and properties in the SSN Ontology.
+        </p>
         <div class="azlist">
-          <p>Classes:
+          <p><b>Classes:</b>
             <a href="#SOSAActuatableProperty">sosa:ActuatableProperty</a>
             , <a href="#SOSAActuation">sosa:Actuation</a>
             , <a href="#SOSAActuatingProcedure">sosa:ActuatingProcedure</a>
@@ -240,7 +275,7 @@
           </p>
         </div>
         <div class="azlist">
-          <p>Object Properties:
+          <p><b>Object Properties:</b>
             <a href="#SOSAactsOnProperty">sosa:actsOnProperty</a>
             , <a href="#SOSAdeployedOnPlatform">sosa:deployedOnPlatform</a>
             , <a href="#SOSAdeployedSystem">sosa:deployedSystem</a>
@@ -292,7 +327,7 @@
           </p>
         </div>
         <div class="azlist">
-          <p>Datatype Properties:
+          <p><b>Datatype Properties:</b>
             <a href="#SOSAhasSimpleResult">sosa:hasSimpleResult</a>
             , <a href="#SOSAresultTime">sosa:resultTime</a>
             , <a href="#SOSAstartTime">sosa:startTime</a>
@@ -300,56 +335,10 @@
         </div>
       </div>
 
-      <p><b> --- revise this section --- </b></p>
-      <p>The following figures give an overview of the main classes and properties inside the ontology modules, from the
-        perspectives of Actuation, Observation, and Sampling.
-        In the figures, and in the rest of the document, SOSA-related components and restrictions are shown in green,
-        while SSN-only components are shown in blue.
+      <p>
+        The SSN classes and properties are described in the following sections, organized by module as described in <a
+          href="#Modularization">Modularization above</a>.
       </p>
-      <figure>
-        <img alt="SOSA ontology modules - Observation" src="images/SOSA-OntStructure-Observation.png">
-        <figcaption>Overview of the SOSA classes and properties (observation perspective)
-          <br>TODO Add UltimateFoI
-
-        </figcaption>
-      </figure>
-      <figure>
-        <img alt="SSN ontology modules - Observation" src="images/SSN-OntStructure-Observation.png">
-        <figcaption>Overview of the SSN classes and properties (observation perspective)
-          <br>TODO Add UltimateFoI
-
-        </figcaption>
-      </figure>
-
-      <figure>
-        <img alt="SOSA ontology modules - Actuation" src="images/SOSA-OntStructure-Actuation.png">
-        <figcaption>Overview of the SOSA classes and properties (actuation perspective)
-          <br>TODO Add UltimateFoI
-
-        </figcaption>
-      </figure>
-      <figure>
-        <img alt="SSN ontology modules - Actuation" src="images/SSN-OntStructure-Actuation.png">
-        <figcaption>Overview of the SSN classes and properties (actuation perspective)
-          <br>TODO Add UltimateFoI
-
-        </figcaption>
-      </figure>
-
-      <figure>
-        <img alt="SOSA ontology modules - Sampling" src="images/SOSA-OntStructure-Sampling.png">
-        <figcaption>Overview of the SOSA classes and properties (sampling perspective)
-          <br>TODO Add UltimateFoI, hasOriginalSample, hasSampledFeature
-
-        </figcaption>
-      </figure>
-      <figure>
-        <img alt="SSN ontology modules - Sampling" src="images/SSN-OntStructure-Sampling.png">
-        <figcaption>Overview of the SSN classes and properties (sampling perspective)
-          <br>TODO Add UltimateFoI, hasOriginalSample, hasSampledFeature
-
-        </figcaption>
-      </figure>
     </section>
 
     <section id="Common" class="normative" data-include="./chapters/Common.html"></section>
@@ -854,6 +843,7 @@
         and matching ssn-* files (also ssn-deprecated). Refactored HTML sources to match. </li>
       <li>Add conformance clause</li>
       <li>Update and streamline Introduction; move Origins section to an Annex. </li>
+      <li>re-drafted all figures; added a clause on notation</li>
     </ol>
   </section>
 </body>

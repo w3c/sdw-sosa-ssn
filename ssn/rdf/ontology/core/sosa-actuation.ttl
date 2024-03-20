@@ -29,16 +29,18 @@ sosa-act:
 sosa:ActuatableProperty 
   a owl:Class ;
   rdfs:label "Actuatable Property"@en ;
-  skos:definition "An actuatable quality (property, characteristic) of a FeatureOfInterest."@en ;
-  rdfs:comment "An actuatable quality (property, characteristic) of a FeatureOfInterest."@en ;
+  skos:definition """
+  A quality (property, characteristic) of a FeatureOfInterest that can be changed by an Actuator.
+  """@en ;
   skos:example "A window actuator acts by changing the state between a frame and a window. The ability of the window to be opened and closed is its ActuatableProperty."@en ;
   rdfs:isDefinedBy sosa-act: .
 
 sosa:isActedOnBy 
   a owl:ObjectProperty ;
   rdfs:label "is acted on by"@en ;
-  skos:definition "Relation between an ActuatableProperty of a FeatureOfInterest and an Actuation changing its state."@en ;
-  rdfs:comment "Relation between an ActuatableProperty of a FeatureOfInterest and an Actuation changing its state."@en ;
+  skos:definition """
+  Relation between an ActuatableProperty of a FeatureOfInterest and an Actuation changing its state.
+  """@en ;
   skos:example "In the activity (Actuation) of automatically closing a window if the temperature in a room drops below 20 degrees Celsius, the property on which the Actuator acts upon is the state of the window as it changes from being open to being closed. "@en ;
   schema:domainIncludes sosa:ActuatableProperty ;
   schema:rangeIncludes sosa:Actuation ;
@@ -48,30 +50,35 @@ sosa:isActedOnBy
 sosa:ActuatingProcedure 
   a owl:Class ;
   rdfs:label "Actuation Procedure"@en ;
-  skos:definition "The description of steps performed by an Actuator to change the ActuableProperty."@en ;
-  skos:note "ActuatingProcedure is not mentioned in OMS, which does not address Actuation. It is added here since it is trivially symmetric with the other procedure classes."@en ;
+  skos:definition """
+  The description of steps performed by an Actuator to change the ActuableProperty.
+  """@en ;
   rdfs:isDefinedBy sosa-act: .
 
 sosa:Actuation 
   a owl:Class ;
   rdfs:label "Actuation"@en ;
-  skos:definition """An Actuation carries out an (Actuation) Procedure to change the state of something in the world using an Actuator. 
+  skos:definition """
+  An Actuation carries out an (Actuation) Procedure to change the value of an ActuatableProperty using an Actuator. 
   
   In this context hasResult shall indicate the expected value of the ActuatableProperty at the completion of the Actuation
   """@en ;
-  rdfs:comment """An Actuation concerns a single ActuatableProperty of a single FeatureOfInterest. 
+  skos:scopeNote """
+  An Actuation concerns a single ActuatableProperty of a single FeatureOfInterest. 
   Changes to multiple properties, or other combinations of Actuations, may be described in an ActuationCollection.
     
   Alternatively, applications may choose to encapsulate complexity by defining a complex property with multiple individual components, and a corresponding complex result (e.g. a vector). 
-  This approach is not prohibited by the SSN Ontology, but the details are beyond the scope of SSN."""@en ;
-  rdfs:comment "relatedObservation should be used to link to an associated Observation or ObservationCollection that monitors the actuated property to verify that the result value has been obtained. "@en ;
+  This approach is not prohibited by the SSN Ontology, but the details are beyond the scope of SSN.
+  """@en ;
+  skos:note "relatedObservation should be used to link to an associated Observation or ObservationCollection that monitors the actuated property to verify that the result value has been obtained. "@en ;
   skos:example "The activity of automatically closing a window if the temperature in a room drops below 20 degree Celsius. The activity is the Actuation and the device that closes the window is the Actuator. The Procedure is the rule, plan, or specification that defines the conditions that triggers the Actuation, here a drop in temperature. "@en ;
   rdfs:isDefinedBy sosa-act: .
 
 sosa:ActuationCollection 
   a owl:Class ;
   rdfs:label "Actuation Collection"@en ;
-  skos:definition """Collection of one or more actuations or actuation collections, i.e. collections may be nested. 
+  skos:definition """
+  Collection of one or more actuations or actuation collections, i.e. collections may be nested. 
 
   The following Observation properties may appear in an Actuation Collection: 
   hasFeatureOfInterest , hasUltimateFeatureOfInterest , usedProcedure , madeByActuator , actsOnProperty , phenomenonTime , resultTime ,  hasResult , hasSimpleResult . 
@@ -80,7 +87,7 @@ sosa:ActuationCollection
   
   1. Where an individual Actuation Collection omits a property, a member Actuation (direct or transitive) MAY have any value for that property.
 
-  2. Where an individual Actuation Collection has a single value for a property, each member Actuation (direct or transitive) MUST have that same value for the property - i.e. the collection is homogeneous in that property.  That property MAY be omitted in any member Actuation or Actuation Collection.
+  2. Where an individual Actuation Collection has a single value for a property, each member Actuation (direct or transitive) MUST have that same value for the property - i.e. the collection is homogeneous in that property.  That property MAY then be omitted in any member Actuation or Actuation Collection.
 
   3. Where an individual Actuation Collection has more than one value for a property, each member Actuation (direct or transitive) MUST have a value for that property that matches one of the values for the property in the collection. 
   
@@ -94,8 +101,9 @@ sosa:ActuationCollection
 sosa:actsOnProperty 
   a owl:ObjectProperty ;
   rdfs:label "acts on property"@en ;
-  skos:definition "Relation between an Actuation and the property of a FeatureOfInterest it is acting upon."@en ;
-  rdfs:comment "Relation between an Actuation and the property of a FeatureOfInterest it is acting upon."@en ;
+  skos:definition """
+  Relation between an Actuation and the property of a FeatureOfInterest it is acting upon.
+  """@en ;
   skos:example "In the activity (Actuation) of automatically closing a window if the temperature in a room drops below 20 degrees Celsius, the property on which the Actuator acts upon is the state of the window as it changes from being open to being closed. "@en ;
   schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:ActuationCollection ;
@@ -106,16 +114,18 @@ sosa:actsOnProperty
 sosa:Actuator 
   a owl:Class ;
   rdfs:label "Actuator"@en ;
-  skos:definition "A device that is used by, or implements, an (Actuation) Procedure that changes the state of the world."@en ;
-  rdfs:comment "A device that is used by, or implements, an (Actuation) Procedure that changes the state of the world."@en ;
+  skos:definition """
+  A device or system that is used by, or implements, an (Actuation) Procedure that changes the value of an Actuatable Property.
+  """@en ;
   skos:example "A window actuator for automatic window control, i.e., opening or closing the window."@en ;
   rdfs:isDefinedBy sosa-act: .
 
 sosa:madeActuation 
   a owl:ObjectProperty ;
   rdfs:label "made actuation"@en ;
-  skos:definition "Relation between an Actuator and the Actuation it has made."@en ;
-  rdfs:comment "Relation between an Actuator and the Actuation it has made."@en ;
+  skos:definition """
+  Relation between an Actuator and an Actuation it has made.
+  """@en ;
   schema:domainIncludes sosa:Actuator ;
   schema:rangeIncludes sosa:Actuation ;
   owl:inverseOf sosa:madeByActuator ;
@@ -124,15 +134,14 @@ sosa:madeActuation
 sosa:madeByActuator 
   a owl:ObjectProperty ;
   rdfs:label "made by actuator"@en ;
-  skos:definition "Relation linking an Actuation to the Actuator that made that Actuation."@en ;
-  rdfs:comment "Relation linking an Actuation to the Actuator that made that Actuation."@en ;
+  skos:definition """
+  Relation linking an Actuation to the Actuator that made it.
+  """@en ;
   schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:ActuationCollection ;
   schema:rangeIncludes sosa:Actuator ;
   owl:inverseOf sosa:madeActuation ;
   rdfs:isDefinedBy sosa-act: .
-
-## Actuation Collection
 
 ## End of actuation schema
 ## ---------------------------------------------------- ##
@@ -196,6 +205,7 @@ sosa:hasOutput
 sosa:usedProcedure 
   schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:ActuationCollection ;
+  schema:rangeIncludes sosa:ActuatingProcedure ;
   rdfs:isDefinedBy sosa-common: .
 
 ## Executions
