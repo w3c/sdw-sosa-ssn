@@ -39,113 +39,96 @@
     rdfs:label "Device Hardware Address"@en ;
     rdfs:range <InkBird-IBS-TH2> .
 
-<IBSTH2Battery>
-    a owl:Class ;
+<IBSTH2Battery> a owl:Class ;
     rdfs:label "IBSTH2 Battery. 2 AAA Batteries. 3.0V Nominal."@en ;
     skos:definition "A generic description of the battery pack that needs to be installed in it."@en ;
     rdfs:subClassOf sosa:FeatureOfInterest .
 
-<IBSTH2BatteryLimits>
+<IBSTH2BatteryLimits> a schema:PropertyValue, sosa:Property, ssn-system:Accuracy ;
     skos:editorialNote "Of course, we'd never receive a 0% battery reading..."@en ;
     schema:maxValue "100" ;
     schema:minValue "0" ;
     schema:unitCode unit:PERCENT ;
-    a schema:PropertyValue, sosa:Property, ssn-system:Accuracy ;
     rdfs:label "IBSTH2 Battery Limits"@en .
 
-<IBSTH2BatteryVoltageSensor> a owl:Class ;
+<IBSTH2BatteryVoltageSensor> rdfs:subClassOf sosa:Sensor ;
     skos:editorialNote "Percentage is derived from the battery voltage."@en ;
     rdfs:label "IBSTH2 Battery Voltage"@en ;
-    rdfs:subClassOf sosa:Sensor ;
     ssn-system:hasOperatingRange <IBSTH2BatteryLimits> ;
     sosa:implements <InkBird-IBS-TH2-Procedure> ;
     sosa:observes <IBSTH2Battery> .
 
-<IBSTH2BatteryHealth>
+<IBSTH2BatteryHealth> a sosa:ObservableProperty, sosa:Property ;
     schema:unitCode unit:PERCENT ;
-    a sosa:ObservableProperty, sosa:Property ;
     rdfs:label "Battery Health"@en ;
     skos:definition "Battery Health expressed as a percentage."@en .
 
 
-<IBSTH2HumiditySensor> a owl:Class ;
+<IBSTH2HumiditySensor> rdfs:subClassOf sosa:Sensor ;
     rdfs:label "Inkbird IBS-TH2 built-in Humidity Sensor"@en ;
-    rdfs:subClassOf sosa:Sensor ;
     sosa:observes <airRelativeHumidity> ;
     ssn-system:hasOperatingRange <IBSTH2HumiditySensorLimits>, <IBSTH2TemperatureSensorLimits> ;
     sosa:implements <InkBird-IBS-TH2-Procedure> ;
     ssn-system:hasSystemCapability <IBSTH2HumiditySensorCapability> .
 
-<IBSTH2HumiditySensorAccuracy>
+<IBSTH2HumiditySensorAccuracy> a schema:PropertyValue, sosa:Property, ssn-system:Accuracy ;
     schema:maxValue "0.5" ;
     schema:minValue "-0.5" ;
     schema:unitCode unit:Percent ;
-    a schema:PropertyValue, sosa:Property, ssn-system:Accuracy ;
     skos:definition "The accuracy of the humidity sensor is +-0.5 °C in normal temperature and humidity conditions."@en .
 
-<IBSTH2HumiditySensorCapability>
-    a schema:PropertyValue, sosa:Property, ssn-system:SystemCapability ;
+<IBSTH2HumiditySensorCapability> a schema:PropertyValue, sosa:Property, ssn-system:SystemCapability ;
     skos:definition "The capabilities of the humidity sensor in normal temperature and humidity conditions."@en ;
     ssn-system:hasSystemProperty <IBSTH2HumiditySensorAccuracy> ;
     ssn-system:inCondition <IBSTH2HumiditySensorNormalLimits>, <IBSTH2TemperatureSensorNormalLimits> .
 
-<IBSTH2HumiditySensorLimits>
-    a ssn-system:OperatingRange ;
+<IBSTH2HumiditySensorLimits> a ssn-system:OperatingRange ;
     rdfs:label "Inkbird IBS-TH2 Humidity Sensor Limits"@en ;
     ssn-system:inCondition <IBSTH2HumiditySensorNormalLimits> .
 
-<IBSTH2HumiditySensorNormalLimits>
+<IBSTH2HumiditySensorNormalLimits> a schema:PropertyValue, ssn-system:Condition;
     schema:maxValue "100" ;
     schema:minValue "0" ;
-    schema:unitCode unit:PERCENT ;
-    a schema:PropertyValue, ssn-system:Condition .
+    schema:unitCode unit:PERCENT .
 
-<IBSTH2TemperatureSensor>
-    a owl:Class ;
+<IBSTH2TemperatureSensor> rdfs:subClassOf sosa:Sensor ;
     rdfs:label "Inkbird IBS-TH2 built-in Temperature Sensor"@en ;
-    rdfs:subClassOf sosa:Sensor ;
     sosa:observes <airTemperature> ;
     ssn-system:hasOperatingRange <IBSTH2HumiditySensorLimits>, <IBSTH2TemperatureSensorLimits> ;
     sosa:implements <InkBird-IBS-TH2-Procedure> ;
     ssn-system:hasSystemCapability <IBSTH2TemperatureSensorCapability> .
 
-<IBSTH2TemperatureSensorAccuracy>
+<IBSTH2TemperatureSensorAccuracy> a schema:PropertyValue, sosa:Property, ssn-system:Accuracy ;
     schema:maxValue "0.5" ;
     schema:minValue "-0.5" ;
     schema:unitCode unit:DEG_C ;
-    a schema:PropertyValue, sosa:Property, ssn-system:Accuracy ;
     skos:definition "The accuracy of the temperature sensor is +-0.5 °C in normal temperature and humidity conditions."@en .
 
-<IBSTH2TemperatureSensorCapability>
-    a schema:PropertyValue, sosa:Property, ssn-system:SystemCapability ;
+<IBSTH2TemperatureSensorCapability> a schema:PropertyValue, sosa:Property, ssn-system:SystemCapability ;
     skos:definition "The capabilities of the temperature sensor in normal temperature and humidity conditions."@en ;
     ssn-system:hasSystemProperty <IBSTH2TemperatureSensorAccuracy> ;
     ssn-system:inCondition <IBSTH2HumiditySensorNormalLimits>, <IBSTH2TemperatureSensorNormalLimits> .
 
-<IBSTH2TemperatureSensorLimits>
-    a ssn-system:OperatingRange ;
+<IBSTH2TemperatureSensorLimits> a ssn-system:OperatingRange ;
     rdfs:label "Inkbird IBS-TH2 Temperature Sensor Limits"@en ;
     ssn-system:inCondition <IBSTH2TemperatureSensorNormalLimits> .
 
-<IBSTH2TemperatureSensorNormalLimits>
+<IBSTH2TemperatureSensorNormalLimits> a schema:PropertyValue, ssn-system:Condition ;
     schema:maxValue "60" ;
     schema:minValue "-40" ;
-    schema:unitCode unit:DEG_C ;
-    a schema:PropertyValue, ssn-system:Condition .
+    schema:unitCode unit:DEG_C .
 
 <InkBird-IBS-TH2-Procedure> a sosa:Procedure ;
   foaf:isPrimaryTopicOf <https://fcc.report/FCC-ID/2AYZD-IBSTH2/5436475.pdf> ;
   skos:editorialNote "This is the manufacturer's data sheet as submitted to the FCC."@en .
 
-<airRelativeHumidity>
+<airRelativeHumidity> a sosa:ObservableProperty, sosa:Property ;
     schema:unitCode unit:PERCENT ;
-    a sosa:ObservableProperty, sosa:Property ;
     rdfs:label "Humidité Relative"@fr, "Relative Humidity"@en, "Relative Luftfeuchtigkeit"@de ;
     skos:definition "The amount of water vapor present in air expressed as a percentage of the amount needed for saturation at the same temperature."@en .
 
-<airTemperature>
+<airTemperature> a sosa:ObservableProperty, sosa:Property ;
     schema:unitCode unit:DEG_C ;
-    a sosa:ObservableProperty, sosa:Property ;
     rdfs:label "Lufttemperatur"@de, "Air Temperature"@en, "Température Ambiante"@fr ;
     skos:definition "Temperature of the air."@en .
 
