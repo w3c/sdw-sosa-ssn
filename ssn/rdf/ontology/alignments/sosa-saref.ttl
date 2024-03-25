@@ -1,0 +1,245 @@
+# baseURI: http://www.w3.org/ns/sosa/saref
+# imports: https://saref.etsi.org/core/v3.2.1/
+# imports: http://www.w3.org/ns/sosa/
+
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix saref: <https://saref.etsi.org/core/> .
+@prefix s4syst: <https://saref.etsi.org/saref4syst/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix time: <http://www.w3.org/2006/time#> .
+
+@prefix schema: <http://schema.org/> .
+
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix sosa-common: <http://www.w3.org/ns/sosa/common/> .
+@prefix sosa-sam: <http://www.w3.org/ns/sosa/sam/> .
+
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix sosa-common: <http://www.w3.org/ns/sosa/common/> .
+@prefix sosa-act: <http://www.w3.org/ns/sosa/act/> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix sosa-common: <http://www.w3.org/ns/sosa/common/> .
+@prefix sosa-obs: <http://www.w3.org/ns/sosa/obs/> .
+
+sosa:saref a owl:Ontology ;
+  dcterms:created "2024-03-14"^^xsd:date ;
+  dcterms:creator "Maxime Lefrançois" ;
+  dcterms:creator [
+      rdf:type foaf:Agent ;
+      foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en ;
+    ] ;
+  dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
+  dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
+  dcterms:modified "2024-03-14"^^xsd:date ;
+  dcterms:rights "Copyright 2024 W3C/OGC." ;
+  rdfs:comment "Alignment of the the W3C/OGC SOSA Ontology with the ETSI Smart Applications REFerence Ontology (SAREF)"@en ;
+  rdfs:label "Alignment of SOSA with SAREF Core V3.2.1"@en ;
+  owl:imports <https://saref.etsi.org/core/v3.2.1> ;
+  owl:imports <https://saref.etsi.org/saref4syst/v1.1.2> .
+
+# Alignment sosa-common and SAREF Core and SAREF4SYST
+
+sosa:FeatureOfInterest
+  rdfs:subClassOf saref:FeatureOfInterest .
+
+sosa:hasProperty
+  rdfs:subPropertyOf saref:hasProperty .
+
+sosa:isFeatureOfInterestOf
+  rdfs:subPropertyOf saref:isActedUponBy . # may be renamed saref:isTargetOf in V4.1.1
+
+sosa:Property
+  owl:equivalentClass saref:Property .
+
+sosa:PropertyOfInterest
+  owl:equivalentClass saref:PropertyOfInterest .
+
+sosa:isPropertyOf
+  rdfs:subPropertyOf saref:isPropertyOf .
+
+<http://www.w3.org/ns/sosa/saref#hasInput> a owl:ObjectProperty ;
+  rdfs:label "has input"@en ;
+  rdfs:comment "Links a procedure (including commands, operations) or procedure execution, to its input or input value." .
+
+sosa:hasInput
+  rdfs:subPropertyOf <http://www.w3.org/ns/sosa/saref#hasInput> .
+
+saref:hasInput
+  rdfs:subPropertyOf <http://www.w3.org/ns/sosa/saref#hasInput> .
+
+<http://www.w3.org/ns/sosa/saref#hasOutput> a owl:ObjectProperty ;
+  rdfs:label "has output"@en ;
+  rdfs:comment "Links a procedure (including commands, operations) or procedure execution, to its output or output value." .
+
+sosa:hasOutput
+  rdfs:subPropertyOf <http://www.w3.org/ns/sosa/saref#hasOutput> .
+
+saref:hasOutput
+  rdfs:subPropertyOf <http://www.w3.org/ns/sosa/saref#hasOutput> .
+
+sosa:Execution
+  owl:equivalentClass saref:ProcedureExecution .
+
+saref:isExecutionOf
+  rdfs:subPropertyOf sosa:usedProcedure .
+
+# considered for addition in SAREF Core V4.1.1
+# sosa:startTime
+#  rdfs:equivalentProperty saref:hasStartTime .
+
+sosa:resultTime
+  owl:equivalentProperty saref:hasResultTime .
+
+sosa:phenomenonTime
+  owl:equivalentProperty saref:hasPhenomenonTime .
+
+sosa:hasFeatureOfInterest
+  rdfs:subPropertyOf saref:actsUpon . # may be renamed saref:hasTarget in V4.1.1
+
+sosa:hasUltimateFeatureOfInterest
+  rdfs:subPropertyOf saref:actsUpon . # may be renamed saref:hasTarget in V4.1.1
+
+sosa:hasInputValue
+  rdfs:subPropertyOf <http://www.w3.org/ns/sosa/saref#hasInput> .
+
+sosa:hasOutputValue
+  rdfs:subPropertyOf <http://www.w3.org/ns/sosa/saref#hasInput> .
+
+sosa:hasResult
+  owl:equivalentProperty saref:hasResult .
+
+sosa:isResultOf
+  owl:inverseOf saref:hasResult .
+
+sosa:System
+  rdfs:subClassOf s4syst:System ;
+  rdfs:subClassOf saref:FeatureOfInterest .
+
+saref:Device
+  rdfs:subClassOf sosa:System .
+
+saref:hasCommand
+  rdfs:subPropertyOf sosa:implements .
+
+saref:hasFunction
+  rdfs:subPropertyOf sosa:implements .
+
+sosa:hasSubSystem
+  rdfs:subPropertyOf s4syst:hasSubSystem ;
+  rdfs:subPropertyOf saref:consistsOf .
+
+sosa:Platform
+  rdfs:subClassOf s4syst:System ;
+  rdfs:subClassOf saref:FeatureOfInterest . 
+
+sosa:hosts
+  rdfs:subPropertyOf s4syst:connectedTo .
+
+saref:Command
+  rdfs:subClassOf sosa:Procedure .
+
+saref:CommandOfInterest
+  rdfs:subClassOf sosa:Procedure .
+
+saref:Operation
+  rdfs:subClassOf sosa:Procedure .
+
+saref:FunctionOfInterest
+  rdfs:subClassOf sosa:Procedure .
+
+# Alignment sosa-observation and SAREF Core and SAREF4SYST
+
+sosa:ObservableProperty
+  rdfs:subClassOf saref:Property .
+
+sosa:Observation
+  owl:equivalentClass saref:Observation .
+
+sosa:observedProperty
+  rdfs:subPropertyOf saref:observes .
+
+saref:Sensor
+  rdfs:subClassOf sosa:Sensor .
+
+sosa:observes
+  rdfs:subPropertyOf saref:observes .
+
+sosa:isObservedBy
+  rdfs:subPropertyOf saref:isObservedBy .
+
+sosa:madeObservation
+  rdfs:subPropertyOf saref:madeExecution .
+
+sosa:madeBySensor
+  rdfs:subPropertyOf saref:madeBy .
+
+
+# Alignment sosa-actuation and SAREF Core and SAREF4SYST
+
+sosa:ActuatableProperty
+  rdfs:subClassOf saref:Property .
+
+sosa:isActedOnBy
+  rdfs:subPropertyOf saref:isControlledBy .
+
+sosa:Actuation
+  owl:equivalentClass saref:Actuation .
+
+sosa:actsOnProperty
+  rdfs:subPropertyOf saref:controls .
+
+saref:Actuator
+  owl:equivalentClass sosa:Actuator .
+
+sosa:madeActuation
+  rdfs:subPropertyOf saref:madeExecution .
+
+sosa:madeByActuator
+  rdfs:subPropertyOf saref:madeBy .
+
+
+# Alignment sosa-sampling and SAREF Core and SAREF4SYST
+
+
+sosa:Sample
+  rdfs:subClassOf saref:FeatureOfInterest .
+
+sosa:MaterialSample
+  rdfs:subClassOf saref:FeatureOfInterest .
+
+sosa:SpatialSample
+  rdfs:subClassOf saref:FeatureOfInterest .
+
+sosa:StatisticalSample
+  rdfs:subClassOf saref:FeatureOfInterest .
+
+sosa:hasSample
+  rdfs:subPropertyOf s4syst:hasSubSystem .
+
+sosa:hasOriginalSample
+  rdfs:subPropertyOf s4syst:hasSubSystem .
+
+sosa:Sampling
+  rdfs:subClassOf saref:ProcedureExecution .
+
+sosa:Sampler
+  rdfs:subClassOf saref:Device .
+
+sosa:madeSampling
+  rdfs:subPropertyOf saref:madeExecution .
+
+sosa:madeBySampler
+  rdfs:subPropertyOf saref:madeBy .
+
