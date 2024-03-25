@@ -134,7 +134,7 @@ sosa:hasSimpleResult
 
 sosa:System 
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasSystemKind ; owl:allValuesFrom sosa:SystemKind ]  ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasSystemKind ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasSystemKind ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isHostedBy ; owl:allValuesFrom sosa:Platform ]  ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implements ; owl:allValuesFrom sosa:Procedure ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasSubSystem ; owl:allValuesFrom sosa:System ]  ;
@@ -187,7 +187,7 @@ sosa:inDeployment
 
 sosa:Platform 
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasSystemKind ; owl:allValuesFrom sosa:PlatformKind ]  ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasSystemKind ; owl:maxCardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasSystemKind ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hosts ; owl:allValuesFrom sosa:System ]  ;
   rdfs:isDefinedBy sosa-common: .
 
