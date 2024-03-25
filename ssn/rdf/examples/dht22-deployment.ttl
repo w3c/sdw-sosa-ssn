@@ -6,7 +6,6 @@
 @prefix schema: <http://schema.org/>.
 
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
-@prefix ssn: <http://www.w3.org/ns/ssn/> .
 @prefix ssn-system: <http://www.w3.org/ns/ssn/systems/> .
 
 @base <http://example.org/data/> .
@@ -41,51 +40,51 @@
 
 
 
-<PCBBoard1> a ssn:System , sosa:Platform ;
+<PCBBoard1> a sosa:System , sosa:Platform ;
   rdfs:label "PCB Board 1"@en ;
   rdfs:comment "PCB Board 1 hosts DHT22 temperature and humidity sensor #4578 permanently, one can say it has it as one of its subsystems."@en ;
   sosa:hosts <DHT22/4578> ;
-  ssn:hasSubSystem <DHT22/4578> .
+  sosa:hasSubSystem <DHT22/4578> .
 
-  <DHT22/4578> a ssn:System ;
+  <DHT22/4578> a sosa:System ;
     rdfs:label "DHT22 sensor #4578"@en ;
     sosa:isHostedBy <PCBBoard1> .
 
 
-<PCBBoard2> a ssn:System , sosa:Platform ;
+<PCBBoard2> a sosa:System , sosa:Platform ;
   rdfs:label "PCB Board 2"@en ;
   rdfs:comment "PCB Board 2 hosts DHT22 temperature and humidity sensor #4579 permanently, one can say it has it as one of its subsystems."@en ;
   sosa:hosts <DHT22/4578> ;
-  ssn:hasSubSystem <DHT22/4578> .
+  sosa:hasSubSystem <DHT22/4578> .
 
-  <DHT22/4579> a ssn:System ;
+  <DHT22/4579> a sosa:System ;
     rdfs:label "DHT22 sensor #4579."@en ;
     sosa:isHostedBy <PCBBoard2> .
 
 
-<PCBBoard3> a ssn:System , sosa:Platform ;
+<PCBBoard3> a sosa:System , sosa:Platform ;
   rdfs:label "PCB Board 3"@en ;
   rdfs:comment "PCB Board 3 hosts DHT22 temperature and humidity sensor #4580 permanently, one can say it has it as one of its subsystems."@en ;
   sosa:hosts <DHT22/4578> ;
-  ssn:hasSubSystem <DHT22/4578> .
+  sosa:hasSubSystem <DHT22/4578> .
 
-  <DHT22/4580> a ssn:System ;
+  <DHT22/4580> a sosa:System ;
     rdfs:label "DHT22 sensor #4580."@en ;
     sosa:isHostedBy <PCBBoard3> .
 
 
 
 
-<Room245Deployment> a ssn:Deployment ;
+<Room245Deployment> a sosa:Deployment ;
   rdfs:comment "Deployment of PCB Board 3 on the south wall of room #245 for the purpose of observing the temperature and humidity of room #245."@en ;
-  ssn:deployedOnPlatform <Room245/south> ;
-  ssn:deployedSystem <PCBBoard3> ;
-  ssn:forProperty <Room245#temperature> , <Room245#humidity> .
+  sosa:deployedOnPlatform <Room245/south> ;
+  sosa:deployedSystem <PCBBoard3> ;
+  sosa:forProperty <Room245#temperature> , <Room245#humidity> .
 
 
-<Room145Deployment> a ssn:Deployment ;
+<Room145Deployment> a sosa:Deployment ;
   rdfs:comment "Deployment of PCB Board 1 and 2 on the east and south wall of room #145, respectively, for the purpose of observing the temperature and humidity of room #145."@en ;
-  ssn:deployedOnPlatform <Room245/east> , <Room245/south> ;
-  ssn:deployedSystem <PCBBoard1> , <PCBBoard2> ;
-  ssn:forProperty <Room145#temperature> , <Room145#humidity> .
+  sosa:deployedOnPlatform <Room245/east> , <Room245/south> ;
+  sosa:deployedSystem <PCBBoard1> , <PCBBoard2> ;
+  sosa:forProperty <Room145#temperature> , <Room145#humidity> .
 

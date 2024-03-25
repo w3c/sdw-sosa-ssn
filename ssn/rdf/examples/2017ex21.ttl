@@ -7,7 +7,6 @@
 
 @prefix ex: <http://example.org/> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
-@prefix ssn: <http://www.w3.org/ns/ssn/> .
 @prefix ssn-system: <http://www.w3.org/ns/ssn/systems/> .
 
 @prefix rdfp: <https://w3id.org/rdfp/>.
@@ -16,9 +15,9 @@
 
 
 <DHT22#Procedure> a sosa:Procedure ;
-  ssn:hasOutput <DHT22#output> .
+  sosa:hasOutput <DHT22#output> .
 
-<DHT22#output> a ssn:Output , rdfp:GraphDescription ;
+<DHT22#output> a sosa:Output , rdfp:GraphDescription ;
   rdfs:comment "The output is a RDF Graph that describes both the temperature and the humidity. It can be validated by a SHACL shapes graph."@en ;
   rdfp:presentedBy [
     a rdfp:GraphDescription ;
@@ -26,23 +25,23 @@
   ] .
 
 
-<DHT22/4578> a ssn:System ;
+<DHT22/4578> a sosa:System ;
   rdfs:comment "DHT22 sensor #4578 contains a humidity and a temperature sensor."@en ;
   rdfs:seeAlso <https://www.sparkfun.com/datasheets/Sensors/Temperature/DHT22.pdf> ;
-  ssn:hasSubSystem <DHT22/4578#TemperatureSensor>, <DHT22/4578#HumiditySensor> .
+  sosa:hasSubSystem <DHT22/4578#TemperatureSensor>, <DHT22/4578#HumiditySensor> .
 
 
 
-<DHT22/4578#TemperatureSensor> a sosa:Sensor , ssn:System ;
+<DHT22/4578#TemperatureSensor> a sosa:Sensor , sosa:System ;
   rdfs:comment "The embedded temperature sensor, a specific instance of temperature sensor."@en ;
   ssn-system:hasOperatingRange <DHT22/4578#TemperatureSensorOperatingRange> ; 
   ssn-system:hasSystemCapability <DHT22/4578#TemperatureSensorCapability> ;
-  ssn:implements <DHT22#Procedure> .
+  sosa:implements <DHT22#Procedure> .
 
-<DHT22/4578#HumiditySensor> a sosa:Sensor , ssn:System ;
+<DHT22/4578#HumiditySensor> a sosa:Sensor , sosa:System ;
   rdfs:comment "The embedded humidity sensor, a specific instance of humidity sensor."@en ;
   ssn-system:hasOperatingRange <DHT22/4578#HumiditySensorOperatingRange> ;
-  ssn:implements <DHT22#Procedure> .
+  sosa:implements <DHT22#Procedure> .
 
 
 
@@ -70,29 +69,29 @@
 
 
 
-<DHT22/4578#TemperatureSensorCapability> a ssn:Property , ssn-system:SystemCapability , schema:PropertyValue ;
+<DHT22/4578#TemperatureSensorCapability> a sosa:Property , ssn-system:SystemCapability , schema:PropertyValue ;
   rdfs:comment "The capabilities of the temperature sensor in normal temperature and humidity conditions." ;
   ssn-system:inCondition <NormalTemperatureCondition> , <NormalHumidityCondition> ;
   ssn-system:hasSystemProperty <DHT22/4578#TemperatureSensorAccuracy> , <DHT22/4578#TemperatureSensorSensitivity> , <DHT22/4578#TemperatureSensorRepeatability> , <DHT22/4578#TemperatureSensorFrequency> .
 
-<DHT22/4578#TemperatureSensorAccuracy> a ssn:Property , ssn-system:Accuracy , schema:PropertyValue ;
+<DHT22/4578#TemperatureSensorAccuracy> a sosa:Property , ssn-system:Accuracy , schema:PropertyValue ;
   rdfs:comment "The accuracy of the temperature sensor is +-0.5 °C in normal temperature and humidity conditions."@en ;
   schema:minValue -0.5 ;
   schema:maxValue 0.5 ;
   schema:unitCode unit:DegreeCelsius .
 
-<DHT22/4578#TemperatureSensorSensitivity> a ssn:Property , ssn-system:Sensitivity , ssn-system:Resolution , schema:PropertyValue ;
+<DHT22/4578#TemperatureSensorSensitivity> a sosa:Property , ssn-system:Sensitivity , ssn-system:Resolution , schema:PropertyValue ;
   rdfs:comment "The sensitivity and resolution of the temperature sensor is 0.1 °C in normal temperature and humidity conditions."@en ;
   schema:value 0.1 ;
   schema:unitCode unit:DegreeCelsius .
 
-<DHT22/4578#TemperatureSensorPrecision> a ssn:Property , ssn-system:Precision , schema:PropertyValue ;
+<DHT22/4578#TemperatureSensorPrecision> a sosa:Property , ssn-system:Precision , schema:PropertyValue ;
   rdfs:comment "The precision (= repeatability) of the temperature sensor is +-0.2 °C in normal temperature and humidity conditions."@en ;
   schema:minValue 0.2 ;
   schema:maxValue 0.2 ;
   schema:unitCode unit:DegreeCelsius .
 
-<DHT22/4578#TemperatureSensorFrequency> a ssn:Property , ssn-system:Frequency , schema:PropertyValue ;
+<DHT22/4578#TemperatureSensorFrequency> a sosa:Property , ssn-system:Frequency , schema:PropertyValue ;
   rdfs:comment "The smallest possible time between one observation and the next is 2 s on average."@en ;
   schema:value 2 ;
   schema:unitCode unit:Second .
