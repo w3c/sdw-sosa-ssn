@@ -43,7 +43,7 @@ sosa:ObservingProcedure
   The description of steps performed in order to determine the value of an ObservableProperty by an Observer.
   """@en ;
   skos:example "A workflow, protocol, plan, algorithm, or computational method specifying how to make an observation; the description of the process utilized by an observer. This could be a chemical analysis method, a protocol for measuring an object, but could also be a checklist utilized by a human observer during a biodiversity campaign."@en ;
-  skos:scopeNote "The observing procedure cannot describe a sensor instance, but it can describe the sensor type."@en ;
+  skos:scopeNote "The observing procedure cannot describe a sensor instance, but it can describe the sensor kind."@en ;
   rdfs:isDefinedBy sosa-obs: .
 
 sosa:Observation 
@@ -128,6 +128,13 @@ sosa:Sensor
   skos:note "The Sensor is an instance of a sensor, instrument, implementation of an algorithm, or a being such as a person."@en ;
   skos:example "Accelerometers, gyroscopes, barometers, magnetometers, and so forth are Sensors that are typically mounted on a modern smart phone (which acts as Platform). Other examples of sensors include the human eyes."@en ;
   skos:note "The UML class 'Observer' from ISO 19156:2023 is implemented in SOSA by the OWL/RDFS class 'Sensor'. The class name 'Sensor' is preferred for backward compatibility with existing SOSA deployments. " ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:SensorKind
+  a owl:Class ;
+  rdfs:label "SensorKind"@en ;
+  skos:definition "A SensorKind describes a type of sensor. Several Sensor instances may reference the same SensorKind."@en ;
+  rdfs:comment "A SensorKind describes a type of sensor. Several Sensor instances may reference the same SensorKind."@en ;
   rdfs:isDefinedBy sosa-obs: .
 
 sosa:observes 
