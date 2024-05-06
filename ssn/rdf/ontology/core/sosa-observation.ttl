@@ -271,13 +271,11 @@ sosa:hasProperty
   rdfs:isDefinedBy sosa-common: .
 
 sosa:isPropertyOf 
-  owl:inverseOf sosa:forProperty ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:forProperty 
   schema:domainIncludes sosa:ObservingProcedure ;
-  schema:domainIncludes sosa:Sensor ;
-  owl:inverseOf sosa:isPropertyOf ;
+  schema:rangeIncludes sosa:ObservableProperty ;
   rdfs:isDefinedBy sosa-common: .
 
 
@@ -295,6 +293,11 @@ sosa:hasOutput
 sosa:usedProcedure 
   schema:domainIncludes sosa:Observation ;
   schema:domainIncludes sosa:ObservationCollection ;
+  schema:rangeIncludes sosa:ObservingProcedure ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasProcedure 
+  schema:domainIncludes sosa:ObservableProperty ;
   schema:rangeIncludes sosa:ObservingProcedure ;
   rdfs:isDefinedBy sosa-common: .
 

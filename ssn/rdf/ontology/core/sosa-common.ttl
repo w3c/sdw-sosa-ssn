@@ -110,10 +110,7 @@ sosa:forProperty
   skos:definition """
   A relation between some entity and a Property.
   """@en ;
-  skos:example "For example, from an Actuator or ActuatingProcedure to the properties it can act on; from a Sensor or ObservingProcedure to the properties it can observe; from a Deployment to the properties it was installed to observe or act on; from a SystemCapability to the Property the capability is described for."@en ;
-  schema:domainIncludes sosa:Deployment ;
-  schema:domainIncludes sosa:Procedure ;
-  schema:domainIncludes sosa:System ;
+  skos:example "For example, from a Sensor to the properties it can observe; from an Actuator to the properties it can act on; from a Deployment to the properties it was installed to observe or act on; from a SystemCapability to the Property the capability is described for."@en ;
   schema:rangeIncludes sosa:Property ;
   rdfs:isDefinedBy sosa-common: .
 
@@ -158,6 +155,16 @@ sosa:hasOutput
   Relation between a Procedure and an Output of it.
   """@en ;
   schema:domainIncludes sosa:Procedure ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasProcedure 
+  a owl:ObjectProperty ;
+  rdfs:label "has procedure"@en ;
+  skos:definition """
+  Relation between a Property and a Procedure that can observe or act on it.
+  """@en ;
+  schema:domainIncludes sosa:Property ;
+  schema:rangeIncludes sosa:Procedure ;
   rdfs:isDefinedBy sosa-common: .
 
 ## Executions
