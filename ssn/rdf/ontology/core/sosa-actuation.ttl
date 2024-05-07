@@ -39,12 +39,23 @@ sosa:isActedOnBy
   a owl:ObjectProperty ;
   rdfs:label "is acted on by"@en ;
   skos:definition """
-  Relation between an ActuatableProperty of a FeatureOfInterest and an Actuation changing its state.
+  Relation between an ActuatableProperty of a FeatureOfInterest and an Actuator capable of changing its state.
   """@en ;
   skos:example "In the activity (Actuation) of automatically closing a window if the temperature in a room drops below 20 degrees Celsius, the property on which the Actuator acts upon is the state of the window as it changes from being open to being closed. "@en ;
   schema:domainIncludes sosa:ActuatableProperty ;
-  schema:rangeIncludes sosa:Actuation ;
-  owl:inverseOf sosa:actsOnProperty ;
+  schema:rangeIncludes sosa:Actuator ;
+  owl:inverseOf sosa:actsOn ;
+  rdfs:isDefinedBy sosa-act: .
+
+sosa:actsOn 
+  a owl:ObjectProperty ;
+  rdfs:label "acts on"@en ;
+  skos:definition """
+  Relation between an Actuator and an ActuatableProperty whose state can be changed.
+  """@en ;
+  schema:domainIncludes sosa:Actuator ;
+  schema:rangeIncludes sosa:ActuatableProperty ;
+  owl:inverseOf sosa:isActedOnBy ;
   rdfs:isDefinedBy sosa-act: .
 
 sosa:ActuatingProcedure 
@@ -108,7 +119,6 @@ sosa:actsOnProperty
   schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:ActuationCollection ;
   schema:rangeIncludes sosa:ActuatableProperty ;
-  owl:inverseOf sosa:isActedOnBy ;
   rdfs:isDefinedBy sosa-act: .
 
 sosa:Actuator 
@@ -141,6 +151,16 @@ sosa:madeByActuator
   schema:domainIncludes sosa:ActuationCollection ;
   schema:rangeIncludes sosa:Actuator ;
   owl:inverseOf sosa:madeActuation ;
+  rdfs:isDefinedBy sosa-act: .
+
+sosa:usedActuatingProcedure 
+  a owl:ObjectProperty ;
+  rdfs:label "used actuating procedure"@en ;
+  skos:definition """
+  A relation to link to a re-usable ActuatingProcedure applied in making an Actuation, using an Actuator.
+  """@en ;
+  schema:domainIncludes sosa:Actuation ;
+  schema:rangeIncludes sosa:ActuatingProcedure ;
   rdfs:isDefinedBy sosa-act: .
 
 ## End of actuation schema

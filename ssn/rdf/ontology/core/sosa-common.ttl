@@ -177,6 +177,17 @@ sosa:usedProcedure
   schema:rangeIncludes sosa:Procedure ;
   rdfs:isDefinedBy sosa-common: .
 
+sosa:madeBySystem 
+  a owl:ObjectProperty ;
+  rdfs:label "made by system"@en ;
+  skos:definition """
+  Relation linking an Execution to the System that made it.
+  """@en ;
+  schema:domainIncludes sosa:Execution ;
+  schema:rangeIncludes sosa:System ;
+  owl:inverseOf sosa:madeExecution ;
+  rdfs:isDefinedBy sosa-common: .
+
 sosa:startTime 
   a owl:DatatypeProperty ;
   rdfs:label "start time"@en ;
@@ -339,6 +350,18 @@ sosa:implements
   schema:rangeIncludes sosa:Procedure ;
   owl:inverseOf sosa:implementedBy ;
   rdfs:isDefinedBy sosa-common: .
+
+sosa:madeExecution 
+  a owl:ObjectProperty ;
+  rdfs:label "made execution"@en ;
+  skos:definition """
+  Relation between an System and an Execution it has made.
+  """@en ;
+  schema:domainIncludes sosa:System ;
+  schema:rangeIncludes sosa:Execution ;
+  owl:inverseOf sosa:madeBySystem ;
+  rdfs:isDefinedBy sosa-common: .
+
 
 sosa:hasSubSystem 
   a owl:ObjectProperty ;

@@ -35,6 +35,7 @@
             , <a href="#SOSAisResultOfMadeBySampler">sosa:isResultOfMadeBySampler</a>
             , <a href="#SOSAisResultOfUsedProcedure">sosa:isResultOfUsedProcedure</a>
             , <a href="#SOSASamplingProcedure">sosa:SamplingProcedure</a>
+            , <a href="#SOSAusedSamplingProcedure">sosa:usedSamplingProcedure</a>
             , <a href="#SOSASampling">sosa:Sampling</a>
             , <a href="#SOSASampler">sosa:Sampler</a>
             , <a href="#SOSAmadeSampling">sosa:madeSampling</a>
@@ -898,6 +899,74 @@
         </div>
     </section>
 
+    <section class="specterm sosa" id="SOSAusedSamplingProcedure" about="sosa:usedSamplingProcedure"
+        typeof="owl:ObjectProperty">
+        <h6><a href="#SOSAusedSamplingProcedure">sosa:usedSamplingProcedure</a></h6>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/usedSamplingProcedure</p>
+        <p><strong>an OWL Object Property</strong></p>
+
+        <p class="note">usedSamplingProcedure added in the 2024 Update.
+            This term is non-normative pending further implementation experience</p>
+        <p>
+            <em property="rdfs:label">used observing procedure</em> -
+            <span property="skos:definition">A relation to link to a re-usable
+                <a href="#SOSASamplingProcedure">SamplingProcedure</a> applied in making an
+                <a href="#SOSASampling">Sampling</a>, typically using an
+                <a href="#SOSASampler">Sampler</a>.</span>
+            <br>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Domain Includes</th>
+                    <td><span rel="schema:domainIncludes" resource="sosa:Sampling"><a
+                                href="#SOSASampling">sosa:Sampling</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Range Includes</th>
+                    <td><span rel="schema:rangeIncludes" resource="sosa:SamplingProcedure"><a
+                                href="#SOSASamplingProcedure">sosa:SamplingProcedure</a></span></td>
+                </tr>
+                <tr class="ssn">
+                    <th>Sub property of</th>
+                    <td><span rel="rdfs:subPropertyOf" resource="sosa:usedProcedure"><a
+                                href="#SOSAusedProcedure">sosa:usedProcedure</a></span></td>
+                </tr>
+                <tr class="ssn">
+                    <th>Sub property of Chain</th>
+                    <td>
+                        <span rel="owl:propertyChainAxiom" resource="[_:SOSAusedProcedure3]"></span>
+                        <span about="[_:SOSAusedProcedure3]" rel="rdf:first" resource="sosa:madeBySampler"><a
+                                href="#SOSAmadeBySampler">sosa:madeBySampler</a></span> o
+                        <span about="[_:SOSAusedProcedure3]" rel="rdf:rest" resource="[_:SOSAusedProcedure4]"></span>
+                        <span about="[_:SOSAusedProcedure4]" rel="rdf:first" resource="sosa:implements"><a
+                                href="#SOSAimplements">sosa:implements</a></span>
+                        <span about="[_:SOSAusedProcedure4]" rel="rdf:rest" resource="rdf:nil"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/sam/">http://www.w3.org/ns/sosa/sam/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span>
+                <span class="sosa" style="display: none;">[<a href="#"
+                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
+                        additional SSN axioms</a>]</span>
+                <span class="ssn">[<a href="#"
+                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
+                        additional SSN axioms</a>]</span>
+            </span>
+            <span class="back">[<a href="#Common">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
     <section class="specterm sosa" id="SOSASampling" about="sosa:Sampling" typeof="owl:Class">
         <h5><a href="#SOSASampling">sosa:Sampling</a></h5>
         <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/Sampling</p>
@@ -1107,6 +1176,11 @@
             device or entity) and the <a href="#SOSASampling">Sampling</a> act it performed.</span>
         <table>
             <tbody>
+                <tr class="ssn">
+                    <th>Sub property of</th>
+                    <td><span rel="rdfs:subPropertyOf" resource="sosa:madeExecution"><a
+                                href="#SOSAmadeExecution">sosa:madeExecution</a></span></td>
+                </tr>
                 <tr>
                     <th>Domain Includes</th>
                     <td><span rel="schema:domainIncludes" resource="sosa:Sampler"><a
@@ -1134,7 +1208,14 @@
             </tbody>
         </table>
         <div class="buttonpanel">
-            <span></span>
+            <span>
+                <span class="sosa" style="display: none;">[<a href="#"
+                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement,this);return false;">Show
+                        additional SSN axioms</a>]</span>
+                <span class="ssn">[<a href="#"
+                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement,this);return false;">Hide
+                        additional SSN axioms</a>]</span>
+            </span>
             <span class="back">[<a href="#Sampling">Back to module overview</a>]</span>
             <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
         </div>
@@ -1150,6 +1231,11 @@
             the <a href="#SOSASampler">Sampler</a> (sampling device or entity) that made it.</span> <br>
         <table>
             <tbody>
+                <tr class="ssn">
+                    <th>Sub property of</th>
+                    <td><span rel="rdfs:subPropertyOf" resource="sosa:madeBySystem"><a
+                                href="#SOSAmadeBySystem">sosa:madeBySystem</a></span></td>
+                </tr>
                 <tr>
                     <th>Domain Includes</th>
                     <td><span rel="schema:domainIncludes" resource="sosa:Sampling"><a
@@ -1180,6 +1266,14 @@
             </tbody>
         </table>
         <div class="buttonpanel">
+            <span>
+                <span class="sosa" style="display: none;">[<a href="#"
+                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement,this);return false;">Show
+                        additional SSN axioms</a>]</span>
+                <span class="ssn">[<a href="#"
+                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement,this);return false;">Hide
+                        additional SSN axioms</a>]</span>
+            </span>
             <span class="back">[<a href="#Sampling">Back to module overview</a>]</span>
             <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
         </div>
