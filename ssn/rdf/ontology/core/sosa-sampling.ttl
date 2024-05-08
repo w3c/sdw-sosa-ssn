@@ -202,6 +202,30 @@ sosa:Sampling
   skos:example "Taking a diamond-drill core from a rock outcrop."@en ;
   rdfs:isDefinedBy sosa-sam: .
 
+sosa:SamplingCollection 
+  a owl:Class ;
+  rdfs:label "Sampling Collection"@en ;
+  skos:definition """
+  Collection of one or more samplings or sampling collections, i.e. collections may be nested. 
+
+  The following Sampling properties may appear in an Sampling Collection: 
+  hasFeatureOfInterest , hasUltimateFeatureOfInterest , hasInputValue , hasOutputValue , usedProcedure , madeBySampler , startTime , phenomenonTime , resultTime , hasResult , hasSimpleResult . 
+  If it is present, the value of a property summarizes the values of the matching properties of the member actuations, where membership is either direct or transitive through one or more member actuation collections. 
+  The following consistency rules apply with respect to the Sampling properties listed above: 
+  
+  1. Where an individual Sampling Collection omits a property, a member Sampling (direct or transitive) MAY have any value for that property.
+
+  2. Where an individual Sampling Collection has a single value for a property, each member Sampling (direct or transitive) MUST have that same value for the property - i.e. the collection is homogeneous in that property.  That property MAY then be omitted in any member Actuation or Actuation Collection.
+
+  3. Where an individual Sampling Collection has more than one value for a property, each member Sampling (direct or transitive) MUST have a value for that property that matches one of the values for the property in the collection. 
+  
+  4. Where an individual Sampling Collection has a value for a property that is a range or interval, each member Sampling (direct or transitive) MUST have a value for that property that matches or falls within that range or interval.
+
+  5. Where an individual Sampling Collection has more than one value for a property that is a range or interval, each member Sampling (direct or transitive) MUST have a value for that property that either matches or falls within one of those ranges or intervals.
+  """@en ;
+  skos:note """The members of a collection do not necessarily share a common value for any property."""@en ;
+  rdfs:isDefinedBy sosa-sam: .
+
 sosa:Sampler 
   a owl:Class ;
   rdfs:label "Sampler"@en ;
@@ -229,6 +253,7 @@ sosa:madeBySampler
   Relation linking an act of Sampling to the Sampler (sampling device or entity) that made it.
   """@en ;
   schema:domainIncludes sosa:Sampling ;
+  schema:domainIncludes sosa:SamplingCollection ;
   schema:domainIncludes sosa:SampleCollection ;
   schema:rangeIncludes sosa:Sampler ;
   owl:inverseOf sosa:madeSampling ;
@@ -263,6 +288,7 @@ sosa:madeBySampler
 
 sosa:hasMember 
   schema:domainIncludes sosa:SampleCollection ;
+  schema:domainIncludes sosa:SamplingCollection ;
   schema:rangeIncludes sosa:Sample ;
   schema:rangeIncludes sosa:SampleCollection ;
   rdfs:isDefinedBy sosa-common: .
@@ -275,11 +301,13 @@ sosa:FeatureOfInterest
 
 sosa:hasFeatureOfInterest 
   schema:domainIncludes sosa:Sampling ;
+  schema:domainIncludes sosa:SamplingCollection ;
   schema:rangeIncludes sosa:Sample ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hasUltimateFeatureOfInterest 
   schema:domainIncludes sosa:Sampling ;
+  schema:domainIncludes sosa:SamplingCollection ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:isFeatureOfInterestOf 
@@ -316,6 +344,7 @@ sosa:hasOutput
 
 sosa:usedProcedure 
   schema:domainIncludes sosa:Sampling ;
+  schema:domainIncludes sosa:SamplingCollection ;
   rdfs:isDefinedBy sosa-common: .
 
 ## Executions
@@ -325,22 +354,27 @@ sosa:Execution
 
 sosa:hasInputValue 
   schema:domainIncludes sosa:Sampling ;
+  schema:domainIncludes sosa:SamplingCollection ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hasOutputValue 
   schema:domainIncludes sosa:Sampling ;
+  schema:domainIncludes sosa:SamplingCollection ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:startTime 
   schema:domainIncludes sosa:Sampling ;
+  schema:domainIncludes sosa:SamplingCollection ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:resultTime 
   schema:domainIncludes sosa:Sampling ;
+  schema:domainIncludes sosa:SamplingCollection ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:phenomenonTime 
   schema:domainIncludes sosa:Sampling ;
+  schema:domainIncludes sosa:SamplingCollection ;
   rdfs:isDefinedBy sosa-common: .
 
 
@@ -348,6 +382,7 @@ sosa:phenomenonTime
 
 sosa:hasResult 
   schema:domainIncludes sosa:Sampling ;
+  schema:domainIncludes sosa:SamplingCollection ;
   schema:rangeIncludes sosa:Sample ;
   rdfs:isDefinedBy sosa-common: .
 

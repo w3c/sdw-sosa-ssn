@@ -139,6 +139,20 @@ sosa:SampleCollection
   ] ;
   rdfs:isDefinedBy sosa-sam: .
 
+sosa:SamplingCollection 
+  rdfs:subClassOf rdf:Bag ;
+  rdfs:subClassOf [ 
+    a owl:Restriction ; 
+    owl:onProperty sosa:hasMember ; 
+    owl:allValuesFrom [ 
+      owl:unionOf ( 
+        sosa:Sampling 
+        sosa:SamplingCollection 
+      ) ; 
+    ] 
+  ] ;
+  rdfs:isDefinedBy sosa-sam: .
+
 
 ## End of sampling schema
 ## -------------------------------------------------------- ##

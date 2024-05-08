@@ -36,6 +36,7 @@
             , <a href="#SOSAisResultOfUsedProcedure">sosa:isResultOfUsedProcedure</a>
             , <a href="#SOSASamplingProcedure">sosa:SamplingProcedure</a>
             , <a href="#SOSASampling">sosa:Sampling</a>
+            , <a href="#SOSASamplingCollection">sosa:SamplingCollection</a>
             , <a href="#SOSASampler">sosa:Sampler</a>
             , <a href="#SOSAmadeSampling">sosa:madeSampling</a>
             , <a href="#SOSAmadeBySampler">sosa:madeBySampler</a>
@@ -471,7 +472,9 @@
                         <span rel="owl:disjointWith" resource="sosa:ActuationCollection"><a
                                 href="#SOSAActuationCollection">sosa:ActuationCollection</a></span> ,
                         <span rel="owl:disjointWith" resource="sosa:ObservationCollection"><a
-                                href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
+                                href="#SOSAObservationCollection">sosa:ObservationCollection</a></span> ,
+                        <span rel="owl:disjointWith" resource="sosa:SamplingCollection"><a
+                                href="#SOSASamplingCollection">sosa:SamplingCollection</a></span>
                     </td>
                 </tr>
                 <tr class="ssn">
@@ -1003,6 +1006,130 @@
                                 href="#SOSAstartTime">sosa:startTime</a></span>
                         <span about="[_:SOSASampling14]" property="owl:cardinality" content="1"
                             datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span>
+                <span class="sosa" style="display: none;">[<a href="#"
+                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
+                        additional SSN axioms</a>]</span>
+                <span class="ssn">[<a href="#"
+                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
+                        additional SSN axioms</a>]</span>
+            </span>
+            <span class="back">[<a href="#Sampling">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="informative specterm sosa" id="SOSASamplingCollection" about="sosa:SamplingCollection"
+        typeof="owl:Class">
+        <h5><a href="#SOSASamplingCollection">sosa:SamplingCollection</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/SamplingCollection</p>
+        <p><strong>an OWL Class</strong></p>
+
+        <p class="note">SamplingCollection added in 2024 update.
+            This term is non-normative pending further implementation experience</p>
+        <p>
+            <em property="rdfs:label">Sampling Collection</em> -
+            <span property="skos:definition">Collection of one or more <a href="#SOSASampling">Samplings</a> or <a
+                    href="#SOSASamplingCollection">SamplingCollections</a>, i.e. collections may be
+                nested.
+                <br><br>
+                The following <a href="#SOSASampling">Sampling</a> properties may appear in an <a
+                    href="#SOSASamplingCollection">SamplingCollection</a>:
+                <a href="#SOSAhasFeatureOfInterest">hasFeatureOfInterest</a>
+                , <a href="#SOSAhasUltimateFeatureOfInterest">hasUltimateFeatureOfInterest</a>
+                , <a href="#SOSAmadeBySampler">madeBySampler</a>
+                , <a href="#SOSAusedProcedure">usedProcedure</a>
+                , <a href="#SOSAhasInputValue">hasInputValue</a>
+                , <a href="#SOSAhasOutputValue">hasOutputValue</a>
+                , <a href="#SOSAstartTime">startTime</a>
+                , <a href="#SOSAphenomenonTime">phenomenonTime</a>
+                , <a href="#SOSAresultTime">resultTime</a>
+                , <a href="#SOSAhasResult">hasResult</a>
+                , <a href="#SOSAhasSimpleResult">hasSimpleResult</a>
+                .
+                If it is present, the value of a property summarizes the values of the matching properties of
+                the member samplings, where membership is either direct or transitive through one or more member
+                sampling collections.
+                <br><br>
+                The following consistency rules with respect to the Sampling properties listed above:
+                <br><br>
+                1. Where an individual <a href="#SOSASamplingCollection">SamplingCollection</a>
+                <i>omits a property</i>, a member <a href="#SOSASampling">Sampling</a> (direct or
+                transitive) MAY have any value for that property.
+                <br><br>
+                2. Where an individual <a href="#SOSASamplingCollection">SamplingCollection</a> has <i>a
+                    single value for a property</i>, each member <a href="#SOSASampling">Sampling</a>
+                (direct or transitive) MUST have that same value for that property - i.e. the collection is homogeneous
+                in that property.
+                That property MAY then be omitted in any member <a href="#SOSASampling">Sampling</a> or
+                <a href="#SOSASamplingCollection">SamplingCollection</a>.
+                <br><br>
+                3. Where an individual <a href="#SOSASamplingCollection">SamplingCollection</a> has
+                <i>more than one value for a property</i>, each member <a href="#SOSASampling">Sampling</a> (direct or
+                transitive) MUST have a value for that
+                property that matches one of the values for the property in the collection.
+                <br><br>
+                4. Where an individual <a href="#SOSASamplingCollection">SamplingCollection</a> <i>has a
+                    value for a property that is a range or interval</i>, each member <a
+                    href="#SOSASampling">Sampling</a> (direct or transitive) MUST have a value for that
+                property that matches or falls within that range or interval.
+                <br><br>
+                5. Where an individual <a href="#SOSASamplingCollection">SamplingCollection</a> <i>has
+                    more than one value for a property that is a range or interval</i>, each member <a
+                    href="#SOSASampling">Sampling</a> (direct or transitive) MUST have a value for that
+                property that matches or falls within one of those ranges or intervals.
+            </span> <br>
+            <span property="skos:note">The members of a collection do not necessarily share a common value for any
+                property. </span>
+        </p>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Example</th>
+                    <td><span property="skos:example">... TODO ...</span></td>
+                </tr>
+                <tr class="ssn">
+                    <th>Sub class of</th>
+                    <td>
+                        <span rel="rdfs:subClassOf" resource="rdf:Bag"><a
+                                href="https://www.w3.org/TR/rdf12-schema/#ch_bag">rdf:Bag</a></span>
+                    </td>
+                </tr>
+                <tr class="ssn">
+                    <th>Disjoint with</th>
+                    <td>
+                        <span rel="owl:disjointWith" resource="sosa:ActuationCollection"><a
+                            href="#SOSAActuationCollection">sosa:ActuationCollection</a></span>
+                        , <span rel="owl:disjointWith" resource="sosa:ObservationCollection"><a
+                                href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
+                        , <span rel="owl:disjointWith" resource="sosa:SampleCollection"><a
+                                href="#SOSASampleCollection">sosa:SampleCollection</a></span>
+                    </td>
+                </tr>
+                <tr class="ssn">
+                    <th class="restrictions">Restrictions</th>
+                    <td>
+                        <span about="sosa:SamplingCollection" rel="rdfs:subClassOf"
+                            resource=" [_:SOSASamplingCollection2]"></span>
+                        <span about="[_:SOSASamplingCollection]" typeof="owl:Restriction"></span>
+                        <span about="[_:SOSASamplingCollection]" rel="owl:onProperty" resource="sosa:hasMember"><a
+                                href="#SOSAhasMember">sosa:hasMember</a></span>
+                        <span about="[_:SOSASamplingCollection]" property="owl:allValuesFrom"
+                            resource="sosa:SamplingCollection"><em><b>ONLY</b></em> (<a
+                                href="#SOSASampling">sosa:Sampling</a> OR <a
+                                href="#SOSASamplingCollection">sosa:SamplingCollection</a> )</span>
                     </td>
                 </tr>
                 <tr>
