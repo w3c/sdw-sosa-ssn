@@ -1,0 +1,62 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <http://schema.org/> .
+@prefix gs1: <https://gs1.org/voc/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rel: <http://id.loc.gov/vocabulary/relators/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix equipment: <https://rdf.ag/o/equipment/> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix beer: <https://rdf.ag/o/beer#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix ssn-system: <http://www.w3.org/ns/ssn/systems/> .
+@prefix ex: <http://example.org/> .
+
+@base <http://example.org/data/> .
+
+# This example represents the aggregation of the observation data using deployments on platforms, which can make
+# the modeling a bit more intuitive.
+
+# Anything can be a Platform, including a carton.
+
+<acmePorterSixPackObservations> a sosa:ObservationCollection;
+    sosa:hasMember <observation1a>, <observation1b>, <observation1c> ;
+    sosa:hasMember <observation67a>, <observation67b>, <observation67c> ;
+    sosa:hasMember <observation98a>, <observation98b>,  <observation98c> .
+
+# Beer in the cooler.
+
+<acmeCoolerObservaions> a sosa:ObservationCollection;
+    sosa:hasMember <observation1a>, <observation1b>, <observation1c> .
+
+# Beer in the delivery truck.
+
+<acmeTruckObservations> a sosa:ObservationCollection;
+    sosa:hasMember <observation67a>, <observation67b>, <observation67c> .
+
+# Beer in the supermarket cooler.
+
+<acmeSupermarketCoolerObservations> a sosa:ObservationCollection;
+    sosa:hasMember <observation98a>, <observation98b>,  <observation98c> .
+
+<acmePorterSixPackLabSample/01/00000000000000/10/PO202402/21/0001> a sosa:Sample, geo:Feature;
+    rdfs:label "A sample of beer within the six pack"@en ;
+    geo:inside <0005/sampleFlask>;
+    sosa:isSampleOf <01/00000000000000/10/PO202402/21/0001> .
+
+<qualityAssuranceSamples> a sosa:SampleCollection;
+    rdfs:labels "All samples taken from shipments this quarter.";
+    sosa:hasMember <acmePorterSixPackLabSample/01/00000000000000/10/PO202402/21/0001>
+    sosa:hasMember <acmePorterSixPackLabSample/01/00000000000000/10/PO202402/21/0002>
+    sosa:hasMember <acmePorterSixPackLabSample/01/00000000000000/10/PO202401/21/0031>
+    sosa:hasMember <acmePorterSixPackLabSample/01/00000000000000/10/PO202401/21/0032>
+    ....etc
+# 
