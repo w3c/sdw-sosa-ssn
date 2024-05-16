@@ -172,7 +172,8 @@ sosa:isResultOfUsedProcedure
   """@en ;
   schema:domainIncludes sosa:Sample ;
   schema:domainIncludes sosa:SampleCollection ;
-  schema:rangeIncludes sosa:samplingProcedure ;
+  schema:rangeIncludes sosa:Procedure ;
+  schema:rangeIncludes sosa:SamplingProcedure ;
   rdfs:isDefinedBy sosa-sam: .
 
 sosa:SamplingProcedure 
@@ -263,8 +264,10 @@ sosa:madeBySampler
 
 sosa:hasMember 
   schema:domainIncludes sosa:SampleCollection ;
+  schema:domainIncludes sosa:SamplingCollection ;
   schema:rangeIncludes sosa:Sample ;
   schema:rangeIncludes sosa:SampleCollection ;
+  schema:rangeIncludes sosa:SamplingCollection ;
   rdfs:isDefinedBy sosa-common: .
 
 
@@ -280,6 +283,7 @@ sosa:hasFeatureOfInterest
 
 sosa:hasUltimateFeatureOfInterest 
   schema:domainIncludes sosa:Sampling ;
+  schema:domainIncludes sosa:SamplingCollection ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:isFeatureOfInterestOf 
@@ -309,13 +313,17 @@ sosa:Procedure
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hasInput 
+  schema:domainIncludes sosa:SamplingProcedure ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hasOutput 
+  schema:domainIncludes sosa:SamplingProcedure ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:usedProcedure 
   schema:domainIncludes sosa:Sampling ;
+  schema:domainIncludes sosa:SamplingCollection ;
+  schema:rangeIncludes sosa:SamplingProcedure ;
   rdfs:isDefinedBy sosa-common: .
 
 ## Executions
@@ -341,6 +349,7 @@ sosa:resultTime
 
 sosa:phenomenonTime 
   schema:domainIncludes sosa:Sampling ;
+  schema:domainIncludes sosa:SamplingCollection ;
   rdfs:isDefinedBy sosa-common: .
 
 
