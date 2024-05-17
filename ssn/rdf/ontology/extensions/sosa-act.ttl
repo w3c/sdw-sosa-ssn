@@ -1,0 +1,48 @@
+# baseURI: http://www.w3.org/ns/sosa/activity
+# imports: http://www.w3.org/ns/sosa/
+
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix sosa-act: <http://www.w3.org/ns/sosa/activity/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+sosa:activity
+  a owl:Ontology ;
+  dcterms:creator [
+      a foaf:Agent ;
+      foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en ;
+    ] ;
+  dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
+  dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
+  dcterms:rights "Copyright 2024 W3C/OGC." ;
+  owl:imports sosa: ;
+.
+sosa-act:Activity
+  a owl:Class ;
+  rdfs:isDefinedBy sosa-act: ;
+  rdfs:label "Activity"@en ;
+  rdfs:subClassOf prov:Activity ;
+  skos:definition "Members of this class describe an activity that contains one or more Actuations, Observations, Samplings, or collections of these. An Activity may also contain other Activitys"@en ;
+.
+sosa-act:hasSubActivity
+  a owl:ObjectProperty ;
+  schema:domainIncludes sosa-act:Activity ;
+  schema:rangeIncludes sosa:Actuation ;
+  schema:rangeIncludes sosa:ActuationCollection ;
+  schema:rangeIncludes sosa:Execution ;
+  schema:rangeIncludes sosa:Observation ;
+  schema:rangeIncludes sosa:ObservationCollection ;
+  schema:rangeIncludes sosa:Sampling ;
+  schema:rangeIncludes sosa:SamplingCollection ;
+  schema:rangeIncludes sosa-act:Activity ;
+  rdfs:isDefinedBy sosa-act: ;
+  rdfs:label "has sub-activity"@en ;
+  skos:definition "links an Activity to one or more Actuations, Observations, Samplings, or collections of these, or other Activitys"@en ;
+.

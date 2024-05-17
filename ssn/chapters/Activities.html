@@ -1,0 +1,163 @@
+<!--  <section id="Activities" class="informative">  -->
+<h3>Activities Module</h3>
+
+<p>
+    Observations and Samplings are typically undertaken as part of larger activities, often referred to as projects,
+    initiatives, campaigns and similar.
+    These activities will commonly include many observations and samplings, and also actuations, related to a systematic
+    study.
+    The Activities Module is a lightweight extension to the SSN Ontology that supports collections
+    of the various kinds of execution.
+</p>
+<p>
+
+    A <a href="#ACTActivity">sosa-act:Activity</a> collects
+    <a href="#SOSAActuation">sosa:Actuation</a>s, <a href="#SOSAObservation">sosa:Observation</a>s, 
+    <a href="#SOSASampling">sosa:Sampling</a>s, 
+    <a href="#SOSAActuationCollection">sosa:ActuationCollection</a>s,
+    <a href="#SOSAObservationCollection">sosa:ObservationCollection</a>s, and
+    <a href="#SOSASamplingCollection">sosa:SamplingCollection</a>s.
+    <a href="#ACTActivity">sosa-act:Activity</a>s can be nested recursively to describe additional levels of
+    organization, such as campaigns that are part of projects, that are in turn part of initiatives.
+</p>
+
+<p style="text-align: center;">The namespace for Activities
+    terms is <code>http://www.w3.org/ns/sosa/activity/</code>
+</p>
+<p style="text-align: center;">The suggested prefix for the Activities namespace is <code>sosa-act</code></p>
+<p style="text-align: center;">
+    The Activities graph is available at <a
+        href="http://w3c.github.io/sdw/ssn/rdf/extensions/sosa-act.ttl">http://www.w3.org/ns/sosa/activity/</a>.
+</p>
+<p>The following figure provides an overview on the classes
+    and properties that are specifically related to modeling Activities.</p>
+<figure>
+    <a href="images/Activities.png"><img alt="Higher level activities" src="images/Activities.png" width="60%"></a>
+    <figcaption>
+        Model of higher level activities
+        <br>
+        <em><a href="#class-diagram">Explanation of the notation used in class diagrams</a></em>.
+    </figcaption>
+</figure>
+
+<section id="activities_def">
+    <h4 id="ACTglance">Activities Specification</h4>
+    <p>This section introduces the following classes and properties:</p>
+    <div class="azlist">
+        <p>
+            <a href="#ACTActivity">sosa-act:Activity</a>
+            , <a href="#ACThasSubActivity">sosa-act:hasSubActivity</a>
+        </p>
+    </div>
+
+
+    <section class="specterm" id="ACTActivity" about="sosa-act:Activity" typeof="owl:Class">
+        <h5>sosa-act:Activity</h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/activity/Activity</p>
+        <p><strong>an OWL Class</strong></p>
+
+        <em property="rdfs:label">Activity</em> -
+        <span property="rdfs:comment skos:definition">Members of this class describe an activity that
+            contains one or more <a href="#SOSAActuation">Actuation</a>s,
+            <a href="#SOSAObservation">Observation</a>s,
+            <a href="#SOSASampling">Sampling</a>s, or collections of these.
+            A <a href="#ACTActivity">sosa-act:Activity</a> may also contain other
+            <a href="#ACTActivity">sosa-act:Activity</a>s</span>
+        <table>
+            <tbody>
+                <tr class="ssn">
+                    <th>Sub class of</th>
+                    <td>
+                        <span rel="rdfs:subClassOf" resource="prov:Activity">prov:Activity</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/activity/">http://www.w3.org/ns/sosa/activity/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span>
+                <span class="sosa" style="display: none;">[<a href="#"
+                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
+                        additional SSN axioms</a>]</span>
+                <span class="ssn">[<a href="#"
+                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
+                        additional SSN axioms</a>]</span>
+            </span>
+            <span class="back">[<a href="#Activities">Back to module overview</a>]</span>
+        </div>
+    </section>
+
+    <section class="specterm" id="ACThasSubActivity" about="sosa-act:hasSubActivity" typeof="owl:ObjectProperty">
+        <h5>sosa-act:hasSubActivity</h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/activity/hasSubActivity</p>
+        <p><strong>an OWL Object Property</strong></p>
+
+        <em property="rdfs:label">has sub-activity</em> -
+        <span property="rdfs:comment skos:definition">links an Activity to one or more <a
+                href="#SOSAActuation">Actuation</a>s, <a href="#SOSAObservation">Observation</a>s, <a
+                href="#SOSASampling">Sampling</a>s, or collections of these, or other <a
+                href="#ACTActivity">sosa-act:Activity</a>s</span>
+        <table>
+            <tbody>
+                <tr class="ssn">
+                    <th>Sub property of</th>
+                    <td>
+                        <span rel="rdfs:subClassOf" resource="rdfs:member">rdfs:member</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Domain Includes</th>
+                    <td><span rel="schema:domainIncludes" resource="sosa-act:Activity"><a
+                                href="#ACTActivity">sosa-act:Activity</a></span></td>
+                </tr>
+                <tr>
+                    <th>Range Includes</th>
+                    <td>
+                        <span rel="schema:rangeIncludes" resource="sosa-act:Activity"><a
+                                href="#ACTActivity">sosa-act:Activity</a></span>
+                        , <span rel="schema:rangeIncludes" resource="sosa:Execution"><a
+                                href="#SOSAExecution">sosa:Execution</a></span>
+                        , <span rel="schema:rangeIncludes" resource="sosa:Actuation"><a
+                                href="#SOSAActuation">sosa:Actuation</a></span>
+                        , <span rel="schema:rangeIncludes" resource="sosa:Observation"><a
+                                href="#SOSAObservation">sosa:Observation</a></span>
+                        , <span rel="schema:rangeIncludes" resource="sosa:Sampling"><a
+                                href="#SOSASampling">sosa:Sampling</a></span>
+                        , <span rel="schema:rangeIncludes" resource="sosa:ActuationCollection"><a
+                                href="#SOSAActuationCollection">sosa:ActuationCollection</a></span>
+                        , <span rel="schema:rangeIncludes" resource="sosa:ObservationCollection"><a
+                                href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
+                        , <span rel="schema:rangeIncludes" resource="sosa:SamplingCollection"><a
+                                href="#SOSASamplingCollection">sosa:SamplingCollection</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/activity/">http://www.w3.org/ns/sosa/activity/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span>
+                <span class="sosa" style="display: none;">[<a href="#"
+                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
+                        additional SSN axioms</a>]</span>
+                <span class="ssn">[<a href="#"
+                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
+                        additional SSN axioms</a>]</span>
+            </span>
+            <span class="back">[<a href="#Activities">Back to module overview</a>]</span>
+        </div>
+    </section>
+
+</section>
+<!--  </section>  -->
