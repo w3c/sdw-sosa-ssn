@@ -255,6 +255,26 @@
                                 and taxonomies, may be used as instances of <a
                                     href="#SOSAFeatureOfInterest">Property</a>.</span></td>
                     </tr>
+                    <tr class="ssn">
+                        <th class="restrictions">Restrictions:</th>
+                        <td>
+                            <span about="sosa:Property" rel="rdfs:subClassOf" resource="[_:SOSAProperty1]"></span>
+                            <span about="[_:SOSAProperty1]" typeof="owl:Restriction"></span>
+                            <span about="[_:SOSAProperty1]" rel="owl:onProperty" resource="sosa:hasProcedure"><a
+                                    href="#SOSAhasProcedure">sosa:hasProcedure</a></span>
+                            <span about="[_:SOSAProperty1]" property="owl:allValuesFrom"
+                                resource="sosa:Procedure"><em><b>ONLY</b></em> <a
+                                    href="#SOSAProcedure">sosa:Procedure</a></span>
+                            <br>
+                            <span about="sosa:Property" rel="rdfs:subClassOf" resource="[_:SOSAProperty2]"></span>
+                            <span about="[_:SOSAProperty2]" typeof="owl:Restriction"></span>
+                            <span about="[_:SOSAProperty2]" rel="owl:onProperty" resource="sosa:isPropertyOf"><a
+                                    href="#SOSAisPropertyOf">sosa:isPropertyOf</a></span>
+                            <span about="[_:SOSAProperty2]" property="owl:allValuesFrom"
+                                resource="sosa:Procedure"><em><b>ONLY</b></em> <a
+                                    href="#SOSAProcedure">sosa:FeatureOfInterest</a></span>
+                        </td>
+                    </tr>
                     <tr>
                         <th>is Defined By</th>
                         <td>
@@ -265,6 +285,14 @@
                 </tbody>
             </table>
             <div class="buttonpanel">
+                <span>
+                    <span class="sosa" style="display: none;">[<a href="#"
+                            onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
+                            additional SSN axioms</a>]</span>
+                    <span class="ssn">[<a href="#"
+                            onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
+                            additional SSN axioms</a>]</span>
+                </span>
                 <span class="back">[<a href="#Common">Back to module overview</a>]</span>
                 <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
             </div>
@@ -416,10 +444,33 @@
                         </td>
                     </tr>
                     <tr>
+                        <th>Domain Includes</th>
+                        <td>
+                            <span rel="schema:domainIncludes" resource="sosa:Procedure"><a
+                                    href="#SOSAProcedure">sosa:Procedure</a></span>
+                            , <span rel="schema:domainIncludes" resource="sosa:ActuatingProcedure"><a
+                                    href="#SOSAActuatingProcedure">sosa:ActuatingProcedure</a></span>
+                            , <span rel="schema:domainIncludes" resource="sosa:ObservingProcedure"><a
+                                    href="#SOSAObservingProcedure">sosa:ObservingProcedure</a></span>
+                            , <span rel="schema:domainIncludes" resource="sosa:System"><a
+                                    href="#SOSASystem">sosa:System</a></span>
+                            , <span rel="schema:domainIncludes" resource="sosa:Actuator"><a
+                                    href="#SOSAActuator">sosa:Actuator</a></span>
+                            , <span rel="schema:domainIncludes" resource="sosa:Sensor"><a
+                                    href="#SOSASensor">sosa:Sensor</a></span>
+                            , <span rel="schema:domainIncludes" resource="sosa:Deployment"><a
+                                    href="#SOSADeployment">sosa:Deployment</a></span>
+                        </td>
+                    </tr>
+                    <tr>
                         <th>Range Includes</th>
                         <td>
                             <span rel="schema:rangeIncludes" resource="sosa:Property"><a
                                     href="#SOSAProperty">sosa:Property</a></span>
+                            , <span rel="schema:rangeIncludes" resource="sosa:ActuatableProperty"><a
+                                    href="#SOSAActuatableProperty">sosa:ActuatableProperty</a></span>
+                            , <span rel="schema:rangeIncludes" resource="sosa:ObservableProperty"><a
+                                    href="#SOSAObservableProperty">sosa:ObservableProperty</a></span>
                         </td>
                     </tr>
                     <tr>
@@ -524,6 +575,14 @@
                                     href="#SOSAimplementedBy">sosa:implementedBy</a></span>
                             <span about="[_:SOSAProcedure3]" property="owl:allValuesFrom"
                                 resource="sosa:System"><em><b>ONLY</b></em> <a href="#SOSASystem">sosa:System</a></span>
+                            <br>
+                            <span about="sosa:Procedure" rel="rdfs:subClassOf" resource="[_:SOSAProcedure4]"></span>
+                            <span about="[_:SOSAProcedure4]" typeof="owl:Restriction"></span>
+                            <span about="[_:SOSAProcedure4]" rel="owl:onProperty" resource="sosa:forProperty"><a
+                                    href="#SOSAforProperty">sosa:forProperty</a></span>
+                            <span about="[_:SOSAProcedure4]" property="owl:allValuesFrom"
+                                resource="sosa:Property"><em><b>ONLY</b></em> <a
+                                    href="#SOSAProperty">sosa:Property</a></span>
                         </td>
                     </tr>
                     <tr>
@@ -668,14 +727,24 @@
                 <tbody>
                     <tr>
                         <th>Domain Includes</th>
-                        <td><span rel="schema:domainIncludes" resource="sosa:Property"><a
+                        <td>
+                            <span rel="schema:domainIncludes" resource="sosa:Property"><a
                                     href="#SOSAProperty">sosa:Property</a></span>
+                            , <span rel="schema:domainIncludes" resource="sosa:ActuatableProperty"><a
+                                    href="#SOSAActuatableProperty">sosa:ActuatableProperty</a></span>
+                            , <span rel="schema:domainIncludes" resource="sosa:ObservableProperty"><a
+                                    href="#SOSAObservableProperty">sosa:ObservableProperty</a></span>
                         </td>
                     </tr>
                     <tr>
                         <th>Range Includes</th>
-                        <td><span rel="schema:rangeIncludes" resource="sosa:Procedure"><a
+                        <td>
+                            <span rel="schema:rangeIncludes" resource="sosa:Procedure"><a
                                     href="#SOSAProcedure">sosa:Procedure</a></span>
+                            , <span rel="schema:rangeIncludes" resource="sosa:ActuatingProcedure"><a
+                                    href="#SOSAActuatingProcedure">sosa:ActuatingProcedure</a></span>
+                            , <span rel="schema:rangeIncludes" resource="sosa:ObservingProcedure"><a
+                                    href="#SOSAObservingProcedure">sosa:ObservingProcedure</a></span>
                         </td>
                     </tr>
                     <tr>
@@ -1620,6 +1689,14 @@
                                 resource="sosa:Procedure"><em><b>ONLY</b></em>
                                 <a href="#SOSAProcedure">sosa:Procedure</a></span>
                             <br>
+                            <span about="sosa:System" rel="rdfs:subClassOf" resource="[_:System3]"></span>
+                            <span about="[_:System3]" typeof="owl:Restriction"></span>
+                            <span about="[_:System3]" rel="owl:onProperty" resource="sosa:forProperty"><a
+                                    href="#SOSAforProperty">sosa:forProperty</a></span>
+                            <span about="[_:System3]" property="owl:allValuesFrom"
+                                resource="sosa:Property"><em><b>ONLY</b></em>
+                                <a href="#SOSAProperty">sosa:Property</a></span>
+                            <br>
                             <span about="sosa:System" rel="rdfs:subClassOf" resource="[_:System4]"></span>
                             <span about="[_:System4]" typeof="owl:Restriction"></span>
                             <span about="[_:System4]" rel="owl:onProperty" resource="sosa:hasSubSystem"><a
@@ -1882,7 +1959,8 @@
                             <span about="[_:SOSAPlatform1]" rel="owl:onProperty" resource="sosa:hosts"><a
                                     href="#SOSAhosts">sosa:hosts</a></span>
                             <span about="[_:SOSAPlatform1]" property="owl:allValuesFrom"
-                                resource="sosa:System"><em><b>ONLY</b></em> <a href="#SOSASystem">sosa:System</a></span>
+                                resource="sosa:System"><em><b>ONLY</b></em> ( <a href="#SOSASystem">sosa:System</a>
+                                <em><b>OR</b></em> <a href="#SOSAPlatform">sosa:Platform</a> ) </span>
                             <br>
                             <span about="sosa:Platform" rel="rdfs:subClassOf" resource="[_:SOSAPlatform2]"></span>
                             <span about="[_:SOSAPlatform2]" typeof="owl:Restriction"></span>
