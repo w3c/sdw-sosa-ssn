@@ -9,6 +9,8 @@
 @prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix time: <http://www.w3.org/2006/time#> .
 
+@prefix schema: <http://schema.org/> .
+
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix sosa-common: <http://www.w3.org/ns/sosa/common/> .
 @prefix sosa-act: <http://www.w3.org/ns/sosa/act/> .
@@ -57,7 +59,6 @@ ssn-system:qualityOfObservation a owl:ObjectProperty ;
   owl:equivalentProperty sosa:resultQuality ;
   rdfs:label "quality of observation"@en ;
   skos:definition "Relation linking an Observation to the adjudged quality of the Result. This is complimentary to the SystemCapability information recorded for the Sensor that made the Observation."@en ;
-  rdfs:comment "Relation linking an Observation to the adjudged quality of the Result. This is complimentary to the SystemCapability information recorded for the Sensor that made the Observation."@en ;
   rdfs:isDefinedBy ssn: .
 
 
@@ -70,16 +71,54 @@ ssn:System
   rdfs:isDefinedBy ssn-dep: .
 
 sosa:System 
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasSystemKind ; owl:allValuesFrom ssn-system:SystemKind ]  ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasSystemKind ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasSystemCapability ; owl:allValuesFrom ssn-system:SystemCapability ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasOperatingRange ; owl:allValuesFrom ssn-system:OperatingRange ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasSurvivalRange ; owl:allValuesFrom ssn-system:SurvivalRange ] ;
   rdfs:isDefinedBy sosa-common: .
 
-sosa:SystemKind
+ssn-system:SystemKind
+  a owl:Class ;
+  rdfs:label "SystemKind"@en ;
+  skos:definition "A SystemKind describes a type of system. Several System instances may reference the same SystemKind."@en ;
+  skos:scopeNote "This description will include the kind of information commonly available from a 'datasheet' describing a model or type."@en ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasSystemCapability ; owl:allValuesFrom ssn-system:SystemCapability ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasOperatingRange ; owl:allValuesFrom ssn-system:OperatingRange ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasSurvivalRange ; owl:allValuesFrom ssn-system:SurvivalRange ] ;
+  rdfs:isDefinedBy ssn-system: .
+
+ssn-system:hasSystemKind
+  a owl:ObjectProperty ;
+  rdfs:label "has system kind"@en ;
+  skos:definition "Relation between a System and a System Kind, recording that the System is of that particular kind/type."@en ;
+  schema:domainIncludes sosa:System , sosa:Actuator , sosa:Sensor , sosa:Sampler ;
+  schema:rangeIncludes ssn-system:SystemKind ;
+  rdfs:isDefinedBy ssn-system: .
+
+sosa:Platform 
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasPlatformKind ; owl:allValuesFrom ssn-system:PlatformKind ]  ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasPlatformKind ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:isDefinedBy sosa-common: .
+
+ssn-system:PlatformKind
+  a owl:Class ;
+  rdfs:label "PlatformKind"@en ;
+  skos:definition "A PlatformKind describes a type of platform. Several Platform instances may reference the same PlatformKind."@en ;
+  skos:scopeNote "This description will include the kind of information commonly available from a 'datasheet' describing a model or type."@en ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasSystemCapability ; owl:allValuesFrom ssn-system:SystemCapability ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasOperatingRange ; owl:allValuesFrom ssn-system:OperatingRange ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasSurvivalRange ; owl:allValuesFrom ssn-system:SurvivalRange ] ;
+  rdfs:isDefinedBy ssn-system: .
+
+ssn-system:hasPlatformKind
+  a owl:ObjectProperty ;
+  rdfs:label "has system kind"@en ;
+  skos:definition "Relation between a Platform and a Platform Kind, recording that the Platform is of that particular kind/type."@en ;
+  schema:domainIncludes sosa:Platform ;
+  schema:rangeIncludes ssn-system:PlatformKind ;
+  rdfs:isDefinedBy ssn-system: .
+
 
 
 # Conditions
@@ -106,6 +145,8 @@ ssn-system:hasSystemCapability a owl:ObjectProperty ;
   skos:definition "Relation from a System to a SystemCapability describing the capabilities of the System under certain Conditions."@en ;
   rdfs:comment "Relation from a System to a SystemCapability describing the capabilities of the System under certain Conditions."@en ;
   rdfs:subPropertyOf ssn:hasProperty ;
+  schema:domainIncludes sosa:System , sosa:Platform ;
+  schema:rangeIncludes ssn-system:SystemCapability ;
   rdfs:isDefinedBy ssn-system: .
 
   ssn-system:SystemCapability a owl:Class ;
@@ -259,6 +300,8 @@ ssn-system:hasOperatingRange a owl:ObjectProperty ;
   skos:definition "Relation from a System to an OperatingRange describing the normal operating environment of the System."@en ;
   rdfs:comment "Relation from a System to an OperatingRange describing the normal operating environment of the System."@en ;
   rdfs:subPropertyOf ssn:hasProperty ;
+  schema:domainIncludes sosa:System , sosa:Platform ;
+  schema:rangeIncludes ssn-system:OperatingRange ;
   rdfs:isDefinedBy ssn-system: .
 
   ssn-system:OperatingRange a owl:Class ;
@@ -318,6 +361,8 @@ ssn-system:hasSurvivalRange a owl:ObjectProperty ;
   skos:definition "Relation from a System to a SurvivalRange."@en ;
   rdfs:comment "Relation from a System to a SurvivalRange."@en ;
   rdfs:subPropertyOf ssn:hasProperty ;
+  schema:domainIncludes sosa:System , sosa:Platform ;
+  schema:rangeIncludes ssn-system:SurvivalRange ;
   rdfs:isDefinedBy ssn-system: .
 
   ssn-system:SurvivalRange a owl:Class ;

@@ -31,7 +31,6 @@
             , <a href="#SOSAobservedProperty">sosa:observedProperty</a>
             , <a href="#SOSAresultQuality">sosa:resultQuality</a>
             , <a href="#SOSASensor">sosa:Sensor</a>
-            , <a href="#SOSASensorKind">sosa:SensorKind</a>
             , <a href="#SOSAobserves">sosa:observes</a>
             , <a href="#SOSAisObservedBy">sosa:isObservedBy</a>
             , <a href="#SOSAmadeObservation">sosa:madeObservation</a>
@@ -168,7 +167,8 @@
                 <tr>
                     <th>Note</th>
                     <td>
-                        <span property="skos:scopeNote">The observing procedure cannot describe a sensor instance, but it can
+                        <span property="skos:scopeNote">The observing procedure cannot describe a sensor instance, but
+                            it can
                             describe the sensor kind.</span>
                     </td>
                 </tr>
@@ -662,21 +662,13 @@
                 <tr class="ssn">
                     <th class="restrictions">Restrictions</th>
                     <td>
-                        <span about="sosa:Sensor" rel="rdfs:subClassOf" resource="[_:SOSASensor5]"></span>
-                        <span about="[_:SOSASensor5]" typeof="owl:Restriction"></span>
-                        <span about="[_:SOSASensor5]" rel="owl:onProperty" resource="sosa:hasSystemKind"><a
-                                href="#SOSAhasSystemKind">sosa:hasSystemKind</a></span>
-                        <span about="[_:SOSASensor5]" property="owl:maxCardinality" content="1"
-                            datatype="xsd:nonNegativeInteger"><em><b>MAX 1</b></em> <a
-                                href="#SOSASensorKind">sosa:SensorKind</a></span>
-                        <br>
                         <span about="sosa:Sensor" rel="rdfs:subClassOf" resource="[_:SOSASensor4]"></span>
                         <span about="[_:SOSASensor4]" typeof="owl:Restriction"></span>
                         <span about="[_:SOSASensor4]" rel="owl:onProperty" resource="sosa:implements"><a
                                 href="#SOSAimplements">sosa:implements</a></span>
-                        <span about="[_:SOSASensor4]" property="owl:minCardinality" content="1"
-                            datatype="xsd:nonNegativeInteger"><em><b>MIN 1</b></em> <a
-                                href="#SOSASampling">sosa:ObservingProcedure</a></span>
+                        <span about="[_:SOSASensor4]" property="owl:allValuesFrom"
+                            resource="sosa:ObservingProcedure"><em><b>ONLY</b></em> <a
+                                href="#SOSAObservingProcedure">sosa:ObservingProcedure</a></span>
                         <br>
                         <span about="sosa:Sensor" rel="rdfs:subClassOf" resource="[_:SOSASensor2]"></span>
                         <span about="[_:SOSASensor2]" typeof="owl:Restriction"></span>
@@ -722,60 +714,6 @@
                         additional SSN axioms</a>]</span>
             </span>
             <span class="back">[<a href="#Observation">Back to module overview</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-        </div>
-    </section>
-
-    <section class="specterm sosa" id="SOSASensorKind" about="sosa:SensorKind" typeof="owl:Class">
-        <h5><a href="#SOSASensorKind">sosa:SensorKind</a></h5>
-        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/SensorKind</p>
-        <p><strong>an OWL Class</strong></p>
-
-        <p class="note">
-            SensorKind added in the 2024 update.
-            This term is non-normative pending further implementation experience
-        </p>
-        <p>
-            <em property="rdfs:label">SensorKind</em> -
-            <span property="rdfs:comment skos:definition">A <code>SensorKind</code> describes a type of <a
-                    href="#SOSASensor"><code>Sensor</code></a>.
-                Several <a href="#SOSASensor"><code>Sensor</code></a> instances may reference the same
-                <code>SensorKind</code>.</span>
-        </p>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Example</th>
-                    <td>
-                        <span property="skos:example">A specific model of GPS receiver.</span>
-                    </td>
-                </tr>
-                <tr class="ssn">
-                    <th>Sub class of</th>
-                    <td>
-                        <span rel="rdfs:subClassOf" resource="sosa:SystemKind"><a
-                                href="#SOSASystemKind">sosa:SystemKind</a></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <span rel="rdfs:isDefinedBy"><a
-                                href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a></span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="buttonpanel">
-            <span>
-                <span class="sosa" style="display: none;">[<a href="#"
-                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
-                        additional SSN axioms</a>]</span>
-                <span class="ssn">[<a href="#"
-                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
-                        additional SSN axioms</a>]</span>
-            </span>
-            <span class="back">[<a href="#Observation">Back to module overview and examples</a>]</span>
             <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
         </div>
     </section>

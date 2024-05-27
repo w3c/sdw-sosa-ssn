@@ -11,7 +11,8 @@
     The suggested prefix for the system capabilities, operating ranges, and survival ranges terms is <span
         class="repeated" style="font-family: courier;">ssn-system</span>
 </p>
-<p>An <a href="http://w3c.github.io/sdw-sosa-ssn/ssn/rdf/ontology/extensions/ssn-system.ttl">RDF graph for this is available</a>. </p>
+<p>An <a href="http://w3c.github.io/sdw-sosa-ssn/ssn/rdf/ontology/extensions/ssn-system.ttl">RDF graph for this is
+        available</a>. </p>
 <p style="text-align: center;">
     The SSN-System graph is available at <a
         href="http://www.w3.org/ns/ssn-system/">http://www.w3.org/ns/ssn-system/</a>.
@@ -57,7 +58,11 @@
     <p>This section introduces the following classes and properties:</p>
     <div class="azlist">
         <p>
-            <a href="#SSNSYSTEMinCondition">ssn-system:inCondition</a>
+            , <a href="#SSNSYSTEMSystemKind">ssn-system:SystemKind</a>
+            , <a href="#SSNSYSTEMhasSystemKind">ssn-system:hasSystemKind</a>
+            , <a href="#SSNSYSTEMPlatformKind">ssn-system:PlatformKind</a>
+            , <a href="#SSNSYSTEMhasPlatformKind">ssn-system:hasPlatformKind</a>
+            , <a href="#SSNSYSTEMinCondition">ssn-system:inCondition</a>
             , <a href="#SSNSYSTEMhasSystemCapability">ssn-system:hasSystemCapability</a>
             , <a href="#SSNSYSTEMSystemCapability">ssn-system:SystemCapability</a>
             , <a href="#SSNSYSTEMhasSystemProperty">ssn-system:hasSystemProperty</a>
@@ -95,14 +100,18 @@
         <p><strong>an OWL Class</strong></p>
 
         <em property="rdfs:label">System</em> -
-        <span property="rdfs:comment skos:definition">System is a unit of abstraction for pieces of infrastructure
-            that implement <a href="#SOSAProcedure">Procedures</a>. A System may have components, its subsystems, which
-            are other Systems.</span>
         <table>
             <tbody>
                 <tr class="ssn">
                     <th class="restrictions">Additional Restrictions</th>
                     <td>
+                        <span about="sosa:System" rel="rdfs:subClassOf" resource="[_:System3]"></span>
+                        <span about="[_:System3]" typeof="owl:Restriction"></span>
+                        <span about="[_:System3]" rel="owl:onProperty" resource="sosa:hasSystemKind"><a
+                                href="#SOSAhasSystemKind">sosa:hasSystemKind</a></span>
+                        <span about="[_:System3]" property="owl:minCardinality" content="1"
+                            datatype="xsd:nonNegativeInteger"><em><b>MIN 1</b></em> <a
+                                href="#SOSASystemKind">sosa:SystemKind</a></span>
                         <span about="sosa:System" rel="rdfs:subClassOf" resource="[_:System8]"></span>
                         <span about="[_:System8]" typeof="owl:Restriction"></span>
                         <span about="[_:System8]" rel="owl:onProperty" resource="ssn-system:hasSystemCapability"><a
@@ -150,6 +159,230 @@
             <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
         </div>
     </section>
+
+    <section class="specterm sosa" id="SSNSYSTEMSystemKind" about="ssn-system:SystemKind" typeof="owl:Class">
+        <h6><a href="#SSNSYSTEMSystemKind">ssn-system:SystemKind</a></h6>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/ssn/systems/SystemKind</p>
+        <p><strong>an OWL Class</strong></p>
+
+        <p class="note">
+            SystemKind added in the 2024 update.
+            This term is non-normative pending further implementation experience.
+        </p>
+        <p>
+            <em property="rdfs:label">SystemKind</em> -
+            <span property="rdfs:comment skos:definition">A <code>SystemKind</code> describes a type of <a
+                    href="#SOSASystem"><code>System</code></a>.
+                Several <a href="#SOSASystem"><code>System</code></a> instances may reference the same
+                <code>SystemKind</code>.</span>
+        </p>
+        <table>
+            <tbody>
+                <tr>
+                    <th>scope note</th>
+                    <td>
+                        <span rel="skos:scopeNote">This description will include the kind of information commonly
+                            available from a 'datasheet' describing a model or type. </span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/ssn/systems/">http://www.w3.org/ns/ssn/systems/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Common">Back to module overview and
+                    examples</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="specterm" id="SSNSYSTEMhasSystemKind" about="ssn-system:hasSystemKind" typeof="owl:ObjectProperty">
+        <h6><a href="#SSNSYSTEMhasSystemKind">ssn-system:hasSystemKind</a></h6>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/ssn/systems/hasSystemKind</p>
+        <p><strong>an OWL Object Property</strong></p>
+
+        <p class="note">
+            hasSystemKind added in the 2024 update.
+            This term is non-normative pending further implementation experience.
+        </p>
+        <p>
+            <em property="rdfs:label">hasSystemKind</em> -
+            <span property="rdfs:comment skos:definition">Relation between an entity such as a
+                <a href="#SOSASystem"><code>System</code></a> and its kind.</span>
+        </p>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Domain Includes</th>
+                    <td>
+                        <span rel="schema:domainIncludes" resource="sosa:System"><a
+                                href="#SOSASystem">sosa:System</a></span>
+                        (includes <span rel="schema:domainIncludes" resource="sosa:Actuator"><a
+                                href="#SOSAActuator">sosa:Actuator</a></span>
+                        , <span rel="schema:domainIncludes" resource="sosa:Sensor"><a
+                                href="#SOSASensor">sosa:Sensor</a></span>
+                        , <span rel="schema:domainIncludes" resource="sosa:Sampler"><a
+                                href="#SOSASampler">sosa:Sampler</a></span> )
+                    </td>
+                </tr>
+                <tr>
+                    <th>Range Includes</th>
+                    <td>
+                        <span rel="schema:rangeIncludes" resource="ssn-system:SystemKind"><a
+                                href="#SSNSYSTEMSystemKind">ssn-system:SystemKind</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/ssn/systems/">http://www.w3.org/ns/ssn/systems/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Common">Back to module overview and examples</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="specterm sosa" id="SOSAPlatform" about="sosa:Platform" typeof="owl:Class">
+        <h6><a href="#SOSAPlatform">sosa:Platform</a></h6>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/Platform</p>
+        <p><strong>an OWL Class</strong></p>
+
+        <em property="rdfs:label">Platform</em> -
+        <table>
+            <tbody>
+                <tr class="ssn">
+                    <th class="restrictions">Additional Restrictions</th>
+                    <td>
+                        <span about="sosa:Platform" rel="rdfs:subClassOf" resource="[_:SOSAPlatform3]"></span>
+                        <span about="[_:SOSAPlatform3]" typeof="owl:Restriction"></span>
+                        <span about="[_:SOSAPlatform3]" rel="owl:onProperty" resource="ssn-system:hasPlatformKind"><a
+                                href="#SSNSYSTEMhasPlatformKind">ssn-system:hasPlatformKind</a></span>
+                        <span about="[_:#SSNSYSTEMhasPlatformKind]" property="owl:minCardinality" content="1"
+                            datatype="xsd:nonNegativeInteger"><em><b>MIN 1</b></em> <a
+                                href="#SSNSYSTEMPlatformKind">ssn-system:PlatformKind</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span>
+                <span class="sosa" style="display: none;">[<a href="#"
+                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
+                        additional SSN axioms</a>]</span>
+                <span class="ssn">[<a href="#"
+                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
+                        additional SSN axioms</a>]</span>
+            </span>
+            <span class="back">[<a href="#Common">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="specterm sosa" id="SSNSYSTEMPlatformKind" about="ssn-system:PlatformKind" typeof="owl:Class">
+        <h6><a href="#SSNSYSTEMPlatformKind">ssn-system:PlatformKind</a></h6>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/ssn/systems/PlatformKind</p>
+        <p><strong>an OWL Class</strong></p>
+
+        <p class="note">
+            PlatformKind added in the 2024 update.
+            This term is non-normative pending further implementation experience.
+        </p>
+        <p>
+            <em property="rdfs:label">PlatformKind</em> -
+            <span property="rdfs:comment skos:definition">A <code>PlatformKind</code> describes a type of <a
+                    href="#SOSAPlatform"><code>Platform</code></a>.
+                Several <a href="#SOSAPlatform"><code>Platform</code></a> instances may reference the same
+                <code>PlatformKind</code>.</span>
+        </p>
+        <table>
+            <tbody>
+                <tr>
+                    <th>scope note</th>
+                    <td>
+                        <span rel="skos:scopeNote"> This description will include the kind of information commonly
+                            available from a 'datasheet' describing a model or type. </span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/ssn/systems/">http://www.w3.org/ns/ssn/systems/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Common">Back to module overview and
+                    examples</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="specterm" id="SSNSYSTEMhasPlatformKind" about="ssn-system:hasPlatformKind"
+        typeof="owl:ObjectProperty">
+        <h6><a href="#SSNSYSTEMhasPlatformKind">ssn-system:hasPlatformKind</a></h6>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/ssn/systems/hasPlatformKind</p>
+        <p><strong>an OWL Object Property</strong></p>
+
+        <p class="note">
+            hasPlatformKind added in the 2024 update.
+            This term is non-normative pending further implementation experience.
+        </p>
+        <p>
+            <em property="rdfs:label">hasPlatformKind</em> -
+            <span property="rdfs:comment skos:definition">Relation between an entity such as a
+                <a href="#SOSAPlatform"><code>Platform</code></a> and its kind.</span>
+        </p>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Domain Includes</th>
+                    <td>
+                        <span rel="schema:domainIncludes" resource="sosa:Platform"><a
+                                href="#SOSAPlatform">sosa:Platform</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Range Includes</th>
+                    <td>
+                        <span rel="schema:rangeIncludes" resource="ssn-system:PlatformKind"><a
+                                href="#SSNSYSTEMPlatformKind">ssn-system:PlatformKind</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/ssn/systems/">http://www.w3.org/ns/ssn/systems/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Common">Back to module overview and examples</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
+
 
     <section class="specterm" id="SSNSYSTEMinCondition" about="ssn-system:inCondition" typeof="owl:ObjectProperty">
         <h5><a href="#SSNSYSTEMinCondition">ssn-system:inCondition</a></h5>

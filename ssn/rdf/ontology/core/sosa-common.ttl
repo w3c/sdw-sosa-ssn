@@ -328,13 +328,6 @@ sosa:System
   """@en ; 
   rdfs:isDefinedBy sosa-common: .
 
-sosa:SystemKind
-  a owl:Class ;
-  rdfs:label "SystemKind"@en ;
-  skos:definition "A SystemKind describes a type of system. Several System instances may reference the same SystemKind."@en ;
-  rdfs:comment "A SystemKind describes a type of system. Several System instances may reference the same SystemKind."@en ;
-  rdfs:isDefinedBy sosa-common: .
-
 sosa:implements 
   a owl:ObjectProperty ;
   rdfs:label "implements"@en ;
@@ -380,15 +373,6 @@ sosa:hasDeployment
   schema:rangeIncludes sosa:Deployment ;
   rdfs:isDefinedBy sosa-common: .
 
-sosa:hasSystemKind
-  a owl:ObjectProperty ;
-  rdfs:label "has system kind"@en ;
-  skos:definition "Relation between a System and a System Kind, recording that the System is of that particular kind/type."@en ;
-  rdfs:comment "Relation between a System and a System Kind, recording that the System is of that particular kind/type."@en ;
-  schema:domainIncludes sosa:System , sosa:Platform ;
-  schema:rangeIncludes sosa:SystemKind ;
-  rdfs:isDefinedBy sosa-common: .
-
 
 ## Platform 
 
@@ -406,13 +390,6 @@ sosa:Platform
   An environmental monitoring facility. 
   A platform that hosts a set of sensors. 
   A team performing a survey, where each team member would be modeled as an Observer."""@en ;
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:PlatformKind
-  a owl:Class ;
-  rdfs:label "PlatformKind"@en ;
-  skos:definition "A PlatformKind describes a type of platform. Several Platform instances may reference the same PlatformKind."@en ;
-  rdfs:comment "A PlatformKind describes a type of platform. Several Platform instances may reference the same PlatformKind."@en ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hosts 

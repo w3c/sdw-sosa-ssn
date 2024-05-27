@@ -29,7 +29,6 @@
             , <a href="#SOSAActuationCollection">sosa:ActuationCollection</a>
             , <a href="#SOSAactsOnProperty">sosa:actsOnProperty</a>
             , <a href="#SOSAActuator">sosa:Actuator</a>
-            , <a href="#SOSAActuatorKind">sosa:ActuatorKind</a>
             , <a href="#SOSAmadeActuation">sosa:madeActuation</a>
             , <a href="#SOSAmadeByActuator">sosa:madeByActuator</a>
         </p>
@@ -579,21 +578,13 @@
                 <tr class="ssn">
                     <th class="restrictions">Restrictions</th>
                     <td>
-                        <span about="sosa:Actuator" rel="rdfs:subClassOf" resource="[_:SOSAActuator3]"></span>
-                        <span about="[_:SOSAActuator3]" typeof="owl:Restriction"></span>
-                        <span about="[_:SOSAActuator3]" rel="owl:onProperty" resource="sosa:hasSystemKind"><a
-                                href="#SOSAforProperty">sosa:hasSystemKind</a></span>
-                        <span about="[_:SOSAActuator3]" property="owl:maxCardinality" content="1"
-                            datatype="xsd:nonNegativeInteger"><em><b>MAX 1</b></em> <a
-                                href="#SOSAActuatorKind">sosa:ActuatorKind</a></span>
-                        <br>
                         <span about="sosa:Actuator" rel="rdfs:subClassOf" resource="[_:SOSAActuator4]"></span>
                         <span about="[_:SOSAActuator4]" typeof="owl:Restriction"></span>
                         <span about="[_:SOSAActuator4]" rel="owl:onProperty" resource="sosa:implements"><a
                                 href="#SOSAimplements">sosa:implements</a></span>
-                        <span about="[_:SOSAActuator4]" property="owl:minCardinality" content="1"
-                            datatype="xsd:nonNegativeInteger"><em><b>MIN 1</b></em> <a
-                                href="#SOSASampling">sosa:ActuatingProcedure</a></span>
+                        <span about="[_:SOSAActuator4]" property="owl:allValuesFrom"
+                            resource="sosa:ActuatingProcedure"><em><b>ONLY</b></em> <a
+                                href="#SOSAActuatingProcedure">sosa:ActuatingProcedure</a></span>
                         <br>
                         <span about="sosa:Actuator" rel="rdfs:subClassOf" resource="[_:SOSAActuator2]"></span>
                         <span about="[_:SOSAActuator2]" typeof="owl:Restriction"></span>
@@ -631,60 +622,6 @@
                         additional SSN axioms</a>]</span>
             </span>
             <span class="back">[<a href="#Actuation">Back to module overview</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-        </div>
-    </section>
-
-    <section class="specterm sosa" id="SOSAActuatorKind" about="sosa:ActuatorKind" typeof="owl:Class">
-        <h5><a href="#SOSAActuatorKind">sosa:ActuatorKind</a></h5>
-        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/ActuatorKind</p>
-        <p><strong>an OWL Class</strong></p>
-
-        <p class="note">
-            ActuatorKind added in the 2024 update.
-            This term is non-normative pending further implementation experience
-        </p>
-        <p>
-            <em property="rdfs:label">ActuatorKind</em> -
-            <span property="rdfs:comment skos:definition">An <code>ActuatorKind</code> describes a type of <a
-                    href="#SOSAActuator"><code>Actuator</code></a>.
-                Several <a href="#SOSAActuator"><code>Actuator</code></a> instances may reference the same
-                <code>ActuatorKind</code>.</span>
-        </p>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Example</th>
-                    <td>
-                        <span property="skos:example">A specific model of window actuator.</span>
-                    </td>
-                </tr>
-                <tr class="ssn">
-                    <th>Sub class of</th>
-                    <td>
-                        <span rel="rdfs:subClassOf" resource="sosa:SystemKind"><a
-                                href="#SOSASystemKind">sosa:SystemKind</a></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <span rel="rdfs:isDefinedBy"><a
-                                href="http://www.w3.org/ns/sosa/actuation/">http://www.w3.org/ns/sosa/actuation/</a></span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="buttonpanel">
-            <span>
-                <span class="sosa" style="display: none;">[<a href="#"
-                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement,this);return false;">Show
-                        additional SSN axioms</a>]</span>
-                <span class="ssn">[<a href="#"
-                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement,this);return false;">Hide
-                        additional SSN axioms</a>]</span>
-            </span>
-            <span class="back">[<a href="#Actuation">Back to module overview and examples</a>]</span>
             <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
         </div>
     </section>

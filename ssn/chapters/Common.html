@@ -1551,13 +1551,11 @@
         <div class="azlist">
             <p>
                 <a href="#SOSASystem">sosa:System</a>
-                , <a href="#SOSASystemKind">sosa:SystemKind</a>
                 , <a href="#SOSAimplements">sosa:implements</a>
                 , <a href="#SOSAhasSubSystem">sosa:hasSubSystem</a>
                 , <a href="#SOSAisHostedBy">sosa:isHostedBy</a>
                 , <a href="#SOSAhasDeployment">sosa:hasDeployment</a>
                 , <a href="#SOSAPlatform">sosa:Platform</a>
-                , <a href="#SOSAPlatformKind">sosa:PlatformKind</a>
                 , <a href="#SOSAhosts">sosa:hosts</a>
                 , <a href="#SOSAinDeployment">sosa:inDeployment</a>
                 , <a href="#SOSADeployment">sosa:Deployment</a>
@@ -1595,14 +1593,6 @@
                             <span about="[_:System2]" property="owl:allValuesFrom"
                                 resource="sosa:Procedure"><em><b>ONLY</b></em>
                                 <a href="#SOSAProcedure">sosa:Procedure</a></span>
-                            <br>
-                            <span about="sosa:System" rel="rdfs:subClassOf" resource="[_:System3]"></span>
-                            <span about="[_:System3]" typeof="owl:Restriction"></span>
-                            <span about="[_:System3]" rel="owl:onProperty" resource="sosa:hasSystemKind"><a
-                                    href="#SOSAhasSystemKind">sosa:hasSystemKind</a></span>
-                            <span about="[_:System3]" property="owl:minCardinality" content="1"
-                                datatype="xsd:nonNegativeInteger"><em><b>MIN 1</b></em> <a
-                                    href="#SOSASystemKind">sosa:SystemKind</a></span>
                             <br>
                             <span about="sosa:System" rel="rdfs:subClassOf" resource="[_:System4]"></span>
                             <span about="[_:System4]" typeof="owl:Restriction"></span>
@@ -1654,48 +1644,6 @@
             </div>
         </section>
 
-        <section class="specterm sosa" id="SOSASystemKind" about="sosa:SystemKind" typeof="owl:Class">
-            <h6><a href="#SOSASystemKind">sosa:SystemKind</a></h6>
-            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/SystemKind</p>
-            <p><strong>an OWL Class</strong></p>
-
-            <p class="note">
-                SystemKind added in the 2024 update.
-                This term is non-normative pending further implementation experience.
-            </p>
-            <p>
-                <em property="rdfs:label">SystemKind</em> -
-                <span property="rdfs:comment skos:definition">A <code>SystemKind</code> describes a type of <a
-                        href="#SOSASystem"><code>System</code></a>.
-                    Several <a href="#SOSASystem"><code>System</code></a> instances may reference the same
-                    <code>SystemKind</code>.</span>
-            </p>
-            <table>
-                <tbody>
-                    <tr>
-                        <th>is Defined By</th>
-                        <td>
-                            <span rel="rdfs:isDefinedBy"><a
-                                    href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a></span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="buttonpanel">
-                <span>
-                    <span class="sosa" style="display: none;">[<a href="#"
-                            onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
-                            additional SSN axioms</a>]</span>
-                    <span class="ssn">[<a href="#"
-                            onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
-                            additional SSN axioms</a>]</span>
-                </span>
-                <span class="back">[<a href="#Common">Back to module overview and
-                        examples</a>]</span>
-                <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-            </div>
-        </section>
-
         <section class="specterm" id="SOSAimplements" about="sosa:implements" typeof="owl:ObjectProperty">
             <h6><a href="#SOSAimplements">sosa:implements</a></h6>
             <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/implements</p>
@@ -1737,68 +1685,6 @@
             </table>
             <div class="buttonpanel">
                 <span class="back">[<a href="#Common">Back to module overview</a>]</span>
-                <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-            </div>
-        </section>
-
-        <section class="specterm" id="SOSAhasSystemKind" about="sosa:hasSystemKind" typeof="owl:ObjectProperty">
-            <h6><a href="#SOSAhasSystemKind">sosa:hasSystemKind</a></h6>
-            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/hasSystemKind</p>
-            <p><strong>an OWL Object Property</strong></p>
-
-            <p class="note">
-                hasSystemKind added in the 2024 update.
-                This term is non-normative pending further implementation experience.
-            </p>
-            <p>
-                <em property="rdfs:label">hasSystemKind</em> -
-                <span property="rdfs:comment skos:definition">Relation between an entity such as a
-                    <a href="#SOSASystem"><code>System</code></a> or
-                    <a href="#SOSAPlatform"><code>Platform</code></a> and its kind.</span>
-            </p>
-            <table>
-                <tbody>
-                    <tr>
-                        <th>Domain Includes</th>
-                        <td>
-                            <span rel="schema:domainIncludes" resource="sosa:System"><a
-                                    href="#SOSASystem">sosa:System</a></span>
-                            (includes <span rel="schema:domainIncludes" resource="sosa:Actuator"><a
-                                    href="#SOSAActuator">sosa:Actuator</a></span>
-                            , <span rel="schema:domainIncludes" resource="sosa:Sensor"><a
-                                    href="#SOSASensor">sosa:Sensor</a></span>
-                            , <span rel="schema:domainIncludes" resource="sosa:Sampler"><a
-                                    href="#SOSASampler">sosa:Sampler</a></span> )
-                            , <span rel="schema:domainIncludes" resource="sosa:Platform"><a
-                                    href="#SOSAPlatform">sosa:Platform</a></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Range Includes</th>
-                        <td>
-                            <span rel="schema:rangeIncludes" resource="sosa:SystemKind"><a
-                                    href="#SOSASystemKind">sosa:SystemKind</a></span>
-                            (includes <span rel="schema:domainIncludes" resource="sosa:ActuatorKind"><a
-                                    href="#SOSAActuatorKind">sosa:ActuatorKind</a></span>
-                            , <span rel="schema:domainIncludes" resource="sosa:SensorKind"><a
-                                    href="#SOSASensorKind">sosa:SensorKind</a></span>
-                            , <span rel="schema:domainIncludes" resource="sosa:SamplerKind"><a
-                                    href="#SOSASamplerKind">sosa:SamplerKind</a></span> )
-                            , <span rel="schema:domainIncludes" resource="sosa:PlatformKind"><a
-                                    href="#SOSAPlatformKind">sosa:PlatformKind</a></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>is Defined By</th>
-                        <td>
-                            <span rel="rdfs:isDefinedBy"><a
-                                    href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a></span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="buttonpanel">
-                <span class="back">[<a href="#Common">Back to module overview and examples</a>]</span>
                 <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
             </div>
         </section>
@@ -1965,20 +1851,13 @@
                     <tr class="ssn">
                         <th class="restrictions">Restrictions</th>
                         <td>
-                            <span about="sosa:Platform" rel="rdfs:subClassOf" resource="[_:SOSAPlatform3]"></span>
-                            <span about="[_:SOSAPlatform3]" typeof="owl:Restriction"></span>
-                            <span about="[_:SOSAPlatform3]" rel="owl:onProperty" resource="sosa:hasSystemKind"><a
-                                    href="#SOSAhasSystemKind">sosa:hasSystemKind</a></span>
-                            <span about="[_:#SOSAhasSystemKind]" property="owl:minCardinality" content="1"
-                                datatype="xsd:nonNegativeInteger"><em><b>MIN 1</b></em> <a
-                                    href="#SOSAPlatformKind">sosa:PlatformKind</a></span>
-                            <br>
                             <span about="sosa:Platform" rel="rdfs:subClassOf" resource="[_:SOSAPlatform1]"></span>
                             <span about="[_:SOSAPlatform1]" typeof="owl:Restriction"></span>
                             <span about="[_:SOSAPlatform1]" rel="owl:onProperty" resource="sosa:hosts"><a
                                     href="#SOSAhosts">sosa:hosts</a></span>
                             <span about="[_:SOSAPlatform1]" property="owl:allValuesFrom"
-                                resource="sosa:System"><em><b>ONLY</b></em> <a href="#SOSASystem">sosa:System</a></span>
+                                resource="sosa:System"><em><b>ONLY</b></em> ( <a href="#SOSASystem">sosa:System</a>
+                                <b>OR</b> <a href="#SOSAPlatform">sosa:Platform</a>)</span>
                             <br>
                             <span about="sosa:Platform" rel="rdfs:subClassOf" resource="[_:SOSAPlatform2]"></span>
                             <span about="[_:SOSAPlatform2]" typeof="owl:Restriction"></span>
@@ -2008,48 +1887,6 @@
                             additional SSN axioms</a>]</span>
                 </span>
                 <span class="back">[<a href="#Common">Back to module overview</a>]</span>
-                <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-            </div>
-        </section>
-
-        <section class="specterm sosa" id="SOSAPlatformKind" about="sosa:PlatformKind" typeof="owl:Class">
-            <h6><a href="#SOSAPlatformKind">sosa:PlatformKind</a></h6>
-            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/PlatformKind</p>
-            <p><strong>an OWL Class</strong></p>
-
-            <p class="note">
-                PlatformKind added in the 2024 update.
-                This term is non-normative pending further implementation experience.
-            </p>
-            <p>
-                <em property="rdfs:label">PlatformKind</em> -
-                <span property="rdfs:comment skos:definition">A <code>PlatformKind</code> describes a type of <a
-                        href="#SOSAPlatform"><code>Platform</code></a>.
-                    Several <a href="#SOSAPlatform"><code>Platform</code></a> instances may reference the same
-                    <code>PlatformKind</code>.</span>
-            </p>
-            <table>
-                <tbody>
-                    <tr>
-                        <th>is Defined By</th>
-                        <td>
-                            <span rel="rdfs:isDefinedBy"><a
-                                    href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a></span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="buttonpanel">
-                <span>
-                    <span class="sosa" style="display: none;">[<a href="#"
-                            onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
-                            additional SSN axioms</a>]</span>
-                    <span class="ssn">[<a href="#"
-                            onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
-                            additional SSN axioms</a>]</span>
-                </span>
-                <span class="back">[<a href="#Common">Back to module overview and
-                        examples</a>]</span>
                 <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
             </div>
         </section>
