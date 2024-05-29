@@ -86,12 +86,24 @@ sosa:implements
   schema:rangeIncludes sosa:SamplingProcedure ;
   rdfs:isDefinedBy sosa-common: .
 
+sosa:forProperty 
+  schema:domainIncludes ssn-system:SystemKind ;
+  schema:rangeIncludes sosa:Property ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:observes 
+  schema:domainIncludes ssn-system:SystemKind ;
+  schema:rangeIncludes sosa:ObservableProperty ;
+  rdfs:isDefinedBy sosa-common: .
+
 ssn-system:SystemKind
   a owl:Class ;
   rdfs:label "SystemKind"@en ;
   skos:definition "A SystemKind describes a type of system. Several System instances may reference the same SystemKind."@en ;
   skos:scopeNote "This description will include the kind of information commonly available from a 'datasheet' describing a model or type."@en ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implements ; owl:allValuesFrom sosa:Procedure ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:forProperty ; owl:allValuesFrom sosa:Property ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:observes ; owl:allValuesFrom sosa:ObservableProperty ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasSystemCapability ; owl:allValuesFrom ssn-system:SystemCapability ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasOperatingRange ; owl:allValuesFrom ssn-system:OperatingRange ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasSurvivalRange ; owl:allValuesFrom ssn-system:SurvivalRange ] ;

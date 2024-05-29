@@ -108,10 +108,18 @@
                         <span about="sosa:System" rel="rdfs:subClassOf" resource="[_:System3]"></span>
                         <span about="[_:System3]" typeof="owl:Restriction"></span>
                         <span about="[_:System3]" rel="owl:onProperty" resource="sosa:hasSystemKind"><a
-                                href="#SOSAhasSystemKind">sosa:hasSystemKind</a></span>
+                                href="#SSNSYSTEMShasSystemKind">ssn-system:hasSystemKind</a></span>
                         <span about="[_:System3]" property="owl:minCardinality" content="1"
-                            datatype="xsd:nonNegativeInteger"><em><b>MIN 1</b></em> <a
-                                href="#SOSASystemKind">sosa:SystemKind</a></span>
+                            datatype="xsd:nonNegativeInteger"><em><b>MIN 1</b></em></span>
+                        <br>
+                        <span about="sosa:System" rel="rdfs:subClassOf" resource="[_:System3]"></span>
+                        <span about="[_:System3]" typeof="owl:Restriction"></span>
+                        <span about="[_:System3]" rel="owl:onProperty" resource="sosa:hasSystemKind"><a
+                                href="#SSNSYSTEMShasSystemKind">ssn-system:hasSystemKind</a></span>
+                        <span about="[_:System3]" property="owl:allValuesFrom"
+                            resource="ssn-system:SystemKind"><em><b>ONLY</b></em> <a
+                                href="#SSNSYSTEMSSystemKind">ssn-system:SystemKind</a></span>
+                        <br>
                         <span about="sosa:System" rel="rdfs:subClassOf" resource="[_:System8]"></span>
                         <span about="[_:System8]" typeof="owl:Restriction"></span>
                         <span about="[_:System8]" rel="owl:onProperty" resource="ssn-system:hasSystemCapability"><a
@@ -185,6 +193,58 @@
                             available from a 'datasheet' describing a model or type. </span>
                     </td>
                 </tr>
+                <tr class="ssn">
+                    <th class="restrictions">Restrictions</th>
+                    <td>
+                        <span about="ssn-system:SystemKind" rel="rdfs:subClassOf" resource="[_:SystemKind2]"></span>
+                        <span about="[_:SystemKind2]" typeof="owl:Restriction"></span>
+                        <span about="[_:SystemKind2]" rel="owl:onProperty" resource="sosa:implements"><a
+                                href="#SOSAimplements">sosa:implements</a></span>
+                        <span about="[_:SystemKind2]" property="owl:allValuesFrom"
+                            resource="sosa:Procedure"><em><b>ONLY</b></em>
+                            <a href="#SOSAProcedure">sosa:Procedure</a></span>
+                        <br>
+                        <span about="ssn-system:SystemKind" rel="rdfs:subClassOf" resource="[_:SystemKind3]"></span>
+                        <span about="[_:SystemKind3]" typeof="owl:Restriction"></span>
+                        <span about="[_:SystemKind3]" rel="owl:onProperty" resource="sosa:forProperty"><a
+                                href="#SOSAimplements">sosa:forProperty</a></span>
+                        <span about="[_:SystemKind3]" property="owl:allValuesFrom"
+                            resource="sosa:Procedure"><em><b>ONLY</b></em>
+                            <a href="#SOSAProcedure">sosa:Property</a></span>
+                        <br>
+                        <span about="ssn-system:SystemKind" rel="rdfs:subClassOf" resource="[_:SystemKind4]"></span>
+                        <span about="[_:SystemKind4]" typeof="owl:Restriction"></span>
+                        <span about="[_:SystemKind4]" rel="owl:onProperty" resource="sosa:observes"><a
+                                href="#SOSAimplements">sosa:observes</a></span>
+                        <span about="[_:SystemKind4]" property="owl:allValuesFrom"
+                            resource="sosa:Procedure"><em><b>ONLY</b></em>
+                            <a href="#SOSAProcedure">sosa:ObservableProperty</a></span>
+                        <br>
+                        <span about="ssn-system:SystemKind" rel="rdfs:subClassOf" resource="[_:SystemKind8]"></span>
+                        <span about="[_:SystemKind8]" typeof="owl:Restriction"></span>
+                        <span about="[_:SystemKind8]" rel="owl:onProperty" resource="ssn-system:hasSystemCapability"><a
+                                href="#SSNSYSTEMhasSystemCapability">ssn-system:hasSystemCapability</a></span>
+                        <span about="[_:SystemKind8]" property="owl:allValuesFrom"
+                            resource="ssn-system:SystemCapability"><em><b>ONLY</b></em> <a
+                                href="#SSNSYSTEMSystemCapability">ssn-system:SystemCapability</a></span>
+                        <br>
+                        <span about="ssn-system:SystemKind" rel="rdfs:subClassOf" resource="[_:SystemKind9]"></span>
+                        <span about="[_:SystemKind9]" typeof="owl:Restriction"></span>
+                        <span about="[_:SystemKind9]" rel="owl:onProperty" resource="ssn-system:hasOperatingRange"><a
+                                href="#SSNSYSTEMhasOperatingRange">ssn-system:hasOperatingRange</a></span>
+                        <span about="[_:SystemKind9]" property="owl:allValuesFrom"
+                            resource="ssn-system:OperatingRange"><em><b>ONLY</b></em> <a
+                                href="#SSNSYSTEMOperatingRange">ssn-system:OperatingRange</a></span>
+                        <br>
+                        <span about="ssn-system:SystemKind" rel="rdfs:subClassOf" resource="[_:SystemKind10]"></span>
+                        <span about="[_:SystemKind10]" typeof="owl:Restriction"></span>
+                        <span about="[_:SystemKind10]" rel="owl:onProperty" resource="ssn-system:hasSurvivalRange"><a
+                                href="#SSNSYSTEMhasSurvivalRange">ssn-system:hasSurvivalRange</a></span>
+                        <span about="[_:SystemKind10]" property="owl:allValuesFrom"
+                            resource="ssn-system:SurvivalRange"><em><b>ONLY</b></em> <a
+                                href="#SSNSYSTEMSurvivalRange">ssn-system:SurvivalRange</a></span>
+                    </td>
+                </tr>
                 <tr>
                     <th>is Defined By</th>
                     <td>
@@ -195,6 +255,14 @@
             </tbody>
         </table>
         <div class="buttonpanel">
+            <span>
+                <span class="sosa" style="display: none;">[<a href="#"
+                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
+                        additional SSN axioms</a>]</span>
+                <span class="ssn">[<a href="#"
+                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
+                        additional SSN axioms</a>]</span>
+            </span>
             <span class="back">[<a href="#Common">Back to module overview and
                     examples</a>]</span>
             <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
@@ -263,13 +331,44 @@
                 <tr class="ssn">
                     <th class="restrictions">Additional Restrictions</th>
                     <td>
-                        <span about="sosa:Platform" rel="rdfs:subClassOf" resource="[_:SOSAPlatform3]"></span>
-                        <span about="[_:SOSAPlatform3]" typeof="owl:Restriction"></span>
-                        <span about="[_:SOSAPlatform3]" rel="owl:onProperty" resource="ssn-system:hasPlatformKind"><a
+                        <span about="sosa:Platform" rel="rdfs:subClassOf" resource="[_:Platform3]"></span>
+                        <span about="[_:Platform3]" typeof="owl:Restriction"></span>
+                        <span about="[_:Platform3]" rel="owl:onProperty" resource="ssn-system:hasPlatformKind"><a
                                 href="#SSNSYSTEMhasPlatformKind">ssn-system:hasPlatformKind</a></span>
-                        <span about="[_:#SSNSYSTEMhasPlatformKind]" property="owl:minCardinality" content="1"
-                            datatype="xsd:nonNegativeInteger"><em><b>MIN 1</b></em> <a
+                        <span about="[_:#Platform3]" property="owl:minCardinality" content="1"
+                            datatype="xsd:nonNegativeInteger"><em><b>MIN 1</b></em> </span>
+                        <br>
+                        <span about="sosa:Platform" rel="rdfs:subClassOf" resource="[_:Platform4]"></span>
+                        <span about="[_:Platform4]" typeof="owl:Restriction"></span>
+                        <span about="[_:Platform4]" rel="owl:onProperty" resource="ssn-system:hasPlatformKind"><a
+                                href="#SSNSYSTEMhasPlatformKind">ssn-system:hasPlatformKind</a></span>
+                        <span about="[_:Platform4]" property="owl:allValuesFrom"
+                            resource="ssn-system:PlatformKind"><em><b>ONLY</b></em> <a
                                 href="#SSNSYSTEMPlatformKind">ssn-system:PlatformKind</a></span>
+                        <br>
+                        <span about="sosa:Platform" rel="rdfs:subClassOf" resource="[_:Platform8]"></span>
+                        <span about="[_:Platform8]" typeof="owl:Restriction"></span>
+                        <span about="[_:Platform8]" rel="owl:onProperty" resource="ssn-system:hasSystemCapability"><a
+                                href="#SSNSYSTEMhasSystemCapability">ssn-system:hasSystemCapability</a></span>
+                        <span about="[_:Platform8]" property="owl:allValuesFrom"
+                            resource="ssn-system:SystemCapability"><em><b>ONLY</b></em> <a
+                                href="#SSNSYSTEMSystemCapability">ssn-system:SystemCapability</a></span>
+                        <br>
+                        <span about="sosa:Platform" rel="rdfs:subClassOf" resource="[_:Platform9]"></span>
+                        <span about="[_:Platform9]" typeof="owl:Restriction"></span>
+                        <span about="[_:Platform9]" rel="owl:onProperty" resource="ssn-system:hasOperatingRange"><a
+                                href="#SSNSYSTEMhasOperatingRange">ssn-system:hasOperatingRange</a></span>
+                        <span about="[_:Platform9]" property="owl:allValuesFrom"
+                            resource="ssn-system:OperatingRange"><em><b>ONLY</b></em> <a
+                                href="#SSNSYSTEMOperatingRange">ssn-system:OperatingRange</a></span>
+                        <br>
+                        <span about="sosa:Platform" rel="rdfs:subClassOf" resource="[_:Platform10]"></span>
+                        <span about="[_:Platform10]" typeof="owl:Restriction"></span>
+                        <span about="[_:Platform10]" rel="owl:onProperty" resource="ssn-system:hasSurvivalRange"><a
+                                href="#SSNSYSTEMhasSurvivalRange">ssn-system:hasSurvivalRange</a></span>
+                        <span about="[_:Platform10]" property="owl:allValuesFrom"
+                            resource="ssn-system:SurvivalRange"><em><b>ONLY</b></em> <a
+                                href="#SSNSYSTEMSurvivalRange">ssn-system:SurvivalRange</a></span>
                     </td>
                 </tr>
                 <tr>
@@ -320,6 +419,48 @@
                             available from a 'datasheet' describing a model or type. </span>
                     </td>
                 </tr>
+
+                <tr class="ssn">
+                    <th class="restrictions">Restrictions</th>
+                    <td>
+                        <span about="ssn-system:PlatformKind" rel="rdfs:subClassOf" resource="[_:PlatformKind2]"></span>
+                        <span about="[_:PlatformKind2]" typeof="owl:Restriction"></span>
+                        <span about="[_:PlatformKind2]" rel="owl:onProperty" resource="sosa:hosts"><a
+                                href="#SOSAhosts">sosa:hosts</a></span>
+                        <span about="[_:PlatformKind2]" property="owl:allValuesFrom"
+                            resource="sosa:Procedure"><em><b>ONLY</b></em>
+                            ( <a href="#SSNSYSTEMSystemKind">ssn-system:SystemKind</a>
+                            <b>OR</b> <a href="#SSNSYSTEMPlatformKind">ssn-system:PlatformKind</a>)</span>
+                        <br>
+                        <span about="ssn-system:PlatformKind" rel="rdfs:subClassOf" resource="[_:PlatformKind8]"></span>
+                        <span about="[_:PlatformKind8]" typeof="owl:Restriction"></span>
+                        <span about="[_:PlatformKind8]" rel="owl:onProperty"
+                            resource="ssn-system:hasSystemCapability"><a
+                                href="#SSNSYSTEMhasSystemCapability">ssn-system:hasSystemCapability</a></span>
+                        <span about="[_:PlatformKind8]" property="owl:allValuesFrom"
+                            resource="ssn-system:SystemCapability"><em><b>ONLY</b></em> <a
+                                href="#SSNSYSTEMSystemCapability">ssn-system:SystemCapability</a></span>
+                        <br>
+                        <span about="ssn-system:PlatformKind" rel="rdfs:subClassOf" resource="[_:PlatformKind9]"></span>
+                        <span about="[_:PlatformKind9]" typeof="owl:Restriction"></span>
+                        <span about="[_:PlatformKind9]" rel="owl:onProperty" resource="ssn-system:hasOperatingRange"><a
+                                href="#SSNSYSTEMhasOperatingRange">ssn-system:hasOperatingRange</a></span>
+                        <span about="[_:PlatformKind9]" property="owl:allValuesFrom"
+                            resource="ssn-system:OperatingRange"><em><b>ONLY</b></em> <a
+                                href="#SSNSYSTEMOperatingRange">ssn-system:OperatingRange</a></span>
+                        <br>
+                        <span about="ssn-system:PlatformKind" rel="rdfs:subClassOf"
+                            resource="[_:PlatformKind10]"></span>
+                        <span about="[_:PlatformKind10]" typeof="owl:Restriction"></span>
+                        <span about="[_:PlatformKind10]" rel="owl:onProperty" resource="ssn-system:hasSurvivalRange"><a
+                                href="#SSNSYSTEMhasSurvivalRange">ssn-system:hasSurvivalRange</a></span>
+                        <span about="[_:PlatformKind10]" property="owl:allValuesFrom"
+                            resource="ssn-system:SurvivalRange"><em><b>ONLY</b></em> <a
+                                href="#SSNSYSTEMSurvivalRange">ssn-system:SurvivalRange</a></span>
+                    </td>
+                </tr>
+
+
                 <tr>
                     <th>is Defined By</th>
                     <td>
@@ -330,6 +471,14 @@
             </tbody>
         </table>
         <div class="buttonpanel">
+            <span>
+                <span class="sosa" style="display: none;">[<a href="#"
+                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
+                        additional SSN axioms</a>]</span>
+                <span class="ssn">[<a href="#"
+                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
+                        additional SSN axioms</a>]</span>
+            </span>
             <span class="back">[<a href="#Common">Back to module overview and
                     examples</a>]</span>
             <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
