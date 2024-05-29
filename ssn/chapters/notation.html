@@ -1,0 +1,97 @@
+<h2>Notation</h2>
+
+<section id="rdf-notation">
+    <h3>RDF notation</h3>
+    <p>
+        The SSN Ontology is defined using RDFS [[rdf-schema]] and OWL [[owl2-overview]] using its RDF representation
+        [[owl2-rdf-based-semantics]].
+    </p>
+    <p>
+        There are several RDF serializations available.
+        The choice of RDF serialization is not prescribed by this specification.
+        In this document, RDF fragments and examples are shown primarily using the compact Turtle notation
+        [[rdf12-turtle]], with options for JSON-LD [[json-ld11]] in some places.
+        OWL Restrictions are shown using the Manchester Syntax [[owl2-manchester-syntax]]
+    </p>
+</section>
+
+<section id="diagram" class="informative">
+    <h3>Diagram notation</h3>
+
+    <section id="module-diagram">
+        <h4>Module diagrams</h4>
+
+        <figure id="module-diagram-notation">
+            <img alt="UML-ish notation for module diagrams" src="images/ModuleKey.png" width="60%">
+            <figcaption>
+                Key to notation used in module diagrams.
+                <br>
+            </figcaption>
+        </figure>
+
+        <p>
+            Module diagrams use a notation similar to UML Package Diagrams [[uml]], with folders for modules, and dashed
+            directed connectors for dependencies between them.
+            However the module diagrams MUST NOT be interpreted according to strict UML rules.
+        </p>
+
+    </section>
+
+    <section id="class-diagram">
+        <h4>Class and property diagrams</h4>
+
+        <figure id="class-diagram-notation">
+            <img alt="UML-ish notation for class+property diagrams" src="images/ClassKey.png" width="60%">
+            <figcaption>
+                Key to notation used in class and property diagrams.
+                <br>
+            </figcaption>
+        </figure>
+
+        <p>
+            Class and property diagrams use a notation similar to UML Class Diagrams [[uml]], with boxes for classes,
+            and labelled directed connectors (associations) or class attributes for properties.
+            However the class diagrams MUST NOT be interpreted according to strict UML rules.
+        </p>
+        <p>
+            In particular:
+            <br>- Cardinalities are not shown and should not be inferred
+            <br>- Object properties are generally shown as association roles. Exceptions are (i) if a target class is
+            unspecified (ii) to reduce clutter, in which case object properties appear as class attributes, alongside
+            the datatype properties
+        </p>
+        <p>
+            Classes and properties coloured grey are included in a diagram for context, but are described in
+            a different section of the document
+        </p>
+        <p>
+            Connectors with open arrowheads indicate sub-class relationships, however it should be noted that these are
+            not defined in the SOSA modules.
+        </p>
+        <p>
+            The purpose of the diagrams is primarily to orient the reader as to how SSN properties are related to the
+            SSN classes for most purposes.
+            The associations shown in the diagrams match the soft axioms <code>schema:domainIncludes</code> and
+            <code>schema:rangeIncludes</code> in the ontology.
+            However, in any diagram the associations and attributes are not exhaustive: other associations exist but are
+            not shown where their presence in the diagram would distract from the primary message.
+        </p>
+    </section>
+</section>
+
+<section id="json-ld">
+    <h3>JSON-LD serialization</h3>
+
+    <p>
+        JSON-LD [[json-ld]] provides a standard JSON-based serialization for RDF data.
+        However, there are a variety of styles of JSON-LD which represent the same RDF graph.
+        Some styles are more amenable to description using JSON-schema [[json-schema]]. 
+        These are advantageous, allowing for validation of RDF data streams serialized in JSON.
+    </p>
+
+    <p>
+        TBC
+    </p>
+</section>
+
+</section>
