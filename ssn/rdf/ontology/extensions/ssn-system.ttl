@@ -78,11 +78,20 @@ sosa:System
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasSurvivalRange ; owl:allValuesFrom ssn-system:SurvivalRange ] ;
   rdfs:isDefinedBy sosa-common: .
 
+sosa:implements 
+  schema:domainIncludes ssn-system:SystemKind ;
+  schema:rangeIncludes sosa:Procedure ;
+  schema:rangeIncludes sosa:ActuatingProcedure ;
+  schema:rangeIncludes sosa:ObservingProcedure ;
+  schema:rangeIncludes sosa:SamplingProcedure ;
+  rdfs:isDefinedBy sosa-common: .
+
 ssn-system:SystemKind
   a owl:Class ;
   rdfs:label "SystemKind"@en ;
   skos:definition "A SystemKind describes a type of system. Several System instances may reference the same SystemKind."@en ;
   skos:scopeNote "This description will include the kind of information commonly available from a 'datasheet' describing a model or type."@en ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implements ; owl:allValuesFrom sosa:Procedure ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasSystemCapability ; owl:allValuesFrom ssn-system:SystemCapability ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasOperatingRange ; owl:allValuesFrom ssn-system:OperatingRange ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasSurvivalRange ; owl:allValuesFrom ssn-system:SurvivalRange ] ;
@@ -99,6 +108,15 @@ ssn-system:hasSystemKind
 sosa:Platform 
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasPlatformKind ; owl:allValuesFrom ssn-system:PlatformKind ]  ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasPlatformKind ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasSystemCapability ; owl:allValuesFrom ssn-system:SystemCapability ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasOperatingRange ; owl:allValuesFrom ssn-system:OperatingRange ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasSurvivalRange ; owl:allValuesFrom ssn-system:SurvivalRange ] ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hosts 
+  schema:domainIncludes ssn-system:PlatformKind ;
+  schema:rangeIncludes ssn-system:PlatformKind ;
+  schema:rangeIncludes ssn-system:SystemKind ;
   rdfs:isDefinedBy sosa-common: .
 
 ssn-system:PlatformKind
@@ -106,6 +124,7 @@ ssn-system:PlatformKind
   rdfs:label "PlatformKind"@en ;
   skos:definition "A PlatformKind describes a type of platform. Several Platform instances may reference the same PlatformKind."@en ;
   skos:scopeNote "This description will include the kind of information commonly available from a 'datasheet' describing a model or type."@en ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hosts ; owl:allValuesFrom [ owl:unionOf ( ssn-system:PlatformKind ssn-system:SystemKind ) ; ] ; ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasSystemCapability ; owl:allValuesFrom ssn-system:SystemCapability ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasOperatingRange ; owl:allValuesFrom ssn-system:OperatingRange ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasSurvivalRange ; owl:allValuesFrom ssn-system:SurvivalRange ] ;
