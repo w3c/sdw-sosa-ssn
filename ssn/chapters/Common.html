@@ -63,19 +63,18 @@
             <p><strong>an OWL Class</strong></p>
 
             <em property="rdfs:label">Feature Of Interest</em> -
-            <span property="skos:definition">The thing that is the target of the <a
-                    href="#SOSAExecution">Execution</a>, i.e. whose property is being estimated or
+            <span property="skos:definition">The thing that is the target of the <a href="#SOSAExecution">Execution</a>,
+                i.e. whose property is being estimated or
                 calculated in the course of an <a href="#SOSAObservation">Observation</a> to arrive at a
                 result, or whose property is being manipulated by an <a href="#SOSAActuator">Actuator</a>,
-                or which is being sampled or transformed in an act of <a
-                    href="#SOSASampling">Sampling</a>.</span>
+                or which is being sampled or transformed in an act of <a href="#SOSASampling">Sampling</a>.</span>
             <table class="ssn ssn">
                 <tbody>
                     <tr>
                         <th>Example</th>
                         <td><span about="sosa:FeatureOfInterest" property="skos:example">When measuring the height of a
-                                tree, the height is the observed <a
-                                    href="#SOSAObservation">ObservableProperty</a>, 20m may be the result
+                                tree, the height is the observed <a href="#SOSAObservation">ObservableProperty</a>, 20m
+                                may be the result
                                 of the <a href="#SOSAObservation">Observation</a>, and the tree is the <a
                                     href="#SOSAFeatureOfInterest">FeatureOfInterest</a>.
                                 A window is a <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a> for an
@@ -136,8 +135,8 @@
             <p><strong>an OWL Object Property</strong></p>
 
             <em property="rdfs:label">has property</em> -
-            <span property="skos:definition">Relation between an entity and a <a
-                    href="#SOSAProperty">Property</a> of that entity.</span>
+            <span property="skos:definition">Relation between an entity and a <a href="#SOSAProperty">Property</a> of
+                that entity.</span>
             <table>
                 <tbody>
                     <tr>
@@ -185,12 +184,10 @@
             <p><strong>an OWL Object Property</strong></p>
 
             <em property="rdfs:label">is feature of interest of</em> -
-            <span property="skos:definition">A relation between a <a
-                    href="#SOSAFeatureOfInterest">FeatureOfInterest</a> and an <a
-                    href="#SOSAExecution">Execution</a> concerning it, i.e. an <a
-                    href="#SOSAActuation">Actuation</a> acting on it, or an <a
-                    href="#SOSAObservation">Observation</a> about it or an act of <a
-                    href="#SOSASampling">Sampling</a> that sampled it.</span> <br>
+            <span property="skos:definition">A relation between a <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a>
+                and an <a href="#SOSAExecution">Execution</a> concerning it, i.e. an <a
+                    href="#SOSAActuation">Actuation</a> acting on it, or an <a href="#SOSAObservation">Observation</a>
+                about it or an act of <a href="#SOSASampling">Sampling</a> that sampled it.</span> <br>
             <table>
                 <tbody>
                     <tr>
@@ -258,6 +255,26 @@
                                 and taxonomies, may be used as instances of <a
                                     href="#SOSAFeatureOfInterest">Property</a>.</span></td>
                     </tr>
+                    <tr class="ssn">
+                        <th class="restrictions">Restrictions:</th>
+                        <td>
+                            <span about="sosa:Property" rel="rdfs:subClassOf" resource="[_:SOSAProperty1]"></span>
+                            <span about="[_:SOSAProperty1]" typeof="owl:Restriction"></span>
+                            <span about="[_:SOSAProperty1]" rel="owl:onProperty" resource="sosa:hasProcedure"><a
+                                    href="#SOSAhasProcedure">sosa:hasProcedure</a></span>
+                            <span about="[_:SOSAProperty1]" property="owl:allValuesFrom"
+                                resource="sosa:Procedure"><em><b>ONLY</b></em> <a
+                                    href="#SOSAProcedure">sosa:Procedure</a></span>
+                            <br>
+                            <span about="sosa:Property" rel="rdfs:subClassOf" resource="[_:SOSAProperty2]"></span>
+                            <span about="[_:SOSAProperty2]" typeof="owl:Restriction"></span>
+                            <span about="[_:SOSAProperty2]" rel="owl:onProperty" resource="sosa:isPropertyOf"><a
+                                    href="#SOSAisPropertyOf">sosa:isPropertyOf</a></span>
+                            <span about="[_:SOSAProperty2]" property="owl:allValuesFrom"
+                                resource="sosa:Procedure"><em><b>ONLY</b></em> <a
+                                    href="#SOSAProcedure">sosa:FeatureOfInterest</a></span>
+                        </td>
+                    </tr>
                     <tr>
                         <th>is Defined By</th>
                         <td>
@@ -268,6 +285,14 @@
                 </tbody>
             </table>
             <div class="buttonpanel">
+                <span>
+                    <span class="sosa" style="display: none;">[<a href="#"
+                            onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
+                            additional SSN axioms</a>]</span>
+                    <span class="ssn">[<a href="#"
+                            onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
+                            additional SSN axioms</a>]</span>
+                </span>
                 <span class="back">[<a href="#Common">Back to module overview</a>]</span>
                 <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
             </div>
@@ -285,8 +310,7 @@
                 <span property="skos:definition">An identifiable quality of a specific <a
                         href="#SOSAFeatureOfInterest">FeatureOfInterest</a> that can be observed or acted
                     upon.
-                    A property of interest is tied to a specific <a
-                        href="#SOSAFeatureOfInterest">FeatureOfInterest</a>.
+                    A property of interest is tied to a specific <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a>.
                     It is inherent to and cannot exist without that feature of interest.</span>
             </p>
             <table>
@@ -410,8 +434,8 @@
                         <th>Example</th>
                         <td>
                             <span rel="skos:example">For example, from a <a href="#SOSASensor">Sensor</a>
-                                to the properties it can observe; from an <a
-                                    href="#SOSAActuator">Actuator</a> to the properties it can act on; from
+                                to the properties it can observe; from an <a href="#SOSAActuator">Actuator</a> to the
+                                properties it can act on; from
                                 a <a href="#SOSADeployment">Deployment</a> to the properties it was
                                 installed to observe or act on; from a <a
                                     href="#SSNSYSTEMSystemCapability">SystemCapability</a> to the <a
@@ -420,10 +444,33 @@
                         </td>
                     </tr>
                     <tr>
+                        <th>Domain Includes</th>
+                        <td>
+                            <span rel="schema:domainIncludes" resource="sosa:Procedure"><a
+                                    href="#SOSAProcedure">sosa:Procedure</a></span>
+                            , <span rel="schema:domainIncludes" resource="sosa:ActuatingProcedure"><a
+                                    href="#SOSAActuatingProcedure">sosa:ActuatingProcedure</a></span>
+                            , <span rel="schema:domainIncludes" resource="sosa:ObservingProcedure"><a
+                                    href="#SOSAObservingProcedure">sosa:ObservingProcedure</a></span>
+                            , <span rel="schema:domainIncludes" resource="sosa:System"><a
+                                    href="#SOSASystem">sosa:System</a></span>
+                            , <span rel="schema:domainIncludes" resource="sosa:Actuator"><a
+                                    href="#SOSAActuator">sosa:Actuator</a></span>
+                            , <span rel="schema:domainIncludes" resource="sosa:Sensor"><a
+                                    href="#SOSASensor">sosa:Sensor</a></span>
+                            , <span rel="schema:domainIncludes" resource="sosa:Deployment"><a
+                                    href="#SOSADeployment">sosa:Deployment</a></span>
+                        </td>
+                    </tr>
+                    <tr>
                         <th>Range Includes</th>
                         <td>
                             <span rel="schema:rangeIncludes" resource="sosa:Property"><a
                                     href="#SOSAProperty">sosa:Property</a></span>
+                            , <span rel="schema:rangeIncludes" resource="sosa:ActuatableProperty"><a
+                                    href="#SOSAActuatableProperty">sosa:ActuatableProperty</a></span>
+                            , <span rel="schema:rangeIncludes" resource="sosa:ObservableProperty"><a
+                                    href="#SOSAObservableProperty">sosa:ObservableProperty</a></span>
                         </td>
                     </tr>
                     <tr>
@@ -482,12 +529,10 @@
             <em property="rdfs:label">Procedure</em> -
             <span property="skos:definition">A workflow, protocol, plan, algorithm, or computational method
                 specifying how make a change to the state of the world (through an <a
-                    href="#SOSAActuation">Actuation</a>) or to make an <a
-                    href="#SOSAObservation">Observation</a>, or create a <a
-                    href="#SOSASample">Sample</a>.
+                    href="#SOSAActuation">Actuation</a>) or to make an <a href="#SOSAObservation">Observation</a>, or
+                create a <a href="#SOSASample">Sample</a>.
                 A <a href="#SOSAProcedure">Procedure</a> is re-usable, and might be involved in many <a
-                    href="#SOSAActuation">Actuations</a>, or <a
-                    href="#SOSAObservation">Observations</a>, or <a
+                    href="#SOSAActuation">Actuations</a>, or <a href="#SOSAObservation">Observations</a>, or <a
                     href="#SOSASampling">Samplings</a>.
                 It explains the steps to be carried out to arrive at reproducible results.</span> <br>
             <table>
@@ -530,6 +575,14 @@
                                     href="#SOSAimplementedBy">sosa:implementedBy</a></span>
                             <span about="[_:SOSAProcedure3]" property="owl:allValuesFrom"
                                 resource="sosa:System"><em><b>ONLY</b></em> <a href="#SOSASystem">sosa:System</a></span>
+                            <br>
+                            <span about="sosa:Procedure" rel="rdfs:subClassOf" resource="[_:SOSAProcedure4]"></span>
+                            <span about="[_:SOSAProcedure4]" typeof="owl:Restriction"></span>
+                            <span about="[_:SOSAProcedure4]" rel="owl:onProperty" resource="sosa:forProperty"><a
+                                    href="#SOSAforProperty">sosa:forProperty</a></span>
+                            <span about="[_:SOSAProcedure4]" property="owl:allValuesFrom"
+                                resource="sosa:Property"><em><b>ONLY</b></em> <a
+                                    href="#SOSAProperty">sosa:Property</a></span>
                         </td>
                     </tr>
                     <tr>
@@ -662,6 +715,56 @@
             </div>
         </section>
 
+        <section class="specterm" id="SOSAhasProcedure" about="sosa:hasProcedure" typeof="owl:ObjectProperty">
+            <h6><a href="#SOSAhasProcedure">sosa:hasProcedure</a></h6>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/hasProcedure</p>
+            <p><strong>an OWL Object Property</strong></p>
+
+            <p class="note">hasProcedure added in the 2024 Update.
+                This term is non-normative pending further implementation experience</p>
+
+                <em property="rdfs:label">has Procedure</em> -
+            <span property="skos:definition">Relation between a <a href="#SOSAProperty">Property</a> and a <a
+                    href="#SOSAProcedure">Procedure</a> that can observe or act on it. </span>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Domain Includes</th>
+                        <td>
+                            <span rel="schema:domainIncludes" resource="sosa:Property"><a
+                                    href="#SOSAProperty">sosa:Property</a></span>
+                            , <span rel="schema:domainIncludes" resource="sosa:ActuatableProperty"><a
+                                    href="#SOSAActuatableProperty">sosa:ActuatableProperty</a></span>
+                            , <span rel="schema:domainIncludes" resource="sosa:ObservableProperty"><a
+                                    href="#SOSAObservableProperty">sosa:ObservableProperty</a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Range Includes</th>
+                        <td>
+                            <span rel="schema:rangeIncludes" resource="sosa:Procedure"><a
+                                    href="#SOSAProcedure">sosa:Procedure</a></span>
+                            , <span rel="schema:rangeIncludes" resource="sosa:ActuatingProcedure"><a
+                                    href="#SOSAActuatingProcedure">sosa:ActuatingProcedure</a></span>
+                            , <span rel="schema:rangeIncludes" resource="sosa:ObservingProcedure"><a
+                                    href="#SOSAObservingProcedure">sosa:ObservingProcedure</a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>is Defined By</th>
+                        <td>
+                            <span rel="rdfs:isDefinedBy"><a
+                                    href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common">Back to module overview</a>]</span>
+                <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+            </div>
+        </section>
+
 
     </section>
 </section>
@@ -714,11 +817,9 @@
                 This term is non-normative pending further implementation experience</p>
             <p>
                 <em property="rdfs:label">Execution of a Procedure</em> -
-                <span property="skos:definition">Act of carrying out a <a
-                        href="#SOSAProcedure">Procedure</a>.
+                <span property="skos:definition">Act of carrying out a <a href="#SOSAProcedure">Procedure</a>.
                     This class generalizes the <a href="#SOSAActuation">Actuation</a>, <a
-                        href="#SOSAObservation">Observation</a>, and <a
-                        href="#SOSASampling">Sampling</a> classes.
+                        href="#SOSAObservation">Observation</a>, and <a href="#SOSASampling">Sampling</a> classes.
                     It is not expected to be used directly.</span>
                 <br>
             </p>
@@ -1127,8 +1228,8 @@
                     <tr>
                         <th>Example</th>
                         <td>
-                            <span property="skos:example">For example, in an <a
-                                    href="#SOSAObservation">Observation</a> of the weight of a person, the
+                            <span property="skos:example">For example, in an <a href="#SOSAObservation">Observation</a>
+                                of the weight of a person, the
                                 <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a> is the person and
                                 the property is its weight.</span>
                         </td>
@@ -1254,11 +1355,9 @@
             <p>
                 <em property="rdfs:label">has Input Value</em> -
                 <span property="skos:definition">Assigns a value to an input defined by the <a
-                        href="#SOSAProcedure">Procedure</a> that is used in an <a
-                        href="#SOSAExecution">Execution</a> (i.e. a <a
-                        href="#SOSAActuation">Actuation</a>,
-                    <a href="#SOSAObservation">Observation</a>, <a
-                        href="#SOSASampling">Sampling</a>).</span>
+                        href="#SOSAProcedure">Procedure</a> that is used in an <a href="#SOSAExecution">Execution</a>
+                    (i.e. a <a href="#SOSAActuation">Actuation</a>,
+                    <a href="#SOSAObservation">Observation</a>, <a href="#SOSASampling">Sampling</a>).</span>
                 <br><span property="skos:note">The input value should be suitable for the input definition on
                     the corresponding <a href="#SOSAusedProcedure">usedProcedure</a>.</span>
             </p>
@@ -1303,11 +1402,9 @@
             <p>
                 <em property="rdfs:label">has Output Value</em> -
                 <span property="skos:definition">Assigns a value to an output defined by the <a
-                        href="#SOSAProcedure">Procedure</a> that is used in an <a
-                        href="#SOSAExecution">Execution</a> (<a
-                        href="#SOSAActuation">Actuation</a>,
-                    <a href="#SOSAObservation">Observation</a>, <a
-                        href="#SOSASampling">Sampling</a>).</span>
+                        href="#SOSAProcedure">Procedure</a> that is used in an <a href="#SOSAExecution">Execution</a>
+                    (<a href="#SOSAActuation">Actuation</a>,
+                    <a href="#SOSAObservation">Observation</a>, <a href="#SOSASampling">Sampling</a>).</span>
                 <br><span property="skos:note">The output value should be suitable for the output definition on the
                     corresponding <a href="#SOSAusedProcedure">usedProcedure</a>.</span>
             </p>
@@ -1349,24 +1446,20 @@
             <em property="rdfs:label">has result</em> -
             <span property="skos:definition">Relation linking an <a href="#SOSAExecution">Execution</a>
                 (i.e. <a href="#SOSAActuation">Actuation</a>
-                or <a href="#SOSAObservation">Observation</a> or act of <a
-                    href="#SOSASampling">Sampling</a>) to its result or <a
-                    href="#SOSASample">Sample</a>.
+                or <a href="#SOSAObservation">Observation</a> or act of <a href="#SOSASampling">Sampling</a>) to its
+                result or <a href="#SOSASample">Sample</a>.
 
                 In the case of an <a href="#SOSAActuation">Actuation</a>, the result is the expected value
                 of the <a href="#SOSAActuatableProperty">ActuatableProperty</a> following the execution of
-                the <a href="#SOSAProcedure">Procedure</a> by the <a
-                    href="#SOSAActuator">Actuator</a>.
+                the <a href="#SOSAProcedure">Procedure</a> by the <a href="#SOSAActuator">Actuator</a>.
 
                 In the case of an <a href="#SOSAObservation">Observation</a>, the result is the value of
                 the <a href="#SOSAObservableProperty">ObservableProperty</a> produced by the execution of
-                the <a href="#SOSAProcedure">Procedure</a> by the <a
-                    href="#SOSASensor">Sensor</a>.
+                the <a href="#SOSAProcedure">Procedure</a> by the <a href="#SOSASensor">Sensor</a>.
 
                 In the case of a <a href="#SOSASampling">Sampling</a>, the result is the <a
                     href="#SOSASample">Sample</a> produced by the execution of the <a
-                    href="#SOSAProcedure">Procedure</a> by the <a
-                    href="#SOSASampler">Sampler</a>.
+                    href="#SOSAProcedure">Procedure</a> by the <a href="#SOSASampler">Sampler</a>.
             </span>
             <br>
             <table>
@@ -1422,11 +1515,9 @@
             <p><strong>an OWL Object Property</strong></p>
 
             <em property="rdfs:label">is result of</em> -
-            <span property="skos:definition">Relation linking a result to the <a
-                    href="#SOSAExecution">Execution</a> that created or caused it (i.e. the <a
-                    href="#SOSAActuation">Actuation</a> or <a
-                    href="#SOSAObservation">Observation</a> or act of <a
-                    href="#SOSASampling">Sampling</a>.</span> <br>
+            <span property="skos:definition">Relation linking a result to the <a href="#SOSAExecution">Execution</a>
+                that created or caused it (i.e. the <a href="#SOSAActuation">Actuation</a> or <a
+                    href="#SOSAObservation">Observation</a> or act of <a href="#SOSASampling">Sampling</a>.</span> <br>
             <table>
                 <tbody>
                     <tr>
@@ -1483,14 +1574,12 @@
                 In the case of an <a href="#SOSAActuation">sosa:Actuation</a>, the result is the intended value
                 of the
                 <a href="#SOSAActuatableProperty">sosa:ActuatableProperty</a> following the
-                execution of the <a href="#SOSAProcedure">Procedure</a> by the <a
-                    href="#SOSAActuator">Actuator</a>.
+                execution of the <a href="#SOSAProcedure">Procedure</a> by the <a href="#SOSAActuator">Actuator</a>.
 
                 In the case of an <a href="#SOSAObservation">Observation</a>, the result is the
                 value
                 produced
-                by the execution of the <a href="#SOSAProcedure">Procedure</a> by the <a
-                    href="#SOSASensor">Sensor</a>.
+                by the execution of the <a href="#SOSAProcedure">Procedure</a> by the <a href="#SOSASensor">Sensor</a>.
             </span>
 
             <br>
@@ -1602,6 +1691,14 @@
                             <span about="[_:System2]" property="owl:allValuesFrom"
                                 resource="sosa:Procedure"><em><b>ONLY</b></em>
                                 <a href="#SOSAProcedure">sosa:Procedure</a></span>
+                            <br>
+                            <span about="sosa:System" rel="rdfs:subClassOf" resource="[_:System3]"></span>
+                            <span about="[_:System3]" typeof="owl:Restriction"></span>
+                            <span about="[_:System3]" rel="owl:onProperty" resource="sosa:forProperty"><a
+                                    href="#SOSAforProperty">sosa:forProperty</a></span>
+                            <span about="[_:System3]" property="owl:allValuesFrom"
+                                resource="sosa:Property"><em><b>ONLY</b></em>
+                                <a href="#SOSAProperty">sosa:Property</a></span>
                             <br>
                             <span about="sosa:System" rel="rdfs:subClassOf" resource="[_:System4]"></span>
                             <span about="[_:System4]" typeof="owl:Restriction"></span>
@@ -1743,8 +1840,8 @@
             <em property="rdfs:label">is hosted by</em> -
             <span property="skos:definition">Relation between an <a href="#SOSAActuator">Actuator</a>, or
                 <a href="#SOSASensor">Sensor</a>, or <a href="#SOSASampler">Sampler</a>, or <a
-                    href="#SOSAPlatform">Platform</a>, and the <a
-                    href="#SOSAPlatform">Platform</a> that it is mounted on or hosted by.</span>
+                    href="#SOSAPlatform">Platform</a>, and the <a href="#SOSAPlatform">Platform</a> that it is mounted
+                on or hosted by.</span>
             <br>
             <table>
                 <tbody>
@@ -1796,9 +1893,8 @@
 
             <em property="rdfs:label">has deployment</em> -
             <span property="skos:definition">Relation between a <a href="#SOSASystem">System</a> and a <a
-                    href="#SOSADeployment">Deployment</a>, recording that the <a
-                    href="#SOSASystem">System</a> is deployed in that <a
-                    href="#SOSADeployment">Deployment</a>.</span>
+                    href="#SOSADeployment">Deployment</a>, recording that the <a href="#SOSASystem">System</a> is
+                deployed in that <a href="#SOSADeployment">Deployment</a>.</span>
             <table>
                 <tbody>
                     <tr>
@@ -1842,9 +1938,8 @@
 
             <em property="rdfs:label">Platform</em> -
             <span property="skos:definition">A <a href="#SOSAPlatform">Platform</a> is an entity that <a
-                    href="#SOSAhosts">hosts</a> other entities, particularly <a
-                    href="#SOSASensor">Sensors</a>, <a href="#SOSAActuator">Actuators</a>, <a
-                    href="#SOSASampler">Samplers</a>, and other <a
+                    href="#SOSAhosts">hosts</a> other entities, particularly <a href="#SOSASensor">Sensors</a>, <a
+                    href="#SOSAActuator">Actuators</a>, <a href="#SOSASampler">Samplers</a>, and other <a
                     href="#SOSAPlatform">Platforms</a>.</span> <br>
             <span property="skos:scopeNote">The INSPIRE 'Environmental Monitoring Facility' may be implemented using
                 SOSA by the OWL/RDFS class 'Platform'.</span> <br>
@@ -1867,7 +1962,8 @@
                             <span about="[_:SOSAPlatform1]" rel="owl:onProperty" resource="sosa:hosts"><a
                                     href="#SOSAhosts">sosa:hosts</a></span>
                             <span about="[_:SOSAPlatform1]" property="owl:allValuesFrom"
-                                resource="sosa:System"><em><b>ONLY</b></em> <a href="#SOSASystem">sosa:System</a></span>
+                                resource="sosa:System"><em><b>ONLY</b></em> ( <a href="#SOSASystem">sosa:System</a>
+                                <em><b>OR</b></em> <a href="#SOSAPlatform">sosa:Platform</a> ) </span>
                             <br>
                             <span about="sosa:Platform" rel="rdfs:subClassOf" resource="[_:SOSAPlatform2]"></span>
                             <span about="[_:SOSAPlatform2]" typeof="owl:Restriction"></span>
@@ -1986,8 +2082,7 @@
                 <a href="#SOSADeployment">Deployment</a>, meaning that the
                 <code>deployedSystems</code> of
                 the
-                <a href="#SOSADeployment">Deployment</a> are hosted on the <a
-                    href="#SOSAPlatform">Platform</a>.</span>
+                <a href="#SOSADeployment">Deployment</a> are hosted on the <a href="#SOSAPlatform">Platform</a>.</span>
             <table>
                 <tbody>
                     <tr>
@@ -2039,14 +2134,13 @@
             <em property="rdfs:label">Deployment</em> -
             <span property="skos:definition">Describes the <a href="#SOSADeployment">Deployment</a> of one
                 or more <a href="#SOSASystem">Systems</a> for a particular purpose. <a
-                    href="#SOSADeployment">Deployment</a> may be done on a <a
-                    href="#SOSAPlatform">Platform</a>.</span>
+                    href="#SOSADeployment">Deployment</a> may be done on a <a href="#SOSAPlatform">Platform</a>.</span>
             <table>
                 <tbody>
                     <tr>
                         <th>Example</th>
-                        <td><span property="skos:example">For example, a temperature <a
-                                    href="#SOSASensor">Sensor</a> deployed on a wall, or a whole
+                        <td><span property="skos:example">For example, a temperature <a href="#SOSASensor">Sensor</a>
+                                deployed on a wall, or a whole
                                 network of Sensors
                                 deployed for an Observation campaign.</span></td>
                     </tr>
@@ -2107,8 +2201,7 @@
 
             <em property="rdfs:label">deployed asset</em> -
             <span property="skos:definition">Relation between a <a href="#SOSADeployment">Deployment</a>
-                and a deployed asset (<a href="#SOSASystem">System</a> or <a
-                    href="#SOSAPlatform">Platform</a>).</span>
+                and a deployed asset (<a href="#SOSASystem">System</a> or <a href="#SOSAPlatform">Platform</a>).</span>
             <table>
                 <tbody>
                     <tr>
