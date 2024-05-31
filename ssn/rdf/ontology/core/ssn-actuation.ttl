@@ -34,10 +34,12 @@ ssn-act:
 sosa:ActuatableProperty 
     rdfs:subClassOf ssn:Property ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isActedOnBy ; owl:allValuesFrom sosa:Actuation ] ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasProcedure ; owl:allValuesFrom sosa:ActuatingProcedure ] ;
   rdfs:isDefinedBy sosa-act: .
 
 sosa:ActuatingProcedure 
   rdfs:subClassOf sosa:Procedure ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:forProperty ; owl:allValuesFrom sosa:ActuatableProperty ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implementedBy ; owl:allValuesFrom sosa:Actuator ] ;
   rdfs:isDefinedBy sosa-act: .
 
