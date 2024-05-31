@@ -108,7 +108,6 @@ sosa:actsOnProperty
   schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:ActuationCollection ;
   schema:rangeIncludes sosa:ActuatableProperty ;
-  owl:inverseOf sosa:isActedOnBy ;
   rdfs:isDefinedBy sosa-act: .
 
 sosa:Actuator 
@@ -141,6 +140,16 @@ sosa:madeByActuator
   schema:domainIncludes sosa:ActuationCollection ;
   schema:rangeIncludes sosa:Actuator ;
   owl:inverseOf sosa:madeActuation ;
+  rdfs:isDefinedBy sosa-act: .
+
+sosa:isActedOnBy 
+  a owl:ObjectProperty ;
+  rdfs:label "is acted on by"@en ;
+  skos:definition """
+  Relation between a Property and an Actuator that may act upon it.
+  """@en ;
+  schema:domainIncludes sosa:Actuator ;
+  schema:rangeIncludes sosa:ActuatableProperty ;
   rdfs:isDefinedBy sosa-act: .
 
 ## End of actuation schema
@@ -188,6 +197,9 @@ sosa:isPropertyOf
   rdfs:isDefinedBy sosa-common: .
 
 sosa:forProperty 
+  schema:domainIncludes sosa:ActuatingProcedure ;
+  schema:domainIncludes sosa:Actuator ;
+  schema:rangeIncludes sosa:ActuatableProperty ;
   rdfs:isDefinedBy sosa-common: .
 
 
@@ -207,6 +219,11 @@ sosa:hasOutput
 sosa:usedProcedure 
   schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:ActuationCollection ;
+  schema:rangeIncludes sosa:ActuatingProcedure ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasProcedure 
+  schema:domainIncludes sosa:ActuatableProperty ;
   schema:rangeIncludes sosa:ActuatingProcedure ;
   rdfs:isDefinedBy sosa-common: .
 

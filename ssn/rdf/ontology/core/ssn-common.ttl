@@ -52,6 +52,7 @@ sosa:isFeatureOfInterestOf
 
 sosa:Property 
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isPropertyOf ; owl:allValuesFrom sosa:FeatureOfInterest ]  ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasProcedure ; owl:allValuesFrom sosa:Procedure ] ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:PropertyOfInterest 
@@ -74,6 +75,8 @@ sosa:forProperty
 sosa:Procedure 
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasInput ]  ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasOutput ]  ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implementedBy ; owl:allValuesFrom sosa:System ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:forProperty ; owl:allValuesFrom sosa:Property ] ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hasInput 
@@ -137,6 +140,7 @@ sosa:System
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasSubSystem ; owl:allValuesFrom sosa:System ]  ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sosa:hasSubSystem ] ; owl:allValuesFrom sosa:System ]  ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasDeployment ; owl:allValuesFrom sosa:Deployment ]  ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:forProperty ; owl:allValuesFrom sosa:Property ] ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hasSubSystem 
@@ -176,7 +180,12 @@ sosa:inDeployment
 ## Platform 
 
 sosa:Platform 
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hosts ; owl:allValuesFrom sosa:System ]  ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hosts ; owl:allValuesFrom [
+          owl:unionOf (
+              sosa:System
+              sosa:Platform
+            ) ;
+        ] ]  ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hosts 
