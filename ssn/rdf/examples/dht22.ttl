@@ -24,7 +24,7 @@
 <DHT22#Procedure> a sosa:Procedure ;
   sosa:hasOutput <DHT22#output> .
 
-<DHT22#output> a sosa:Output , rdfp:GraphDescription ;
+<DHT22#output> a rdfp:GraphDescription ;
   rdfs:comment "The output is a RDF Graph that describes both the temperature and the humidity. It can be validated by a SHACL shapes graph."@en ;
   rdfp:presentedBy [
     a rdfp:GraphDescription ;
@@ -49,7 +49,7 @@
   rdfs:comment "A temperature range of -40 to 80 Celsius."@en ;
   schema:minValue -40.0 ;
   schema:maxValue 80.0 ;
-  schema:unitCode unit:DegreeCelsius .
+  schema:unitCode unit:DEG_C .
 
 <NormalHumidityCondition> a schema:PropertyValue ;
   rdfs:comment "A relative humidity range of 0 to 100 %."@en ;
@@ -85,18 +85,18 @@
   rdfs:comment "The accuracy of the temperature sensor is +-0.5 °C in normal temperature and humidity conditions."@en ;
   schema:minValue -0.5 ;
   schema:maxValue 0.5 ;
-  schema:unitCode unit:DegreeCelsius .
+  schema:unitCode unit:DEG_C .
 
 <DHT22/4578#TemperatureSensorSensitivity> a system:Sensitivity , system:Resolution , schema:PropertyValue ;
   rdfs:comment "The sensitivity and resolution of the temperature sensor is 0.1 °C in normal temperature and humidity conditions."@en ;
   schema:value 0.1 ;
-  schema:unitCode unit:DegreeCelsius .
+  schema:unitCode unit:DEG_C .
 
 <DHT22/4578#TemperatureSensorRepeatability> a system:Repeatability , schema:PropertyValue ;
   rdfs:comment "The precision (= repeatability) of the temperature sensor is +-0.2 °C in normal temperature and humidity conditions."@en ;
   schema:minValue 0.2 ;
   schema:maxValue 0.2 ;
-  schema:unitCode unit:DegreeCelsius .
+  schema:unitCode unit:DEG_C .
 
 <DHT22/4578#TemperatureSensorFrequency> a system:Frequency , schema:PropertyValue ;
   rdfs:comment "The smallest possible time between one observation and the next is 2 s on average."@en ;
@@ -105,10 +105,11 @@
 
 
 <observation/1087> rdf:type sosa:Observation ;
-  sosa:observedProperty <DHT22/4578#TemperatureSensor> ;
+  sosa:observedProperty <http://qudt.org/vocab/quantitykind/Temperature> ;
   sosa:madeBySensor <DHT22/4578#TemperatureSensor> ;
   sosa:usedProcedure <DHT22#Procedure> ;
-  sosa:resultQuality <observation/1087#quality> .
+  sosa:resultQuality <observation/1087#quality> ;
+  sosa:hasSimpleResult "21.4"^^unit:DEG_C .
 
 
 # one may classify the quality of observation using some class:
