@@ -101,14 +101,9 @@ sosa:relatedObservation
   skos:definition """
   Relation to an Observation.
   """@en ;
-  schema:domainIncludes sosa:FeatureOfInterest ;
-  schema:domainIncludes sosa:ObservableProperty ;
+  skos:scopeNote "This general relationship complements the specific predicates inbound to Observation. It is particularly useful to relate Observations (and collections) to other Executions (and collections)" ;
   schema:domainIncludes sosa:Observation ;
   schema:domainIncludes sosa:ObservationCollection ;
-  schema:domainIncludes sosa:Platform ;
-  schema:domainIncludes sosa:Procedure ;
-  schema:domainIncludes sosa:ObservingProcedure ;
-  schema:domainIncludes sosa:Sensor ;
   schema:rangeIncludes sosa:Observation ;
   schema:rangeIncludes sosa:ObservationCollection ;
   owl:inverseOf sosa:observationRelatedTo ;
@@ -120,15 +115,11 @@ sosa:observationRelatedTo
   skos:definition """
   Relation of an Observation to something else.
   """@en ;
+  skos:scopeNote "This general relationship complements the specific predicates outbound from Observation. It is particularly useful to relate Observations (and collections) to other Executions (and collections)" ;
   schema:domainIncludes sosa:Observation ;
   schema:domainIncludes sosa:ObservationCollection ;
-  schema:rangeIncludes sosa:ObservableProperty ;
   schema:rangeIncludes sosa:Observation ;
   schema:rangeIncludes sosa:ObservationCollection ;
-  schema:rangeIncludes sosa:Platform ;
-  schema:rangeIncludes sosa:Procedure ;
-  schema:rangeIncludes sosa:ObservingProcedure ;
-  schema:rangeIncludes sosa:Sensor ;
   owl:inverseOf sosa:relatedObservation ;
   rdfs:isDefinedBy sosa-obs: .
 
