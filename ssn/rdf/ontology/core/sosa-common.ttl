@@ -25,40 +25,16 @@ sosa-common:
   .
 
 
-## Utility terms 
-
-sosa:hasMember 
-  a owl:ObjectProperty ;
-  rdfs:label "has member of collection" ;
-  skos:definition """
-  Link to a member (actuation or sampling or sample or observation) or (collection of actuation or collection of observations or collection of samplings or collection of samples) within a collection. 
-  """ ;
-  skos:scopeNote "rules for the consistency of values of properties of collections and properties of their members are given for each collection type" ;
-  skos:editorialNote "Note that there is a single `member` property. OWL or SHACL constraints may limit the range depending on the context of different collection types" ;
-  schema:rangeIncludes sosa:Execution ;
-  owl:inverseOf sosa:isMemberOf ;
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:isMemberOf 
-  a owl:ObjectProperty ;
-  rdfs:label "is member of collection" ;
-  skos:definition """
-  Link from a member to a collection (of actuations or of observations or of samplings or of samples ). 
-  """ ;
-  skos:scopeNote "rules for the consistency of values of properties of collections and properties of their members are given for each collection type" ;
-  skos:editorialNote "Note that there is a single `member` property. OWL or SHACL constraints may limit the range depending on the context of different collection types" ;
-  schema:domainIncludes sosa:Execution ;
-  owl:inverseOf sosa:hasMember ;
-  rdfs:isDefinedBy sosa-common: .
-
-
 ## Features of interest and Property
 
 sosa:FeatureOfInterest 
   a owl:Class ;
   rdfs:label "Feature Of Interest"@en ;
   skos:definition """
-  The thing that is the target of the Execution, i.e. whose property is being estimated or calculated in the course of an Observation to arrive at a result, or whose property is being manipulated by an Actuator, or which is being sampled or transformed in an act of Sampling.
+  The thing that is the target of the Execution, 
+  i.e. whose property is being estimated or calculated in the course of an Observation to arrive at a result, 
+  or whose property is being manipulated by an Actuator, 
+  or which is being sampled or transformed in an act of Sampling.
   """@en ;
   skos:example "When measuring the height of a tree, the height is the observed ObservableProperty, 20m may be the Result of the Observation, and the tree is the FeatureOfInterest. A window is a FeatureOfInterest for an automatic window control Actuator."@en ;
   rdfs:isDefinedBy sosa-common: .
@@ -358,7 +334,7 @@ sosa:inputValueForExecution
   a owl:ObjectProperty ;
   rdfs:label "input for"@en ;
   skos:definition """
-  Relation between an InputValue and an Execution that uses it.
+  Relation between an InputValue and an Execution that used it.
   """@en ;
   schema:rangeIncludes sosa:Execution ;
   owl:inverseOf sosa:hasInputValue ;
@@ -594,4 +570,31 @@ sosa:deployedOnPlatform
   schema:rangeIncludes sosa:Platform ;
   owl:inverseOf sosa:inDeployment ;
   rdfs:isDefinedBy sosa-common: .
+
+## Utility terms 
+
+sosa:hasMember 
+  a owl:ObjectProperty ;
+  rdfs:label "has member of collection" ;
+  skos:definition """
+  Link to a member (actuation or sampling or sample or observation) or (collection of actuation or collection of observations or collection of samplings or collection of samples) within a collection. 
+  """ ;
+  skos:scopeNote "rules for the consistency of values of properties of collections and properties of their members are given for each collection type" ;
+  skos:editorialNote "Note that there is a single `member` property. OWL or SHACL constraints may limit the range depending on the context of different collection types" ;
+  schema:rangeIncludes sosa:Execution ;
+  owl:inverseOf sosa:isMemberOf ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:isMemberOf 
+  a owl:ObjectProperty ;
+  rdfs:label "is member of collection" ;
+  skos:definition """
+  Link from a member to a collection (of actuations or of observations or of samplings or of samples ). 
+  """ ;
+  skos:scopeNote "rules for the consistency of values of properties of collections and properties of their members are given for each collection type" ;
+  skos:editorialNote "Note that there is a single `member` property. OWL or SHACL constraints may limit the range depending on the context of different collection types" ;
+  schema:domainIncludes sosa:Execution ;
+  owl:inverseOf sosa:hasMember ;
+  rdfs:isDefinedBy sosa-common: .
+
 
