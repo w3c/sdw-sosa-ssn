@@ -1,0 +1,145 @@
+# baseURI: file:///C:/dev/W3C/sdw-sosa-ssn/ssn/rdf/examples/IBS-TH2-PLUS.ttl
+# imports: http://www.w3.org/ns/ssn/
+# imports: http://www.w3.org/ns/ssn/systems/
+
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ex: <http://example.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix system: <http://www.w3.org/ns/ssn/systems/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<file:///C:/dev/W3C/sdw-sosa-ssn/ssn/rdf/examples/IBS-TH2-PLUS.ttl>
+  a owl:Ontology ;
+  owl:imports <http://www.w3.org/ns/ssn/> ;
+  owl:imports system: ;
+.
+<https://example.org/sensor/IBS-TH2-H/systemCapability>
+  a system:SystemCapability ;
+  system:hasSystemProperty [
+      a system:Accuracy ;
+      schema:value "4.5"^^unit:PERCENT_RH ;
+    ] ;
+  system:hasSystemProperty [
+      a system:MeasurementRange ;
+      schema:maxValue "99.0"^^unit:PERCENT_RH ;
+      schema:minValue "0.0"^^unit:PERCENT_RH ;
+    ] ;
+.
+<https://example.org/sensor/IBS-TH2-Plus>
+  a owl:Class ;
+  dcterms:isVersionOf <https://inkbird.com/products/ibs-th2-plus> ;
+  rdfs:comment """
+    An InkBird IBS-TH2-Plus is a combined Temperature/RH sensor. 
+    Here I have modeled the whole thing as a System with a SubSystem for each of temperature and RH
+    """ ;
+  rdfs:label "IBS-TH2 PLUS Temperature and Humidity Sensor System" ;
+  rdfs:subClassOf sosa:System ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      rdfs:comment """
+          In this Restriction I'm trying to say that every instance of IBS-TH2-Plus 
+          - must have two sub-systems
+          - the value of one sub-system must be an instance of IBS-TH2-Plus-T - a temperature Sensor
+          - the value of the other sub-system must be an instance of IBS-TH2-Plus-H - a relative-humidity sensor
+
+          I don't think I've got there yet 
+          """ ;
+      owl:allValuesFrom [
+          a owl:Class ;
+          owl:unionOf (
+              [
+                a owl:Restriction ;
+                owl:hasValue [
+                    a owl:Class ;
+                    owl:oneOf (
+                        <https://example.org/sensor/IBS-TH2-Plus-T>
+                      ) ;
+                  ] ;
+                owl:onProperty sosa:hasSubSystem ;
+              ]
+              [
+                a owl:Restriction ;
+                owl:hasValue [
+                    a owl:Class ;
+                    owl:oneOf (
+                        <https://example.org/sensor/IBS-TH2-Plus-H>
+                      ) ;
+                  ] ;
+                owl:onProperty sosa:hasSubSystem ;
+              ]
+            ) ;
+        ] ;
+      owl:cardinality "2"^^xsd:nonNegativeInteger ;
+      owl:onProperty sosa:hasSubSystem ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      rdfs:comment """
+          This Restriction says that every instance of IBS-TH2-Plus has the same overall system capability, relating to sampling frequency 
+          """ ;
+      owl:hasValue <https://example.org/sensor/IBS-TH2-Plus/systemCapability> ;
+      owl:onProperty system:hasSystemCapability ;
+    ] ;
+  prov:wasDerivedFrom <https://inkbird.com/products/ibs-th2-plus> ;
+.
+<https://example.org/sensor/IBS-TH2-Plus-H>
+  a owl:Class ;
+  rdfs:label "IBS-TH2 PLUS Humidity Sensor type" ;
+  rdfs:subClassOf sosa:Sensor ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:hasValue <http://qudt.org/vocab/quantitykind/RelativeHumidity> ;
+      owl:onProperty sosa:observes ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:hasValue <https://example.org/sensor/IBS-TH2-H/systemCapability> ;
+      owl:onProperty system:hasSystemCapability ;
+    ] ;
+.
+<https://example.org/sensor/IBS-TH2-Plus-T>
+  a owl:Class ;
+  rdfs:label "IBS-TH2 PLUS Temperature Sensor type" ;
+  rdfs:subClassOf sosa:Sensor ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:hasValue <http://qudt.org/vocab/quantitykind/Temperature> ;
+      owl:onProperty sosa:observes ;
+    ] ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:hasValue <https://example.org/sensor/IBS-TH2-T/systemCapability> ;
+      owl:onProperty system:hasSystemCapability ;
+    ] ;
+.
+<https://example.org/sensor/IBS-TH2-T/systemCapability>
+  a system:SystemCapability ;
+  system:hasSystemProperty [
+      a system:Accuracy ;
+      schema:value "0.5"^^unit:DEG_C ;
+    ] ;
+  system:hasSystemProperty [
+      a system:MeasurementRange ;
+      schema:maxValue "60.0"^^unit:DEG_C ;
+      schema:minValue "-40.0"^^unit:DEG_C ;
+    ] ;
+.
+<https://example.org/sensor/IBS-TH2-Plus/systemCapability>
+  a system:SystemCapability ;
+  system:hasSystemProperty [
+      a system:Frequency ;
+      schema:maxValue "0.1"^^unit:HZ ;
+      schema:minValue "5.556e-4"^^unit:HZ ;
+      rdfs:comment """
+          This SystemCapability describes the range of sampling frequencies available - it could also be modelled as an enumeration of specific values
+          """ ;
+    ] ;
+.
