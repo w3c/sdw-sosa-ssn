@@ -120,12 +120,17 @@ sosa:Sensor
   skos:altLabel "Observer"@en ;
   skos:prefLabel "Sensor"@en ;
   skos:definition """
-  An identifiable entity that can generate Observations pertaining to an ObservableProperty by implementing an ObservingProcedure. Device, agent (including humans), or software (simulation) involved in, or implementing, a Procedure. Sensors respond to a stimulus, e.g., a change in the environment, or input data composed from the results of prior Observations, and generate a Result. Sensors can be hosted by Platforms."""@en ;
-  skos:example "Accelerometers, gyroscopes, barometers, magnetometers, and so forth are Sensors that are typically mounted on a modern smartphone (which acts as Host or Platform). Other examples of Sensors include the human eyes."@en ;
-  skos:note "Different Sensors can follow the same (reusable) observing Procedure for the creation of different Observations."@en ;
-  skos:scopeNote "The Sensor is the entity instance, not the entity type. Pertaining to sensors, the Sensor would reference the explicit sensor, while the Procedure would reference the methodology utilized by that sensor type;"@en ;
-  skos:note "A Sensor can be hosted by one or more Platform."@en ;
-  skos:note "The Sensor is an instance of a sensor, instrument, implementation of an algorithm, or a being such as a person."@en ;
+  An identifiable entity that can generate Observations pertaining to an ObservableProperty by implementing an ObservingProcedure. 
+  This is typically a device, agent (including humans), or software (simulation). 
+  
+  Sensors respond to a stimulus, e.g., a change in the environment, or input data composed from the results of prior Observations. 
+  """@en ;
+  skos:scopeNote """
+  Individual sensor instances are members of this class or its sub-classes. 
+
+  Specific sensor types may be implemented as sub-classes of this class or its sub-classes. 
+  Their descriptions may capture the properties and characteristics of a whole class of sensors, corresponding with the information typically found in a spec-sheet or data-sheet. 
+  """@en ;
   skos:example "Accelerometers, gyroscopes, barometers, magnetometers, and so forth are Sensors that are typically mounted on a modern smart phone (which acts as Platform). Other examples of sensors include the human eyes."@en ;
   skos:note "The UML class 'Observer' from ISO 19156:2023 is implemented in SOSA by the OWL/RDFS class 'Sensor'. The class name 'Sensor' is preferred for backward compatibility with existing SOSA deployments. " ;
   rdfs:isDefinedBy sosa-obs: .

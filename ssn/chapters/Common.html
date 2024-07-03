@@ -723,7 +723,7 @@
             <p class="note">hasProcedure added in the 2024 Update.
                 This term is non-normative pending further implementation experience</p>
 
-                <em property="rdfs:label">has Procedure</em> -
+            <em property="rdfs:label">has Procedure</em> -
             <span property="skos:definition">Relation between a <a href="#SOSAProperty">Property</a> and a <a
                     href="#SOSAProcedure">Procedure</a> that can observe or act on it. </span>
             <table>
@@ -1668,11 +1668,43 @@
             <p><strong>an OWL Class</strong></p>
 
             <em property="rdfs:label">System</em> -
-            <span property="skos:definition">System is a unit of abstraction for pieces of infrastructure that implement
-                <a href="#SOSAProcedure">Procedures</a>.
-                A System may have components, its subsystems, which are other Systems.</span>
+            <span property="skos:definition">
+                A System is a piece of infrastructure that implements a <a href="#SOSAProcedure">Procedure</a>.
+
+                A System may have components, its sub-systems, which are other systems.
+            </span>
+
             <table>
                 <tbody>
+                    <tr>
+                        <th>Scope note</th>
+                        <td>
+                            <span property="skos:scopeNote">
+                                <a href="#SOSAActuator">Actuators</a>, <a href="#SOSASensor">Sensors</a> and
+                                <a href="#SOSASampler">Samplers</a> are kinds (sub-classes) of
+                                <a href="#SOSASystem">sosa:System</a>.
+                                <br><br>
+                                Specific system <em>types</em> may be implemented as <em>sub-classes</em> of this class
+                                or its sub-classes.
+                                Their descriptions may capture the properties and characteristics of a whole class of
+                                systems, corresponding with the information typically found in a spec-sheet or
+                                data-sheet.
+                                <br><br>
+                                Individual system <em>instances</em> are <em>members</em> of this class
+                                or its sub-classes.
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Note</th>
+                        <td>
+                            <span property="skos:note">
+                                Different Systems may implement the same (reusable) Procedure.
+                                <br><br>
+                                A System may be hosted by one or more Platform in different Deployments.
+                            </span>
+                        </td>
+                    </tr>
                     <tr class="ssn">
                         <th class="restrictions">Restrictions</th>
                         <td>

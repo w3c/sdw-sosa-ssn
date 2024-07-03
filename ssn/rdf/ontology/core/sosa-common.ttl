@@ -337,8 +337,20 @@ sosa:System
   a owl:Class ;
   rdfs:label "System"@en ;
   skos:definition """
-  System is a unit of abstraction for pieces of infrastructure that implement Procedures. A System may have components, its subsystems, which are other systems.
+  A System is a piece of infrastructure that implements a Procedure. 
+
+  A System may have components, its sub-systems, which are other systems.
   """@en ; 
+  skos:scopeNote """
+  Actuators, Sensors and Samplers are kinds (sub-classes) of System. 
+
+  Specific system types may be implemented as sub-classes of this class or its sub-classes. 
+  Their descriptions may capture the properties and characteristics of a whole class of systems, corresponding with the information typically found in a spec-sheet or data-sheet. 
+
+  Individual system instances are members of this class or its sub-classes. 
+  """@en ;
+  skos:note "Different Systems may implement the same (reusable) Procedure."@en ;
+  skos:note "A System may be hosted by one or more Platform in different Deployments."@en ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:implements 

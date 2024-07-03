@@ -1,0 +1,50 @@
+
+
+<https://example.org/sensor/IBS-TH2> rdfs:subClassOf sosa:Sensor ;
+    rdfs:comment "The class of IBS-TH2 sensors is a subclass of the general class of sensors" ;
+    gs1:pip <https://inkbird.com/products/hygrometer-ibs-th2> ;
+    rdfs:label "Bluetooth Temperature and Humidity Sensor IBS-TH2" ;
+    skos:notation "IBS-TH2" ;
+    sosa:observes <http://qudt.org/vocab/quantitykind/RelativeHumidity> ;
+    sosa:observes <http://qudt.org/vocab/quantitykind/Temperature> ;
+    system:hasSystemCapability [ 
+        a system:SystemCapability ;
+        sosa:observes <http://qudt.org/vocab/quantitykind/Temperature> ;
+        system:hasSystemProperty [
+            a system:MeasurementRange ;
+            schema:maxValue "60"^^unit:DEG_C ;
+            schema:minValue "-40"^^unit:DEG_C ;
+        ] ;
+        system:hasSystemProperty [
+            a system:Accuracy ;
+            schema:value "0.5"^^unit:DEG_C ;
+        ] ;
+
+    ] ;
+    system:hasSystemCapability [ 
+        a system:SystemCapability ;
+        sosa:observes <http://qudt.org/vocab/quantitykind/RelativeHumidity> ;
+        system:hasSystemProperty [
+            a system:MeasurementRange ;
+            schema:maxValue "100"^^unit:PERCENT ;
+            schema:minValue "0"^^unit:PERCENT ;
+        ] ;
+        system:hasSystemProperty [
+            a system:Resolution ;
+            schema:value "2"^^unit:PERCENT ;
+        ] ;
+
+    ] ;
+    system:hasSurvivalRange [
+        a system:SurvivalRange ;
+        system:hasSurvivalProperty <EFGH> ;
+    ] ;
+    system:hasOperatingRange [
+        a system:OperatingRange ;
+        system:hasOperatingProperty <IJKL> ;
+    ] ;
+. 
+
+<https://example.org/sensorInstance/IBS-TH2-56> a <https://example.org/sensor/IBS-TH2> ;
+    skos:notation "12gth456a-23190" ;
+. 
