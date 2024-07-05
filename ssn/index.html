@@ -37,6 +37,69 @@
       var newScrollY = window.scrollY;
       window.scrollTo(scrollX, newPosY + newScrollY - posY);
     }
+    addEventListener('load', () => {
+      document.respec.ready.then(() => {
+
+        const sortLabels = {
+          asc: '↑',
+          desc: '↓',
+          no: '—',
+        };
+
+        const sort = (headerMetadata) => {
+          const sortDirection = headerMetadata.sorted === 'asc' ? 'desc' : 'asc';
+
+          const getSortValue = r => r.querySelector(`:scope > td:nth-child(${headerMetadata.idx + 1})`)
+                  .textContent.trim().toLowerCase().replace(/[^A-Za-z0-9 :-]/g, '');
+
+          const rows = [...headerMetadata.table.querySelectorAll('tr')].slice(1); // skip header row
+          if (!rows.length) {
+            return;
+          }
+          const tbody = rows[0].parentElement;
+          rows.sort((a, b) => getSortValue(a).localeCompare(getSortValue(b)) * (sortDirection === 'asc' ? 1 : -1))
+                  .map(e => e.remove() || e)
+                  .forEach(e => tbody.append(e));
+
+          // update sort link labels
+          for (let header of headerMetadata.allHeaders) {
+            header.sorted = header.idx === headerMetadata.idx ? sortDirection : 'no';
+            header.sortLink.textContent = sortLabels[header.sorted];
+          }
+        };
+
+        document.querySelectorAll('table[data-sortable="true"]').forEach(table => {
+          const headers = [], allHeaders = [...table.querySelector('tr').querySelectorAll('th')];
+          for (const [idx, header] of allHeaders.entries()) {
+            if (header.dataset.sortable === 'true') {
+              const sortLink = document.createElement('a');
+
+              const headerMetadata = {
+                idx,
+                header,
+                allHeaders: headers,
+                table,
+                sorted: 'no',
+                sortLink,
+              };
+
+              sortLink.href="#";
+              sortLink.style.marginLeft = '1em';
+              sortLink.style.textDecoration = 'none';
+              sortLink.classList.add('sort-link');
+              sortLink.textContent = sortLabels.no;
+              sortLink.title = 'Sort';
+              sortLink.addEventListener('click', e => {
+                e.preventDefault();
+                sort(headerMetadata);
+              });
+              header.append(sortLink);
+              headers.push(headerMetadata);
+            }
+          }
+        });
+      });
+    });
   </script>
   <link rel="stylesheet" type="text/css" href="style.css">
   <link rel="stylesheet" type="text/css" href="small.css" media="only all and (max-width: 649px)">
