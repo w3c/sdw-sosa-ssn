@@ -35,30 +35,6 @@ sosa:ActuatableProperty
   skos:example "A window actuator acts by changing the state between a frame and a window. The ability of the window to be opened and closed is its ActuatableProperty."@en ;
   rdfs:isDefinedBy sosa-act: .
 
-sosa:wasActedOnBy 
-  a owl:ObjectProperty ;
-  rdfs:label "was acted on by"@en ;
-  skos:definition """
-  Relation between an ActuatableProperty of a FeatureOfInterest and an Actuator that may change its state.
-  """@en ;
-  skos:example "In the activity (Actuation) of automatically closing a window if the temperature in a room drops below 20 degrees Celsius, the property on which the Actuator acts upon is the state of the window as it changes from being open to being closed. "@en ;
-  schema:domainIncludes sosa:ActuatableProperty ;
-  schema:rangeIncludes sosa:Actuator ;
-  owl:inverseOf sosa:actsOnProperty ;
-  rdfs:isDefinedBy sosa-act: .
-
-sosa:isActedOnBy 
-  a owl:ObjectProperty ;
-  rdfs:label "is acted on by"@en ;
-  skos:definition """
-  Relation between an ActuatableProperty of a FeatureOfInterest and an Actuation that changed its state.
-  """@en ;
-  skos:example "In the activity (Actuation) of automatically closing a window if the temperature in a room drops below 20 degrees Celsius, the property on which the Actuator acts upon is the state of the window as it changes from being open to being closed. "@en ;
-  schema:domainIncludes sosa:ActuatableProperty ;
-  schema:rangeIncludes sosa:Actuation ;
-  owl:inverseOf sosa:actsOn ;
-  rdfs:isDefinedBy sosa-act: .
-
 sosa:ActuatingProcedure 
   a owl:Class ;
   rdfs:label "Actuation Procedure"@en ;
@@ -110,6 +86,27 @@ sosa:ActuationCollection
   skos:note """The members of a collection do not necessarily share a common value for any property. """@en ;
   rdfs:isDefinedBy sosa-act: .
 
+sosa:Actuator 
+  a owl:Class ;
+  rdfs:label "Actuator"@en ;
+  skos:definition """
+  A device or system that is used by, or implements, an (Actuation) Procedure that changes the value of an Actuatable Property.
+  """@en ;
+  skos:example "A window actuator for automatic window control, i.e., opening or closing the window."@en ;
+  rdfs:isDefinedBy sosa-act: .
+
+sosa:actsOn 
+  a owl:ObjectProperty ;
+  rdfs:label "acts on"@en ;
+  skos:definition """
+  Relation between an Actuation and the property of a FeatureOfInterest it is acting upon.
+  """@en ;
+  skos:example "In the activity (Actuation) of automatically closing a window if the temperature in a room drops below 20 degrees Celsius, the property on which the Actuator acts upon is the state of the window as it changes from being open to being closed. "@en ;
+  schema:domainIncludes sosa:Actuator ;
+  schema:rangeIncludes sosa:ActuatableProperty ;
+  owl:inverseOf sosa:isActedOnBy ;
+  rdfs:isDefinedBy sosa-act: .
+
 sosa:actsOnProperty 
   a owl:ObjectProperty ;
   rdfs:label "acts on property"@en ;
@@ -121,6 +118,29 @@ sosa:actsOnProperty
   schema:domainIncludes sosa:ActuationCollection ;
   schema:rangeIncludes sosa:ActuatableProperty ;
   owl:inverseOf sosa:wasActedOnBy ;
+  rdfs:isDefinedBy sosa-act: .
+
+sosa:isActedOnBy 
+  a owl:ObjectProperty ;
+  rdfs:label "is acted on by"@en ;
+  skos:definition """
+  Relation between an ActuatableProperty of a FeatureOfInterest and an Actuation that changed its state.
+  """@en ;
+  skos:example "In the activity (Actuation) of automatically closing a window if the temperature in a room drops below 20 degrees Celsius, the property on which the Actuator acts upon is the state of the window as it changes from being open to being closed. "@en ;
+  schema:domainIncludes sosa:ActuatableProperty ;
+  schema:rangeIncludes sosa:Actuation ;
+  owl:inverseOf sosa:actsOn ;
+  rdfs:isDefinedBy sosa-act: .
+
+sosa:madeActuation 
+  a owl:ObjectProperty ;
+  rdfs:label "made actuation"@en ;
+  skos:definition """
+  Relation between an Actuator and an Actuation it has made.
+  """@en ;
+  schema:domainIncludes sosa:Actuator ;
+  schema:rangeIncludes sosa:Actuation ;
+  owl:inverseOf sosa:madeByActuator ;
   rdfs:isDefinedBy sosa-act: .
 
 sosa:madeByActuator 
@@ -135,36 +155,16 @@ sosa:madeByActuator
   owl:inverseOf sosa:madeActuation ;
   rdfs:isDefinedBy sosa-act: .
 
-sosa:Actuator 
-  a owl:Class ;
-  rdfs:label "Actuator"@en ;
-  skos:definition """
-  A device or system that is used by, or implements, an (Actuation) Procedure that changes the value of an Actuatable Property.
-  """@en ;
-  skos:example "A window actuator for automatic window control, i.e., opening or closing the window."@en ;
-  rdfs:isDefinedBy sosa-act: .
-
-sosa:madeActuation 
+sosa:wasActedOnBy 
   a owl:ObjectProperty ;
-  rdfs:label "made actuation"@en ;
+  rdfs:label "was acted on by"@en ;
   skos:definition """
-  Relation between an Actuator and an Actuation it has made.
-  """@en ;
-  schema:domainIncludes sosa:Actuator ;
-  schema:rangeIncludes sosa:Actuation ;
-  owl:inverseOf sosa:madeByActuator ;
-  rdfs:isDefinedBy sosa-act: .
-
-sosa:actsOn 
-  a owl:ObjectProperty ;
-  rdfs:label "acts on"@en ;
-  skos:definition """
-  Relation between an Actuation and the property of a FeatureOfInterest it is acting upon.
+  Relation between an ActuatableProperty of a FeatureOfInterest and an Actuator that may change its state.
   """@en ;
   skos:example "In the activity (Actuation) of automatically closing a window if the temperature in a room drops below 20 degrees Celsius, the property on which the Actuator acts upon is the state of the window as it changes from being open to being closed. "@en ;
-  schema:domainIncludes sosa:Actuator ;
-  schema:rangeIncludes sosa:ActuatableProperty ;
-  owl:inverseOf sosa:isActedOnBy ;
+  schema:domainIncludes sosa:ActuatableProperty ;
+  schema:rangeIncludes sosa:Actuator ;
+  owl:inverseOf sosa:actsOnProperty ;
   rdfs:isDefinedBy sosa-act: .
 
 ## End of actuation schema

@@ -37,28 +37,6 @@ sosa:ObservableProperty
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasProcedure ; owl:allValuesFrom sosa:ObservingProcedure ] ;
   rdfs:isDefinedBy sosa-obs: .
 
-sosa:ObservingProcedure 
-  rdfs:subClassOf sosa:Procedure ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:forProperty ; owl:allValuesFrom sosa:ObservableProperty ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implementedBy ; owl:allValuesFrom sosa:Sensor ] ;
-  rdfs:isDefinedBy sosa-obs: .
-
-sosa:Sensor 
-  rdfs:subClassOf sosa:System ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:detects ; owl:allValuesFrom sosa:Stimulus ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implements ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implements ; owl:allValuesFrom sosa:ObservingProcedure ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:observes ; owl:allValuesFrom sosa:ObservableProperty ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeObservation ; owl:allValuesFrom sosa:Observation ] ;
-  rdfs:isDefinedBy sosa-obs: .
-
-sosa:observes 
-  rdfs:subPropertyOf ssn:forProperty ;
-  rdfs:isDefinedBy sosa-obs: .
-
-sosa:isObservedBy 
-  rdfs:isDefinedBy sosa-obs: .
-
 sosa:Observation 
   rdfs:subClassOf sosa:Execution ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeBySensor ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
@@ -77,47 +55,6 @@ sosa:Observation
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:startTime ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:isDefinedBy sosa-obs: .
 
-sosa:madeObservation 
-  rdfs:isDefinedBy sosa-obs: .
-
-sosa:madeBySensor 
-  rdfs:isDefinedBy sosa-obs: .
-
-sosa:observedProperty 
-  rdfs:isDefinedBy sosa-obs: .
-
-sosa:madeBySensor 
-  rdfs:isDefinedBy sosa-obs: .
-
-sosa:observationRelatedTo 
-  rdfs:isDefinedBy sosa-obs: .
-
-sosa:relatedObservation 
-  rdfs:isDefinedBy sosa-obs: .
-
-## Stimulus
-
-sosa:Stimulus 
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sosa:wasOriginatedBy ] ; owl:allValuesFrom sosa:Observation ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sosa:detects ] ; owl:allValuesFrom sosa:Sensor ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isProxyFor ; owl:allValuesFrom sosa:ObservableProperty ] ;
-  rdfs:isDefinedBy sosa-obs: .
-
-sosa:wasOriginatedBy 
-  a owl:FunctionalProperty ;
-  rdfs:isDefinedBy sosa-obs: .
-
-sosa:detects 
-  rdfs:isDefinedBy sosa-obs: .
-
-sosa:isProxyFor 
-  rdfs:isDefinedBy sosa-obs: .
-
-sosa:resultQuality 
-  rdfs:isDefinedBy sosa-obs: .
-
-## Observation Collection
-
 sosa:ObservationCollection 
   rdfs:subClassOf rdf:Bag ;
   rdfs:subClassOf [ 
@@ -131,6 +68,81 @@ sosa:ObservationCollection
     ] 
   ] ;
   rdfs:isDefinedBy sosa-obs: .
+
+sosa:ObservingProcedure 
+  rdfs:subClassOf sosa:Procedure ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:forProperty ; owl:allValuesFrom sosa:ObservableProperty ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implementedBy ; owl:allValuesFrom sosa:Sensor ] ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:Sensor 
+  rdfs:subClassOf sosa:System ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:detects ; owl:allValuesFrom sosa:Stimulus ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implements ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implements ; owl:allValuesFrom sosa:ObservingProcedure ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:observes ; owl:allValuesFrom sosa:ObservableProperty ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeObservation ; owl:allValuesFrom sosa:Observation ] ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:Stimulus 
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sosa:wasOriginatedBy ] ; owl:allValuesFrom sosa:Observation ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sosa:detects ] ; owl:allValuesFrom sosa:Sensor ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isProxyFor ; owl:allValuesFrom sosa:ObservableProperty ] ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:detects 
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:hasProxy 
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:isDetectedBy 
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:isObservedBy 
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:isProxyFor 
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:madeBySensor 
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:madeObservation 
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:observationRelatedTo 
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:observedProperty 
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:observes 
+  rdfs:subPropertyOf ssn:forProperty ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:originated 
+  rdfs:subPropertyOf ssn:forProperty ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:qualityOf 
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:relatedObservation 
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:resultQuality 
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:wasOriginatedBy 
+  a owl:FunctionalProperty ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:wasObservedBy 
+  a owl:FunctionalProperty ;
+  rdfs:isDefinedBy sosa-obs: .
+
+## Observation Collection
 
 ## End of observation schema
 ## -------------------------------------------------------- ##

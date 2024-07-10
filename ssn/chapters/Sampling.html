@@ -23,135 +23,68 @@
     <p>This section introduces the following classes and properties:</p>
     <div class="azlist">
         <p>
-            <a href="#SOSASampling">sosa:Sampling</a>
-            , <a href="#SOSASampler">sosa:Sampler</a>
+            <a href="#SOSAMaterialSample">sosa:MaterialSample</a>
             , <a href="#SOSASample">sosa:Sample</a>
-            , <a href="#SOSAMaterialSample">sosa:MaterialSample</a>
+            , <a href="#SOSASampleCollection">sosa:SampleCollection</a>
+            , <a href="#SOSASampler">sosa:Sampler</a>
+            , <a href="#SOSASampling">sosa:Sampling</a>
+            , <a href="#SOSASamplingCollection">sosa:SamplingCollection</a>
+            , <a href="#SOSASamplingProcedure">sosa:SamplingProcedure</a>
             , <a href="#SOSASpatialSample">sosa:SpatialSample</a>
             , <a href="#SOSAStatisticalSample">sosa:StatisticalSample</a>
-            , <a href="#SOSASampleCollection">sosa:SampleCollection</a>
-            , <a href="#SOSASamplingProcedure">sosa:SamplingProcedure</a>
-            , <a href="#SOSASamplingCollection">sosa:SamplingCollection</a>
+            , <a href="#SOSAfeatureSampledBy">sosa:featureSampledBy</a>
+            , <a href="#SOSAhasOriginalSample">sosa:hasOriginalSample</a>
+            , <a href="#SOSAhasSample">sosa:hasSample</a>
+            , <a href="#SOSAhasSampledFeature">sosa:hasSampledFeature</a>
+            , <a href="#SOSAisOriginalSampleOf">sosa:isOriginalSampleOf</a>
+            , <a href="#SOSAisResultOfMadeBySampler">sosa:isResultOfMadeBySampler</a>
+            , <a href="#SOSAisResultOfUsedProcedure">sosa:isResultOfUsedProcedure</a>
+            , <a href="#SOSAisSampleOf">sosa:isSampleOf</a>
             , <a href="#SOSAmadeBySampler">sosa:madeBySampler</a>
             , <a href="#SOSAmadeSampling">sosa:madeSampling</a>
-            , <a href="#SOSAisSampleOf">sosa:isSampleOf</a>
-            , <a href="#SOSAhasSample">sosa:hasSample</a>
-            , <a href="#SOSAhasOriginalSample">sosa:hasOriginalSample</a>
-            , <a href="#SOSAisOriginalSampleOf">sosa:isOriginalSampleOf</a>
-            , <a href="#SOSAhasSampledFeature">sosa:hasSampledFeature</a>
-            , <a href="#SOSAfeatureSampledBy">sosa:featureSampledBy</a>
-            , <a href="#SOSAisResultOfMadeBySampler">sosa:isResultOfMadeBySampler</a>
-            , <a href="#SOSAisResultOfMadeBySampler">sosa:madeSamplingHasResult</a>
-            , <a href="#SOSAisResultOfUsedProcedure">sosa:isResultOfUsedProcedure</a>
-            , <a href="#SOSAisResultOfUsedProcedure">sosa:usedForExecutionHasResult</a>
+            , <a href="#SOSAmadeSamplingHasResult">sosa:madeSamplingHasResult</a>
+            , <a href="#SOSAusedForExecutionHasResult">sosa:usedForExecutionHasResult</a>
         </p>
     </div>
 
-    <section class="specterm sosa" id="SOSASampling" about="sosa:Sampling" typeof="owl:Class">
-        <h5><a href="#SOSASampling">sosa:Sampling</a></h5>
-        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/Sampling</p>
+    <section class="informative specterm sosa" id="SOSAMaterialSample" about="sosa:MaterialSample" typeof="owl:Class">
+        <h5><a href="#SOSAMaterialSample">sosa:MaterialSample</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/MaterialSample</p>
         <p><strong>an OWL Class</strong></p>
 
-        <em property="rdfs:label">Sampling</em> -
-        <span property="skos:definition">An act of <a href="#SOSASampling">Sampling</a> carries out a
-            (Sampling) <a href="#SOSAProcedure">Procedure</a> to create one or more <a
-                href="#SOSASample">Samples</a>.</span>
+        <p class="note">MaterialSample added in 2024 update.
+            This term is non-normative pending further implementation experience</p>
+        <p>
+            <em property="rdfs:label">Material Sample</em> -
+            <span property="skos:definition">A MaterialSample is a physical, tangible Sample.</span>
+        </p>
         <table>
             <tbody>
-                <tr>
-                    <th>Example</th>
-                    <td>
-                        <span property="skos:example">Crushing a rock sample in a ball mill.</span><br>
-                        <span property="skos:example">Digging a pit through a soil sequence.</span><br>
-                        <span property="skos:example">Dividing a field site into quadrants.</span><br>
-                        <span property="skos:example">Drawing blood from a patient.</span><br>
-                        <span property="skos:example">Drilling an observation well.</span><br>
-                        <span property="skos:example">Establishing a station for environmental
-                            monitoring.</span><br>
-                        <span property="skos:example">Registering an image of the landscape.</span><br>
-                        <span property="skos:example">Sieving a powder to separate the subset finer than
-                            100-mesh.</span><br>
-                        <span property="skos:example">Selecting a subset of a population.</span><br>
-                        <span property="skos:example">Splitting a piece of drill-core to create two new
-                            samples.</span><br>
-                        <span property="skos:example">Taking a diamond-drill core from a rock outcrop.</span><br>
-                    </td>
-                </tr>
                 <tr class="ssn">
                     <th>Sub class of</th>
                     <td>
-                        <span rel="rdfs:subClassOf" resource="sosa:Execution"><a
-                                href="#SOSAExecution">sosa:Execution</a></span>
+                        <span rel="rdfs:subClassOf" resource="sosa:Sample">sosa:Sample</span>
                     </td>
                 </tr>
-                <tr class="ssn">
-                    <th class="restrictions">Restrictions</th>
+                <tr>
+                    <th>Examples</th>
                     <td>
-                        <span about="sosa:Sampling" rel="rdfs:subClassOf" resource="[_:SOSASampling1]"></span>
-                        <span about="[_:SOSASampling1]" typeof="owl:Restriction"></span>
-                        <span about="[_:SOSASampling1]" rel="owl:onProperty" resource="sosa:madeBySampler"><a
-                                href="#SOSAmadeBySampler">sosa:madeBySampler</a></span>
-                        <span about="[_:SOSASampling1]" property="owl:cardinality" content="1"
-                            datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em></span>
+                        <span property="skos:example">A piece of rock</span>
+                        , <span property="skos:example">a blood sample</span>
+                        , <span property="skos:example">a water sample</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Note</th>
+                    <td>
+                        <span property="skos:note">MaterialSamples that are curated and preserved are sometimes
+                            known as
+                            'specimens'.</span>
                         <br>
-                        <span about="sosa:Sampling" rel="rdfs:subClassOf" resource="[_:SOSASampling2]"></span>
-                        <span about="[_:SOSASampling2]" typeof="owl:Restriction"></span>
-                        <span about="[_:SOSASampling2]" rel="owl:onProperty" resource="sosa:madeBySampler"><a
-                                href="#SOSAmadeBySampler">sosa:madeBySampler</a></span>
-                        <span about="[_:SOSASampling2]" property="owl:allValuesFrom"
-                            resource="sosa:Sampler"><em><b>ONLY</b></em> <a href="#SOSASampler">sosa:Sampler</a></span>
-                        <br>
-                        <span about="sosa:Sampling" rel="rdfs:subClassOf" resource="[_:SOSASampling3]"></span>
-                        <span about="[_:SOSASampling3]" typeof="owl:Restriction"></span>
-                        <span about="[_:SOSASampling3]" rel="owl:onProperty" resource="sosa:usedProcedure"><a
-                                href="#SOSAusedProcedure">sosa:usedProcedure</a></span>
-                        <span about="[_:SOSASampling3]" property="owl:allValuesFrom"
-                            resource="sosa:SamplingProcedure"><em><b>ONLY</b></em> <a
-                                href="#SOSASamplingProcedure">sosa:SamplingProcedure</a></span>
-                        <br>
-                        <span about="sosa:Sampling" rel="rdfs:subClassOf" resource="[_:SOSASampling4]"></span>
-                        <span about="[_:SOSASampling4]" typeof="owl:Restriction"></span>
-                        <span about="[_:SOSASampling4]" rel="owl:onProperty" resource="sosa:hasFeatureOfInterest"><a
-                                href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a></span>
-                        <span about="[_:SOSASampling4]" property="owl:cardinality" content="1"
-                            datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em></span>
-                        <br>
-                        <span about="sosa:Sampling" rel="rdfs:subClassOf" resource="[_:SOSASampling5]"></span>
-                        <span about="[_:SOSASampling5]" typeof="owl:Restriction"></span>
-                        <span about="[_:SOSASampling5]" rel="owl:onProperty" resource="sosa:hasFeatureOfInterest"><a
-                                href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a></span>
-                        <span about="[_:SOSASampling5]" property="owl:allValuesFrom"
-                            resource="sosa:FeatureOfInterest"><em><b>ONLY</b></em> <a
-                                href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a></span>
-                        <br>
-                        <span about="sosa:Sampling" rel="rdfs:subClassOf" resource="[_:SOSASampling11]"></span>
-                        <span about="[_:SOSASampling11]" typeof="owl:Restriction"></span>
-                        <span about="[_:SOSASampling11]" rel="owl:onProperty" resource="sosa:hasResult"><a
-                                href="#SOSAhasResult">sosa:hasResult</a></span>
-                        <span about="[_:SOSASampling11]" property="owl:minCardinality" content="1"
-                            datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em> <a
-                                href="#SOSASample">sosa:Sample</a></span>
-                        <br>
-                        <span about="sosa:Sampling" rel="rdfs:subClassOf" resource="[_:SOSASampling12]"></span>
-                        <span about="[_:SOSASampling12]" typeof="owl:Restriction"></span>
-                        <span about="[_:SOSASampling12]" rel="owl:onProperty" resource="sosa:hasResult"><a
-                                href="#SOSAhasResult">sosa:hasResult</a></span>
-                        <span about="[_:SOSASampling12]" property="owl:allValuesFrom"
-                            resource="sosa:Sample"><em><b>ONLY</b></em> <a href="#SOSASample">sosa:Sample</a></span>
-                        <br>
-                        <span about="sosa:Sampling" rel="rdfs:subClassOf" resource="[_:SOSASampling13]"></span>
-                        <span about="[_:SOSASampling13]" typeof="owl:Restriction"></span>
-                        <span about="[_:SOSASampling13]" rel="owl:onProperty" resource="sosa:resultTime"><a
-                                href="#SOSAresultTime">sosa:resultTime</a></span>
-                        <span about="[_:SOSASampling13]" property="owl:cardinality" content="1"
-                            datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em></span>
-                        <br>
-                        <span about="sosa:Sampling" rel="rdfs:subClassOf" resource="[_:SOSASampling14]"></span>
-                        <span about="[_:SOSASampling14]" typeof="owl:Restriction"></span>
-                        <span about="[_:SOSASampling14]" rel="owl:onProperty" resource="sosa:startTime"><a
-                                href="#SOSAstartTime">sosa:startTime</a></span>
-                        <span about="[_:SOSASampling14]" property="owl:cardinality" content="1"
-                            datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em></span>
+                        <span property="skos:note">MaterialSamples may be destroyed in connexion with the
+                            observation act or
+                            a
+                            subsequent preparation step.</span>
                     </td>
                 </tr>
                 <tr>
@@ -163,83 +96,7 @@
                 </tr>
             </tbody>
         </table>
-        <div class="buttonpanel">
-            <span>
-                <span class="sosa" style="display: none;">[<a href="#"
-                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
-                        additional SSN axioms</a>]</span>
-                <span class="ssn">[<a href="#"
-                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
-                        additional SSN axioms</a>]</span>
-            </span>
-            <span class="back">[<a href="#Sampling">Back to module overview</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-        </div>
-    </section>
 
-    <section class="specterm sosa" id="SOSASampler" about="sosa:Sampler" typeof="owl:Class">
-        <h5><a href="#SOSASampler">sosa:Sampler</a></h5>
-        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/Sampler</p>
-        <p><strong>an OWL Class</strong></p>
-        <em property="rdfs:label">Sampler</em> -
-        <span property="skos:definition">A device that implements a (Sampling) <a href="#SOSAProcedure">Procedure</a> to
-            create or transform one or more samples.</span>
-        <br>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Example</th>
-                    <td><span property="skos:example">A ball mill, diamond drill, hammer, hypodermic syringe and needle,
-                            image <a href="#SOSASensor">Sensor</a> or a soil auger can all act as sampling
-                            devices (i.e., be <a href="#SOSASampler">Samplers</a>).
-                            However, sometimes the distinction between the <a href="#SOSASampler">Sampler</a> and the <a
-                                href="#SOSASampler">Sensor</a> is not evident, as they are packaged as a
-                            unit.
-                            <br><br>
-                            A <a href="#SOSASampler">Sampler</a> need not be a physical device.</span></td>
-                </tr>
-                <tr class="ssn">
-                    <th>Sub class of</th>
-                    <td>
-                        <span rel="rdfs:subClassOf" resource="sosa:System"><a href="#SOSASystem">sosa:System</a></span>
-                    </td>
-                </tr>
-                <tr class="ssn">
-                    <th class="restrictions">Restrictions</th>
-                    <td>
-                        <span about="sosa:Sampler" rel="rdfs:subClassOf" resource="[_:SOSASampler4]"></span>
-                        <span about="[_:SOSASampler4]" typeof="owl:Restriction"></span>
-                        <span about="[_:SOSASampler4]" rel="owl:onProperty" resource="sosa:implements"><a
-                                href="#SOSAimplements">sosa:implements</a></span>
-                        <span about="[_:SOSASampler4]" property="owl:minCardinality" content="1"
-                            datatype="xsd:nonNegativeInteger"><em><b>MIN 1</b></em></span>
-                        <br>
-                        <span about="sosa:Sampler" rel="rdfs:subClassOf" resource="[_:SOSASampler3]"></span>
-                        <span about="[_:SOSASampler3]" typeof="owl:Restriction"></span>
-                        <span about="[_:SOSASampler3]" rel="owl:onProperty" resource="sosa:implements"><a
-                                href="#SOSAimplements">sosa:implements</a></span>
-                        <span about="[_:SOSASampler3]" property="owl:allValuesFrom"
-                            resource="sosa:SamplingProcedure"><em><b>ONLY</b></em> <a
-                                href="#SOSASamplingProcedure">sosa:SamplingProcedure</a></span>
-                        <br>
-                        <span about="sosa:Sampler" rel="rdfs:subClassOf" resource="[_:SOSASampler1]"></span>
-                        <span about="[_:SOSASampler1]" typeof="owl:Restriction"></span>
-                        <span about="[_:SOSASampler1]" rel="owl:onProperty" resource="sosa:madeSampling"><a
-                                href="#SOSAmadeSampling">sosa:madeSampling</a></span>
-                        <span about="[_:SOSASampler1]" property="owl:allValuesFrom"
-                            resource="sosa:Sampling"><em><b>ONLY</b></em> <a
-                                href="#SOSASampling">sosa:Sampling</a></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <span rel="rdfs:isDefinedBy"><a
-                                href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a></span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
         <div class="buttonpanel">
             <span>
                 <span class="sosa" style="display: none;">[<a href="#"
@@ -396,44 +253,375 @@
         </div>
     </section>
 
-    <section class="informative specterm sosa" id="SOSAMaterialSample" about="sosa:MaterialSample" typeof="owl:Class">
-        <h5><a href="#SOSAMaterialSample">sosa:MaterialSample</a></h5>
-        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/MaterialSample</p>
+    <section class="informative specterm sosa" id="SOSASampleCollection" about="sosa:SampleCollection"
+        typeof="owl:Class">
+        <h5><a href="#SOSASampleCollection">sosa:SampleCollection</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/SampleCollection</p>
         <p><strong>an OWL Class</strong></p>
 
-        <p class="note">MaterialSample added in 2024 update.
+        <p class="note">SampleCollection added in the 2024 update.
             This term is non-normative pending further implementation experience</p>
         <p>
-            <em property="rdfs:label">Material Sample</em> -
-            <span property="skos:definition">A MaterialSample is a physical, tangible Sample.</span>
+            <em property="rdfs:label">Sample Collection</em> -
+            <span property="skos:definition">A <a href="#SOSASampleCollection">SampleCollection</a> is
+                a
+                collection of one or more <a href="#SOSASample">Samples</a> or <a
+                    href="#SOSASampleCollection">SampleCollections</a>, i.e. collections may be nested.
+                <br><br>
+                The following <a href="#SOSASample">Sample</a> properties may appear in a <a
+                    href="#SOSASampleCollection">SampleCollection</a>:
+                <a href="#SOSAhasOriginalSample">hasOriginalSample</a> ,
+                <a href="#SOSAhasSampledFeature">hasSampledFeature</a> ,
+                <a href="#SOSAisSampleOf">isSampleOf</a> ,
+                <a href="#SOSAisResultOfUsedProcedure">isResultOfUsedProcedure</a> ,
+                <a href="#SOSAisResultOfMadeBySampler">isResultOfMadeBySampler</a>.
+                If it is present, the values of a property summarizes the values of the matching properties of the
+                member
+                samples, where membership is either direct or transitive through onw or more member sample
+                collections.
+                <br><br>
+                The following consistency rules apply with respect to the Sample properties listed above:
+                <br><br>1. Where an individual <a href="#SOSASampleCollection">SampleCollection</a>
+                <i>omits
+                    a property</i>, a member <a href="#SOSASample">Sample</a> (direct or transitive)
+                MAY have
+                any value for that property.
+                <br><br>2. Where an individual <a href="#SOSASampleCollection">SampleCollection</a> has
+                <i>a
+                    single value for a property</i>, each member <a href="#SOSASample">Sample</a>
+                (direct or
+                transitive) MUST have that same value for that property - i.e. the collection is homogeneous in that
+                property. That property MAY be omitted in any member <a href="#SOSASample">Sample</a>
+                or <a href="#SOSASampleCollection">SampleCollection</a>.
+                <br><br>3. Where an individual <a href="#SOSASampleCollection">SampleCollection</a> has
+                <i>more than one value for a property</i>, each member <a href="#SOSASample">Sample</a>
+                (direct or transitive) MUST have a value for that property that matches one of the values for the
+                property
+                in the collection.
+                <br><br>4. Where an individual <a href="#SOSASampleCollection">SampleCollection</a>
+                <i>has
+                    a
+                    value for a property that is a range or interval</i>, each member <a href="#SOSASample">Sample</a>
+                (direct or transitive) MUST have a value for that
+                property
+                that matches or falls within that range or interval.
+                <br><br>5. Where an individual <a href="#SOSASampleCollection">SampleCollection</a>
+                <i>has
+                    more than
+                    one value for a property that is a range or interval</i>, each member <a
+                    href="#SOSASample">Sample</a> (direct or transitive) MUST have a value for that
+                property
+                that matches or falls within one of those ranges or intervals.
+            </span> <br>
+            <span property="skos:note">The members of a collection do not necessarily share a common value for any
+                property. </span>
+        </p>
+
+        <table>
+            <tbody>
+                <tr>
+                    <th>Example</th>
+                    <td><span property="skos:example">... TODO ...</span></td>
+                </tr>
+                <tr>
+                    <th>Note</th>
+                    <td><span property="skos:note">The members of a collection do not necessarily share a common value
+                            for any property.</span></td>
+                </tr>
+                <tr class="ssn">
+                    <th>Sub class of</th>
+                    <td>
+                        <span rel="rdfs:subClassOf" resource="rdf:Bag"><a
+                                href="https://www.w3.org/TR/rdf12-schema/#ch_bag">rdf:Bag</a></span>
+                    </td>
+                </tr>
+                <tr class="ssn">
+                    <th>Disjoint with</th>
+                    <td>
+                        <span rel="owl:disjointWith" resource="sosa:ActuationCollection"><a
+                                href="#SOSAActuationCollection">sosa:ActuationCollection</a></span> ,
+                        <span rel="owl:disjointWith" resource="sosa:ObservationCollection"><a
+                                href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
+                    </td>
+                </tr>
+                <tr class="ssn">
+                    <th class="restrictions">Restrictions</th>
+                    <td>
+                        <span about="sosa:SampleCollection" rel="rdfs:subClassOf"
+                            resource="[_:SOSASampleCollection2]"></span>
+                        <span about="[_:SOSASampleCollection]" typeof="owl:Restriction"></span>
+                        <span about="[_:SOSASampleCollection]" rel="owl:onProperty" resource="sosa:hasMember"><a
+                                href="#SOSAhasMember">sosa:hasMember</a></span>
+                        <span about="[_:SOSASampleCollection]" property="owl:allValuesFrom"
+                            resource="sosa:SampleCollection"><em><b>ONLY</b></em> (<a href="#SOSASample">sosa:Sample</a>
+                            OR <a href="#SOSASampleCollection">sosa:SampleCollection</a> )</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span>
+                <span class="sosa" style="display: none;">[<a href="#"
+                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
+                        additional SSN axioms</a>]</span>
+                <span class="ssn">[<a href="#"
+                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
+                        additional SSN axioms</a>]</span>
+            </span>
+            <span class="back">[<a href="#Sampling">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="specterm sosa" id="SOSASampler" about="sosa:Sampler" typeof="owl:Class">
+        <h5><a href="#SOSASampler">sosa:Sampler</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/Sampler</p>
+        <p><strong>an OWL Class</strong></p>
+        <em property="rdfs:label">Sampler</em> -
+        <span property="skos:definition">A device that implements a (Sampling) <a href="#SOSAProcedure">Procedure</a> to
+            create or transform one or more samples.</span>
+        <br>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Example</th>
+                    <td><span property="skos:example">A ball mill, diamond drill, hammer, hypodermic syringe and needle,
+                            image <a href="#SOSASensor">Sensor</a> or a soil auger can all act as sampling
+                            devices (i.e., be <a href="#SOSASampler">Samplers</a>).
+                            However, sometimes the distinction between the <a href="#SOSASampler">Sampler</a> and the <a
+                                href="#SOSASampler">Sensor</a> is not evident, as they are packaged as a
+                            unit.
+                            <br><br>
+                            A <a href="#SOSASampler">Sampler</a> need not be a physical device.</span></td>
+                </tr>
+                <tr class="ssn">
+                    <th>Sub class of</th>
+                    <td>
+                        <span rel="rdfs:subClassOf" resource="sosa:System"><a href="#SOSASystem">sosa:System</a></span>
+                    </td>
+                </tr>
+                <tr class="ssn">
+                    <th class="restrictions">Restrictions</th>
+                    <td>
+                        <span about="sosa:Sampler" rel="rdfs:subClassOf" resource="[_:SOSASampler4]"></span>
+                        <span about="[_:SOSASampler4]" typeof="owl:Restriction"></span>
+                        <span about="[_:SOSASampler4]" rel="owl:onProperty" resource="sosa:implements"><a
+                                href="#SOSAimplements">sosa:implements</a></span>
+                        <span about="[_:SOSASampler4]" property="owl:minCardinality" content="1"
+                            datatype="xsd:nonNegativeInteger"><em><b>MIN 1</b></em></span>
+                        <br>
+                        <span about="sosa:Sampler" rel="rdfs:subClassOf" resource="[_:SOSASampler3]"></span>
+                        <span about="[_:SOSASampler3]" typeof="owl:Restriction"></span>
+                        <span about="[_:SOSASampler3]" rel="owl:onProperty" resource="sosa:implements"><a
+                                href="#SOSAimplements">sosa:implements</a></span>
+                        <span about="[_:SOSASampler3]" property="owl:allValuesFrom"
+                            resource="sosa:SamplingProcedure"><em><b>ONLY</b></em> <a
+                                href="#SOSASamplingProcedure">sosa:SamplingProcedure</a></span>
+                        <br>
+                        <span about="sosa:Sampler" rel="rdfs:subClassOf" resource="[_:SOSASampler1]"></span>
+                        <span about="[_:SOSASampler1]" typeof="owl:Restriction"></span>
+                        <span about="[_:SOSASampler1]" rel="owl:onProperty" resource="sosa:madeSampling"><a
+                                href="#SOSAmadeSampling">sosa:madeSampling</a></span>
+                        <span about="[_:SOSASampler1]" property="owl:allValuesFrom"
+                            resource="sosa:Sampling"><em><b>ONLY</b></em> <a
+                                href="#SOSASampling">sosa:Sampling</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span>
+                <span class="sosa" style="display: none;">[<a href="#"
+                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
+                        additional SSN axioms</a>]</span>
+                <span class="ssn">[<a href="#"
+                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
+                        additional SSN axioms</a>]</span>
+            </span>
+            <span class="back">[<a href="#Sampling">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="specterm sosa" id="SOSASampling" about="sosa:Sampling" typeof="owl:Class">
+        <h5><a href="#SOSASampling">sosa:Sampling</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/Sampling</p>
+        <p><strong>an OWL Class</strong></p>
+
+        <em property="rdfs:label">Sampling</em> -
+        <span property="skos:definition">An act of <a href="#SOSASampling">Sampling</a> carries out a
+            (Sampling) <a href="#SOSAProcedure">Procedure</a> to create one or more <a
+                href="#SOSASample">Samples</a>.</span>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Example</th>
+                    <td>
+                        <span property="skos:example">Crushing a rock sample in a ball mill.</span><br>
+                        <span property="skos:example">Digging a pit through a soil sequence.</span><br>
+                        <span property="skos:example">Dividing a field site into quadrants.</span><br>
+                        <span property="skos:example">Drawing blood from a patient.</span><br>
+                        <span property="skos:example">Drilling an observation well.</span><br>
+                        <span property="skos:example">Establishing a station for environmental
+                            monitoring.</span><br>
+                        <span property="skos:example">Registering an image of the landscape.</span><br>
+                        <span property="skos:example">Sieving a powder to separate the subset finer than
+                            100-mesh.</span><br>
+                        <span property="skos:example">Selecting a subset of a population.</span><br>
+                        <span property="skos:example">Splitting a piece of drill-core to create two new
+                            samples.</span><br>
+                        <span property="skos:example">Taking a diamond-drill core from a rock outcrop.</span><br>
+                    </td>
+                </tr>
+                <tr class="ssn">
+                    <th>Sub class of</th>
+                    <td>
+                        <span rel="rdfs:subClassOf" resource="sosa:Execution"><a
+                                href="#SOSAExecution">sosa:Execution</a></span>
+                    </td>
+                </tr>
+                <tr class="ssn">
+                    <th class="restrictions">Restrictions</th>
+                    <td>
+                        <span about="sosa:Sampling" rel="rdfs:subClassOf" resource="[_:SOSASampling1]"></span>
+                        <span about="[_:SOSASampling1]" typeof="owl:Restriction"></span>
+                        <span about="[_:SOSASampling1]" rel="owl:onProperty" resource="sosa:madeBySampler"><a
+                                href="#SOSAmadeBySampler">sosa:madeBySampler</a></span>
+                        <span about="[_:SOSASampling1]" property="owl:cardinality" content="1"
+                            datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em></span>
+                        <br>
+                        <span about="sosa:Sampling" rel="rdfs:subClassOf" resource="[_:SOSASampling2]"></span>
+                        <span about="[_:SOSASampling2]" typeof="owl:Restriction"></span>
+                        <span about="[_:SOSASampling2]" rel="owl:onProperty" resource="sosa:madeBySampler"><a
+                                href="#SOSAmadeBySampler">sosa:madeBySampler</a></span>
+                        <span about="[_:SOSASampling2]" property="owl:allValuesFrom"
+                            resource="sosa:Sampler"><em><b>ONLY</b></em> <a href="#SOSASampler">sosa:Sampler</a></span>
+                        <br>
+                        <span about="sosa:Sampling" rel="rdfs:subClassOf" resource="[_:SOSASampling3]"></span>
+                        <span about="[_:SOSASampling3]" typeof="owl:Restriction"></span>
+                        <span about="[_:SOSASampling3]" rel="owl:onProperty" resource="sosa:usedProcedure"><a
+                                href="#SOSAusedProcedure">sosa:usedProcedure</a></span>
+                        <span about="[_:SOSASampling3]" property="owl:allValuesFrom"
+                            resource="sosa:SamplingProcedure"><em><b>ONLY</b></em> <a
+                                href="#SOSASamplingProcedure">sosa:SamplingProcedure</a></span>
+                        <br>
+                        <span about="sosa:Sampling" rel="rdfs:subClassOf" resource="[_:SOSASampling4]"></span>
+                        <span about="[_:SOSASampling4]" typeof="owl:Restriction"></span>
+                        <span about="[_:SOSASampling4]" rel="owl:onProperty" resource="sosa:hasFeatureOfInterest"><a
+                                href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a></span>
+                        <span about="[_:SOSASampling4]" property="owl:cardinality" content="1"
+                            datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em></span>
+                        <br>
+                        <span about="sosa:Sampling" rel="rdfs:subClassOf" resource="[_:SOSASampling5]"></span>
+                        <span about="[_:SOSASampling5]" typeof="owl:Restriction"></span>
+                        <span about="[_:SOSASampling5]" rel="owl:onProperty" resource="sosa:hasFeatureOfInterest"><a
+                                href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a></span>
+                        <span about="[_:SOSASampling5]" property="owl:allValuesFrom"
+                            resource="sosa:FeatureOfInterest"><em><b>ONLY</b></em> <a
+                                href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a></span>
+                        <br>
+                        <span about="sosa:Sampling" rel="rdfs:subClassOf" resource="[_:SOSASampling11]"></span>
+                        <span about="[_:SOSASampling11]" typeof="owl:Restriction"></span>
+                        <span about="[_:SOSASampling11]" rel="owl:onProperty" resource="sosa:hasResult"><a
+                                href="#SOSAhasResult">sosa:hasResult</a></span>
+                        <span about="[_:SOSASampling11]" property="owl:minCardinality" content="1"
+                            datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em> <a
+                                href="#SOSASample">sosa:Sample</a></span>
+                        <br>
+                        <span about="sosa:Sampling" rel="rdfs:subClassOf" resource="[_:SOSASampling12]"></span>
+                        <span about="[_:SOSASampling12]" typeof="owl:Restriction"></span>
+                        <span about="[_:SOSASampling12]" rel="owl:onProperty" resource="sosa:hasResult"><a
+                                href="#SOSAhasResult">sosa:hasResult</a></span>
+                        <span about="[_:SOSASampling12]" property="owl:allValuesFrom"
+                            resource="sosa:Sample"><em><b>ONLY</b></em> <a href="#SOSASample">sosa:Sample</a></span>
+                        <br>
+                        <span about="sosa:Sampling" rel="rdfs:subClassOf" resource="[_:SOSASampling13]"></span>
+                        <span about="[_:SOSASampling13]" typeof="owl:Restriction"></span>
+                        <span about="[_:SOSASampling13]" rel="owl:onProperty" resource="sosa:resultTime"><a
+                                href="#SOSAresultTime">sosa:resultTime</a></span>
+                        <span about="[_:SOSASampling13]" property="owl:cardinality" content="1"
+                            datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em></span>
+                        <br>
+                        <span about="sosa:Sampling" rel="rdfs:subClassOf" resource="[_:SOSASampling14]"></span>
+                        <span about="[_:SOSASampling14]" typeof="owl:Restriction"></span>
+                        <span about="[_:SOSASampling14]" rel="owl:onProperty" resource="sosa:startTime"><a
+                                href="#SOSAstartTime">sosa:startTime</a></span>
+                        <span about="[_:SOSASampling14]" property="owl:cardinality" content="1"
+                            datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span>
+                <span class="sosa" style="display: none;">[<a href="#"
+                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
+                        additional SSN axioms</a>]</span>
+                <span class="ssn">[<a href="#"
+                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
+                        additional SSN axioms</a>]</span>
+            </span>
+            <span class="back">[<a href="#Sampling">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="informative specterm sosa" id="SOSASamplingCollection" about="sosa:SamplingCollection"
+        typeof="owl:Class">
+        <h6><a href="#SOSASamplingCollection">sosa:SamplingCollection</a></h6>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/SamplingCollection</p>
+        <p><strong>an OWL Class</strong></p>
+
+        <p class="note">SamplingCollection added in 2024 update.
+            This term is non-normative pending further implementation experience</p>
+        <p>
+            <em property="rdfs:label">Sampling Collection</em> -
+
+
+    </section>
+
+    <section class="informative specterm sosa" id="SOSASamplingProcedure" about="sosa:SamplingProcedure"
+        typeof="owl:Class">
+        <h6><a href="#SOSASamplingProcedure">sosa:SamplingProcedure</a></h6>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/SamplingProcedure</p>
+        <p><strong>an OWL Class</strong></p>
+
+        <p class="note">SamplingProcedure added in 2024 update.
+            This term is non-normative pending further implementation experience</p>
+        <p>
+            <em property="rdfs:label">Sampling Procedure</em> -
+            <span property="skos:definition">The description of steps performed by a <a href="#SOSASampler">Sampler</a>
+                in order to
+                extract a <a href="#SOSASample">Sample</a> from its sampled Feature in the frame of a <a
+                    href="#SOSASampling">Sampling</a>.</span>
         </p>
         <table>
             <tbody>
                 <tr class="ssn">
                     <th>Sub class of</th>
                     <td>
-                        <span rel="rdfs:subClassOf" resource="sosa:Sample">sosa:Sample</span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Examples</th>
-                    <td>
-                        <span property="skos:example">A piece of rock</span>
-                        , <span property="skos:example">a blood sample</span>
-                        , <span property="skos:example">a water sample</span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Note</th>
-                    <td>
-                        <span property="skos:note">MaterialSamples that are curated and preserved are sometimes
-                            known as
-                            'specimens'.</span>
-                        <br>
-                        <span property="skos:note">MaterialSamples may be destroyed in connexion with the
-                            observation act or
-                            a
-                            subsequent preparation step.</span>
+                        <span rel="rdfs:subClassOf" resource="sosa:Procedure">sosa:Procedure</span>
                     </td>
                 </tr>
                 <tr>
@@ -595,222 +783,41 @@
         </div>
     </section>
 
-    <section class="informative specterm sosa" id="SOSASampleCollection" about="sosa:SampleCollection"
-        typeof="owl:Class">
-        <h5><a href="#SOSASampleCollection">sosa:SampleCollection</a></h5>
-        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/SampleCollection</p>
-        <p><strong>an OWL Class</strong></p>
-
-        <p class="note">SampleCollection added in the 2024 update.
-            This term is non-normative pending further implementation experience</p>
-        <p>
-            <em property="rdfs:label">Sample Collection</em> -
-            <span property="skos:definition">A <a href="#SOSASampleCollection">SampleCollection</a> is
-                a
-                collection of one or more <a href="#SOSASample">Samples</a> or <a
-                    href="#SOSASampleCollection">SampleCollections</a>, i.e. collections may be nested.
-                <br><br>
-                The following <a href="#SOSASample">Sample</a> properties may appear in a <a
-                    href="#SOSASampleCollection">SampleCollection</a>:
-                <a href="#SOSAhasOriginalSample">hasOriginalSample</a> ,
-                <a href="#SOSAhasSampledFeature">hasSampledFeature</a> ,
-                <a href="#SOSAisSampleOf">isSampleOf</a> ,
-                <a href="#SOSAisResultOfUsedProcedure">isResultOfUsedProcedure</a> ,
-                <a href="#SOSAisResultOfMadeBySampler">isResultOfMadeBySampler</a>.
-                If it is present, the values of a property summarizes the values of the matching properties of the
-                member
-                samples, where membership is either direct or transitive through onw or more member sample
-                collections.
-                <br><br>
-                The following consistency rules apply with respect to the Sample properties listed above:
-                <br><br>1. Where an individual <a href="#SOSASampleCollection">SampleCollection</a>
-                <i>omits
-                    a property</i>, a member <a href="#SOSASample">Sample</a> (direct or transitive)
-                MAY have
-                any value for that property.
-                <br><br>2. Where an individual <a href="#SOSASampleCollection">SampleCollection</a> has
-                <i>a
-                    single value for a property</i>, each member <a href="#SOSASample">Sample</a>
-                (direct or
-                transitive) MUST have that same value for that property - i.e. the collection is homogeneous in that
-                property. That property MAY be omitted in any member <a href="#SOSASample">Sample</a>
-                or <a href="#SOSASampleCollection">SampleCollection</a>.
-                <br><br>3. Where an individual <a href="#SOSASampleCollection">SampleCollection</a> has
-                <i>more than one value for a property</i>, each member <a href="#SOSASample">Sample</a>
-                (direct or transitive) MUST have a value for that property that matches one of the values for the
-                property
-                in the collection.
-                <br><br>4. Where an individual <a href="#SOSASampleCollection">SampleCollection</a>
-                <i>has
-                    a
-                    value for a property that is a range or interval</i>, each member <a href="#SOSASample">Sample</a>
-                (direct or transitive) MUST have a value for that
-                property
-                that matches or falls within that range or interval.
-                <br><br>5. Where an individual <a href="#SOSASampleCollection">SampleCollection</a>
-                <i>has
-                    more than
-                    one value for a property that is a range or interval</i>, each member <a
-                    href="#SOSASample">Sample</a> (direct or transitive) MUST have a value for that
-                property
-                that matches or falls within one of those ranges or intervals.
-            </span> <br>
-            <span property="skos:note">The members of a collection do not necessarily share a common value for any
-                property. </span>
-        </p>
-
-        <table>
-            <tbody>
-                <tr>
-                    <th>Example</th>
-                    <td><span property="skos:example">... TODO ...</span></td>
-                </tr>
-                <tr>
-                    <th>Note</th>
-                    <td><span property="skos:note">The members of a collection do not necessarily share a common value
-                            for any property.</span></td>
-                </tr>
-                <tr class="ssn">
-                    <th>Sub class of</th>
-                    <td>
-                        <span rel="rdfs:subClassOf" resource="rdf:Bag"><a
-                                href="https://www.w3.org/TR/rdf12-schema/#ch_bag">rdf:Bag</a></span>
-                    </td>
-                </tr>
-                <tr class="ssn">
-                    <th>Disjoint with</th>
-                    <td>
-                        <span rel="owl:disjointWith" resource="sosa:ActuationCollection"><a
-                                href="#SOSAActuationCollection">sosa:ActuationCollection</a></span> ,
-                        <span rel="owl:disjointWith" resource="sosa:ObservationCollection"><a
-                                href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
-                    </td>
-                </tr>
-                <tr class="ssn">
-                    <th class="restrictions">Restrictions</th>
-                    <td>
-                        <span about="sosa:SampleCollection" rel="rdfs:subClassOf"
-                            resource="[_:SOSASampleCollection2]"></span>
-                        <span about="[_:SOSASampleCollection]" typeof="owl:Restriction"></span>
-                        <span about="[_:SOSASampleCollection]" rel="owl:onProperty" resource="sosa:hasMember"><a
-                                href="#SOSAhasMember">sosa:hasMember</a></span>
-                        <span about="[_:SOSASampleCollection]" property="owl:allValuesFrom"
-                            resource="sosa:SampleCollection"><em><b>ONLY</b></em> (<a href="#SOSASample">sosa:Sample</a>
-                            OR <a href="#SOSASampleCollection">sosa:SampleCollection</a> )</span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <span rel="rdfs:isDefinedBy"><a
-                                href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a></span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="buttonpanel">
-            <span>
-                <span class="sosa" style="display: none;">[<a href="#"
-                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
-                        additional SSN axioms</a>]</span>
-                <span class="ssn">[<a href="#"
-                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
-                        additional SSN axioms</a>]</span>
-            </span>
-            <span class="back">[<a href="#Sampling">Back to module overview</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-        </div>
-    </section>
-
-    <section class="informative specterm sosa" id="SOSASamplingProcedure" about="sosa:SamplingProcedure"
-        typeof="owl:Class">
-        <h6><a href="#SOSASamplingProcedure">sosa:SamplingProcedure</a></h6>
-        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/SamplingProcedure</p>
-        <p><strong>an OWL Class</strong></p>
-
-        <p class="note">SamplingProcedure added in 2024 update.
-            This term is non-normative pending further implementation experience</p>
-        <p>
-            <em property="rdfs:label">Sampling Procedure</em> -
-            <span property="skos:definition">The description of steps performed by a <a href="#SOSASampler">Sampler</a>
-                in order to
-                extract a <a href="#SOSASample">Sample</a> from its sampled Feature in the frame of a <a
-                    href="#SOSASampling">Sampling</a>.</span>
-        </p>
-        <table>
-            <tbody>
-                <tr class="ssn">
-                    <th>Sub class of</th>
-                    <td>
-                        <span rel="rdfs:subClassOf" resource="sosa:Procedure">sosa:Procedure</span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <span rel="rdfs:isDefinedBy"><a
-                                href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a></span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <div class="buttonpanel">
-            <span>
-                <span class="sosa" style="display: none;">[<a href="#"
-                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
-                        additional SSN axioms</a>]</span>
-                <span class="ssn">[<a href="#"
-                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
-                        additional SSN axioms</a>]</span>
-            </span>
-            <span class="back">[<a href="#Sampling">Back to module overview</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-        </div>
-    </section>
-
-    <section class="informative specterm sosa" id="SOSASamplingCollection" about="sosa:SamplingCollection"
-        typeof="owl:Class">
-        <h6><a href="#SOSASamplingCollection">sosa:SamplingCollection</a></h6>
-        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/SamplingCollection</p>
-        <p><strong>an OWL Class</strong></p>
-
-        <p class="note">SamplingCollection added in 2024 update.
-            This term is non-normative pending further implementation experience</p>
-        <p>
-            <em property="rdfs:label">Sampling Collection</em> -
-
-
-    </section>
-
-    <section class="specterm sosa" id="SOSAmadeBySampler" about="sosa:madeBySampler" typeof="owl:ObjectProperty">
-        <h5><a href="#SOSAmadeBySampler">sosa:madeBySampler</a></h5>
-        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/madeBySampler</p>
+    <section class="informative specterm sosa" id="SOSAfeatureSampledBy" about="sosa:featureSampledBy"
+        typeof="owl:ObjectProperty">
+        <h5><a href="#SOSAfeatureSampledBy">sosa:featureSampledBy</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/featureSampledBy</p>
         <p><strong>an OWL Object Property</strong></p>
 
-        <em property="rdfs:label">made by sampler</em> -
-        <span property="skos:definition">Relation linking an act of <a href="#SOSASampling">Sampling</a> to
-            the <a href="#SOSASampler">Sampler</a> (sampling device or entity) that made it.</span> <br>
+        <p class="note">featureSampledBy added in 2024 update.
+            This term is non-normative pending further implementation experience</p>
+        <p>
+            <em property="rdfs:label">feature sampled by</em> -
+            <span property="skos:definition">Relation from an ultimate <a
+                    href="#SOSAFeatureOfInterest">FeatureOfInterest</a> to a <a href="#SOSASample">Sample</a> or
+                <a href="#SOSASampleCollection">SampleCollection</a> that is intended to be
+                representative of it - i.e. the end of a chain of hasSample relations.</span> <br>
+        </p>
         <table>
             <tbody>
                 <tr>
                     <th>Domain Includes</th>
-                    <td><span rel="schema:domainIncludes" resource="sosa:Sampling"><a
-                                href="#SOSASampling">sosa:Sampling</a></span>, <span rel="schema:domainIncludes"
+                    <td><span rel="schema:domainIncludes" resource="sosa:FeatureOfInterest"><a
+                                href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Range Includes</th>
+                    <td><span rel="schema:rangeIncludes" resource="sosa:Sample"><a
+                                href="#SOSASample">sosa:Sample</a></span>, <span rel="schema:rangeIncludes"
                             resource="sosa:SampleCollection"><a
-                                href="#SOSASampleCollection">sosa:SampleCollection</a></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Range Includes</th>
-                    <td><span rel="schema:rangeIncludes" resource="sosa:Sampler"><a
-                                href="#SOSASampler">sosa:Sampler</a></span></td>
+                                href="#SOSASampleCollection">sosa:SampleCollection</a></span></td>
                 </tr>
                 <tr>
                     <th>Inverse property of</th>
                     <td>
-                        <span rel="owl:inverseOf" resource="sosa:madeSampling"><a
-                                href="#SOSAmadeSampling">sosa:madeSampling</a></span>
+                        <span rel="owl:inverseOf" resource="sosa:hasSampledFeature"><a
+                                href="#SOSAhasSampledFeature">sosa:hasSampledFeature</a></span>
                     </td>
                 </tr>
                 <tr>
@@ -828,59 +835,21 @@
         </div>
     </section>
 
-    <section class="specterm sosa" id="SOSAmadeSampling" about="sosa:madeSampling" typeof="owl:ObjectProperty">
-        <h5><a href="#SOSAmadeSampling">sosa:madeSampling</a></h5>
-        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/madeSampling</p>
+    <section class="informative specterm sosa" id="SOSAhasOriginalSample" about="sosa:hasOriginalSample"
+        typeof="owl:ObjectProperty">
+        <h5><a href="#SOSAhasOriginalSample">sosa:hasOriginalSample</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/hasOriginalSample</p>
         <p><strong>an OWL Object Property</strong></p>
 
-        <em property="rdfs:label">made sampling</em> -
-        <span property="skos:definition">Relation between a <a href="#SOSASampler">Sampler</a> (sampling
-            device or entity) and the <a href="#SOSASampling">Sampling</a> act it performed.</span>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Domain Includes</th>
-                    <td><span rel="schema:domainIncludes" resource="sosa:Sampler"><a
-                                href="#SOSASampler">sosa:Sampler</a></span></td>
-                </tr>
-                <tr>
-                    <th>Range Includes</th>
-                    <td><span rel="schema:rangeIncludes" resource="sosa:Sampling"><a
-                                href="#SOSASampling">sosa:Sampling</a></span></td>
-                </tr>
-                <tr>
-                    <th>Inverse property of</th>
-                    <td>
-                        <span rel="owl:inverseOf" resource="sosa:madeBySampler"><a
-                                href="#SOSAmadeBySampler">sosa:madeBySampler</a></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <span rel="rdfs:isDefinedBy"><a
-                                href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a></span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="buttonpanel">
-            <span></span>
-            <span class="back">[<a href="#Sampling">Back to module overview</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-        </div>
-    </section>
-
-    <section class="specterm sosa" id="SOSAisSampleOf" about="sosa:isSampleOf" typeof="owl:ObjectProperty">
-        <h5><a href="#SOSAisSampleOf">sosa:isSampleOf</a></h5>
-        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/isSampleOf</p>
-        <p><strong>an OWL Object Property</strong></p>
-
-        <em property="rdfs:label">is sample of</em> -
-        <span property="skos:definition">Relation from a <a href="#SOSASample">Sample</a> or <a
-                href="#SOSASampleCollection">SampleCollection</a> to the <a
-                href="#SOSAFeatureOfInterest">FeatureOfInterest</a> that it is intended to be
-            representative of.</span> <br>
+        <p class="note">hasOriginalSample added in 2024 update.
+            This term is non-normative pending further implementation experience</p>
+        <p>
+            <em property="rdfs:label">has original sample</em> -
+            <span property="skos:definition">Relation from a <a href="#SOSASample">Sample</a> or <a
+                    href="#SOSASampleCollection">SampleCollection</a> to the original <a href="#SOSASample">Sample</a>
+                collected from the ultimate feature of interest.</span>
+            <br>
+        </p>
         <table>
             <tbody>
                 <tr>
@@ -893,20 +862,16 @@
                 </tr>
                 <tr>
                     <th>Range Includes</th>
-                    <td><span rel="schema:rangeIncludes" resource="sosa:FeatureOfInterest"><a
-                                href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a></span></td>
+                    <td><span rel="schema:rangeIncludes" resource="sosa:Sample"><a
+                                href="#SOSASample">sosa:Sample</a></span>
+                    </td>
                 </tr>
                 <tr>
                     <th>Inverse property of</th>
                     <td>
-                        <span rel="owl:inverseOf" resource="sosa:hasSample"><a
-                                href="#SOSAhasSample">sosa:hasSample</a></span>
+                        <span rel="owl:inverseOf" resource="sosa:isOriginalSampleOf"><a
+                                href="#SOSAisOriginalSampleOf">sosa:isOriginalSampleOf</a></span>
                     </td>
-                </tr>
-                <tr class="ssn">
-                    <th colspan="2"><span about="sosa:isSampleOf" typeof="owl:FunctionalProperty">is <a
-                                href="https://www.w3.org/TR/owl2-syntax/#Functional_Object_Properties">Functional</a></span>
-                    </th>
                 </tr>
                 <tr>
                     <th>is Defined By</th>
@@ -918,14 +883,6 @@
             </tbody>
         </table>
         <div class="buttonpanel">
-            <span>
-                <span class="sosa" style="display: none;">[<a href="#"
-                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
-                        additional SSN axioms</a>]</span>
-                <span class="ssn">[<a href="#"
-                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
-                        additional SSN axioms</a>]</span>
-            </span>
             <span class="back">[<a href="#Sampling">Back to module overview</a>]</span>
             <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
         </div>
@@ -989,112 +946,6 @@
         </div>
     </section>
 
-    <section class="informative specterm sosa" id="SOSAhasOriginalSample" about="sosa:hasOriginalSample"
-        typeof="owl:ObjectProperty">
-        <h5><a href="#SOSAhasOriginalSample">sosa:hasOriginalSample</a></h5>
-        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/hasOriginalSample</p>
-        <p><strong>an OWL Object Property</strong></p>
-
-        <p class="note">hasOriginalSample added in 2024 update.
-            This term is non-normative pending further implementation experience</p>
-        <p>
-            <em property="rdfs:label">has original sample</em> -
-            <span property="skos:definition">Relation from a <a href="#SOSASample">Sample</a> or <a
-                    href="#SOSASampleCollection">SampleCollection</a> to the original <a href="#SOSASample">Sample</a>
-                collected from the ultimate feature of interest.</span>
-            <br>
-        </p>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Domain Includes</th>
-                    <td><span rel="schema:domainIncludes" resource="sosa:Sample"><a
-                                href="#SOSASample">sosa:Sample</a></span>, <span rel="schema:domainIncludes"
-                            resource="sosa:SampleCollection"><a
-                                href="#SOSASampleCollection">sosa:SampleCollection</a></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Range Includes</th>
-                    <td><span rel="schema:rangeIncludes" resource="sosa:Sample"><a
-                                href="#SOSASample">sosa:Sample</a></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Inverse property of</th>
-                    <td>
-                        <span rel="owl:inverseOf" resource="sosa:isOriginalSampleOf"><a
-                                href="#SOSAisOriginalSampleOf">sosa:isOriginalSampleOf</a></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <span rel="rdfs:isDefinedBy"><a
-                                href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a></span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="buttonpanel">
-            <span class="back">[<a href="#Sampling">Back to module overview</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-        </div>
-    </section>
-
-    <section class="informative specterm sosa" id="SOSAisOriginalSampleOf" about="sosa:isOriginalSampleOf"
-        typeof="owl:ObjectProperty">
-        <h5><a href="#SOSAisOriginalSampleOf">sosa:isOriginalSampleOf</a></h5>
-        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/isOriginalSampleOf</p>
-        <p><strong>an OWL Object Property</strong></p>
-
-        <p class="note">isOriginalSampleOf added in 2024 update.
-            This term is non-normative pending further implementation experience</p>
-        <p>
-            <em property="rdfs:label">is original sample of</em> -
-            <span property="skos:definition">Relation from the original <a href="#SOSASample">Sample</a>
-                collected from the ultimate feature of interest to a downstream <a href="#SOSASample">Sample</a> or <a
-                    href="#SOSASampleCollection">SampleCollection</a>.</span>
-            <br>
-        </p>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Domain Includes</th>
-                    <td><span rel="schema:domainIncludes" resource="sosa:Sample"><a
-                                href="#SOSASample">sosa:Sample</a></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Range Includes</th>
-                    <td><span rel="schema:rangeIncludes" resource="sosa:Sample"><a
-                                href="#SOSASample">sosa:Sample</a></span>
-                        , <span rel="schema:rangeIncludes" resource="sosa:SampleCollection"><a
-                                href="#SOSASampleCollection">sosa:SampleCollection</a></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Inverse property of</th>
-                    <td>
-                        <span rel="owl:inverseOf" resource="sosa:hasOriginalSample"><a
-                                href="#SOSAhasOriginalSample">sosa:hasOriginalSample</a></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <span rel="rdfs:isDefinedBy"><a
-                                href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a></span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="buttonpanel">
-            <span class="back">[<a href="#Sampling">Back to module overview</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-        </div>
-    </section>
-
     <section class="informative specterm sosa" id="SOSAhasSampledFeature" about="sosa:hasSampledFeature"
         typeof="owl:ObjectProperty">
         <h5><a href="#SOSAhasSampledFeature">sosa:hasSampledFeature</a></h5>
@@ -1148,41 +999,42 @@
         </div>
     </section>
 
-    <section class="informative specterm sosa" id="SOSAfeatureSampledBy" about="sosa:featureSampledBy"
+    <section class="informative specterm sosa" id="SOSAisOriginalSampleOf" about="sosa:isOriginalSampleOf"
         typeof="owl:ObjectProperty">
-        <h5><a href="#SOSAfeatureSampledBy">sosa:featureSampledBy</a></h5>
-        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/featureSampledBy</p>
+        <h5><a href="#SOSAisOriginalSampleOf">sosa:isOriginalSampleOf</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/isOriginalSampleOf</p>
         <p><strong>an OWL Object Property</strong></p>
 
-        <p class="note">featureSampledBy added in 2024 update.
+        <p class="note">isOriginalSampleOf added in 2024 update.
             This term is non-normative pending further implementation experience</p>
         <p>
-            <em property="rdfs:label">feature sampled by</em> -
-            <span property="skos:definition">Relation from an ultimate <a
-                    href="#SOSAFeatureOfInterest">FeatureOfInterest</a> to a <a href="#SOSASample">Sample</a> or
-                <a href="#SOSASampleCollection">SampleCollection</a> that is intended to be
-                representative of it - i.e. the end of a chain of hasSample relations.</span> <br>
+            <em property="rdfs:label">is original sample of</em> -
+            <span property="skos:definition">Relation from the original <a href="#SOSASample">Sample</a>
+                collected from the ultimate feature of interest to a downstream <a href="#SOSASample">Sample</a> or <a
+                    href="#SOSASampleCollection">SampleCollection</a>.</span>
+            <br>
         </p>
         <table>
             <tbody>
                 <tr>
                     <th>Domain Includes</th>
-                    <td><span rel="schema:domainIncludes" resource="sosa:FeatureOfInterest"><a
-                                href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a></span>
+                    <td><span rel="schema:domainIncludes" resource="sosa:Sample"><a
+                                href="#SOSASample">sosa:Sample</a></span>
                     </td>
                 </tr>
                 <tr>
                     <th>Range Includes</th>
                     <td><span rel="schema:rangeIncludes" resource="sosa:Sample"><a
-                                href="#SOSASample">sosa:Sample</a></span>, <span rel="schema:rangeIncludes"
-                            resource="sosa:SampleCollection"><a
-                                href="#SOSASampleCollection">sosa:SampleCollection</a></span></td>
+                                href="#SOSASample">sosa:Sample</a></span>
+                        , <span rel="schema:rangeIncludes" resource="sosa:SampleCollection"><a
+                                href="#SOSASampleCollection">sosa:SampleCollection</a></span>
+                    </td>
                 </tr>
                 <tr>
                     <th>Inverse property of</th>
                     <td>
-                        <span rel="owl:inverseOf" resource="sosa:hasSampledFeature"><a
-                                href="#SOSAhasSampledFeature">sosa:hasSampledFeature</a></span>
+                        <span rel="owl:inverseOf" resource="sosa:hasOriginalSample"><a
+                                href="#SOSAhasOriginalSample">sosa:hasOriginalSample</a></span>
                     </td>
                 </tr>
                 <tr>
@@ -1273,79 +1125,6 @@
         </div>
     </section>
 
-    <section class="informative specterm sosa" id="SOSAmadeSamplingHasResult" about="sosa:madeSamplingHasResult"
-        typeof="owl:ObjectProperty">
-        <h5><a href="#SOSAmadeSamplingHasResult">sosa:madeSamplingHasResult</a></h5>
-        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/madeSamplingHasResult</p>
-        <p><strong>an OWL Object Property</strong></p>
-
-        <p class="note">madeSamplingHasResult added in 2024 update.
-            This term is non-normative pending further implementation experience</p>
-        <p>
-            <em property="rdfs:label">made sampling has result</em> -
-            <span property="skos:definition">Relation from a <a href="#SOSASampler">Sampler</a>
-                (sampling device or entity) to a <a href="#SOSASample">Sample</a> or <a
-                    href="#SOSASampleCollection">SampleCollection</a> made by it.</span>
-            <br>
-        </p>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Domain Includes</th>
-                    <td><span rel="schema:domainIncludes" resource="sosa:Sample"><a
-                                href="#SOSASample">sosa:Sample</a></span>
-                        , <span rel="schema:domainIncludes" resource="sosa:SampleCollection"><a
-                                href="#SOSASampleCollection">sosa:SampleCollection</a></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Range Includes</th>
-                    <td><span rel="schema:rangeIncludes" resource="sosa:Sampler"><a
-                                href="#SOSASampler">sosa:Sampler</a></span></td>
-                </tr>
-                <tr>
-                    <th>Inverse property of</th>
-                    <td>
-                        <span rel="owl:inverseOf" resource="sosa:isResultOfMadeBySampler"><a
-                                href="#SOSAisResultOfMadeBySampler">sosa:isResultOfMadeBySampler</a></span>
-                    </td>
-                </tr>
-                <tr class="ssn">
-                    <th>Sub property of Chain</th>
-                    <td>
-                        <span rel="owl:propertyChainAxiom" resource="[_:SOSAmadeSamplingHasResult1]"></span>
-                        <span about="[_:SOSAmadeSamplingHasResult1]" rel="rdf:first" resource="sosa:madeSampling"><a
-                                href="#SOSAmadeSampling">sosa:madeSampling</a></span> o
-                        <span about="[_:SOSAmadeSamplingHasResult1]" rel="rdf:rest"
-                            resource="[_:SOSAmadeSamplingHasResult2]"></span>
-                        <span about="[_:SOSAmadeSamplingHasResult2]" rel="rdf:first" resource="sosa:hasResult"><a
-                                href="#SOSAmadeBySampler">sosa:hasResult</a></span>
-                        <span about="[_:SOSAmadeSamplingHasResult2]" rel="rdf:rest" resource="rdf:nil"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <span rel="rdfs:isDefinedBy"><a
-                                href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a></span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="buttonpanel">
-            <span>
-                <span class="sosa" style="display: none;">[<a href="#"
-                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
-                        additional SSN axioms</a>]</span>
-                <span class="ssn">[<a href="#"
-                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
-                        additional SSN axioms</a>]</span>
-            </span>
-            <span class="back">[<a href="#Sampling">Back to module overview</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-        </div>
-    </section>
-
     <section class="informative specterm sosa" id="SOSAisResultOfUsedProcedure" about="sosa:isResultOfUsedProcedure"
         typeof="owl:ObjectProperty">
         <h5><a href="#SOSAisResultOfUsedProcedure">sosa:isResultOfUsedProcedure</a></h5>
@@ -1397,6 +1176,227 @@
                         <span about="[_:SOSAisResultOfUsedProcedure2]" rel="rdf:first" resource="sosa:usedProcedure"><a
                                 href="#SOSAusedProcedure">sosa:usedProcedure</a></span>
                         <span about="[_:SOSAisResultOfUsedProcedure2]" rel="rdf:rest" resource="rdf:nil"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span>
+                <span class="sosa" style="display: none;">[<a href="#"
+                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
+                        additional SSN axioms</a>]</span>
+                <span class="ssn">[<a href="#"
+                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
+                        additional SSN axioms</a>]</span>
+            </span>
+            <span class="back">[<a href="#Sampling">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="specterm sosa" id="SOSAisSampleOf" about="sosa:isSampleOf" typeof="owl:ObjectProperty">
+        <h5><a href="#SOSAisSampleOf">sosa:isSampleOf</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/isSampleOf</p>
+        <p><strong>an OWL Object Property</strong></p>
+
+        <em property="rdfs:label">is sample of</em> -
+        <span property="skos:definition">Relation from a <a href="#SOSASample">Sample</a> or <a
+                href="#SOSASampleCollection">SampleCollection</a> to the <a
+                href="#SOSAFeatureOfInterest">FeatureOfInterest</a> that it is intended to be
+            representative of.</span> <br>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Domain Includes</th>
+                    <td><span rel="schema:domainIncludes" resource="sosa:Sample"><a
+                                href="#SOSASample">sosa:Sample</a></span>, <span rel="schema:domainIncludes"
+                            resource="sosa:SampleCollection"><a
+                                href="#SOSASampleCollection">sosa:SampleCollection</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Range Includes</th>
+                    <td><span rel="schema:rangeIncludes" resource="sosa:FeatureOfInterest"><a
+                                href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a></span></td>
+                </tr>
+                <tr>
+                    <th>Inverse property of</th>
+                    <td>
+                        <span rel="owl:inverseOf" resource="sosa:hasSample"><a
+                                href="#SOSAhasSample">sosa:hasSample</a></span>
+                    </td>
+                </tr>
+                <tr class="ssn">
+                    <th colspan="2"><span about="sosa:isSampleOf" typeof="owl:FunctionalProperty">is <a
+                                href="https://www.w3.org/TR/owl2-syntax/#Functional_Object_Properties">Functional</a></span>
+                    </th>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span>
+                <span class="sosa" style="display: none;">[<a href="#"
+                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
+                        additional SSN axioms</a>]</span>
+                <span class="ssn">[<a href="#"
+                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
+                        additional SSN axioms</a>]</span>
+            </span>
+            <span class="back">[<a href="#Sampling">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="specterm sosa" id="SOSAmadeBySampler" about="sosa:madeBySampler" typeof="owl:ObjectProperty">
+        <h5><a href="#SOSAmadeBySampler">sosa:madeBySampler</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/madeBySampler</p>
+        <p><strong>an OWL Object Property</strong></p>
+
+        <em property="rdfs:label">made by sampler</em> -
+        <span property="skos:definition">Relation linking an act of <a href="#SOSASampling">Sampling</a> to
+            the <a href="#SOSASampler">Sampler</a> (sampling device or entity) that made it.</span> <br>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Domain Includes</th>
+                    <td><span rel="schema:domainIncludes" resource="sosa:Sampling"><a
+                                href="#SOSASampling">sosa:Sampling</a></span>, <span rel="schema:domainIncludes"
+                            resource="sosa:SampleCollection"><a
+                                href="#SOSASampleCollection">sosa:SampleCollection</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Range Includes</th>
+                    <td><span rel="schema:rangeIncludes" resource="sosa:Sampler"><a
+                                href="#SOSASampler">sosa:Sampler</a></span></td>
+                </tr>
+                <tr>
+                    <th>Inverse property of</th>
+                    <td>
+                        <span rel="owl:inverseOf" resource="sosa:madeSampling"><a
+                                href="#SOSAmadeSampling">sosa:madeSampling</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Sampling">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="specterm sosa" id="SOSAmadeSampling" about="sosa:madeSampling" typeof="owl:ObjectProperty">
+        <h5><a href="#SOSAmadeSampling">sosa:madeSampling</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/madeSampling</p>
+        <p><strong>an OWL Object Property</strong></p>
+
+        <em property="rdfs:label">made sampling</em> -
+        <span property="skos:definition">Relation between a <a href="#SOSASampler">Sampler</a> (sampling
+            device or entity) and the <a href="#SOSASampling">Sampling</a> act it performed.</span>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Domain Includes</th>
+                    <td><span rel="schema:domainIncludes" resource="sosa:Sampler"><a
+                                href="#SOSASampler">sosa:Sampler</a></span></td>
+                </tr>
+                <tr>
+                    <th>Range Includes</th>
+                    <td><span rel="schema:rangeIncludes" resource="sosa:Sampling"><a
+                                href="#SOSASampling">sosa:Sampling</a></span></td>
+                </tr>
+                <tr>
+                    <th>Inverse property of</th>
+                    <td>
+                        <span rel="owl:inverseOf" resource="sosa:madeBySampler"><a
+                                href="#SOSAmadeBySampler">sosa:madeBySampler</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span></span>
+            <span class="back">[<a href="#Sampling">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="informative specterm sosa" id="SOSAmadeSamplingHasResult" about="sosa:madeSamplingHasResult"
+        typeof="owl:ObjectProperty">
+        <h5><a href="#SOSAmadeSamplingHasResult">sosa:madeSamplingHasResult</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/madeSamplingHasResult</p>
+        <p><strong>an OWL Object Property</strong></p>
+
+        <p class="note">madeSamplingHasResult added in 2024 update.
+            This term is non-normative pending further implementation experience</p>
+        <p>
+            <em property="rdfs:label">made sampling has result</em> -
+            <span property="skos:definition">Relation from a <a href="#SOSASampler">Sampler</a>
+                (sampling device or entity) to a <a href="#SOSASample">Sample</a> or <a
+                    href="#SOSASampleCollection">SampleCollection</a> made by it.</span>
+            <br>
+        </p>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Domain Includes</th>
+                    <td><span rel="schema:domainIncludes" resource="sosa:Sample"><a
+                                href="#SOSASample">sosa:Sample</a></span>
+                        , <span rel="schema:domainIncludes" resource="sosa:SampleCollection"><a
+                                href="#SOSASampleCollection">sosa:SampleCollection</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Range Includes</th>
+                    <td><span rel="schema:rangeIncludes" resource="sosa:Sampler"><a
+                                href="#SOSASampler">sosa:Sampler</a></span></td>
+                </tr>
+                <tr>
+                    <th>Inverse property of</th>
+                    <td>
+                        <span rel="owl:inverseOf" resource="sosa:isResultOfMadeBySampler"><a
+                                href="#SOSAisResultOfMadeBySampler">sosa:isResultOfMadeBySampler</a></span>
+                    </td>
+                </tr>
+                <tr class="ssn">
+                    <th>Sub property of Chain</th>
+                    <td>
+                        <span rel="owl:propertyChainAxiom" resource="[_:SOSAmadeSamplingHasResult1]"></span>
+                        <span about="[_:SOSAmadeSamplingHasResult1]" rel="rdf:first" resource="sosa:madeSampling"><a
+                                href="#SOSAmadeSampling">sosa:madeSampling</a></span> o
+                        <span about="[_:SOSAmadeSamplingHasResult1]" rel="rdf:rest"
+                            resource="[_:SOSAmadeSamplingHasResult2]"></span>
+                        <span about="[_:SOSAmadeSamplingHasResult2]" rel="rdf:first" resource="sosa:hasResult"><a
+                                href="#SOSAmadeBySampler">sosa:hasResult</a></span>
+                        <span about="[_:SOSAmadeSamplingHasResult2]" rel="rdf:rest" resource="rdf:nil"></span>
                     </td>
                 </tr>
                 <tr>

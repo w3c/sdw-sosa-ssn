@@ -39,6 +39,45 @@ sosa:FeatureOfInterest
   skos:example "When measuring the height of a tree, the height is the observed ObservableProperty, 20m may be the Result of the Observation, and the tree is the FeatureOfInterest. A window is a FeatureOfInterest for an automatic window control Actuator."@en ;
   rdfs:isDefinedBy sosa-common: .
 
+sosa:Property 
+  a owl:Class ;
+  rdfs:label "Property"@en ;
+  skos:definition """
+  An identifiable quality of a FeatureOfInterest that can be observed or acted upon. A property can apply to different features of interest.
+  """@en ;
+  skos:example "Cars (a feature type) all have a characteristic colour, where 'colour' is a property."@en ;
+  skos:note "Concepts from existing code lists, vocabularies, and taxonomies, may be used as instances of Property"@en ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:PropertyOfInterest 
+  a owl:Class ;
+  rdfs:label "Property Of Interest"@en ;
+  skos:definition """
+  An identifiable quality of a specific FeatureOfInterest that can be observed or acted upon. A property of interest is tied to a specific feature of interest. It is inherent to and cannot exist without that FeatureOfInterest.
+  """@en ;
+  skos:example "Abby's car has the colour red, where \"colour red\" is a property of interest of the car."@en ;
+  skos:note "Properties of interest need not always be explicitly identified. It depends on the use case."@en ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:forProperty 
+  a owl:ObjectProperty ;
+  rdfs:label "for property"@en ;
+  skos:definition """
+  A relation between some entity and a Property.
+  """@en ;
+  skos:example "For example, from a Sensor to the properties it can observe; from an Actuator to the properties it can act on; from a Deployment to the properties it was installed to observe or act on; from a SystemCapability to the Property the capability is described for."@en ;
+  schema:domainIncludes sosa:Deployment ;
+  schema:domainIncludes sosa:Procedure ;
+  schema:domainIncludes sosa:System ;
+  schema:rangeIncludes sosa:Property ;
+  owl:inverseOf [
+      owl:unionOf (
+          sosa:hasProcedure
+          sosa:propertyFor
+        ) ;
+    ] ;
+  rdfs:isDefinedBy sosa-common: .
+
 sosa:hasProperty 
   a owl:ObjectProperty ; 
   rdfs:label "has property"@en ;
@@ -62,37 +101,6 @@ sosa:isFeatureOfInterestOf
   owl:inverseOf sosa:hasFeatureOfInterest ;
   rdfs:isDefinedBy sosa-common: .
 
-sosa:isUltimateFeatureOfInterestOf 
-  a owl:ObjectProperty ;
-  rdfs:label "is ultimate feature of interest of"@en ;
-  skos:definition """
-  A relation between a FeatureOfInterest and an Execution that it is the Ultimate subject of. 
-  """@en ;
-  schema:domainIncludes sosa:FeatureOfInterest ;
-  schema:rangeIncludes sosa:Execution ;
-  owl:inverseOf sosa:hasUltimateFeatureOfInterest ;
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:Property 
-  a owl:Class ;
-  rdfs:label "Property"@en ;
-  skos:definition """
-  An identifiable quality of a FeatureOfInterest that can be observed or acted upon. A property can apply to different features of interest.
-  """@en ;
-  skos:example "Cars (a feature type) all have a characteristic colour, where 'colour' is a property."@en ;
-  skos:note "Concepts from existing code lists, vocabularies, and taxonomies, may be used as instances of Property"@en ;
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:PropertyOfInterest 
-  a owl:Class ;
-  rdfs:label "Property Of Interest"@en ;
-  skos:definition """
-  An identifiable quality of a specific FeatureOfInterest that can be observed or acted upon. A property of interest is tied to a specific feature of interest. It is inherent to and cannot exist without that FeatureOfInterest.
-  """@en ;
-  skos:example "Abby's car has the colour red, where \"colour red\" is a property of interest of the car."@en ;
-  skos:note "Properties of interest need not always be explicitly identified. It depends on the use case."@en ;
-  rdfs:isDefinedBy sosa-common: .
-
 sosa:isPropertyOf 
   a owl:ObjectProperty ;
   rdfs:label "is property of"@en ;
@@ -105,14 +113,15 @@ sosa:isPropertyOf
   owl:inverseOf sosa:hasProperty ; 
   rdfs:isDefinedBy sosa-common: .
 
-sosa:hasProcedure 
+sosa:isUltimateFeatureOfInterestOf 
   a owl:ObjectProperty ;
-  rdfs:label "has procedure"@en ;
+  rdfs:label "is ultimate feature of interest of"@en ;
   skos:definition """
-  Relation between a Property and a Procedure that can observe or act on it.
+  A relation between a FeatureOfInterest and an Execution that it is the Ultimate subject of. 
   """@en ;
-  schema:domainIncludes sosa:Property ;
-  schema:rangeIncludes sosa:Procedure ;
+  schema:domainIncludes sosa:FeatureOfInterest ;
+  schema:rangeIncludes sosa:Execution ;
+  owl:inverseOf sosa:hasUltimateFeatureOfInterest ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:propertyFor 
@@ -128,25 +137,6 @@ sosa:propertyFor
   schema:rangeIncludes sosa:System ;
   rdfs:isDefinedBy sosa-common: .
 
-sosa:forProperty 
-  a owl:ObjectProperty ;
-  rdfs:label "for property"@en ;
-  skos:definition """
-  A relation between some entity and a Property.
-  """@en ;
-  skos:example "For example, from a Sensor to the properties it can observe; from an Actuator to the properties it can act on; from a Deployment to the properties it was installed to observe or act on; from a SystemCapability to the Property the capability is described for."@en ;
-  schema:domainIncludes sosa:Deployment ;
-  schema:domainIncludes sosa:Procedure ;
-  schema:domainIncludes sosa:System ;
-  schema:rangeIncludes sosa:Property ;
-  owl:inverseOf [
-      owl:unionOf (
-          sosa:hasProcedure
-          sosa:propertyFor
-        ) ;
-    ] ;
-  rdfs:isDefinedBy sosa-common: .
-
 
 ## Procedures
 
@@ -160,15 +150,34 @@ sosa:Procedure
   skos:note "Many observations may be created via the same Procedure, the same way as many tables are assembled using the same instructions (as information objects, not their concrete realization)."@en ;
   rdfs:isDefinedBy sosa-common: .
 
-sosa:usedForExecution 
+sosa:hasInput 
   a owl:ObjectProperty ;
-  rdfs:label "used for execution"@en ;
+  rdfs:label "has input"@en ;
   skos:definition """
-  Relation between a Procedure (an algorithm, procedure or method) and an Execution (Actuation, Observation or Sampling) that uses the Procedure.
+  Relation between a Procedure and an Input to it.
   """@en ;
   schema:domainIncludes sosa:Procedure ;
-  schema:rangeIncludes sosa:Execution ;
-  owl:inverseOf sosa:usedProcedure ;
+  owl:inverseOf sosa:inputFor ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasOutput 
+  a owl:ObjectProperty ;
+  rdfs:label "has output"@en ;
+  skos:definition """
+  Relation between a Procedure and an Output of it.
+  """@en ;
+  schema:domainIncludes sosa:Procedure ;
+  owl:inverseOf sosa:outputFor ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasProcedure 
+  a owl:ObjectProperty ;
+  rdfs:label "has procedure"@en ;
+  skos:definition """
+  Relation between a Property and a Procedure that can observe or act on it.
+  """@en ;
+  schema:domainIncludes sosa:Property ;
+  schema:rangeIncludes sosa:Procedure ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:implementedBy 
@@ -183,16 +192,6 @@ sosa:implementedBy
   owl:inverseOf sosa:implements ;
   rdfs:isDefinedBy sosa-common: .
 
-sosa:hasInput 
-  a owl:ObjectProperty ;
-  rdfs:label "has input"@en ;
-  skos:definition """
-  Relation between a Procedure and an Input to it.
-  """@en ;
-  schema:domainIncludes sosa:Procedure ;
-  owl:inverseOf sosa:inputFor ;
-  rdfs:isDefinedBy sosa-common: .
-
 sosa:inputFor 
   a owl:ObjectProperty ;
   rdfs:label "input for"@en ;
@@ -201,16 +200,6 @@ sosa:inputFor
   """@en ;
   schema:rangeIncludes sosa:Procedure ;
   owl:inverseOf sosa:hasInput ;
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:hasOutput 
-  a owl:ObjectProperty ;
-  rdfs:label "has output"@en ;
-  skos:definition """
-  Relation between a Procedure and an Output of it.
-  """@en ;
-  schema:domainIncludes sosa:Procedure ;
-  owl:inverseOf sosa:outputFor ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:outputFor 
@@ -223,6 +212,17 @@ sosa:outputFor
   owl:inverseOf sosa:hasOutput ;
   rdfs:isDefinedBy sosa-common: .
 
+sosa:usedForExecution 
+  a owl:ObjectProperty ;
+  rdfs:label "used for execution"@en ;
+  skos:definition """
+  Relation between a Procedure (an algorithm, procedure or method) and an Execution (Actuation, Observation or Sampling) that uses the Procedure.
+  """@en ;
+  schema:domainIncludes sosa:Procedure ;
+  schema:rangeIncludes sosa:Execution ;
+  owl:inverseOf sosa:usedProcedure ;
+  rdfs:isDefinedBy sosa-common: .
+
 ## Executions
 
 sosa:Execution 
@@ -233,34 +233,133 @@ sosa:Execution
   """@en ;
   rdfs:isDefinedBy sosa-common: .
 
-sosa:usedProcedure 
+sosa:Result 
+  a owl:Class ;
+  owl:deprecated true ;
+  rdfs:label "Result"@en ;
+  skos:definition """
+  The Result of an Observation, Actuation, or act of Sampling. 
+  
+  To store an observation's simple result value one can use the hasSimpleResult property.
+  """@en ;
+  skos:example "The value 20 as the height of a certain tree together with the unit, e.g., Meter."@en ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasFeatureOfInterest 
   a owl:ObjectProperty ;
-  rdfs:label "used procedure"@en ;
+  rdfs:label "has feature of interest"@en ;
   skos:definition """
-  A relation to link to a re-usable Procedure used in making an Execution (an Observation, an Actuation, or a Sampling), typically using an Actuator, a Sensor, or a Sampler.
+  A relation between an Execution and its target entity, i.e. an Actuation and the entity whose property was modified, or an Observation and the entity whose quality was observed, or an act of Sampling and the entity that was sampled.
   """@en ;
+  skos:scopeNote "This is the _proximate_ feature of interest, which may be a proxy entity such as a sample of the _ultimate_ feature of interest. Use `hasUltimateFeatureOfInterest` if the intention is to link to the _ultimate_ feature of interest. " ;
+  skos:example "For example, in an Observation of the weight of a person, the FeatureOfInterest is the person and the property is its weight."@en ;
   schema:domainIncludes sosa:Execution ;
-  schema:rangeIncludes sosa:Procedure ;
+  schema:rangeIncludes sosa:FeatureOfInterest ;
+  owl:inverseOf sosa:isFeatureOfInterestOf ;
   rdfs:isDefinedBy sosa-common: .
 
-sosa:startTime 
-  a owl:DatatypeProperty ;
-  rdfs:label "start time"@en ;
+sosa:hasInputValue 
+  a owl:ObjectProperty ;
+  rdfs:label "has input value"@en ;
   skos:definition """
-  The instant of time when the Execution was initiated or tasked, i.e. the Actuation or Observation or Sampling 
+  Assigns a value to an input defined by the Procedure that is used in an Execution (Actuation, Observation, Sampling).
   """@en ;
-  rdfs:comment "The value would usually be encoded using xsd:dateTime xsd:date xsd:gYearMonth xsd:gYear"@en ;
+  skos:note "The input value should be suitable for the input definition on the corresponding usedProcedure"@en ;
   schema:domainIncludes sosa:Execution ;
   rdfs:isDefinedBy sosa-common: .
 
-sosa:resultTime 
-  a owl:DatatypeProperty ;
-  rdfs:label "result time"@en ;
+sosa:hasOutputValue 
+  a owl:ObjectProperty ;
+  rdfs:label "has output value"@en ;
   skos:definition """
-  The instant of time when the Execution was completed, i.e. the Actuation or Observation or Sampling  
+  Assigns a value to an output defined by the Procedure that is used in an Execution (Actuation, Observation, Sampling).
   """@en ;
-  rdfs:comment "The value would usually be encoded using xsd:dateTime xsd:date xsd:gYearMonth xsd:gYear"@en ;
+  skos:note "The output value should be suitable for the output definition on the corresponding usedProcedure"@en ;
   schema:domainIncludes sosa:Execution ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasResult 
+  a owl:ObjectProperty ;
+  rdfs:label "has result"@en ;
+  skos:definition """""
+  Relation linking an Execution (i.e. Actuation or Observation or act of Sampling) to its result or Sample.
+
+  In the case of an Actuation, the result is the expected value of the ActuatableProperty following the execution of the Procedure by the Actuator. 
+
+  In the case of an Observation, the result is the value of the ObservableProperty produced by the execution of the Procedure by the Sensor. 
+  
+  In the case of a Sampling, the result is the Sample produced by the execution of the Procedure by the Sampler. 
+  """@en ;
+  schema:domainIncludes sosa:Execution ;
+  owl:inverseOf sosa:isResultOf ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasSimpleResult 
+  a owl:DatatypeProperty ;
+  rdfs:label "has simple result"@en ;
+  skos:definition """
+  The simple value of an Actuation or Observation.
+
+  In the case of an Actuation, the result is the expected value of the ActuatableProperty following the execution of the Procedure by the Actuator. 
+
+  In the case of an Observation, the result is the value of the ObservableProperty produced by the execution of the Procedure by the Sensor. 
+  """@en ;
+  skos:example "For instance, the values 23 or true."@en ;
+  schema:domainIncludes sosa:Execution ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasUltimateFeatureOfInterest 
+  a owl:ObjectProperty ;
+  rdfs:label "has ultimate feature of interest"@en  ;
+  skos:definition """
+  A relation between an Execution and its ultimate target entity i.e. an Actuation and the ultimate entity whose property was modified, an Observation and the ultimate entity whose quality was observed, or  between an act of Sampling and the ultimate entity that was sampled. 
+  """@en ;
+  skos:scopeNote "This is useful when the proximate feature of interest is a sample of the ultimate feature of interest, directly or transitively." ;
+  skos:note """should match a property chain something like this but with sosa:isSampleOf*
+      owl:propertyChainAxiom ( sosa:hasFeatureOfInterest sosa:isSampleOf )""" ;
+  schema:domainIncludes sosa:Execution ;
+  schema:rangeIncludes sosa:FeatureOfInterest ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:inputValueForExecution 
+  a owl:ObjectProperty ;
+  rdfs:label "input for"@en ;
+  skos:definition """
+  Relation between an InputValue and an Execution that used it.
+  """@en ;
+  schema:rangeIncludes sosa:Execution ;
+  owl:inverseOf sosa:hasInputValue ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:isResultOf 
+  a owl:ObjectProperty ;
+  rdfs:label "is result of"@en ;
+  skos:definition """
+  Relation linking a Result to the Execution (i.e. the Actuation or Observation or act of Sampling) that created or caused it.
+  """@en ;
+  schema:rangeIncludes sosa:Execution ;
+  owl:inverseOf sosa:hasResult ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:outputValueForExecution 
+  a owl:ObjectProperty ;
+  rdfs:label "output for"@en ;
+  skos:definition """
+  Relation between an OutputValue and an Execution that generates it.
+  """@en ;
+  schema:rangeIncludes sosa:Execution ;
+  owl:inverseOf sosa:hasOutputValue ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:phenomenonOccurred 
+  a owl:ObjectProperty ;
+  rdfs:label "phenomenon occurred"@en ;
+  skos:definition """
+  The result of an Execution (i.e. Actuation, Observation, or Sampling) that this time applies to. 
+  """@en ;
+  schema:domainIncludes time:TemporalEntity ;
+  schema:rangeIncludes sosa:Execution ;
+  owl:inverseOf sosa:phenomenonTime ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:phenomenonTime 
@@ -283,209 +382,46 @@ sosa:phenomenonTime
   owl:inverseOf sosa:phenomenonOccurred ;
   rdfs:isDefinedBy sosa-common: .
 
-sosa:phenomenonOccurred 
-  a owl:ObjectProperty ;
-  rdfs:label "phenomenon occurred"@en ;
-  skos:definition """
-  The result of an Execution (i.e. Actuation, Observation, or Sampling) that this time applies to. 
-  """@en ;
-  schema:domainIncludes time:TemporalEntity ;
-  schema:rangeIncludes sosa:Execution ;
-  owl:inverseOf sosa:phenomenonTime ;
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:hasFeatureOfInterest 
-  a owl:ObjectProperty ;
-  rdfs:label "has feature of interest"@en ;
-  skos:definition """
-  A relation between an Execution and its target entity, i.e. an Actuation and the entity whose property was modified, or an Observation and the entity whose quality was observed, or an act of Sampling and the entity that was sampled.
-  """@en ;
-  skos:scopeNote "This is the _proximate_ feature of interest, which may be a proxy entity such as a sample of the _ultimate_ feature of interest. Use `hasUltimateFeatureOfInterest` if the intention is to link to the _ultimate_ feature of interest. " ;
-  skos:example "For example, in an Observation of the weight of a person, the FeatureOfInterest is the person and the property is its weight."@en ;
-  schema:domainIncludes sosa:Execution ;
-  schema:rangeIncludes sosa:FeatureOfInterest ;
-  owl:inverseOf sosa:isFeatureOfInterestOf ;
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:hasUltimateFeatureOfInterest 
-  a owl:ObjectProperty ;
-  rdfs:label "has ultimate feature of interest"@en  ;
-  skos:definition """
-  A relation between an Execution and its ultimate target entity i.e. an Actuation and the ultimate entity whose property was modified, an Observation and the ultimate entity whose quality was observed, or  between an act of Sampling and the ultimate entity that was sampled. 
-  """@en ;
-  skos:scopeNote "This is useful when the proximate feature of interest is a sample of the ultimate feature of interest, directly or transitively." ;
-  skos:note """should match a property chain something like this but with sosa:isSampleOf*
-      owl:propertyChainAxiom ( sosa:hasFeatureOfInterest sosa:isSampleOf )""" ;
-  schema:domainIncludes sosa:Execution ;
-  schema:rangeIncludes sosa:FeatureOfInterest ;
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:hasInputValue 
-  a owl:ObjectProperty ;
-  rdfs:label "has input value"@en ;
-  skos:definition """
-  Assigns a value to an input defined by the Procedure that is used in an Execution (Actuation, Observation, Sampling).
-  """@en ;
-  skos:note "The input value should be suitable for the input definition on the corresponding usedProcedure"@en ;
-  schema:domainIncludes sosa:Execution ;
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:inputValueForExecution 
-  a owl:ObjectProperty ;
-  rdfs:label "input for"@en ;
-  skos:definition """
-  Relation between an InputValue and an Execution that used it.
-  """@en ;
-  schema:rangeIncludes sosa:Execution ;
-  owl:inverseOf sosa:hasInputValue ;
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:hasOutputValue 
-  a owl:ObjectProperty ;
-  rdfs:label "has output value"@en ;
-  skos:definition """
-  Assigns a value to an output defined by the Procedure that is used in an Execution (Actuation, Observation, Sampling).
-  """@en ;
-  skos:note "The output value should be suitable for the output definition on the corresponding usedProcedure"@en ;
-  schema:domainIncludes sosa:Execution ;
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:outputValueForExecution 
-  a owl:ObjectProperty ;
-  rdfs:label "output for"@en ;
-  skos:definition """
-  Relation between an OutputValue and an Execution that generates it.
-  """@en ;
-  schema:rangeIncludes sosa:Execution ;
-  owl:inverseOf sosa:hasOutputValue ;
-  rdfs:isDefinedBy sosa-common: .
-
-
-## Result 
-
-sosa:Result 
-  a owl:Class ;
-  owl:deprecated true ;
-  rdfs:label "Result"@en ;
-  skos:definition """
-  The Result of an Observation, Actuation, or act of Sampling. 
-  
-  To store an observation's simple result value one can use the hasSimpleResult property.
-  """@en ;
-  skos:example "The value 20 as the height of a certain tree together with the unit, e.g., Meter."@en ;
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:hasResult 
-  a owl:ObjectProperty ;
-  rdfs:label "has result"@en ;
-  skos:definition """""
-  Relation linking an Execution (i.e. Actuation or Observation or act of Sampling) to its result or Sample.
-
-  In the case of an Actuation, the result is the expected value of the ActuatableProperty following the execution of the Procedure by the Actuator. 
-
-  In the case of an Observation, the result is the value of the ObservableProperty produced by the execution of the Procedure by the Sensor. 
-  
-  In the case of a Sampling, the result is the Sample produced by the execution of the Procedure by the Sampler. 
-  """@en ;
-  schema:domainIncludes sosa:Execution ;
-  owl:inverseOf sosa:isResultOf ;
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:isResultOf 
-  a owl:ObjectProperty ;
-  rdfs:label "is result of"@en ;
-  skos:definition """
-  Relation linking a Result to the Execution (i.e. the Actuation or Observation or act of Sampling) that created or caused it.
-  """@en ;
-  schema:rangeIncludes sosa:Execution ;
-  owl:inverseOf sosa:hasResult ;
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:hasSimpleResult 
+sosa:resultTime 
   a owl:DatatypeProperty ;
-  rdfs:label "has simple result"@en ;
+  rdfs:label "result time"@en ;
   skos:definition """
-  The simple value of an Actuation or Observation.
-
-  In the case of an Actuation, the result is the expected value of the ActuatableProperty following the execution of the Procedure by the Actuator. 
-
-  In the case of an Observation, the result is the value of the ObservableProperty produced by the execution of the Procedure by the Sensor. 
+  The instant of time when the Execution was completed, i.e. the Actuation or Observation or Sampling  
   """@en ;
-  skos:example "For instance, the values 23 or true."@en ;
+  rdfs:comment "The value would usually be encoded using xsd:dateTime xsd:date xsd:gYearMonth xsd:gYear"@en ;
   schema:domainIncludes sosa:Execution ;
   rdfs:isDefinedBy sosa-common: .
 
+sosa:startTime 
+  a owl:DatatypeProperty ;
+  rdfs:label "start time"@en ;
+  skos:definition """
+  The instant of time when the Execution was initiated or tasked, i.e. the Actuation or Observation or Sampling 
+  """@en ;
+  rdfs:comment "The value would usually be encoded using xsd:dateTime xsd:date xsd:gYearMonth xsd:gYear"@en ;
+  schema:domainIncludes sosa:Execution ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:usedProcedure 
+  a owl:ObjectProperty ;
+  rdfs:label "used procedure"@en ;
+  skos:definition """
+  A relation to link to a re-usable Procedure used in making an Execution (an Observation, an Actuation, or a Sampling), typically using an Actuator, a Sensor, or a Sampler.
+  """@en ;
+  schema:domainIncludes sosa:Execution ;
+  schema:rangeIncludes sosa:Procedure ;
+  rdfs:isDefinedBy sosa-common: .
 
 ## Systems
 
-sosa:System 
+sosa:Deployment 
   a owl:Class ;
-  rdfs:label "System"@en ;
+  rdfs:label "Deployment"@en ;
   skos:definition """
-  System is a unit of abstraction for pieces of infrastructure that implement Procedures. A System may have components, its subsystems, which are other systems.
-  """@en ; 
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:implements 
-  a owl:ObjectProperty ;
-  rdfs:label "implements"@en ;
-  skos:definition """
-  Relation between an entity that implements a Procedure in some executable way and the Procedure (an algorithm, procedure or method).
+  Describes the Deployment of one or more assets for a particular purpose. Deployment may be done on a Platform or Host.
   """@en ;
-  skos:example "For example, the relationship between a sensor and the scientific measuring Procedure via which it senses."@en ;
-  schema:domainIncludes sosa:System ;
-  schema:rangeIncludes sosa:Procedure ;
-  owl:inverseOf sosa:implementedBy ;
+  skos:example "For example, a temperature Sensor deployed on a wall, or a whole network of Sensors deployed for an Observation campaign."@en ;
   rdfs:isDefinedBy sosa-common: .
-
-sosa:hasSubSystem 
-  a owl:ObjectProperty ;
-  rdfs:label "has subsystem"@en ;
-  skos:definition """
-  Relation between a System and its component parts.
-  """@en ;
-  schema:domainIncludes sosa:System ;
-  schema:rangeIncludes sosa:System ;
-  owl:inverseOf sosa:isSubSystemOf ;
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:isSubSystemOf 
-  a owl:ObjectProperty ;
-  rdfs:label "is subsystem of"@en ;
-  skos:definition """
-  Relation between a component SubSystem and the parent System.
-  """@en ;
-  schema:domainIncludes sosa:System ;
-  schema:rangeIncludes sosa:System ;
-  owl:inverseOf sosa:hasSubSystem ;
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:isHostedBy 
-  a owl:ObjectProperty ;
-  rdfs:label "is hosted by"@en ;
-  skos:definition """
-  Relation between a Sensor, Actuator, Sampler, or Platform, and the Platform that it is mounted on or hosted by.
-  """@en ;
-  schema:domainIncludes sosa:System ;
-  schema:domainIncludes sosa:Platform ;
-  schema:rangeIncludes sosa:Platform ;
-  owl:inverseOf sosa:hosts ;
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:hasDeployment 
-  a owl:ObjectProperty ;
-  rdfs:label "has deployment"@en ;
-  skos:definition """
-  Relation between a System and a Deployment, recording that the System is deployed in that Deployment.
-  """@en ;
-  schema:domainIncludes sosa:System ;
-  schema:domainIncludes sosa:Platform ;
-  schema:rangeIncludes sosa:Deployment ;
-  owl:inverseOf sosa:deployedSystem ;
-  rdfs:isDefinedBy sosa-common: .
-
-
-## Platform 
 
 sosa:Platform 
   a owl:Class ;
@@ -503,6 +439,70 @@ sosa:Platform
   A team performing a survey, where each team member would be modeled as an Observer."""@en ;
   rdfs:isDefinedBy sosa-common: .
 
+sosa:System 
+  a owl:Class ;
+  rdfs:label "System"@en ;
+  skos:definition """
+  System is a unit of abstraction for pieces of infrastructure that implement Procedures. A System may have components, its subsystems, which are other systems.
+  """@en ; 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:deployedAsset 
+  a owl:ObjectProperty ;
+  rdfs:label "deployed asset"@en ;
+  skos:definition """
+  Relation between a Deployment and a deployed asset (System or Platform).
+  """@en ;
+  schema:domainIncludes sosa:Deployment ;
+  schema:rangeIncludes sosa:Platform ;
+  schema:rangeIncludes sosa:System ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:deployedOnPlatform 
+  a owl:ObjectProperty ;
+  rdfs:label "deployed on platform"@en ;
+  skos:definition """
+  Relation between a Deployment and the Platform on which the Systems are deployed.
+  """@en ;
+  schema:domainIncludes sosa:Deployment ;
+  schema:rangeIncludes sosa:Platform ;
+  owl:inverseOf sosa:inDeployment ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:deployedSystem 
+  a owl:ObjectProperty ;
+  rdfs:label "deployed system"@en ;
+  skos:definition """
+  Relation between a Deployment and a deployed System.
+  """@en ;
+  schema:domainIncludes sosa:Deployment ;
+  schema:rangeIncludes sosa:System ;
+  owl:inverseOf sosa:hasDeployment ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasDeployment 
+  a owl:ObjectProperty ;
+  rdfs:label "has deployment"@en ;
+  skos:definition """
+  Relation between a System and a Deployment, recording that the System is deployed in that Deployment.
+  """@en ;
+  schema:domainIncludes sosa:System ;
+  schema:domainIncludes sosa:Platform ;
+  schema:rangeIncludes sosa:Deployment ;
+  owl:inverseOf sosa:deployedSystem ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasSubSystem 
+  a owl:ObjectProperty ;
+  rdfs:label "has subsystem"@en ;
+  skos:definition """
+  Relation between a System and its component parts.
+  """@en ;
+  schema:domainIncludes sosa:System ;
+  schema:rangeIncludes sosa:System ;
+  owl:inverseOf sosa:isSubSystemOf ;
+  rdfs:isDefinedBy sosa-common: .
+
 sosa:hosts 
   a owl:ObjectProperty ;
   rdfs:label "hosts"@en ;
@@ -512,6 +512,18 @@ sosa:hosts
   schema:rangeIncludes sosa:Platform ;
   schema:rangeIncludes sosa:System ;
   owl:inverseOf sosa:isHostedBy ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:implements 
+  a owl:ObjectProperty ;
+  rdfs:label "implements"@en ;
+  skos:definition """
+  Relation between an entity that implements a Procedure in some executable way and the Procedure (an algorithm, procedure or method).
+  """@en ;
+  skos:example "For example, the relationship between a sensor and the scientific measuring Procedure via which it senses."@en ;
+  schema:domainIncludes sosa:System ;
+  schema:rangeIncludes sosa:Procedure ;
+  owl:inverseOf sosa:implementedBy ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:inDeployment 
@@ -526,49 +538,27 @@ sosa:inDeployment
   owl:inverseOf sosa:deployedOnPlatform ;
   rdfs:isDefinedBy sosa-common: .
 
-
-## Deployment
-
-sosa:Deployment 
-  a owl:Class ;
-  rdfs:label "Deployment"@en ;
-  skos:definition """
-  Describes the Deployment of one or more assets for a particular purpose. Deployment may be done on a Platform or Host.
-  """@en ;
-  skos:example "For example, a temperature Sensor deployed on a wall, or a whole network of Sensors deployed for an Observation campaign."@en ;
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:deployedAsset 
+sosa:isHostedBy 
   a owl:ObjectProperty ;
-  rdfs:label "deployed asset"@en ;
+  rdfs:label "is hosted by"@en ;
   skos:definition """
-  Relation between a Deployment and a deployed asset (System or Platform).
+  Relation between a Sensor, Actuator, Sampler, or Platform, and the Platform that it is mounted on or hosted by.
   """@en ;
-  schema:domainIncludes sosa:Deployment ;
+  schema:domainIncludes sosa:System ;
+  schema:domainIncludes sosa:Platform ;
   schema:rangeIncludes sosa:Platform ;
-  schema:rangeIncludes sosa:System ;
+  owl:inverseOf sosa:hosts ;
   rdfs:isDefinedBy sosa-common: .
 
-sosa:deployedSystem 
+sosa:isSubSystemOf 
   a owl:ObjectProperty ;
-  rdfs:label "deployed system"@en ;
+  rdfs:label "is subsystem of"@en ;
   skos:definition """
-  Relation between a Deployment and a deployed System.
+  Relation between a component SubSystem and the parent System.
   """@en ;
-  schema:domainIncludes sosa:Deployment ;
+  schema:domainIncludes sosa:System ;
   schema:rangeIncludes sosa:System ;
-  owl:inverseOf sosa:hasDeployment ;
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:deployedOnPlatform 
-  a owl:ObjectProperty ;
-  rdfs:label "deployed on platform"@en ;
-  skos:definition """
-  Relation between a Deployment and the Platform on which the Systems are deployed.
-  """@en ;
-  schema:domainIncludes sosa:Deployment ;
-  schema:rangeIncludes sosa:Platform ;
-  owl:inverseOf sosa:inDeployment ;
+  owl:inverseOf sosa:hasSubSystem ;
   rdfs:isDefinedBy sosa-common: .
 
 ## Utility terms 
