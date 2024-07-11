@@ -25,21 +25,27 @@
     <div class="azlist">
         <p>
             <a href="#SOSAObservableProperty">sosa:ObservableProperty</a>
-            , <a href="#SOSAObservingProcedure">sosa:ObservingProcedure</a>
             , <a href="#SOSAObservation">sosa:Observation</a>
             , <a href="#SOSAObservationCollection">sosa:ObservationCollection</a>
-            , <a href="#SOSAobservedProperty">sosa:observedProperty</a>
-            , <a href="#SOSAresultQuality">sosa:resultQuality</a>
+            , <a href="#SOSAObservingProcedure">sosa:ObservingProcedure</a>
             , <a href="#SOSASensor">sosa:Sensor</a>
-            , <a href="#SOSAobserves">sosa:observes</a>
-            , <a href="#SOSAisObservedBy">sosa:isObservedBy</a>
-            , <a href="#SOSAmadeObservation">sosa:madeObservation</a>
-            , <a href="#SOSAmadeBySensor">sosa:madeBySensor</a>
-            , <a href="#SOSArelatedObservation">sosa:relatedObservation</a>
             , <a href="#SOSAStimulus">sosa:Stimulus</a>
-            , <a href="#SOSAisProxyFor">sosa:isProxyFor</a>
-            , <a href="#SOSAwasOriginatedBy">sosa:wasOriginatedBy</a>
             , <a href="#SOSAdetects">sosa:detects</a>
+            , <a href="#SOSAhasProxy">sosa:hasProxy</a>
+            , <a href="#SOSAisDetectedBy">sosa:isDetectedBy</a>
+            , <a href="#SOSAisObservedBy">sosa:isObservedBy</a>
+            , <a href="#SOSAisProxyFor">sosa:isProxyFor</a>
+            , <a href="#SOSAmadeBySensor">sosa:madeBySensor</a>
+            , <a href="#SOSAmadeObservation">sosa:madeObservation</a>
+            , <a href="#SOSAobservationRelatedTo">sosa:observationRelatedTo</a>
+            , <a href="#SOSAobservedProperty">sosa:observedProperty</a>
+            , <a href="#SOSAobserves">sosa:observes</a>
+            , <a href="#SOSAoriginated">sosa:originated</a>
+            , <a href="#SOSAqualityOf">sosa:qualityOf</a>
+            , <a href="#SOSArelatedObservation">sosa:relatedObservation</a>
+            , <a href="#SOSAresultQuality">sosa:resultQuality</a>
+            , <a href="#SOSAwasObservedBy">sosa:wasObservedBy</a>
+            , <a href="#SOSAwasOriginatedBy">sosa:wasOriginatedBy</a>
         </p>
     </div>
 
@@ -54,8 +60,8 @@
         <br>
         <br>
         <span property="skos:note">'Observable' means that the value can be determined through an act of
-            <a href="#SOSAObservation">Observation</a> using an
-            <a href="#SOSAProcedure">ObservationProcedure</a> applied by a
+            <a href="#SOSAObservation">Observation</a> using a
+            <a href="#SOSAProcedure">Procedure</a> applied by a
             <a href="#SOSASensor">Sensor</a> or Observer.
             This can be contrasted with properties whose value is assigned by some authority (e.g. price,
             ownership), or whose value is a consequence of some other values (e.g. rank).</span>
@@ -112,7 +118,7 @@
                                 href="#SOSAhasProcedure">sosa:hasProcedure</a></span>
                         <span about="[_:SOSAObservableProperty4]" property="owl:allValuesFrom"
                             resource="sosa:ObservingProcedure"><em><b>ONLY</b></em> <a
-                                href="#SOSObservingProcedure">sosa:ObservingProcedure</a></span>
+                                href="#SOSAObservingProcedure">sosa:ObservingProcedure</a></span>
                     </td>
                 </tr>
                 <tr>
@@ -124,93 +130,6 @@
                 </tr>
             </tbody>
         </table>
-        <div class="buttonpanel">
-            <span>
-                <span class="sosa" style="display: none;">[<a href="#"
-                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
-                        additional SSN axioms</a>]</span>
-                <span class="ssn">[<a href="#"
-                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
-                        additional SSN axioms</a>]</span>
-            </span>
-            <span class="back">[<a href="#Observation">Back to module overview</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-        </div>
-    </section>
-
-    <section class="informative specterm sosa" id="SOSAObservingProcedure" about="sosa:ObservingProcedure"
-        typeof="owl:Class">
-        <h6><a href="#SOSAObservingProcedure">sosa:ObservingProcedure</a></h6>
-        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/ObservingProcedure</p>
-        <p><strong>an OWL Class</strong></p>
-
-        <p class="note">ObservingProcedure added in 2024 update.
-            This term is non-normative pending further implementation experience</p>
-        <p>
-            <em property="rdfs:label">Observing Procedure</em> -
-            <span property="skos:definition">The description of steps performed in order to determine the value of an
-                ObservableProperty by an Observer.</span>
-            <br><br>
-            <span property="skos:scopeNote">The observing procedure cannot describe a sensor instance, but it can
-                describe the sensor type.</span>
-        </p>
-        <table>
-            <tbody>
-                <tr class="ssn">
-                    <th>Sub class of</th>
-                    <td>
-                        <span rel="rdfs:subClassOf" resource="sosa:Procedure">sosa:Procedure</span>
-                    </td>
-                </tr>
-                <tr class="ssn">
-                    <th class="restrictions">Restriction</th>
-                    <td>
-                        <span about="sosa:ObservingProcedure" rel="rdfs:subClassOf"
-                            resource="[_:SOSAObservingProcedure1]"></span>
-                        <span about="[_:SOSAObservingProcedure1]" typeof="owl:Restriction"></span>
-                        <span about="[_:SOSAObservingProcedure1]" rel="owl:onProperty" resource="sosa:forProperty"><a
-                                href="#SOSAforProperty">sosa:forProperty</a></span>
-                        <span about="[_:SOSAObservingProcedure1]" property="owl:allValuesFrom"
-                            resource="sosa:ObservableProperty"><em><b>ONLY</b></em> <a
-                                href="#SOSAObservableProperty">sosa:ObservableProperty</a></span>
-                        <br>
-                        <span about="sosa:ObservingProcedure" rel="rdfs:subClassOf"
-                            resource="[_:SOSAObservingProcedure2]"></span>
-                        <span about="[_:SOSAObservingProcedure2]" typeof="owl:Restriction"></span>
-                        <span about="[_:SOSAObservingProcedure2]" rel="owl:onProperty" resource="sosa:implementedBy"><a
-                                href="#SOSAimplementedBy">sosa:implementedBy</a></span>
-                        <span about="[_:SOSAObservingProcedure2]" property="owl:allValuesFrom"
-                            resource="sosa:Sensor"><em><b>ONLY</b></em> <a href="#SOSASensor">sosa:Sensor</a></span>
-
-                    </td>
-                </tr>
-                <tr>
-                    <th>Examples</th>
-                    <td>
-                        <span property="skos:example">A workflow, protocol, plan, algorithm, or computational method
-                            specifying how to make an observation; the description of the process utilized by an
-                            observer.
-                            This could be a chemical analysis method, a protocol for measuring an object, but could also
-                            be a checklist utilized by a human observer during a biodiversity campaign.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Note</th>
-                    <td>
-                        <span property="skos:note">The observing procedure cannot describe a sensor instance, but it can
-                            describe the sensor type.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <span rel="rdfs:isDefinedBy"><a
-                                href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a></span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
         <div class="buttonpanel">
             <span>
                 <span class="sosa" style="display: none;">[<a href="#"
@@ -432,11 +351,9 @@
                 <a href="#SOSAobservedProperty">observedProperty</a> ,
                 <a href="#SOSAphenomenonTime">phenomenonTime</a> ,
                 <a href="#SOSAresultTime">resultTime</a> ,
-                <a href="#OMSvalidTime">validTime</a> ,
                 <a href="#SOSAhasResult">hasResult</a> ,
                 <a href="#SOSAhasSimpleResult">hasSimpleResult</a> ,
-                <a href="#OMSobservationType">observationType</a> ,
-                <a href="#OMSresultQuality">resultQuality</a> .
+                <a href="#SOSAresultQuality">resultQuality</a> .
                 If they are present, the values of these properties summarize the values of the matching properties of
                 the member observations, where membership is either direct or transitive through one or more member
                 observation collections.
@@ -534,88 +451,67 @@
         </div>
     </section>
 
-    <section class="specterm sosa" id="SOSAobservedProperty" about="sosa:observedProperty" typeof="owl:ObjectProperty">
-        <h5><a href="#SOSAobservedProperty">sosa:observedProperty</a></h5>
-        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/observedProperty</p>
-        <p><strong>an OWL Object Property</strong></p>
+    <section class="informative specterm sosa" id="SOSAObservingProcedure" about="sosa:ObservingProcedure"
+        typeof="owl:Class">
+        <h6><a href="#SOSAObservingProcedure">sosa:ObservingProcedure</a></h6>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/ObservingProcedure</p>
+        <p><strong>an OWL Class</strong></p>
 
-        <em property="rdfs:label">observed property</em> -
-        <span property="skos:definition">Relation linking an
-            <a href="#SOSAObservation">Observation</a> or <a href="#SOSAObservationCollection">ObservationCollection</a>
-            to the property that was
-            observed.
-            The <a href="#SOSAObservableProperty">ObservableProperty</a> should be a property of the
-            <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a> (linked by
-            <a href="#SOSAhasFeatureOfInterest">hasFeatureOfInterest</a>) of this
-            <a href="#SOSAObservation">Observation</a>.</span>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Domain Includes</th>
-                    <td>
-                        <span rel="schema:domainIncludes" resource="sosa:Observation"><a
-                                href="#SOSAObservation">sosa:Observation</a></span>
-                        , <span rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a
-                                href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Range Includes</th>
-                    <td>
-                        <span rel="schema:rangeIncludes" resource="sosa:ObservableProperty"><a
-                                href="#SOSAObservableProperty">sosa:ObservableProperty</a></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <span rel="rdfs:isDefinedBy"><a
-                                href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a></span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="buttonpanel">
-            <span class="back">[<a href="#Observation">Back to module overview</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-        </div>
-    </section>
-
-    <section class="informative specterm sosa" id="SOSAresultQuality" about="sosa:resultQuality"
-        typeof="owl:ObjectProperty">
-        <h6><a href="#SOSAresultQuality">sosa:resultQuality</a></h6>
-        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/resultQuality</p>
-        <p><strong>an OWL Object Property</strong></p>
-
-        <p class="note">resultQuality added in 2024 update.
+        <p class="note">ObservingProcedure added in 2024 update.
             This term is non-normative pending further implementation experience</p>
         <p>
-            <em property="rdfs:label">observation result quality</em> -
-            <span property="skos:definition">Information pertaining to the data quality of the result.</span>
+            <em property="rdfs:label">Observing Procedure</em> -
+            <span property="skos:definition">The description of steps performed in order to determine the value of an
+                ObservableProperty by an Observer.</span>
+            <br><br>
+            <span property="skos:scopeNote">The observing procedure cannot describe a sensor instance, but it can
+                describe the sensor type.</span>
         </p>
         <table>
             <tbody>
-                <tr>
-                    <th>Note</th>
+                <tr class="ssn">
+                    <th>Sub class of</th>
                     <td>
-                        <span property="skos:scopeNote">This instance-specific description complements the description
-                            of the observation Procedure, which provides information concerning the quality of all
-                            observations using this procedure. </span>
-                        <span property="skos:note">The quality of a result can be assessed following the procedures in
-                            the ISO 19157 series.
-                            Multiple measures can be provided.</span>
-                        <span property="skos:note"><a
-                                href="https://www.w3.org/TR/vocab-dqv/#dqv:hasQualityMeasurement">dqv:hasQualityMeasurement</a>
-                            from the Data Quality Vocabulary is equivalent</span>
+                        <span rel="rdfs:subClassOf" resource="sosa:Procedure">sosa:Procedure</span>
+                    </td>
+                </tr>
+                <tr class="ssn">
+                    <th class="restrictions">Restriction</th>
+                    <td>
+                        <span about="sosa:ObservingProcedure" rel="rdfs:subClassOf"
+                            resource="[_:SOSAObservingProcedure1]"></span>
+                        <span about="[_:SOSAObservingProcedure1]" typeof="owl:Restriction"></span>
+                        <span about="[_:SOSAObservingProcedure1]" rel="owl:onProperty" resource="sosa:forProperty"><a
+                                href="#SOSAforProperty">sosa:forProperty</a></span>
+                        <span about="[_:SOSAObservingProcedure1]" property="owl:allValuesFrom"
+                            resource="sosa:ObservableProperty"><em><b>ONLY</b></em> <a
+                                href="#SOSAObservableProperty">sosa:ObservableProperty</a></span>
+                        <br>
+                        <span about="sosa:ObservingProcedure" rel="rdfs:subClassOf"
+                            resource="[_:SOSAObservingProcedure2]"></span>
+                        <span about="[_:SOSAObservingProcedure2]" typeof="owl:Restriction"></span>
+                        <span about="[_:SOSAObservingProcedure2]" rel="owl:onProperty" resource="sosa:implementedBy"><a
+                                href="#SOSAimplementedBy">sosa:implementedBy</a></span>
+                        <span about="[_:SOSAObservingProcedure2]" property="owl:allValuesFrom"
+                            resource="sosa:Sensor"><em><b>ONLY</b></em> <a href="#SOSASensor">sosa:Sensor</a></span>
+
                     </td>
                 </tr>
                 <tr>
-                    <th>Domain Includes</th>
+                    <th>Examples</th>
                     <td>
-                        <span rel="schema:domainIncludes" resource="sosa:Observation"><a
-                                href="#SOSAObservation">sosa:Observation</a></span>
-                        , <span rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a
-                                href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
+                        <span property="skos:example">A workflow, protocol, plan, algorithm, or computational method
+                            specifying how to make an observation; the description of the process utilized by an
+                            observer.
+                            This could be a chemical analysis method, a protocol for measuring an object, but could also
+                            be a checklist utilized by a human observer during a biodiversity campaign.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Note</th>
+                    <td>
+                        <span property="skos:note">The observing procedure cannot describe a sensor instance, but it can
+                            describe the sensor type.</span>
                     </td>
                 </tr>
                 <tr>
@@ -629,6 +525,14 @@
         </table>
 
         <div class="buttonpanel">
+            <span>
+                <span class="sosa" style="display: none;">[<a href="#"
+                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
+                        additional SSN axioms</a>]</span>
+                <span class="ssn">[<a href="#"
+                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
+                        additional SSN axioms</a>]</span>
+            </span>
             <span class="back">[<a href="#Observation">Back to module overview</a>]</span>
             <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
         </div>
@@ -763,258 +667,6 @@
         </div>
     </section>
 
-    <section class="specterm sosa" id="SOSAobserves" about="sosa:observes" typeof="owl:ObjectProperty">
-        <h5><a href="#SOSAobserves">sosa:observes</a></h5>
-        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/observes</p>
-        <p><strong>an OWL Object Property</strong></p>
-
-        <em property="rdfs:label">observes</em> -
-        <span property="skos:definition">Relation between a <a href="#SOSASensor">Sensor</a>
-            and an <a href="#SOSAObservableProperty">ObservableProperty</a> that it is capable of
-            sensing.</span> <br>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Domain Includes</th>
-                    <td><span rel="schema:domainIncludes" resource="sosa:Sensor"><a
-                                href="#SOSASensor">sosa:Sensor</a></span></td>
-                </tr>
-                <tr>
-                    <th>Range Includes</th>
-                    <td><span rel="schema:rangeIncludes" resource="sosa:ObservableProperty"><a
-                                href="#SOSAObservableProperty">sosa:ObservableProperty</a></span></td>
-                </tr>
-                <tr>
-                    <th>Inverse property of</th>
-                    <td>
-                        <span rel="owl:inverseOf" resource="sosa:isObservedBy"><a
-                                href="#SOSAisObservedBy">sosa:isObservedBy</a></span>
-                    </td>
-                </tr>
-                <tr class="ssn">
-                    <th>Sub property of</th>
-                    <td>
-                        <span rel="rdfs:subPropertyOf"><a href="#SOSAforProperty">sosa:forProperty</a></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <span rel="rdfs:isDefinedBy"><a
-                                href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a></span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="buttonpanel">
-            <span>
-                <span class="sosa" style="display: none;">[<a href="#"
-                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
-                        additional SSN axioms</a>]</span>
-                <span class="ssn">[<a href="#"
-                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
-                        additional SSN axioms</a>]</span>
-            </span>
-            <span class="back">[<a href="#Observation">Back to module overview</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-        </div>
-    </section>
-
-    <section class="specterm sosa" id="SOSAisObservedBy" about="sosa:isObservedBy" typeof="owl:ObjectProperty">
-        <h5><a href="#SOSAisObservedBy">sosa:isObservedBy</a></h5>
-        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/isObservedBy</p>
-        <p><strong>an OWL Object Property</strong></p>
-
-        <em property="rdfs:label">is observed by</em> -
-        <span property="skos:definition">Relation between an <a href="#SOSAObservableProperty">ObservableProperty</a>
-            and the <a href="#SOSASensor">Sensor</a> able to observe it.</span>
-        <br>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Domain Includes</th>
-                    <td><span rel="schema:domainIncludes" resource="sosa:ObservableProperty"><a
-                                href="#SOSAObservableProperty">sosa:ObservableProperty</a></span></td>
-                </tr>
-                <tr>
-                    <th>Range Includes</th>
-                    <td><span rel="schema:rangeIncludes" resource="sosa:Sensor"><a
-                                href="#SOSASensor">sosa:Sensor</a></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Inverse property of</th>
-                    <td>
-                        <span rel="owl:inverseOf" resource="sosa:observes"><a
-                                href="#SOSAobserves">sosa:observes</a></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <span rel="rdfs:isDefinedBy"><a
-                                href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a></span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="buttonpanel">
-            <span class="back">[<a href="#Observation">Back to module overview</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-        </div>
-    </section>
-
-    <section class="specterm sosa" id="SOSAmadeObservation" about="sosa:madeObservation" typeof="owl:ObjectProperty">
-        <h5><a href="#SOSAmadeObservation">sosa:madeObservation</a></h5>
-        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/madeObservation</p>
-        <p><strong>an OWL Object Property</strong></p>
-
-        <em property="rdfs:label">made observation</em> -
-        <span property="skos:definition">Relation between a <a href="#SOSASensor">Sensor</a>
-            and an <a href="#SOSAObservation">Observation</a> made by the <a href="#SOSASensor">Sensor</a>.</span> <br>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Domain Includes</th>
-                    <td><span rel="schema:domainIncludes" resource="sosa:Sensor"><a
-                                href="#SOSASensor">sosa:Sensor</a></span></td>
-                </tr>
-                <tr>
-                    <th>Range Includes</th>
-                    <td><span rel="schema:rangeIncludes" resource="sosa:Observation"><a
-                                href="#SOSAObservation">sosa:Observation</a></span></td>
-                </tr>
-                <tr>
-                    <th>Inverse property of</th>
-                    <td>
-                        <span rel="owl:inverseOf" resource="sosa:madeBySensor"><a
-                                href="#SOSAmadeBySensor">sosa:madeBySensor</a></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <span rel="rdfs:isDefinedBy"><a
-                                href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a></span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="buttonpanel">
-            <span class="back">[<a href="#Observation">Back to module overview</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-        </div>
-    </section>
-
-    <section class="specterm sosa" id="SOSAmadeBySensor" about="sosa:madeBySensor" typeof="owl:ObjectProperty">
-        <h5><a href="#SOSAmadeBySensor">sosa:madeBySensor</a></h5>
-        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/madeBySensor</p>
-        <p><strong>an OWL Object Property</strong></p>
-
-        <em property="rdfs:label">made by <a href="#SOSASensor">Sensor</a></em> -
-        <span property="skos:definition">Relation between an <a href="#SOSAObservation">Observation</a> and
-            the <a href="#SOSASensor">Sensor</a>
-            which made the <a href="#SOSAObservation">Observations</a>.</span> <br>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Domain Includes</th>
-                    <td><span rel="schema:domainIncludes" resource="sosa:Observation"><a
-                                href="#SOSAObservation">sosa:Observation</a></span>, <span rel="schema:domainIncludes"
-                            resource="sosa:ObservationCollection"><a
-                                href="#SOSAObservationCollection">sosa:ObservationCollection</a></span></td>
-                </tr>
-                <tr>
-                    <th>Range Includes</th>
-                    <td><span rel="schema:rangeIncludes" resource="sosa:Sensor"><a
-                                href="#SOSASensor">sosa:Sensor</a></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Inverse property of</th>
-                    <td>
-                        <span rel="owl:inverseOf" resource="sosa:madeObservation"><a
-                                href="#SOSAmadeObservation">sosa:madeObservation</a></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <span rel="rdfs:isDefinedBy"><a
-                                href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a></span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="buttonpanel">
-            <span class="back">[<a href="#Observation">Back to module overview</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-        </div>
-    </section>
-
-    <section class="informative specterm sosa" id="SOSArelatedObservation" about="sosa:relatedObservation"
-        typeof="owl:ObjectProperty">
-        <h5><a href="#SOSArelatedObservation">sosa:relatedObservation</a></h5>
-        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/relatedObservation</p>
-        <p><strong>an OWL Object Property</strong></p>
-
-        <p class="note">relatedObservation added in 2024 update.
-            This term is non-normative pending further implementation experience</p>
-        <p>
-            <em property="rdfs:label">related observation</em> -
-            <span property="skos:definition">Relation to an <a href="#SOSAObservation">Observation</a> or
-                <a href="#SOSAObservationCollection">ObservationCollection</a>.</span>
-        </p>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Domain Includes</th>
-                    <td>
-                        <span rel="schema:domainIncludes" resource="sosa:Actuation"><a
-                                href="#SOSAActuation">sosa:Actuation</a></span>
-                        , <span rel="schema:domainIncludes" resource="sosa:ActuationCollection"><a
-                                href="#SOSAActuationCollection">sosa:ActuationCollection</a></span>
-                        , <span rel="schema:domainIncludes" resource="sosa:ObservableProperty"><a
-                                href="#SOSAObservableProperty">sosa:ObservableProperty</a></span>
-                        , <span rel="schema:domainIncludes" resource="sosa:Observation"><a
-                                href="#SOSAObservation">sosa:Observation</a></span>
-                        , <span rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a
-                                href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
-                        , <span rel="schema:domainIncludes" resource="sosa:Platform"><a
-                                href="#SOSAPlatform">sosa:Platform</a></span>
-                        , <span rel="schema:domainIncludes" resource="sosa:Procedure"><a
-                                href="#SOSAProcedure">sosa:Procedure</a></span>
-                        , <span rel="schema:domainIncludes" resource="sosa:Sample"><a
-                                href="#SOSASample">sosa:Sample</a></span>
-                        , <span rel="schema:domainIncludes" resource="sosa:Sensor"><a
-                                href="#SOSASensor">sosa:Sensor</a></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Range Includes</th>
-                    <td>
-                        <span rel="schema:rangeIncludes" resource="sosa:Observation"><a
-                                href="#SOSAObservation">sosa:Observation</a></span>
-                        , <span rel="schema:rangeIncludes" resource="sosa:ObservationCollection"><a
-                                href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <span rel="rdfs:isDefinedBy"><a
-                                href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a></span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <div class="buttonpanel">
-            <span class="back">[<a href="#Observation">Back to module overview</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-        </div>
-    </section>
-
     <section class="specterm sosa" id="SOSAStimulus" about="sosa:Stimulus" typeof="owl:Class">
         <h5><a href="#SOSAStimulus">sosa:Stimulus</a></h5>
         <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/Stimulus</p>
@@ -1083,6 +735,204 @@
         </div>
     </section>
 
+    <section class="specterm" id="SOSAdetects" about="sosa:detects" typeof="owl:ObjectProperty">
+        <h5><a href="#SOSAdetects">sosa:detects</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/detects</p>
+        <p><strong>an OWL Object Property</strong></p>
+
+        <em property="rdfs:label">detects</em> -
+        <span property="skos:definition">A relation from a <a href="#SOSASensor">Sensor</a>
+            to the <a href="#SOSAStimulus">Stimulus</a> that it detects.
+            The <a href="#SOSAStimulus">Stimulus</a> itself will be serving as a proxy
+            (<a href="#SOSAisProxyFor">isProxyFor</a>) for some
+            <a href="#SOSAObservableProperty">ObservableProperty</a>.</span>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Domain Includes</th>
+                    <td><span rel="schema:domainIncludes" resource="sosa:Sensor"><a
+                                href="#SOSASensor">sosa:Sensor</a></span></td>
+                </tr>
+                <tr>
+                    <th>Range Includes</th>
+                    <td><span rel="schema:rangeIncludes" resource="sosa:Stimulus"><a
+                                href="#SOSAStimulus">sosa:Stimulus</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Inverse property of</th>
+                    <td>
+                        <span rel="owl:inverseOf" resource="sosa:isDetectedBy"><a
+                                href="#SOSAisDetectedBy">sosa:isDetectedBy</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Observation">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="specterm" id="SOSAhasProxy" about="sosa:hasProxy" typeof="owl:ObjectProperty">
+        <h5><a href="#SOSAhasProxy">sosa:hasProxy</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/hasProxy</p>
+        <p><strong>an OWL Object Property</strong></p>
+
+        <p class="note">hasProxy added in 2024 update.
+            This term is non-normative pending further implementation experience</p>
+
+        <em property="rdfs:label">has proxy</em> -
+        <span property="skos:definition">A relation from an <a
+                href="#SOSAObservableProperty">sosa:ObservableProperty</a>
+            to the <a href="#SOSAStimulus">Stimulus</a> that serves as its proxy.</span>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Example</th>
+                    <td>
+                        <span rel="skos:example">For example, the expansion of mercury is a <a
+                                href="#SOSAStimulus">Stimulus</a> that serves as a proxy for some
+                            temperature <a href="#SOSAProperty">Property</a>. An increase or decrease
+                            in the velocity of
+                            spinning cups on a wind <a href="#SOSASensor">Sensor</a> is serving as a
+                            proxy for
+                            the
+                            wind speed.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Domain Includes</th>
+                    <td><span rel="schema:domainIncludes" resource="sosa:ObservableProperty"><a
+                                href="#SOSAObservableProperty">sosa:ObservableProperty</a></span></td>
+                </tr>
+                <tr>
+                    <th>Range Includes</th>
+                    <td><span rel="schema:rangeIncludes" resource="sosa:Stimulus"><a
+                                href="#SOSAStimulus">sosa:Stimulus</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Inverse property of</th>
+                    <td>
+                        <span rel="owl:inverseOf" resource="sosa:isProxyFor"><a
+                                href="#SOSAisProxyFor">sosa:isProxyFor</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Observation">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="specterm" id="SOSAisDetectedBy" about="sosa:isDetectedBy" typeof="owl:ObjectProperty">
+        <h5><a href="#SOSAisDetectedBy">sosa:isDetectedBy</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/isDetectedBy</p>
+        <p><strong>an OWL Object Property</strong></p>
+
+        <p class="note">isDetectedBy added in 2024 update.
+            This term is non-normative pending further implementation experience</p>
+
+        <em property="rdfs:label">is detected by</em> -
+        <span property="skos:definition">A relation from a <a href="#SOSAStimulus">Stimulus</a> to the
+            <a href="#SOSASensor">Sensor</a> that may detect it.
+            The <a href="#SOSAStimulus">Stimulus</a> itself will be serving as a proxy
+            (<a href="#SOSAisProxyFor">isProxyFor</a>) for some
+            <a href="#SOSAObservableProperty">ObservableProperty</a>.</span>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Domain Includes</th>
+                    <td><span rel="schema:domainIncludes" resource="sosa:Stimulus"><a
+                                href="#SOSAStimulus">sosa:Stimulus</a></span></td>
+                </tr>
+                <tr>
+                    <th>Range Includes</th>
+                    <td><span rel="schema:rangeIncludes" resource="sosa:Sensor"><a
+                                href="#SOSASensor">sosa:Sensor</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Inverse property of</th>
+                    <td>
+                        <span rel="owl:inverseOf" resource="sosa:detects"><a href="#SOSAdetects">sosa:detects</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Observation">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="specterm sosa" id="SOSAisObservedBy" about="sosa:isObservedBy" typeof="owl:ObjectProperty">
+        <h5><a href="#SOSAisObservedBy">sosa:isObservedBy</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/isObservedBy</p>
+        <p><strong>an OWL Object Property</strong></p>
+
+        <em property="rdfs:label">is observed by</em> -
+        <span property="skos:definition">Relation between an <a href="#SOSAObservableProperty">ObservableProperty</a>
+            and the <a href="#SOSASensor">Sensor</a> able to observe it.</span>
+        <br>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Domain Includes</th>
+                    <td><span rel="schema:domainIncludes" resource="sosa:ObservableProperty"><a
+                                href="#SOSAObservableProperty">sosa:ObservableProperty</a></span></td>
+                </tr>
+                <tr>
+                    <th>Range Includes</th>
+                    <td><span rel="schema:rangeIncludes" resource="sosa:Sensor"><a
+                                href="#SOSASensor">sosa:Sensor</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Inverse property of</th>
+                    <td>
+                        <span rel="owl:inverseOf" resource="sosa:observes"><a
+                                href="#SOSAobserves">sosa:observes</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Observation">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
     <section class="specterm" id="SOSAisProxyFor" about="sosa:isProxyFor" typeof="owl:ObjectProperty">
         <h5><a href="#SOSAisProxyFor">sosa:isProxyFor</a></h5>
         <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/isProxyFor</p>
@@ -1116,6 +966,543 @@
                     <th>Range Includes</th>
                     <td><span rel="schema:rangeIncludes" resource="sosa:ObservableProperty"><a
                                 href="#SOSAObservableProperty">sosa:ObservableProperty</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Inverse property of</th>
+                    <td>
+                        <span rel="owl:inverseOf" resource="sosa:hasProxy"><a
+                                href="#SOSAhasProxy">sosa:hasProxy</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Observation">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="specterm sosa" id="SOSAmadeBySensor" about="sosa:madeBySensor" typeof="owl:ObjectProperty">
+        <h5><a href="#SOSAmadeBySensor">sosa:madeBySensor</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/madeBySensor</p>
+        <p><strong>an OWL Object Property</strong></p>
+
+        <em property="rdfs:label">made by <a href="#SOSASensor">Sensor</a></em> -
+        <span property="skos:definition">Relation between an <a href="#SOSAObservation">Observation</a> and
+            the <a href="#SOSASensor">Sensor</a>
+            which made the <a href="#SOSAObservation">Observations</a>.</span> <br>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Domain Includes</th>
+                    <td><span rel="schema:domainIncludes" resource="sosa:Observation"><a
+                                href="#SOSAObservation">sosa:Observation</a></span>, <span rel="schema:domainIncludes"
+                            resource="sosa:ObservationCollection"><a
+                                href="#SOSAObservationCollection">sosa:ObservationCollection</a></span></td>
+                </tr>
+                <tr>
+                    <th>Range Includes</th>
+                    <td><span rel="schema:rangeIncludes" resource="sosa:Sensor"><a
+                                href="#SOSASensor">sosa:Sensor</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Inverse property of</th>
+                    <td>
+                        <span rel="owl:inverseOf" resource="sosa:madeObservation"><a
+                                href="#SOSAmadeObservation">sosa:madeObservation</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Observation">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="specterm sosa" id="SOSAmadeObservation" about="sosa:madeObservation" typeof="owl:ObjectProperty">
+        <h5><a href="#SOSAmadeObservation">sosa:madeObservation</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/madeObservation</p>
+        <p><strong>an OWL Object Property</strong></p>
+
+        <em property="rdfs:label">made observation</em> -
+        <span property="skos:definition">Relation between a <a href="#SOSASensor">Sensor</a>
+            and an <a href="#SOSAObservation">Observation</a> made by the <a href="#SOSASensor">Sensor</a>.</span> <br>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Domain Includes</th>
+                    <td><span rel="schema:domainIncludes" resource="sosa:Sensor"><a
+                                href="#SOSASensor">sosa:Sensor</a></span></td>
+                </tr>
+                <tr>
+                    <th>Range Includes</th>
+                    <td><span rel="schema:rangeIncludes" resource="sosa:Observation"><a
+                                href="#SOSAObservation">sosa:Observation</a></span></td>
+                </tr>
+                <tr>
+                    <th>Inverse property of</th>
+                    <td>
+                        <span rel="owl:inverseOf" resource="sosa:madeBySensor"><a
+                                href="#SOSAmadeBySensor">sosa:madeBySensor</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Observation">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="informative specterm sosa" id="SOSAobservationRelatedTo" about="sosa:observationRelatedTo"
+        typeof="owl:ObjectProperty">
+        <h5><a href="#SOSAobservationRelatedTo">sosa:observationRelatedTo</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/observationRelatedTo</p>
+        <p><strong>an OWL Object Property</strong></p>
+
+        <p class="note">observationRelatedTo added in 2024 update.
+            This term is non-normative pending further implementation experience</p>
+
+        <p>
+            <em property="rdfs:label">observation related to</em> -
+            <span property="skos:definition">Relation from an <a href="#SOSAObservation">Observation</a> or
+                <a href="#SOSAObservationCollection">ObservationCollection</a>.</span>
+        </p>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Domain Includes</th>
+                    <td>
+                        <span rel="schema:domainIncludes" resource="sosa:Observation"><a
+                                href="#SOSAObservation">sosa:Observation</a></span>
+                        , <span rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a
+                                href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Range Includes</th>
+                    <td>
+                        <span rel="schema:rangeIncludes" resource="sosa:Execution"><a
+                                href="#SOSAExecution">sosa:Execution</a></span>
+                        , <span rel="schema:rangeIncludes" resource="sosa:Actuation"><a
+                                href="#SOSAActuation">sosa:Actuation</a></span>
+                        , <span rel="schema:rangeIncludes" resource="sosa:ActuationCollection"><a
+                                href="#SOSAActuationCollection">sosa:ActuationCollection</a></span>
+                        , <span rel="schema:rangeIncludes" resource="sosa:Observation"><a
+                                href="#SOSAObservation">sosa:Observation</a></span>
+                        , <span rel="schema:rangeIncludes" resource="sosa:ObservationCollection"><a
+                                href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
+                        , <span rel="schema:rangeIncludes" resource="sosa:Sampling"><a
+                                href="#SOSASampling">sosa:Sampling</a></span>
+                        , <span rel="schema:rangeIncludes" resource="sosa:SamplingCollection"><a
+                                href="#SOSASamplingCollection">sosa:SamplingCollection</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Inverse property of</th>
+                    <td>
+                        <span rel="owl:inverseOf" resource="sosa:relatedObservation">
+                            <a href="#SOSArelatedObservation">sosa:relatedObservation</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Observation">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="specterm sosa" id="SOSAobservedProperty" about="sosa:observedProperty" typeof="owl:ObjectProperty">
+        <h5><a href="#SOSAobservedProperty">sosa:observedProperty</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/observedProperty</p>
+        <p><strong>an OWL Object Property</strong></p>
+
+        <em property="rdfs:label">observed property</em> -
+        <span property="skos:definition">Relation linking an
+            <a href="#SOSAObservation">Observation</a> or <a href="#SOSAObservationCollection">ObservationCollection</a>
+            to the property that was
+            observed.
+            The <a href="#SOSAObservableProperty">ObservableProperty</a> should be a property of the
+            <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a> (linked by
+            <a href="#SOSAhasFeatureOfInterest">hasFeatureOfInterest</a>) of this
+            <a href="#SOSAObservation">Observation</a>.</span>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Domain Includes</th>
+                    <td>
+                        <span rel="schema:domainIncludes" resource="sosa:Observation"><a
+                                href="#SOSAObservation">sosa:Observation</a></span>
+                        , <span rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a
+                                href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Range Includes</th>
+                    <td>
+                        <span rel="schema:rangeIncludes" resource="sosa:ObservableProperty"><a
+                                href="#SOSAObservableProperty">sosa:ObservableProperty</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Inverse property of</th>
+                    <td>
+                        <span rel="owl:inverseOf"><a
+                                href="http://www.w3.org/ns/sosa/wasObservedBy/">sosa:wasObservedBy/</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Observation">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="specterm sosa" id="SOSAobserves" about="sosa:observes" typeof="owl:ObjectProperty">
+        <h5><a href="#SOSAobserves">sosa:observes</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/observes</p>
+        <p><strong>an OWL Object Property</strong></p>
+
+        <em property="rdfs:label">observes</em> -
+        <span property="skos:definition">Relation between a <a href="#SOSASensor">Sensor</a>
+            and an <a href="#SOSAObservableProperty">ObservableProperty</a> that it is capable of
+            sensing.</span> <br>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Domain Includes</th>
+                    <td><span rel="schema:domainIncludes" resource="sosa:Sensor"><a
+                                href="#SOSASensor">sosa:Sensor</a></span></td>
+                </tr>
+                <tr>
+                    <th>Range Includes</th>
+                    <td><span rel="schema:rangeIncludes" resource="sosa:ObservableProperty"><a
+                                href="#SOSAObservableProperty">sosa:ObservableProperty</a></span></td>
+                </tr>
+                <tr>
+                    <th>Inverse property of</th>
+                    <td>
+                        <span rel="owl:inverseOf" resource="sosa:isObservedBy"><a
+                                href="#SOSAisObservedBy">sosa:isObservedBy</a></span>
+                    </td>
+                </tr>
+                <tr class="ssn">
+                    <th>Sub property of</th>
+                    <td>
+                        <span rel="rdfs:subPropertyOf"><a href="#SOSAforProperty">sosa:forProperty</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span>
+                <span class="sosa" style="display: none;">[<a href="#"
+                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
+                        additional SSN axioms</a>]</span>
+                <span class="ssn">[<a href="#"
+                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
+                        additional SSN axioms</a>]</span>
+            </span>
+            <span class="back">[<a href="#Observation">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="specterm" id="SOSAoriginated" about="sosa:originated" typeof="owl:ObjectProperty">
+        <h5><a href="#SOSAoriginated">sosa:originated</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/originated</p>
+        <p><strong>an OWL Object Property</strong></p>
+
+        <p class="note">originated added in 2024 update.
+            This term is non-normative pending further implementation experience</p>
+
+        <em property="rdfs:label">originated</em> -
+        <span property="skos:definition">Relation between a <a href="#SOSAStimulus">Stimulus</a> and the
+            <a href="#SOSAObservation">Observation</a> that was originated by it.</span>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Domain Includes</th>
+                    <td><span rel="schema:domainIncludes" resource="sosa:Stimulus"><a
+                                href="#SOSAStimulus">sosa:Stimulus</a></span></td>
+                </tr>
+                <tr>
+                    <th>Range Includes</th>
+                    <td><span rel="schema:rangeIncludes" resource="sosa:Observation"><a
+                                href="#SOSAObservation">sosa:Observation</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Inverse property of</th>
+                    <td>
+                        <span rel="owl:inverseOf" resource="sosa:wasOriginatedBy"><a
+                                href="#SOSAwasOriginatedBy">sosa:wasOriginatedBy</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Observation">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="informative specterm sosa" id="SOSAqualityOf" about="sosa:qualityOf" typeof="owl:ObjectProperty">
+        <h6><a href="#SOSAqualityOf">sosa:qualityOf</a></h6>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/qualityOf</p>
+        <p><strong>an OWL Object Property</strong></p>
+
+        <p class="note">qualityOf added in 2024 update.
+            This term is non-normative pending further implementation experience</p>
+        <p>
+            <em property="rdfs:label">quality of</em> -
+            <span property="skos:definition">observation result that this quality relates to.</span>
+        </p>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Range Includes</th>
+                    <td>
+                        <span rel="schema:rangeIncludes" resource="sosa:Observation"><a
+                                href="#SOSAObservation">sosa:Observation</a></span>
+                        , <span rel="schema:rangeIncludes" resource="sosa:ObservationCollection"><a
+                                href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Inverse property of</th>
+                    <td>
+                        <span rel="owl:inverseOf" resource="sosa:resultQuality"><a
+                                href="#SOSAresultQuality">sosa:resultQuality</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Observation">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="informative specterm sosa" id="SOSArelatedObservation" about="sosa:relatedObservation"
+        typeof="owl:ObjectProperty">
+        <h5><a href="#SOSArelatedObservation">sosa:relatedObservation</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/relatedObservation</p>
+        <p><strong>an OWL Object Property</strong></p>
+
+        <p class="note">relatedObservation added in 2024 update.
+            This term is non-normative pending further implementation experience</p>
+        <p>
+            <em property="rdfs:label">related observation</em> -
+            <span property="skos:definition">Relation to an <a href="#SOSAObservation">Observation</a> or
+                <a href="#SOSAObservationCollection">ObservationCollection</a>.</span>
+        </p>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Domain Includes</th>
+                    <td>
+                        <span rel="schema:domainIncludes" resource="sosa:Execution"><a
+                                href="#SOSAExecution">sosa:Execution</a></span>
+                        , <span rel="schema:domainIncludes" resource="sosa:Actuation"><a
+                                href="#SOSAActuation">sosa:Actuation</a></span>
+                        , <span rel="schema:domainIncludes" resource="sosa:ActuationCollection"><a
+                                href="#SOSAActuationCollection">sosa:ActuationCollection</a></span>
+                        , <span rel="schema:domainIncludes" resource="sosa:Observation"><a
+                                href="#SOSAObservation">sosa:Observation</a></span>
+                        , <span rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a
+                                href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
+                        , <span rel="schema:domainIncludes" resource="sosa:Sampling"><a
+                                href="#SOSASampling">sosa:Sampling</a></span>
+                        , <span rel="schema:domainIncludes" resource="sosa:SamplingCollection"><a
+                                href="#SOSASamplingCollection">sosa:SamplingCollection</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Range Includes</th>
+                    <td>
+                        <span rel="schema:rangeIncludes" resource="sosa:Observation"><a
+                                href="#SOSAObservation">sosa:Observation</a></span>
+                        , <span rel="schema:rangeIncludes" resource="sosa:ObservationCollection"><a
+                                href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Inverse property of</th>
+                    <td>
+                        <span rel="owl:inverseOf" resource="sosa:observationRelatedTo">
+                            <a href="#SOSAobservationRelatedTo">sosa:observationRelatedTo</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Observation">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="informative specterm sosa" id="SOSAresultQuality" about="sosa:resultQuality"
+        typeof="owl:ObjectProperty">
+        <h6><a href="#SOSAresultQuality">sosa:resultQuality</a></h6>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/resultQuality</p>
+        <p><strong>an OWL Object Property</strong></p>
+
+        <p class="note">resultQuality added in 2024 update.
+            This term is non-normative pending further implementation experience</p>
+        <p>
+            <em property="rdfs:label">observation result quality</em> -
+            <span property="skos:definition">Information pertaining to the data quality of the result.</span>
+        </p>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Note</th>
+                    <td>
+                        <span property="skos:scopeNote">This instance-specific description complements the description
+                            of the observation Procedure, which provides information concerning the quality of all
+                            observations using this procedure. </span>
+                        <span property="skos:note">The quality of a result can be assessed following the procedures in
+                            the ISO 19157 series.
+                            Multiple measures can be provided.</span>
+                        <span property="skos:note"><a
+                                href="https://www.w3.org/TR/vocab-dqv/#dqv:hasQualityMeasurement">dqv:hasQualityMeasurement</a>
+                            from the Data Quality Vocabulary is equivalent</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Domain Includes</th>
+                    <td>
+                        <span rel="schema:domainIncludes" resource="sosa:Observation"><a
+                                href="#SOSAObservation">sosa:Observation</a></span>
+                        , <span rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a
+                                href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Inverse property of</th>
+                    <td>
+                        <span rel="owl:inverseOf" resource="sosa:qualityOf"><a
+                                href="#SOSAqualityOf">sosa:qualityOf</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Observation">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="specterm sosa" id="SOSAwasObservedBy" about="sosa:wasObservedBy" typeof="owl:ObjectProperty">
+        <h5><a href="#SOSAwasObservedBy">sosa:wasObservedBy</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/wasObservedBy</p>
+        <p><strong>an OWL Object Property</strong></p>
+
+        <p class="note">wasObservedBy added in 2024 update.
+            This term is non-normative pending further implementation experience</p>
+
+        <em property="rdfs:label">was observed by</em> -
+        <span property="skos:definition">Relation between an <a href="#SOSAObservableProperty">ObservableProperty</a>
+            and an <a href="#SOSAObservation">Observation</a> that observed it.</span>
+        <br>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Domain Includes</th>
+                    <td><span rel="schema:domainIncludes" resource="sosa:ObservableProperty"><a
+                                href="#SOSAObservableProperty">sosa:ObservableProperty</a></span></td>
+                </tr>
+                <tr>
+                    <th>Range Includes</th>
+                    <td><span rel="schema:rangeIncludes" resource="sosa:Observation"><a
+                                href="#SOSAObservation">sosa:Observation</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Inverse property of</th>
+                    <td>
+                        <span rel="owl:inverseOf" resource="sosa:observedProperty"><a
+                                href="#SOSAobservedProperty">sosa:observedProperty</a></span>
                     </td>
                 </tr>
                 <tr>
@@ -1155,42 +1542,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>is Defined By</th>
+                    <th>Inverse property of</th>
                     <td>
-                        <span rel="rdfs:isDefinedBy"><a
-                                href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a></span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="buttonpanel">
-            <span class="back">[<a href="#Observation">Back to module overview</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-        </div>
-    </section>
-
-    <section class="specterm" id="SOSAdetects" about="sosa:detects" typeof="owl:ObjectProperty">
-        <h5><a href="#SOSAdetects">sosa:detects</a></h5>
-        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/detects</p>
-        <p><strong>an OWL Object Property</strong></p>
-
-        <em property="rdfs:label">detects</em> -
-        <span property="skos:definition">A relation from a <a href="#SOSASensor">Sensor</a>
-            to the <a href="#SOSAStimulus">Stimulus</a> that the <a href="#SOSASensor">Sensor</a> detects. The <a
-                href="#SOSAStimulus">Stimulus</a>
-            itself will be serving as a proxy (<a href="#SOSAisProxyFor">isProxyFor</a>) for some <a
-                href="#SOSAObservableProperty">ObservableProperty</a>.</span>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Domain Includes</th>
-                    <td><span rel="schema:domainIncludes" resource="sosa:Sensor"><a
-                                href="#SOSASensor">sosa:Sensor</a></span></td>
-                </tr>
-                <tr>
-                    <th>Range Includes</th>
-                    <td><span rel="schema:rangeIncludes" resource="sosa:Stimulus"><a
-                                href="#SOSAStimulus">sosa:Stimulus</a></span>
+                        <span rel="owl:inverseOf" resource="sosa:originated"><a
+                                href="#SOSoriginated">sosa:originated</a></span>
                     </td>
                 </tr>
                 <tr>
