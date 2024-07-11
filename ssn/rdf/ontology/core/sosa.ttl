@@ -31,24 +31,6 @@ sosa:
   dcterms:modified "2024-02-03"^^xsd:date ;
   owl:imports sosa-act: , sosa-obs: , sosa-sam:.
 
-sosa:relatedObservation 
-  schema:domainIncludes sosa:Actuation ;
-  schema:domainIncludes sosa:ActuationCollection ;
-  schema:domainIncludes sosa:Sample ;
-  rdfs:isDefinedBy sosa-obs: .
-
-sosa:hasMember
-  schema:domainIncludes sosa:ActuationCollection ;
-  schema:domainIncludes sosa:ObservationCollection ;
-  schema:domainIncludes sosa:SampleCollection ;
-  schema:rangeIncludes sosa:Actuation ;
-  schema:rangeIncludes sosa:ActuationCollection ;
-  schema:rangeIncludes sosa:Observation ;
-  schema:rangeIncludes sosa:ObservationCollection ;
-  schema:rangeIncludes sosa:Sample ;
-  schema:rangeIncludes sosa:SampleCollection ;
-  rdfs:isDefinedBy sosa-common: .
-
 sosa:madeBySystem 
   schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:Observation ;
@@ -67,9 +49,20 @@ sosa:madeExecution
   schema:rangeIncludes sosa:Sampling ;
   rdfs:isDefinedBy sosa-common: .
 
-sosa:usedProcedure 
-  schema:rangeIncludes sosa:ActuatingProcedure ;
-  schema:rangeIncludes sosa:ObservingProcedure ;
-  schema:rangeIncludes sosa:SamplingProcedure ;
-  rdfs:isDefinedBy sosa-common: .
+sosa:observationRelatedTo 
+  schema:rangeIncludes sosa:Execution ;
+  schema:rangeIncludes sosa:Actuation ;
+  schema:rangeIncludes sosa:ActuationCollection ;
+  schema:rangeIncludes sosa:Sampling ;
+  schema:rangeIncludes sosa:SamplingCollection ;
+  owl:inverseOf sosa:relatedObservation ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:relatedObservation 
+  schema:domainIncludes sosa:Execution ;
+  schema:domainIncludes sosa:Actuation ;
+  schema:domainIncludes sosa:ActuationCollection ;
+  schema:domainIncludes sosa:Sampling ;
+  schema:domainIncludes sosa:SamplingCollection ;
+  rdfs:isDefinedBy sosa-obs: .
 
