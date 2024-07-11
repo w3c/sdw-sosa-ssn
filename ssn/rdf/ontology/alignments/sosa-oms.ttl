@@ -8,7 +8,6 @@
 @prefix time: <http://www.w3.org/2006/time#> .
 @prefix dqv: <http://www.w3.org/ns/dqv#> .
 @prefix prov: <https://www.w3.org/TR/prov-o/#> .
-@prefix doap: <http://usefulinc.com/ns/doap#> .
 @prefix dqv: <http://www.w3.org/ns/dqv#> .
 
 @prefix schema: <http://schema.org/> .
@@ -50,7 +49,12 @@ sosa-oms: a owl:Ontology ;
 
 ogc-ms:implements a owl:ObjectProperty ;
     skos:definition "link from an RDFS/OWL class or property to a requirement linked to an element in a UML model which it implements" ;
-    rdfs:subPropertyOf dcterms:source , prov:wasDerivedFrom , doap:implements . 
+    rdfs:subPropertyOf dcterms:source , prov:wasDerivedFrom . 
+
+ogc-ms:implementedBy a owl:ObjectProperty ;
+    skos:definition "link from a requirement linked to an element in a UML model to an RDFS/OWL class or property which implements it" ;
+    owl:inverseOf ogc-ms:implements . 
+
 
 ## General properties
 
@@ -224,16 +228,31 @@ sosa-oms:observationType a owl:ObjectProperty ;
   schema:domainIncludes sosa:Observation ;
   rdfs:isDefinedBy sosa-oms: .
 
-  sosa:madeObservation ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/gen/relatedObservation-sem> ;
+  sosa:madeObservation 
+    ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/gen/relatedObservation-sem> ;
     rdfs:isDefinedBy sosa-obs: .
 
-  sosa:madeBySensor ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/observer-sem> ;
+  sosa:wasObservedBy  
+    ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/gen/relatedObservation-sem> ;
     rdfs:isDefinedBy sosa-obs: .
 
-  sosa:observedProperty ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/observedProperty-sem> ;
+  sosa:usedForExecution  
+    ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/gen/relatedObservation-sem> ;
     rdfs:isDefinedBy sosa-obs: .
 
- sosa:resultQuality a owl:ObjectProperty ;
+  sosa:relatedObservation  
+    ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/gen/relatedObservation-sem> ;
+    rdfs:isDefinedBy sosa-obs: .
+
+  sosa:madeBySensor 
+    ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/observer-sem> ;
+    rdfs:isDefinedBy sosa-obs: .
+
+  sosa:observedProperty 
+    ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/observedProperty-sem> ;
+    rdfs:isDefinedBy sosa-obs: .
+
+ sosa:resultQuality 
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-core/AbstractObservationCharacteristics/resultQuality-sem> ;
     rdfs:isDefinedBy sosa-obs: .
 
@@ -245,10 +264,6 @@ sosa-oms:observationType a owl:ObjectProperty ;
     schema:domainIncludes sosa:ObservationCollection ;
     schema:rangeIncludes sosa:Platform ;
     rdfs:isDefinedBy sosa-oms: .
-
-  sosa:relatedObservation rdf:type owl:ObjectProperty ;
-    ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/gen/relatedObservation-sem> ;
-    rdfs:isDefinedBy sosa-obs: .
 
 sosa:Sampling ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sampling> ;
   rdfs:isDefinedBy sosa-sam: .
@@ -302,11 +317,11 @@ sosa-oms:PreparationStep a owl:Class ;
 ## Observation Collection
 
 sosa:ObservationCollection 
-  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-core/AbstractObservationCollection> ;
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-basic/ObservationCollection> ;
   rdfs:isDefinedBy sosa-obs: .
 
 sosa:hasMember 
-  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-core/AbstractObservationCollection/member-sem> ;
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-basic/ObservationCollection/member-sem> ;
   rdfs:isDefinedBy sosa-common: .
 
 
