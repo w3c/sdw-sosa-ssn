@@ -1,0 +1,80 @@
+<h3>Homogeneous collection of observations</h3>
+
+<p>
+    A collection of observations may share a common value for one or more of the characteristic observation
+    properties.
+    For example:
+</p>
+<ul>
+    <li>
+        many monitoring processes generate a stream of data in which only the (phenomenon-) time changes between
+        consecutive results for the same property on a single feature of interest, observed using the same procedure
+        implemented using the same sensor.
+    </li>
+    <li>
+        a sensor network typically generates a set of results, over the same time interval, for the same
+        property(s), over a suite of features-of-interest.
+        Imaging sensors could be considered a special case of this, where the proximate features-of-interest
+        correspond with individual pixels in the result.
+    </li>
+</ul>
+
+<p>
+    These patterns can be accommodated with the class <code>ObservationCollection</code> individuals of which may
+    hold one or more of the essential properties of an atomic observation, except for the result.
+    Where present, the value of the property(s) of the collection are shared by all member observations.
+    Of the essential properties of an observation, only the value of each actual <a
+        href="https://www.w3.org/TR/vocab-ssn/#SOSAhasResult">hasResult</a> is not potentially shared by all member
+    observations, though at least one of the other properties would be expected to vary between members in a typical
+    collection.
+</p>
+
+<p>For example, <a href="#fig-observation-collection-3"></a> describes a collection of remote sensing observations
+    using the same sensor on different scenes, while <a href="#fig-observation-collection-4"></a> is a series of the
+    same scene on different days. </p>
+
+<figure id="fig-observation-collection-3">
+    <img alt="Collections of observations 3" src="./images/OC-instance-3.png" style="width:90%" />
+    <figcaption>A set of remote sensing observations of different scenes on the same day</figcaption>
+</figure>
+
+<figure id="fig-observation-collection-4">
+    <img alt="Collections of observations 4" src="./images/OC-instance-4.png" style="width:90%" />
+    <figcaption>A series of remote sensing observations of the same scene on the different days</figcaption>
+</figure>
+
+<p>
+    Collections may be nested.
+    For example, an outer observation-collection might share the observed-property, procedure and sensor, and
+    contain inner observation-collections at different phenomenon-times, each of which contain a set of observations
+    on different features-of-interest (<a href="#fig-observation-collection-1"></a>).
+</p>
+
+<figure id="fig-observation-collection-1">
+    <img alt="Nested collections of observations 1" src="./images/OC-instance-1.png" style="width:90%" />
+    <figcaption>Example of a set of nested collections of four observations of the same property of two
+        features-of-interest at two different times.</figcaption>
+</figure>
+
+<p>
+    Observations can be factored into collections in more than one way, so more than one set of nested
+    observation-collections can collect the same set of atomic results.
+    For example, the same outer collection may contain inner collections concerning different features-of-interests,
+    each containing a set of observations at different phenomenon-times (<a href="#fig-observation-collection-2"></a>).
+</p>
+
+<figure id="fig-observation-collection-2">
+    <img alt="Nested collections of observations 2" src="./images/OC-instance-2.png" style="width:90%" />
+    <figcaption>Alternative set of nested collections with the same results of the same property of two
+        features-of-interest at two different times.</figcaption>
+</figure>
+
+<p>
+    Effectively, the results of each observation-collection correspond to a <i>slice</i> in a data-cube which is
+    composed of the results of the complete set of observations.
+</p>
+
+<p class="note">
+    This feature might also apply to collections of <i>Actuations</i> but this application has not yet been
+    explored.
+</p>
