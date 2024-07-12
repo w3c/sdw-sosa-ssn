@@ -1,0 +1,98 @@
+<!--  <section id="Modeling">  -->
+
+<h2>Common Modeling Questions</h2>
+This section informally discusses how to handle common modeling questions such as locations, forecasts, and
+quantity
+values with a unit of measure.
+
+<section id="location">
+    <h3>Location</h3>
+    <p>Many of the key classes provided by SOSA and SSN represent entities that can be located in space such as
+        sensors, features of interest, actuators, samples, and so forth, or activities that can be located via their
+        participating entities, e.g., platforms.
+        These entities will usually be described using models and ontologies defined for application domains,
+        including
+        technical disciplines, social and business contexts.
+        In these contexts there are a number of implementations that support the expression of spatial properties,
+        including location.
+        These are discussed further in the Spatial Data on the Web Best Practices note [[SDW-BP]]. </p>
+    <p>In particular, GeoSPARQL [[GeoSPARQL]] provides a flexible and relatively complete platform for geospatial
+        objects, that fosters interoperability between geo-datasets. To do so, these entities can be declared as
+        instances of geo:Feature and geometries can be assigned to them via the geo:hasGeometry property.
+        In case of classes, e.g., specific features of interests such as rivers, these can be defined as subclasses
+        of
+        geo:Feature.</p>
+    <p>For example, if observations are made of the atmosphere at a specific location, it might be described as a
+        Sample using the following pattern:</p>
+    <pre class="example" data-include="./rdf/examples/2023ex1.ttl" data-include-format="text"></pre>
+
+</section>
+
+<section id="forecasts" class="informative">
+    <h3>Forecasts</h3>
+    <p>One MAY also represent forecasts as observations if the value of <code>sosa:phenomenonTime</code> is later in
+        time than the <code>sosa:resultTime</code>.
+        Given the definition of these terms, it means that: <em>The time when the Observation act was completed is
+            before the time that the Result of the observation applies to the FeatureOfInterest.</em></p>
+    <p class="note"> Other means to represent forecasts are reported, but not in the scope of this specification.
+        For example [[Lefrancois-et-al-2017]] derives the SSN <code>Sensing/Sensor/Observation</code>
+        pattern and define <code>Forecasting/Forecaster/Forecast</code> classes.</p>
+    <p class="note">Describing a plan for some actuation or observation in the future is not covered by this
+        specification.</p>
+</section>
+
+<section id="quantity-values-and-unit-of-measures" class="informative">
+    <h3>Quantity Values and Unit of Measures</h3>
+    <p>The result of an <a href="#SOSAObservation"><code>sosa:Observation</code></a> or an <a
+            href="#SOSAActuation"><code>sosa:Actuation</code></a> can be a quantity value with a numeric value and a
+        unit
+        of measure.
+
+    <p class="note">It is not in the scope of this specification to recommend any particular way of expressing
+        results
+        as quantity values.
+        There exist external vocabularies that are specifically designed for modeling quantity values as OWL
+        individuals, or as datatypes.
+        Examples include the Quantities, Units, Dimensions and Data Types Ontologies (QUDT, [[QUDT]]) the Ontology
+        of
+        Units of Measure (OM, [[Rijgersberg-et-al-2013]]), and the St Etienne School of Mines <i>Custom
+            Datatypes</i>
+        (CDT, [[CDT]]). </p>
+    <ul>
+        <li>With QUDT, a quantitative result would be a <a href="http://qudt.org/"><code>qudt:QuantityValue</code></a>
+        </li>
+        <li>With OM 2, a quantitative result would be a <a
+                href="http://www.wurvoc.org/vocabularies/"><code>om:Measure</code> or <code>om:Point</code></a></li>
+        <li>With CDT, the value of <a href="#SOSAhasSimpleResult"><code>sosa:hasSimpleResult</code></a> can be
+            structured to match <a
+                href="https://ci.mines-stetienne.fr/lindt/v4/custom_datatypes#ucum"><code>cdt:ucum</code></a> which
+            encodes
+            the unit-of-measure using UCUM (UCUM, [[UCUM]])</li>
+    </ul>
+    <p class="note">Custom datatypes are not strictly compatible with OWL, which restricts the set of datatypes that
+        can be used. See sec. 5.2 in [[owl2-syntax]] for more details.</p>
+    <pre class="example" data-include="./rdf/examples/2017ex1.ttl" data-include-format="text"></pre>
+    <pre class="example" data-include="./rdf/examples/2017ex2.ttl" data-include-format="text"></pre>
+    <pre class="example" data-include="./rdf/examples/2017ex3.ttl" data-include-format="text"></pre>
+</section>
+
+<section id="SOSAProperty-instances" class="informative">
+    <h3>Generic or Specific Instances of sosa:Property</h3>
+    <p>The previous version of SOSA/SSN left an ambiguity on whether an instance of <a
+            href="#SOSAProperty"><code>sosa:Property</code></a> should be generic to all features of interest (e.g.,
+        <code>ex:Temperature</code>,
+        <code>ex:OnOffStatus</code>), or specific to a single feature of interest (e.g.,
+        <code>&lt;myBodyTemperature&gt;</code>, <code>&lt;LightStatus&gt;</code>). This version solves the ambiguity
+        by
+        differentiating:
+    </p>
+    <ul>
+        <li><a href="#SOSAProperty"><code>sosa:Property</code></a> for the former case</li>
+        <li><a href="#SOSAPropertyOfInterest"><code>sosa:PropertyOfInterest</code></a> for the latter case.</li>
+    </ul>
+</section>
+
+<section id="ComplexSystems" class="informative" data-include="./chapters/ModelComplexSystem.html"></section>
+
+<section id="SystemType" class="informative" data-include="./chapters/ModelSystemType.html"></section>
+
