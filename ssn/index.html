@@ -49,7 +49,7 @@
           const sortDirection = headerMetadata.sorted === 'asc' ? 'desc' : 'asc';
 
           const getSortValue = r => r.querySelector(`:scope > td:nth-child(${headerMetadata.idx + 1})`)
-                  .textContent.trim().toLowerCase().replace(/[^A-Za-z0-9 :-]/g, '');
+            .textContent.trim().toLowerCase().replace(/[^A-Za-z0-9 :-]/g, '');
 
           const rows = [...headerMetadata.table.querySelectorAll('tr')].slice(1); // skip header row
           if (!rows.length) {
@@ -57,8 +57,8 @@
           }
           const tbody = rows[0].parentElement;
           rows.sort((a, b) => getSortValue(a).localeCompare(getSortValue(b)) * (sortDirection === 'asc' ? 1 : -1))
-                  .map(e => e.remove() || e)
-                  .forEach(e => tbody.append(e));
+            .map(e => e.remove() || e)
+            .forEach(e => tbody.append(e));
 
           // update sort link labels
           for (let header of headerMetadata.allHeaders) {
@@ -82,7 +82,7 @@
                 sortLink,
               };
 
-              sortLink.href="#";
+              sortLink.href = "#";
               sortLink.style.marginLeft = '1em';
               sortLink.style.textDecoration = 'none';
               sortLink.classList.add('sort-link');
@@ -279,7 +279,9 @@
         Actuation, Observation, and Sampling.
       </p>
       <figure>
-        <img alt="SSN ontology modules - Actuation" src="./images/Actuation-overview.png">
+        <img
+          alt="SSN ontology modules - Actuation; showing Actuation, Procedure, Actuator, FeatureOfInterest, ActuatableProperty"
+          src="./images/Actuation-overview.png">
         <figcaption>
           Overview of the key classes and properties (actuation perspective)
           <br>
@@ -288,7 +290,9 @@
       </figure>
 
       <figure>
-        <img alt="SSN ontology modules - Observation" src="./images/Observation-overview.png">
+        <img
+          alt="SSN ontology modules - Observation; showing Observation, Procedure, Sensor, FeatureOfInterest, ObservableProperty"
+          src="./images/Observation-overview.png">
         <figcaption>
           Overview of the key classes and properties (observation perspective)
           <br>
@@ -297,7 +301,8 @@
       </figure>
 
       <figure>
-        <img alt="SSN ontology modules - Sampling" src="./images/Sampling-overview.png">
+        <img alt="SSN ontology modules - Sampling; showing Sampling, Procedure, Sampler, FeatureOfInterest, Sample"
+          src="./images/Sampling-overview.png">
         <figcaption>
           Overview of the key classes and properties (sampling and sample perspective)
           <br>
@@ -309,7 +314,7 @@
           The following are alphabetical lists of the classes and properties in the SSN Ontology.
         </p>
         <p class="note">
-          Terms added in the 2024 update are indicated with an asterisk*.   
+          Terms added in the 2024 update are indicated with an asterisk*.
         </p>
         <div class="azlist">
           <p><b>Classes:</b>
