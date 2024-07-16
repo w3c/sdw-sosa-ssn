@@ -14,20 +14,22 @@
 </p>
 <p>
     Does this therefore require that classes in the domain model are defined as sub-classes of
-    <code>sosa:FeatureOfInterest</code>?
+    <a href="#SOSAFeatureOfInterest"><code>sosa:FeatureOfInterest</code></a>?
     No, absolutely not.
     RDF and OWL entailments do not work that way.
 </p>
 <p>
     We will now examine the way that the SSN Ontology addresses this.
-    Note that there are different implications depending on whether you are using the SOSA or SSN modules.
+    Note that there are different implications depending on whether you are using the
+    <a href="#sosa-module">SOSA</a> or <a href="ssn-module">SSN</a> modules.
 </p>
 
 <h4>FeatureOfInterest in SOSA</h4>
 <p>
-    In SOSA the domain and range indications use the Schema.org predicates <code>schema:domainIncludes</code> and
+    In SOSA the domain and range indications use the Schema.org [[schema-org]] predicates
+    <code>schema:domainIncludes</code> and
     <code>schema:rangeIncludes</code>.
-    In the case in question
+    For <a href="#SOSAFeatureOfInterest">feature-of-interest</a>, SOSA has:
 </p>
 <pre>
 sosa:hasFeatureOfInterest 
@@ -45,15 +47,16 @@ sosa:hasFeatureOfInterest
     So the 'domain and range' indications in SOSA are functionally harmless.
     The fact that
 <pre>sosa:hasFeatureOfInterest schema:rangeIncludes sosa:FeatureOfInterest .</pre> merely says that things of type
-<code>sosa:FeatureOfInterest</code> might be found as the object of hasFeatureOfInterest statements.
+<a href="#SOSAFeatureOfInterest"><code>sosa:FeatureOfInterest</code></a> might be found as the object of
+hasFeatureOfInterest statements.
 No more, no less.
 </p>
 
 <h4>FeatureOfInterest in SSN</h4>
 <p>
-    In SSN there are local (guarded) constraints, including the range of a property when it appears
-    in the context of a member of a specific class.
-    Related to the feature-of-interest, SSN has:
+    In SSN there are local (guarded) constraints, which may constrain the range of a property
+    when it appears in the context of a member of a specific class.
+    Related to the <a href="#SOSAFeatureOfInterest">feature-of-interest</a>, SSN has:
 </p>
 <pre>
 sosa:Execution 
@@ -63,12 +66,13 @@ sosa:Execution
     owl:allValuesFrom sosa:FeatureOfInterest ] ;
 .
 </pre>
-<p>This says that, in the context of an individual <code>sosa:Execution</code>, the object of a
-    <code>sosa:hasFeatureOfInterest</code> is always an individual <code>sosa:FeatureOfInterest</code>.
+<p>This says that, in the context of an individual <a href="#SOSAExecution"><code>sosa:Execution</code></a>,
+    the object of <a href="#SOSAhasFeatureOfInterest"><code>sosa:hasFeatureOfInterest</code></a> is always an individual
+    <a href="#SOSAFeatureOfInterest"><code>sosa:FeatureOfInterest</code></a>.
 </p>
 <p>
     However, this does not mean that (i) the object of the statement must be declared to have
-    <code>rdf:type sosa:FeatureOfInterest</code> in advance, and (ii) this is its only type.
+    <code>rdf:type sosa:FeatureOfInterest</code> in advance, or (ii) this is its only type.
     Rather, it means that
 </p>
 <ul>
@@ -76,24 +80,27 @@ sosa:Execution
         when an individual appears as the object of a statement
     </li>
     <li>
-        whose subject is a <code>sosa:Execution</code>
+        whose subject is a <a href="#SOSAExecution"><code>sosa:Execution</code></a>
     </li>
     <li>
-        and whose predicate is <code>sosa:hasFeatureOfInterest</code>
+        and whose predicate is <a href="#SOSAhasFeatureOfInterest"><code>sosa:hasFeatureOfInterest</code></a>
     </li>
 </ul>
 <p>
-    then it is automatically inferred to be of <code>rdf:type sosa:FeatureOfInterest</code> <em>in addition to</em>
-    any other information that was already available about it, including any pre-existing type.
+    then it is automatically inferred to be of type <a
+        href="#SOSAFeatureOfInterest"><code>sosa:FeatureOfInterest</code></a>
+    <em>in addition to</em> any other information that was already available about it, including any pre-existing type.
 </p>
 <p>Note that this constraint does not require you to derive domain types as sub-classes of
-    <code>sosa:FeatureOfInterest</code>.
+    <a href="#SOSAFeatureOfInterest"><code>sosa:FeatureOfInterest</code></a>.
     It could be argued that would be an error.
-    It merely says that when a domain individual participates in an Execution (e.g. an Observation) it becomes a
-    member of the class <code>sosa:FeatureOfInterest</code> in addition to any pre-existing domain class.
-    Membership in the class <code>sosa:FeatureOfInterest</code> does not need to be asserted explicitly, and does
-    not need to be assigned prior to the involvement of an entity in a <code>sosa:Execution</code> (or one of its
-    sub-classes).
+    It merely says that when a domain individual participates in an Execution (e.g. an Observation)
+    it becomes a member of the class <a href="#SOSAFeatureOfInterest"><code>sosa:FeatureOfInterest</code></a>
+    in addition to any pre-existing domain class.
+    Membership in the class <a href="#SOSAFeatureOfInterest"><code>sosa:FeatureOfInterest</code></a>
+    does not need to be asserted explicitly,
+    and does not need to be assigned prior to the involvement of an entity in a
+    <a href="#SOSAExecution"><code>sosa:Execution</code></a> (or one of its sub-classes).
 </p>
 <p>
     For example, the following is a potential scenario of an observation made on a domain feature:
@@ -111,13 +118,12 @@ ex:o345 rdf:type sosa:Observation ;
 <p>
     The constraint quoted above entails:
     <code>ex:YarraAboveDightsFalls rdf:type sosa:FeatureOfInterest . </code>
-    <em>in addition to</em> the type already asserted.
+    <em>in addition to</em> the type <code>hydro:RiverReach</code> already asserted.
 </p>
 <p>
-    In terms of set theory, <code>domainB:ClassA</code> has a non-empty intersection with
-    <code>sosa:FeatureOfInterest</code> only when a member of <code>domainB:ClassA</code> participates in a
-    Execution.
-    Domain types are not features-of-interest unless they are involved in executions, and the additional typing
-    happens to individual members of the class 'automatically', by entailment, and not to the domain class as a
-    whole.
+    In terms of set theory, <code>hydro:RiverReach</code> has a non-empty intersection with
+    <code>sosa:FeatureOfInterest</code> only when a member of <code>hydro:RiverReach</code> participates in a
+    <a href="#SOSAExecution"><code>sosa:Execution</code></a>.
+    Domain types are not features-of-interest unless they are involved in executions, and the additional typing happens
+    to individual members of the class 'automatically', by entailment, and not to the domain class as a whole.
 </p>
