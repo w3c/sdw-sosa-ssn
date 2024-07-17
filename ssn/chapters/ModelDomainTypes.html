@@ -1,8 +1,8 @@
 <h3>Domain types and FeatureOfInterest</h3>
 
 <p>
-    Actuations, Observations, and Samplings can be made on any entity in any application context.
-    For many applications a domain-model will have been previously defined.
+    Actuations, Observations, and Samplings can be made on any entity in any context.
+    For many applications a domain-model has been previously defined.
     This will include names and definitions for classes of entities in the domain.
     For example: applications in hydrology will refer to types such as water-course, stream, river, reach,
     storage, aquifer, lake, reservoir, spring, water-table, etc.
@@ -19,9 +19,9 @@
     RDF and OWL entailments do not work that way.
 </p>
 <p>
-    We will now examine the way that the SSN Ontology addresses this.
-    Note that there are different implications depending on whether you are using the
-    <a href="#sosa-module">SOSA</a> or <a href="ssn-module">SSN</a> modules.
+    The way the SSN Ontology addresses this is described here.
+    There are different implications depending on whether you are using the
+    <a href="#sosa-module">SOSA</a> or <a href="ssn-module">SSN</a> module.
 </p>
 
 <h4>FeatureOfInterest in SOSA</h4>
@@ -54,7 +54,7 @@ No more, no less.
 
 <h4>FeatureOfInterest in SSN</h4>
 <p>
-    In SSN there are local (guarded) constraints, which may constrain the range of a property
+    In SSN there are local (guarded) constraints, which can fix the range of a property
     when it appears in the context of a member of a specific class.
     Related to the <a href="#SOSAFeatureOfInterest">feature-of-interest</a>, SSN has:
 </p>
@@ -103,11 +103,16 @@ sosa:Execution
     <a href="#SOSAExecution"><code>sosa:Execution</code></a> (or one of its sub-classes).
 </p>
 <p>
-    For example, the following is a potential scenario of an observation made on a domain feature:
+    For example, the following is a potential scenario.
+    There is an entity typed with a class from a domain model:
 </p>
 <pre>
-ex:YarraAboveDightsFalls rdf:type hydro:RiverReach . 
-
+ex:YarraAboveDightsFalls rdf:type hydro:RiverReach .
+</pre>
+<p>
+    An observation is made concerning a property of this entity:
+</p>
+<pre>
 ex:o345 rdf:type sosa:Observation ;
     sosa:hasFeatureOfInterest ex:YarraAboveDightsFalls ;
     sosa:observedProperty hydro:elevation ; 
@@ -116,14 +121,16 @@ ex:o345 rdf:type sosa:Observation ;
 . 
 </pre>
 <p>
-    The constraint quoted above entails:
+    The SSN constraint shown above entails:
     <code>ex:YarraAboveDightsFalls rdf:type sosa:FeatureOfInterest . </code>
     <em>in addition to</em> the type <code>hydro:RiverReach</code> already asserted.
 </p>
 <p>
-    In terms of set theory, <code>hydro:RiverReach</code> has a non-empty intersection with
-    <code>sosa:FeatureOfInterest</code> only when a member of <code>hydro:RiverReach</code> participates in a
-    <a href="#SOSAExecution"><code>sosa:Execution</code></a>.
-    Domain types are not features-of-interest unless they are involved in executions, and the additional typing happens
-    to individual members of the class 'automatically', by entailment, and not to the domain class as a whole.
+    In terms of set theory, the class <code>hydro:RiverReach</code> has a non-empty intersection with the class
+    <code>sosa:FeatureOfInterest</code> when a member of <code>hydro:RiverReach</code> participates in an
+    <a href="#SOSAObservation"><code>sosa:Observation</code></a> (or any other subclass of
+    <a href="#SOSAExecution"><code>sosa:Execution</code></a>).
+    Domain types are not features-of-interest unless they are involved in executions.
+    The additional typing happens to individual members of the class 'automatically', by entailment, but not to the
+    domain class as a whole.
 </p>
