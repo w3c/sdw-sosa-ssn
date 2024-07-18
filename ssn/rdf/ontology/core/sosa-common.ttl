@@ -354,6 +354,13 @@ sosa:madeBySystem
   skos:definition """
   Relation linking an Execution to the System that made it.
   """@en ;
+  skos:scopeNote """
+  madeBySystem generalizes the madeByActuator, madeBySensor, and madeBySampler properties. 
+  It appears in the ontology to support the description of a common pattern for executions and their properties. 
+
+  madeBySystem may be considered to be abstract, so should not appear in data instances. 
+  Applications should use concrete sub-properties of madeBySystem.
+  """@en ;
   schema:domainIncludes sosa:Execution ;
   schema:rangeIncludes sosa:System ;
   owl:inverseOf sosa:madeExecution ;
@@ -592,6 +599,13 @@ sosa:madeExecution
   rdfs:label "made execution"@en ;
   skos:definition """
   Relation between an System and an Execution it has made.
+  """@en ;
+  skos:scopeNote """
+  madeExecution generalizes the madeActuation, madeObservation, and madeSampling properties. 
+  It appears in the ontology to support the description of a common pattern for executions and their properties. 
+
+  madeExecution may be considered to be abstract, so should not appear in data instances. 
+  Applications should use concrete sub-properties of madeExecution.
   """@en ;
   schema:domainIncludes sosa:System ;
   schema:rangeIncludes sosa:Execution ;
