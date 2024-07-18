@@ -114,11 +114,13 @@
   <p>This section introduces the following classes and properties:</p>
   <div class="azlist">
     <p>
-      <a href="#OMSPreparationProcedure">sosa-oms:PreparationProcedure</a>
+      <a href="#OMSObservingProcedure">sosa-oms:ObservingProcedure</a>
+      , <a href="#OMSPreparationProcedure">sosa-oms:PreparationProcedure</a>
       , <a href="#OMSPreparationStep">sosa-oms:PreparationStep</a>
+      , <a href="#OMSSamplingProcedure">sosa-oms:SamplingProcedure</a>
       , <a href="#OMShasPreparationStep">sosa-oms:hasPreparationStep</a>
       , <a href="#OMSmadeOnPlatform">sosa-oms:madeOnPlatform</a>
-      , <a href="#OMSmetadata">sosa-oms:metadata</a>,
+      , <a href="#OMSmetadata">sosa-oms:metadata</a>
       , <a href="#OMSobservationType">sosa-oms:observationType</a>
       , <a href="#OMSpreparedSample">sosa-oms:preparedSample</a>
       , <a href="#OMSprocessingDetails">sosa-oms:processingDetails</a>
@@ -128,7 +130,94 @@
     </p>
   </div>
 
-  <section class="informative specterm sosa" id="OMSPreparationProcedure" about="sosa-oms:PreparationProcedure"
+<section class="informative specterm sosa" id="OMSObservingProcedure" about="sosa-oms:ObservingProcedure"
+typeof="owl:Class">
+<h6><a href="#OMSObservingProcedure">sosa-oms:ObservingProcedure</a></h6>
+<p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/ObservingProcedure</p>
+<p><strong>an OWL Class</strong></p>
+
+<p class="note">ObservingProcedure added in 2024 update.
+    This term is non-normative pending further implementation experience</p>
+<p>
+    <em property="rdfs:label">Observing Procedure</em> -
+    <span property="skos:definition">The description of steps performed in order to determine the value of an
+        ObservableProperty by an Observer.</span>
+    <br><br>
+    <span property="skos:scopeNote">The observing procedure cannot describe a sensor instance, but it can
+        describe the sensor type.</span>
+</p>
+<table>
+    <tbody>
+        <tr class="ssn">
+            <th>Sub class of</th>
+            <td>
+                <span rel="rdfs:subClassOf" resource="sosa:Procedure">sosa:Procedure</span>
+            </td>
+        </tr>
+        <tr class="ssn">
+            <th class="restrictions">Restriction</th>
+            <td>
+                <span about="sosa-oms:ObservingProcedure" rel="rdfs:subClassOf"
+                    resource="[_:OMSObservingProcedure1]"></span>
+                <span about="[_:OMSObservingProcedure1]" typeof="owl:Restriction"></span>
+                <span about="[_:OMSObservingProcedure1]" rel="owl:onProperty" resource="sosa:forProperty"><a
+                        href="#SOSAforProperty">sosa:forProperty</a></span>
+                <span about="[_:OMSObservingProcedure1]" property="owl:allValuesFrom"
+                    resource="sosa:ObservableProperty"><em><b>ONLY</b></em> <a
+                        href="#SOSAObservableProperty">sosa:ObservableProperty</a></span>
+                <br>
+                <span about="sosa-oms:ObservingProcedure" rel="rdfs:subClassOf"
+                    resource="[_:OMSObservingProcedure2]"></span>
+                <span about="[_:OMSObservingProcedure2]" typeof="owl:Restriction"></span>
+                <span about="[_:OMSObservingProcedure2]" rel="owl:onProperty" resource="sosa:implementedBy"><a
+                        href="#SOSAimplementedBy">sosa:implementedBy</a></span>
+                <span about="[_:OMSObservingProcedure2]" property="owl:allValuesFrom"
+                    resource="sosa:Sensor"><em><b>ONLY</b></em> <a href="#SOSASensor">sosa:Sensor</a></span>
+
+            </td>
+        </tr>
+        <tr>
+            <th>Examples</th>
+            <td>
+                <span property="skos:example">A workflow, protocol, plan, algorithm, or computational method
+                    specifying how to make an observation; the description of the process utilized by an
+                    observer.
+                    This could be a chemical analysis method, a protocol for measuring an object, but could also
+                    be a checklist utilized by a human observer during a biodiversity campaign.</span>
+            </td>
+        </tr>
+        <tr>
+            <th>Note</th>
+            <td>
+                <span property="skos:note">The observing procedure cannot describe a sensor instance, but it can
+                    describe the sensor type.</span>
+            </td>
+        </tr>
+        <tr>
+            <th>is Defined By</th>
+            <td>
+                <span rel="rdfs:isDefinedBy"><a
+                        href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="buttonpanel">
+    <span>
+        <span class="sosa" style="display: none;">[<a href="#"
+                onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
+                additional SSN axioms</a>]</span>
+        <span class="ssn">[<a href="#"
+                onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
+                additional SSN axioms</a>]</span>
+    </span>
+    <span class="back">[<a href="#Observation">Back to module overview</a>]</span>
+    <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+</div>
+</section>
+
+<section class="informative specterm sosa" id="OMSPreparationProcedure" about="sosa-oms:PreparationProcedure"
     typeof="owl:Class">
     <h5><a href="#OMSPreparationProcedure">sosa-oms:PreparationProcedure</a></h5>
     <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/PreparationProcedure</p>
@@ -203,7 +292,54 @@
     </div>
   </section>
 
-  <section class="informative specterm" id="OMShasPreparationStep" about="sosa-oms:hasPreparationStep"
+  <section class="informative specterm sosa" id="OMSSamplingProcedure" about="sosa-oms:SamplingProcedure"
+  typeof="owl:Class">
+  <h6><a href="#OMSSamplingProcedure">sosa-oms:SamplingProcedure</a></h6>
+  <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/SamplingProcedure</p>
+  <p><strong>an OWL Class</strong></p>
+
+  <p class="note">SamplingProcedure added in 2024 update.
+      This term is non-normative pending further implementation experience</p>
+  <p>
+      <em property="rdfs:label">Sampling Procedure</em> -
+      <span property="skos:definition">The description of steps performed by a <a href="#SOSASampler">Sampler</a>
+          in order to
+          extract a <a href="#SOSASample">Sample</a> from its sampled Feature in the frame of a <a
+              href="#SOSASampling">Sampling</a>.</span>
+  </p>
+  <table>
+      <tbody>
+          <tr class="ssn">
+              <th>Sub class of</th>
+              <td>
+                  <span rel="rdfs:subClassOf" resource="sosa:Procedure">sosa:Procedure</span>
+              </td>
+          </tr>
+          <tr>
+              <th>is Defined By</th>
+              <td>
+                  <span rel="rdfs:isDefinedBy"><a
+                          href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a></span>
+              </td>
+          </tr>
+      </tbody>
+  </table>
+
+  <div class="buttonpanel">
+      <span>
+          <span class="sosa" style="display: none;">[<a href="#"
+                  onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
+                  additional SSN axioms</a>]</span>
+          <span class="ssn">[<a href="#"
+                  onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
+                  additional SSN axioms</a>]</span>
+      </span>
+      <span class="back">[<a href="#Sampling">Back to module overview</a>]</span>
+      <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+  </div>
+</section>
+
+<section class="informative specterm" id="OMShasPreparationStep" about="sosa-oms:hasPreparationStep"
     typeof="owl:ObjectProperty">
     <h5><a href="#OMShasPreparationStep">sosa-oms:hasPreparationStep</a></h5>
     <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/hasPreparationStep</p>
@@ -645,7 +781,7 @@
         <td> obs-basic:ObservationCollection </td>
       </tr>
       <tr>
-        <td> <a href="#SOSAObservingProcedure">sosa:ObservingProcedure</a> </td>
+        <td> <a href="#OMSObservingProcedure">sosa-oms:ObservingProcedure</a> </td>
         <td> ogc-ms:implements </td>
         <td> obs-cpt:ObservingProcedure </td>
       </tr>
@@ -690,7 +826,7 @@
         <td> sam-cpt:Sampling </td>
       </tr>
       <tr>
-        <td> <a href="#SOSASamplingProcedure">sosa:SamplingProcedure</a> </td>
+        <td> <a href="#OMSSamplingProcedure">sosa-oms:SamplingProcedure</a> </td>
         <td> ogc-ms:implements </td>
         <td> sam-cpt:SamplingProcedure </td>
       </tr>
@@ -761,7 +897,7 @@
       <tr>
         <td> obs-cpt:ObservingProcedure </td>
         <td> ogc:implementedBy </td>
-        <td> <a href="#SOSAObservingProcedure">sosa:ObservingProcedure</a> </td>
+        <td> <a href="#OMSObservingProcedure">sosa-oms:ObservingProcedure</a> </td>
       </tr>
       <tr>
         <td> sam-cpt:PreparationProcedure </td>
@@ -801,7 +937,7 @@
       <tr>
         <td> sam-cpt:SamplingProcedure </td>
         <td> ogc:implementedBy </td>
-        <td> <a href="#SOSASamplingProcedure">sosa:SamplingProcedure</a> </td>
+        <td> <a href="#OMSSamplingProcedure">sosa-oms:SamplingProcedure</a> </td>
       </tr>
       <tr>
         <td> sam-basic:SpatialSample </td>

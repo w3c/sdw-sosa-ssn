@@ -229,7 +229,14 @@ sosa:Execution
   a owl:Class ;
   rdfs:label "Execution of a Procedure"@en ;
   skos:definition """
-  Act of carrying out a Procedure. This class generalizes the Observation, Actuation, and Sampling classes. It is not expected to be used directly.
+  Act of carrying out a Procedure. 
+  """@en ;
+  skos:scopeNote """
+  Execution generalizes the Actuation, Observation, and Sampling classes. 
+  It appears in the ontology to support the description of a common pattern for executions and their properties. 
+
+  Execution may be considered to be abstract, so individuals should not be declared to be members of only this class. 
+  Applications should use members of concrete sub-classes of Execution.
   """@en ;
   rdfs:isDefinedBy sosa-common: .
 
@@ -454,8 +461,16 @@ sosa:System
   a owl:Class ;
   rdfs:label "System"@en ;
   skos:definition """
-  System is a unit of abstraction for pieces of infrastructure that implement Procedures. A System may have components, its subsystems, which are other systems.
+  System is a piece of infrastructure that implements a Procedure. 
+  A System may have components, its subsystems, which are other systems.
   """@en ; 
+  skos:scopeNote """
+  System generalizes the Actuator, Sensor, and Sampler classes. 
+  It appears in the ontology to support the description of a common pattern for executions and their properties. 
+
+  System may be considered to be abstract, so individuals should not be declared to be members of only this class. 
+  Applications should use members of concrete sub-classes of System.
+  """@en ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:deployedAsset 

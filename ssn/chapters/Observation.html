@@ -27,7 +27,6 @@
             <a href="#SOSAObservableProperty">sosa:ObservableProperty</a>
             , <a href="#SOSAObservation">sosa:Observation</a>
             , <a href="#SOSAObservationCollection">sosa:ObservationCollection</a>
-            , <a href="#SOSAObservingProcedure">sosa:ObservingProcedure</a>
             , <a href="#SOSASensor">sosa:Sensor</a>
             , <a href="#SOSAStimulus">sosa:Stimulus</a>
             , <a href="#SOSAdetects">sosa:detects</a>
@@ -117,8 +116,8 @@
                         <span about="[_:SOSAObservableProperty4]" rel="owl:onProperty" resource="sosa:hasProcedure"><a
                                 href="#SOSAhasProcedure">sosa:hasProcedure</a></span>
                         <span about="[_:SOSAObservableProperty4]" property="owl:allValuesFrom"
-                            resource="sosa:ObservingProcedure"><em><b>ONLY</b></em> <a
-                                href="#SOSAObservingProcedure">sosa:ObservingProcedure</a></span>
+                            resource="sosa:Procedure"><em><b>ONLY</b></em> <a
+                                href="#SOSAProcedure">sosa:Procedure</a></span>
                     </td>
                 </tr>
                 <tr>
@@ -211,8 +210,8 @@
                         <span about="[_:SOSAObservation3]" rel="owl:onProperty" resource="sosa:usedProcedure"><a
                                 href="#SOSAusedProcedure">sosa:usedProcedure</a></span>
                         <span about="[_:SOSAObservation3]" property="owl:allValuesFrom"
-                            resource="sosa:ObservingProcedure"><em><b>ONLY</b></em> <a
-                                href="#SOSAObservingProcedure">sosa:ObservingProcedure</a></span>
+                            resource="sosa:Procedure"><em><b>ONLY</b></em> <a
+                                href="#SOSAProcedure">sosa:Procedure</a></span>
                         <br>
                         <span about="sosa:Observation" rel="rdfs:subClassOf" resource="[_:SOSAObservation4]"></span>
                         <span about="[_:SOSAObservation4]" typeof="owl:Restriction"></span>
@@ -451,93 +450,6 @@
         </div>
     </section>
 
-    <section class="informative specterm sosa" id="SOSAObservingProcedure" about="sosa:ObservingProcedure"
-        typeof="owl:Class">
-        <h6><a href="#SOSAObservingProcedure">sosa:ObservingProcedure</a></h6>
-        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/ObservingProcedure</p>
-        <p><strong>an OWL Class</strong></p>
-
-        <p class="note">ObservingProcedure added in 2024 update.
-            This term is non-normative pending further implementation experience</p>
-        <p>
-            <em property="rdfs:label">Observing Procedure</em> -
-            <span property="skos:definition">The description of steps performed in order to determine the value of an
-                ObservableProperty by an Observer.</span>
-            <br><br>
-            <span property="skos:scopeNote">The observing procedure cannot describe a sensor instance, but it can
-                describe the sensor type.</span>
-        </p>
-        <table>
-            <tbody>
-                <tr class="ssn">
-                    <th>Sub class of</th>
-                    <td>
-                        <span rel="rdfs:subClassOf" resource="sosa:Procedure">sosa:Procedure</span>
-                    </td>
-                </tr>
-                <tr class="ssn">
-                    <th class="restrictions">Restriction</th>
-                    <td>
-                        <span about="sosa:ObservingProcedure" rel="rdfs:subClassOf"
-                            resource="[_:SOSAObservingProcedure1]"></span>
-                        <span about="[_:SOSAObservingProcedure1]" typeof="owl:Restriction"></span>
-                        <span about="[_:SOSAObservingProcedure1]" rel="owl:onProperty" resource="sosa:forProperty"><a
-                                href="#SOSAforProperty">sosa:forProperty</a></span>
-                        <span about="[_:SOSAObservingProcedure1]" property="owl:allValuesFrom"
-                            resource="sosa:ObservableProperty"><em><b>ONLY</b></em> <a
-                                href="#SOSAObservableProperty">sosa:ObservableProperty</a></span>
-                        <br>
-                        <span about="sosa:ObservingProcedure" rel="rdfs:subClassOf"
-                            resource="[_:SOSAObservingProcedure2]"></span>
-                        <span about="[_:SOSAObservingProcedure2]" typeof="owl:Restriction"></span>
-                        <span about="[_:SOSAObservingProcedure2]" rel="owl:onProperty" resource="sosa:implementedBy"><a
-                                href="#SOSAimplementedBy">sosa:implementedBy</a></span>
-                        <span about="[_:SOSAObservingProcedure2]" property="owl:allValuesFrom"
-                            resource="sosa:Sensor"><em><b>ONLY</b></em> <a href="#SOSASensor">sosa:Sensor</a></span>
-
-                    </td>
-                </tr>
-                <tr>
-                    <th>Examples</th>
-                    <td>
-                        <span property="skos:example">A workflow, protocol, plan, algorithm, or computational method
-                            specifying how to make an observation; the description of the process utilized by an
-                            observer.
-                            This could be a chemical analysis method, a protocol for measuring an object, but could also
-                            be a checklist utilized by a human observer during a biodiversity campaign.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Note</th>
-                    <td>
-                        <span property="skos:note">The observing procedure cannot describe a sensor instance, but it can
-                            describe the sensor type.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <span rel="rdfs:isDefinedBy"><a
-                                href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a></span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <div class="buttonpanel">
-            <span>
-                <span class="sosa" style="display: none;">[<a href="#"
-                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
-                        additional SSN axioms</a>]</span>
-                <span class="ssn">[<a href="#"
-                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
-                        additional SSN axioms</a>]</span>
-            </span>
-            <span class="back">[<a href="#Observation">Back to module overview</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-        </div>
-    </section>
-
     <section class="specterm sosa" id="SOSASensor" about="sosa:Sensor" typeof="owl:Class">
         <h5><a href="#SOSASensor">sosa:Sensor</a></h5>
         <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/Sensor</p>
@@ -546,8 +458,8 @@
             <em property="rdfs:label">Sensor</em> -
             <span property="skos:definition">An identifiable entity that can generate <a
                     href="#SOSAObservation">Observations</a> pertaining to an <a
-                    href="#SOSAObservableProperty">ObservableProperty</a> by implementing an <a
-                    href="#SOSAObservingProcedure">ObservingProcedure</a>.
+                    href="#SOSAObservableProperty">ObservableProperty</a> by implementing a <a
+                    href="#SOSAProcedure">Procedure</a>.
                 Device, agent (including humans), or software (simulation)
                 involved in, or implementing, a <a href="#SOSAProcedure">Procedure</a>.
                 <a href="#SOSASensor">Sensors</a> respond to a
@@ -627,8 +539,8 @@
                         <span about="[_:SOSASensor6]" rel="owl:onProperty" resource="sosa:implements"><a
                                 href="#SOSAimplements">sosa:implements</a></span>
                         <span about="[_:SOSASensor6]" property="owl:allValuesFrom"
-                            resource="sosa:ObservingProcedure"><em><b>ONLY</b></em> <a
-                                href="#SOSAObservingProcedure">sosa:ObservingProcedure</a></span>
+                            resource="sosa:Procedure"><em><b>ONLY</b></em> <a
+                                href="#SOSAProcedure">sosa:Procedure</a></span>
                         <br>
                     </td>
                 </tr>
