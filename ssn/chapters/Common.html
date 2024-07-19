@@ -1127,6 +1127,7 @@
                 , <a href="#SOSAhasUltimateFeatureOfInterest">sosa:hasUltimateFeatureOfInterest</a>
                 , <a href="#SOSAinputValueForExecution">sosa:inputValueForExecution</a>
                 , <a href="#SOSAisResultOf">sosa:isResultOf</a>
+                , <a href="#SOSAmadeBySystem">sosa:madeBySystem</a>
                 , <a href="#SOSAoutputValueForExecution">sosa:outputValueForExecution</a>
                 , <a href="#SOSAphenomenonOccurred">sosa:phenomenonOccurred</a>
                 , <a href="#SOSAphenomenonTime">sosa:phenomenonTime</a>
@@ -1821,86 +1822,6 @@
             </div>
         </section>
 
-        <section class="informative specterm" id="SOSAmadeExecution" about="sosa:madeExecution"
-            typeof="owl:ObjectProperty">
-            <h6><a href="#SOSAmadeExecution">sosa:madeExecution</a></h6>
-            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/madeExecution</p>
-            <p><strong>an OWL Object Property</strong></p>
-
-            <p class="note">madeExecution added in the 2024 Update.
-                This term is non-normative pending further implementation experience</p>
-            <p>
-
-                <em property="rdfs:label">madeExecution</em> -
-                <span property="skos:definition">Relation between a
-                    <a href="#SOSASystem">System</a> and an
-                    <a href="#SOSAExecution">Execution</a> it has made.
-                </span>
-            <table>
-                <tbody>
-                    <tr>
-                        <th>Scope note</th>
-                        <td>
-                            <code>madeExecution</code> generalizes the
-                            <a href="#SOSAmadeActuation">sosa:madeActuation</a>,
-                            <a href="#SOSAmadeActuation">madeObservation</a>, and
-                            <a href="#SOSAmadeSampling">sosa:madeSampling</a> properties.
-                            It appears in the ontology to support the description of a common pattern for executions and
-                            their properties.
-
-                            <code>madeExecution</code> may be considered to be abstract, so SHOULD NOT appear in data
-                            instances.
-                            Applications SHOULD use concrete sub-properties of <code>madeExecution</code>.
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Domain Includes</th>
-                        <td>
-                            <span rel="schema:domainIncludes" resource="sosa:System"><a
-                                    href="#SOSASystem">sosa:System</a></span>
-                            , <span rel="schema:domainIncludes" resource="sosa:Actuator"><a
-                                    href="#SOSAActuator">sosa:Actuator</a></span>
-                            , <span rel="schema:domainIncludes" resource="sosa:Sensor"><a
-                                    href="#SOSASensor">sosa:Sensor</a></span>
-                            , <span rel="schema:domainIncludes" resource="sosa:Sampler"><a
-                                    href="#SOSASampler">sosa:Sampler</a></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Range Includes</th>
-                        <td>
-                            <span rel="schema:rangeIncludes" resource="sosa:Execution"><a
-                                    href="#SOSAExecution">sosa:Execution</a></span>
-                            , <span rel="schema:rangeIncludes" resource="sosa:Actuation"><a
-                                    href="#SOSAActuation">sosa:Actuation</a></span>
-                            , <span rel="schema:rangeIncludes" resource="sosa:Observation"><a
-                                    href="#SOSAObservation">sosa:Observation</a></span>
-                            , <span rel="schema:rangeIncludes" resource="sosa:Sampling"><a
-                                    href="#SOSASampling">sosa:Sampling</a></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Inverse property of</th>
-                        <td>
-                            <span rel="owl:inverseOf" resource="sosa:madeBySystem"><a
-                                    href="#SOSAmadeBySystem">sosa:madeBySystem</a></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>is Defined By</th>
-                        <td>
-                            <span rel="rdfs:isDefinedBy"><a
-                                    href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a></span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="buttonpanel">
-                <span class="back">[<a href="#Common">Back to module overview</a>]</span>
-                <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-            </div>
-        </section>
-
         <section class="informative specterm" id="SOSAoutputValueForExecution" about="sosa:outputValueForExecution"
             typeof="owl:ObjectProperty">
             <h6><a href="#SOSAoutputValueForExecution">sosa:outputValueForExecution</a></h6>
@@ -2370,6 +2291,7 @@
                 , <a href="#SOSAinDeployment">sosa:inDeployment</a>
                 , <a href="#SOSAisHostedBy">sosa:isHostedBy</a>
                 , <a href="#SOSAisSubSystemOf">sosa:isSubSystemOf</a>
+                , <a href="#SOSAmadeExecution">sosa:madeExecution</a>
             </p>
         </div>
 
@@ -3098,6 +3020,86 @@
                         <td>
                             <span rel="owl:inverseOf" resource="sosa:hasSubSystem"><a
                                     href="#SOSAhasSubSystem">sosa:hasSubSystem</a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>is Defined By</th>
+                        <td>
+                            <span rel="rdfs:isDefinedBy"><a
+                                    href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common">Back to module overview</a>]</span>
+                <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="informative specterm" id="SOSAmadeExecution" about="sosa:madeExecution"
+            typeof="owl:ObjectProperty">
+            <h6><a href="#SOSAmadeExecution">sosa:madeExecution</a></h6>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/madeExecution</p>
+            <p><strong>an OWL Object Property</strong></p>
+
+            <p class="note">madeExecution added in the 2024 Update.
+                This term is non-normative pending further implementation experience</p>
+            <p>
+
+                <em property="rdfs:label">madeExecution</em> -
+                <span property="skos:definition">Relation between a
+                    <a href="#SOSASystem">System</a> and an
+                    <a href="#SOSAExecution">Execution</a> it has made.
+                </span>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Scope note</th>
+                        <td>
+                            <code>madeExecution</code> generalizes the
+                            <a href="#SOSAmadeActuation">sosa:madeActuation</a>,
+                            <a href="#SOSAmadeActuation">madeObservation</a>, and
+                            <a href="#SOSAmadeSampling">sosa:madeSampling</a> properties.
+                            It appears in the ontology to support the description of a common pattern for executions and
+                            their properties.
+
+                            <code>madeExecution</code> may be considered to be abstract, so SHOULD NOT appear in data
+                            instances.
+                            Applications SHOULD use concrete sub-properties of <code>madeExecution</code>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Domain Includes</th>
+                        <td>
+                            <span rel="schema:domainIncludes" resource="sosa:System"><a
+                                    href="#SOSASystem">sosa:System</a></span>
+                            , <span rel="schema:domainIncludes" resource="sosa:Actuator"><a
+                                    href="#SOSAActuator">sosa:Actuator</a></span>
+                            , <span rel="schema:domainIncludes" resource="sosa:Sensor"><a
+                                    href="#SOSASensor">sosa:Sensor</a></span>
+                            , <span rel="schema:domainIncludes" resource="sosa:Sampler"><a
+                                    href="#SOSASampler">sosa:Sampler</a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Range Includes</th>
+                        <td>
+                            <span rel="schema:rangeIncludes" resource="sosa:Execution"><a
+                                    href="#SOSAExecution">sosa:Execution</a></span>
+                            , <span rel="schema:rangeIncludes" resource="sosa:Actuation"><a
+                                    href="#SOSAActuation">sosa:Actuation</a></span>
+                            , <span rel="schema:rangeIncludes" resource="sosa:Observation"><a
+                                    href="#SOSAObservation">sosa:Observation</a></span>
+                            , <span rel="schema:rangeIncludes" resource="sosa:Sampling"><a
+                                    href="#SOSASampling">sosa:Sampling</a></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Inverse property of</th>
+                        <td>
+                            <span rel="owl:inverseOf" resource="sosa:madeBySystem"><a
+                                    href="#SOSAmadeBySystem">sosa:madeBySystem</a></span>
                         </td>
                     </tr>
                     <tr>
