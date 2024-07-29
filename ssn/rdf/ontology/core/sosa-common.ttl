@@ -235,8 +235,7 @@ sosa:Execution
   Execution generalizes the Actuation, Observation, and Sampling classes. 
   It appears in the ontology to support the description of a common pattern for executions and their properties. 
 
-  Execution may be considered to be abstract, so individuals SHOULD NOT be declared to be members of only this class. 
-  Applications SHOULD use members of concrete sub-classes of Execution.
+  Execution MUST be considered to be abstract, so any individual Execution SHOULD be declared to be an instance of one of the concrete sub-classes, and not of the Execution class.
   """@en ;
   rdfs:isDefinedBy sosa-common: .
 
@@ -358,8 +357,8 @@ sosa:madeBySystem
   madeBySystem generalizes the madeByActuator, madeBySensor, and madeBySampler properties. 
   It appears in the ontology to support the description of a common pattern for executions and their properties. 
 
-  madeBySystem may be considered to be abstract, so SHOULD NOT appear in data instances. 
-  Applications SHOULD use concrete sub-properties of madeBySystem.
+  madeBySystem MUST be considered to be abstract, so SHOULD NOT appear in data instances. 
+  Applications can use concrete sub-properties of madeBySystem.
   """@en ;
   schema:domainIncludes sosa:Execution ;
   schema:rangeIncludes sosa:System ;
@@ -396,11 +395,14 @@ sosa:phenomenonTime
   skos:scopeNote """
   The phenomenonTime is not necessarily the same as the resultTime. 
   
-  In the case of Actuation, phenomenonTime SHOULD indicate the time that the actuator was active. 
+  In the case of Actuation, phenomenonTime SHOULD indicate the time during which the actuator was active. 
 
-  In the case of Observation, the phenomenonTime may be distant from the resultTime, for example in the case of forecasts the phenomenonTime is after the resultTime, and in historical, geological and cosmological investigations the phenomenonTime may be far in the past while the resultTime is contemporary. 
+  In the case of Observation, the phenomenonTime MAY be distant from the resultTime. 
+  For example in the case of forecasts the phenomenonTime is after the resultTime. 
+  In historical, geological and cosmological investigations the phenomenonTime can be far in the past, while the resultTime is contemporary. 
 
-  In the case of Sampling the phenomenonTime SHOULD indicate the period during which the Sampling Procedure was active, while the resultTime may indicate when the sample comes into the posession of the operator. 
+  In the case of Sampling the phenomenonTime SHOULD indicate the time during which the Sampling Procedure was active.
+  The resultTime can indicate when the sample comes into the posession of the operator. 
   """@en ;
   schema:domainIncludes sosa:Execution ;
   schema:rangeIncludes time:TemporalEntity ;
@@ -475,8 +477,7 @@ sosa:System
   System generalizes the Actuator, Sensor, and Sampler classes. 
   It appears in the ontology to support the description of a common pattern for executions and their properties. 
 
-  System may be considered to be abstract, so individuals SHOULD NOT be declared to be members of only this class. 
-  Applications SHOULD use members of concrete sub-classes of System.
+  System MUST be considered to be abstract, so any individual System SHOULD be declared to be an instance of one of the concrete sub-classes, and not of the System class. 
   """@en ;
   rdfs:isDefinedBy sosa-common: .
 
@@ -604,8 +605,8 @@ sosa:madeExecution
   madeExecution generalizes the madeActuation, madeObservation, and madeSampling properties. 
   It appears in the ontology to support the description of a common pattern for executions and their properties. 
 
-  madeExecution may be considered to be abstract, so SHOULD NOT appear in data instances. 
-  Applications SHOULD use concrete sub-properties of madeExecution.
+  madeExecution MUST be considered to be abstract, so SHOULD NOT appear in data instances. 
+  Applications can use concrete sub-properties of madeExecution.
   """@en ;
   schema:domainIncludes sosa:System ;
   schema:rangeIncludes sosa:Execution ;
