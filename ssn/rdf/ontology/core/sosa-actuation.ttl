@@ -35,14 +35,6 @@ sosa:ActuatableProperty
   skos:example "A window actuator acts by changing the state between a frame and a window. The ability of the window to be opened and closed is its ActuatableProperty."@en ;
   rdfs:isDefinedBy sosa-act: .
 
-sosa:ActuatingProcedure 
-  a owl:Class ;
-  rdfs:label "Actuation Procedure"@en ;
-  skos:definition """
-  The description of steps performed by an Actuator to change the ActuableProperty.
-  """@en ;
-  rdfs:isDefinedBy sosa-act: .
-
 sosa:Actuation 
   a owl:Class ;
   rdfs:label "Actuation"@en ;
@@ -58,7 +50,7 @@ sosa:Actuation
   Alternatively, applications may choose to encapsulate complexity by defining a complex property with multiple individual components, and a corresponding complex result (e.g. a vector). 
   This approach is not prohibited by the SSN Ontology, but the details are beyond the scope of SSN.
   """@en ;
-  skos:note "relatedObservation should be used to link to an associated Observation or ObservationCollection that monitors the actuated property to verify that the result value has been obtained. "@en ;
+  skos:note "relatedObservation SHOULD be used to link to an associated Observation or ObservationCollection that monitors the actuated property to verify that the result value has been obtained. "@en ;
   skos:example "The activity of automatically closing a window if the temperature in a room drops below 20 degree Celsius. The activity is the Actuation and the device that closes the window is the Actuator. The Procedure is the rule, plan, or specification that defines the conditions that triggers the Actuation, here a drop in temperature. "@en ;
   rdfs:isDefinedBy sosa-act: .
 
@@ -214,17 +206,14 @@ sosa:isPropertyOf
 
 sosa:hasProcedure 
   schema:domainIncludes sosa:ActuatableProperty ;
-  schema:rangeIncludes sosa:ActuatingProcedure ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:propertyFor 
   schema:domainIncludes sosa:ActuatableProperty ;
-  schema:rangeIncludes sosa:ActuatingProcedure ;
   schema:rangeIncludes sosa:Actuator ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:forProperty 
-  schema:domainIncludes sosa:ActuatingProcedure ;
   schema:domainIncludes sosa:Actuator ;
   schema:rangeIncludes sosa:ActuatableProperty ;
   rdfs:isDefinedBy sosa-common: .
@@ -236,29 +225,23 @@ sosa:Procedure
   rdfs:isDefinedBy sosa-common: .
 
 sosa:usedForExecution 
-  schema:domainIncludes sosa:ActuatingProcedure ;
   schema:rangeIncludes sosa:Actuation ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:implementedBy 
-  schema:domainIncludes sosa:ActuatingProcedure ;
   schema:rangeIncludes sosa:Actuator ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hasInput 
-  schema:domainIncludes sosa:ActuatingProcedure ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:inputFor 
-  schema:rangeIncludes sosa:ActuatingProcedure ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hasOutput 
-  schema:domainIncludes sosa:ActuatingProcedure ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:outputFor 
-  schema:rangeIncludes sosa:ActuatingProcedure ;
   rdfs:isDefinedBy sosa-common: .
 
 ## Executions
@@ -269,7 +252,6 @@ sosa:Execution
 sosa:usedProcedure 
   schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:ActuationCollection ;
-  schema:rangeIncludes sosa:ActuatingProcedure ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:startTime 
@@ -342,7 +324,6 @@ sosa:System
 
 sosa:implements 
   schema:domainIncludes sosa:Actuator ;
-  schema:rangeIncludes sosa:ActuatingProcedure ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hasSubSystem 
