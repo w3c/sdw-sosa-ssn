@@ -53,6 +53,12 @@ ssn-oms: a owl:Ontology ;
   owl:imports ssn-obs: , ssn-sam: , sosa-oms: ;
   .
 
+sosa-oms:ObservingProcedure 
+  rdfs:subClassOf sosa:Procedure ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:forProperty ; owl:allValuesFrom sosa:ObservableProperty ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implementedBy ; owl:allValuesFrom sosa:Sensor ] ;
+  rdfs:isDefinedBy sosa-oms: .
+
 sosa-oms:PreparationProcedure
   rdfs:subClassOf sosa:Procedure ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implementedBy ; owl:allValuesFrom sosa-oms:PreparationStep ] ;
@@ -67,6 +73,11 @@ sosa-oms:PreparationStep
 sosa:Sample
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa-oms:hasPreparationStep ; owl:allValuesFrom sosa-oms:PreparationStep ] ;
   rdfs:isDefinedBy sosa-sam: .
+
+sosa-oms:SamplingProcedure 
+  rdfs:subClassOf sosa:Procedure ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implementedBy ; owl:allValuesFrom sosa:Sampler ] ;
+  rdfs:isDefinedBy sosa-oms: .
 
 sosa-oms:hasPreparationStep a owl:FunctionalProperty ;
   rdfs:isDefinedBy sosa-oms: .
