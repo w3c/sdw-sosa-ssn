@@ -251,3 +251,32 @@ ssn:Deployment a owl:Class ;
     skos:example "For example, the expansion of quicksilver is a stimulus that serves as a proxy for some temperature property. An increase or decrease in the velocity of spinning cups on a wind sensor is serving as a proxy for the wind speed."@en ;
     rdfs:isDefinedBy ssn-dep: .
 
+  sosa:ActuatableProperty 
+    a owl:DeprecatedClass ;
+    rdfs:label "Actuatable Property"@en ;
+    rdfs:subClassOf ssn:Property ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isActedOnBy ; owl:allValuesFrom sosa:Actuation ] ;
+    skos:definition """
+    A quality (property, characteristic) of a FeatureOfInterest that can be changed by an Actuator.
+    """@en ;
+    skos:example "A window actuator acts by changing the state between a frame and a window. The ability of the window to be opened and closed is its ActuatableProperty."@en ;
+    skos:changeNote "This property was deprecated in favour of a generic sosa:Property."@en ;
+    owl:deprecated true ;
+    owl:equivalentClass sosa:Property;  
+    rdfs:isDefinedBy ssn-dep: .
+
+  sosa:ObservableProperty 
+    a owl:DeprecatedClass ;
+    owl:deprecated true ;
+    owl:equivalentClass sosa:Property;
+    rdfs:subClassOf ssn:Property ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isObservedBy ; owl:allValuesFrom sosa:Sensor ] ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sosa:isProxyFor ] ; owl:allValuesFrom sosa:Stimulus ] ;
+    rdfs:label "Observable Property"@en ;
+    skos:definition """
+    An observable quality (property, characteristic) of a FeatureOfInterest.
+    """@en ;
+    skos:note "'Observable' means that the value can be determined through an act of Observation using an ObservationProcedure applied by a Sensor or Observer. This can be contrasted with properties whose value is assigned by some authority (e.g. price, ownership), or whose value is a consequence of some other values (e.g. rank). "@en ;
+    skos:example "The height of a tree, the depth of a water body, or the temperature of a surface. "@en ;
+    skos:changeNote "This property was deprecated in favour of a generic sosa:Property."@en ;
+    rdfs:isDefinedBy sosa-dep: .

@@ -120,8 +120,8 @@ ssn:deploymentProcedurePart rdf:type owl:ObjectProperty ;
 
 ###  http://www.w3.org/ns/ssn/detects
 ssn:detects rdf:type owl:ObjectProperty ;
-    skos:definition "A relation from a Sensor to the Stimulus that the Sensor can detect. The Stimulus itself will be serving as a proxy for some ObservableProperty."@en ;
-            rdfs:comment "A relation from a Sensor to the Stimulus that the Sensor can detect. The Stimulus itself will be serving as a proxy for some ObservableProperty."@en ;
+    skos:definition "A relation from a Sensor to the Stimulus that the Sensor can detect. The Stimulus itself will be serving as a proxy for some Property."@en ;
+            rdfs:comment "A relation from a Sensor to the Stimulus that the Sensor can detect. The Stimulus itself will be serving as a proxy for some Property."@en ;
             rdfs:isDefinedBy ssn: ;
             rdfs:label "detects"@en .
 
@@ -325,7 +325,7 @@ sosa:Observation rdf:type owl:Class ;
                                 ] ,
                                 [ rdf:type owl:Restriction ;
                                   owl:onProperty sosa:observedProperty ;
-                                  owl:allValuesFrom sosa:ObservableProperty
+                                  owl:allValuesFrom sosa:Property
                                 ] ,
                                 [ rdf:type owl:Restriction ;
                                   owl:onProperty sosa:usedProcedure ;
@@ -360,7 +360,7 @@ sosa:Observation rdf:type owl:Class ;
                                 [ rdf:type owl:Restriction ;
                                   owl:onProperty sosa:observedProperty ;
                                   owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                                  owl:onClass sosa:ObservableProperty
+                                  owl:onClass sosa:Property
                                 ] ,
                                 [ rdf:type owl:Restriction ;
                                   owl:onProperty sosa:usedProcedure ;
@@ -394,12 +394,12 @@ sosa:Actuation a owl:Class ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasFeatureOfInterest ; owl:allValuesFrom sosa:FeatureOfInterest ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasResult ; owl:allValuesFrom sosa:Result ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeByActuator ; owl:allValuesFrom sosa:Actuator ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:actsOnProperty ; owl:allValuesFrom sosa:ActuatableProperty ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:actsOnProperty ; owl:allValuesFrom sosa:Property ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:usedProcedure ; owl:allValuesFrom sosa:Procedure ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:resultTime ; owl:minCardinality "0"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasFeatureOfInterest ; owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ; owl:onClass sosa:FeatureOfInterest ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeByActuator ; owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ; owl:onClass sosa:Actuator ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:actsOnProperty ; owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ; owl:onClass sosa:ActuatableProperty ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:actsOnProperty ; owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ; owl:onClass sosa:Property ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:usedProcedure ; owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ; owl:onClass sosa:Procedure] ;
   rdfs:isDefinedBy sosa: .
 
@@ -507,14 +507,6 @@ ssn:Property rdf:type owl:Class ;
              rdfs:isDefinedBy ssn: ;
              rdfs:label "Property"@en .
 
-###  http://www.w3.org/ns/sosa/ObservableProperty
-sosa:ObservableProperty rdfs:subClassOf ssn:Property ;
-  rdfs:isDefinedBy sosa: .
-
-###  http://www.w3.org/ns/sosa/ActuatableProperty
-sosa:ActuatableProperty rdfs:subClassOf ssn:Property ;
-  rdfs:isDefinedBy sosa: .
-
 
 ###  http://www.w3.org/ns/sosa/Sample
 sosa:Sample rdfs:subClassOf sosa:FeatureOfInterest ; # TODO: check
@@ -532,7 +524,7 @@ sosa:Sensor rdf:type owl:Class ;
                 rdfs:subClassOf ssn:System ;
                 rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:implements ; owl:someValuesFrom sosa:Procedure ] ;
                 rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:detects ; owl:allValuesFrom ssn:Stimulus ] ;
-                rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:observes ; owl:allValuesFrom sosa:ObservableProperty ] ;
+                rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:observes ; owl:allValuesFrom sosa:Property ] ;
            dc:source """skos:exactMatch 'sensor' [SensorML OGC-0700]
                         http://www.opengeospatial.org/standards/sensorml 
 
@@ -551,13 +543,13 @@ O&M allows sensors, methods, instruments, systems, algorithms and process chains
 
 sosa:Actuator rdfs:subClassOf ssn:System ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn:implements ; owl:someValuesFrom sosa:Procedure ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:actsOnProperty ; owl:allValuesFrom sosa:ActuatableProperty ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:actsOnProperty ; owl:allValuesFrom sosa:Property ] ;
   rdfs:isDefinedBy sosa: .
 
 ###  http://www.w3.org/ns/ssn/Stimulus
 ssn:Stimulus rdf:type owl:Class ;
-  skos:definition "An event in the real world that 'triggers' the Sensor. The properties associated to the Stimulus may be different to the eventual observed ObservableProperty. It is the event, not the object, that triggers the Sensor."@en ;
-             rdfs:comment "An event in the real world that 'triggers' the Sensor. The properties associated to the Stimulus may be different to the eventual observed ObservableProperty. It is the event, not the object, that triggers the Sensor."@en ;
+  skos:definition "An event in the real world that 'triggers' the Sensor. The properties associated to the Stimulus may be different to the eventual observed Property. It is the event, not the object, that triggers the Sensor."@en ;
+             rdfs:comment "An event in the real world that 'triggers' the Sensor. The properties associated to the Stimulus may be different to the eventual observed Property. It is the event, not the object, that triggers the Sensor."@en ;
              rdfs:isDefinedBy ssn: ;
              rdfs:label "Stimulus"@en .
 

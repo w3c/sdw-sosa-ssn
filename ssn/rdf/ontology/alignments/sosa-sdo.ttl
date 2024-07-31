@@ -41,13 +41,6 @@ schema:measurementTechnique
 schema:usesDevice
   rdfs:subPropertyOf <http://www.w3.org/ns/ssn/implementedBy> ;
 .
-sosa:ActuatableProperty
-  rdf:type rdfs:Class ;
-  rdfs:comment "An actuatable quality (property, characteristic) of a FeatureOfInterest."@en ;
-  rdfs:label "Actuatable Property"@en ;
-  rdfs:subClassOf schema:Property ;
-  skos:editorialNote "Candidate for schema.org" ;
-.
 sosa:Actuation
   rdf:type rdfs:Class ;
   rdfs:comment "An Actuation carries out an (Actuation) Procedure to change the state of the world using an Actuator."@en ;
@@ -69,16 +62,9 @@ sosa:FeatureOfInterest
   rdfs:subClassOf schema:Thing ;
   skos:editorialNote "Candidate for schema.org" ;
 .
-sosa:ObservableProperty
-  rdf:type rdfs:Class ;
-  rdfs:comment "An observable quality (property, characteristic) of a FeatureOfInterest."@en ;
-  rdfs:label "Observable Property"@en ;
-  rdfs:subClassOf schema:Property ;
-  skos:editorialNote "Candidate for schema.org" ;
-.
 sosa:Observation
   rdf:type rdfs:Class ;
-  rdfs:comment "Act of carrying out an (Observation) Procedure to estimate or calculate a value of a property of a FeatureOfInterest. Links to a Sensor to describe what made the Observation and how; links to an ObservableProperty to describe what the result is an estimate of, and to a FeatureOfInterest to detail what that property was associated with."@en ;
+  rdfs:comment "Act of carrying out an (Observation) Procedure to estimate or calculate a value of a property of a FeatureOfInterest. Links to a Sensor to describe what made the Observation and how; links to a Property to describe what the result is an estimate of, and to a FeatureOfInterest to detail what that property was associated with."@en ;
   rdfs:label "Observation"@en ;
   rdfs:subClassOf schema:CreateAction ;
   skos:editorialNote "Candidate for schema.org" ;
@@ -141,7 +127,7 @@ sosa:actsOnProperty
   rdf:type rdf:Property ;
   schema:domainIncludes sosa:Actuation ;
   schema:inverseOf sosa:isActedOnBy ;
-  schema:rangeIncludes sosa:ActuatableProperty ;
+  schema:rangeIncludes sosa:Property ;
   rdfs:comment "Relation between an Actuation and the property of a FeatureOfInterest it is acting upon."@en ;
   rdfs:label "acts on property"@en ;
   skos:editorialNote "Candidate for schema.org" ;
@@ -195,10 +181,10 @@ sosa:hosts
 .
 sosa:isActedOnBy
   rdf:type rdf:Property ;
-  schema:domainIncludes sosa:ActuatableProperty ;
+  schema:domainIncludes sosa:Property ;
   schema:inverseOf sosa:actsOnProperty ;
   schema:rangeIncludes sosa:Actuation ;
-  rdfs:comment "Relation between an ActuatableProperty of a FeatureOfInterest and an Actuation changing its state."@en ;
+  rdfs:comment "Relation between a Property of a FeatureOfInterest and an Actuation changing its state."@en ;
   rdfs:label "is acted on by"@en ;
   skos:editorialNote "Candidate for schema.org" ;
 .
@@ -228,10 +214,10 @@ sosa:isHostedBy
 .
 sosa:isObservedBy
   rdf:type rdf:Property ;
-  schema:domainIncludes sosa:ObservableProperty ;
+  schema:domainIncludes sosa:Property ;
   schema:inverseOf sosa:observes ;
   schema:rangeIncludes sosa:Sensor ;
-  rdfs:comment "Relation between an ObservableProperty and the Sensor able to observe it."@en ;
+  rdfs:comment "Relation between an Property and the Sensor able to observe it."@en ;
   rdfs:label "is observed by"@en ;
   skos:editorialNote "Candidate for schema.org" ;
 .
@@ -316,8 +302,8 @@ sosa:madeSampling
 sosa:observedProperty
   rdf:type rdf:Property ;
   schema:domainIncludes sosa:Observation ;
-  schema:rangeIncludes sosa:ObservableProperty ;
-  rdfs:comment "Relation linking an Observation to the property that was observed. The ObservableProperty should be a property of the FeatureOfInterest (linked by hasFeatureOfInterest) of this Observation."@en ;
+  schema:rangeIncludes sosa:Property ;
+  rdfs:comment "Relation linking an Observation to the property that was observed. The Property should be a property of the FeatureOfInterest (linked by hasFeatureOfInterest) of this Observation."@en ;
   rdfs:label "observed property"@en ;
   owl:equivalentProperty schema:measuredProperty ;
   skos:editorialNote "Candidate for schema.org" ;
@@ -326,8 +312,8 @@ sosa:observes
   rdf:type rdf:Property ;
   schema:domainIncludes sosa:Sensor ;
   schema:inverseOf sosa:isObservedBy ;
-  schema:rangeIncludes sosa:ObservableProperty ;
-  rdfs:comment "Relation between a Sensor and an ObservableProperty that it is capable of sensing."@en ;
+  schema:rangeIncludes sosa:Property ;
+  rdfs:comment "Relation between a Sensor and an Property that it is capable of sensing."@en ;
   rdfs:label "observes"@en ;
   skos:editorialNote "Candidate for schema.org" ;
 .

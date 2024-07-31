@@ -26,23 +26,14 @@ sosa-act:
   owl:imports sosa-common: ;
   .
 
-sosa:ActuatableProperty 
-  a owl:Class ;
-  rdfs:label "Actuatable Property"@en ;
-  skos:definition """
-  A quality (property, characteristic) of a FeatureOfInterest that can be changed by an Actuator.
-  """@en ;
-  skos:example "A window actuator acts by changing the state between a frame and a window. The ability of the window to be opened and closed is its ActuatableProperty."@en ;
-  rdfs:isDefinedBy sosa-act: .
-
 sosa:isActedOnBy 
   a owl:ObjectProperty ;
   rdfs:label "is acted on by"@en ;
   skos:definition """
-  Relation between an ActuatableProperty of a FeatureOfInterest and an Actuation changing its state.
+  Relation between a Property of a FeatureOfInterest and an Actuation changing its state.
   """@en ;
   skos:example "In the activity (Actuation) of automatically closing a window if the temperature in a room drops below 20 degrees Celsius, the property on which the Actuator acts upon is the state of the window as it changes from being open to being closed. "@en ;
-  schema:domainIncludes sosa:ActuatableProperty ;
+  schema:domainIncludes sosa:Property ;
   schema:rangeIncludes sosa:Actuation ;
   owl:inverseOf sosa:actsOnProperty ;
   rdfs:isDefinedBy sosa-act: .
@@ -59,12 +50,12 @@ sosa:Actuation
   a owl:Class ;
   rdfs:label "Actuation"@en ;
   skos:definition """
-  An Actuation carries out an (Actuation) Procedure to change the value of an ActuatableProperty using an Actuator. 
+  An Actuation carries out an (Actuation) Procedure to change the value of a Property using an Actuator. 
   
-  In this context hasResult shall indicate the expected value of the ActuatableProperty at the completion of the Actuation
+  In this context hasResult shall indicate the expected value of the Property at the completion of the Actuation
   """@en ;
   skos:scopeNote """
-  An Actuation concerns a single ActuatableProperty of a single FeatureOfInterest. 
+  An Actuation concerns a single Property of a single FeatureOfInterest. 
   Changes to multiple properties, or other combinations of Actuations, may be described in an ActuationCollection.
     
   Alternatively, applications may choose to encapsulate complexity by defining a complex property with multiple individual components, and a corresponding complex result (e.g. a vector). 
@@ -107,7 +98,7 @@ sosa:actsOnProperty
   skos:example "In the activity (Actuation) of automatically closing a window if the temperature in a room drops below 20 degrees Celsius, the property on which the Actuator acts upon is the state of the window as it changes from being open to being closed. "@en ;
   schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:ActuationCollection ;
-  schema:rangeIncludes sosa:ActuatableProperty ;
+  schema:rangeIncludes sosa:Property ;
   owl:inverseOf sosa:isActedOnBy ;
   rdfs:isDefinedBy sosa-act: .
 
