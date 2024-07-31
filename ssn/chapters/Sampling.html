@@ -29,7 +29,6 @@
             , <a href="#SOSASampler">sosa:Sampler</a>
             , <a href="#SOSASampling">sosa:Sampling</a>
             , <a href="#SOSASamplingCollection">sosa:SamplingCollection</a>
-            , <a href="#SOSASamplingProcedure">sosa:SamplingProcedure</a>
             , <a href="#SOSASpatialSample">sosa:SpatialSample</a>
             , <a href="#SOSAStatisticalSample">sosa:StatisticalSample</a>
             , <a href="#SOSAfeatureSampledBy">sosa:featureSampledBy</a>
@@ -53,7 +52,7 @@
         <p><strong>an OWL Class</strong></p>
 
         <p class="note">MaterialSample added in 2024 update.
-            This term is non-normative pending further implementation experience</p>
+            This term is non-normative, pending further implementation experience</p>
         <p>
             <em property="rdfs:label">Material Sample</em> -
             <span property="skos:definition">A MaterialSample is a physical, tangible Sample.</span>
@@ -225,8 +224,8 @@
                         <span about="[_:SOSASample8]" rel="owl:onProperty" resource="sosa:isResultOfUsedProcedure"><a
                                 href="#SOSAisResultOfUsedProcedure">sosa:isResultOfUsedProcedure</a></span>
                         <span about="[_:SOSASample8]" property="owl:allValuesFrom"
-                            resource="sosa:SamplingProcedure"><em><b>ONLY</b></em> <a
-                                href="#SOSASamplingProcedure">sosa:SamplingProcedure</a></span>
+                            resource="sosa:Procedure"><em><b>ONLY</b></em> <a
+                                href="#SOSAProcedure">sosa:Procedure</a></span>
                         <br>
                     </td>
                 </tr>
@@ -260,7 +259,7 @@
         <p><strong>an OWL Class</strong></p>
 
         <p class="note">SampleCollection added in the 2024 update.
-            This term is non-normative pending further implementation experience</p>
+            This term is non-normative, pending further implementation experience</p>
         <p>
             <em property="rdfs:label">Sample Collection</em> -
             <span property="skos:definition">A <a href="#SOSASampleCollection">SampleCollection</a> is
@@ -422,8 +421,8 @@
                         <span about="[_:SOSASampler3]" rel="owl:onProperty" resource="sosa:implements"><a
                                 href="#SOSAimplements">sosa:implements</a></span>
                         <span about="[_:SOSASampler3]" property="owl:allValuesFrom"
-                            resource="sosa:SamplingProcedure"><em><b>ONLY</b></em> <a
-                                href="#SOSASamplingProcedure">sosa:SamplingProcedure</a></span>
+                            resource="sosa:Procedure"><em><b>ONLY</b></em> <a
+                                href="#SOSAProcedure">sosa:Procedure</a></span>
                         <br>
                         <span about="sosa:Sampler" rel="rdfs:subClassOf" resource="[_:SOSASampler1]"></span>
                         <span about="[_:SOSASampler1]" typeof="owl:Restriction"></span>
@@ -516,8 +515,8 @@
                         <span about="[_:SOSASampling3]" rel="owl:onProperty" resource="sosa:usedProcedure"><a
                                 href="#SOSAusedProcedure">sosa:usedProcedure</a></span>
                         <span about="[_:SOSASampling3]" property="owl:allValuesFrom"
-                            resource="sosa:SamplingProcedure"><em><b>ONLY</b></em> <a
-                                href="#SOSASamplingProcedure">sosa:SamplingProcedure</a></span>
+                            resource="sosa:Procedure"><em><b>ONLY</b></em> <a
+                                href="#SOSAProcedure">sosa:Procedure</a></span>
                         <br>
                         <span about="sosa:Sampling" rel="rdfs:subClassOf" resource="[_:SOSASampling4]"></span>
                         <span about="[_:SOSASampling4]" typeof="owl:Restriction"></span>
@@ -594,59 +593,12 @@
         <p><strong>an OWL Class</strong></p>
 
         <p class="note">SamplingCollection added in 2024 update.
-            This term is non-normative pending further implementation experience</p>
+            This term is non-normative, pending further implementation experience</p>
         <p>
             <em property="rdfs:label">Sampling Collection</em> - TBC on resolution of <a
                 href="https://github.com/w3c/sdw-sosa-ssn/issues/189">Issue 189</a>.
 
 
-    </section>
-
-    <section class="informative specterm sosa" id="SOSASamplingProcedure" about="sosa:SamplingProcedure"
-        typeof="owl:Class">
-        <h6><a href="#SOSASamplingProcedure">sosa:SamplingProcedure</a></h6>
-        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/SamplingProcedure</p>
-        <p><strong>an OWL Class</strong></p>
-
-        <p class="note">SamplingProcedure added in 2024 update.
-            This term is non-normative pending further implementation experience</p>
-        <p>
-            <em property="rdfs:label">Sampling Procedure</em> -
-            <span property="skos:definition">The description of steps performed by a <a href="#SOSASampler">Sampler</a>
-                in order to
-                extract a <a href="#SOSASample">Sample</a> from its sampled Feature in the frame of a <a
-                    href="#SOSASampling">Sampling</a>.</span>
-        </p>
-        <table>
-            <tbody>
-                <tr class="ssn">
-                    <th>Sub class of</th>
-                    <td>
-                        <span rel="rdfs:subClassOf" resource="sosa:Procedure">sosa:Procedure</span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <span rel="rdfs:isDefinedBy"><a
-                                href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a></span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <div class="buttonpanel">
-            <span>
-                <span class="sosa" style="display: none;">[<a href="#"
-                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
-                        additional SSN axioms</a>]</span>
-                <span class="ssn">[<a href="#"
-                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
-                        additional SSN axioms</a>]</span>
-            </span>
-            <span class="back">[<a href="#Sampling">Back to module overview</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-        </div>
     </section>
 
     <section class="informative specterm sosa" id="SOSASpatialSample" about="sosa:SpatialSample" typeof="owl:Class">
@@ -655,7 +607,7 @@
         <p><strong>an OWL Class</strong></p>
 
         <p class="note">SpatialSample added in 2024 update.
-            This term is non-normative pending further implementation experience</p>
+            This term is non-normative, pending further implementation experience</p>
         <p>
             <em property="rdfs:label">Spatial Sample</em> -
             <span property="skos:definition">A SpatialSample is a geospatial Sample.
@@ -732,7 +684,7 @@
         <p><strong>an OWL Class</strong></p>
 
         <p class="note">StatisticalSample added in 2024 update.
-            This term is non-normative pending further implementation experience</p>
+            This term is non-normative, pending further implementation experience</p>
         <p>
             <em property="rdfs:label">Statistical Sample</em> -
             <span property="skos:definition">A StatisticalSample is a statistical subset of a
@@ -791,7 +743,7 @@
         <p><strong>an OWL Object Property</strong></p>
 
         <p class="note">featureSampledBy added in 2024 update.
-            This term is non-normative pending further implementation experience</p>
+            This term is non-normative, pending further implementation experience</p>
         <p>
             <em property="rdfs:label">feature sampled by</em> -
             <span property="skos:definition">Relation from an ultimate <a
@@ -843,7 +795,7 @@
         <p><strong>an OWL Object Property</strong></p>
 
         <p class="note">hasOriginalSample added in 2024 update.
-            This term is non-normative pending further implementation experience</p>
+            This term is non-normative, pending further implementation experience</p>
         <p>
             <em property="rdfs:label">has original sample</em> -
             <span property="skos:definition">Relation from a <a href="#SOSASample">Sample</a> or <a
@@ -954,7 +906,7 @@
         <p><strong>an OWL Object Property</strong></p>
 
         <p class="note">hasSampledFeature added in 2024 update.
-            This term is non-normative pending further implementation experience</p>
+            This term is non-normative, pending further implementation experience</p>
         <p>
             <em property="rdfs:label">has ultimate sampled feature</em> -
             <span property="skos:definition">Relation from a <a href="#SOSASample">Sample</a> or <a
@@ -1007,7 +959,7 @@
         <p><strong>an OWL Object Property</strong></p>
 
         <p class="note">isOriginalSampleOf added in 2024 update.
-            This term is non-normative pending further implementation experience</p>
+            This term is non-normative, pending further implementation experience</p>
         <p>
             <em property="rdfs:label">is original sample of</em> -
             <span property="skos:definition">Relation from the original <a href="#SOSASample">Sample</a>
@@ -1060,7 +1012,7 @@
         <p><strong>an OWL Object Property</strong></p>
 
         <p class="note">isResultOfMadeBySampler added in 2024 update.
-            This term is non-normative pending further implementation experience</p>
+            This term is non-normative, pending further implementation experience</p>
         <p>
             <em property="rdfs:label">is a result of made by sampler</em> -
             <span property="skos:definition">Relation from a <a href="#SOSASample">Sample</a> or <a
@@ -1133,7 +1085,7 @@
         <p><strong>an OWL Object Property</strong></p>
 
         <p class="note">isResultOfUsedProcedure added in 2024 update.
-            This term is non-normative pending further implementation experience</p>
+            This term is non-normative, pending further implementation experience</p>
         <p>
             <em property="rdfs:label">is a result of used procedure</em> -
             <span property="skos:definition">Relation from a <a href="#SOSASample">Sample</a> or <a
@@ -1155,8 +1107,6 @@
                     <td>
                         <span rel="schema:rangeIncludes" resource="sosa:Procedure"><a
                                 href="#SOSAProcedure">sosa:Procedure</a></span>
-                        , <span rel="schema:rangeIncludes" resource="sosa:SamplingProcedure"><a
-                                href="#SOSASamplingProcedure">sosa:SamplingProcedure</a></span>
                     </td>
                 </tr>
                 <tr>
@@ -1272,6 +1222,11 @@
             the <a href="#SOSASampler">Sampler</a> (sampling device or entity) that made it.</span> <br>
         <table>
             <tbody>
+                <tr class="ssn">
+                    <th>Sub property of</th>
+                    <td><span rel="rdfs:subPropertyOf" resource="sosa:madeBySystem"><a
+                                href="#SOSAmadeBySystem">sosa:madeBySystem</a></span></td>
+                </tr>
                 <tr>
                     <th>Domain Includes</th>
                     <td><span rel="schema:domainIncludes" resource="sosa:Sampling"><a
@@ -1317,6 +1272,11 @@
             device or entity) and the <a href="#SOSASampling">Sampling</a> act it performed.</span>
         <table>
             <tbody>
+                <tr class="ssn">
+                    <th>Sub property of</th>
+                    <td><span rel="rdfs:subPropertyOf" resource="sosa:madeExecution"><a
+                                href="#SOSAmadeExecution">sosa:madeExecution</a></span></td>
+                </tr>
                 <tr>
                     <th>Domain Includes</th>
                     <td><span rel="schema:domainIncludes" resource="sosa:Sampler"><a
@@ -1344,7 +1304,14 @@
             </tbody>
         </table>
         <div class="buttonpanel">
-            <span></span>
+            <span>
+                <span class="sosa" style="display: none;">[<a href="#"
+                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement,this);return false;">Show
+                        additional SSN axioms</a>]</span>
+                <span class="ssn">[<a href="#"
+                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement,this);return false;">Hide
+                        additional SSN axioms</a>]</span>
+            </span>
             <span class="back">[<a href="#Sampling">Back to module overview</a>]</span>
             <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
         </div>
@@ -1357,7 +1324,7 @@
         <p><strong>an OWL Object Property</strong></p>
 
         <p class="note">madeSamplingHasResult added in 2024 update.
-            This term is non-normative pending further implementation experience</p>
+            This term is non-normative, pending further implementation experience</p>
         <p>
             <em property="rdfs:label">made sampling has result</em> -
             <span property="skos:definition">Relation from a <a href="#SOSASampler">Sampler</a>
@@ -1367,6 +1334,11 @@
         </p>
         <table>
             <tbody>
+                <tr class="ssn">
+                    <th>Sub property of</th>
+                    <td><span rel="rdfs:subPropertyOf" resource="sosa:madeBySystem"><a
+                                href="#SOSAmadeBySystem">sosa:madeBySystem</a></span></td>
+                </tr>
                 <tr>
                     <th>Domain Includes</th>
                     <td><span rel="schema:domainIncludes" resource="sosa:Sample"><a
@@ -1430,7 +1402,7 @@
         <p><strong>an OWL Object Property</strong></p>
 
         <p class="note">usedForExecutionHasResult added in 2024 update.
-            This term is non-normative pending further implementation experience</p>
+            This term is non-normative, pending further implementation experience</p>
         <p>
             <em property="rdfs:label">used for execution has result</em> -
             <span property="skos:definition">Relation from a <a href="#SOSAProcedure">Procedure</a> to a
@@ -1443,8 +1415,6 @@
                     <th>Domain Includes</th>
                     <td><span rel="schema:domainIncludes" resource="sosa:Procedure"><a
                                 href="#SOSAProcedure">sosa:Procedure</a></span>
-                        , <span rel="schema:domainIncludes" resource="sosa:SamplingProcedure"><a
-                                href="#SOSASamplingProcedure">sosa:SamplingProcedure</a></span>
                     </td>
                 </tr>
                 <tr>

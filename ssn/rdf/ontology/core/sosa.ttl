@@ -31,6 +31,24 @@ sosa:
   dcterms:modified "2024-02-03"^^xsd:date ;
   owl:imports sosa-act: , sosa-obs: , sosa-sam:.
 
+sosa:madeBySystem 
+  schema:domainIncludes sosa:Actuation ;
+  schema:domainIncludes sosa:Observation ;
+  schema:domainIncludes sosa:Sampling ;
+  schema:rangeIncludes sosa:Actuator ;
+  schema:rangeIncludes sosa:Sensor ;
+  schema:rangeIncludes sosa:Sampler ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:madeExecution 
+  schema:domainIncludes sosa:Actuator ;
+  schema:domainIncludes sosa:Sensor ;
+  schema:domainIncludes sosa:Sampler ;
+  schema:rangeIncludes sosa:Actuation ;
+  schema:rangeIncludes sosa:Observation ;
+  schema:rangeIncludes sosa:Sampling ;
+  rdfs:isDefinedBy sosa-common: .
+
 sosa:observationRelatedTo 
   schema:rangeIncludes sosa:Execution ;
   schema:rangeIncludes sosa:Actuation ;

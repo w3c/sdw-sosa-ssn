@@ -229,7 +229,13 @@ sosa:Execution
   a owl:Class ;
   rdfs:label "Execution of a Procedure"@en ;
   skos:definition """
-  Act of carrying out a Procedure. This class generalizes the Observation, Actuation, and Sampling classes. It is not expected to be used directly.
+  Act of carrying out a Procedure. 
+  """@en ;
+  skos:scopeNote """
+  Execution generalizes the Actuation, Observation, and Sampling classes. 
+  It appears in the ontology to support the description of a common pattern for executions and their properties. 
+
+  Execution MUST be considered to be abstract, so any individual Execution SHOULD be declared to be an instance of one of the concrete sub-classes, and not of the Execution class.
   """@en ;
   rdfs:isDefinedBy sosa-common: .
 
@@ -264,7 +270,7 @@ sosa:hasInputValue
   skos:definition """
   Assigns a value to an input defined by the Procedure that is used in an Execution (Actuation, Observation, Sampling).
   """@en ;
-  skos:note "The input value should be suitable for the input definition on the corresponding usedProcedure"@en ;
+  skos:note "The input value MUST be suitable for the input definition on the corresponding usedProcedure"@en ;
   schema:domainIncludes sosa:Execution ;
   rdfs:isDefinedBy sosa-common: .
 
@@ -274,7 +280,7 @@ sosa:hasOutputValue
   skos:definition """
   Assigns a value to an output defined by the Procedure that is used in an Execution (Actuation, Observation, Sampling).
   """@en ;
-  skos:note "The output value should be suitable for the output definition on the corresponding usedProcedure"@en ;
+  skos:note "The output value MUST be suitable for the output definition on the corresponding usedProcedure"@en ;
   schema:domainIncludes sosa:Execution ;
   rdfs:isDefinedBy sosa-common: .
 
@@ -341,6 +347,24 @@ sosa:isResultOf
   owl:inverseOf sosa:hasResult ;
   rdfs:isDefinedBy sosa-common: .
 
+sosa:madeBySystem 
+  a owl:ObjectProperty ;
+  rdfs:label "made by system"@en ;
+  skos:definition """
+  Relation linking an Execution to the System that made it.
+  """@en ;
+  skos:scopeNote """
+  madeBySystem generalizes the madeByActuator, madeBySensor, and madeBySampler properties. 
+  It appears in the ontology to support the description of a common pattern for executions and their properties. 
+
+  madeBySystem MUST be considered to be abstract, so SHOULD NOT appear in data instances. 
+  Applications can use concrete sub-properties of madeBySystem.
+  """@en ;
+  schema:domainIncludes sosa:Execution ;
+  schema:rangeIncludes sosa:System ;
+  owl:inverseOf sosa:madeExecution ;
+  rdfs:isDefinedBy sosa-common: .
+
 sosa:outputValueForExecution 
   a owl:ObjectProperty ;
   rdfs:label "output for"@en ;
@@ -371,11 +395,14 @@ sosa:phenomenonTime
   skos:scopeNote """
   The phenomenonTime is not necessarily the same as the resultTime. 
   
-  In the case of Actuation, phenomenonTime should indicate the time that the actuator was active. 
+  In the case of Actuation, phenomenonTime SHOULD indicate the time during which the actuator was active. 
 
-  In the case of Observation, the phenomenonTime may be distant from the resultTime, for example in the case of forecasts the phenomenonTime is after the resultTime, and in historical, geological and cosmological investigations the phenomenonTime may be far in the past while the resultTime is contemporary. 
+  In the case of Observation, the phenomenonTime MAY be distant from the resultTime. 
+  For example in the case of forecasts the phenomenonTime is after the resultTime. 
+  In historical, geological and cosmological investigations the phenomenonTime can be far in the past, while the resultTime is contemporary. 
 
-  In the case of Sampling the phenomenonTime should indicate the period during which the Sampling Procedure was active, while the resultTime may indicate when the sample comes into the posession of the operator. 
+  In the case of Sampling the phenomenonTime SHOULD indicate the time during which the Sampling Procedure was active.
+  The resultTime can indicate when the sample comes into the posession of the operator. 
   """@en ;
   schema:domainIncludes sosa:Execution ;
   schema:rangeIncludes time:TemporalEntity ;
@@ -443,10 +470,22 @@ sosa:System
   a owl:Class ;
   rdfs:label "System"@en ;
   skos:definition """
-  A System is a piece of infrastructure that implements a Procedure.
+  A piece of infrastructure that implements a Procedure.
 
   A System may have components, its sub-systems, which are other systems.
   """@en ; 
+  skos:scopeNote """
+  System generalizes the Actuator, Sensor, and Sampler classes. 
+  It appears in the ontology to support the description of a common pattern for executions and their properties. 
+
+  System MUST be considered to be abstract, so any individual System SHOULD be declared to be an instance of one of the concrete sub-classes, and not of the System class. 
+  """@en ;
+  skos:scopeNote """
+  Specific system types may be implemented as sub-classes of this class or its sub-classes.
+  Their descriptions may capture the properties and characteristics of a whole class of systems, corresponding with the information typically found in a data-sheet.
+
+  Individual system instances are members of this class or its sub-classes. 
+  """@en ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:deployedAsset 
@@ -561,6 +600,24 @@ sosa:isSubSystemOf
   schema:domainIncludes sosa:System ;
   schema:rangeIncludes sosa:System ;
   owl:inverseOf sosa:hasSubSystem ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:madeExecution 
+  a owl:ObjectProperty ;
+  rdfs:label "made execution"@en ;
+  skos:definition """
+  Relation between a System and an Execution it has made.
+  """@en ;
+  skos:scopeNote """
+  madeExecution generalizes the madeActuation, madeObservation, and madeSampling properties. 
+  It appears in the ontology to support the description of a common pattern for executions and their properties. 
+
+  madeExecution MUST be considered to be abstract, so SHOULD NOT appear in data instances. 
+  Applications can use concrete sub-properties of madeExecution.
+  """@en ;
+  schema:domainIncludes sosa:System ;
+  schema:rangeIncludes sosa:Execution ;
+  owl:inverseOf sosa:madeBySystem ;
   rdfs:isDefinedBy sosa-common: .
 
 ## Utility terms 
