@@ -1,0 +1,287 @@
+<h2>Specification</h2>
+<p>This section introduces the specifications for the RDF implementation of the Semantic Sensor Network Ontology.
+</p>
+
+<section id="RDFimplementation">
+    <h3>RDF implementation</h3>
+
+    <section id="namespaces">
+        <h4>Namespaces</h4>
+
+        <p style="text-align: center;">
+            The namespace for the core terms is <span class="repeated"
+                style="font-family: courier;">http://www.w3.org/ns/sosa/</span>
+            <br>
+            The suggested prefix for the SOSA namespace is <span class="repeated"
+                style="font-family: courier;">sosa:</span>.
+        </p>
+
+        <aside class="note">
+            <p>In previous editions of SSN, the namespace <span class="repeated"
+                    style="font-family: courier;">http://www.w3.org/ns/ssn/</span> was used for some terms.
+                In this edition all core terms are consolidated into a single namespace.
+                The terms in the <code>ssn:</code> namespaces remain in the RDF artefacts to protect backward
+                compatibility
+                of
+                existing deployments, but are marked <code>deprecated</code>.
+            </p>
+        </aside>
+    </section>
+
+    <section id="dependencies">
+        <h4>Dependencies</h4>
+        <p>
+            Each <a href="#Modularization">module of the SSN Ontology</a> is packaged as an RDF file.
+            The RDF representations use <code>owl:imports</code> statements to implement the <a
+                href="#ssn-module-dependencies">dependencies</a>.
+            Within each graph, where further information (axioms and annotations) is added to an existing term,
+            <code>rdfs:isDefinedBy</code> indicates the module where the term was originally defined.
+        </p>
+    </section>
+
+    <section id="expressivity">
+        <h4>Expressivity</h4>
+        <p>
+            The SOSA modules contain the basic definitions of the core terms with minimal axiomatization - only
+            <code>rdf:type</code> and <code>owl:inverseOf</code> - together with key annotations <code>rdfs:label</code>
+            ,
+            <code>skos:definition</code> , <code>schema:domainIncludes</code> , <code>schema:rangeIncludes</code>, plus
+            other annotations as required.
+            Inverses are named for all object properties.
+        </p>
+        <p>
+            The SSN modules contains the full axiomatization of the core terms, importing SOSA modules and using
+            <code>rdfs:subClassOf</code>, <code>rdfs:subPropertyOf</code>, <code>owl:Restriction</code> with the various
+            associated RDFS and OWL structures.
+        </p>
+    </section>
+
+    <section id="distribution">
+        <h4>Distribution</h4>
+
+        <section id="SOSAdistribution">
+            <h5>SOSA</h5>
+            <p style="text-align: center;">
+                SOSA Common is available at <a
+                    href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>.
+            </p>
+            <p style="text-align: center;">
+                SOSA Actuation is available at <a
+                    href="http://www.w3.org/ns/sosa/act/">http://www.w3.org/ns/sosa/act/</a>.
+            </p>
+            <p style="text-align: center;">
+                SOSA Observation is available at <a
+                    href="http://www.w3.org/ns/sosa/obs/">http://www.w3.org/ns/sosa/obs/</a>.
+            </p>
+            <p style="text-align: center;">
+                SOSA Sampling is available at <a
+                    href="http://www.w3.org/ns/sosa/sam/">http://www.w3.org/ns/sosa/sam/</a>.
+            </p>
+            <p style="text-align: center;">
+                The complete SOSA is available at <a href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a>.
+            </p>
+        </section>
+
+        <section id="SSNdistribution">
+            <h5>SSN</h5>
+            <p style="text-align: center;">
+                SSN Common is available at <a
+                    href="http://www.w3.org/ns/ssn/common/">http://www.w3.org/ns/ssn/common/</a>.
+            </p>
+            <p style="text-align: center;">
+                SSN Actuation is available at <a href="http://www.w3.org/ns/ssn/act/">http://www.w3.org/ns/ssn/act/</a>.
+            </p>
+            <p style="text-align: center;">
+                SSN Observation is available at <a
+                    href="http://www.w3.org/ns/ssn/obs/">http://www.w3.org/ns/ssn/obs/</a>.
+            </p>
+            <p style="text-align: center;">
+                SSN Sampling is available at <a href="http://www.w3.org/ns/ssn/sam/">http://www.w3.org/ns/ssn/sam/</a>.
+            </p>
+            <p style="text-align: center;">
+                The complete SSN is available at <a href="http://www.w3.org/ns/ssn/">http://www.w3.org/ns/ssn/</a>.
+            </p>
+        </section>
+
+    </section>
+
+</section>
+
+<section class="informative" id="overview-of-classes-and-properties">
+    <h3>Overview of Classes and Properties</h3>
+    <p>
+        The following figures show the key classes and properties in the ontology modules,
+        showing the general pattern for Executions,
+        and from the perspectives of Actuation, Observation, and Sampling.
+    </p>
+    <figure>
+        <img alt="SSN ontology modules - Common" src="./images/Execution-overview.png">
+        <figcaption>
+            Overview of the key classes and properties (general execution pattern)
+            <br>
+            <em><a href="#class-diagram">Explanation of the notation used in class diagrams</a></em>.
+        </figcaption>
+    </figure>
+
+    <figure>
+        <img alt="SSN ontology modules - Actuation" src="./images/Actuation-overview.png">
+        <figcaption>
+            Overview of the key classes and properties (actuation perspective)
+            <br>
+            <em><a href="#class-diagram">Explanation of the notation used in class diagrams</a></em>.
+        </figcaption>
+    </figure>
+
+    <figure>
+        <img alt="SSN ontology modules - Observation" src="./images/Observation-overview.png">
+        <figcaption>
+            Overview of the key classes and properties (observation perspective)
+            <br>
+            <em><a href="#class-diagram">Explanation of the notation used in class diagrams</a></em>.
+        </figcaption>
+    </figure>
+
+    <figure>
+        <img alt="SSN ontology modules - Sampling" src="./images/Sampling-overview.png">
+        <figcaption>
+            Overview of the key classes and properties (sampling and sample perspective)
+            <br>
+            <em><a href="#class-diagram">Explanation of the notation used in class diagrams</a></em>.
+        </figcaption>
+    </figure>
+    <div id="index-of-classes-and-properties">
+        <p>
+            The following are alphabetical lists of the classes and properties in the SSN Ontology.
+        </p>
+        <p class="note">
+            Terms added in the 2024 update are indicated with an asterisk*.
+        </p>
+        <div class="azlist">
+            <p><b>Classes:</b>
+                <a href="#SOSAActuatableProperty">sosa:ActuatableProperty</a>
+                , <a href="#SOSAActuation">sosa:Actuation</a>
+                , <a href="#SOSAActuationCollection">sosa:ActuationCollection</a>
+                , <a href="#SOSAActuator">sosa:Actuator</a>
+                , <a href="#SOSADeployment">sosa:Deployment</a>
+                , <a href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a>
+                , <a href="#SOSAMaterialSample">sosa:MaterialSample</a>*
+                , <a href="#SOSAObservableProperty">sosa:ObservableProperty</a>
+                , <a href="#SOSAObservation">sosa:Observation</a>
+                , <a href="#SOSAObservationCollection">sosa:ObservationCollection</a>*
+                , <a href="#SOSAPlatform">sosa:Platform</a>
+                , <a href="#SOSAProcedure">sosa:Procedure</a>
+                , <a href="#SOSAProperty">sosa:Property</a>
+                , <a href="#SOSAPropertyOfInterest">sosa:PropertyOfInterest</a>*
+                , <a href="#SOSASample">sosa:Sample</a>
+                , <a href="#SOSASampleCollection">sosa:SampleCollection</a>*
+                , <a href="#SOSASampler">sosa:Sampler</a>
+                , <a href="#SOSASampling">sosa:Sampling</a>
+                , <a href="#SOSASamplingCollection">sosa:SamplingCollection</a>*
+                , <a href="#SOSASensor">sosa:Sensor</a>
+                , <a href="#SOSASpatialSample">sosa:SpatialSample</a>*
+                , <a href="#SOSAStatisticalSample">sosa:StatisticalSample</a>*
+                , <a href="#SOSAStimulus">sosa:Stimulus</a>
+                , <a href="#SOSASystem">sosa:System</a>
+            </p>
+        </div>
+        <div class="azlist">
+            <p><b>Object Properties:</b>
+                <a href="#SOSAactsOn">sosa:actsOn</a>*
+                , <a href="#SOSAactsOnProperty">sosa:actsOnProperty</a>
+                , <a href="#SOSAdeployedAsset">sosa:deployedAsset</a>*
+                , <a href="#SOSAdeployedOnPlatform">sosa:deployedOnPlatform</a>
+                , <a href="#SOSAdeployedSystem">sosa:deployedSystem</a>
+                , <a href="#SOSAdetects">sosa:detects</a>
+                , <a href="#SOSAfeatureSampledBy">sosa:featureSampledBy</a>*
+                , <a href="#SOSAforProperty">sosa:forProperty</a>
+                , <a href="#SOSAhasDeployment">sosa:hasDeployment</a>
+                , <a href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a>
+                , <a href="#SOSAhasInput">sosa:hasInput</a>
+                , <a href="#SOSAhasInputValue">sosa:hasInputValue</a>*
+                , <a href="#SOSAhasMember">sosa:hasMember*</a>
+                , <a href="#SOSAhasOriginalSample">sosa:hasOriginalSample</a>*
+                , <a href="#SOSAhasOutput">sosa:hasOutput</a>
+                , <a href="#SOSAhasOutputValue">sosa:hasOutputValue</a>*
+                , <a href="#SOSAhasProcedure">sosa:hasProcedure</a>*
+                , <a href="#SOSAhasProperty">sosa:hasProperty</a>
+                , <a href="#SOSAhasProxy">sosa:hasProxy</a>*
+                , <a href="#SOSAhasResult">sosa:hasResult</a>
+                , <a href="#SOSAhasSample">sosa:hasSample</a>
+                , <a href="#SOSAhasSampledFeature">sosa:hasSampledFeature</a>*
+                , <a href="#SOSAhasSubSystem">sosa:hasSubSystem</a>
+                , <a href="#SOSAhasUltimateFeatureOfInterest">sosa:hasUltimateFeatureOfInterest</a>*
+                , <a href="#SOSAhosts">sosa:hosts</a>
+                , <a href="#SOSAimplementedBy">sosa:implementedBy</a>
+                , <a href="#SOSAimplements">sosa:implements</a>
+                , <a href="#SOSAinDeployment">sosa:inDeployment</a>
+                , <a href="#SOSAinputFor">sosa:inputFor</a>*
+                , <a href="#SOSAinputValueForExecution">sosa:inputValueForExecution</a>*
+                , <a href="#SOSAisActedOnBy">sosa:isActedOnBy</a>
+                , <a href="#SOSAisDetectedBy">sosa:isDetectedBy</a>*
+                , <a href="#SOSAisFeatureOfInterestOf">sosa:isFeatureOfInterestOf</a>
+                , <a href="#SOSAisHostedBy">sosa:isHostedBy</a>
+                , <a href="#SOSAisObservedBy">sosa:isObservedBy</a>
+                , <a href="#SOSAisOriginalSampleOf">sosa:isOriginalSampleOf</a>*
+                , <a href="#SOSAisPropertyOf">sosa:isPropertyOf</a>
+                , <a href="#SOSAisProxyFor">sosa:isProxyFor</a>
+                , <a href="#SOSAisResultOf">sosa:isResultOf</a>
+                , <a href="#SOSAisResultOfMadeBySampler">sosa:isResultOfMadeBySampler</a>*
+                , <a href="#SOSAisResultOfUsedProcedure">sosa:isResultOfUsedProcedure</a>*
+                , <a href="#SOSAisSampleOf">sosa:isSampleOf</a>
+                , <a href="#SOSAisSubSystemOf">sosa:isSubSystemOf</a>*
+                , <a href="#SOSAisUltimateFeatureOfInterestOf">sosa:isUltimateFeatureOfInterestOf</a>*
+                , <a href="#SOSAmadeActuation">sosa:madeActuation</a>
+                , <a href="#SOSAmadeByActuator">sosa:madeByActuator</a>
+                , <a href="#SOSAmadeBySampler">sosa:madeBySampler</a>
+                , <a href="#SOSAmadeBySensor">sosa:madeBySensor</a>
+                , <a href="#SOSAmadeBySystem">sosa:madeBySystem</a>
+                , <a href="#SOSAmadeExecution">sosa:madeExecution</a>
+                , <a href="#SOSAmadeObservation">sosa:madeObservation</a>
+                , <a href="#SOSAmadeSampling">sosa:madeSampling</a>
+                , <a href="#SOSAmadeSamplingHasResult">sosa:madeSamplingHasResult</a>*
+                , <a href="#SOSAmemberOf">sosa:memberOf</a>*
+                , <a href="#SOSAobservationRelatedTo">sosa:observationRelatedTo</a>*
+                , <a href="#SOSAobservedProperty">sosa:observedProperty</a>
+                , <a href="#SOSAobserves">sosa:observes</a>
+                , <a href="#SOSAoriginated">sosa:originated</a>*
+                , <a href="#SOSAoutputFor">sosa:outputFor</a>*
+                , <a href="#SOSAoutputValueForExecution">sosa:outputValueForExecution</a>*
+                , <a href="#SOSAphenomenonOccurred">sosa:phenomenonOccurred</a>*
+                , <a href="#SOSAphenomenonTime">sosa:phenomenonTime</a>
+                , <a href="#SOSApropertyFor">sosa:propertyFor</a>*
+                , <a href="#SOSAqualityOf">sosa:qualityOf</a>*
+                , <a href="#SOSArelatedObservation">sosa:relatedObservation</a>*
+                , <a href="#SOSAresultQuality">sosa:resultQuality</a>*
+                , <a href="#SOSAusedForExecution">sosa:usedForExecution</a>*
+                , <a href="#SOSAusedForExecutionHasResult">sosa:usedForExecutionHasResult</a>*
+                , <a href="#SOSAusedProcedure">sosa:usedProcedure</a>
+                , <a href="#SOSAwasActedOnBy">sosa:wasActedOnBy</a>*
+                , <a href="#SOSAwasObservedBy">sosa:wasObservedBy</a>*
+                , <a href="#SOSAwasOriginatedBy">sosa:wasOriginatedBy</a>
+            </p>
+        </div>
+        <div class="azlist">
+            <p><b>Datatype Properties:</b>
+                <a href="#SOSAhasSimpleResult">sosa:hasSimpleResult</a>
+                , <a href="#SOSAresultTime">sosa:resultTime</a>
+                , <a href="#SOSAstartTime">sosa:startTime</a>*
+            </p>
+        </div>
+    </div>
+
+    <p>
+        The SSN classes and properties are described in the following sections, organized by module as described in <a
+            href="#Modularization">Modularization above</a>.
+        In <a href="#inverse-properties">an appendix to this document</a> we list all SSN properties and their inverses
+        with the classes that are included in their domains and ranges.
+
+    </p>
+</section>
+
+<section id="Common" class="normative" data-include="./chapters/Common.html"></section>
+
+<section id="Actuation" class="normative" data-include="./chapters/Actuation.html"></section>
+
+<section id="Observation" class="normative" data-include="./chapters/Observation.html"></section>
+
+<section id="Sampling" class="normative" data-include="./chapters/Sampling.html"></section>

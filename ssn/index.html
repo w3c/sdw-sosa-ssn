@@ -36,6 +36,69 @@
       var newScrollY = window.scrollY;
       window.scrollTo(scrollX, newPosY + newScrollY - posY);
     }
+    addEventListener('load', () => {
+      document.respec.ready.then(() => {
+
+        const sortLabels = {
+          asc: '↑',
+          desc: '↓',
+          no: '—',
+        };
+
+        const sort = (headerMetadata) => {
+          const sortDirection = headerMetadata.sorted === 'asc' ? 'desc' : 'asc';
+
+          const getSortValue = r => r.querySelector(`:scope > td:nth-child(${headerMetadata.idx + 1})`)
+            .textContent.trim().toLowerCase().replace(/[^A-Za-z0-9 :-]/g, '');
+
+          const rows = [...headerMetadata.table.querySelectorAll('tr')].slice(1); // skip header row
+          if (!rows.length) {
+            return;
+          }
+          const tbody = rows[0].parentElement;
+          rows.sort((a, b) => getSortValue(a).localeCompare(getSortValue(b)) * (sortDirection === 'asc' ? 1 : -1))
+            .map(e => e.remove() || e)
+            .forEach(e => tbody.append(e));
+
+          // update sort link labels
+          for (let header of headerMetadata.allHeaders) {
+            header.sorted = header.idx === headerMetadata.idx ? sortDirection : 'no';
+            header.sortLink.textContent = sortLabels[header.sorted];
+          }
+        };
+
+        document.querySelectorAll('table[data-sortable="true"]').forEach(table => {
+          const headers = [], allHeaders = [...table.querySelector('tr').querySelectorAll('th')];
+          for (const [idx, header] of allHeaders.entries()) {
+            if (header.dataset.sortable === 'true') {
+              const sortLink = document.createElement('a');
+
+              const headerMetadata = {
+                idx,
+                header,
+                allHeaders: headers,
+                table,
+                sorted: 'no',
+                sortLink,
+              };
+
+              sortLink.href = "#";
+              sortLink.style.marginLeft = '1em';
+              sortLink.style.textDecoration = 'none';
+              sortLink.classList.add('sort-link');
+              sortLink.textContent = sortLabels.no;
+              sortLink.title = 'Sort';
+              sortLink.addEventListener('click', e => {
+                e.preventDefault();
+                sort(headerMetadata);
+              });
+              header.append(sortLink);
+              headers.push(headerMetadata);
+            }
+          }
+        });
+      });
+    });
   </script>
   <link rel="stylesheet" type="text/css" href="style.css">
   <link rel="stylesheet" type="text/css" href="small.css" media="only all and (max-width: 649px)">
@@ -348,6 +411,7 @@
     <section id="Sampling" class="normative" data-include="./chapters/Sampling.html"></section>
 
   </section>
+  <section id="Specification" class="normative" data-include="./chapters/Specification.html"></section>
 
   <section id="Extensions" class="informative">
     <h2>SSN Extensions</h2>
@@ -369,6 +433,8 @@
     <section id="PROV-alignment" class="normative" data-include="./chapters/PROV-alignment.html"></section>
 
     <section id="OBOE-alignment" class="normative" data-include="./chapters/OBOE-alignment.html"></section>
+
+    <section id="SAREF-alignment" class="normative" data-include="./chapters/SAREF-alignment.html"></section>
 
     <section id="DUL-alignment" class="normative" data-include="./chapters/DUL-alignment.html"></section>
 
@@ -497,6 +563,8 @@
     <p>Results of the wide review of SOSA and SSN is <a
         href="https://www.w3.org/2015/spatial/wiki/Wide_Review">summarized here</a>.</p>
   </section>
+
+  <section id="inverse-properties" class="appendix" data-include="./chapters/Inverse-properties.html"></section>
 
   <section class="appendix" id="examples">
     <h2>Complete Examples</h2>
@@ -833,9 +901,8 @@
         results; clarify meaning of Actuation result</li>
       <li>Clarify meaning of hasResult, resultTime, phenomenonTime in the context of Actuations</li>
       <li>introduced startTime property</li>
-      <li>added ActuatingProcedure ObservingProcedure SamplingProcedure MaterialSample SpatialSample StatisticalSample
-        relatedObservation resultQuality to SOSA graph and sosa: namespace, removed from SOSA-OMS graph and sosa:oms:
-        ns
+      <li>added MaterialSample SpatialSample StatisticalSample relatedObservation resultQuality to SOSA graph and sosa:
+        namespace, removed from SOSA-OMS graph and sosa:oms: ns
       </li>
       <li>Refactored SOSA and SSN into modules - sosa-common sosa-actuation sosa-observation sosa-sampling sosa (all),
         and matching ssn-* files (also ssn-deprecated). Refactored HTML sources to match. </li>
@@ -843,6 +910,10 @@
       <li>Update and streamline Introduction; move Origins section to an Annex. </li>
       <li>re-drafted all figures; added a clause on notation</li>
       <li>retire ssn-system:qualityOfObservation - functionally equivalent to sosa:resultQuality</li>
+      <li>add alignment to SAREF</li>
+      <li>Add `forProperty` links from `Procedure`, and inverse `hasProcedure`</li>
+      <li>add inverses for all object-properties, add tabulation of all properties</li>
+      <li>Add madeBySystem, madeExecution </li>
     </ol>
   </section>
 </body>

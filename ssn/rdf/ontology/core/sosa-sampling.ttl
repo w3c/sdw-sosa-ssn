@@ -26,6 +26,17 @@ sosa-sam:
   owl:imports sosa-common: ;
   .
 
+sosa:MaterialSample 
+  a owl:Class ;
+  rdfs:label "Material Sample"@en ;
+  skos:definition """
+  A MaterialSample is a physical, tangible Sample.
+  """@en ;
+  skos:example "A piece of rock, a blood sample, a water sample, etc."@en ;
+  skos:note "MaterialSamples that are curated and preserved are sometimes known as 'specimens'."@en ;
+  skos:note "MaterialSamples may be destroyed in connexion with the observation act or a subsequent preparation step."@en ;
+  rdfs:isDefinedBy sosa-sam: .
+
 sosa:Sample 
   a owl:Class ;
   rdfs:label "Sample"@en ;
@@ -47,38 +58,6 @@ sosa:Sample
   skos:example "A 'station' is essentially an identifiable locality where a sensor system or Procedure may be deployed and an observation made. In the context of the observation model, it connotes the 'world in the vicinity of the station', so the observed properties relate to the physical medium at the station, and not to any physical artifact such as a mooring, buoy, benchmark, monument, well, etc."@en ;
   skos:example "A statistical sample is often designed to be characteristic of an entire population, so that observations can be made regarding the sample that provide a good estimate of the properties of the population."@en ;
   skos:note "A transient sample, such as a ships-track or flight-line, might be identified and described, but is unlikely to be revisited exactly."@en ;
-  rdfs:isDefinedBy sosa-sam: .
-
-sosa:MaterialSample 
-  a owl:Class ;
-  rdfs:label "Material Sample"@en ;
-  skos:definition """
-  A MaterialSample is a physical, tangible Sample.
-  """@en ;
-  skos:example "A piece of rock, a blood sample, a water sample, etc."@en ;
-  skos:note "MaterialSamples that are curated and preserved are sometimes known as 'specimens'."@en ;
-  skos:note "MaterialSamples may be destroyed in connexion with the observation act or a subsequent preparation step."@en ;
-  rdfs:isDefinedBy sosa-sam: .
-
-sosa:SpatialSample 
-  a owl:Class ;
-  rdfs:label "Spatial Sample"@en ;
-  skos:definition """
-  A SpatialSample is a geospatial Sample. 
-  When observations are made to estimate properties of a geospatial feature, in particular where the value of a property varies within the scope of the feature, a SpatialSample is used.
-  """@en ;
-  skos:example "Some common names for spatial samples include: borehole, flightline, interval, lidar cloud, map horizon, microscope slide, mine level, mine, observation well, profile,  quadrat, scene, section, ship track, spot, station, swath, trajectory, traverse, etc..."@en ;
-  skos:note "Depending on accessibility and on the nature of the expected property variation, the SpatialSample may be extensive in one, two or three spatial dimensions."@en ;
-  rdfs:isDefinedBy sosa-sam: .
-
-sosa:StatisticalSample 
-  a owl:Class ;
-  rdfs:label "Statistical Sample"@en ;
-  skos:definition """
-  A StatisticalSample is a statistical subset of a feature-of-interest, defined for the purpose of creating Observation(s).
-  """@en ;
-  skos:example "The male or female subset of a population."@en ;
-  skos:note "StatisticalSamples usually apply to populations or other sets, of which certain subset may be of specific interest."@en ;
   rdfs:isDefinedBy sosa-sam: .
 
 sosa:SampleCollection 
@@ -108,79 +87,13 @@ sosa:SampleCollection
   """ ;
   rdfs:isDefinedBy sosa-sam: .
 
-sosa:hasSample 
-  a owl:ObjectProperty ;
-  rdfs:label "has sample"@en ;
-  skos:definition """
-  Relation between a FeatureOfInterest and the Sample or SampleCollection used to represent it.
-  """@en ;
-  schema:domainIncludes sosa:FeatureOfInterest ;
-  schema:rangeIncludes sosa:Sample ;
-  owl:inverseOf sosa:isSampleOf ;
-  rdfs:isDefinedBy sosa-sam: .
-
-sosa:isSampleOf 
-  a owl:ObjectProperty ;
-  rdfs:label "is sample of"@en ;
-  skos:definition """
-  Relation from a Sample or SampleCollection to the FeatureOfInterest that it is intended to be representative of.
-  """@en ;
-  schema:domainIncludes sosa:Sample ;
-  schema:domainIncludes sosa:SampleCollection ;
-  schema:rangeIncludes sosa:FeatureOfInterest ;
-  owl:inverseOf sosa:hasSample ;
-  rdfs:isDefinedBy sosa-sam: .
-
-sosa:hasOriginalSample 
-  a owl:ObjectProperty ;
-  rdfs:label "has original sample"@en ;
-  skos:definition """
-  Link to the original sample collected from the ultimate feature of interest that is related to the context Sample or SampleCollection through a chain of isSampleOf relations.
-  """@en ;
-  schema:domainIncludes sosa:Sample ;
-  schema:domainIncludes sosa:SampleCollection ;
-  schema:rangeIncludes sosa:Sample ;
-  rdfs:isDefinedBy sosa-sam: .
-
-sosa:hasSampledFeature 
-  a owl:ObjectProperty ;
-  rdfs:label "has ultimate sampled feature"@en ;
-  skos:definition """
-  Link to the ultimate feature of interest of the context Sample or SampleCollection - i.e. the end of a chain of isSampleOf relations
-  """@en ;
-  schema:domainIncludes sosa:Sample ;
-  schema:domainIncludes sosa:SampleCollection ;
-  schema:rangeIncludes sosa:FeatureOfInterest ;
-  rdfs:isDefinedBy sosa-sam: .
-
-sosa:isResultOfMadeBySampler 
-  a owl:ObjectProperty ;
-  rdfs:label "is a result of made by sampler"@en ;
-  skos:definition """
-  Relation linking a Sample or SampleCollection to the Sampler (sampling device or entity) that made it.
-  """@en ;
-  schema:domainIncludes sosa:Sample ;
-  schema:domainIncludes sosa:SampleCollection ;
-  schema:rangeIncludes sosa:Sampler ;
-  rdfs:isDefinedBy sosa-sam: .
-
-sosa:isResultOfUsedProcedure 
-  a owl:ObjectProperty ;
-  rdfs:label "is a result of used procedure"@en ;
-  skos:definition """
-  Relation linking a Sample or SampleCollection to the Procedure (plan) used to make it.
-  """@en ;
-  schema:domainIncludes sosa:Sample ;
-  schema:domainIncludes sosa:SampleCollection ;
-  schema:rangeIncludes sosa:samplingProcedure ;
-  rdfs:isDefinedBy sosa-sam: .
-
-sosa:SamplingProcedure 
+sosa:Sampler 
   a owl:Class ;
-  rdfs:label "Sampling Procedure"@en ;
+  rdfs:label "Sampler"@en ;
   skos:definition """
-  The description of steps performed by a Sampler in order to extract a Sample from its sampled Feature in the frame of a Sampling.
+  A device that implements a (Sampling) Procedure to create one or more samples.
   """@en ;
+  skos:example "A ball mill, diamond drill, hammer, hypodermic syringe and needle, image Sensor or a soil auger can all act as sampling devices (i.e., be Samplers). However, sometimes the distinction between the Sampler and the Sensor is not evident, as they are packaged as a unit. A Sampler need not be a physical device."@en ;
   rdfs:isDefinedBy sosa-sam: .
 
 sosa:Sampling 
@@ -202,13 +115,133 @@ sosa:Sampling
   skos:example "Taking a diamond-drill core from a rock outcrop."@en ;
   rdfs:isDefinedBy sosa-sam: .
 
-sosa:Sampler 
+sosa:SpatialSample 
   a owl:Class ;
-  rdfs:label "Sampler"@en ;
+  rdfs:label "Spatial Sample"@en ;
   skos:definition """
-  A device that implements a Sampling Procedure to create one or more samples.
+  A SpatialSample is a geospatial Sample. 
+  When observations are made to estimate properties of a geospatial feature, in particular where the value of a property varies within the scope of the feature, a SpatialSample is used.
   """@en ;
-  skos:example "A ball mill, diamond drill, hammer, hypodermic syringe and needle, image Sensor or a soil auger can all act as sampling devices (i.e., be Samplers). However, sometimes the distinction between the Sampler and the Sensor is not evident, as they are packaged as a unit. A Sampler need not be a physical device."@en ;
+  skos:example "Some common names for spatial samples include: borehole, flightline, interval, lidar cloud, map horizon, microscope slide, mine level, mine, observation well, profile,  quadrat, scene, section, ship track, spot, station, swath, trajectory, traverse, etc..."@en ;
+  skos:note "Depending on accessibility and on the nature of the expected property variation, the SpatialSample may be extensive in one, two or three spatial dimensions."@en ;
+  rdfs:isDefinedBy sosa-sam: .
+
+sosa:StatisticalSample 
+  a owl:Class ;
+  rdfs:label "Statistical Sample"@en ;
+  skos:definition """
+  A StatisticalSample is a statistical subset of a feature-of-interest, defined for the purpose of creating Observation(s).
+  """@en ;
+  skos:example "The male or female subset of a population."@en ;
+  skos:note "StatisticalSamples usually apply to populations or other sets, of which certain subset may be of specific interest."@en ;
+  rdfs:isDefinedBy sosa-sam: .
+
+sosa:featureSampledBy 
+  a owl:ObjectProperty ;
+  rdfs:label "feature sampled by"@en ;
+  skos:definition """
+  Links the ultimate feature of interest to a Sample or SampleCollection - i.e. the beginning of a chain of isSampleOf relations
+  """@en ;
+  schema:domainIncludes sosa:FeatureOfInterest ;
+  schema:rangeIncludes sosa:Sample ;
+  schema:rangeIncludes sosa:SampleCollection ;
+  owl:inverseOf sosa:hasSampledFeature ;
+  rdfs:isDefinedBy sosa-sam: .
+
+sosa:hasOriginalSample 
+  a owl:ObjectProperty ;
+  rdfs:label "has original sample"@en ;
+  skos:definition """
+  Link to the original sample collected from the ultimate feature of interest that is related to the context Sample or SampleCollection through a chain of isSampleOf relations.
+  """@en ;
+  schema:domainIncludes sosa:Sample ;
+  schema:domainIncludes sosa:SampleCollection ;
+  schema:rangeIncludes sosa:Sample ;
+  owl:inverseOf sosa:isOriginalSampleOf ;
+  rdfs:isDefinedBy sosa-sam: .
+
+sosa:hasSample 
+  a owl:ObjectProperty ;
+  rdfs:label "has sample"@en ;
+  skos:definition """
+  Relation between a FeatureOfInterest and the Sample or SampleCollection used to represent it.
+  """@en ;
+  schema:domainIncludes sosa:FeatureOfInterest ;
+  schema:rangeIncludes sosa:Sample ;
+  owl:inverseOf sosa:isSampleOf ;
+  rdfs:isDefinedBy sosa-sam: .
+
+sosa:hasSampledFeature 
+  a owl:ObjectProperty ;
+  rdfs:label "has sampled feature"@en ;
+  skos:definition """
+  Link to the ultimate feature of interest of the context Sample or SampleCollection - i.e. the end of a chain of isSampleOf relations
+  """@en ;
+  schema:domainIncludes sosa:Sample ;
+  schema:domainIncludes sosa:SampleCollection ;
+  schema:rangeIncludes sosa:FeatureOfInterest ;
+  owl:inverseOf sosa:featureSampledBy ;
+  rdfs:isDefinedBy sosa-sam: .
+
+sosa:isOriginalSampleOf 
+  a owl:ObjectProperty ;
+  rdfs:label "is original sample  of"@en ;
+  skos:definition """
+  Link the original sample collected from the ultimate feature of interest to a Sample or SampleCollection that it is related to through a chain of isSampleOf relations.
+  """@en ;
+  schema:domainIncludes sosa:Sample ;
+  schema:rangeIncludes sosa:Sample ;
+  schema:rangeIncludes sosa:SampleCollection ;
+  owl:inverseOf sosa:hasOriginalSample ;
+  rdfs:isDefinedBy sosa-sam: .
+
+sosa:isResultOfMadeBySampler 
+  a owl:ObjectProperty ;
+  rdfs:label "is a result of made by sampler"@en ;
+  skos:definition """
+  Relation linking a Sample or SampleCollection to the Sampler (sampling device or entity) that made it.
+  """@en ;
+  schema:domainIncludes sosa:Sample ;
+  schema:domainIncludes sosa:SampleCollection ;
+  schema:rangeIncludes sosa:Sampler ;
+  owl:inverseOf sosa:madeSamplingHasResult ;
+  rdfs:isDefinedBy sosa-sam: .
+
+sosa:isResultOfUsedProcedure 
+  a owl:ObjectProperty ;
+  rdfs:label "is a result of used procedure"@en ;
+  skos:definition """
+  Relation linking a Sample or SampleCollection to the Procedure (plan) used to make it.
+  """@en ;
+  schema:domainIncludes sosa:Sample ;
+  schema:domainIncludes sosa:SampleCollection ;
+  schema:rangeIncludes sosa:Procedure ;
+  schema:rangeIncludes sosa:SamplingProcedure ;
+  owl:inverseOf sosa:usedForExecutionHasResult ;
+  rdfs:isDefinedBy sosa-sam: .
+
+sosa:isSampleOf 
+  a owl:ObjectProperty ;
+  rdfs:label "is sample of"@en ;
+  skos:definition """
+  Relation from a Sample or SampleCollection to the FeatureOfInterest that it is intended to be representative of.
+  """@en ;
+  schema:domainIncludes sosa:Sample ;
+  schema:domainIncludes sosa:SampleCollection ;
+  schema:rangeIncludes sosa:FeatureOfInterest ;
+  owl:inverseOf sosa:hasSample ;
+  rdfs:isDefinedBy sosa-sam: .
+
+sosa:madeBySampler 
+  a owl:ObjectProperty ;
+  rdfs:label "made by sampler"@en ;
+  skos:definition """
+  Relation linking an act of Sampling to the Sampler (sampling device or entity) that made it.
+  """@en ;
+  schema:domainIncludes sosa:Sampling ;
+  schema:domainIncludes sosa:SamplingCollection ;
+  schema:rangeIncludes sosa:Sampler ;
+  owl:inverseOf sosa:madeSampling ;
   rdfs:isDefinedBy sosa-sam: .
 
 sosa:madeSampling 
@@ -222,38 +255,30 @@ sosa:madeSampling
   owl:inverseOf sosa:madeBySampler ;
   rdfs:isDefinedBy sosa-sam: .
 
-sosa:madeBySampler 
+sosa:madeSamplingHasResult 
   a owl:ObjectProperty ;
-  rdfs:label "made by sampler"@en ;
+  rdfs:label "made sampling has result"@en ;
   skos:definition """
-  Relation linking an act of Sampling to the Sampler (sampling device or entity) that made it.
+  Relation linking a Sampler (sampling device or entity) to a Sample or SampleCollection made by it.
   """@en ;
-  schema:domainIncludes sosa:Sampling ;
-  schema:domainIncludes sosa:SampleCollection ;
-  schema:rangeIncludes sosa:Sampler ;
-  owl:inverseOf sosa:madeSampling ;
+  schema:domainIncludes sosa:Sampler ;
+  schema:rangeIncludes sosa:Sample ;
+  schema:rangeIncludes sosa:SampleCollection ;
+  owl:inverseOf sosa:isResultOfMadeBySampler ;
   rdfs:isDefinedBy sosa-sam: .
 
-#  sosa:hasResultingSample 
-#    a owl:ObjectProperty ;
-#    rdfs:label "has resulting sample"@en ;
-#    skos:definition """Relation linking an act of Sampling and the new Sample created as a result."@en ;
-#    rdfs:comment "Relation linking an act of Sampling and the new Sample created as a result."@en ;
-#    schema:domainIncludes sosa:Sampling ;
-#    schema:rangeIncludes sosa:Sample ;
-#    owl:inverseOf sosa:isSamplingResultOf ;
-#    rdfs:isDefinedBy sosa-sam: .
-
-#  sosa:isSamplingResultOf 
-#    a owl:ObjectProperty ;
-#    rdfs:label "is sampling result of"@en ;
-#    skos:definition """Relation linking a Sample to the act of Sampling that created or caused it."@en ;
-#    rdfs:comment "Relation linking a Sample to the act of Sampling that created or caused it."@en ;
-#    schema:domainIncludes sosa:Sample ;
-#    schema:rangeIncludes sosa:Sampling ;
-#    owl:inverseOf sosa:hasResultingSample ;
-#    rdfs:isDefinedBy sosa-sam: .
-
+sosa:usedForExecutionHasResult 
+  a owl:ObjectProperty ;
+  rdfs:label "procedure used for execution having result"@en ;
+  skos:definition """
+  Relation linking a Procedure (plan) to a Sample or SampleCollection used by it.
+  """@en ;
+  schema:domainIncludes sosa:Procedure ;
+  schema:domainIncludes sosa:SamplingProcedure ;
+  schema:rangeIncludes sosa:Sample ;
+  schema:rangeIncludes sosa:SampleCollection ;
+  owl:inverseOf sosa:isResultOfUsedProcedure ;
+  rdfs:isDefinedBy sosa-sam: .
 
 ## End of sampling schema
 ## ---------------------------------------------------- ##
@@ -263,8 +288,20 @@ sosa:madeBySampler
 
 sosa:hasMember 
   schema:domainIncludes sosa:SampleCollection ;
+  schema:domainIncludes sosa:SamplingCollection ;
   schema:rangeIncludes sosa:Sample ;
   schema:rangeIncludes sosa:SampleCollection ;
+  schema:rangeIncludes sosa:Sampling ;
+  schema:rangeIncludes sosa:SamplingCollection ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:isMemberOf 
+  schema:domainIncludes sosa:Sample ;
+  schema:domainIncludes sosa:SampleCollection ;
+  schema:domainIncludes sosa:Sampling ;
+  schema:domainIncludes sosa:SamplingCollection ;
+  schema:rangeIncludes sosa:SampleCollection ;
+  schema:rangeIncludes sosa:SamplingCollection ;
   rdfs:isDefinedBy sosa-common: .
 
 
@@ -273,18 +310,19 @@ sosa:hasMember
 sosa:FeatureOfInterest 
   rdfs:isDefinedBy sosa-common: .
 
-sosa:hasFeatureOfInterest 
-  schema:domainIncludes sosa:Sampling ;
-  schema:rangeIncludes sosa:Sample ;
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:hasUltimateFeatureOfInterest 
-  schema:domainIncludes sosa:Sampling ;
+sosa:hasProperty 
   rdfs:isDefinedBy sosa-common: .
 
 sosa:isFeatureOfInterestOf 
   schema:domainIncludes sosa:Sample ;
   schema:rangeIncludes sosa:Sampling ;
+  schema:rangeIncludes sosa:SamplingCollection ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:isUltimateFeatureOfInterestOf 
+  schema:domainIncludes sosa:Sample ;
+  schema:rangeIncludes sosa:Sampling ;
+  schema:rangeIncludes sosa:SamplingCollection ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:Property 
@@ -293,10 +331,13 @@ sosa:Property
 sosa:PropertyOfInterest 
   rdfs:isDefinedBy sosa-common: .
 
-sosa:hasProperty 
+sosa:isPropertyOf 
   rdfs:isDefinedBy sosa-common: .
 
-sosa:isPropertyOf 
+sosa:hasProcedure 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:propertyFor 
   rdfs:isDefinedBy sosa-common: .
 
 sosa:forProperty 
@@ -308,14 +349,30 @@ sosa:forProperty
 sosa:Procedure 
   rdfs:isDefinedBy sosa-common: .
 
+sosa:usedForExecution 
+  schema:domainIncludes sosa:SamplingProcedure ;
+  schema:rangeIncludes sosa:Sampling ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:implementedBy 
+  schema:domainIncludes sosa:SamplingProcedure ;
+  schema:rangeIncludes sosa:Sampler ;
+  rdfs:isDefinedBy sosa-common: .
+
 sosa:hasInput 
+  schema:domainIncludes sosa:SamplingProcedure ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:inputFor 
+  schema:rangeIncludes sosa:SamplingProcedure ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hasOutput 
+  schema:domainIncludes sosa:SamplingProcedure ;
   rdfs:isDefinedBy sosa-common: .
 
-sosa:usedProcedure 
-  schema:domainIncludes sosa:Sampling ;
+sosa:outputFor 
+  schema:rangeIncludes sosa:SamplingProcedure ;
   rdfs:isDefinedBy sosa-common: .
 
 ## Executions
@@ -323,12 +380,10 @@ sosa:usedProcedure
 sosa:Execution 
   rdfs:isDefinedBy sosa-common: .
 
-sosa:hasInputValue 
+sosa:usedProcedure 
   schema:domainIncludes sosa:Sampling ;
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:hasOutputValue 
-  schema:domainIncludes sosa:Sampling ;
+  schema:domainIncludes sosa:SamplingCollection ;
+  schema:rangeIncludes sosa:SamplingProcedure ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:startTime 
@@ -341,6 +396,39 @@ sosa:resultTime
 
 sosa:phenomenonTime 
   schema:domainIncludes sosa:Sampling ;
+  schema:domainIncludes sosa:SamplingCollection ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:phenomenonOccurred 
+  schema:rangeIncludes sosa:Sampling ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasFeatureOfInterest 
+  schema:domainIncludes sosa:Sampling ;
+  schema:domainIncludes sosa:SamplingCollection ;
+  schema:rangeIncludes sosa:Sample ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasUltimateFeatureOfInterest 
+  schema:domainIncludes sosa:Sampling ;
+  schema:domainIncludes sosa:SamplingCollection ;
+  schema:rangeIncludes sosa:Sample ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasInputValue 
+  schema:domainIncludes sosa:Sampling ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:inputValueForExecution 
+  schema:rangeIncludes sosa:Sampling ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasOutputValue 
+  schema:domainIncludes sosa:Sampling ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:outputValueForExecution 
+  schema:rangeIncludes sosa:Sampling ;
   rdfs:isDefinedBy sosa-common: .
 
 
@@ -348,6 +436,7 @@ sosa:phenomenonTime
 
 sosa:hasResult 
   schema:domainIncludes sosa:Sampling ;
+  schema:domainIncludes sosa:SamplingCollection ;
   schema:rangeIncludes sosa:Sample ;
   rdfs:isDefinedBy sosa-common: .
 
@@ -365,36 +454,27 @@ sosa:hasSimpleResult
 sosa:System 
   rdfs:isDefinedBy sosa-common: .
 
-sosa:hasSubSystem 
-  rdfs:isDefinedBy sosa-common: .
-
 sosa:implements 
   schema:domainIncludes sosa:Sampler ;
+  schema:rangeIncludes sosa:SamplingProcedure ;
   rdfs:isDefinedBy sosa-common: .
 
-sosa:implementedBy 
+sosa:hasSubSystem 
+  schema:domainIncludes sosa:Sampler ;
   schema:rangeIncludes sosa:Sampler ;
   rdfs:isDefinedBy sosa-common: .
 
-
-## Deployment
-
-sosa:Deployment 
+sosa:isSubSystemOf 
+  schema:domainIncludes sosa:Sampler ;
+  schema:rangeIncludes sosa:Sampler ;
   rdfs:isDefinedBy sosa-common: .
 
-sosa:deployedAsset 
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:deployedSystem 
+sosa:isHostedBy 
+  schema:domainIncludes sosa:Sampler ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hasDeployment 
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:deployedOnPlatform 
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:inDeployment 
+  schema:domainIncludes sosa:Sampler ;
   rdfs:isDefinedBy sosa-common: .
 
 ## Platform 
@@ -406,7 +486,21 @@ sosa:hosts
   schema:rangeIncludes sosa:Sampler ;
   rdfs:isDefinedBy sosa-common: .
 
-sosa:isHostedBy 
-  schema:domainIncludes sosa:Sampler ;
+sosa:inDeployment 
+  rdfs:isDefinedBy sosa-common: .
+
+## Deployment
+
+sosa:Deployment 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:deployedAsset 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:deployedSystem 
+  schema:rangeIncludes sosa:Sampler ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:deployedOnPlatform 
   rdfs:isDefinedBy sosa-common: .
 
