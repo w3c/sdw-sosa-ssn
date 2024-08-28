@@ -40,7 +40,10 @@
                 </figcaption>
             </figure>
         </div>
-
+        <p class="note">
+            The relationship between <a href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a>, and types or classes
+            defined in a domain model is explained below in <a href="#model-domain">Common Modeling Questions</a>
+        </p>
     </section>
     <section id="Features-of-Interest-and-Properties-specification">
         <h5>Specification</h5>
@@ -75,12 +78,12 @@
                     <tr>
                         <th>Example</th>
                         <td><span about="sosa:FeatureOfInterest" property="skos:example">When measuring the height of a
-                                tree, the height is the observed <a href="#SOSAObservation">ObservableProperty</a>, 20m
-                                may be the result
-                                of the <a href="#SOSAObservation">Observation</a>, and the tree is the <a
-                                    href="#SOSAFeatureOfInterest">FeatureOfInterest</a>.
-                                A window is a <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a> for an
-                                automatic window control <a href="#SOSAActuator">Actuator</a>.</span></td>
+                                tree, the <em>height</em> is the <a href="#SOSAobservedProperty">observedProperty</a>,
+                                <em>20m</em> is the result of the <a href="#SOSAObservation">Observation</a>, and the
+                                <em>specific tree</em> is the <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a>.
+                                <br><br>
+                                A <em>specified window</em> is a <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a>
+                                for an automatic window control <a href="#SOSAActuator">Actuator</a>.</span></td>
                     </tr>
                     <tr class="ssn">
                         <th class="restrictions">Restrictions</th>
@@ -144,9 +147,10 @@
                 <tbody>
                     <tr>
                         <th>Example</th>
-                        <td><span about="sosa:Property" property="skos:example">Cars (a feature type) all have a
-                                characteristic
-                                colour, where "colour" is a property.</span></td>
+                        <td>
+                            <span about="sosa:Property" property="skos:example">Cars (a feature type) have a
+                                property "colour".</span>
+                        </td>
                     </tr>
                     <tr>
                         <th>Note</th>
@@ -207,9 +211,8 @@
                 This term is non-normative, pending further implementation experience</p>
             <p>
                 <em property="rdfs:label">Property Of Interest</em> -
-                <span property="skos:definition">An identifiable quality of a specific <a
-                        href="#SOSAFeatureOfInterest">FeatureOfInterest</a> that can be observed or acted
-                    upon.
+                <span property="skos:definition">An identifiable quality of a specific
+                    <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a> that can be observed or acted upon.
                     A property of interest is tied to a specific <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a>.
                     It is inherent to and cannot exist without that feature of interest.</span>
             </p>
@@ -218,16 +221,12 @@
                     <tr>
                         <th>Example</th>
                         <td><span about="sosa:PropertyOfInterest" property="skos:example">Abby's car has the
-                                colour red,
-                                where
-                                "colour red" is a property of interest of the car.</span></td>
+                                colour red, where "the colour of Abby's car" is a property of interest.</span></td>
                     </tr>
                     <tr>
                         <th>Note</th>
                         <td><span about="sosa:PropertyOfInterest" property="skos:note">Properties of interest
-                                need not
-                                always be
-                                explicitly identified. It depends on the use case.</span></td>
+                                need not always be explicitly identified. It depends on the use case.</span></td>
                     </tr>
                     <tr class="ssn">
                         <th class="restrictions">Restrictions:</th>
@@ -505,19 +504,6 @@
             <table>
                 <tbody>
                     <tr>
-                        <th>Example</th>
-                        <td>
-                            <span rel="skos:example">For example, from a <a href="#SOSASensor">Sensor</a>
-                                to the properties it can observe; from an <a href="#SOSAActuator">Actuator</a> to the
-                                properties it can act on; from
-                                a <a href="#SOSADeployment">Deployment</a> to the properties it was
-                                installed to observe or act on; from a <a
-                                    href="#SSNSYSTEMSystemCapability">SystemCapability</a> to the <a
-                                    href="#SOSAProperty">Property</a> the capability is described
-                                for.</span>
-                        </td>
-                    </tr>
-                    <tr>
                         <th>Domain Includes</th>
                         <td>
                             <span rel="schema:domainIncludes" resource="sosa:Property"><a
@@ -698,7 +684,8 @@
                     <tr>
                         <th>Example</th>
                         <td>
-                            <span property="skos:example">The measured wind speed differs depending on the height of the
+                            <span property="skos:example">The measured <em>wind speed</em> differs depending on the
+                                height of the
                                 <a href="#SOSASensor">Sensor</a> above the surface, e.g., due to friction.
                                 Consequently, procedures for measuring wind speed define a standard height for
                                 anemometers above ground, typically 10m for meteorological measures and 2m in
@@ -1251,8 +1238,9 @@
                     <tr>
                         <th>Note</th>
                         <td>
-                            <span property="skos:scopeNote">This is the <i>proximate</i> feature of interest, which may
-                                be a proxy entity such as a <i>sample</i> of the <i>ultimate</i> feature of interest.
+                            <span property="skos:scopeNote">This is the <i>proximate</i> feature of interest.
+                                It may be a proxy entity such as a <i>sample</i> of the <i>ultimate</i> feature of
+                                interest.
                                 Use <a href="#SOSAhasUltimateFeatureOfInterest">sosa:hasUltimateFeatureOfInterest</a> if
                                 the intention is to link to the ultimate feature of interest.</span>
                         </td>
@@ -1260,10 +1248,10 @@
                     <tr>
                         <th>Example</th>
                         <td>
-                            <span property="skos:example">For example, in an <a href="#SOSAObservation">Observation</a>
+                            <span property="skos:example">In an <a href="#SOSAObservation">Observation</a>
                                 of the weight of a person, the
-                                <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a> is the person and
-                                the property is its weight.</span>
+                                <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a> is the person, and
+                                the <a href="#SOSAobservedProperty">observedProperty</a> is its weight.</span>
                         </td>
                     </tr>
                     <tr>
@@ -1516,10 +1504,15 @@
                 <tbody>
                     <tr>
                         <th>Example</th>
-                        <td><span property="skos:example">
-                                <pre>"23"^^xsd:integer 
-"true"^^xsd:boolean</pre>
-                            </span></td>
+                        <td>
+                            <span property="skos:example">
+                                <pre>
+"89"^^xsd:integer 
+"true"^^xsd:boolean
+"23.5"^^unit:DEG_C
+</pre>
+                            </span>
+                        </td>
                     </tr>
                     <tr>
                         <th>Domain Includes</th>
@@ -2049,10 +2042,12 @@
                         <tr>
                             <th>Example</th>
                             <td><span property="skos:example">
-                                    <pre>"2024-01-23T19:26:00+11:00"^^xsd:dateTime
+                                    <pre>
+"2024-01-23T19:26:00+11:00"^^xsd:dateTime
 "2024-01-23"^^xsd:date
 "2024-01"^^xsd:gMonth
-"2024"^^xsd:gYear</pre>
+"2024"^^xsd:gYear
+</pre>
                                 </span></td>
                         </tr>
                         <th>Domain Includes</th>
@@ -2116,10 +2111,12 @@
                     <tr>
                         <th>Example</th>
                         <td><span property="skos:example">
-                                <pre>"2024-01-23T19:26:00+11:00"^^xsd:dateTime
+                                <pre>
+"2024-01-23T19:26:00+11:00"^^xsd:dateTime
 "2024-01-23"^^xsd:date
 "2024-01"^^xsd:gMonth
-"2024"^^xsd:gYear</pre>
+"2024"^^xsd:gYear
+</pre>
                             </span></td>
                     </tr>
                     <th>Domain Includes</th>
@@ -2308,10 +2305,9 @@
                 <tbody>
                     <tr>
                         <th>Example</th>
-                        <td><span property="skos:example">For example, a temperature <a href="#SOSASensor">Sensor</a>
-                                deployed on a wall, or a whole
-                                network of Sensors
-                                deployed for an Observation campaign.</span></td>
+                        <td><span property="skos:example">For example,
+                                a temperature <a href="#SOSASensor">Sensor</a> deployed on a wall,
+                                or a whole network of Sensors deployed for an Observation campaign.</span></td>
                     </tr>
                     <tr class="ssn">
                         <th class="restrictions">Restrictions</th>
