@@ -47,15 +47,18 @@ sosa:Sample
   """@en ;
   rdfs:comment "Physical samples are sometimes known as 'specimens'."@en ;
   skos:scopeNote """
-  Samples are typically subsets or extracts from the feature of interest of an observation.
-  They are used in situations where observations cannot be made directly on the ultimate feature of interest, either ecause the entire feature cannot be observed, or because it is more convenient to use a proxy.
+  Samples are typically subsets or extracts from an entity or feature.
+  Every sample is expected to (eventually) be the feature-of-interest of an Observation. 
+  
+  When the feature of interest cannot be observed directly, a sample of it might be used in Observations as a proxy for it. In such a case the Sample is the proximate Feature of Interest of the Observation, while the Feature of Interest of the act of Sampling (i.e. the entity that the Sample 'isSampleOf') is the ultimate Feature of Interest of the Observation.
+  Samples are used in situations where observations cannot be made directly on the ultimate feature of interest, either because the entire feature cannot be observed, or because it is more convenient to use a proxy.
   Samples are thus artifacts of an observational strategy, and have no significant function outside of their role in the observation process. 
   The characteristics of the samples themselves are of little interest, except perhaps to the manager of a sampling campaign.
 
   A Sample is intended to sample some FatureOfInterest, so there is an expectation of at least one isSampleOf property. 
   However, in some cases the identity, and even the exact type, of the sampled feature may not be known when observations are made using the sample.
   """@en ;
-  skos:example "A 'station' is essentially an identifiable locality where a sensor system or Procedure may be deployed and an observation made. In the context of the observation model, it connotes the 'world in the vicinity of the station', so the observed properties relate to the physical medium at the station, and not to any physical artifact such as a mooring, buoy, benchmark, monument, well, etc."@en ;
+  skos:example "A 'station' is a spatial sample, in the form of an identifiable locality where a sensor system or Procedure may be deployed and an observation made. In the context of the observation model, it connotes the 'world in the vicinity of the station', so the observed properties relate to the physical medium at the station, and not to any physical artifact such as a mooring, buoy, benchmark, monument, well, etc."@en ;
   skos:example "A statistical sample is often designed to be characteristic of an entire population, so that observations can be made regarding the sample that provide a good estimate of the properties of the population."@en ;
   skos:note "A transient sample, such as a ships-track or flight-line, might be identified and described, but is unlikely to be revisited exactly."@en ;
   rdfs:isDefinedBy sosa-sam: .
