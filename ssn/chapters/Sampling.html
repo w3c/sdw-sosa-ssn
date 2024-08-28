@@ -125,28 +125,32 @@
             <tbody>
                 <tr>
                     <th>Comment</th>
-                    <td><span property="rdfs:comment">Samples are typically subsets or extracts from the feature of
-                            interest of an observation.
-                            They are used in situations where observations cannot be made directly on the ultimate
+                    <td><span property="skos:scopeNote">
+                            Samples are typically subsets or extracts from an entity or feature.
+                            Every sample is expected to (eventually) be the feature-of-interest of an Observation.
+                            <br><br>
+                            Samples are used in situations where observations cannot be made directly on the ultimate
                             feature of interest, either because the entire feature cannot be observed, or because it is
                             more convenient to use a proxy.
-                            Samples are thus artifacts of an observational strategy, and usually have no significant
-                            function outside of their role in the observation process.
-                            The characteristics of the samples themselves are generally of little interest, except to
-                            the manager of a sampling campaign, or sample curator.
-                            <br>
-                            A Sample is intended to sample some FeatureOfInterest, so there is an expectation of at
-                            least one isSampleOf property.
+                            Samples are thus artifacts of an observational strategy, and have no significant function
+                            outside of their role in the observation process.
+                            The characteristics of the samples themselves are of little interest, except perhaps to the
+                            manager of a sampling campaign.
+                            <br><br>
+                            A Sample is intended to sample some FatureOfInterest, so there is an expectation of at least
+                            one isSampleOf property.
                             However, in some cases the identity, and even the exact type, of the sampled feature may not
-                            be known when observations are made using the sample.</span>
-                        <br>
-                        <span property="rdfs:comment">Physical samples are sometimes known as 'specimens'.</span>
+                            be known when observations are made using the sample.
+                            <br>
+                            <span property="rdfs:comment">Physical samples are sometimes known as 'specimens'.</span>
+                            <span property="skos:note">A transient sample, such as a ships-track or flight-line, might
+                                be identified and described, but is unlikely to be revisited exactly.</span>
                     </td>
                 </tr>
                 <tr>
                     <th>Example</th>
-                    <td><span property="skos:example">A 'station' is essentially an identifiable locality where a <a
-                                href="#SOSASensor">Sensor</a> system or procedure may be deployed and an
+                    <td><span property="skos:example">A 'station' is a spatial sample, in the form of an identifiable
+                            locality where a <a href="#SOSASensor">Sensor</a> system or procedure may be deployed and an
                             observation made.
                             In the context of the observation model, it connotes the 'world in the vicinity of the
                             station', so the observed properties relate to the physical medium at the station, and not
@@ -156,13 +160,6 @@
                             entire population, so that <a href="#SOSAObservation">Observations</a> can be
                             made regarding the sample that provide a good estimate of the properties of the
                             population.</span>
-                    </td>
-                </tr>
-                <tr class="ssn">
-                    <th>Sub class of</th>
-                    <td>
-                        <span rel="rdfs:subClassOf" resource="sosa:FeatureOfInterest"><a
-                                href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a></span>
                     </td>
                 </tr>
                 <tr class="ssn">
