@@ -69,6 +69,22 @@ sosa:Sampling
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeBySampler ; owl:allValuesFrom sosa:Sampler ] ;
   rdfs:isDefinedBy sosa-sam: .
 
+sosa:SamplingCollection 
+  rdfs:subClassOf rdf:Bag ;
+  rdfs:subClassOf sosa:ExecutionCollection ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeBySampler ; owl:allValuesFrom sosa:Sampler ] ;
+  rdfs:subClassOf [ 
+    a owl:Restriction ; 
+    owl:onProperty sosa:hasMember ; 
+    owl:allValuesFrom [ 
+      owl:unionOf ( 
+        sosa:Sampling 
+        sosa:SamplingCollection 
+      ) ;
+    ] 
+  ] ;
+  rdfs:isDefinedBy sosa-sam: .
+
 sosa:SpatialSample 
   rdfs:subClassOf sosa:Sample ;
   rdfs:isDefinedBy sosa-sam: .

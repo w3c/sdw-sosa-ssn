@@ -388,8 +388,7 @@
                 <a href="#SOSAphenomenonTime">phenomenonTime</a> ,
                 <a href="#SOSAresultTime">resultTime</a> ,
                 <a href="#SOSAhasResult">hasResult</a> ,
-                <a href="#SOSAhasSimpleResult">hasSimpleResult</a> ,
-                <a href="#SOSAresultQuality">resultQuality</a> .
+                <a href="#SOSAhasSimpleResult">hasSimpleResult</a> .
                 If they are present, the values of these properties summarize the values of the matching properties of
                 the member observations, where membership is either direct or transitive through one or more member
                 observation collections.
@@ -439,6 +438,8 @@
                     <td>
                         <span rel="rdfs:subClassOf" resource="rdf:Bag"><a
                                 href="https://www.w3.org/TR/rdf12-schema/#ch_bag">rdf:Bag</a></span>
+                        , <span rel="rdfs:subClassOf" resource="sosa:ExecutionCollection"><a
+                                href="#SOSAExecutionCollection">sosa:ExecutionCollection</a></span>
                     </td>
                 </tr>
                 <tr class="ssn">
@@ -457,6 +458,53 @@
                     <td>
                         <span about="sosa:ObservationCollection" rel="rdfs:subClassOf"
                             resource="[_:SOSAObservationCollection2]"></span>
+                        <span about="[_:SOSAObservationCollection2]" typeof="owl:Restriction"></span>
+                        <span about="[_:SOSAObservationCollection2]" rel="owl:onProperty"
+                            resource="sosa:madeBySensor"><a href="#SOSAmadeBySensor">sosa:madeBySensor</a></span>
+                        <span about="[_:SOSAObservationCollection2]" property="owl:allValuesFrom"
+                            resource="sosa:Sensor"><em><b>ONLY</b></em> <a href="#SOSASensor">sosa:Sensor</a></span>
+                        <br>
+                        <span about="sosa:ObservationCollection" rel="rdfs:subClassOf"
+                            resource="[_:SOSAObservationCollection3]"></span>
+                        <span about="[_:SOSAObservationCollection3]" typeof="owl:Restriction"></span>
+                        <span about="[_:SOSAObservationCollection3]" rel="owl:onProperty"
+                            resource="sosa:usedProcedure"><a href="#SOSAusedProcedure">sosa:usedProcedure</a></span>
+                        <span about="[_:SOSAObservationCollection3]" property="owl:allValuesFrom"
+                            resource="sosa:Procedure"><em><b>ONLY</b></em> <a
+                                href="#SOSAProcedure">sosa:Procedure</a></span>
+                        <br>
+                        <span about="sosa:ObservationCollection" rel="rdfs:subClassOf"
+                            resource="[_:SOSAObservationCollection5]"></span>
+                        <span about="[_:SOSAObservationCollection5]" typeof="owl:Restriction"></span>
+                        <span about="[_:SOSAObservationCollection5]" rel="owl:onProperty"
+                            resource="sosa:hasFeatureOfInterest"><a
+                                href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a></span>
+                        <span about="[_:SOSAObservationCollection5]" property="owl:allValuesFrom"
+                            resource="sosa:FeatureOfInterest"><em><b>ONLY</b></em> <a
+                                href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a></span>
+                        <br>
+                        <span about="sosa:ObservationCollection" rel="rdfs:subClassOf"
+                            resource="[_:SOSAObservationCollection15]"></span>
+                        <span about="[_:SOSAObservationCollection15]" typeof="owl:Restriction"></span>
+                        <span about="[_:SOSAObservationCollection15]" rel="owl:onProperty"
+                            resource="sosa:hasUltimateFeatureOfInterest"><a
+                                href="#SOSAhasUltimateFeatureOfInterest">sosa:hasUltimateFeatureOfInterest</a></span>
+                        <span about="[_:SOSAObservationCollection15]" property="owl:allValuesFrom"
+                            resource="sosa:FeatureOfInterest"><em><b>ONLY</b></em> <a
+                                href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a></span>
+                        <br>
+                        <span about="sosa:ObservationCollection" rel="rdfs:subClassOf"
+                            resource="[_:SOSAObservationCollection7]"></span>
+                        <span about="[_:SOSAObservationCollection7]" typeof="owl:Restriction"></span>
+                        <span about="[_:SOSAObservationCollection7]" rel="owl:onProperty"
+                            resource="sosa:observedProperty"><a
+                                href="#SOSAobservedProperty">sosa:observedProperty</a></span>
+                        <span about="[_:SOSAObservationCollection7]" property="owl:allValuesFrom"
+                            resource="sosa:ObservableProperty"><em><b>ONLY</b></em> <a
+                                href="#SOSAObservableProperty">sosa:ObservableProperty</a></span>
+                        <br>
+                        <span about="sosa:ObservationCollection" rel="rdfs:subClassOf"
+                            resource="[_:SOSAObservationCollection4]"></span>
                         <span about="[_:SOSAObservationCollection]" typeof="owl:Restriction"></span>
                         <span about="[_:SOSAObservationCollection]" rel="owl:onProperty" resource="sosa:hasMember"><a
                                 href="#SOSAhasMember">sosa:hasMember</a></span>
