@@ -36,22 +36,15 @@ sosa:ObservableProperty
   skos:example "The height of a tree, the depth of a water body, or the temperature of a surface. "@en ;
   rdfs:isDefinedBy sosa-obs: .
 
-sosa:ObservingProcedure 
-  a owl:Class ;
-  rdfs:label "Observing Procedure"@en ;
-  skos:definition """
-  The description of steps performed in order to determine the value of an ObservableProperty by an Observer.
-  """@en ;
-  skos:example "A workflow, protocol, plan, algorithm, or computational method specifying how to make an observation; the description of the process utilized by an observer. This could be a chemical analysis method, a protocol for measuring an object, but could also be a checklist utilized by a human observer during a biodiversity campaign."@en ;
-  skos:scopeNote "The observing procedure cannot describe a sensor instance, but it can describe the sensor type."@en ;
-  rdfs:isDefinedBy sosa-obs: .
-
 sosa:Observation 
   a owl:Class ;
   rdfs:label "Observation"@en ;
   skos:definition """
   Act of carrying out an (Observation) Procedure to estimate or calculate a value of a property of a FeatureOfInterest. Links to a Sensor to describe what made the Observation and how; links to an ObservableProperty to describe what the result is an estimate of, and to a FeatureOfInterest to detail what entity that property was associated with.
   """@en ;
+  skos:note """
+  When the feature of interest cannot be observed directly, a sample of it might be used in Observations as a proxy for it. In such a case the Sample is the proximate Feature of Interest of the Observation, while the (ultimate) Feature of Interest of the act of Sampling (i.e. the entity that the Sample is ultimately 'isSampleOf') is the ultimate Feature of Interest of the Observation.
+  """ ;
   skos:scopeNote """
   An Observation concerns a single ObservableProperty of a single FeatureOfInterest. 
   Observations of multiple properties, or other combinations of Observations, may be described in an ObservationCollection. 
@@ -86,15 +79,180 @@ sosa:ObservationCollection
   skos:note """The members of a collection do not necessarily share a common value for any property. """@en ;
   rdfs:isDefinedBy sosa-obs: .
 
+sosa:Sensor 
+  a owl:Class ;
+  rdfs:label "Sensor or Observer"@en ;
+  skos:altLabel "Observer"@en ;
+  skos:prefLabel "Sensor"@en ;
+  skos:definition """
+  An identifiable entity that can generate Observations pertaining to an ObservableProperty by implementing a (Observation) Procedure. Device, agent (including humans), or software (simulation) involved in, or implementing, a Procedure. Sensors respond to a stimulus, e.g., a change in the environment, or input data composed from the results of prior Observations, and generate a Result. Sensors can be hosted by Platforms."""@en ;
+  skos:example "Accelerometers, gyroscopes, barometers, magnetometers, and so forth are Sensors that are typically mounted on a modern smartphone (which acts as Host or Platform). Other examples of Sensors include the human eyes."@en ;
+  skos:note "Different Sensors can follow the same (reusable) observing Procedure for the creation of different Observations."@en ;
+  skos:scopeNote "The Sensor is the entity instance, not the entity type. Pertaining to sensors, the Sensor would reference the explicit sensor, while the Procedure would reference the methodology utilized by that sensor type;"@en ;
+  skos:note "A Sensor can be hosted by one or more Platform."@en ;
+  skos:note "The Sensor is an instance of a sensor, instrument, implementation of an algorithm, or a being such as a person."@en ;
+  skos:example "Accelerometers, gyroscopes, barometers, magnetometers, and so forth are Sensors that are typically mounted on a modern smart phone (which acts as Platform). Other examples of sensors include the human eyes."@en ;
+  skos:note "The UML class 'Observer' from ISO 19156:2023 is implemented in SOSA by the OWL/RDFS class 'Sensor'. The class name 'Sensor' is preferred for backward compatibility with existing SOSA deployments. " ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:Stimulus 
+  a owl:Class ;
+  rdfs:label "Stimulus"@en ;
+  skos:definition """
+  An event in the real world that 'triggers' the Sensor. The properties associated to the Stimulus may be different to the eventual observed ObservableProperty. It is the event, not the object, that triggers the Sensor.
+  """@en ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:detects 
+  a owl:ObjectProperty ;
+  rdfs:label "detects"@en ;
+  skos:definition """
+  A relation from a Sensor to the Stimulus that the Sensor detects. 
+  The Stimulus itself will be serving as a proxy for some ObservableProperty.
+  """@en ;
+  schema:domainIncludes sosa:Sensor ;
+  schema:rangeIncludes sosa:Stimulus ;
+  owl:inverseOf sosa:isDetectedBy ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:hasProxy 
+  a owl:ObjectProperty ;
+  rdfs:label "has proxy"@en ;
+  skos:definition """
+  A relation from a Property to the Stimulus that serves as its proxy."""@en ;
+  schema:domainIncludes sosa:ObservableProperty ;
+  schema:rangeIncludes sosa:Stimulus ;
+  owl:inverseOf sosa:isProxyFor ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:isDetectedBy 
+  a owl:ObjectProperty ;
+  rdfs:label "is detected by"@en ;
+  skos:definition """
+  A relation from a Stimulus to the Sensor that may detect it. 
+  The Stimulus itself will be serving as a proxy for some ObservableProperty.
+  """@en ;
+  schema:domainIncludes sosa:Stimulus ;
+  schema:rangeIncludes sosa:Sensor ;
+  owl:inverseOf sosa:detects ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:isObservedBy 
+  a owl:ObjectProperty ;
+  rdfs:label "is observed by"@en ;
+  skos:definition """
+  Relation between an ObservableProperty and the Sensor able to observe it.
+  """@en ;
+  schema:domainIncludes sosa:ObservableProperty ;
+  schema:rangeIncludes sosa:Sensor ;
+  owl:inverseOf sosa:observes ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:isProxyFor 
+  a owl:ObjectProperty ;
+  rdfs:label "is proxy for"@en ;
+  skos:definition """
+  A relation from a Stimulus to the Property that the Stimulus is serving as a proxy for."""@en ;
+  skos:example "For example, the expansion of quicksilver is a stimulus that serves as a proxy for some temperature property. An increase or decrease in the velocity of spinning cups on a wind sensor is serving as a proxy for the wind speed."@en ;
+  schema:domainIncludes sosa:Stimulus ;
+  schema:rangeIncludes sosa:ObservableProperty ;
+  owl:inverseOf sosa:hasProxy ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:madeBySensor 
+  a owl:ObjectProperty ;
+  rdfs:label "made by sensor or observer"@en ;
+  skos:definition """
+  Relation between an Observation and the Sensor or Observer which made the Observation.
+  """@en ;
+  schema:domainIncludes sosa:Observation ;
+  schema:domainIncludes sosa:ObservationCollection ;
+  schema:rangeIncludes sosa:Sensor ;
+  owl:inverseOf sosa:madeObservation ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:madeObservation 
+  a owl:ObjectProperty ;
+  rdfs:label "made observation"@en ;
+  skos:definition """
+  Relation between a Sensor and an Observation made by the Sensor.
+  """@en ;
+  schema:domainIncludes sosa:Sensor ;
+  schema:rangeIncludes sosa:Observation ;
+  owl:inverseOf sosa:madeBySensor ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:observationRelatedTo 
+  a owl:ObjectProperty ;
+  rdfs:label "observation related to"@en ;
+  skos:definition """
+  Relation of an Observation to something else.
+  """@en ;
+  skos:scopeNote "This general relationship complements the specific predicates outbound from Observation. It is particularly useful to relate Observations (and collections) to other Executions (and collections)" ;
+  schema:domainIncludes sosa:Observation ;
+  schema:domainIncludes sosa:ObservationCollection ;
+  schema:rangeIncludes sosa:Observation ;
+  schema:rangeIncludes sosa:ObservationCollection ;
+  owl:inverseOf sosa:relatedObservation ;
+  rdfs:isDefinedBy sosa-obs: .
+
 sosa:observedProperty 
   a owl:ObjectProperty ;
   rdfs:label "observed property"@en ;
   skos:definition """
-  Relation linking an Observation or Observation Collection to the property that was observed. The ObservableProperty should be a property of the FeatureOfInterest (linked by hasFeatureOfInterest) of this Observation.
+  Relation linking an Observation or Observation Collection to the property that was observed. The ObservableProperty MUST be a property of the FeatureOfInterest (linked by hasFeatureOfInterest) of this Observation.
   """@en ;
   schema:domainIncludes sosa:Observation ;
   schema:domainIncludes sosa:ObservationCollection ;
   schema:rangeIncludes sosa:ObservableProperty ;
+  owl:inverseOf sosa:wasObservedBy ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:observes 
+  a owl:ObjectProperty ;
+  rdfs:label "observes"@en ;
+  skos:definition """
+  Relation between a Sensor and an ObservableProperty that it is capable of sensing.
+  """@en ;
+  schema:domainIncludes sosa:Sensor ;
+  schema:rangeIncludes sosa:ObservableProperty ;
+  owl:inverseOf sosa:isObservedBy ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:originated 
+  a owl:ObjectProperty ;
+  rdfs:label "originated"@en ;
+  skos:definition """
+  Relation between a Stimulus and the Observation that was originated by it.
+  """@en ;
+  schema:domainIncludes sosa:Stimulus ;
+  schema:rangeIncludes sosa:Observation ;
+  owl:inverseOf sosa:wasOriginatedBy ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:qualityOf 
+  a owl:ObjectProperty ;
+  rdfs:label "result quality of" ;
+  skos:definition """
+  Link to the observation or collection that this data quality assessment applies to.
+  """@en ;
+  schema:rangeIncludes sosa:Observation ;
+  schema:rangeIncludes sosa:ObservationCollection ;
+  owl:inverseOf sosa:resultQuality ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:relatedObservation 
+  a owl:ObjectProperty ;
+  rdfs:label "related observation"@en ;
+  skos:definition """
+  Relation to an Observation.
+  """@en ;
+  skos:scopeNote "This general relationship complements the specific predicates inbound to Observation. It is particularly useful to relate Observations (and collections) to other Executions (and collections)" ;
+  schema:domainIncludes sosa:Observation ;
+  schema:domainIncludes sosa:ObservationCollection ;
+  schema:rangeIncludes sosa:Observation ;
+  schema:rangeIncludes sosa:ObservationCollection ;
+  owl:inverseOf sosa:observationRelatedTo ;
   rdfs:isDefinedBy sosa-obs: .
 
 sosa:resultQuality 
@@ -112,101 +270,19 @@ sosa:resultQuality
   skos:note  """dqv:hasQualityMeasurement from the Data Quality Vocabulary is equivalent""" ;
   schema:domainIncludes sosa:Observation ;
   schema:domainIncludes sosa:ObservationCollection ;
+  owl:inverseOf sosa:qualityOf ;
   rdfs:isDefinedBy sosa-obs: .
 
-sosa:Sensor 
-  a owl:Class ;
-  rdfs:label "Sensor or Observer"@en ;
-  skos:altLabel "Observer"@en ;
-  skos:prefLabel "Sensor"@en ;
-  skos:definition """
-  An identifiable entity that can generate Observations pertaining to an ObservableProperty by implementing an ObservingProcedure. Device, agent (including humans), or software (simulation) involved in, or implementing, a Procedure. Sensors respond to a stimulus, e.g., a change in the environment, or input data composed from the results of prior Observations, and generate a Result. Sensors can be hosted by Platforms."""@en ;
-  skos:example "Accelerometers, gyroscopes, barometers, magnetometers, and so forth are Sensors that are typically mounted on a modern smartphone (which acts as Host or Platform). Other examples of Sensors include the human eyes."@en ;
-  skos:note "Different Sensors can follow the same (reusable) observing Procedure for the creation of different Observations."@en ;
-  skos:scopeNote "The Sensor is the entity instance, not the entity type. Pertaining to sensors, the Sensor would reference the explicit sensor, while the Procedure would reference the methodology utilized by that sensor type;"@en ;
-  skos:note "A Sensor can be hosted by one or more Platform."@en ;
-  skos:note "The Sensor is an instance of a sensor, instrument, implementation of an algorithm, or a being such as a person."@en ;
-  skos:example "Accelerometers, gyroscopes, barometers, magnetometers, and so forth are Sensors that are typically mounted on a modern smart phone (which acts as Platform). Other examples of sensors include the human eyes."@en ;
-  skos:note "The UML class 'Observer' from ISO 19156:2023 is implemented in SOSA by the OWL/RDFS class 'Sensor'. The class name 'Sensor' is preferred for backward compatibility with existing SOSA deployments. " ;
-  rdfs:isDefinedBy sosa-obs: .
-
-sosa:observes 
+sosa:wasObservedBy 
   a owl:ObjectProperty ;
-  rdfs:label "observes"@en ;
+  rdfs:label "was observed by"@en ;
   skos:definition """
-  Relation between a Sensor and an ObservableProperty that it is capable of sensing.
-  """@en ;
-  schema:domainIncludes sosa:Sensor ;
-  schema:rangeIncludes sosa:ObservableProperty ;
-  owl:inverseOf sosa:isObservedBy ;
-  rdfs:isDefinedBy sosa-obs: .
-
-sosa:isObservedBy 
-  a owl:ObjectProperty ;
-  rdfs:label "is observed by"@en ;
-  skos:definition """
-  Relation between an ObservableProperty and the Sensor able to observe it.
+  Relation linking a Property to the Observation or Observation Collection that observed it. 
   """@en ;
   schema:domainIncludes sosa:ObservableProperty ;
-  schema:rangeIncludes sosa:Sensor ;
-  owl:inverseOf sosa:observes ;
-  rdfs:isDefinedBy sosa-obs: .
-
-sosa:madeObservation 
-  a owl:ObjectProperty ;
-  rdfs:label "made observation"@en ;
-  skos:definition """
-  Relation between a Sensor and an Observation made by the Sensor.
-  """@en ;
-  schema:domainIncludes sosa:Sensor ;
-  schema:rangeIncludes sosa:Observation ;
-  owl:inverseOf sosa:madeBySensor ;
-  rdfs:isDefinedBy sosa-obs: .
-
-sosa:madeBySensor 
-  a owl:ObjectProperty ;
-  rdfs:label "made by sensor or observer"@en ;
-  skos:definition """
-  Relation between an Observation and the Sensor or Observer which made the Observation.
-  """@en ;
-  schema:domainIncludes sosa:Observation ;
-  schema:domainIncludes sosa:ObservationCollection ;
-  schema:rangeIncludes sosa:Sensor ;
-  owl:inverseOf sosa:madeObservation ;
-  rdfs:isDefinedBy sosa-obs: .
-
-sosa:relatedObservation 
-  a owl:ObjectProperty ;
-  rdfs:label "related observation"@en ;
-  skos:definition """
-  Relation to an Observation.
-  """@en ;
-  schema:domainIncludes sosa:ObservableProperty ;
-  schema:domainIncludes sosa:Observation ;
-  schema:domainIncludes sosa:ObservationCollection ;
-  schema:domainIncludes sosa:Platform ;
-  schema:domainIncludes sosa:Procedure ;
-  schema:domainIncludes sosa:Sensor ;
   schema:rangeIncludes sosa:Observation ;
   schema:rangeIncludes sosa:ObservationCollection ;
-  rdfs:isDefinedBy sosa-obs: .
-
-sosa:Stimulus 
-  a owl:Class ;
-  rdfs:label "Stimulus"@en ;
-  skos:definition """
-  An event in the real world that 'triggers' the Sensor. The properties associated to the Stimulus may be different to the eventual observed ObservableProperty. It is the event, not the object, that triggers the Sensor.
-  """@en ;
-  rdfs:isDefinedBy sosa-obs: .
-
-sosa:isProxyFor 
-  a owl:ObjectProperty ;
-  rdfs:label "is proxy for"@en ;
-  skos:definition """
-  A relation from a Stimulus to the Property that the Stimulus is serving as a proxy for."""@en ;
-  skos:example "For example, the expansion of quicksilver is a stimulus that serves as a proxy for some temperature property. An increase or decrease in the velocity of spinning cups on a wind sensor is serving as a proxy for the wind speed."@en ;
-  schema:domainIncludes sosa:Stimulus ;
-  schema:rangeIncludes sosa:ObservableProperty ;
+  owl:inverseOf sosa:observedProperty ;
   rdfs:isDefinedBy sosa-obs: .
 
 sosa:wasOriginatedBy 
@@ -217,16 +293,7 @@ sosa:wasOriginatedBy
   """@en ;
   schema:domainIncludes sosa:Observation ;
   schema:rangeIncludes sosa:Stimulus ;
-  rdfs:isDefinedBy sosa-obs: .
-
-sosa:detects 
-  a owl:ObjectProperty ;
-  rdfs:label "detects"@en ;
-  skos:definition """
-  A relation from a Sensor to the Stimulus that the Sensor detects. The Stimulus itself will be serving as a proxy for some ObservableProperty.
-  """@en ;
-  schema:domainIncludes sosa:Sensor ;
-  schema:rangeIncludes sosa:Stimulus ;
+  owl:inverseOf sosa:originated ;
   rdfs:isDefinedBy sosa-obs: .
 
 ## End of observation schema
@@ -241,23 +308,26 @@ sosa:hasMember
   schema:rangeIncludes sosa:ObservationCollection ;
   rdfs:isDefinedBy sosa-common: .
 
+sosa:isMemberOf 
+  schema:domainIncludes sosa:ObservationCollection ;
+  schema:domainIncludes sosa:Observation ;
+  schema:rangeIncludes sosa:ObservationCollection ;
+  rdfs:isDefinedBy sosa-common: .
+
 
 ## Features of interest and Property
 
 sosa:FeatureOfInterest 
   rdfs:isDefinedBy sosa-common: .
 
-sosa:hasFeatureOfInterest 
-  schema:domainIncludes sosa:Observation ;
-  schema:domainIncludes sosa:ObservationCollection ;
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:hasUltimateFeatureOfInterest 
-  schema:domainIncludes sosa:Observation ;
-  schema:domainIncludes sosa:ObservationCollection ;
+sosa:hasProperty 
   rdfs:isDefinedBy sosa-common: .
 
 sosa:isFeatureOfInterestOf 
+  schema:rangeIncludes sosa:Observation ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:isUltimateFeatureOfInterestOf 
   schema:rangeIncludes sosa:Observation ;
   rdfs:isDefinedBy sosa-common: .
 
@@ -267,13 +337,21 @@ sosa:Property
 sosa:PropertyOfInterest 
   rdfs:isDefinedBy sosa-common: .
 
-sosa:hasProperty 
-  rdfs:isDefinedBy sosa-common: .
-
 sosa:isPropertyOf 
   rdfs:isDefinedBy sosa-common: .
 
+sosa:hasProcedure 
+  schema:domainIncludes sosa:ObservableProperty ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:propertyFor
+  schema:domainIncludes sosa:ObservableProperty ;
+  schema:rangeIncludes sosa:Sensor ;
+  rdfs:isDefinedBy sosa-common: .
+
 sosa:forProperty 
+  schema:domainIncludes sosa:Sensor ;
+  schema:rangeIncludes sosa:ObservableProperty ;
   rdfs:isDefinedBy sosa-common: .
 
 
@@ -282,16 +360,24 @@ sosa:forProperty
 sosa:Procedure 
   rdfs:isDefinedBy sosa-common: .
 
+sosa:usedForExecution 
+  schema:rangeIncludes sosa:Observation ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:implementedBy 
+  schema:rangeIncludes sosa:Sensor ;
+  rdfs:isDefinedBy sosa-common: .
+
 sosa:hasInput 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:inputFor 
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hasOutput 
   rdfs:isDefinedBy sosa-common: .
 
-sosa:usedProcedure 
-  schema:domainIncludes sosa:Observation ;
-  schema:domainIncludes sosa:ObservationCollection ;
-  schema:rangeIncludes sosa:ObservingProcedure ;
+sosa:outputFor 
   rdfs:isDefinedBy sosa-common: .
 
 ## Executions
@@ -299,12 +385,9 @@ sosa:usedProcedure
 sosa:Execution 
   rdfs:isDefinedBy sosa-common: .
 
-sosa:hasInputValue 
+sosa:usedProcedure 
   schema:domainIncludes sosa:Observation ;
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:hasOutputValue 
-  schema:domainIncludes sosa:Observation ;
+  schema:domainIncludes sosa:ObservationCollection ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:startTime 
@@ -321,6 +404,37 @@ sosa:phenomenonTime
   schema:domainIncludes sosa:Observation ;
   schema:domainIncludes sosa:ObservationCollection ;
   rdfs:isDefinedBy sosa-common: .
+
+sosa:phenomenonOccurred 
+  schema:rangeIncludes sosa:Observation ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasFeatureOfInterest 
+  schema:domainIncludes sosa:Observation ;
+  schema:domainIncludes sosa:ObservationCollection ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasUltimateFeatureOfInterest 
+  schema:domainIncludes sosa:Observation ;
+  schema:domainIncludes sosa:ObservationCollection ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasInputValue 
+  schema:domainIncludes sosa:Observation ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:inputValueForExecution 
+  schema:rangeIncludes sosa:Observation ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:hasOutputValue 
+  schema:domainIncludes sosa:Observation ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:outputValueForExecution 
+  schema:rangeIncludes sosa:Observation ;
+  rdfs:isDefinedBy sosa-common: .
+
 
 
 ## Result 
@@ -345,36 +459,26 @@ sosa:hasSimpleResult
 sosa:System 
   rdfs:isDefinedBy sosa-common: .
 
-sosa:hasSubSystem 
-  rdfs:isDefinedBy sosa-common: .
-
 sosa:implements 
   schema:domainIncludes sosa:Sensor ;
   rdfs:isDefinedBy sosa-common: .
 
-sosa:implementedBy 
+sosa:hasSubSystem 
+  schema:domainIncludes sosa:Sensor ;
   schema:rangeIncludes sosa:Sensor ;
   rdfs:isDefinedBy sosa-common: .
 
-
-## Deployment
-
-sosa:Deployment 
+sosa:isSubSystemOf 
+  schema:domainIncludes sosa:Sensor ;
+  schema:rangeIncludes sosa:Sensor ;
   rdfs:isDefinedBy sosa-common: .
 
-sosa:deployedAsset 
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:deployedSystem 
+sosa:isHostedBy 
+  schema:domainIncludes sosa:Sensor ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hasDeployment 
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:deployedOnPlatform 
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:inDeployment 
+  schema:domainIncludes sosa:Sensor ;
   rdfs:isDefinedBy sosa-common: .
 
 ## Platform 
@@ -386,6 +490,21 @@ sosa:hosts
   schema:rangeIncludes sosa:Sensor ;
   rdfs:isDefinedBy sosa-common: .
 
-sosa:isHostedBy 
-  schema:domainIncludes sosa:Sensor ;
+sosa:inDeployment 
   rdfs:isDefinedBy sosa-common: .
+
+## Deployment
+
+sosa:Deployment 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:deployedAsset 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:deployedSystem 
+  schema:rangeIncludes sosa:Sensor ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:deployedOnPlatform 
+  rdfs:isDefinedBy sosa-common: .
+
