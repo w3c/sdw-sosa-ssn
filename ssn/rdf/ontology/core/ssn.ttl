@@ -61,14 +61,17 @@ In particular, (a) the scope is extended to include actuation and sampling; (b) 
 ## Collections 
 
 sosa:ActuationCollection
-  owl:disjointWith sosa:ObservationCollection , sosa:SampleCollection ;
+  owl:disjointWith sosa:ObservationCollection , sosa:SampleCollection , sosa:SamplingCollection ;
   rdfs:isDefinedBy sosa: .
 
 sosa:ObservationCollection 
-  owl:disjointWith sosa:ActuationCollection , sosa:SampleCollection ;
+  owl:disjointWith sosa:ActuationCollection , sosa:SampleCollection , sosa:SamplingCollection ;
   rdfs:isDefinedBy sosa: .
 
 sosa:SampleCollection
-  owl:disjointWith sosa:ActuationCollection , sosa:ObservationCollection ;
+  owl:disjointWith sosa:ActuationCollection , sosa:ObservationCollection , sosa:SamplingCollection ;
   rdfs:isDefinedBy sosa: .
 
+sosa:SamplingCollection
+  owl:disjointWith sosa:ActuationCollection , sosa:ObservationCollection , sosa:SampleCollection ;
+  rdfs:isDefinedBy sosa: .
