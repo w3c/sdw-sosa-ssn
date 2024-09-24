@@ -8,7 +8,6 @@
 @prefix time: <http://www.w3.org/2006/time#> .
 @prefix dqv: <http://www.w3.org/ns/dqv#> .
 @prefix prov: <https://www.w3.org/TR/prov-o/#> .
-@prefix doap: <http://usefulinc.com/ns/doap#> .
 @prefix dqv: <http://www.w3.org/ns/dqv#> .
 
 @prefix schema: <http://schema.org/> .
@@ -50,7 +49,12 @@ sosa-oms: a owl:Ontology ;
 
 ogc-ms:implements a owl:ObjectProperty ;
     skos:definition "link from an RDFS/OWL class or property to a requirement linked to an element in a UML model which it implements" ;
-    rdfs:subPropertyOf dcterms:source , prov:wasDerivedFrom , doap:implements . 
+    rdfs:subPropertyOf dcterms:source , prov:wasDerivedFrom . 
+
+ogc-ms:implementedBy a owl:ObjectProperty ;
+    skos:definition "link from a requirement linked to an element in a UML model to an RDFS/OWL class or property which implements it" ;
+    owl:inverseOf ogc-ms:implements . 
+
 
 ## General properties
 
@@ -146,13 +150,25 @@ sosa:Procedure
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Procedure> ;
   rdfs:isDefinedBy sosa-common: .
 
-sosa:ObservingProcedure 
+sosa-oms:ObservingProcedure 
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/ObservingProcedure> ;
-  rdfs:isDefinedBy sosa-obs: .
+  a owl:Class ;
+  rdfs:label "Observing Procedure"@en ;
+  skos:definition """
+  The description of steps performed in order to determine the value of an ObservableProperty by an Observer.
+  """@en ;
+  skos:example "A workflow, protocol, plan, algorithm, or computational method specifying how to make an observation; the description of the process utilized by an observer. This could be a chemical analysis method, a protocol for measuring an object, but could also be a checklist utilized by a human observer during a biodiversity campaign."@en ;
+  skos:scopeNote "The observing procedure cannot describe a sensor instance, but it can describe the sensor type."@en ;
+  rdfs:isDefinedBy sosa-oms: .
 
-sosa:SamplingProcedure  
+sosa-oms:SamplingProcedure  
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/SamplingProcedure> ;
-  rdfs:isDefinedBy sosa-sam: .
+  a owl:Class ;
+  rdfs:label "Sampling Procedure"@en ;
+  skos:definition """
+  The description of steps performed by a Sampler in order to extract a Sample from its sampled Feature in the frame of a Sampling.
+  """@en ;
+  rdfs:isDefinedBy sosa-oms: .
 
 sosa-oms:PreparationProcedure a owl:Class ;
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/PreparationProcedure> ;
@@ -224,16 +240,31 @@ sosa-oms:observationType a owl:ObjectProperty ;
   schema:domainIncludes sosa:Observation ;
   rdfs:isDefinedBy sosa-oms: .
 
-  sosa:madeObservation ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/gen/relatedObservation-sem> ;
+  sosa:madeObservation 
+    ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/gen/relatedObservation-sem> ;
     rdfs:isDefinedBy sosa-obs: .
 
-  sosa:madeBySensor ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/observer-sem> ;
+  sosa:wasObservedBy  
+    ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/gen/relatedObservation-sem> ;
     rdfs:isDefinedBy sosa-obs: .
 
-  sosa:observedProperty ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/observedProperty-sem> ;
+  sosa:usedForExecution  
+    ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/gen/relatedObservation-sem> ;
     rdfs:isDefinedBy sosa-obs: .
 
- sosa:resultQuality a owl:ObjectProperty ;
+  sosa:relatedObservation  
+    ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/gen/relatedObservation-sem> ;
+    rdfs:isDefinedBy sosa-obs: .
+
+  sosa:madeBySensor 
+    ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/observer-sem> ;
+    rdfs:isDefinedBy sosa-obs: .
+
+  sosa:observedProperty 
+    ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/observedProperty-sem> ;
+    rdfs:isDefinedBy sosa-obs: .
+
+ sosa:resultQuality 
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-core/AbstractObservationCharacteristics/resultQuality-sem> ;
     rdfs:isDefinedBy sosa-obs: .
 
@@ -245,10 +276,6 @@ sosa-oms:observationType a owl:ObjectProperty ;
     schema:domainIncludes sosa:ObservationCollection ;
     schema:rangeIncludes sosa:Platform ;
     rdfs:isDefinedBy sosa-oms: .
-
-  sosa:relatedObservation rdf:type owl:ObjectProperty ;
-    ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/gen/relatedObservation-sem> ;
-    rdfs:isDefinedBy sosa-obs: .
 
 sosa:Sampling ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sampling> ;
   rdfs:isDefinedBy sosa-sam: .
@@ -302,11 +329,11 @@ sosa-oms:PreparationStep a owl:Class ;
 ## Observation Collection
 
 sosa:ObservationCollection 
-  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-core/AbstractObservationCollection> ;
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-basic/ObservationCollection> ;
   rdfs:isDefinedBy sosa-obs: .
 
 sosa:hasMember 
-  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-core/AbstractObservationCollection/member-sem> ;
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-basic/ObservationCollection/member-sem> ;
   rdfs:isDefinedBy sosa-common: .
 
 
