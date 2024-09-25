@@ -38,6 +38,7 @@ sosa:ObservableProperty
 
 sosa:Observation 
   rdfs:subClassOf sosa:Execution ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasUltimateFeatureOfInterest ; owl:allValuesFrom sosa:FeatureOfInterest ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeBySensor ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeBySensor ; owl:allValuesFrom sosa:Sensor ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:observedProperty ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
@@ -48,6 +49,10 @@ sosa:Observation
 
 sosa:ObservationCollection 
   rdfs:subClassOf rdf:Bag ;
+  rdfs:subClassOf sosa:ExecutionCollection ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasUltimateFeatureOfInterest ; owl:allValuesFrom sosa:FeatureOfInterest ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeBySensor ; owl:allValuesFrom sosa:Sensor ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:observedProperty ; owl:allValuesFrom sosa:ObservableProperty ] ;
   rdfs:subClassOf [ 
     a owl:Restriction ; 
     owl:onProperty sosa:hasMember ; 

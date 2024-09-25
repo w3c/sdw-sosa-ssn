@@ -46,6 +46,9 @@ sosa:Actuation
 
 sosa:ActuationCollection 
   rdfs:subClassOf rdf:Bag ;
+  rdfs:subClassOf sosa:ExecutionCollection ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeByActuator ; owl:allValuesFrom sosa:Actuator ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:actsOnProperty ; owl:allValuesFrom sosa:ActuatableProperty ] ;
   rdfs:subClassOf [ 
     a owl:Restriction ; 
     owl:onProperty sosa:hasMember ; 
