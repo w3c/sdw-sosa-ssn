@@ -47,15 +47,18 @@ sosa:Sample
   """@en ;
   rdfs:comment "Physical samples are sometimes known as 'specimens'."@en ;
   skos:scopeNote """
-  Samples are typically subsets or extracts from the feature of interest of an observation.
-  They are used in situations where observations cannot be made directly on the ultimate feature of interest, either ecause the entire feature cannot be observed, or because it is more convenient to use a proxy.
+  Samples are typically subsets or extracts from an entity or feature.
+  Every sample is expected to (eventually) be the feature-of-interest of an Observation. 
+  
+  When the feature of interest cannot be observed directly, a sample of it might be used in Observations as a proxy for it. In such a case the Sample is the proximate Feature of Interest of the Observation, while the Feature of Interest of the act of Sampling (i.e. the entity that the Sample 'isSampleOf') is the ultimate Feature of Interest of the Observation.
+  Samples are used in situations where observations cannot be made directly on the ultimate feature of interest, either because the entire feature cannot be observed, or because it is more convenient to use a proxy.
   Samples are thus artifacts of an observational strategy, and have no significant function outside of their role in the observation process. 
   The characteristics of the samples themselves are of little interest, except perhaps to the manager of a sampling campaign.
 
   A Sample is intended to sample some FatureOfInterest, so there is an expectation of at least one isSampleOf property. 
   However, in some cases the identity, and even the exact type, of the sampled feature may not be known when observations are made using the sample.
   """@en ;
-  skos:example "A 'station' is essentially an identifiable locality where a sensor system or Procedure may be deployed and an observation made. In the context of the observation model, it connotes the 'world in the vicinity of the station', so the observed properties relate to the physical medium at the station, and not to any physical artifact such as a mooring, buoy, benchmark, monument, well, etc."@en ;
+  skos:example "A 'station' is a spatial sample, in the form of an identifiable locality where a sensor system or Procedure may be deployed and an observation made. In the context of the observation model, it connotes the 'world in the vicinity of the station', so the observed properties relate to the physical medium at the station, and not to any physical artifact such as a mooring, buoy, benchmark, monument, well, etc."@en ;
   skos:example "A statistical sample is often designed to be characteristic of an entire population, so that observations can be made regarding the sample that provide a good estimate of the properties of the population."@en ;
   skos:note "A transient sample, such as a ships-track or flight-line, might be identified and described, but is unlikely to be revisited exactly."@en ;
   rdfs:isDefinedBy sosa-sam: .
@@ -91,7 +94,7 @@ sosa:Sampler
   a owl:Class ;
   rdfs:label "Sampler"@en ;
   skos:definition """
-  A device that implements a Sampling Procedure to create one or more samples.
+  A device that implements a (Sampling) Procedure to create one or more samples.
   """@en ;
   skos:example "A ball mill, diamond drill, hammer, hypodermic syringe and needle, image Sensor or a soil auger can all act as sampling devices (i.e., be Samplers). However, sometimes the distinction between the Sampler and the Sensor is not evident, as they are packaged as a unit. A Sampler need not be a physical device."@en ;
   rdfs:isDefinedBy sosa-sam: .
@@ -115,12 +118,28 @@ sosa:Sampling
   skos:example "Taking a diamond-drill core from a rock outcrop."@en ;
   rdfs:isDefinedBy sosa-sam: .
 
-sosa:SamplingProcedure 
+sosa:SamplingCollection 
   a owl:Class ;
-  rdfs:label "Sampling Procedure"@en ;
+  rdfs:label "Sampling Collection"@en ;
   skos:definition """
-  The description of steps performed by a Sampler in order to extract a Sample from its sampled Feature in the frame of a Sampling.
+  Collection of one or more samplings or sampling collections, i.e. collections may be nested. 
+
+  The following Sampling properties may appear in a Sampling Collection: 
+  hasFeatureOfInterest , hasUltimateFeatureOfInterest , usedProcedure , madeBySampler , startTime , resultTime , hasResult . 
+  If it is present, the value of a property summarizes the values of the matching properties of the member actuations, where membership is either direct or transitive through one or more member actuation collections. 
+  The following consistency rules apply with respect to the Sampling properties listed above: 
+  
+  1. Where an individual Sampling Collection omits a property, a member Sampling (direct or transitive) MAY have any value for that property.
+
+  2. Where an individual Sampling Collection has a single value for a property, each member Sampling (direct or transitive) MUST have that same value for the property - i.e. the collection is homogeneous in that property.  That property MAY then be omitted in any member Actuation or Actuation Collection.
+
+  3. Where an individual Sampling Collection has more than one value for a property, each member Sampling (direct or transitive) MUST have a value for that property that matches one of the values for the property in the collection. 
+  
+  4. Where an individual Sampling Collection has a value for a property that is a range or interval, each member Sampling (direct or transitive) MUST have a value for that property that matches or falls within that range or interval.
+
+  5. Where an individual Sampling Collection has more than one value for a property that is a range or interval, each member Sampling (direct or transitive) MUST have a value for that property that either matches or falls within one of those ranges or intervals.
   """@en ;
+  skos:note """The members of a collection do not necessarily share a common value for any property."""@en ;
   rdfs:isDefinedBy sosa-sam: .
 
 sosa:SpatialSample 
@@ -322,13 +341,11 @@ sosa:hasProperty
   rdfs:isDefinedBy sosa-common: .
 
 sosa:isFeatureOfInterestOf 
-  schema:domainIncludes sosa:Sample ;
   schema:rangeIncludes sosa:Sampling ;
   schema:rangeIncludes sosa:SamplingCollection ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:isUltimateFeatureOfInterestOf 
-  schema:domainIncludes sosa:Sample ;
   schema:rangeIncludes sosa:Sampling ;
   schema:rangeIncludes sosa:SamplingCollection ;
   rdfs:isDefinedBy sosa-common: .
@@ -396,10 +413,12 @@ sosa:usedProcedure
 
 sosa:startTime 
   schema:domainIncludes sosa:Sampling ;
+  schema:domainIncludes sosa:SamplingCollection ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:resultTime 
   schema:domainIncludes sosa:Sampling ;
+  schema:domainIncludes sosa:SamplingCollection ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:phenomenonTime 
