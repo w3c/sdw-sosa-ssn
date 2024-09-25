@@ -232,13 +232,6 @@
                         <span about="[_:SOSAActuation11]" property="owl:minCardinality" content="1"
                             datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em></span>
                         <br>
-                        <span about="sosa:Actuation" rel="rdfs:subClassOf" resource="[_:SOSAActuation14]"></span>
-                        <span about="[_:SOSAActuation14]" typeof="owl:Restriction"></span>
-                        <span about="[_:SOSAActuation14]" rel="owl:onProperty" resource="sosa:phenomenonTime"><a
-                                href="#SOSAphenomenonTime">sosa:phenomenonTime</a></span>
-                        <span about="[_:SOSAActuation14]" property="owl:cardinality" content="1"
-                            datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em></span>
-                        <br>
                         <span about="sosa:Actuation" rel="rdfs:subClassOf" resource="[_:SOSAActuation13]"></span>
                         <span about="[_:SOSAActuation13]" typeof="owl:Restriction"></span>
                         <span about="[_:SOSAActuation13]" rel="owl:onProperty" resource="sosa:resultTime"><a
@@ -294,11 +287,9 @@
                 The following <a href="#SOSAActuation">Actuation</a> properties may appear in an <a
                     href="#SOSAActuationCollection">ActuationCollection</a>:
                 <a href="#SOSAhasFeatureOfInterest">hasFeatureOfInterest</a>
-                , <a href="#SOSAhasUltimateFeatureOfInterest">hasUltimateFeatureOfInterest</a>
                 , <a href="#SOSAusedProcedure">usedProcedure</a>
                 , <a href="#SOSAmadeByActuator">madeByActuator</a>
                 , <a href="#SOSAactsOnProperty">actsOnProperty</a>
-                , <a href="#SOSAphenomenonTime">phenomenonTime</a>
                 , <a href="#SOSAresultTime">resultTime</a>
                 , <a href="#SOSAhasResult">hasResult</a>
                 , <a href="#SOSAhasSimpleResult">hasSimpleResult</a>
@@ -349,6 +340,8 @@
                     <td>
                         <span rel="rdfs:subClassOf" resource="rdf:Bag"><a
                                 href="https://www.w3.org/TR/rdf12-schema/#ch_bag">rdf:Bag</a></span>
+                        , <span rel="rdfs:subClassOf" resource="sosa:ExecutionCollection"><a
+                                href="#SOSAExecutionCollection">sosa:ExecutionCollection</a></span>
                     </td>
                 </tr>
                 <tr class="ssn">
@@ -358,13 +351,52 @@
                                 href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
                         , <span rel="owl:disjointWith" resource="sosa:SampleCollection"><a
                                 href="#SOSASampleCollection">sosa:SampleCollection</a></span>
+                        , <span rel="owl:disjointWith" resource="sosa:SamplingCollection"><a
+                                href="#SOSASamplingCollection">sosa:SamplingCollection</a></span>
                     </td>
                 </tr>
                 <tr class="ssn">
                     <th class="restrictions">Restrictions</th>
                     <td>
                         <span about="sosa:ActuationCollection" rel="rdfs:subClassOf"
-                            resource=" [_:SOSAActuationCollection2]"></span>
+                            resource="[_:SOSAActuationCollection2]"></span>
+                        <span about="[_:SOSAActuationCollection2]" typeof="owl:Restriction"></span>
+                        <span about="[_:SOSAActuationCollection2]" rel="owl:onProperty"
+                            resource="sosa:madeByActuator"><a href="#SOSAmadeByActuator">sosa:madeByActuator</a></span>
+                        <span about="[_:SOSAActuationCollection2]" property="owl:allValuesFrom"
+                            resource="sosa:Actuator"><em><b>ONLY</b></em> <a
+                                href="#SOSAActuator">sosa:Actuator</a></span>
+                        <br>
+                        <span about="sosa:ActuationCollection" rel="rdfs:subClassOf"
+                            resource="[_:SOSAActuationCollection3]"></span>
+                        <span about="[_:SOSAActuationCollection3]" typeof="owl:Restriction"></span>
+                        <span about="[_:SOSAActuationCollection3]" rel="owl:onProperty" resource="sosa:usedProcedure"><a
+                                href="#SOSAusedProcedure">sosa:usedProcedure</a></span>
+                        <span about="[_:SOSAActuationCollection3]" property="owl:allValuesFrom"
+                            resource="sosa:Procedure"><em><b>ONLY</b></em> <a
+                                href="#SOSAProcedure">sosa:Procedure</a></span>
+                        <br>
+                        <span about="sosa:ActuationCollection" rel="rdfs:subClassOf"
+                            resource="[_:SOSAActuationCollection5]"></span>
+                        <span about="[_:SOSAActuationCollection5]" typeof="owl:Restriction"></span>
+                        <span about="[_:SOSAActuationCollection5]" rel="owl:onProperty"
+                            resource="sosa:hasFeatureOfInterest"><a
+                                href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a></span>
+                        <span about="[_:SOSAActuationCollection5]" property="owl:allValuesFrom"
+                            resource="sosa:FeatureOfInterest"><em><b>ONLY</b></em> <a
+                                href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a></span>
+                        <br>
+                        <span about="sosa:ActuationCollection" rel="rdfs:subClassOf"
+                            resource="[_:SOSAActuationCollection7]"></span>
+                        <span about="[_:SOSAActuationCollection7]" typeof="owl:Restriction"></span>
+                        <span about="[_:SOSAActuationCollection7]" rel="owl:onProperty"
+                            resource="sosa:actsOnProperty"><a href="#SOSAactsOnProperty">sosa:actsOnProperty</a></span>
+                        <span about="[_:SOSAActuationCollection7]" property="owl:allValuesFrom"
+                            resource="sosa:ActuatableProperty"><em><b>ONLY</b></em> <a
+                                href="#SOSAActuatableProperty">sosa:ActuatableProperty</a></span>
+                        <br>
+                        <span about="sosa:ActuationCollection" rel="rdfs:subClassOf"
+                            resource=" [_:SOSAActuationCollection4]"></span>
                         <span about="[_:SOSAActuationCollection]" typeof="owl:Restriction"></span>
                         <span about="[_:SOSAActuationCollection]" rel="owl:onProperty" resource="sosa:hasMember"><a
                                 href="#SOSAhasMember">sosa:hasMember</a></span>

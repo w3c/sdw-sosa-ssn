@@ -239,6 +239,36 @@ sosa:Execution
   """@en ;
   rdfs:isDefinedBy sosa-common: .
 
+sosa:ExecutionCollection 
+  a owl:Class ;
+  rdfs:label "Execution Collection"@en ;
+  skos:definition """
+  Collection of one or more executions or execution collections, i.e. collections may be nested. 
+
+  The following execution properties may appear in an Execution Collection: 
+  hasFeatureOfInterest , usedProcedure , madeBySystem , resultTime , startTime . 
+  If it is present, the value of a property summarizes the values of the matching properties of the member executions, where membership is either direct or transitive through one or more member execution collections. 
+  The following consistency rules apply with respect to the execution properties listed above: 
+  
+  1. Where an individual Execution Collection omits a property, a member Execution (direct or transitive) MAY have any value for that property.
+
+  2. Where an individual Execution Collection has a single value for a property, each member Execution (direct or transitive) MUST have that same value for the property - i.e. the collection is homogeneous in that property.  That property MAY then be omitted in any member Observation or Observation Collection.
+
+  3. Where an individual Execution Collection has more than one value for a property, each member Execution (direct or transitive) MUST have a value for that property that matches one of the values for the property in the collection. 
+  
+  4. Where an individual Execution Collection has a value for a property that is a range or interval, each member Execution (direct or transitive) MUST have a value for that property that matches or falls within that range or interval.
+
+  5. Where an individual Execution Collection has more than one value for a property that is a range or interval, each member Execution (direct or transitive) MUST have a value for that property that either matches or falls within one of those ranges or intervals.
+  """@en ;
+  skos:note """The members of a collection do not necessarily share a common value for any property. """@en ;
+  skos:scopeNote """
+  Execution Collection generalizes the Actuation Collection, Observation Collection, and Sampling Collection classes. 
+  It appears in the ontology to support the description of a common pattern for executions and their properties. 
+
+  Execution Collection MUST be considered to be abstract, so any individual Execution Collection SHOULD be declared to be an instance of one of the concrete sub-classes, and not of the Execution Collection class.
+  """@en ;
+  rdfs:isDefinedBy sosa-common: .
+
 sosa:Result 
   a owl:Class ;
   owl:deprecated true ;
@@ -630,6 +660,7 @@ sosa:hasMember
   """ ;
   skos:scopeNote "rules for the consistency of values of properties of collections and properties of their members are given for each collection type" ;
   skos:editorialNote "Note that there is a single `member` property. OWL or SHACL constraints may limit the range depending on the context of different collection types" ;
+  schema:domainIncludes sosa:ExecutionCollection ;
   schema:rangeIncludes sosa:Execution ;
   owl:inverseOf sosa:isMemberOf ;
   rdfs:isDefinedBy sosa-common: .
@@ -643,6 +674,7 @@ sosa:isMemberOf
   skos:scopeNote "rules for the consistency of values of properties of collections and properties of their members are given for each collection type" ;
   skos:editorialNote "Note that there is a single `member` property. OWL or SHACL constraints may limit the range depending on the context of different collection types" ;
   schema:domainIncludes sosa:Execution ;
+  schema:rangeIncludes sosa:ExecutionCollection ;
   owl:inverseOf sosa:hasMember ;
   rdfs:isDefinedBy sosa-common: .
 

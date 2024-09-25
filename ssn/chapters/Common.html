@@ -598,6 +598,8 @@
                                     href="#SOSAObservation">sosa:Observation</a></span>
                             , <span rel="schema:rangeIncludes" resource="sosa:Sampling"><a
                                     href="#SOSASampling">sosa:Sampling</a></span>
+                            , <span rel="schema:rangeIncludes" resource="sosa:ExecutionCollection"><a
+                                    href="#SOSAExecutionCollection">sosa:ExecutionCollection</a></span>
                             , <span rel="schema:rangeIncludes" resource="sosa:ActuationCollection"><a
                                     href="#SOSAActuationCollection">sosa:ActuationCollection</a></span>
                             , <span rel="schema:rangeIncludes" resource="sosa:ObservationCollection"><a
@@ -1040,6 +1042,8 @@
                                     href="#SOSAObservation">sosa:Observation</a></span>
                             , <span rel="schema:rangeIncludes" resource="sosa:Sampling"><a
                                     href="#SOSASampling">sosa:Sampling</a></span>
+                            , <span rel="schema:rangeIncludes" resource="sosa:ExecutionCollection"><a
+                                    href="#SOSAExecutionCollection">sosa:ExecutionCollection</a></span>
                             , <span rel="schema:rangeIncludes" resource="sosa:ActuationCollection"><a
                                     href="#SOSAActuationCollection">sosa:ActuationCollection</a></span>
                             , <span rel="schema:rangeIncludes" resource="sosa:ObservationCollection"><a
@@ -1106,6 +1110,7 @@
         <div class="azlist">
             <p>
                 <a href="#SOSAExecution">sosa:Execution</a>
+                , <a href="#SOSAExecutionCollection">sosa:ExecutionCollection</a>
                 , <a href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a>
                 , <a href="#SOSAhasInputValue">sosa:hasInputValue</a>
                 , <a href="#SOSAhasOutputValue">sosa:hasOutputValue</a>
@@ -1217,6 +1222,134 @@
                             additional SSN axioms</a>]</span>
                 </span>
                 <span class="back">[<a href="#Common">Back to module overview</a>]</span>
+                <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="informative specterm sosa" id="SOSAExecutionCollection" about="sosa:ExecutionCollection"
+            typeof="owl:Class">
+            <h5><a href="#SOSAExecutionCollection">sosa:ExecutionCollection</a></h5>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/ExecutionCollection</p>
+            <p><strong>an OWL Class</strong></p>
+
+            <p class="note">ExecutionCollection added in the 2024 Update
+                This term is non-normative, pending further implementation experience</p>
+            <p>
+                <em property="rdfs:label">Execution Collection</em> -
+                <span property="skos:definition">Collection of one or more <a href="#SOSAExecution">Executions</a> or
+                    <a href="#SOSAExecutionCollection">ExecutionCollections</a>, i.e. collections may be
+                    nested.
+                    <br><br>
+                    The following <a href="#SOSAExecution">Execution</a> properties may appear in an
+                    <a href="#SOSAExecutionCollection">ExecutionCollection</a>:
+                    <a href="#SOSAhasFeatureOfInterest">hasFeatureOfInterest</a> ,
+                    <a href="#SOSAusedProcedure">usedProcedure</a> ,
+                    <a href="#SOSAmadeBySensor">madeBySensor</a> ,
+                    <a href="#SOSAresultTime">resultTime</a> ,
+                    <a href="#SOSAstartTime">startTime</a> .
+                    If they are present, the values of these properties summarize the values of the matching properties
+                    of
+                    the member Executions, where membership is either direct or transitive through one or more member
+                    Execution collections.
+                    <br><br>
+                    The following consistency rules with respect to the Execution properties listed above:
+                    <br><br>
+                    1. Where an individual <a href="#SOSAExecutionCollection">ExecutionCollection</a>
+                    <i>omits a property</i>, a member <a href="#SOSAExecution">Execution</a> (direct or
+                    transitive) MAY have any value for that property.
+                    <br><br>
+                    2. Where an individual <a href="#SOSAExecutionCollection">ExecutionCollection</a> has
+                    <i>a single value for a property</i>, each member <a href="#SOSAExecution">Execution</a> (direct or
+                    transitive) MUST have that same
+                    value
+                    for that property - i.e. the collection is homogeneous in that property.
+                    That property MAY then be omitted in any member <a href="#SOSAExecution">Execution</a>
+                    or <a href="#SOSAExecutionCollection">ExecutionCollection</a>.
+                    <br><br>
+                    3. Where an individual <a href="#SOSAExecutionCollection">ExecutionCollection</a> has
+                    <i>more than one value for a property</i>, each member <a href="#SOSAExecution">Execution</a>
+                    (direct or transitive) MUST have a value for
+                    that
+                    property that matches one of the values for the property in the collection.
+                    <br><br>
+                    4. Where an individual <a href="#SOSAExecutionCollection">ExecutionCollection</a>
+                    <i>has a value for a property that is a range or interval</i>, each member <a
+                        href="#SOSAExecution">Execution</a> (direct or transitive) MUST have a value for
+                    that property that matches or falls within that range or interval.
+                    <br><br>
+                    5. Where an individual <a href="#SOSAExecutionCollection">ExecutionCollection</a>
+                    <i>has more than one value for a property that is a range or interval</i>, each member <a
+                        href="#SOSAExecution">Execution</a> (direct or transitive) MUST have a value for
+                    that property that matches or falls within one of those ranges or intervals.
+                </span>
+                <br>
+                <span property="skos:note">The members of a collection do not necessarily share a common value for any
+                    property. </span>
+            </p>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Scope note</th>
+                        <td>
+                            <span rel="skos:scopeNote">
+                                ExecutionCollection generalizes the <a
+                                    href="#SOSAActuationCollection">ActuationCollection</a>, <a
+                                    href="#SOSAObservationCollection">ObservationCollection</a>, and
+                                <a href="#SOSASamplingCollection">SamplingCollection</a> classes.
+                                It appears in the ontology to support the description of a common pattern for executions
+                                and their properties.
+
+                                ExecutionCollection MUST be considered to be abstract, so any individual
+                                ExecutionCollection SHOULD be
+                                declared to be an instance of one of the concrete sub-classes, and not of the
+                                ExecutionCollection
+                                class. </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Example</th>
+                        <td><span property="skos:example">... TODO ...</span></td>
+                    </tr>
+                    <tr class="ssn">
+                        <th>Sub class of</th>
+                        <td>
+                            <span rel="rdfs:subClassOf" resource="rdf:Bag"><a
+                                    href="https://www.w3.org/TR/rdf12-schema/#ch_bag">rdf:Bag</a></span>
+                        </td>
+                    </tr>
+                    <tr class="ssn">
+                        <th class="restrictions">Restrictions</th>
+                        <td>
+                            <span about="sosa:ExecutionCollection" rel="rdfs:subClassOf"
+                                resource="[_:SOSAExecutionCollection2]"></span>
+                            <span about="[_:SOSAExecutionCollection]" typeof="owl:Restriction"></span>
+                            <span about="[_:SOSAExecutionCollection]" rel="owl:onProperty" resource="sosa:hasMember"><a
+                                    href="#SOSAhasMember">sosa:hasMember</a></span>
+                            <span about="[_:SOSAExecutionCollection]" property="owl:allValuesFrom"
+                                resource="sosa:ExecutionCollection"><em><b>ONLY</b></em> (<a
+                                    href="#SOSAExecution">sosa:Execution</a> OR <a
+                                    href="#SOSAExecutionCollection">sosa:ExecutionCollection</a> )</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>is Defined By</th>
+                        <td>
+                            <span rel="rdfs:isDefinedBy"><a
+                                    href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="buttonpanel">
+                <span>
+                    <span class="sosa" style="display: none;">[<a href="#"
+                            onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
+                            additional SSN axioms</a>]</span>
+                    <span class="ssn">[<a href="#"
+                            onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
+                            additional SSN axioms</a>]</span>
+                </span>
+                <span class="back">[<a href="#Execution">Back to module overview</a>]</span>
                 <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
             </div>
         </section>
