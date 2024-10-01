@@ -243,7 +243,6 @@ sosa:isResultOfUsedProcedure
   schema:domainIncludes sosa:Sample ;
   schema:domainIncludes sosa:SampleCollection ;
   schema:rangeIncludes sosa:Procedure ;
-  schema:rangeIncludes sosa:SamplingProcedure ;
   owl:inverseOf sosa:usedForExecutionHasResult ;
   rdfs:isDefinedBy sosa-sam: .
 
@@ -301,7 +300,6 @@ sosa:usedForExecutionHasResult
   Relation linking a Procedure (plan) to a Sample or SampleCollection used by it.
   """@en ;
   schema:domainIncludes sosa:Procedure ;
-  schema:domainIncludes sosa:SamplingProcedure ;
   schema:rangeIncludes sosa:Sample ;
   schema:rangeIncludes sosa:SampleCollection ;
   owl:inverseOf sosa:isResultOfUsedProcedure ;
@@ -375,29 +373,29 @@ sosa:Procedure
   rdfs:isDefinedBy sosa-common: .
 
 sosa:usedForExecution 
-  schema:domainIncludes sosa:SamplingProcedure ;
+  schema:domainIncludes sosa:Procedure ;
   schema:rangeIncludes sosa:Sampling ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:implementedBy 
-  schema:domainIncludes sosa:SamplingProcedure ;
+  schema:domainIncludes sosa:Procedure ;
   schema:rangeIncludes sosa:Sampler ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hasInput 
-  schema:domainIncludes sosa:SamplingProcedure ;
+  schema:domainIncludes sosa:Procedure ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:inputFor 
-  schema:rangeIncludes sosa:SamplingProcedure ;
+  schema:rangeIncludes sosa:Procedure ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hasOutput 
-  schema:domainIncludes sosa:SamplingProcedure ;
+  schema:domainIncludes sosa:Procedure ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:outputFor 
-  schema:rangeIncludes sosa:SamplingProcedure ;
+  schema:rangeIncludes sosa:Procedure ;
   rdfs:isDefinedBy sosa-common: .
 
 ## Executions
@@ -408,7 +406,7 @@ sosa:Execution
 sosa:usedProcedure 
   schema:domainIncludes sosa:Sampling ;
   schema:domainIncludes sosa:SamplingCollection ;
-  schema:rangeIncludes sosa:SamplingProcedure ;
+  schema:rangeIncludes sosa:Procedure ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:startTime 
@@ -483,7 +481,7 @@ sosa:System
 
 sosa:implements 
   schema:domainIncludes sosa:Sampler ;
-  schema:rangeIncludes sosa:SamplingProcedure ;
+  schema:rangeIncludes sosa:Procedure ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hasSubSystem 
