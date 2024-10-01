@@ -2,9 +2,6 @@
 
 This folder contains the Alignment modules of the RDF representation of the **2024 Edition** of the **Semantic Sensor Network Ontology** (SSN).
 
-- OMS alignment
-  - [basic alignment](./sosa-oms.ttl)
-  - [with axiomatization](./ssn-oms.ttl)
 - [PROV alignment](./sosa-prov.ttl)
 - [OBOE alignment](./sosa-oboe.ttl)
 - [SAREF alignment](./sosa-saref.ttl)
