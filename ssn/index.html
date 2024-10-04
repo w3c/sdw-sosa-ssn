@@ -174,6 +174,8 @@
     <h2>SSN Extensions</h2>
     This section provides details on modules that extend the scope and capabilities of SSN.
 
+    <section id="OMS" class="normative" data-include="./chapters/OMS.html"></section>
+
     <section id="System-capabilities" class="normative" data-include="./chapters/System-capabilities.html"></section>
 
     <section id="Sample-Relations" class="normative" data-include="./chapters/Sample-Relations.html"></section>
@@ -184,8 +186,6 @@
     <h2>Alignments</h2>
     <p>This section introduces the specifications for the modules that align SOSA and SSN to a variety of related
       ontologies and specifications. </p>
-
-    <section id="OMS-alignment" class="normative" data-include="./chapters/OMS-alignment.html"></section>
 
     <section id="PROV-alignment" class="normative" data-include="./chapters/PROV-alignment.html"></section>
 
@@ -640,32 +640,25 @@
     <ol>
       <li>Updated Abstract to reflect the revised graph and axiomatization design</li>
       <li>Updated Chapter 2 'Modularization' to simplify and to reflect the revised graph arrangement</li>
-      <li>Changed title of Chapter 4 from 'Axiomatization' to 'RDF Implementation' and updated the summary of
-        namespaces
-        and graphs</li>
-      <li>Adjust namespace of terms previously in sosa:</li>
-      <li>Added OMS alignment modules to section 6. 'Vertical Segmentation'</li>
-      <li>Added ObservationCollection, SampleCollection, hasMember</li>
-      <li>Retire O&amp;Mv2 alignment - superseded by OMS alignment</li>
-      <li>Retire SSNX alignment - leave behind a stub giving links to the previous edition of the recommendation and
-        to
+      <li>Add conformance clause Chapter 3</li>
+      <li>Updated Chapter 4 and Chapter 5.1 to explain modularization and RDF implementation</li>
+      <li>Retire O&amp;Mv2 alignment - superseded by OMS extension</li>
+      <li>Retire SSNX alignment - leave behind a stub giving links to the previous edition of the recommendation and to
         the RDF alignment file</li>
-      <li>Remove sosa:Input, sosa:Output ; mark ssn:Input, ssn:Output deprecated</li>
+      <li>Mark ssn:Input, ssn:Output deprecated</li>
       <li>Mark ssn-system:Condition deprecated</li>
       <li>Mark sosa:Result deprecated</li>
-      <li>Update OBOE alignment - using ObservationCollection, SampleCollection, hasMember</li>
-      <li>remove rdfs:range on sosa:resultTime</li>
-      <li>Add content model for Execution, including hasInputValue and hasOutputValue</li>
+      <li>Add ObservationCollection, SampleCollection, hasMember</li>
       <li>Add ActuationCollection to provide basic support for sets of actuations on multiple properties with multiple
         results; clarify meaning of Actuation result</li>
+      <li>Add SamplingCollection to provide mechanism for grouping sets of Samplings with common properties</li>
+      <li>Update OBOE alignment - using ObservationCollection, SampleCollection, hasMember</li>
+      <li>remove rdfs:range on sosa:resultTime</li>
+      <li>Add content model for Execution, ExecutionCollection, including hasInputValue and hasOutputValue</li>
       <li>Clarify meaning of hasResult, resultTime, phenomenonTime in the context of Actuations</li>
       <li>introduced startTime property</li>
-      <li>added MaterialSample SpatialSample StatisticalSample relatedObservation resultQuality to SOSA graph and sosa:
-        namespace, removed from SOSA-OMS graph and sosa:oms: ns
-      </li>
       <li>Refactored SOSA and SSN into modules - sosa-common sosa-actuation sosa-observation sosa-sampling sosa (all),
         and matching ssn-* files (also ssn-deprecated). Refactored HTML sources to match. </li>
-      <li>Add conformance clause</li>
       <li>Update and streamline Introduction; move Origins section to an Annex. </li>
       <li>re-drafted all figures; added a clause on notation</li>
       <li>retire ssn-system:qualityOfObservation - functionally equivalent to sosa:resultQuality</li>
