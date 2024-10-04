@@ -1,13 +1,12 @@
-<!-- <section id="OMS_alignment" class="normative"> -->
-<h3>OMS Alignment Module</h3>
+<!-- <section id="OMS" class="normative"> -->
+<h3>OMS Extension Module</h3>
 <p>
-  This section introduces the alignment of SOSA and SSN to [[[OMS]]] (ISO 19156:2023).
+  This section introduces extensions to the SSN Ontology to provide a canonical RDF implementation of [[[OMS]]] (ISO
+  19156:2023).
 </p>
 <p>
   OMS is the latest edition of the OGC and ISO standard previously known as Observations and Measurements [[OandM]],
   which was a key influence and input in the development of SSN.
-  This module serves to provide a detailed mapping of SOSA terms to discrete requirements in [[OMS]] thus
-  explaining how SOSA and SSN provide an RDF and OWL/RDFS implementation of OMS (repectively).
 </p>
 <p class="note">
   OMS was published by ISO 19156:2023 [[iso-19156-2023]], but is freely available as OGC Abstract
@@ -15,13 +14,14 @@
 </p>
 
 <p>
+  This module provides (i) additional classes and properties required for an RDF implementation of OMS, (ii) a detailed
+  mapping of SOSA terms to discrete requirements in [[OMS]].
   Note that [[OMS]] is formalized using UML, which does not provide accessible global identifiers for terms in the
   structure model.
-  Here we use the URI for each formal Requirement relating to a class or property in [[OMS]] to denote the UML
-  class or property.
-  Within the RDF representation of the alignment, we use the predicates <code>ogc-ms:implements</code> to link a SOSA
-  term to the corresponding OMS class or property, and <code>ogc-ms:implementedBy</code> for the inverse, defined as
-  follows: </p>
+  The URI for each formal Requirement relating to a class or property in [[OMS]] denotes the UML class or
+  property.
+  The predicate <code>ogc-ms:implements</code> links a SOSA term to the corresponding OMS class or property,
+  and <code>ogc-ms:implementedBy</code> its inverse, defined as follows: </p>
 <pre>ogc-ms:implements an OWL:ObjectProperty ;
   rdfs:subPropertyOf dcterms:source , prov:wasDerivedFrom . </pre>
 
@@ -30,8 +30,7 @@
 
 <h4>SOSA-OMS</h4>
 <p>
-  SOSA-OMS describes the alignment of SOSA to ISO 19156:2023 [[OMS]] using annotations to link SOSA
-  terms to specific requirements in [[OMS]].
+  SOSA-OMS describes the implementation of ISO 19156:2023 [[OMS]] using terms from the SSN Ontology.
   SOSA-OMS imports SOSA Observation and SOSA Sampling and declares additional terms required for OMS.
   <b>SOSA-OMS is the canonical RDF implementation of OMS.</b>
 </p>
@@ -41,7 +40,8 @@
 
 <h4>SSN-OMS</h4>
 <p>
-  SSN-OMS describes the alignment of SSN to ISO 19156:2023 [[OMS]] with RDFS/OWL axiomatization.
+  SSN-OMS describes the implementation of ISO 19156:2023 [[OMS]] using terms from the SSN Ontology, with RDFS/OWL
+  axiomatization.
   SSN-OMS imports SOSA-OMS and SSN Observation and SSN Sampling.
   <b>SSN-OMS is the canonical OWL implementation of OMS.</b>
 </p>
@@ -49,9 +49,9 @@
   The SSN-OMS graph is available at <a href="http://www.w3.org/ns/ssn-oms/">http://www.w3.org/ns/ssn-oms/</a>.
 </p>
 
-<section id="OMS_Alignment-namespaces">
+<section id="OMS-namespaces">
   <h4>Namespaces</h4>
-  <p>The following namespace prefixes are used in the alignment of SOSA and SSN to OMS</p>
+  <p>The following namespace prefixes are used in the RDF implementation of OMS:</p>
   <table>
     <tbody>
       <tr>
@@ -106,12 +106,14 @@
     </tbody>
   </table>
 </section>
-<section id="OMS-Alignment-New-Terms">
+<section id="OMS-New-Terms">
   <h4>New terms</h4>
   <p>
     A number of terms in OMS do not have matches in the SSN Ontology.
   </p>
-  <p>This section introduces the following classes and properties:</p>
+  <p>
+    This section introduces the following classes and properties:
+  </p>
   <div class="azlist">
     <p>
       <a href="#OMSObservingProcedure">sosa-oms:ObservingProcedure</a>
@@ -132,7 +134,7 @@
 
   <p class="note">Terms in the <code>sosa-oms:</code> namespace were added in the 2024 Update.
     These are non-normative, pending further implementation experience</p>
-<p>
+  <p>
 
   <section class="informative specterm sosa" id="OMSObservingProcedure" about="sosa-oms:ObservingProcedure"
     typeof="owl:Class">
@@ -285,7 +287,7 @@
     </table>
 
     <div class="buttonpanel">
-      <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
+      <span class="back">[<a href="#OMS">Back to module overview</a>]</span>
       <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
     </div>
   </section>
@@ -370,7 +372,7 @@
       </tbody>
     </table>
     <div class="buttonpanel">
-      <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
+      <span class="back">[<a href="#OMS">Back to module overview</a>]</span>
       <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
     </div>
   </section>
@@ -415,7 +417,7 @@
     </table>
 
     <div class="buttonpanel">
-      <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
+      <span class="back">[<a href="#OMS">Back to module overview</a>]</span>
       <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
     </div>
   </section>
@@ -468,7 +470,7 @@
       </tbody>
     </table>
     <div class="buttonpanel">
-      <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
+      <span class="back">[<a href="#OMS">Back to module overview</a>]</span>
       <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
     </div>
   </section>
@@ -504,7 +506,7 @@
     </table>
 
     <div class="buttonpanel">
-      <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
+      <span class="back">[<a href="#OMS">Back to module overview</a>]</span>
       <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
     </div>
   </section>
@@ -546,7 +548,7 @@
     </table>
 
     <div class="buttonpanel">
-      <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
+      <span class="back">[<a href="#OMS">Back to module overview</a>]</span>
       <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
     </div>
   </section>
@@ -588,7 +590,7 @@
     </table>
 
     <div class="buttonpanel">
-      <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
+      <span class="back">[<a href="#OMS">Back to module overview</a>]</span>
       <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
     </div>
   </section>
@@ -628,7 +630,7 @@
     </table>
 
     <div class="buttonpanel">
-      <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
+      <span class="back">[<a href="#OMS">Back to module overview</a>]</span>
       <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
     </div>
   </section>
@@ -670,7 +672,7 @@
     </table>
 
     <div class="buttonpanel">
-      <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
+      <span class="back">[<a href="#OMS">Back to module overview</a>]</span>
       <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
     </div>
   </section>
@@ -716,16 +718,16 @@
     </table>
 
     <div class="buttonpanel">
-      <span class="back">[<a href="#OMS_alignment">Back to module overview</a>]</span>
+      <span class="back">[<a href="#OMS">Back to module overview</a>]</span>
       <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
     </div>
   </section>
 
 </section>
 
-<section id="OMS-Alignment-Class-SOSA">
+<section id="OMS-Class-SOSA">
   <h4>Class Alignments - SOSA focus</h4>
-  <p>The following classes used in SOSA can be aligned as indicated: </p>
+  <p>The following classes from the SSN Ontology and this extension implement UML classes from OMS as indicated: </p>
   <table data-sortable="true">
     <tbody>
       <tr>
@@ -827,9 +829,10 @@
   </table>
 </section>
 
-<section id="OMS-Alignment-Class-OMS">
+<section id="OMS-Class-OMS">
   <h4>Class Alignments - OMS focus</h4>
-  <p>The following classes in OMS can be aligned as indicated: </p>
+  <p>The following UML classes in OMS are implemented by classes from the SSN Ontology and this extension as indicated:
+  </p>
   <table data-sortable="true">
     <tbody>
       <tr>
@@ -931,9 +934,10 @@
   </table>
 </section>
 
-<section id="OMS-Alignment-Property-SOSA">
+<section id="OMS-Property-SOSA">
   <h4>Property Alignments - SOSA focus</h4>
-  <p>The following properties used in SOSA can be aligned as indicated: </p>
+  <p>The following properties from the SSN Ontology and this extension implement attributes and association roles from
+    OMS as indicated: </p>
   <table data-sortable="true">
     <tbody>
       <tr>
@@ -1149,9 +1153,10 @@
   </table>
 </section>
 
-<section id="OMS-Alignment-Property-OMS">
+<section id="OMS-Property-OMS">
   <h4>Property Alignments - OMS focus</h4>
-  <p>The following association roles from OMS can be aligned as indicated: </p>
+  <p>The following attributes and association roles from OMS are implemented by properties from the SSN Ontology and
+    this extension as indicated: </p>
   <table data-sortable="true">
     <tbody>
       <tr>
