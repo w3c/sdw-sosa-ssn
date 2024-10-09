@@ -24,13 +24,13 @@
 <roofInsulation> a sosa:FeatureOfInterest ;
 	rdfs:comment "The insulation material in the roof of house #134."@en .
 
-# the window opening state is an ActuatableProperty.
+# the window opening state is a Property.
 # SSN allows to explicitly say that <window/104#state> is a property of <window>
 
 <window> a sosa:FeatureOfInterest ;
 	sosa:hasProperty <window/104#state> .
 
-<window/104#state> a sosa:ActuatableProperty ;
+<window/104#state> a sosa:Property ;
 	sosa:isActedOnBy <actuation/188> .
 
 <house/134/kitchen> a sosa:Sample, sosa:Platform ;
@@ -42,27 +42,27 @@
 <house/134/bedroom> a sosa:Sample ;
 	sosa:isSampleOf <house/134> .
 
-<AtmosphericTemperature> rdfs:subClassOf sosa:ObservableProperty .
+<AtmosphericTemperature> rdfs:subClassOf sosa:Property .
  
 <AmbientTemperature> rdfs:subClassOf <AtmosphericTemperature> .
 
-<temperature> a sosa:ObservableProperty, qudt:QuantityKind ;
+<temperature> a sosa:Property, qudt:QuantityKind ;
 	rdfs:label "Thermodynamic Temperature"@en .
   
-<airTemperature> a sosa:Property, sosa:ObservableProperty, qudt:QuantityKind, <AmbientTemperature> ;
+<airTemperature> a sosa:Property, sosa:Property, qudt:QuantityKind, <AmbientTemperature> ;
 	qudt:generalization <temperature> ;
 	sosa:isPropertyOf <house/134/bedroom>, <house/134/kitchen> .
  
-<soilTemperature> a sosa:ObservableProperty, qudt:QuantityKind ;
+<soilTemperature> a sosa:Property, qudt:QuantityKind ;
 	qudt:generalization <temperature> .
  
-<waterTemperature> a sosa:ObservableProperty, qudt:QuantityKind ;
+<waterTemperature> a sosa:Property, qudt:QuantityKind ;
 	qudt:generalization <temperature> .
  
-<tapWaterTemperature> a sosa:ObservableProperty, qudt:QuantityKind ;
+<tapWaterTemperature> a sosa:Property, qudt:QuantityKind ;
 	qudt:generalization <waterTemperature> .
  
-<poolWaterTemperature> a sosa:ObservableProperty, qudt:QuantityKind ;
+<poolWaterTemperature> a sosa:Property, qudt:QuantityKind ;
 	qudt:generalization <waterTemperature> .
 
 <nest/D1AA22A8211> a sosa:Platform ;
