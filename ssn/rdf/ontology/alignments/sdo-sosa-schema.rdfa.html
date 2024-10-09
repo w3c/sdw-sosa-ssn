@@ -34,7 +34,7 @@
   >
   <div typeof="rdfs:Class" resource="http://www.w3.org/ns/sosa/Observation">
     <span class="h" property="rdfs:label">Observation</span>
-    <span property="rdfs:comment">Act of carrying out an (Observation) Procedure to estimate or calculate a value of a property of a FeatureOfInterest. Links to a Sensor to describe what made the Observation and how; links to an ObservableProperty to describe what the result is an estimate of, and to a FeatureOfInterest to detail what that property was associated with.</span>
+    <span property="rdfs:comment">Act of carrying out an (Observation) Procedure to estimate or calculate a value of a property of a FeatureOfInterest. Links to a Sensor to describe what made the Observation and how; links to a Property to describe what the result is an estimate of, and to a FeatureOfInterest to detail what that property was associated with.</span>
     <span property="skos:editorialNote">Candidate for schema.org</span>
     <span>Subclass of: <a property="rdfs:subClassOf" href="http://schema.org/Action">Action</a></span>
   </div>
@@ -80,15 +80,9 @@
     <span property="skos:editorialNote">Candidate for schema.org</span>
     <span>Subclass of: <a property="rdfs:subClassOf" href="http://schema.org/Thing">Thing</a></span>
   </div>
-  <div typeof="rdfs:Class" resource="http://www.w3.org/ns/sosa/ObservableProperty">
-    <span class="h" property="rdfs:label">Observable Property</span>
-    <span property="rdfs:comment">An observable quality (property, characteristic) of a FeatureOfInterest.</span>
-    <span property="skos:editorialNote">Candidate for schema.org</span>
-    <span>Subclass of: <a property="rdfs:subClassOf" href="http://schema.org/Property">Property</a></span>
-  </div>
-  <div typeof="rdfs:Class" resource="http://www.w3.org/ns/sosa/ActuatableProperty">
-    <span class="h" property="rdfs:label">Actuatable Property</span>
-    <span property="rdfs:comment">An actuatable quality (property, characteristic) of a FeatureOfInterest.</span>
+  <div typeof="rdfs:Class" resource="http://www.w3.org/ns/sosa/Property">
+    <span class="h" property="rdfs:label">Property</span>
+    <span property="rdfs:comment">A quality (property, characteristic) of a FeatureOfInterest.</span>
     <span property="skos:editorialNote">Candidate for schema.org</span>
     <span>Subclass of: <a property="rdfs:subClassOf" href="http://schema.org/Property">Property</a></span>
   </div>
@@ -140,10 +134,10 @@ A Sample is intended to sample some FatureOfInterest, so there is an expectation
   </div>
   <div typeof="rdf:Property" resource="http://www.w3.org/ns/sosa/observedProperty">
     <span class="h" property="rdfs:label">observed property</span>
-    <span property="rdfs:comment">Relation linking an Observation to the property that was observed. The ObservableProperty should be a property of the FeatureOfInterest (linked by hasFeatureOfInterest) of this Observation.</span>
+    <span property="rdfs:comment">Relation linking an Observation to the property that was observed. The Property should be a property of the FeatureOfInterest (linked by hasFeatureOfInterest) of this Observation.</span>
     <span property="skos:editorialNote">Candidate for schema.org</span>
     <span>Domain: <a property="http://schema.org/domainIncludes" href="http://www.w3.org/ns/sosa/Observation">Observation</a></span>
-    <span>Range: <a property="http://schema.org/rangeIncludes" href="http://www.w3.org/ns/sosa/ObservableProperty">ObservableProperty</a></span>
+    <span>Range: <a property="http://schema.org/rangeIncludes" href="http://www.w3.org/ns/sosa/Property">Property</a></span>
     <link property="owl:equivalentProperty" href="http://schema.org/variableMeasured"/>
   </div>
   <div typeof="rdf:Property" resource="http://www.w3.org/ns/sosa/phenomenonTime">
@@ -212,25 +206,25 @@ For example, if variableMeasured is: molecule concentration, measurementTechniqu
   </div>
   <div typeof="rdf:Property" resource="http://www.w3.org/ns/sosa/observes">
     <span class="h" property="rdfs:label">observes</span>
-    <span property="rdfs:comment">Relation between a Sensor and an ObservableProperty that it is capable of sensing.</span>
+    <span property="rdfs:comment">Relation between a Sensor and a Property that it is capable of sensing.</span>
     <span property="skos:editorialNote">Candidate for schema.org</span>
     <span>Domain: <a property="http://schema.org/domainIncludes" href="http://www.w3.org/ns/sosa/Sensor">Sensor</a></span>
-    <span>Range: <a property="http://schema.org/rangeIncludes" href="http://www.w3.org/ns/sosa/ObservableProperty">ObservableProperty</a></span>
+    <span>Range: <a property="http://schema.org/rangeIncludes" href="http://www.w3.org/ns/sosa/Property">Property</a></span>
     <link property="schema:inverseOf" href="http://www.w3.org/ns/sosa/isObservedBy"/>
   </div>
   <div typeof="rdf:Property" resource="http://www.w3.org/ns/sosa/isObservedBy">
     <span class="h" property="rdfs:label">is observed by</span>
-    <span property="rdfs:comment">Relation between an ObservableProperty and the Sensor able to observe it.</span>
+    <span property="rdfs:comment">Relation between a Property and the Sensor able to observe it.</span>
     <span property="skos:editorialNote">Candidate for schema.org</span>
-    <span>Domain: <a property="http://schema.org/domainIncludes" href="http://www.w3.org/ns/sosa/ObservableProperty">ObservableProperty</a></span>
+    <span>Domain: <a property="http://schema.org/domainIncludes" href="http://www.w3.org/ns/sosa/Property">Property</a></span>
     <span>Range: <a property="http://schema.org/rangeIncludes" href="http://www.w3.org/ns/sosa/Sensor">Sensor</a></span>
     <link property="schema:inverseOf" href="http://www.w3.org/ns/sosa/observes"/>
   </div>
   <div typeof="rdf:Property" resource="http://www.w3.org/ns/sosa/isActedOnBy">
     <span class="h" property="rdfs:label">is acted on by</span>
-    <span property="rdfs:comment">Relation between an ActuatableProperty of a FeatureOfInterest and an Actuation changing its state.</span>
+    <span property="rdfs:comment">Relation between a Property of a FeatureOfInterest and an Actuation changing its state.</span>
     <span property="skos:editorialNote">Candidate for schema.org</span>
-    <span>Domain: <a property="http://schema.org/domainIncludes" href="http://www.w3.org/ns/sosa/ActuatableProperty">ActuatableProperty</a></span>
+    <span>Domain: <a property="http://schema.org/domainIncludes" href="http://www.w3.org/ns/sosa/Property">Property</a></span>
     <span>Range: <a property="http://schema.org/rangeIncludes" href="http://www.w3.org/ns/sosa/Actuation">Actuation</a></span>
     <link property="schema:inverseOf" href="http://www.w3.org/ns/sosa/actsOnProperty"/>
   </div>
@@ -239,7 +233,7 @@ For example, if variableMeasured is: molecule concentration, measurementTechniqu
     <span property="rdfs:comment">Relation between an Actuation and the property of a FeatureOfInterest it is acting upon.</span>
     <span property="skos:editorialNote">Candidate for schema.org</span>
     <span>Domain: <a property="http://schema.org/domainIncludes" href="http://www.w3.org/ns/sosa/Actuation">Actuation</a></span>
-    <span>Range: <a property="http://schema.org/rangeIncludes" href="http://www.w3.org/ns/sosa/ActuatableProperty">ActuatableProperty</a></span>
+    <span>Range: <a property="http://schema.org/rangeIncludes" href="http://www.w3.org/ns/sosa/Property">Property</a></span>
     <link property="schema:inverseOf" href="http://www.w3.org/ns/sosa/isActedOnBy"/>
   </div>
   <div typeof="rdf:Property" resource="http://www.w3.org/ns/sosa/isSampleOf">

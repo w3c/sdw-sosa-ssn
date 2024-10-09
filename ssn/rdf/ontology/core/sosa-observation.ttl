@@ -26,27 +26,17 @@ sosa-obs:
   owl:imports sosa-common: ;
   .
 
-sosa:ObservableProperty 
-  a owl:Class ;
-  rdfs:label "Observable Property"@en ;
-  skos:definition """
-  An observable quality (property, characteristic) of a FeatureOfInterest.
-  """@en ;
-  skos:note "'Observable' means that the value can be determined through an act of Observation using an ObservationProcedure applied by a Sensor or Observer. This can be contrasted with properties whose value is assigned by some authority (e.g. price, ownership), or whose value is a consequence of some other values (e.g. rank). "@en ;
-  skos:example "The height of a tree, the depth of a water body, or the temperature of a surface. "@en ;
-  rdfs:isDefinedBy sosa-obs: .
-
 sosa:Observation 
   a owl:Class ;
   rdfs:label "Observation"@en ;
   skos:definition """
-  Act of carrying out an (Observation) Procedure to estimate or calculate a value of a property of a FeatureOfInterest. Links to a Sensor to describe what made the Observation and how; links to an ObservableProperty to describe what the result is an estimate of, and to a FeatureOfInterest to detail what entity that property was associated with.
+  Act of carrying out an (Observation) Procedure to estimate or calculate a value of a property of a FeatureOfInterest. Links to a Sensor to describe what made the Observation and how; links to a Property to describe what the result is an estimate of, and to a FeatureOfInterest to detail what entity that property was associated with.
   """@en ;
   skos:note """
   When the feature of interest cannot be observed directly, a sample of it might be used in Observations as a proxy for it. In such a case the Sample is the proximate Feature of Interest of the Observation, while the (ultimate) Feature of Interest of the act of Sampling (i.e. the entity that the Sample is ultimately 'isSampleOf') is the ultimate Feature of Interest of the Observation.
   """ ;
   skos:scopeNote """
-  An Observation concerns a single ObservableProperty of a single FeatureOfInterest. 
+  An Observation concerns a single Property of a single FeatureOfInterest. 
   Observations of multiple properties, or other combinations of Observations, may be described in an ObservationCollection. 
   
   Alternatively, applications may choose to encapsulate complexity by defining a complex property with multiple individual components, and a corresponding complex result (e.g. a vector). 
@@ -85,7 +75,7 @@ sosa:Sensor
   skos:altLabel "Observer"@en ;
   skos:prefLabel "Sensor"@en ;
   skos:definition """
-  An identifiable entity that can generate Observations pertaining to an ObservableProperty by implementing a (Observation) Procedure. Device, agent (including humans), or software (simulation) involved in, or implementing, a Procedure. Sensors respond to a stimulus, e.g., a change in the environment, or input data composed from the results of prior Observations, and generate a Result. Sensors can be hosted by Platforms."""@en ;
+  An identifiable entity that can generate Observations pertaining to a Property by implementing a (Observation) Procedure. Device, agent (including humans), or software (simulation) involved in, or implementing, a Procedure. Sensors respond to a stimulus, e.g., a change in the environment, or input data composed from the results of prior Observations, and generate a Result. Sensors can be hosted by Platforms."""@en ;
   skos:example "Accelerometers, gyroscopes, barometers, magnetometers, and so forth are Sensors that are typically mounted on a modern smartphone (which acts as Host or Platform). Other examples of Sensors include the human eyes."@en ;
   skos:note "Different Sensors can follow the same (reusable) observing Procedure for the creation of different Observations."@en ;
   skos:scopeNote "The Sensor is the entity instance, not the entity type. Pertaining to sensors, the Sensor would reference the explicit sensor, while the Procedure would reference the methodology utilized by that sensor type;"@en ;
@@ -99,7 +89,7 @@ sosa:Stimulus
   a owl:Class ;
   rdfs:label "Stimulus"@en ;
   skos:definition """
-  An event in the real world that 'triggers' the Sensor. The properties associated to the Stimulus may be different to the eventual observed ObservableProperty. It is the event, not the object, that triggers the Sensor.
+  An event in the real world that 'triggers' the Sensor. The properties associated to the Stimulus may be different to the eventual observed Property. It is the event, not the object, that triggers the Sensor.
   """@en ;
   rdfs:isDefinedBy sosa-obs: .
 
@@ -108,7 +98,7 @@ sosa:detects
   rdfs:label "detects"@en ;
   skos:definition """
   A relation from a Sensor to the Stimulus that the Sensor detects. 
-  The Stimulus itself will be serving as a proxy for some ObservableProperty.
+  The Stimulus itself will be serving as a proxy for some Property.
   """@en ;
   schema:domainIncludes sosa:Sensor ;
   schema:rangeIncludes sosa:Stimulus ;
@@ -120,7 +110,7 @@ sosa:hasProxy
   rdfs:label "has proxy"@en ;
   skos:definition """
   A relation from a Property to the Stimulus that serves as its proxy."""@en ;
-  schema:domainIncludes sosa:ObservableProperty ;
+  schema:domainIncludes sosa:Property ;
   schema:rangeIncludes sosa:Stimulus ;
   owl:inverseOf sosa:isProxyFor ;
   rdfs:isDefinedBy sosa-obs: .
@@ -130,7 +120,7 @@ sosa:isDetectedBy
   rdfs:label "is detected by"@en ;
   skos:definition """
   A relation from a Stimulus to the Sensor that may detect it. 
-  The Stimulus itself will be serving as a proxy for some ObservableProperty.
+  The Stimulus itself will be serving as a proxy for some Property.
   """@en ;
   schema:domainIncludes sosa:Stimulus ;
   schema:rangeIncludes sosa:Sensor ;
@@ -141,9 +131,9 @@ sosa:isObservedBy
   a owl:ObjectProperty ;
   rdfs:label "is observed by"@en ;
   skos:definition """
-  Relation between an ObservableProperty and the Sensor able to observe it.
+  Relation between a Property and the Sensor able to observe it.
   """@en ;
-  schema:domainIncludes sosa:ObservableProperty ;
+  schema:domainIncludes sosa:Property ;
   schema:rangeIncludes sosa:Sensor ;
   owl:inverseOf sosa:observes ;
   rdfs:isDefinedBy sosa-obs: .
@@ -155,7 +145,7 @@ sosa:isProxyFor
   A relation from a Stimulus to the Property that the Stimulus is serving as a proxy for."""@en ;
   skos:example "For example, the expansion of quicksilver is a stimulus that serves as a proxy for some temperature property. An increase or decrease in the velocity of spinning cups on a wind sensor is serving as a proxy for the wind speed."@en ;
   schema:domainIncludes sosa:Stimulus ;
-  schema:rangeIncludes sosa:ObservableProperty ;
+  schema:rangeIncludes sosa:Property ;
   owl:inverseOf sosa:hasProxy ;
   rdfs:isDefinedBy sosa-obs: .
 
@@ -200,11 +190,11 @@ sosa:observedProperty
   a owl:ObjectProperty ;
   rdfs:label "observed property"@en ;
   skos:definition """
-  Relation linking an Observation or Observation Collection to the property that was observed. The ObservableProperty MUST be a property of the FeatureOfInterest (linked by hasFeatureOfInterest) of this Observation.
+  Relation linking an Observation or Observation Collection to the property that was observed. The Property MUST be a property of the FeatureOfInterest (linked by hasFeatureOfInterest) of this Observation.
   """@en ;
   schema:domainIncludes sosa:Observation ;
   schema:domainIncludes sosa:ObservationCollection ;
-  schema:rangeIncludes sosa:ObservableProperty ;
+  schema:rangeIncludes sosa:Property ;
   owl:inverseOf sosa:wasObservedBy ;
   rdfs:isDefinedBy sosa-obs: .
 
@@ -212,10 +202,10 @@ sosa:observes
   a owl:ObjectProperty ;
   rdfs:label "observes"@en ;
   skos:definition """
-  Relation between a Sensor and an ObservableProperty that it is capable of sensing.
+  Relation between a Sensor and a Property that it is capable of sensing.
   """@en ;
   schema:domainIncludes sosa:Sensor ;
-  schema:rangeIncludes sosa:ObservableProperty ;
+  schema:rangeIncludes sosa:Property ;
   owl:inverseOf sosa:isObservedBy ;
   rdfs:isDefinedBy sosa-obs: .
 
@@ -279,7 +269,7 @@ sosa:wasObservedBy
   skos:definition """
   Relation linking a Property to the Observation or Observation Collection that observed it. 
   """@en ;
-  schema:domainIncludes sosa:ObservableProperty ;
+  schema:domainIncludes sosa:Property ;
   schema:rangeIncludes sosa:Observation ;
   schema:rangeIncludes sosa:ObservationCollection ;
   owl:inverseOf sosa:observedProperty ;
@@ -341,17 +331,17 @@ sosa:isPropertyOf
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hasProcedure 
-  schema:domainIncludes sosa:ObservableProperty ;
+  schema:domainIncludes sosa:Property ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:propertyFor
-  schema:domainIncludes sosa:ObservableProperty ;
+  schema:domainIncludes sosa:Property ;
   schema:rangeIncludes sosa:Sensor ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:forProperty 
   schema:domainIncludes sosa:Sensor ;
-  schema:rangeIncludes sosa:ObservableProperty ;
+  schema:rangeIncludes sosa:Property ;
   rdfs:isDefinedBy sosa-common: .
 
 
