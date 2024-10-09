@@ -51,11 +51,10 @@ Content-Disposition: filename= sosa.ttl;
 
 The list of SOSA resource URLs is:
 
-- http://www.w3.org/ns/sosa/ActuatableProperty
+- http://www.w3.org/ns/sosa/Property
 - http://www.w3.org/ns/sosa/Actuation
 - http://www.w3.org/ns/sosa/Actuator
 - http://www.w3.org/ns/sosa/FeatureOfInterest
-- http://www.w3.org/ns/sosa/ObservableProperty
 - http://www.w3.org/ns/sosa/Observation
 - http://www.w3.org/ns/sosa/Platform
 - http://www.w3.org/ns/sosa/Procedure
@@ -513,12 +512,12 @@ DirectoryIndex sosa
 </Files>
 
 RewriteCond  %{REQUEST_URI}
-/ns/sosa/(ActuatableProperty|Actuation|Actuator|FeatureOfInterest|ObservableProperty|Observation|Platform|Procedure|Repeatability|Result|Sample|Sampler|Sampling|Sensor|actsOnProperty|madeByActuator|hasFeatureOfInterest|hasResult|hasResultingSample|hasSample|hosts|isActedOnBy|isFeatureOfInterestOf|isHostedBy|isObservedBy|isResultOf|isSampleOf|isSamplingResultOf|madeActuation|madeBySampler|madeBySensor|madeObservation|madeSampling|observedProperty|observes|phenomenonTime|usedProcedure|hasSimpleResult|resultTime)$
+/ns/sosa/(Actuation|Actuator|FeatureOfInterest|Observation|Platform|Procedure|Property|Repeatability|Result|Sample|Sampler|Sampling|Sensor|actsOnProperty|madeByActuator|hasFeatureOfInterest|hasResult|hasResultingSample|hasSample|hosts|isActedOnBy|isFeatureOfInterestOf|isHostedBy|isObservedBy|isResultOf|isSampleOf|isSamplingResultOf|madeActuation|madeBySampler|madeBySensor|madeObservation|madeSampling|observedProperty|observes|phenomenonTime|usedProcedure|hasSimpleResult|resultTime)$
 RewriteCond  %{HTTP_ACCEPT}  text/html
 RewriteRule  ^(.*)$  https://www.w3.org/TR/vocab-ssn/#SOSA$1 [R=303,NE,env=redirect:1]
 
 RewriteCond  %{REQUEST_URI}
-/ns/sosa/(ActuatableProperty|Actuation|Actuator|FeatureOfInterest|ObservableProperty|Observation|Platform|Procedure|Repeatability|Result|Sample|Sampler|Sampling|Sensor|actsOnProperty|madeByActuator|hasFeatureOfInterest|hasResult|hasResultingSample|hasSample|hosts|isActedOnBy|isFeatureOfInterestOf|isHostedBy|isObservedBy|isResultOf|isSampleOf|isSamplingResultOf|madeActuation|madeBySampler|madeBySensor|madeObservation|madeSampling|observedProperty|observes|phenomenonTime|usedProcedure|hasSimpleResult|resultTime)$
+/ns/sosa/(Actuation|Actuator|FeatureOfInterest|Observation|Platform|Procedure|Property|Repeatability|Result|Sample|Sampler|Sampling|Sensor|actsOnProperty|madeByActuator|hasFeatureOfInterest|hasResult|hasResultingSample|hasSample|hosts|isActedOnBy|isFeatureOfInterestOf|isHostedBy|isObservedBy|isResultOf|isSampleOf|isSamplingResultOf|madeActuation|madeBySampler|madeBySensor|madeObservation|madeSampling|observedProperty|observes|phenomenonTime|usedProcedure|hasSimpleResult|resultTime)$
 RewriteCond  %{HTTP_ACCEPT}  !text/html
 RewriteRule  ^(.*)$  /ns/sosa/ [R=303,env=redirect:1]
 
