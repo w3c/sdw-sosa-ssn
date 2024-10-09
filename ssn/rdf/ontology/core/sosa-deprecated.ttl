@@ -1,0 +1,64 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
+
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix sosa-common: <http://www.w3.org/ns/sosa/common/> .
+@prefix sosa-act: <http://www.w3.org/ns/sosa/act/> .
+@prefix sosa-obs: <http://www.w3.org/ns/sosa/obs/> .
+@prefix sosa-dep: <http://www.w3.org/ns/sosa/dep/> .
+
+sosa-dep: 
+  a owl:Ontology ;
+  dcterms:title "Semantic Sensor Network Ontology - SOSA deprecated terms"@en ;
+  dcterms:description """
+  This module contains terms defined in the sosa: namespace in the 2017 edition that are deprecated. 
+  """@en ;
+  dcterms:creator [ a foaf:Agent ; foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en ] ;
+  dcterms:rights "Copyright 2024 W3C/OGC." ;
+  dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
+  dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
+  owl:versionInfo """
+  New modular version of the SSN ontology. 
+  """@en ;
+  rdfs:comment "Please report any errors to the W3C Spatial Data on the Web Working Group via the SDW WG Public List public-sdw-wg@w3.org"@en ;
+  skos:scopeNote "The SOSA-DEP module contains deprecated terms in the sosa: namespace. " ;
+  rdfs:seeAlso <https://www.w3.org/2015/spatial/wiki/Semantic_Sensor_Network_Ontology> ;
+  dcterms:created "2017-04-17"^^xsd:date ;
+  dcterms:modified "2024-10-02"^^xsd:date ;
+  owl:imports sosa-common: .
+
+
+### these terms were defined in sosa: namespace in 2017
+### they are deprecated in the 2024 edition
+
+sosa:ActuatableProperty 
+  a owl:Class ;
+  owl:deprecated true ;
+  rdfs:subClassOf sosa:Property ;
+  rdfs:label "Actuatable Property"@en ;
+  skos:definition """
+  A quality (property, characteristic) of a FeatureOfInterest that can be changed by an Actuator.
+  """@en ;
+  skos:example "A window actuator acts by changing the state between a frame and a window. The ability of the window to be opened and closed is its ActuatableProperty."@en ;
+  rdfs:isDefinedBy sosa-dep: .
+
+sosa:ObservableProperty 
+  a owl:Class ;
+  owl:deprecated true ;
+  rdfs:subClassOf sosa:Property ;
+  rdfs:label "Observable Property"@en ;
+  skos:definition """
+  A quality (property, characteristic) of a FeatureOfInterest that can be observed by an Sensor.
+  """@en ;
+  skos:note "'Observable' means that the value can be determined through an act of Observation using an ObservationProcedure applied by a Sensor or Observer. This can be contrasted with properties whose value is assigned by some authority (e.g. price, ownership), or whose value is a consequence of some other values (e.g. rank). "@en ;
+  skos:example "The height of a tree, the depth of a water body, or the temperature of a surface. "@en ;
+  rdfs:isDefinedBy sosa-dep: .
+
+
