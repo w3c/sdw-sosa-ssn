@@ -192,6 +192,12 @@ var respecConfig = {
       page: "453-470",
       authors: ["S.J.D. Cox"]
     },
+    "Project-PROV": {
+      href: "https://linked.data.gov.au/def/project/",
+      authors: ["Simon J D Cox"],
+      title: "A Project Ontology",
+      date: "2017"
+    },
     "SSN-PROV": {
       href: "http://ceur-ws.org/Vol-1401/paper-05.pdf",
       title: "Sensor Data Provenance: SSNO and PROV-O Together at Last",

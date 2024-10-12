@@ -655,6 +655,7 @@ sosa:hasMember
   skos:editorialNote "Note that there is a single `member` property. OWL or SHACL constraints may limit the range depending on the context of different collection types" ;
   schema:domainIncludes sosa:ExecutionCollection ;
   schema:rangeIncludes sosa:Execution ;
+  schema:rangeIncludes sosa:ExecutionCollection ;
   owl:inverseOf sosa:isMemberOf ;
   rdfs:isDefinedBy sosa-common: .
 
@@ -666,7 +667,8 @@ sosa:isMemberOf
   """ ;
   skos:scopeNote "rules for the consistency of values of properties of collections and properties of their members are given for each collection type" ;
   skos:editorialNote "Note that there is a single `member` property. OWL or SHACL constraints may limit the range depending on the context of different collection types" ;
-  schema:domainIncludes sosa:Execution ;
+  schema:domainIncludes sosa:Execution ; 
+  schema:domainIncludes sosa:ExecutionCollection ;
   schema:rangeIncludes sosa:ExecutionCollection ;
   owl:inverseOf sosa:hasMember ;
   rdfs:isDefinedBy sosa-common: .

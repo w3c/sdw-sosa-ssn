@@ -67,6 +67,8 @@ sosa:ObservationCollection
   5. Where an individual Observation Collection has more than one value for a property that is a range or interval, each member Observation (direct or transitive) MUST have a value for that property that either matches or falls within one of those ranges or intervals.
   """@en ;
   skos:note """The members of a collection do not necessarily share a common value for any property. """@en ;
+  skos:note """The results of collections of observations are often packaged in a 'data cube' whose axes define the
+                range of properties of the set of observations.""" ;
   rdfs:isDefinedBy sosa-obs: .
 
 sosa:Sensor 
@@ -299,8 +301,8 @@ sosa:hasMember
   rdfs:isDefinedBy sosa-common: .
 
 sosa:isMemberOf 
-  schema:domainIncludes sosa:ObservationCollection ;
   schema:domainIncludes sosa:Observation ;
+  schema:domainIncludes sosa:ObservationCollection ;
   schema:rangeIncludes sosa:ObservationCollection ;
   rdfs:isDefinedBy sosa-common: .
 
