@@ -95,9 +95,12 @@ sosa:isFeatureOfInterestOf
   rdfs:label "is feature of interest of"@en ;
   skos:definition """
   A relation between a FeatureOfInterest and an Execution concerning it, i.e. an Observation about it, an Actuation acting on it, or an act of Sampling that sampled it.
-  """@en ;
+  
+  A relation between a FeatureOfInterest and a specific System operating on it, i.e. the entity whose property is modified and an Actuator, or the entity whose quality is observed and a Sensor, or the entity that is sampled and a Sampler.
+"""@en ;
   schema:domainIncludes sosa:FeatureOfInterest ;
   schema:rangeIncludes sosa:Execution ;
+  schema:rangeIncludes sosa:System ;
   owl:inverseOf sosa:hasFeatureOfInterest ;
   rdfs:isDefinedBy sosa-common: .
 
@@ -286,10 +289,13 @@ sosa:hasFeatureOfInterest
   rdfs:label "has feature of interest"@en ;
   skos:definition """
   A relation between an Execution and its target entity, i.e. an Actuation and the entity whose property was modified, or an Observation and the entity whose quality was observed, or an act of Sampling and the entity that was sampled.
+  
+  A relation between a specific System and its target entity, i.e. an Actuator and the entity whose property is modified, or a Sensor and the entity whose quality is observed, or a Sampler and the entity that is sampled.
   """@en ;
   skos:scopeNote "This is the _proximate_ feature of interest, which may be a proxy entity such as a sample of the _ultimate_ feature of interest. Use `hasUltimateFeatureOfInterest` if the intention is to link to the _ultimate_ feature of interest. " ;
   skos:example "For example, in an Observation of the weight of a person, the FeatureOfInterest is the person and the property is its weight."@en ;
   schema:domainIncludes sosa:Execution ;
+  schema:domainIncludes sosa:System ;
   schema:rangeIncludes sosa:FeatureOfInterest ;
   owl:inverseOf sosa:isFeatureOfInterestOf ;
   rdfs:isDefinedBy sosa-common: .

@@ -139,9 +139,9 @@
             <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/Property</p>
             <p><strong>an OWL Class</strong></p>
             <p class="note">The 2017 edition defined ActuatableProperty and ObservableProperty.
-                Those specializations of Property are deprecated in this 2024 edition. 
+                Those specializations of Property are deprecated in this 2024 edition.
                 <a href="#SOSAProperty">sosa:Property</a> should be used instead.
-             </p>
+            </p>
 
             <em property="rdfs:label">Property</em> -
             <span property="skos:definition">An identifiable quality of a <a
@@ -402,7 +402,15 @@
             <span property="skos:definition">A relation between a <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a>
                 and an <a href="#SOSAExecution">Execution</a> concerning it, i.e. an <a
                     href="#SOSAActuation">Actuation</a> acting on it, or an <a href="#SOSAObservation">Observation</a>
-                about it or an act of <a href="#SOSASampling">Sampling</a> that sampled it.</span> <br>
+                about it or an act of <a href="#SOSASampling">Sampling</a> that sampled it.
+                <br>
+                <br>
+                A relation between a <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a> and a specific <a
+                    href="#SOSASystem">System</a> operating on it, i.e. the entity whose property is modified and an <a
+                    href="#SOSAActuator">Actuator</a>, or the entity whose quality is observed and a <a
+                    href="#SOSASensor">Sensor</a>, or the entity that is sampled and a <a
+                    href="#SOSASampler">Sampler</a>.
+            </span> <br>
             <table>
                 <tbody>
                     <tr>
@@ -421,7 +429,14 @@
                                     href="#SOSAActuation">sosa:Actuation</a></span>, <span rel="schema:rangeIncludes"
                                 resource="sosa:Observation"><a href="#SOSAObservation">sosa:Observation</a></span>,
                             <span rel="schema:rangeIncludes" resource="sosa:Sampling"><a
-                                    href="#SOSASampling">sosa:Sampling</a></span>
+                                    href="#SOSASampling">sosa:Sampling</a></span>,
+                            <span rel="schema:rangeIncludes" resource="sosa:System"><a
+                                    href="#SOSASystem">sosa:System</a></span>, i.e. <span rel="schema:rangeIncludes"
+                                resource="sosa:Actuator"><a href="#SOSAActuator">sosa:Actuator</a></span>, <span
+                                rel="schema:rangeIncludes" resource="sosa:Sensor"><a
+                                    href="#SOSASensor">sosa:Sensor</a></span>,
+                            <span rel="schema:rangeIncludes" resource="sosa:Sampler"><a
+                                    href="#SOSASamplerg">sosa:Sampler</a></span>
                         </td>
                     </tr>
                     <tr>
@@ -1357,7 +1372,14 @@
                 <a href="#SOSAExecution">Execution</a> and its target entity
                 i.e. an <a href="#SOSAActuation">Actuation</a> and the entity whose property was modified,
                 or an <a href="#SOSAObservation">Observation</a> and the entity whose quality was observed,
-                or an act of <a href="#SOSASampling">Sampling</a> and the entity that was sampled.</span>
+                or an act of <a href="#SOSASampling">Sampling</a> and the entity that was sampled.
+                <br>
+                <br>
+                A relation between a specific <a href="#SOSASystem">System</a> and its target entity, i.e. an <a
+                    href="#SOSAActuator">Actuator</a> and the entity whose property is modified, or a <a
+                    href="#SOSASensor">Sensor</a> and the entity whose quality is observed, or a <a
+                    href="#SOSASampler">Sampler</a> and the entity that is sampled.
+            </span>
             <table>
                 <tbody>
                     <tr>
@@ -1389,7 +1411,15 @@
                             , <span rel="schema:domainIncludes" resource="sosa:Observation"><a
                                     href="#SOSAObservation">sosa:Observation</a></span>
                             , <span rel="schema:domainIncludes" resource="sosa:Sampling"><a
-                                    href="#SOSASampling">sosa:Sampling</a></span>)
+                                    href="#SOSASampling">sosa:Sampling</a></span>),
+                            <span rel="schema:domainIncludes" resource="sosa:System"><a
+                                    href="#SOSASystem">sosa:System</a></span>
+                            (i.e. <span rel="schema:domainIncludes" resource="sosa:Actuator"><a
+                                    href="#SOSAActuator">sosa:Actuator</a></span>
+                            , <span rel="schema:domainIncludes" resource="sosa:Sensor"><a
+                                    href="#SOSASensor">sosa:Sensor</a></span>
+                            , <span rel="schema:domainIncludes" resource="sosa:Sampler"><a
+                                    href="#SOSASampler">sosa:Sampler</a></span>)
                         </td>
                     </tr>
                     <tr>
@@ -2604,6 +2634,14 @@
                             <span about="[_:System3]" property="owl:allValuesFrom"
                                 resource="sosa:Property"><em><b>ONLY</b></em>
                                 <a href="#SOSAProperty">sosa:Property</a></span>
+                            <br>
+                            <span about="sosa:System" rel="rdfs:subClassOf" resource="[_:System6]"></span>
+                            <span about="[_:System6]" typeof="owl:Restriction"></span>
+                            <span about="[_:System6]" rel="owl:onProperty" resource="sosa:hasFeatureOfInterest"><a
+                                    href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a></span>
+                            <span about="[_:System6]" property="owl:allValuesFrom"
+                                resource="sosa:FeatureOfInterest"><em><b>ONLY</b></em>
+                                <a href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a></span>
                             <br>
                             <span about="sosa:System" rel="rdfs:subClassOf" resource="[_:System4]"></span>
                             <span about="[_:System4]" typeof="owl:Restriction"></span>
