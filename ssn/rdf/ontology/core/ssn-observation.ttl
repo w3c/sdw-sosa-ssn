@@ -12,7 +12,6 @@
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix sosa-common: <http://www.w3.org/ns/sosa/common/> .
 @prefix sosa-obs: <http://www.w3.org/ns/sosa/obs/> .
-@prefix ssn: <http://www.w3.org/ns/ssn/> .
 @prefix ssn-common: <http://www.w3.org/ns/ssn/common/> .
 @prefix ssn-obs: <http://www.w3.org/ns/ssn/obs/> .
 
@@ -43,7 +42,7 @@ sosa:Observation
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:observedProperty ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:observedProperty ; owl:allValuesFrom sosa:Property ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:wasOriginatedBy ; owl:cardinality "1"^^xsd:nonNegativeInteger] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:wasOriginatedBy ; owl:allValuesFrom ssn:Stimulus ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:wasOriginatedBy ; owl:allValuesFrom sosa:Stimulus ] ;
   rdfs:isDefinedBy sosa-obs: .
 
 sosa:ObservationCollection 
@@ -107,11 +106,11 @@ sosa:observedProperty
   rdfs:isDefinedBy sosa-obs: .
 
 sosa:observes 
-  rdfs:subPropertyOf ssn:forProperty ;
+  rdfs:subPropertyOf sosa:forProperty ;
   rdfs:isDefinedBy sosa-obs: .
 
 sosa:originated 
-  rdfs:subPropertyOf ssn:forProperty ;
+  rdfs:subPropertyOf sosa:forProperty ;
   rdfs:isDefinedBy sosa-obs: .
 
 sosa:qualityOf 
