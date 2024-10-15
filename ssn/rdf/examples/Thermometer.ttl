@@ -1,0 +1,54 @@
+# baseURI: file:///C:/dev/W3C/sdw-sosa-ssn/ssn/rdf/examples/Thermometer.ttl
+
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ex: <https://example.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix qk: <http://qudt.org/vocab/quantitykind/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix sensor: <https://example.org/sensor/> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix system: <http://www.w3.org/ns/ssn/systems/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+qk:Temperature
+  a sosa:ObservableProperty ;
+.
+ex:Mums-clinical-thermometer
+  a sosa:Sensor ;
+  a sensor:Mercury-in-glass-thermometer ;
+  a sensor:TemperatureSensor ;
+.
+ex:SickChildA
+  a sosa:FeatureOfInterest ;
+.
+ex:SickChildATemperature
+  a sosa:Observation ;
+  sosa:hasFeatureOfInterest ex:SickChildA ;
+  sosa:hasSimpleResult "38.2"^^unit:DEG_C ;
+  sosa:madeBySensor ex:Mums-clinical-thermometer ;
+  sosa:observedProperty qk:Temperature ;
+.
+sensor:Mercury-in-glass-thermometer
+  a owl:Class ;
+  rdfs:comment "Temperature sensor based on observing the the expansion of a column of mercury inside a glass tube" ;
+  rdfs:label "A specific type of temperature sensor" ;
+  rdfs:subClassOf sensor:TemperatureSensor ;
+.
+sensor:Special-Mercury-in-glass-thermometer
+  a owl:Class ;
+  rdfs:subClassOf sensor:Mercury-in-glass-thermometer ;
+.
+sensor:TemperatureSensor
+  a owl:Class ;
+  rdfs:label "A generic temperature sensor" ;
+  rdfs:subClassOf sosa:Sensor ;
+  rdfs:subClassOf [
+      a owl:Restriction ;
+      owl:hasValue qk:Temperature ;
+      owl:onProperty sosa:observes ;
+    ] ;
+.

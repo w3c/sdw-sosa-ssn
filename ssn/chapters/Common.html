@@ -2558,13 +2558,16 @@
             <p><strong>an OWL Class</strong></p>
 
             <em property="rdfs:label">System</em> -
-            <span property="skos:definition">System is a piece of infrastructure that implements a
-                <a href="#SOSAProcedure">Procedure</a>.
-                A System may have components, its subsystems, which are other Systems.</span> <br>
+            <span property="skos:definition">
+                A piece of infrastructure that implements a <a href="#SOSAProcedure">Procedure</a>.
+
+                A System may have components, its sub-systems, which are other systems.
+            </span>
+
             <table>
                 <tbody>
                     <tr>
-                        <th>Scope note</th>
+                        <th>Note</th>
                         <td>
                             <span rel="skos:scopeNote">
                                 System generalizes the <a href="#SOSAActuator">Actuator</a>, <a
@@ -2572,9 +2575,18 @@
                                 <a href="#SOSASampler">Sampler</a> classes.
                                 It appears in the ontology to support the description of a common pattern for executions
                                 and their properties.
-
+                                <br><br>
                                 System MUST be considered to be abstract, so any individual System SHOULD be declared to
                                 be an instance of one of the concrete sub-classes, and not of the System class.
+                            </span>
+                            <span rel="skos:scopeNote">
+                                Specific system <em>types</em> may be implemented as <em>sub-classes</em> of this class
+                                or its sub-classes.
+                                Their descriptions may capture the properties and characteristics of a whole class of
+                                systems, corresponding with the information typically found in a data-sheet.
+                                <br><br>
+                                Individual system <em>instances</em> are <em>members</em> of this class or its
+                                sub-classes.
                             </span>
                         </td>
                     </tr>

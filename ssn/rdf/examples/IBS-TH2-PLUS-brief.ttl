@@ -1,0 +1,43 @@
+@prefix ex: <https://example.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix sensor: <https://example.org/sensor/> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix system: <http://www.w3.org/ns/ssn/systems/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+sensor:IBS-TH2-Plus a owl:Class ;
+  rdfs:subClassOf sosa:System ;
+  prov:wasDerivedFrom <https://inkbird.com/products/ibs-th2-plus> ;
+  rdfs:label "IBS-TH2 PLUS Temperature and Humidity Sensor System" ;
+.
+
+sensor:IBS-TH2-Plus-H a owl:Class ;
+  rdfs:subClassOf sosa:Sensor ;
+  rdfs:label "IBS-TH2 PLUS Humidity Sensor type" ;
+.
+
+sensor:IBS-TH2-Plus-T a owl:Class ;
+  rdfs:subClassOf sosa:Sensor ;
+  rdfs:label "IBS-TH2 PLUS Temperature Sensor type" ;
+.
+
+ex:12gth456a-23190 a sensor:IBS-TH2-Plus ; 
+  system:hasSubSystem ex:12gth456a-23190-H ;
+  system:hasSubSystem ex:12gth456a-23190-T ;
+  system:hasSystemCapability sensor:IBS-TH2-Plus-systemCapability ;
+. 
+
+ex:12gth456a-23190-H a sensor:IBS-TH2-Plus-H ; 
+  sosa:observes <http://qudt.org/vocab/quantitykind/RelativeHumidity> ;
+  system:hasSystemCapability sensor:IBS-TH2-Plus-H-systemCapability ;
+. 
+
+ex:12gth456a-23190-T a sensor:IBS-TH2-Plus-T ; 
+  sosa:observes <http://qudt.org/vocab/quantitykind/Temperature> ;
+  system:hasSystemCapability sensor:IBS-TH2-Plus-T-systemCapability ;
+. 

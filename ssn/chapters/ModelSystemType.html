@@ -1,0 +1,77 @@
+<h3>Systems types and individuals</h3>
+<p>
+    <a href="#SOSASystem"><code>sosa:System</code></a> is the class of systems,
+    i.e. devices or entities that implements procedures to make actuations, observations, or samplings.
+    Members of the class are <em>individual</em> systems i.e. system-instances.
+    In the physical world these will typically carry a serial-number (devices) or proper-name (people).
+</p>
+<p>
+    Nevertheless, most individual systems share a primary description with other individuals of the same system
+    type, or model number.
+    The characteristics and capabilities of the <em>system type</em> will usually provide the key information
+    about about
+    a system involved in an execution.
+    Traditionally this information would appear in a specification or <em>data-sheet</em> for a device type.
+</p>
+<p>
+    The SSN Ontology may be used to describe system types as OWL Classes, so that system instances can be typed
+    through them.
+    The recommended pattern is for
+</p>
+<ul>
+    <li>
+        a generic system or system type is represented as an OWL Class, specifically as a sub-class of
+        <a href="#SOSASystem"><code>sosa:System</code></a> or one of its sub-classes
+        (<a href="#SOSAActuator"><code>sosa:Actuator</code></a>,
+        <a href="#SOSASensor"><code>sosa:Sensor</code></a>,
+        <a href="#SOSASampler"><code>sosa:Sampler</code></a>), while
+    </li>
+    <li>
+        an individual system or system instance is represented as an OWL Individual, specifically as an
+        instance of the class describing the system type.</li>
+</ul>
+<p>
+    The following diagram illustrates an example of a sensor type and instance modeled this way.
+</p>
+<figure>
+    <a href="images/Thermometer.png"><img alt="Thermometer type and instance example" src="images/Thermometer.png"></a>
+    <figcaption>Mum's clinical thermometer represented as an instance of a specific sensor type.
+        <br>
+        <em><a href="#class-diagram">Explanation of the notation used in class diagrams</a></em>.
+    </figcaption>
+</figure>
+<p>
+    The following code snippet provides an outline of the details:
+</p>
+<pre class="example" data-include="./rdf/examples/Thermometer.ttl" data-include-format="text"></pre>
+<p>
+    Note that this approach is a clarification and adjustment relative to earlier editions of this
+    Ontology, which suggested that instances of <a href="#SOSASystem"><code>sosa:System</code></a>
+    could represent either generic systems or instances specific to a single execution.
+</p>
+
+<p>
+    More complex systems can be described using class definitions with OWL Restrictions to fix specific
+    properties of class members.
+    For example, the following code illustrates how a sensor package such as a <a
+        href="https://inkbird.com/products/ibs-th2-plus">Inkbird model IBS-TH2-PLUS</a> may be described.
+</p>
+<pre class="example" data-include="./rdf/examples/IBS-TH2-PLUS.ttl" data-include-format="text"></pre>
+<ul>
+    <li>
+        <code>sensor:IBS-TH2-Plus</code> describes the <em>IBS-TH2-PLUS system type</em>.
+        Every IBS-TH2-PLUS package records at a frequency in the range 5.556e-4 &mdash; 0.1 Hertz.
+        Every IBS-TH2-PLUS has two subsystems, one temperature sensor, and one relative-humidity sensor.
+    </li>
+    <li>
+        <code>sensor:IBS-TH2-Plus-H</code> describes the <em>humidity sensor type</em> in the IBS-TH2-PLUS
+        package.
+        Every humidity sensor has a range 0&mdash;99 % RH with an accuracy of 4.5 %.
+    </li>
+    <li>
+        <code>sensor:IBS-TH2-Plus-T</code> describes the <em>temperature sensor type</em> in the
+        IBS-TH2-PLUS package.
+        Every temperature sensor has a range -40&mdash;60 &deg;C with an accuracy of 4.5 %.
+    </li>
+</ul>
+</section>
