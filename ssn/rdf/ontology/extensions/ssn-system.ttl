@@ -49,6 +49,13 @@ ssn-system: a owl:Ontology , voaf:Vocabulary ;
   vann:preferredNamespaceUri "http://www.w3.org/ns/ssn/systems/" ;
   owl:imports ssn-act: , ssn-obs: , ssn-dep: .
 
+# Range
+
+ssn-system:Range a owl:Class ;
+rdfs:label "Range"@en ;
+skos:definition "A primitive class to represent that the value is within a numerical range."@en ;
+skos:definition "A primitive class to represent that the value is within a numerical range."@en ;
+rdfs:isDefinedBy ssn-system: .
 
 # Quality of Observation
 
@@ -138,6 +145,7 @@ ssn-system:hasSystemCapability a owl:ObjectProperty ;
       rdfs:label "Measurement Range"@en ;
       skos:definition "The set of values that the Sensor can return as the Result of an Observation under the defined Conditions."@en ;
       rdfs:comment "The set of values that the Sensor can return as the Result of an Observation under the defined Conditions."@en ;
+      rdfs:subClassOf ssn-system:Range;
       rdfs:subClassOf ssn-system:SystemProperty ;
       rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf ssn-system:hasSystemProperty ] ; owl:allValuesFrom [ a owl:Restriction ; owl:onProperty [ owl:inverseOf ssn-system:hasSystemCapability ] ; owl:allValuesFrom sosa:Sensor ] ] ; 
       rdfs:isDefinedBy ssn-system: .
@@ -146,6 +154,7 @@ ssn-system:hasSystemCapability a owl:ObjectProperty ;
       rdfs:label "Actuation Range"@en ;
       skos:definition "The set of values that the Actuator can return as the Result of an Actuation under the defined Conditions with the defined system properties."@en ;
       rdfs:comment "The set of values that the Actuator can return as the Result of an Actuation under the defined Conditions with the defined system properties."@en ;
+      rdfs:subClassOf ssn-system:Range;
       rdfs:subClassOf ssn-system:SystemProperty ;
       rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf ssn-system:hasSystemProperty ] ; owl:allValuesFrom [ a owl:Restriction ; owl:onProperty [ owl:inverseOf ssn-system:hasSystemCapability ] ; owl:allValuesFrom sosa:Actuator ] ] ; 
       rdfs:isDefinedBy ssn-system: .
@@ -267,6 +276,7 @@ ssn-system:hasOperatingRange a owl:ObjectProperty ;
     In the absence of OperatingProperties, simply describes the Conditions in which a System is expected to operate.
 
     The System continues to operate as defined using SystemCapability. If, however, the SurvivalRange is violated, the System is 'damaged' and SystemCapability specifications may no longer hold."""@en ;
+    rdfs:subClassOf ssn-system:Range ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:inCondition ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:inCondition ] ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf ssn-system:hasOperatingRange ] ; owl:allValuesFrom ssn:System ] ;
@@ -301,6 +311,7 @@ ssn-system:hasOperatingRange a owl:ObjectProperty ;
       rdfs:label "Operating Power Range"@en ;
       skos:definition "Power range in which a System is expected to operate in the specified Conditions."@en ;
       rdfs:comment "Power range in which a System is expected to operate in the specified Conditions."@en ;
+      rdfs:subClassOf ssn-system:Range;
       rdfs:subClassOf ssn-system:OperatingProperty ;
       rdfs:isDefinedBy ssn-system: .
 
@@ -326,6 +337,7 @@ ssn-system:hasSurvivalRange a owl:ObjectProperty ;
     In the absence of SurvivalProperties, simply describes the Conditions a System can be exposed to without damage. For example, the temperature range a System can withstand before being considered damaged.
 
     The System continues to operate as defined using SystemCapability. If, however, the OperatingProperty is violated, the System is operating 'out of operating range' and SystemCapability specifications may no longer hold."""@en ;
+    rdfs:subClassOf ssn-system:Range ;
     rdfs:subClassOf ssn:Property ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:inCondition ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasSurvivalProperty ; owl:allValuesFrom ssn-system:SurvivalProperty ] ;
