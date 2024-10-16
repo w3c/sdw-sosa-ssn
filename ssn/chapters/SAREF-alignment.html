@@ -1,0 +1,394 @@
+<!--  <section id="SAREF_Alignment" class="informative"> -->
+<h3>SAREF Alignment Module</h3>
+<p>
+  The ETSI Smart Applications REFerence (SAREF) suite of ontologies ([[SAREF]]) forms a shared model of consensus
+  intended to
+  enable semantic interoperability between solutions from different providers and among various activity sectors in the
+  Internet
+  of Things (IoT), thus contributing to the development of data spaces.
+</p>
+<p>
+  The <a href="https://saref.etsi.org/">ETSI portal for SAREF</a> exposes the SAREF ontologies and points to the
+  different
+  SAREF-related deliverables, which are open standards produced by ETSI Technical Committee Smart Machine-to-Machine
+  communications
+  (<a href="https://www.etsi.org/committee/smartm2m">SmartM2M</a>).
+</p>
+<p>
+  Since V2.1.1, SAREF and SSN have common contributors, who work on the convergence of these reference ontologies. This
+  section
+  introduces the alignment of SOSA to to SAREF V3.2.1 [[SAREF]] and SAREF4SYST [[SAREF_Patterns]].
+</p>
+<p>
+  An RDF file containing a
+  <a href="https://github.com/w3c/sdw-sosa-ssn/blob/gh-pages/ssn/rdf/ontology/alignments/sosa-saref.ttl">graph
+    corresponding to this alignment is available</a>.
+</p>
+<section id="SAREF_Alignment_ns" class="informative">
+  <h4>Namespaces</h4>
+  <p>
+    The following namespace prefixes are used in the alignment of SOSA to SAREF.
+  </p>
+  <table>
+    <tbody>
+      <tr>
+        <th> Prefix </th>
+        <th> Namespace </th>
+      </tr>
+      <tr>
+        <td> sosa: </td>
+        <td> <a href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a>
+        </td>
+      </tr>
+      <tr>
+        <td> saref: </td>
+        <td> <a href="https://saref.etsi.org/core/">https://saref.etsi.org/core/</a>
+        </td>
+      </tr>
+      <tr>
+        <td> s4syst: </td>
+        <td> <a href="https://saref.etsi.org/saref4syst/">https://saref.etsi.org/saref4syst/</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<section id="SAREF_Alignment_SOSA_common" class="informative">
+  <h4>Alignment of SOSA-common to SAREF</h4>
+  <p>
+    The classes and properties from SOSA-common are aligned with the SAREF classes and properties as follows.
+  </p>
+  <table>
+    <tbody>
+      <tr>
+        <td> <a href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a> </td>
+        <td> subclass of </td>
+        <td> <a href="https://saref.etsi.org/core/FeatureOfInterest">saref:FeatureOfInterest</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAhasProperty">sosa:hasProperty</a> </td>
+        <td> subproperty of </td>
+        <td> <a href="https://saref.etsi.org/core/hasProperty">saref:hasProperty</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAisFeatureOfInterestOf">sosa:isFeatureOfInterestOf</a> </td>
+        <td> subproperty of </td>
+        <td> <a href="https://saref.etsi.org/core/isActedUponBy">saref:isActedUponBy</a> . # may be renamed <a
+            href="https://saref.etsi.org/core/isTargetOf">saref:isTargetOf</a> in </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAProperty">sosa:Property</a> </td>
+        <td> equivalent class </td>
+        <td> <a href="https://saref.etsi.org/core/Property">saref:Property</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAPropertyOfInterest">sosa:PropertyOfInterest</a> </td>
+        <td> equivalent class </td>
+        <td> <a href="https://saref.etsi.org/core/PropertyOfInterest">saref:PropertyOfInterest</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAisPropertyOf">sosa:isPropertyOf</a> </td>
+        <td> subproperty of </td>
+        <td> <a href="https://saref.etsi.org/core/isPropertyOf">saref:isPropertyOf</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAhasInput">sosa:hasInput</a> </td>
+        <td> subproperty of </td>
+        <td> &lt;http://www.w3.org/ns/sosa/saref#hasInput&gt; </td>
+      </tr>
+      <tr>
+        <td> <a href="https://saref.etsi.org/core/hasInput">saref:hasInput</a> </td>
+        <td> subproperty of </td>
+        <td> &lt;http://www.w3.org/ns/sosa/saref#hasInput&gt; </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAhasOutput">sosa:hasOutput</a> </td>
+        <td> subproperty of </td>
+        <td> &lt;http://www.w3.org/ns/sosa/saref#hasOutput&gt; </td>
+      </tr>
+      <tr>
+        <td> <a href="https://saref.etsi.org/core/hasOutput">saref:hasOutput</a> </td>
+        <td> subproperty of </td>
+        <td> &lt;ttp://www.w3.org/ns/sosa/saref#hasOutput&gt; </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAExecution">sosa:Execution</a> </td>
+        <td> equivalent class </td>
+        <td> <a href="https://saref.etsi.org/core/ProcedureExecution">saref:ProcedureExecution</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="https://saref.etsi.org/core/isExecutionOf">saref:isExecutionOf</a> </td>
+        <td> subproperty of </td>
+        <td> <a href="#SOSAusedProcedure">sosa:usedProcedure</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAresultTime">sosa:resultTime</a> </td>
+        <td> equivalent property </td>
+        <td> <a href="https://saref.etsi.org/core/hasResultTime">saref:hasResultTime</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAphenomenonTime">sosa:phenomenonTime</a> </td>
+        <td> equivalent property </td>
+        <td> <a href="https://saref.etsi.org/core/hasPhenomenonTime">saref:hasPhenomenonTime</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a> </td>
+        <td> subproperty of </td>
+        <td> <a href="https://saref.etsi.org/core/actsUpon">saref:actsUpon</a> . # may be renamed <a
+            href="https://saref.etsi.org/core/hasTarget">saref:hasTarget</a> in </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAhasUltimateFeatureOfInterest">sosa:hasUltimateFeatureOfInterest</a> </td>
+        <td> subproperty of </td>
+        <td> <a href="https://saref.etsi.org/core/actsUpon">saref:actsUpon</a> . # may be renamed <a
+            href="https://saref.etsi.org/core/hasTarget">saref:hasTarget</a> in </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAhasInputValue">sosa:hasInputValue</a> </td>
+        <td> subproperty of </td>
+        <td> &lt;http://www.w3.org/ns/sosa/saref#hasInput&gt; </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAhasOutputValue">sosa:hasOutputValue</a> </td>
+        <td> subproperty of </td>
+        <td> &lt;http://www.w3.org/ns/sosa/saref#hasInput&gt; </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAhasResult">sosa:hasResult</a> </td>
+        <td> equivalent property </td>
+        <td> <a href="https://saref.etsi.org/core/hasResult">saref:hasResult</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAisResultOf">sosa:isResultOf</a> </td>
+        <td> inverse of </td>
+        <td> <a href="https://saref.etsi.org/core/hasResult">saref:hasResult</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSASystem">sosa:System</a> </td>
+        <td> subclass of </td>
+        <td> <a href="https://saref.etsi.org/saref4syst/System">s4syst:System</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSASystem">sosa:System</a> </td>
+        <td> subclass of </td>
+        <td> <a href="https://saref.etsi.org/core/FeatureOfInterest">saref:FeatureOfInterest</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="https://saref.etsi.org/core/Device">saref:Device</a> </td>
+        <td> subclass of </td>
+        <td> <a href="#SOSASystem">sosa:System</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="https://saref.etsi.org/core/hasCommand">saref:hasCommand</a> </td>
+        <td> subproperty of </td>
+        <td> <a href="#SOSAimplements">sosa:implements</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="https://saref.etsi.org/core/hasFunction">saref:hasFunction</a> </td>
+        <td> subproperty of </td>
+        <td> <a href="#SOSAimplements">sosa:implements</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAhasSubSystem">sosa:hasSubSystem</a> </td>
+        <td> subproperty of </td>
+        <td> <a href="https://saref.etsi.org/saref4syst/hasSubSystem">s4syst:hasSubSystem</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAhasSubSystem">sosa:hasSubSystem</a> </td>
+        <td> subproperty of </td>
+        <td> <a href="https://saref.etsi.org/core/consistsOf">saref:consistsOf</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAPlatform">sosa:Platform</a> </td>
+        <td> subclass of </td>
+        <td> <a href="https://saref.etsi.org/saref4syst/System">s4syst:System</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAPlatform">sosa:Platform</a> </td>
+        <td> subclass of </td>
+        <td> <a href="https://saref.etsi.org/core/FeatureOfInterest">saref:FeatureOfInterest</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAhosts">sosa:hosts</a> </td>
+        <td> subproperty of </td>
+        <td> <a href="https://saref.etsi.org/saref4syst/connectedTo">s4syst:connectedTo</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="https://saref.etsi.org/core/Command">saref:Command</a> </td>
+        <td> subclass of </td>
+        <td> <a href="#SOSAProcedure">sosa:Procedure</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="https://saref.etsi.org/core/CommandOfInterest">saref:CommandOfInterest</a> </td>
+        <td> subclass of </td>
+        <td> <a href="#SOSAProcedure">sosa:Procedure</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="https://saref.etsi.org/core/Operation">saref:Operation</a> </td>
+        <td> subclass of </td>
+        <td> <a href="#SOSAProcedure">sosa:Procedure</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="https://saref.etsi.org/core/FunctionOfInterest">saref:FunctionOfInterest</a> </td>
+        <td> subclass of </td>
+        <td> <a href="#SOSAProcedure">sosa:Procedure</a> </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<section id="SAREF_Alignment_SOSA_observation" class="informative">
+  <h4>Alignment of SOSA-observation to SAREF</h4>
+  <p>
+    The classes and properties from SOSA-observation are aligned with the SAREF classes and properties as follows.
+  </p>
+  <table>
+    <tbody>
+      <tr>
+        <td> <a href="#SOSAProperty">sosa:Property</a> </td>
+        <td> subclass of </td>
+        <td> <a href="https://saref.etsi.org/core/Property">saref:Property</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAObservation">sosa:Observation</a> </td>
+        <td> equivalent class </td>
+        <td> <a href="https://saref.etsi.org/core/Observation">saref:Observation</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAobservedProperty">sosa:observedProperty</a> </td>
+        <td> subproperty of </td>
+        <td> <a href="https://saref.etsi.org/core/observes">saref:observes</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="https://saref.etsi.org/core/Sensor">saref:Sensor</a> </td>
+        <td> subclass of </td>
+        <td> <a href="#SOSASensor">sosa:Sensor</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAobserves">sosa:observes</a> </td>
+        <td> subproperty of </td>
+        <td> <a href="https://saref.etsi.org/core/observes">saref:observes</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAisObservedBy">sosa:isObservedBy</a> </td>
+        <td> subproperty of </td>
+        <td> <a href="https://saref.etsi.org/core/isObservedBy">saref:isObservedBy</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAmadeObservation">sosa:madeObservation</a> </td>
+        <td> subproperty of </td>
+        <td> <a href="https://saref.etsi.org/core/madeExecution">saref:madeExecution</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAmadeBySensor">sosa:madeBySensor</a> </td>
+        <td> subproperty of </td>
+        <td> <a href="https://saref.etsi.org/core/madeBy">saref:madeBy</a> </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<section id="SAREF_Alignment_SOSA_actuation" class="informative">
+  <h4>Alignment of SOSA-actuation to SAREF</h4>
+  <p>
+    The classes and properties from SOSA-actuation are aligned with the SAREF classes and properties as follows.
+  </p>
+  <table>
+    <tbody>
+      <tr>
+        <td> <a href="#SOSAProperty">sosa:Property</a> </td>
+        <td> subclass of </td>
+        <td> <a href="https://saref.etsi.org/core/Property">saref:Property</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAisActedOnBy">sosa:isActedOnBy</a> </td>
+        <td> subproperty of </td>
+        <td> <a href="https://saref.etsi.org/core/isControlledBy">saref:isControlledBy</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAActuation">sosa:Actuation</a> </td>
+        <td> equivalent class </td>
+        <td> <a href="https://saref.etsi.org/core/Actuation">saref:Actuation</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAactsOnProperty">sosa:actsOnProperty</a> </td>
+        <td> subproperty of </td>
+        <td> <a href="https://saref.etsi.org/core/controls">saref:controls</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="https://saref.etsi.org/core/Actuator">saref:Actuator</a> </td>
+        <td> equivalent class </td>
+        <td> <a href="#SOSAActuator">sosa:Actuator</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAmadeActuation">sosa:madeActuation</a> </td>
+        <td> subproperty of </td>
+        <td> <a href="https://saref.etsi.org/core/madeExecution">saref:madeExecution</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAmadeByActuator">sosa:madeByActuator</a> </td>
+        <td> subproperty of </td>
+        <td> <a href="https://saref.etsi.org/core/madeBy">saref:madeBy</a> </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<section id="SAREF_Alignment_SOSA_sampling" class="informative">
+  <h4>Alignment of SOSA-sampling to SAREF</h4>
+  <p>
+    The classes and properties from SOSA-sampling are aligned with the SAREF classes and properties as follows.
+  </p>
+  <table>
+    <tbody>
+      <tr>
+        <td> <a href="#SOSASample">sosa:Sample</a> </td>
+        <td> subclass of </td>
+        <td> <a href="https://saref.etsi.org/core/FeatureOfInterest">saref:FeatureOfInterest</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAMaterialSample">sosa:MaterialSample</a> </td>
+        <td> subclass of </td>
+        <td> <a href="https://saref.etsi.org/core/FeatureOfInterest">saref:FeatureOfInterest</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSASpatialSample">sosa:SpatialSample</a> </td>
+        <td> subclass of </td>
+        <td> <a href="https://saref.etsi.org/core/FeatureOfInterest">saref:FeatureOfInterest</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAStatisticalSample">sosa:StatisticalSample</a> </td>
+        <td> subclass of </td>
+        <td> <a href="https://saref.etsi.org/core/FeatureOfInterest">saref:FeatureOfInterest</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAhasSample">sosa:hasSample</a> </td>
+        <td> subproperty of </td>
+        <td> <a href="https://saref.etsi.org/saref4syst/hasSubSystem">s4syst:hasSubSystem</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAhasOriginalSample">sosa:hasOriginalSample</a> </td>
+        <td> subproperty of </td>
+        <td> <a href="https://saref.etsi.org/saref4syst/hasSubSystem">s4syst:hasSubSystem</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSASampling">sosa:Sampling</a> </td>
+        <td> subclass of </td>
+        <td> <a href="https://saref.etsi.org/core/ProcedureExecution">saref:ProcedureExecution</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSASampler">sosa:Sampler</a> </td>
+        <td> subclass of </td>
+        <td> <a href="https://saref.etsi.org/core/Device">saref:Device</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAmadeSampling">sosa:madeSampling</a> </td>
+        <td> subproperty of </td>
+        <td> <a href="https://saref.etsi.org/core/madeExecution">saref:madeExecution</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="#SOSAmadeBySampler">sosa:madeBySampler</a> </td>
+        <td> subproperty of </td>
+        <td> <a href="https://saref.etsi.org/core/madeBy">saref:madeBy</a> </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<!--  </section>  -->

@@ -31,56 +31,24 @@ ssn-act:
   owl:imports sosa-act: , ssn-common: ;
   .
 
-sosa:ActuatableProperty 
-    rdfs:subClassOf ssn:Property ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isActedOnBy ; owl:allValuesFrom sosa:Actuation ] ;
-  rdfs:isDefinedBy sosa-act: .
-
-sosa:ActuatingProcedure 
-  rdfs:subClassOf sosa:Procedure ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implementedBy ; owl:allValuesFrom sosa:Actuator ] ;
-  rdfs:isDefinedBy sosa-act: .
-
-sosa:Actuator 
-  rdfs:subClassOf sosa:System ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implements ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implements ; owl:allValuesFrom sosa:ActuatingProcedure ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:forProperty ; owl:allValuesFrom sosa:ActuatableProperty ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeActuation ; owl:allValuesFrom sosa:Actuation ] ;
-  rdfs:isDefinedBy sosa-act: .
+sosa:Property 
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isActedOnBy ; owl:allValuesFrom sosa:Actuation ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf sosa:actsOnPropertyProperty ] ; owl:allValuesFrom sosa:Actuation ] ;
+  rdfs:isDefinedBy sosa-common: .
 
 sosa:Actuation 
   rdfs:subClassOf sosa:Execution ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeByActuator ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeByActuator ; owl:allValuesFrom sosa:Actuator ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:usedProcedure ; owl:allValuesFrom sosa:ActuatingProcedure ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasFeatureOfInterest ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasFeatureOfInterest ; owl:allValuesFrom sosa:FeatureOfInterest ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasUltimateFeatureOfInterest ; owl:allValuesFrom sosa:FeatureOfInterest ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:actsOnProperty ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:actsOnProperty ; owl:allValuesFrom sosa:ActuatableProperty ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasResult ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:phenomenonTime ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:resultTime ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:startTime ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:actsOnProperty ; owl:allValuesFrom sosa:Property ] ;
   rdfs:isDefinedBy sosa-act: .
-
-sosa:madeActuation 
-  rdfs:isDefinedBy sosa-act: .
-
-sosa:madeByActuator 
-  rdfs:isDefinedBy sosa-act: .
-
-sosa:actsOnProperty 
-  rdfs:isDefinedBy sosa-act: .
-
-sosa:isActedOnBy 
-  rdfs:isDefinedBy sosa-act: .
-
-## Actuation Collection
 
 sosa:ActuationCollection 
   rdfs:subClassOf rdf:Bag ;
+  rdfs:subClassOf sosa:ExecutionCollection ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeByActuator ; owl:allValuesFrom sosa:Actuator ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:actsOnProperty ; owl:allValuesFrom sosa:Property ] ;
   rdfs:subClassOf [ 
     a owl:Restriction ; 
     owl:onProperty sosa:hasMember ; 
@@ -92,6 +60,34 @@ sosa:ActuationCollection
     ] 
   ] ;
   rdfs:isDefinedBy sosa-act: .
+
+sosa:Actuator 
+  rdfs:subClassOf sosa:System ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeActuation ; owl:allValuesFrom sosa:Actuation ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:actsOn ; owl:allValuesFrom sosa:Property ] ;
+  rdfs:isDefinedBy sosa-act: .
+
+sosa:actsOn 
+  rdfs:isDefinedBy sosa-act: .
+
+sosa:actsOnProperty 
+  rdfs:isDefinedBy sosa-act: .
+
+sosa:isActedOnBy 
+  rdfs:isDefinedBy sosa-act: .
+
+sosa:madeActuation 
+  rdfs:subPropertyOf sosa:madeExecution ;
+  rdfs:isDefinedBy sosa-act: .
+
+sosa:madeByActuator 
+  rdfs:subPropertyOf sosa:madeBySystem ;
+  rdfs:isDefinedBy sosa-act: .
+
+sosa:wasActedOnBy 
+  rdfs:isDefinedBy sosa-act: .
+
+## Actuation Collection
 
 ## End of actuation schema
 ## -------------------------------------------------------- ##

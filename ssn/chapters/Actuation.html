@@ -22,180 +22,17 @@
     <p>This section introduces the following classes and properties:</p>
     <div class="azlist">
         <p>
-            <a href="#SOSAActuatableProperty">sosa:ActuatableProperty</a>
-            , <a href="#SOSAisActedOnBy">sosa:isActedOnBy</a>
-            , <a href="#SOSAActuatingProcedure">sosa:ActuatingProcedure</a>
-            , <a href="#SOSAActuation">sosa:Actuation</a>
+            <a href="#SOSAActuation">sosa:Actuation</a>
             , <a href="#SOSAActuationCollection">sosa:ActuationCollection</a>
-            , <a href="#SOSAactsOnProperty">sosa:actsOnProperty</a>
             , <a href="#SOSAActuator">sosa:Actuator</a>
+            , <a href="#SOSAactsOn">sosa:actsOn</a>
+            , <a href="#SOSAactsOnProperty">sosa:actsOnProperty</a>
+            , <a href="#SOSAisActedOnBy">sosa:isActedOnBy</a>
             , <a href="#SOSAmadeActuation">sosa:madeActuation</a>
             , <a href="#SOSAmadeByActuator">sosa:madeByActuator</a>
+            , <a href="#SOSAwasActedOnBy">sosa:wasActedOnBy</a>
         </p>
     </div>
-
-    <section class="specterm sosa" id="SOSAActuatableProperty" about="sosa:ActuatableProperty" typeof="owl:Class">
-        <h5><a href="#SOSAActuatableProperty">sosa:ActuatableProperty</a></h5>
-        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/ActuatableProperty</p>
-        <p><strong>an OWL Class</strong></p>
-
-        <em property="rdfs:label">Actuatable Property</em> -
-        <span property="skos:definition">A quality (property, characteristic) of a <a
-                href="#SOSAFeatureOfInterest">FeatureOfInterest</a> that can be changed by an <a
-                href="#SOSAActuator">Actuator</a>.</span> <br>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Example</th>
-                    <td><span property="skos:example">A window actuator acts by changing the state between a frame
-                            and a
-                            window. The ability of the window to be opened and closed is its <a
-                                href="#SOSAActuatableProperty">ActuatableProperty</a>.</span></td>
-                </tr>
-                <tr class="ssn">
-                    <th>Sub class of</th>
-                    <td>
-                        <span rel="rdfs:subClassOf" resource="sosa:Property"><a
-                                href="#SOSAProperty">sosa:Property</a></span>
-                    </td>
-                </tr>
-                <tr class="ssn">
-                    <th class="restrictions">Restriction</th>
-                    <td>
-                        <span about="sosa:ActuatableProperty" rel="rdfs:subClassOf"
-                            resource="[_:SOSAActuatableProperty1]"></span>
-                        <span about="[_:SOSAActuatableProperty1]" typeof="owl:Restriction"></span>
-                        <span about="[_:SOSAActuatableProperty1]" rel="owl:onProperty" resource="sosa:isActedOnBy"><a
-                                href="#SOSAisActedOnBy">sosa:isActedOnBy</a></span>
-                        <span about="[_:SOSAActuatableProperty1]" property="owl:allValuesFrom"
-                            resource="sosa:Actuation"><em><b>ONLY</b></em> <a
-                                href="#SOSAActuation">sosa:Actuation</a></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <span rel="rdfs:isDefinedBy"><a
-                                href="http://www.w3.org/ns/sosa/actuation/">http://www.w3.org/ns/sosa/actuation/</a></span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="buttonpanel">
-            <span>
-                <span class="sosa" style="display: none;">[<a href="#"
-                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
-                        additional SSN axioms</a>]</span>
-                <span class="ssn">[<a href="#"
-                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
-                        additional SSN axioms</a>]</span>
-            </span>
-            <span class="back">[<a href="#Actuation">Back to module overview</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-        </div>
-    </section>
-
-    <section class="specterm sosa" id="SOSAisActedOnBy" about="sosa:isActedOnBy" typeof="owl:ObjectProperty">
-        <h5><a href="#SOSAisActedOnBy">sosa:isActedOnBy</a></h5>
-        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/isActedOnBy</p>
-        <p><strong>an OWL Object Property</strong></p>
-
-        <em property="rdfs:label">is acted on by</em> -
-        <span property="skos:definition">Relation between an
-            <a href="#SOSAActuatableProperty">ActuatableProperty</a> of a
-            <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a> and an
-            <a href="#SOSAActuation">Actuation</a> changing its state.</span> <br>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Example</th>
-                    <td>
-                        <span property="skos:example">In the activity (<code>Actuation</code>) of automatically closing
-                            a window if the temperature in a room drops below 20 degrees Celsius, the property on which
-                            the <a href="#SOSAActuator">Actuator</a> acts upon is the state of the window
-                            as it changes from being open to being closed.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Domain Includes</th>
-                    <td>
-                        <span rel="schema:domainIncludes" resource="sosa:ActuatableProperty"><a
-                                href="#SOSAActuatableProperty">sosa:ActuatableProperty</a></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Range Includes</th>
-                    <td>
-                        <span rel="schema:rangeIncludes" resource="sosa:Actuation"><a
-                                href="#SOSAActuation">sosa:Actuation</a></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Inverse property of</th>
-                    <td>
-                        <span rel="owl:inverseOf" resource="sosa:actsOnProperty"><a
-                                href="#SOSAactsOnProperty">sosa:actsOnProperty</a></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <span rel="rdfs:isDefinedBy"><a
-                                href="http://www.w3.org/ns/sosa/actuation/">http://www.w3.org/ns/sosa/actuation/</a></span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="buttonpanel">
-            <span class="back">[<a href="#Actuation">Back to module overview</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-        </div>
-    </section>
-
-    <section class="informative specterm sosa" id="SOSAActuatingProcedure" about="sosa:ActuatingProcedure"
-        typeof="owl:Class">
-        <h6><a href="#SOSAActuatingProcedure">sosa:ActuatingProcedure</a></h6>
-        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/ActuatingProcedure</p>
-        <p><strong>an OWL Class</strong></p>
-
-        <p class="note">ActuatingProcedure added in 2024 update.
-            This term is non-normative pending further implementation experience</p>
-        <p>
-            <em property="rdfs:label">Actuation Procedure</em> -
-            <span property="skos:definition">The description of steps performed by an Actuator to change
-                the ActuableProperty.</span>
-        </p>
-        <table>
-            <tbody>
-                <tr class="ssn">
-                    <th>Sub class of</th>
-                    <td>
-                        <span rel="rdfs:subClassOf" resource="sosa:Procedure">sosa:Procedure</span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <span rel="rdfs:isDefinedBy"><a
-                                href="http://www.w3.org/ns/sosa/actuation/">http://www.w3.org/ns/sosa/actuation/</a></span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <div class="buttonpanel">
-            <span>
-                <span class="sosa" style="display: none;">[<a href="#"
-                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
-                        additional SSN axioms</a>]</span>
-                <span class="ssn">[<a href="#"
-                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
-                        additional SSN axioms</a>]</span>
-            </span>
-            <span class="back">[<a href="#Core">Back to module overview</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-        </div>
-    </section>
 
     <section class="specterm sosa" id="SOSAActuation" about="sosa:Actuation" typeof="owl:Class">
         <h5><a href="#SOSAActuation">sosa:Actuation</a></h5>
@@ -204,27 +41,25 @@
 
         <em property="rdfs:label">Actuation</em> -
         <span property="skos:definition">An <a href="#SOSAActuation">Actuation</a> carries out an
-            (Actuation) <a href="#SOSAProcedure">Procedure</a> to change the value of an <a
-                href="#SOSAActuatableProperty">ActuatableProperty</a> using an <a href="#SOSAActuator">Actuator</a>.
+            (Actuation) <a href="#SOSAProcedure">Procedure</a> to change the value of a <a
+                href="#SOSAProperty">Property</a> using an <a href="#SOSAActuator">Actuator</a>.
             <br>
             <br>
             In this context,
             <br>
             - <a href="#SOSAhasResult">hasResult</a> shall indicate the expected value of the <a
-                href="#SOSAActuatableProperty">ActuatableProperty</a> at the completion of the <a
-                href="#SOSAActuation">Actuation</a>
+                href="#SOSAProperty">Property</a> at the completion of the <a href="#SOSAActuation">Actuation</a>
         </span>
         <br>
         <br>
-        <span property="rdfs:comment"><a href="#SOSArelatedObservation">relatedObservation</a> should be
+        <span property="rdfs:comment"><a href="#SOSArelatedObservation">relatedObservation</a> SHOULD be
             used to link to an associated <a href="#SOSAObservation">Observation</a> or <a
                 href="#SOSAObservationCollection">ObservationCollection</a> that monitors the actuated
             property to verify that the result value has been obtained</span>
         <br>
         <br>
         <span property="skos:scopeNote">An <a href="#SOSAActuation">Actuation</a> concerns a single <a
-                href="#SOSAActuatableProperty">ActuatableProperty</a> of a single <a
-                href="#SOSAFeatureOfInterest">FeatureOfInterest</a>.
+                href="#SOSAProperty">Property</a> of a single <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a>.
             Changes to multiple properties, or other combinations of Actuations, may be described in an
             <a href="#SOSAActuationCollection">ActuationCollection</a>.
             <br>
@@ -233,7 +68,7 @@
             multiple individual components, and a corresponding complex result (e.g. a vector). This approach is not
             prohibited by the SSN Ontology, but the details are beyond the scope of SSN.</span>
         <br>
-        <span property="skos:note"><a href="#SOSArelatedObservation">relatedObservation</a> should be used
+        <span property="skos:note"><a href="#SOSArelatedObservation">relatedObservation</a> SHOULD be used
             to link to an associated <a href="#SOSAObservation">Observation</a> or <a
                 href="#SOSAActuationCollection">ObservationCollection</a> that monitors the actuated
             property to verify that the result value has been obtained..
@@ -283,8 +118,8 @@
                         <span about="[_:SOSAActuation3]" rel="owl:onProperty" resource="sosa:usedProcedure"><a
                                 href="#SOSAusedProcedure">sosa:usedProcedure</a></span>
                         <span about="[_:SOSAActuation3]" property="owl:allValuesFrom"
-                            resource="sosa:ActuatingProcedure"><em><b>ONLY</b></em> <a
-                                href="#SOSAActuatingProcedure">sosa:ActuatingProcedure</a></span>
+                            resource="sosa:Procedure"><em><b>ONLY</b></em> <a
+                                href="#SOSAProcedure">sosa:Procedure</a></span>
                         <br>
                         <span about="sosa:Actuation" rel="rdfs:subClassOf" resource="[_:SOSAActuation4]"></span>
                         <span about="[_:SOSAActuation4]" typeof="owl:Restriction"></span>
@@ -313,21 +148,14 @@
                         <span about="[_:SOSAActuation7]" rel="owl:onProperty" resource="sosa:actsOnProperty"><a
                                 href="#SOSAactsOnProperty">sosa:actsOnProperty</a></span>
                         <span about="[_:SOSAActuation7]" property="owl:allValuesFrom"
-                            resource="sosa:ActuatableProperty"><em><b>ONLY</b></em> <a
-                                href="#SOSAActuatableProperty">sosa:ActuatableProperty</a></span>
+                            resource="sosa:Property"><em><b>ONLY</b></em> <a
+                                href="#SOSAProperty">sosa:Property</a></span>
                         <br>
                         <span about="sosa:Actuation" rel="rdfs:subClassOf" resource="[_:SOSAActuation11]"></span>
                         <span about="[_:SOSAActuation11]" typeof="owl:Restriction"></span>
                         <span about="[_:SOSAActuation11]" rel="owl:onProperty" resource="sosa:hasResult"><a
                                 href="#SOSAhasResult">sosa:hasResult</a></span>
                         <span about="[_:SOSAActuation11]" property="owl:minCardinality" content="1"
-                            datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em></span>
-                        <br>
-                        <span about="sosa:Actuation" rel="rdfs:subClassOf" resource="[_:SOSAActuation14]"></span>
-                        <span about="[_:SOSAActuation14]" typeof="owl:Restriction"></span>
-                        <span about="[_:SOSAActuation14]" rel="owl:onProperty" resource="sosa:phenomenonTime"><a
-                                href="#SOSAphenomenonTime">sosa:phenomenonTime</a></span>
-                        <span about="[_:SOSAActuation14]" property="owl:cardinality" content="1"
                             datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em></span>
                         <br>
                         <span about="sosa:Actuation" rel="rdfs:subClassOf" resource="[_:SOSAActuation13]"></span>
@@ -368,14 +196,14 @@
         </div>
     </section>
 
-    <section class="informative specterm sosa" id="SOSAActuationCollection" about="sosa:ActuationCollection"
+    <section class="informative specterm" id="SOSAActuationCollection" about="sosa:ActuationCollection"
         typeof="owl:Class">
         <h5><a href="#SOSAActuationCollection">sosa:ActuationCollection</a></h5>
         <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/ActuationCollection</p>
         <p><strong>an OWL Class</strong></p>
 
         <p class="note">ActuationCollection added in 2024 update.
-            This term is non-normative pending further implementation experience</p>
+            This term is non-normative, pending further implementation experience</p>
         <p>
             <em property="rdfs:label">Actuation Collection</em> -
             <span property="skos:definition">Collection of one or more <a href="#SOSAActuation">Actuations</a> or <a
@@ -385,11 +213,9 @@
                 The following <a href="#SOSAActuation">Actuation</a> properties may appear in an <a
                     href="#SOSAActuationCollection">ActuationCollection</a>:
                 <a href="#SOSAhasFeatureOfInterest">hasFeatureOfInterest</a>
-                , <a href="#SOSAhasUltimateFeatureOfInterest">hasUltimateFeatureOfInterest</a>
                 , <a href="#SOSAusedProcedure">usedProcedure</a>
                 , <a href="#SOSAmadeByActuator">madeByActuator</a>
                 , <a href="#SOSAactsOnProperty">actsOnProperty</a>
-                , <a href="#SOSAphenomenonTime">phenomenonTime</a>
                 , <a href="#SOSAresultTime">resultTime</a>
                 , <a href="#SOSAhasResult">hasResult</a>
                 , <a href="#SOSAhasSimpleResult">hasSimpleResult</a>
@@ -440,6 +266,8 @@
                     <td>
                         <span rel="rdfs:subClassOf" resource="rdf:Bag"><a
                                 href="https://www.w3.org/TR/rdf12-schema/#ch_bag">rdf:Bag</a></span>
+                        , <span rel="rdfs:subClassOf" resource="sosa:ExecutionCollection"><a
+                                href="#SOSAExecutionCollection">sosa:ExecutionCollection</a></span>
                     </td>
                 </tr>
                 <tr class="ssn">
@@ -449,13 +277,52 @@
                                 href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
                         , <span rel="owl:disjointWith" resource="sosa:SampleCollection"><a
                                 href="#SOSASampleCollection">sosa:SampleCollection</a></span>
+                        , <span rel="owl:disjointWith" resource="sosa:SamplingCollection"><a
+                                href="#SOSASamplingCollection">sosa:SamplingCollection</a></span>
                     </td>
                 </tr>
                 <tr class="ssn">
                     <th class="restrictions">Restrictions</th>
                     <td>
                         <span about="sosa:ActuationCollection" rel="rdfs:subClassOf"
-                            resource=" [_:SOSAActuationCollection2]"></span>
+                            resource="[_:SOSAActuationCollection2]"></span>
+                        <span about="[_:SOSAActuationCollection2]" typeof="owl:Restriction"></span>
+                        <span about="[_:SOSAActuationCollection2]" rel="owl:onProperty"
+                            resource="sosa:madeByActuator"><a href="#SOSAmadeByActuator">sosa:madeByActuator</a></span>
+                        <span about="[_:SOSAActuationCollection2]" property="owl:allValuesFrom"
+                            resource="sosa:Actuator"><em><b>ONLY</b></em> <a
+                                href="#SOSAActuator">sosa:Actuator</a></span>
+                        <br>
+                        <span about="sosa:ActuationCollection" rel="rdfs:subClassOf"
+                            resource="[_:SOSAActuationCollection3]"></span>
+                        <span about="[_:SOSAActuationCollection3]" typeof="owl:Restriction"></span>
+                        <span about="[_:SOSAActuationCollection3]" rel="owl:onProperty" resource="sosa:usedProcedure"><a
+                                href="#SOSAusedProcedure">sosa:usedProcedure</a></span>
+                        <span about="[_:SOSAActuationCollection3]" property="owl:allValuesFrom"
+                            resource="sosa:Procedure"><em><b>ONLY</b></em> <a
+                                href="#SOSAProcedure">sosa:Procedure</a></span>
+                        <br>
+                        <span about="sosa:ActuationCollection" rel="rdfs:subClassOf"
+                            resource="[_:SOSAActuationCollection5]"></span>
+                        <span about="[_:SOSAActuationCollection5]" typeof="owl:Restriction"></span>
+                        <span about="[_:SOSAActuationCollection5]" rel="owl:onProperty"
+                            resource="sosa:hasFeatureOfInterest"><a
+                                href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a></span>
+                        <span about="[_:SOSAActuationCollection5]" property="owl:allValuesFrom"
+                            resource="sosa:FeatureOfInterest"><em><b>ONLY</b></em> <a
+                                href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a></span>
+                        <br>
+                        <span about="sosa:ActuationCollection" rel="rdfs:subClassOf"
+                            resource="[_:SOSAActuationCollection7]"></span>
+                        <span about="[_:SOSAActuationCollection7]" typeof="owl:Restriction"></span>
+                        <span about="[_:SOSAActuationCollection7]" rel="owl:onProperty"
+                            resource="sosa:actsOnProperty"><a href="#SOSAactsOnProperty">sosa:actsOnProperty</a></span>
+                        <span about="[_:SOSAActuationCollection7]" property="owl:allValuesFrom"
+                            resource="sosa:Property"><em><b>ONLY</b></em> <a
+                                href="#SOSAProperty">sosa:Property</a></span>
+                        <br>
+                        <span about="sosa:ActuationCollection" rel="rdfs:subClassOf"
+                            resource=" [_:SOSAActuationCollection4]"></span>
                         <span about="[_:SOSAActuationCollection]" typeof="owl:Restriction"></span>
                         <span about="[_:SOSAActuationCollection]" rel="owl:onProperty" resource="sosa:hasMember"><a
                                 href="#SOSAhasMember">sosa:hasMember</a></span>
@@ -488,65 +355,6 @@
         </div>
     </section>
 
-    <section class="specterm sosa" id="SOSAactsOnProperty" about="sosa:actsOnProperty" typeof="owl:ObjectProperty">
-        <h5><a href="#SOSAactsOnProperty">sosa:actsOnProperty</a></h5>
-        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/actsOnProperty</p>
-        <p><strong>an OWL Object Property</strong></p>
-
-        <em property="rdfs:label">acts on property</em> -
-        <span property="skos:definition">Relation between an <a href="#SOSAActuation">Actuation</a> and the
-            property of a <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a> it is acting upon.</span>
-        <br>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Example</th>
-                    <td>
-                        <span property="skos:example">In the activity (<a href="#SOSAActuation">Actuation</a>) of
-                            automatically closing a window if
-                            the temperature in a room drops below 20 degrees Celsius, the property on which the <a
-                                href="#SOSAActuator">Actuator</a> acts upon is the state of the window as
-                            it changes from being open to being closed.</span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Domain Includes</th>
-                    <td>
-                        <span rel="schema:domainIncludes" resource="sosa:Actuation"><a
-                                href="#SOSAActuation">sosa:Actuation</a></span>
-                        , <span rel="schema:domainIncludes" resource="sosa:ActuationCollection"><a
-                                href="#SOSAActuationCollection">sosa:ActuationCollection</a></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Range Includes</th>
-                    <td>
-                        <span rel="schema:rangeIncludes" resource="sosa:ActuatableProperty"><a
-                                href="#SOSAActuatableProperty">sosa:ActuatableProperty</a></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Inverse property of</th>
-                    <td>
-                        <span rel="owl:inverseOf" resource="sosa:isActedOnBy"><a
-                                href="#SOSAisActedOnBy">sosa:isActedOnBy</a></span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <span rel="rdfs:isDefinedBy"><a
-                                href="http://www.w3.org/ns/sosa/actuation/">http://www.w3.org/ns/sosa/actuation/</a></span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="buttonpanel">
-            <span class="back">[<a href="#Actuation">Back to module overview</a>]</span>
-            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-        </div>
-    </section>
-
     <section class="specterm sosa" id="SOSAActuator" about="sosa:Actuator" typeof="owl:Class">
         <h5><a href="#SOSAActuator">sosa:Actuator</a></h5>
         <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/Actuator</p>
@@ -554,8 +362,8 @@
 
         <em property="rdfs:label">Actuator</em> -
         <span property="skos:definition">A device or system that is used by, or implements, an (Actuation) <a
-                href="#SOSAProcedure">Procedure</a> that changes the value of an <a
-                href="#SOSAActuatableProperty">ActuatableProperty</a></span> <br>
+                href="#SOSAProcedure">Procedure</a> that changes the value of a <a
+                href="#SOSAProperty">Property</a></span> <br>
         <table>
             <tbody>
                 <tr>
@@ -574,21 +382,6 @@
                 <tr class="ssn">
                     <th class="restrictions">Restrictions</th>
                     <td>
-                        <span about="sosa:Actuator" rel="rdfs:subClassOf" resource="[_:SOSAActuator4]"></span>
-                        <span about="[_:SOSAActuator4]" typeof="owl:Restriction"></span>
-                        <span about="[_:SOSAActuator4]" rel="owl:onProperty" resource="sosa:implements"><a
-                                href="#SOSAimplements">sosa:implements</a></span>
-                        <span about="[_:SOSAActuator4]" property="owl:minCardinality" content="1"
-                            datatype="xsd:nonNegativeInteger"><em><b>MIN 1</b></em></span>
-                        <br>
-                        <span about="sosa:Actuator" rel="rdfs:subClassOf" resource="[_:SOSAActuator2]"></span>
-                        <span about="[_:SOSAActuator2]" typeof="owl:Restriction"></span>
-                        <span about="[_:SOSAActuator2]" rel="owl:onProperty" resource="sosa:forProperty"><a
-                                href="#SOSAforProperty">sosa:forProperty</a></span>
-                        <span about="[_:SOSAActuator2]" property="owl:allValuesFrom"
-                            resource="sosa:ActuatableProperty"><em><b>ONLY</b></em> <a
-                                href="#SOSAActuatableProperty">sosa:ActuatableProperty</a></span>
-                        <br>
                         <span about="sosa:Actuator" rel="rdfs:subClassOf" resource="[_:SOSAActuator1]"></span>
                         <span about="[_:SOSAActuator1]" typeof="owl:Restriction"></span>
                         <span about="[_:SOSAActuator1]" rel="owl:onProperty" resource="sosa:madeActuation"><a
@@ -596,6 +389,14 @@
                         <span about="[_:SOSAActuator1]" property="owl:allValuesFrom"
                             resource="sosa:Actuation"><em><b>ONLY</b></em> <a
                                 href="#SOSAActuation">sosa:Actuation</a></span>
+                        <br>
+                        <span about="sosa:Sensor" rel="rdfs:subClassOf" resource="[_:SOSAActuator2]"></span>
+                        <span about="[_:SOSAActuator2]" typeof="owl:Restriction"></span>
+                        <span about="[_:SOSAActuator2]" rel="owl:onProperty" resource="sosa:actsOn"><a
+                                href="#SOSAactsOn">sosa:actsOn</a></span>
+                        <span about="[_:SOSAActuator2]" property="owl:allValuesFrom"
+                            resource="sosa:Property"><em><b>ONLY</b></em> <a
+                                href="#SOSAProperty">sosa:Property</a></span>
                     </td>
                 </tr>
                 <tr>
@@ -621,6 +422,168 @@
         </div>
     </section>
 
+    <section class="informative specterm" id="SOSAactsOn" about="sosa:actsOn" typeof="owl:ObjectProperty">
+        <h5><a href="#SOSAactsOn">sosa:actsOn</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/actsOn</p>
+        <p><strong>an OWL Object Property</strong></p>
+        <p class="note">actsOn added in 2024 update.
+            This term is non-normative, pending further implementation experience</p>
+
+        <em property="rdfs:label">acts on</em> -
+        <span property="skos:definition">Relation between an
+            <a href="#SOSAActuator">Actuator</a> and a
+            <a href="#SOSAProperty">Property</a> whose state may be changed by using it.</span> <br>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Domain Includes</th>
+                    <td>
+                        <span rel="schema:domainIncludes" resource="sosa:Actuator"><a
+                                href="#SOSAActuator">sosa:Actuator</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Range Includes</th>
+                    <td>
+                        <span rel="schema:rangeIncludes" resource="sosa:Property"><a
+                                href="#SOSAProperty">sosa:Property</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Inverse property of</th>
+                    <td>
+                        <span rel="owl:inverseOf" resource="sosa:isActedOnBy"><a
+                                href="#SOSAisActedOnBy">sosa:isActedOnBy</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/actuation/">http://www.w3.org/ns/sosa/actuation/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Actuation">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="specterm sosa" id="SOSAactsOnProperty" about="sosa:actsOnProperty" typeof="owl:ObjectProperty">
+        <h5><a href="#SOSAactsOnProperty">sosa:actsOnProperty</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/actsOnProperty</p>
+        <p><strong>an OWL Object Property</strong></p>
+        <p class="note">The 2017 edition defined the term ActuatableProperty as the range of <a
+                href="#SOSAactsOnProperty">sosa:actsOnProperty</a>.
+            That specialization of <a href="#SOSAProperty">sosa:Property</a> is deprecated in this 2024 edition.
+        </p>
+
+        <em property="rdfs:label">acts on property</em> -
+        <span property="skos:definition">Relation between an <a href="#SOSAActuation">Actuation</a> and the
+            <a href="#SOSAProperty">sosa:Property</a> it acted upon.</span>
+        <br>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Example</th>
+                    <td>
+                        <span property="skos:example">In the activity (<a href="#SOSAActuation">Actuation</a>) of
+                            automatically closing a window if
+                            the temperature in a room drops below 20 degrees Celsius, the property on which the <a
+                                href="#SOSAActuator">Actuator</a> acts upon is the state of the window as
+                            it changes from being open to being closed.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Domain Includes</th>
+                    <td>
+                        <span rel="schema:domainIncludes" resource="sosa:Actuation"><a
+                                href="#SOSAActuation">sosa:Actuation</a></span>
+                        , <span rel="schema:domainIncludes" resource="sosa:ActuationCollection"><a
+                                href="#SOSAActuationCollection">sosa:ActuationCollection</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Range Includes</th>
+                    <td>
+                        <span rel="schema:rangeIncludes" resource="sosa:Property"><a
+                                href="#SOSAProperty">sosa:Property</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Inverse property of</th>
+                    <td>
+                        <span rel="owl:inverseOf" resource="sosa:wasActedOnBy"><a
+                                href="#SOSAwasActedOnBy">sosa:wasActedOnBy</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/actuation/">http://www.w3.org/ns/sosa/actuation/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Actuation">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="specterm sosa" id="SOSAisActedOnBy" about="sosa:isActedOnBy" typeof="owl:ObjectProperty">
+        <h5><a href="#SOSAisActedOnBy">sosa:isActedOnBy</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/isActedOnBy</p>
+        <p><strong>an OWL Object Property</strong></p>
+        <p class="note">The 2017 edition defined the term ActuatableProperty as the domain of <a
+                href="#SOSAisActedOnBy">sosa:isActedOnBy</a>.
+            That specialization of <a href="#SOSAProperty">sosa:Property</a> is deprecated in this 2024 edition.
+        </p>
+
+        <em property="rdfs:label">is acted on by</em> -
+        <span property="skos:definition">Relation between a
+            <a href="#SOSAProperty">Property</a> and an
+            <a href="#SOSAActuator">Actuator</a> that may change its state.</span> <br>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Domain Includes</th>
+                    <td>
+                        <span rel="schema:domainIncludes" resource="sosa:Property"><a
+                                href="#SOSAProperty">sosa:Property</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Range Includes</th>
+                    <td>
+                        <span rel="schema:rangeIncludes" resource="sosa:Actuator"><a
+                                href="#SOSAActuator">sosa:Actuator</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Inverse property of</th>
+                    <td>
+                        <span rel="owl:inverseOf" resource="sosa:actsOn"><a href="#SOSAactsOn">sosa:actsOn</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/actuation/">http://www.w3.org/ns/sosa/actuation/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Actuation">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
     <section class="specterm sosa" id="SOSAmadeActuation" about="sosa:madeActuation" typeof="owl:ObjectProperty">
         <h5><a href="#SOSAmadeActuation">sosa:madeActuation</a></h5>
         <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/madeActuation</p>
@@ -628,10 +591,14 @@
 
         <em property="rdfs:label">made actuation</em> -
         <span property="skos:definition">Relation between an <a href="#SOSAActuator">Actuator</a> and an
-            <a href="#SOSAActuation">Actuation</a>
-            made by the <a href="#SOSAActuator">Actuator</a>.</span> <br>
+            <a href="#SOSAActuation">Actuation</a> made it.</span> <br>
         <table>
             <tbody>
+                <tr class="ssn">
+                    <th>Sub property of</th>
+                    <td><span rel="rdfs:subPropertyOf" resource="sosa:madeExecution"><a
+                                href="#SOSAmadeExecution">sosa:madeExecution</a></span></td>
+                </tr>
                 <tr>
                     <th>Domain Includes</th>
                     <td>
@@ -663,6 +630,14 @@
             </tbody>
         </table>
         <div class="buttonpanel">
+            <span>
+                <span class="sosa" style="display: none;">[<a href="#"
+                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement,this);return false;">Show
+                        additional SSN axioms</a>]</span>
+                <span class="ssn">[<a href="#"
+                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement,this);return false;">Hide
+                        additional SSN axioms</a>]</span>
+            </span>
             <span class="back">[<a href="#Actuation">Back to module overview</a>]</span>
             <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
         </div>
@@ -675,11 +650,15 @@
 
         <em property="rdfs:label">made by actuator</em> -
         <span property="skos:definition">Relation linking an <a href="#SOSAActuation">Actuation</a> to the
-            <a href="#SOSAActuator">Actuator</a>
-            that made it.</span>
+            <a href="#SOSAActuator">Actuator</a> that made it.</span>
         <br>
         <table>
             <tbody>
+                <tr class="ssn">
+                    <th>Sub property of</th>
+                    <td><span rel="rdfs:subPropertyOf" resource="sosa:madeBySystem"><a
+                                href="#SOSAmadeBySystem">sosa:madeBySystem</a></span></td>
+                </tr>
                 <tr>
                     <th>Domain Includes</th>
                     <td>
@@ -699,6 +678,67 @@
                     <td>
                         <span rel="owl:inverseOf" resource="sosa:madeActuation"><a
                                 href="#SOSAmadeActuation">sosa:madeActuation</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <span rel="rdfs:isDefinedBy"><a
+                                href="http://www.w3.org/ns/sosa/actuation/">http://www.w3.org/ns/sosa/actuation/</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span>
+                <span class="sosa" style="display: none;">[<a href="#"
+                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement,this);return false;">Show
+                        additional SSN axioms</a>]</span>
+                <span class="ssn">[<a href="#"
+                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement,this);return false;">Hide
+                        additional SSN axioms</a>]</span>
+            </span>
+            <span class="back">[<a href="#Actuation">Back to module overview</a>]</span>
+            <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="specterm sosa" id="SOSAwasActedOnBy" about="sosa:wasActedOnBy" typeof="owl:ObjectProperty">
+        <h5><a href="#SOSAwasActedOnBy">sosa:wasActedOnBy</a></h5>
+        <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/wasActedOnBy</p>
+        <p><strong>an OWL Object Property</strong></p>
+
+        <p class="note">wasActedOnBy added in 2024 update.
+            This term is non-normative, pending further implementation experience</p>
+
+        <em property="rdfs:label">was acted on by</em> -
+        <span property="skos:definition">Relation between a
+            <a href="#SOSAProperty">sosa:Property</a> and an
+            <a href="#SOSAActuation">Actuation</a> that changed its state.</span>
+        <br>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Domain Includes</th>
+                    <td>
+                        <span rel="schema:domainIncludes" resource="sosa:Property"><a
+                                href="#SOSAProperty">sosa:Property</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Range Includes</th>
+                    <td>
+                        <span rel="schema:rangeIncludes" resource="sosa:Actuation"><a
+                                href="#SOSAActuation">sosa:Actuation</a></span>
+                        , <span rel="schema:rangeIncludes" resource="sosa:ActuationCollection"><a
+                                href="#SOSAActuationCollection">sosa:ActuationCollection</a></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Inverse property of</th>
+                    <td>
+                        <span rel="owl:inverseOf" resource="sosa:actsOnProperty"><a
+                                href="#SOSAactsOnProperty">sosa:actsOnProperty</a></span>
                     </td>
                 </tr>
                 <tr>

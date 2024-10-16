@@ -15,6 +15,7 @@
 @prefix sosa-common: <http://www.w3.org/ns/sosa/common/> .
 @prefix sosa-obs: <http://www.w3.org/ns/sosa/obs/> .
 @prefix sosa-sam: <http://www.w3.org/ns/sosa/sam/> .
+@prefix sosa-dep: <http://www.w3.org/ns/sosa/dep/> .
 
 
 sosa: 
@@ -29,22 +30,40 @@ sosa:
   dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
   dcterms:created "2017-04-17"^^xsd:date ;
   dcterms:modified "2024-02-03"^^xsd:date ;
-  owl:imports sosa-act: , sosa-obs: , sosa-sam:.
+  owl:imports sosa-act: , sosa-obs: , sosa-sam:, sosa-dep: .
 
-sosa:relatedObservation 
+sosa:madeBySystem 
   schema:domainIncludes sosa:Actuation ;
-  schema:domainIncludes sosa:ActuationCollection ;
-  schema:domainIncludes sosa:Sample ;
-  rdfs:isDefinedBy sosa-obs: .
+  schema:domainIncludes sosa:Observation ;
+  schema:domainIncludes sosa:Sampling ;
+  schema:rangeIncludes sosa:Actuator ;
+  schema:rangeIncludes sosa:Sensor ;
+  schema:rangeIncludes sosa:Sampler ;
+  rdfs:isDefinedBy sosa-common: .
 
-sosa:hasMember
-  schema:domainIncludes sosa:ActuationCollection ;
-  schema:domainIncludes sosa:ObservationCollection ;
-  schema:domainIncludes sosa:SampleCollection ;
+sosa:madeExecution 
+  schema:domainIncludes sosa:Actuator ;
+  schema:domainIncludes sosa:Sensor ;
+  schema:domainIncludes sosa:Sampler ;
+  schema:rangeIncludes sosa:Actuation ;
+  schema:rangeIncludes sosa:Observation ;
+  schema:rangeIncludes sosa:Sampling ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:observationRelatedTo 
+  schema:rangeIncludes sosa:Execution ;
   schema:rangeIncludes sosa:Actuation ;
   schema:rangeIncludes sosa:ActuationCollection ;
-  schema:rangeIncludes sosa:Observation ;
-  schema:rangeIncludes sosa:ObservationCollection ;
-  schema:rangeIncludes sosa:Sample ;
-  schema:rangeIncludes sosa:SampleCollection ;
-  rdfs:isDefinedBy sosa-common: .
+  schema:rangeIncludes sosa:Sampling ;
+  schema:rangeIncludes sosa:SamplingCollection ;
+  owl:inverseOf sosa:relatedObservation ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:relatedObservation 
+  schema:domainIncludes sosa:Execution ;
+  schema:domainIncludes sosa:Actuation ;
+  schema:domainIncludes sosa:ActuationCollection ;
+  schema:domainIncludes sosa:Sampling ;
+  schema:domainIncludes sosa:SamplingCollection ;
+  rdfs:isDefinedBy sosa-obs: .
+

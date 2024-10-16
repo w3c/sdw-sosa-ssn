@@ -1,9 +1,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix oldssn: <http://purl.oclc.org/NET/ssnx/ssn#> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
-@prefix ssn: <http://www.w3.org/ns/ssn/> .
 @prefix ssn-system: <http://www.w3.org/ns/ssn/systems/> .
 @prefix sampling: <http://www.w3.org/ns/sosa/sampling/> .
 @prefix cdt: <http://w3id.org/lindt/custom_datatypes#> .
@@ -26,13 +24,13 @@
 <roofInsulation> a sosa:FeatureOfInterest ;
 	rdfs:comment "The insulation material in the roof of house #134."@en .
 
-# the window opening state is an ActuatableProperty.
+# the window opening state is a Property.
 # SSN allows to explicitly say that <window/104#state> is a property of <window>
 
 <window> a sosa:FeatureOfInterest ;
-	ssn:hasProperty <window/104#state> .
+	sosa:hasProperty <window/104#state> .
 
-<window/104#state> a sosa:ActuatableProperty ;
+<window/104#state> a sosa:Property ;
 	sosa:isActedOnBy <actuation/188> .
 
 <house/134/kitchen> a sosa:Sample, sosa:Platform ;
@@ -44,27 +42,27 @@
 <house/134/bedroom> a sosa:Sample ;
 	sosa:isSampleOf <house/134> .
 
-<AtmosphericTemperature> rdfs:subClassOf sosa:ObservableProperty .
+<AtmosphericTemperature> rdfs:subClassOf sosa:Property .
  
 <AmbientTemperature> rdfs:subClassOf <AtmosphericTemperature> .
 
-<temperature> a sosa:ObservableProperty, qudt:QuantityKind ;
+<temperature> a sosa:Property, qudt:QuantityKind ;
 	rdfs:label "Thermodynamic Temperature"@en .
   
-<airTemperature> a ssn:Property, sosa:ObservableProperty, qudt:QuantityKind, <AmbientTemperature> ;
+<airTemperature> a sosa:Property, sosa:Property, qudt:QuantityKind, <AmbientTemperature> ;
 	qudt:generalization <temperature> ;
 	sosa:isPropertyOf <house/134/bedroom>, <house/134/kitchen> .
  
-<soilTemperature> a sosa:ObservableProperty, qudt:QuantityKind ;
+<soilTemperature> a sosa:Property, qudt:QuantityKind ;
 	qudt:generalization <temperature> .
  
-<waterTemperature> a sosa:ObservableProperty, qudt:QuantityKind ;
+<waterTemperature> a sosa:Property, qudt:QuantityKind ;
 	qudt:generalization <temperature> .
  
-<tapWaterTemperature> a sosa:ObservableProperty, qudt:QuantityKind ;
+<tapWaterTemperature> a sosa:Property, qudt:QuantityKind ;
 	qudt:generalization <waterTemperature> .
  
-<poolWaterTemperature> a sosa:ObservableProperty, qudt:QuantityKind ;
+<poolWaterTemperature> a sosa:Property, qudt:QuantityKind ;
 	qudt:generalization <waterTemperature> .
 
 <nest/D1AA22A8211> a sosa:Platform ;
@@ -77,21 +75,21 @@
 	sosa:observes  <airTemperature> ;
 	sosa:madeObservation <observation/235714>, <observation/235715>, <observation/235716> .
   
-<PCBBoard1> a ssn:System ;
+<PCBBoard1> a sosa:System ;
 	rdfs:label "PCB Board 1"@en ;
 	rdfs:comment "PCB Board 1 hosts DHT22 temperature sensor #1."@en ;
 	sosa:hosts <DHT22/1> .
     
-<PCBBoard2> a ssn:System ;
+<PCBBoard2> a sosa:System ;
 	rdfs:label "PCB Board 2"@en ;
 	rdfs:comment "PCB Board 2 hosts DHT22 temperature sensor #2."@en ;
 	sosa:hosts <DHT22/2> .
 	
-<DHT22/4578#TemperatureSensor> a sosa:Sensor, ssn:System ;
+<DHT22/4578#TemperatureSensor> a sosa:Sensor, sosa:System ;
 	rdfs:comment "The DHT22 #4578 embedded temperature sensor."@en ;
 	ssn-system:hasSystemCapability <DHT22TempCapability> .
   
-<DHT22TempCapability> a ssn:Property, ssn-system:SystemCapability ;
+<DHT22TempCapability> a sosa:Property, ssn-system:SystemCapability ;
 	rdfs:comment "The capabilities of the temperature sensor in normal temperature conditions."@en;
 	ssn-system:inCondition <normalTemp> ;
 	ssn-system:hasSystemProperty <DHT22TempSensitivity> .
@@ -102,23 +100,23 @@
 	schema:maxValue 80.0 ;
 	schema:unitCode unit:DegreeCelsius .
 
-<DHT22TempSensitivity> a ssn:Property, ssn-system:Sensitivity, ssn-system:Resolution, schema:PropertyValue ;
+<DHT22TempSensitivity> a sosa:Property, ssn-system:Sensitivity, ssn-system:Resolution, schema:PropertyValue ;
 	rdfs:comment "The sensitivity and resolution of the temperature sensor is 0.1 °C in normal temperature and humidity conditions."@en ;
 	schema:value 0.1 ;
 	schema:unitCode unit:DegreeCelsius .
 
-<house/134/deployment> a ssn:Deployment ;
+<house/134/deployment> a sosa:Deployment ;
 	rdfs:comment "Deployment of PCB Board 1 and 2 in the kitchen for the purpose of observing the temperature."@en ;
-	ssn:deployedOnPlatform <house/134/kitchen> ;
-	ssn:deployedSystem <PCBBoard1>, <PCBBoard2> ;
-	ssn:forProperty <airTemperature> .
+	sosa:deployedOnPlatform <house/134/kitchen> ;
+	sosa:deployedSystem <PCBBoard1>, <PCBBoard2> ;
+	sosa:forProperty <airTemperature> .
 
 <sensor/927> a sosa:Sensor ;
-	ssn:implements <summingHourlyConsumptionProcedure> .
+	sosa:implements <summingHourlyConsumptionProcedure> .
 	
 <summingHourlyConsumptionProcedure> a sosa:Procedure ;
-	ssn:hasOutput <electricityConsumption> ;
-	ssn:hasOutput [
+	sosa:hasOutput <electricityConsumption> ;
+	sosa:hasOutput [
 		rdfp:presentedBy [ 
 			rdfp:validationRule <consumption.schema.json> ;
 			rdfp:liftingRule <lifting-rule.rqg>
@@ -216,7 +214,7 @@
 
 <windowCloser/987> rdf:type sosa:Actuator ;
 	sosa:madeActuation <actuation/188> ;
-	ssn:forProperty <window/104#state> .
+	sosa:forProperty <window/104#state> .
 
 # Actuation #188 acted on the state of window #104 and returned 'true'.
 
