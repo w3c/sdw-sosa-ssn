@@ -220,7 +220,15 @@ var respecConfig = {
       title: "Ontology of Units of Measure and Related Concepts",
       publisher: "Semantic Web journal, IOS Press",
       date: "2013"
+    },
+    "VIM": {
+      title: "International Vocabulary of Metrology Fourth edition – Second Committee Draft (VIM4 2CD) ",
+      href: "https://www.bipm.org/documents/20126/115700832/VIM4_2CD_clean/c6d0dfb2-ddbf-059e-1f74-9b025c9c59d8",
+      status: "4th Edition - 2nd Committee Draft",
+      date: "31 July 2023",
+      publisher: "BIPM"
+      ]
     }
   },
-  issueBase: "https://www.w3.org/2015/spatial/track/issues/"
+issueBase: "https://www.w3.org/2015/spatial/track/issues/"
 };
