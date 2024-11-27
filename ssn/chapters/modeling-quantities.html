@@ -1,0 +1,27 @@
+<h3>Quantity Values and Unit of Measures</h3>
+<p>The result of an <a href="#SOSAObservation"><code>sosa:Observation</code></a> or an <a
+        href="#SOSAActuation"><code>sosa:Actuation</code></a> can be a quantity value with a numeric value and a unit
+    of measure.
+
+<p class="note">It is not in the scope of this specification to recommend any particular way of expressing results
+    as quantity values.
+    There exist external vocabularies that are specifically designed for modeling quantity values as OWL
+    individuals, or as datatypes.
+    Examples include the Quantities, Units, Dimensions and Data Types Ontologies (QUDT, [[QUDT]]) the Ontology of
+    Units of Measure (OM, [[Rijgersberg-et-al-2013]]), and the St Etienne School of Mines <i>Custom Datatypes</i>
+    (CDT, [[CDT]]). </p>
+<ul>
+    <li>With QUDT, a quantitative result would be a <a href="http://qudt.org/"><code>qudt:QuantityValue</code></a>
+    </li>
+    <li>With OM 2, a quantitative result would be a <a
+            href="http://www.wurvoc.org/vocabularies/"><code>om:Measure</code> or <code>om:Point</code></a></li>
+    <li>With CDT, the value of <a href="#SOSAhasSimpleResult"><code>sosa:hasSimpleResult</code></a> can be
+        structured to match <a
+            href="https://ci.mines-stetienne.fr/lindt/v4/custom_datatypes#ucum"><code>cdt:ucum</code></a> which encodes
+        the unit-of-measure using UCUM (UCUM, [[UCUM]])</li>
+</ul>
+<p class="note">Custom datatypes are not strictly compatible with OWL, which restricts the set of datatypes that
+    can be used. See sec. 5.2 in [[owl2-syntax]] for more details.</p>
+<pre class="example" data-include="./rdf/examples/2017ex1.ttl" data-include-format="text"></pre>
+<pre class="example" data-include="./rdf/examples/2017ex2.ttl" data-include-format="text"></pre>
+<pre class="example" data-include="./rdf/examples/2017ex3.ttl" data-include-format="text"></pre>

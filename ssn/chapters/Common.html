@@ -1203,9 +1203,9 @@
                 This term is non-normative, pending further implementation experience</p>
             <p>
                 <em property="rdfs:label">Execution Collection</em> -
-                <span property="skos:definition">Collection of one or more <a href="#SOSAExecution">Executions</a> or
-                    <a href="#SOSAExecutionCollection">ExecutionCollections</a>, i.e. collections may be
-                    nested.
+                <span property="skos:definition">Collection (set) of one or more <a href="#SOSAExecution">Executions</a>
+                    or
+                    <a href="#SOSAExecutionCollection">ExecutionCollections</a>, i.e. collections may be nested.
                     <br><br>
                     The following <a href="#SOSAExecution">Execution</a> properties may appear in an
                     <a href="#SOSAExecutionCollection">ExecutionCollection</a>:
@@ -1216,8 +1216,7 @@
                     <a href="#SOSAresultTime">resultTime</a> ,
                     <a href="#SOSAstartTime">startTime</a> .
                     If they are present, the values of these properties summarize the values of the matching properties
-                    of
-                    the member Executions, where membership is either direct or transitive through one or more member
+                    of the member Executions, where membership is either direct or transitive through one or more member
                     Execution collections.
                     <br><br>
                     The following consistency rules with respect to the Execution properties listed above:
@@ -1228,17 +1227,15 @@
                     <br><br>
                     2. Where an individual <a href="#SOSAExecutionCollection">ExecutionCollection</a> has
                     <i>a single value for a property</i>, each member <a href="#SOSAExecution">Execution</a> (direct or
-                    transitive) MUST have that same
-                    value
-                    for that property - i.e. the collection is homogeneous in that property.
+                    transitive) MUST have that same value for that property - i.e. the collection (set) is homogeneous
+                    in that property.
                     That property MAY then be omitted in any member <a href="#SOSAExecution">Execution</a>
                     or <a href="#SOSAExecutionCollection">ExecutionCollection</a>.
                     <br><br>
                     3. Where an individual <a href="#SOSAExecutionCollection">ExecutionCollection</a> has
                     <i>more than one value for a property</i>, each member <a href="#SOSAExecution">Execution</a>
-                    (direct or transitive) MUST have a value for
-                    that
-                    property that matches one of the values for the property in the collection.
+                    (direct or transitive) MUST have a value for that property that matches one of the values for the
+                    property in the collection.
                     <br><br>
                     4. Where an individual <a href="#SOSAExecutionCollection">ExecutionCollection</a>
                     <i>has a value for a property that is a range or interval</i>, each member <a
@@ -1251,8 +1248,8 @@
                     that property that matches or falls within one of those ranges or intervals.
                 </span>
                 <br>
-                <span property="skos:note">The members of a collection do not necessarily share a common value for any
-                    property. </span>
+                <span property="skos:note">The members of a collection (set) do not necessarily share a common value for
+                    any property. </span>
             </p>
             <table>
                 <tbody>
@@ -1268,9 +1265,8 @@
                                 executions and their properties.
 
                                 ExecutionCollection MUST be considered to be abstract, so any individual
-                                ExecutionCollection SHOULD be
-                                declared to be an instance of one of the concrete sub-classes, and not of the
-                                ExecutionCollection
+                                ExecutionCollection SHOULD be declared to be an instance of one of the concrete
+                                sub-classes, and not of the ExecutionCollection
                                 class. </span>
                         </td>
                     </tr>
@@ -2218,10 +2214,10 @@
                 or <a href="#SOSASampling">Sampling</a> was completed
                 <br>
                 <span property="rdfs:comment">The value would usually be encoded using <a
-                        href="https://www.w3.org/TR/xmlschema-2/#dateTime"><code>xsd:dateTime</code></a> <a
-                        href="https://www.w3.org/TR/xmlschema-2/#date"><code>xsd:date</code></a> <a
-                        href="https://www.w3.org/TR/xmlschema-2/#gYearMonth"><code>xsd:gYearMonth</code></a> <a
-                        href="https://www.w3.org/TR/xmlschema-2/#gYear"><code>xsd:gYear</code></a>.</span>
+                        href="https://www.w3.org/TR/xmlschema-2/#dateTime">xsd:dateTime</a> <a
+                        href="https://www.w3.org/TR/xmlschema-2/#date">xsd:date</a> <a
+                        href="https://www.w3.org/TR/xmlschema-2/#gYearMonth">xsd:gYearMonth</a> <a
+                        href="https://www.w3.org/TR/xmlschema-2/#gYear">xsd:gYear</a>.</span>
                 <br>
 
                 <table>
@@ -2297,10 +2293,10 @@
                     or <a href="#SOSASampling">Sampling</a>
                     <br>
                     <span property="rdfs:comment">The value would usually be encoded using <a
-                            href="https://www.w3.org/TR/xmlschema-2/#dateTime"><code>xsd:dateTime</code></a> <a
-                            href="https://www.w3.org/TR/xmlschema-2/#date"><code>xsd:date</code></a> <a
-                            href="https://www.w3.org/TR/xmlschema-2/#gYearMonth"><code>xsd:gYearMonth</code></a>
-                        <a href="https://www.w3.org/TR/xmlschema-2/#gYear"><code>xsd:gYear</code></a>.</span>
+                            href="https://www.w3.org/TR/xmlschema-2/#dateTime">xsd:dateTime</a> <a
+                            href="https://www.w3.org/TR/xmlschema-2/#date">xsd:date</a> <a
+                            href="https://www.w3.org/TR/xmlschema-2/#gYearMonth">xsd:gYearMonth</a>
+                        <a href="https://www.w3.org/TR/xmlschema-2/#gYear">xsd:gYear</a>.</span>
                     <br>
 
             </p>
@@ -3145,7 +3141,7 @@
             <em property="rdfs:label">in deployment</em> -
             <span property="skos:definition">Relation between a <a href="#SOSAPlatform">Platform</a> and a
                 <a href="#SOSADeployment">Deployment</a>, meaning that the
-                <code>deployedSystems</code> of
+                <a href="#SOSAdeployedSystems">deployedSystems</a> of
                 the
                 <a href="#SOSADeployment">Deployment</a> are hosted on the <a href="#SOSAPlatform">Platform</a>.</span>
             <table>
@@ -3379,58 +3375,63 @@
 <section id="Collections">
     <h4>Collections</h4>
     <p class="note">Collections added in the 2024 Update</p>
+    <section class="informative" id="Collections-requirement">
+        <h5>Requirement for collections</h5>
+        <p>
+            The results of multiple observations are typically assessed together in order to discover or detect a
+            pattern or signal.
+            Similarly, a single sample is usually insufficient to provide insight regarding the properties of its source
+            entity or population.
+        </p>
+        <p>
+            Collections (sets) that are useful for analysis will typically be homogeneous with respect to one or
+            more properties of the members.
+            For example, a collection of observations of the same observed-property on
+            the same feature of interest at a series of different times.
+            A collection of actuations may act on different properties of the same feature of
+            interest, but other cases also apply.
+            A collection of samplings may use the same sampler.
+            A collection of samples may be of the same feature (entity) of interest.
+        </p>
+    </section>
+    <section class="informative" id="SSN-Collections">
+        <h5>SSN collections</h5>
+        <p>
+            The SSN Ontology supports the description of collections (sets) primarily through the provision of:
+        </p>
+        <ol>
+            <li>
+                an RDF property for membership of a collection, and its inverse, described here
+            </li>
+            <li>
+                the generic class <a href="#SOSAExecutionCollection">ExecutionCollection</a>
+                and specializations for actuations, observations and samplings
+            </li>
+            <li>
+                the class <a href="#SOSASampleCollection">SampleCollection</a>
+            </li>
+        </ol>
+        <p>
+            Shared property values may be conveniently associated with the collection as a whole, and these values
+            can then be inferred on the individual member observations, following the consistency rules given for <a
+                href="#SOSAExecutionCollection">ExecutionCollection</a> and its specializations <a
+                href="#SOSAActuationCollection">ActuationCollection</a>, <a
+                href="#SOSAObservationCollection">ObservationCollection</a> and <a
+                href="#SOSASamplingCollection">SamplingCollection</a>, and for <a
+                href="#SOSASampleCollection">SampleCollection</a>.
+        </p>
+    </section>
+
     <section class="informative" id="Collections-overview">
         <h5>Overview</h5>
-        <p>Observations may be packaged in collections, for management and analysis.
-            A summary of the range of values for properties of the member observations may be recorded as properties
-            of
-            the collection - for example, the set of features of interest for a suite of observations. </p>
-        <p>
-            Collections of observations that are useful for analysis will typically be homogeneous with respect to
-            one
-            or more observation properties - for example, of the same observed-property on the same feature of
-            interest
-            at a series of different times.
-            Shared properties might be conveniently recorded as properties of the collection as a whole, and these
-            properties can then be omitted on the descriptions of the individual member observations.
-        </p>
-        <p>
-            Actuations may also be packaged in collections. An important case will be where a set of actuations act
-            on
-            different properties of the same feature of interest, but other cases also apply.
-        </p>
-        <p>
-            Similarly, samples are often grouped in collections, for example a set of samples of the same feature or
-            entity.
-        </p>
-        <p>
-            The results of collections of observations are often packaged in a 'data cube' whose axes define the
-            range
-            of
-            properties of the set of observations.
-        </p>
-        <p>
-            Three classes representing collections of Actuations or of Observations or of Samples are provided in
-            the
-            application modules:
-        </p>
-        <ul>
-            <li><a href="#SOSAActuationCollection">sosa:ActuationCollection</a> is a collection of actuations
-                whose property values summarize the values of the properties of its members</li>
-            <li><a href="#SOSAObservationCollection">sosa:ObservationCollection</a> is a collection of
-                observations whose property values summarize the values of the properties of its members</li>
-            <li><a href="#SOSASampleCollection">sosa:SampleCollection</a> is a collection of samples whose
-                property values summarize the values of the properties of its members</li>
-        </ul>
         <div>
             <p>The following figure provides an overview of the classes and properties that are specifically
-                related to describing collections of actuations, or of observations or of samples.
+                related to describing collections of executions or of samples.
             </p>
             <figure class="sosa">
-                <a href="images/Collections.png"><img alt="Collections of Actuations, Observations or Samples"
-                        src="images/Collections.png"></a>
-                <figcaption>Classes and relationships related to collections of actuations or observations or
-                    samples
+                <a href="images/Collections.png">
+                    <img alt="Collections of Executions or Samples" src="images/Collections.png"></a>
+                <figcaption>Classes and relationships related to collections of executions or samples
                     <br>
                     <em>See <a href="#class-diagram">explanation of the notation used in class diagrams</a></em>.
                 </figcaption>
@@ -3441,7 +3442,7 @@
 
     <section id="Collections-specification">
         <h5>Specification</h5>
-        <p>This section introduces the following classes and properties:</p>
+        <p>This section introduces the following properties:</p>
         <div class="azlist">
             <p>
                 <a href="#SOSAhasMember">sosa:hasMember</a>
@@ -3460,21 +3461,22 @@
                 <em property="rdfs:label">has member of collection</em> -
                 <span property="skos:definition">Link to a member
                     (
-                    <a href="#SOSAActuation">actuation</a>
-                    or <a href="#SOSAObservation">observation</a>
-                    or <a href="#SOSASampling">sampling</a>
-                    or <a href="#SOSASample">sample</a>
+                    <a href="#SOSAExecution">Execution</a>
+                    or <a href="#SOSAActuation">Actuation</a>
+                    or <a href="#SOSAObservation">Observation</a>
+                    or <a href="#SOSASampling">Sampling</a>
+                    or <a href="#SOSASample">Sample</a>
                     ) or (
-                    <a href="#SOSAActuationCollection"><code>collection of actuations</code></a>
-                    or <a href="#SOSAObservationCollection"><code>collection of observations</code></a>
-                    or <a href="#SOSASamplingCollection"><code>collection of samplings</code></a>
-                    or <a href="#SOSASampleCollection"><code>collection of samples</code></a>
+                    <a href="#SOSAExecutionCollection">collection of Executions</a>
+                    or <a href="#SOSAActuationCollection">collection of Actuations</a>
+                    or <a href="#SOSAObservationCollection">collection of Observations</a>
+                    or <a href="#SOSASamplingCollection">collection of Samplings</a>
+                    or <a href="#SOSASampleCollection">collection of Samples</a>
                     )
                     within a collection.</span>
                 <span property="skos:scopeNote">rules for the consistency of values of properties of collections and
                     properties of their members are given for each collection type.</span>
-                <span property="skos:note">Note that there is a single `member` property. OWL or SHACL constraints
-                    may
+                <span property="skos:note">Note that there is a single `member` property. OWL or SHACL constraints may
                     limit the range depending on the context of different collection types.</span>
             </p>
             <table>
@@ -3489,7 +3491,9 @@
                     <tr>
                         <th>Domain Includes</th>
                         <td>
-                            <span rel="schema:domainIncludes" resource="sosa:ActuationCollection"><a
+                            <span rel="schema:domainIncludes" resource="sosa:ExecutionCollection"><a
+                                    href="#SOSAExecutionCollection">sosa:ExecutionCollection</a></span>
+                            , <span rel="schema:domainIncludes" resource="sosa:ActuationCollection"><a
                                     href="#SOSAActuationCollection">sosa:ActuationCollection</a></span>
                             , <span rel="schema:domainIncludes" resource="sosa:ObservationCollection"><a
                                     href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
@@ -3504,6 +3508,8 @@
                         <td>
                             <span rel="schema:rangeIncludes" resource="sosa:Execution"><a
                                     href="#SOSAExecution">sosa:Execution</a></span>
+                            , <span rel="schema:rangeIncludes" resource="sosa:ExecutionCollection"><a
+                                    href="#SOSAExecutionCollection">sosa:ExecutionCollection</a></span>
                             , <span rel="schema:rangeIncludes" resource="sosa:Actuation"><a
                                     href="#SOSAActuation">sosa:Actuation</a></span>
                             , <span rel="schema:rangeIncludes" resource="sosa:ActuationCollection"><a
@@ -3556,15 +3562,17 @@
                 <em property="rdfs:label">is member of collection</em> -
                 <span property="skos:definition">Link from a member
                     (
-                    <a href="#SOSAActuation">actuation</a>
-                    or <a href="#SOSAObservation">observation</a>
-                    or <a href="#SOSASampling">sampling</a>
-                    or <a href="#SOSASample">sample</a>
+                    <a href="#SOSAExecution">Execution</a>
+                    or <a href="#SOSAActuation">Actuation</a>
+                    or <a href="#SOSAObservation">Observation</a>
+                    or <a href="#SOSASampling">Sampling</a>
+                    or <a href="#SOSASample">Sample</a>
                     ) or (
-                    <a href="#SOSAActuationCollection"><code>collection of actuations</code></a>
-                    or <a href="#SOSAObservationCollection"><code>collection of observations</code></a>
-                    or <a href="#SOSASamplingCollection"><code>collection of samplings</code></a>
-                    or <a href="#SOSASampleCollection"><code>collection of samples</code></a>
+                    <a href="#SOSAExecutionCollection">collection of Executions</a>
+                    or <a href="#SOSAActuationCollection">collection of Actuations</a>
+                    or <a href="#SOSAObservationCollection">collection of Observations</a>
+                    or <a href="#SOSASamplingCollection">collection of Samplings</a>
+                    or <a href="#SOSASampleCollection">collection of Samples</a>
                     )
                     to a collection it belongs to.</span>
                 <span property="skos:scopeNote">rules for the consistency of values of properties of collections and
@@ -3587,6 +3595,8 @@
                         <td>
                             <span rel="schema:domainIncludes" resource="sosa:Execution"><a
                                     href="#SOSAExecution">sosa:Execution</a></span>
+                            , <span rel="schema:domainIncludes" resource="sosa:ExecutionCollection"><a
+                                    href="#SOSAExecutionCollection">sosa:ExecutionCollection</a></span>
                             , <span rel="schema:domainIncludes" resource="sosa:Actuation"><a
                                     href="#SOSAActuation">sosa:Actuation</a></span>
                             , <span rel="schema:domainIncludes" resource="sosa:ActuationCollection"><a
@@ -3608,7 +3618,9 @@
                     <tr>
                         <th>Range Includes</th>
                         <td>
-                            <span rel="schema:rangeIncludes" resource="sosa:ActuationCollection"><a
+                            <span rel="schema:rangeIncludes" resource="sosa:ExecutionCollection"><a
+                                    href="#SOSAExecutionCollection">sosa:ExecutionCollection</a></span>
+                            , <span rel="schema:rangeIncludes" resource="sosa:ActuationCollection"><a
                                     href="#SOSAActuationCollection">sosa:ActuationCollection</a></span>
                             , <span rel="schema:rangeIncludes" resource="sosa:ObservationCollection"><a
                                     href="#SOSAObservationCollection">sosa:ObservationCollection</a></span>
@@ -3639,6 +3651,26 @@
                 <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
             </div>
         </section>
+
+    </section>
+    <section class="informative" id="Collections-extensions">
+        <h5>Other collections</h5>
+        <p>
+            Collections of other entities associated with sensing, actuation and sampling could use the same pattern.
+            For example, networks of sensors and platforms (sites and stations) are common in environmental monitoring.
+            Furthermore, higher level aggregations of both entities and activities, such as occur in the context of
+            projects, initiatives, and campaigns, might be described using similar patterns.
+            However, the details of these cases are currently beyond the scope of the SSN Ontology.
+        </p>
+        <p class="note">
+            The PROV Ontology provides a generic framework for describing and relating Activities and Entities
+            [[prov-o]].
+            An <a href="#PROV-alignment">alignment of SSN to PROV</a> is provided in this document.
+            A basic Project Ontology based on PROV has also been proposed [[Project-PROV]].
+            Higher level aggregations in SSN applications should consider the PROV framework along with the recursive
+            <a href="#SOSAhasMember">sosa:hasMember</a>/<a href="#SOSAmemberOf">sosa:memberOf</a> pattern used for SSN
+            collections.
+        </p>
 
     </section>
 </section>
