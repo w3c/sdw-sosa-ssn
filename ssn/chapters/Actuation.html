@@ -157,20 +157,6 @@
                                 href="#SOSAhasResult">sosa:hasResult</a></span>
                         <span about="[_:SOSAActuation11]" property="owl:minCardinality" content="1"
                             datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em></span>
-                        <br>
-                        <span about="sosa:Actuation" rel="rdfs:subClassOf" resource="[_:SOSAActuation13]"></span>
-                        <span about="[_:SOSAActuation13]" typeof="owl:Restriction"></span>
-                        <span about="[_:SOSAActuation13]" rel="owl:onProperty" resource="sosa:resultTime"><a
-                                href="#SOSAresultTime">sosa:resultTime</a></span>
-                        <span about="[_:SOSAActuation13]" property="owl:cardinality" content="1"
-                            datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em></span>
-                        <br>
-                        <span about="sosa:Actuation" rel="rdfs:subClassOf" resource="[_:SOSAActuation15]"></span>
-                        <span about="[_:SOSAActuation15]" typeof="owl:Restriction"></span>
-                        <span about="[_:SOSAActuation15]" rel="owl:onProperty" resource="sosa:startTime"><a
-                                href="#SOSAstartTime">sosa:startTime</a></span>
-                        <span about="[_:SOSAActuation15]" property="owl:cardinality" content="1"
-                            datatype="xsd:nonNegativeInteger"><em><b>EXACTLY 1</b></em></span>
                     </td>
                 </tr>
                 <tr>
@@ -216,7 +202,7 @@
                 , <a href="#SOSAusedProcedure">usedProcedure</a>
                 , <a href="#SOSAmadeByActuator">madeByActuator</a>
                 , <a href="#SOSAactsOnProperty">actsOnProperty</a>
-                , <a href="#SOSAresultTime">resultTime</a>
+                , <a href="#SOSAendTime">endTime</a>
                 , <a href="#SOSAhasResult">hasResult</a>
                 , <a href="#SOSAhasSimpleResult">hasSimpleResult</a>
                 .
@@ -437,7 +423,7 @@
         </div>
     </section>
 
-    <section class="informative specterm" id="SOSAactsOn" about="sosa:actsOn" typeof="owl:ObjectProperty">
+    <section class="informative specterm sosa" id="SOSAactsOn" about="sosa:actsOn" typeof="owl:ObjectProperty">
         <h5><a href="#SOSAactsOn">sosa:actsOn</a></h5>
         <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/actsOn</p>
         <p><strong>an OWL Object Property</strong></p>
@@ -469,6 +455,12 @@
                     <td>
                         <span rel="owl:inverseOf" resource="sosa:isActedOnBy"><a
                                 href="#SOSAisActedOnBy">sosa:isActedOnBy</a></span>
+                    </td>
+                </tr>
+                <tr class="ssn">
+                    <th>Sub property of</th>
+                    <td>
+                        <span rel="rdfs:subPropertyOf"><a href="#SOSAforProperty">sosa:forProperty</a></span>
                     </td>
                 </tr>
                 <tr>

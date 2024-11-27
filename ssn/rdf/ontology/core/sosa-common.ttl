@@ -65,8 +65,7 @@ sosa:forProperty
   skos:definition """
   A relation between some entity and a Property.
   """@en ;
-  skos:example "For example, from a Sensor to the properties it can observe; from an Actuator to the properties it can act on; from a Deployment to the properties it was installed to observe or act on; from a SystemCapability to the Property the capability is described for."@en ;
-  schema:domainIncludes sosa:Deployment ;
+  skos:example "For example, from a Sensor to the properties it can observe; from an Actuator to the properties it can act on; from a SystemCapability to the Property the capability is described for."@en ;
   schema:domainIncludes sosa:Procedure ;
   schema:domainIncludes sosa:System ;
   schema:rangeIncludes sosa:Property ;
@@ -95,8 +94,11 @@ sosa:isFeatureOfInterestOf
   rdfs:label "is feature of interest of"@en ;
   skos:definition """
   A relation between a FeatureOfInterest and an Execution concerning it, i.e. an Observation about it, an Actuation acting on it, or an act of Sampling that sampled it.
-  """@en ;
+  
+  A relation between a specific FeatureOfInterest and a System operating on it, i.e. the entity whose property is modified by an Actuator, or the entity whose quality is observed by a Sensor, or the entity that is sampled by a Sampler.
+"""@en ;
   schema:domainIncludes sosa:FeatureOfInterest ;
+  schema:rangeIncludes sosa:Deployment ;
   schema:rangeIncludes sosa:Execution ;
   schema:rangeIncludes sosa:ExecutionCollection ;
   owl:inverseOf sosa:hasFeatureOfInterest ;
@@ -132,9 +134,8 @@ sosa:propertyFor
   skos:definition """
   A relation between a Property and some entity.
   """@en ;
-  skos:example "For example, from a Sensor to the properties it can observe; from an Actuator to the properties it can act on; from a Deployment to the properties it was installed to observe or act on; from a SystemCapability to the Property the capability is described for."@en ;
+  skos:example "For example, from a Sensor to the properties it can observe; from an Actuator to the properties it can act on; from a SystemCapability to the Property the capability is described for."@en ;
   schema:domainIncludes sosa:Property ;
-  schema:rangeIncludes sosa:Deployment ;
   schema:rangeIncludes sosa:Procedure ;
   schema:rangeIncludes sosa:System ;
   rdfs:isDefinedBy sosa-common: .
@@ -283,14 +284,29 @@ sosa:Result
   skos:example "The value 20 as the height of a certain tree together with the unit, e.g., Meter."@en ;
   rdfs:isDefinedBy sosa-common: .
 
+sosa:endTime 
+  a owl:DatatypeProperty ;
+  rdfs:label "end time"@en ;
+  skos:definition """
+  The instant of time when the Execution (i.e. the Actuation or Observation or Sampling) or Deployment ended or was completed 
+  """@en ;
+  rdfs:comment "The value would usually be encoded using xsd:dateTime xsd:date xsd:gYearMonth xsd:gYear"@en ;
+  schema:domainIncludes sosa:Execution ;
+  schema:domainIncludes sosa:ExecutionCollection ;
+  schema:domainIncludes sosa:Deployment ;
+  rdfs:isDefinedBy sosa-common: .
+
 sosa:hasFeatureOfInterest 
   a owl:ObjectProperty ;
   rdfs:label "has feature of interest"@en ;
   skos:definition """
   A relation between an Execution and its target entity, i.e. an Actuation and the entity whose property was modified, or an Observation and the entity whose quality was observed, or an act of Sampling and the entity that was sampled.
+  
+  A relation between a Deployment and its specific target entity.
   """@en ;
   skos:scopeNote "This is the _proximate_ feature of interest, which may be a proxy entity such as a sample of the _ultimate_ feature of interest. Use `hasUltimateFeatureOfInterest` if the intention is to link to the _ultimate_ feature of interest. " ;
   skos:example "For example, in an Observation of the weight of a person, the FeatureOfInterest is the person and the property is its weight."@en ;
+  schema:domainIncludes sosa:Deployment ;
   schema:domainIncludes sosa:Execution ;
   schema:domainIncludes sosa:ExecutionCollection ;
   schema:rangeIncludes sosa:FeatureOfInterest ;
@@ -460,9 +476,10 @@ sosa:startTime
   a owl:DatatypeProperty ;
   rdfs:label "start time"@en ;
   skos:definition """
-  The instant of time when the Execution was initiated or tasked, i.e. the Actuation or Observation or Sampling 
+  The instant of time when the Execution (i.e. the Actuation or Observation or Sampling) or Deployment was initiated or tasked 
   """@en ;
   rdfs:comment "The value would usually be encoded using xsd:dateTime xsd:date xsd:gYearMonth xsd:gYear"@en ;
+  schema:domainIncludes sosa:Deployment ;
   schema:domainIncludes sosa:Execution ;
   schema:domainIncludes sosa:ExecutionCollection ;
   rdfs:isDefinedBy sosa-common: .
@@ -484,7 +501,13 @@ sosa:Deployment
   a owl:Class ;
   rdfs:label "Deployment"@en ;
   skos:definition """
-  Describes the Deployment of one or more assets for a particular purpose. Deployment may be done on a Platform or Host.
+  A Deployment of one or more assets (Systems or Platforms) to execute procedures with respect to designated features-of-interest. 
+  Deployment may be done on a Platform or Host.
+  """@en ;
+  skos:note """
+  A Deployment will usually be for a specified time interval. 
+  It MAY involve Platforms, or Systems, or both. 
+  A Deployment can be used quite flexibly to describe the use of systems, and platforms that host systems, with respect to a feature of interest. 
   """@en ;
   skos:example "For example, a temperature Sensor deployed on a wall, or a whole network of Sensors deployed for an Observation campaign."@en ;
   rdfs:isDefinedBy sosa-common: .
@@ -524,6 +547,9 @@ sosa:System
   Their descriptions may capture the properties and characteristics of a whole class of systems, corresponding with the information typically found in a data-sheet.
 
   Individual system instances are members of this class or its sub-classes. 
+  """@en ;
+  skos:scopeNote """
+  The association of a System (Actuator, Sensor, and Sampler) with a FeatureOfInterest is usually in the context of an Execution or a Deployment. 
   """@en ;
   rdfs:isDefinedBy sosa-common: .
 

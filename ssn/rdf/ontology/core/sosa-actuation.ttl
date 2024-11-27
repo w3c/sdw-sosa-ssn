@@ -52,7 +52,7 @@ sosa:ActuationCollection
   Collection of one or more actuations or actuation collections, i.e. collections may be nested. 
 
   The following Observation properties may appear in an Actuation Collection: 
-  hasFeatureOfInterest , usedProcedure , madeByActuator , actsOnProperty , resultTime ,  hasResult , hasSimpleResult . 
+  hasFeatureOfInterest , usedProcedure , madeByActuator , actsOnProperty , endTime or resultTime ,  hasResult , hasSimpleResult . 
   If it is present, the value of a property summarizes the values of the matching properties of the member actuations, where membership is either direct or transitive through one or more member actuation collections. 
   The following consistency rules apply with respect to the Actuation properties listed above: 
   
@@ -196,7 +196,6 @@ sosa:isPropertyOf
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hasProcedure 
-  schema:domainIncludes sosa:Property ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:propertyFor 
@@ -248,9 +247,12 @@ sosa:startTime
   schema:domainIncludes sosa:ActuationCollection ;
   rdfs:isDefinedBy sosa-common: .
 
-sosa:resultTime 
+sosa:endTime 
   schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:ActuationCollection ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:resultTime 
   rdfs:isDefinedBy sosa-common: .
 
 sosa:phenomenonTime 
