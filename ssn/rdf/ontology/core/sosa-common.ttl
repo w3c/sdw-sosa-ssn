@@ -98,6 +98,7 @@ sosa:isFeatureOfInterestOf
   """@en ;
   schema:domainIncludes sosa:FeatureOfInterest ;
   schema:rangeIncludes sosa:Execution ;
+  schema:rangeIncludes sosa:ExecutionCollection ;
   owl:inverseOf sosa:hasFeatureOfInterest ;
   rdfs:isDefinedBy sosa-common: .
 
@@ -121,6 +122,7 @@ sosa:isUltimateFeatureOfInterestOf
   """@en ;
   schema:domainIncludes sosa:FeatureOfInterest ;
   schema:rangeIncludes sosa:Execution ;
+  schema:rangeIncludes sosa:ExecutionCollection ;
   owl:inverseOf sosa:hasUltimateFeatureOfInterest ;
   rdfs:isDefinedBy sosa-common: .
 
@@ -290,6 +292,7 @@ sosa:hasFeatureOfInterest
   skos:scopeNote "This is the _proximate_ feature of interest, which may be a proxy entity such as a sample of the _ultimate_ feature of interest. Use `hasUltimateFeatureOfInterest` if the intention is to link to the _ultimate_ feature of interest. " ;
   skos:example "For example, in an Observation of the weight of a person, the FeatureOfInterest is the person and the property is its weight."@en ;
   schema:domainIncludes sosa:Execution ;
+  schema:domainIncludes sosa:ExecutionCollection ;
   schema:rangeIncludes sosa:FeatureOfInterest ;
   owl:inverseOf sosa:isFeatureOfInterestOf ;
   rdfs:isDefinedBy sosa-common: .
@@ -327,6 +330,7 @@ sosa:hasResult
   In the case of a Sampling, the result is the Sample produced by the execution of the Procedure by the Sampler. 
   """@en ;
   schema:domainIncludes sosa:Execution ;
+  schema:domainIncludes sosa:ExecutionCollection ;
   owl:inverseOf sosa:isResultOf ;
   rdfs:isDefinedBy sosa-common: .
 
@@ -354,6 +358,7 @@ sosa:hasUltimateFeatureOfInterest
   skos:note """should match a property chain something like this but with sosa:isSampleOf*
       owl:propertyChainAxiom ( sosa:hasFeatureOfInterest sosa:isSampleOf )""" ;
   schema:domainIncludes sosa:Execution ;
+  schema:domainIncludes sosa:ExecutionCollection ;
   schema:rangeIncludes sosa:FeatureOfInterest ;
   rdfs:isDefinedBy sosa-common: .
 
@@ -435,6 +440,7 @@ sosa:phenomenonTime
   The resultTime can indicate when the sample comes into the posession of the operator. 
   """@en ;
   schema:domainIncludes sosa:Execution ;
+  schema:domainIncludes sosa:ExecutionCollection ;
   schema:rangeIncludes time:TemporalEntity ;
   owl:inverseOf sosa:phenomenonOccurred ;
   rdfs:isDefinedBy sosa-common: .
@@ -447,6 +453,7 @@ sosa:resultTime
   """@en ;
   rdfs:comment "The value would usually be encoded using xsd:dateTime xsd:date xsd:gYearMonth xsd:gYear"@en ;
   schema:domainIncludes sosa:Execution ;
+  schema:domainIncludes sosa:ExecutionCollection ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:startTime 
@@ -457,6 +464,7 @@ sosa:startTime
   """@en ;
   rdfs:comment "The value would usually be encoded using xsd:dateTime xsd:date xsd:gYearMonth xsd:gYear"@en ;
   schema:domainIncludes sosa:Execution ;
+  schema:domainIncludes sosa:ExecutionCollection ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:usedProcedure 
@@ -466,6 +474,7 @@ sosa:usedProcedure
   A relation to link to a re-usable Procedure used in making an Execution (an Observation, an Actuation, or a Sampling), typically using an Actuator, a Sensor, or a Sampler.
   """@en ;
   schema:domainIncludes sosa:Execution ;
+  schema:domainIncludes sosa:ExecutionCollection ;
   schema:rangeIncludes sosa:Procedure ;
   rdfs:isDefinedBy sosa-common: .
 
@@ -500,14 +509,21 @@ sosa:System
   a owl:Class ;
   rdfs:label "System"@en ;
   skos:definition """
-  System is a piece of infrastructure that implements a Procedure. 
-  A System may have components, its subsystems, which are other systems.
+  A piece of infrastructure that implements a Procedure.
+
+  A System may have components, its sub-systems, which are other systems.
   """@en ; 
   skos:scopeNote """
   System generalizes the Actuator, Sensor, and Sampler classes. 
   It appears in the ontology to support the description of a common pattern for executions and their properties. 
 
   System MUST be considered to be abstract, so any individual System SHOULD be declared to be an instance of one of the concrete sub-classes, and not of the System class. 
+  """@en ;
+  skos:scopeNote """
+  Specific system types may be implemented as sub-classes of this class or its sub-classes.
+  Their descriptions may capture the properties and characteristics of a whole class of systems, corresponding with the information typically found in a data-sheet.
+
+  Individual system instances are members of this class or its sub-classes. 
   """@en ;
   rdfs:isDefinedBy sosa-common: .
 

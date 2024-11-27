@@ -1,0 +1,45 @@
+<h3>Location and Geometry</h3>
+
+<h4>Location</h4>
+<p>
+    Many of the key classes provided by SOSA and SSN represent entities that can be located in space such as
+    sensors, features of interest, actuators, samples, and so forth, or activities that can be located via their
+    participating entities, e.g., platforms.
+    These entities will usually be described using models and ontologies defined for application domains,
+    including technical disciplines, social and business contexts.
+    In these contexts there are a number of implementations that support the expression of spatial properties,
+    including location.
+    These are discussed further in the Spatial Data on the Web Best Practices note [[SDW-BP]].
+</p>
+<p>
+    In particular, GeoSPARQL [[GeoSPARQL]] provides a flexible and relatively complete platform for geospatial
+    objects, that fosters interoperability between geo-datasets. To do so, these entities can be declared as
+    instances of <code>geo:Feature</code> and geometries can be assigned to them via the <code>geo:hasGeometry</code>
+    property.
+    In case of classes, e.g., specific features of interests such as rivers, these MAY be defined as subclasses
+    of <code>geo:Feature</code>.
+</p>
+<p>
+    For example, if observations are made of the atmosphere at a specific location, it might be described as a
+    Sample using the following pattern:
+</p>
+<pre class="example" data-include="./rdf/examples/SampleLocation.ttl" data-include-format="text"></pre>
+<p>
+    Note that, even though <code>earthAtmosphere_StE</code> is not explicitly typed <code>geo:Feature</code>, the
+    property <code>geo:hasGeometry</code> has a global domain constraint which entails that any resource carrying this
+    property SHALL be inferred to be a <code>geo:Feature</code>.
+    Thus <code>earthAtmosphere_StE</code> is <em>both</em> a <code>sosa:Sample</code> and a <code>geo:Feature</code>.
+</p>
+
+<h4>Geometry</h4>
+<p>
+    Geometry may appear in other contexts than as an explicit property of a <code>geo:Feature</code>.
+    For example, a determination of location using a GPS received can be described as an <code>Observation</code> whose
+    <code>sosa:hasResult</code> is a geometry value.
+    The following example illustrates this pattern, with the result being a GeoSPARQL <code>Geometry</code> object:
+</p>
+<pre class="example" data-include="./rdf/examples/GeometryResult.ttl" data-include-format="text"></pre>
+<p>
+    The WKT representation of the result could be encoded directly as a 'simple' (literal) result:
+</p>
+<pre class="example" data-include="./rdf/examples/GeometryResultSimple.ttl" data-include-format="text"></pre>
