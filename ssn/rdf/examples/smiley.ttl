@@ -1,0 +1,73 @@
+# baseURI: http://example.org/data/
+# imports: http://www.w3.org/ns/ssn/
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.org/data/>
+  a owl:Ontology ;
+  owl:imports <http://www.w3.org/ns/ssn/> ;
+.
+<http://example.org/data/ColorDetermination>
+  a sosa:Procedure ;
+  rdfs:label "Procedure for determining the color of a sticker"@en ;
+  sosa:forProperty <http://example.org/data/StickerColor> ;
+.
+<http://example.org/data/ColorDeterminer>
+  a sosa:Sensor ;
+  rdfs:label "Sensor for determining the color of a sticker"@en ;
+  sosa:observes <http://example.org/data/StickerColor> ;
+.
+<http://example.org/data/Observation-Smiley-Color>
+  a sosa:Observation ;
+  sosa:hasFeatureOfInterest <http://example.org/data/SmileySticker> ;
+  sosa:hasSimpleResult "Yellow" ;
+  sosa:madeBySensor <http://example.org/data/ColorDeterminer> ;
+  sosa:observedProperty <http://example.org/data/StickerColor> ;
+  sosa:phenomenonTime [
+      a time:Instant ;
+      time:inXSDDateTimeStamp "2017-04-15T00:00:00+00:00"^^xsd:dateTimeStamp ;
+    ] ;
+  sosa:resultTime "2017-04-16T00:00:12+00:00"^^xsd:dateTimeStamp ;
+  sosa:usedProcedure <http://example.org/data/ColorDetermination> ;
+.
+<http://example.org/data/SmileyPopulation>
+  a sosa:FeatureOfInterest ;
+  rdfs:label "A population of smiley face stickers"@en ;
+  sosa:hasProperty <http://example.org/data/stickerColor> ;
+.
+<http://example.org/data/SmileySampler>
+  a sosa:Sampler ;
+  rdfs:label "Smiley sticker sampler"@en ;
+  sosa:implements <http://example.org/data/SmileySamplingProcedure> ;
+.
+<http://example.org/data/SmileySampling>
+  a sosa:Sampling ;
+  rdfs:label "Sampling of a representative Smiley Sticker from a Collection of Smiley Stickers"@en ;
+  sosa:hasFeatureOfInterest <http://example.org/data/SmileyPopulation> ;
+  sosa:hasResult <http://example.org/data/SmileySticker> ;
+  sosa:madeBySampler <http://example.org/data/SmileySampler> ;
+  sosa:usedProcedure <http://example.org/data/SmileySamplingProcedure> ;
+.
+<http://example.org/data/SmileySamplingProcedure>
+  a sosa:Procedure ;
+  rdfs:label "Procedure for sampling smiley stickers"@en ;
+.
+<http://example.org/data/SmileySticker>
+  a sosa:FeatureOfInterest ;
+  rdfs:label "Smiley face sticker"@en ;
+  sosa:hasProperty <http://example.org/data/stickerColor> ;
+.
+<http://example.org/data/StickerAssayOffice>
+  a sosa:Platform ;
+  rdfs:label "Assay office for determining the color of a sticker"@en ;
+  sosa:hosts <http://example.org/data/ColorDeterminer> ;
+.
+<http://example.org/data/StickerColor>
+  a sosa:Property ;
+  rdfs:label "The color of a sticker"@en ;
+.

@@ -120,7 +120,8 @@
       href='https://www.ogc.org/ogc/document'>OGC</a> document use rules apply.</p>
 
   <section id="abstract">
-    <p>The Semantic Sensor Network (SSN) ontology is an ontology for describing
+    <p>
+      The Semantic Sensor Network (SSN) ontology is an ontology for describing
       sensors and their observations, the involved procedures, the studied features of
       interest, the samples used to do so, and the observed properties, as well as actuators.
       SSN follows a horizontal and vertical modularization architecture, with the core classes
@@ -130,7 +131,8 @@
       These allow SSN to support a wide range of applications and use
       cases, including satellite imagery, large-scale scientific monitoring, industrial and
       household infrastructures, social sensing, citizen science, observation-driven ontology
-      engineering, and the Web of Things. </p>
+      engineering, and the Web of Things.
+    </p>
     <!--<p style="text-align: center;">The namespace for SSN terms is <span class="repeated"
           style="font-family: courier;">http://www.w3.org/ns/ssn/</span>.</p>-->
     <p style="text-align: center;">
@@ -152,12 +154,14 @@
     <p>
       <b>General Information</b>
     </p>
-    <p>For <strong>OGC</strong> this is a Public Draft of a document prepared
+    <p>
+      For <strong>OGC</strong> this is a Public Draft of a document prepared
       by the Spatial Data on the Web Working Group (<a
         href="http://www.opengeospatial.org/projects/groups/sdwwg">SDWWG</a>)
       — a joint W3C-OGC project (see <a href="https://www.w3.org/2015/spatial/charter">charter</a>).
       The document is prepared following W3C conventions. The document is
-      released at this time to solicit public comment.</p>
+      released at this time to solicit public comment.
+    </p>
   </section>
 
   <section id="Introduction" class="informative" data-include="./chapters/Introduction.html"></section>
@@ -172,8 +176,9 @@
 
   <section id="Extensions">
     <h2>SSN Extensions</h2>
-    This section provides details on modules that extend the scope and capabilities of SSN.
-
+    <p>
+      This section provides details on modules that extend the scope and capabilities of SSN.
+    </p>
     <section id="OMS" class="normative" data-include="./chapters/OMS.html"></section>
 
     <section id="System-capabilities" class="normative" data-include="./chapters/System-capabilities.html"></section>
@@ -182,24 +187,54 @@
 
   </section>
 
-  <section id="Alignments">
+  <section id="Alignments" class="informative">
     <h2>Alignments</h2>
-    <p>This section introduces the specifications for the modules that align SOSA and SSN to a variety of related
-      ontologies and specifications. </p>
+    <p>
+      This section introduces the specifications for the modules that align SOSA and SSN to a variety of related
+      ontologies and specifications.
+    </p>
 
-    <section id="PROV-alignment" class="normative" data-include="./chapters/PROV-alignment.html"></section>
+    <section id="PROV-alignment" data-include="./chapters/PROV-alignment.html"></section>
 
-    <section id="OBOE-alignment" class="normative" data-include="./chapters/OBOE-alignment.html"></section>
+    <section id="OBOE-alignment" data-include="./chapters/OBOE-alignment.html"></section>
 
-    <section id="SAREF-alignment" class="normative" data-include="./chapters/SAREF-alignment.html"></section>
+    <section id="SAREF-alignment" data-include="./chapters/SAREF-alignment.html"></section>
 
-    <section id="DUL-alignment" class="normative" data-include="./chapters/DUL-alignment.html"></section>
+    <section id="DUL-alignment" data-include="./chapters/DUL-alignment.html"></section>
 
-    <section id="SSNX-alignment" class="normative" data-include="./chapters/SSNX-alignment.html"></section>
+    <section id="SSNX-alignment" data-include="./chapters/SSNX-alignment.html"></section>
 
   </section>
 
-  <section id="Modeling" class="informative" data-include="./chapters/ModelPatterns.html"></section>
+  <section id="ModelPatterns" class="informative">
+    <h2>Common Modeling Questions</h2>
+    <p>
+      This section discusses how to handle common modeling questions such as locations, forecasts, and
+      quantity values with a unit of measure.
+    </p>
+
+    <section id="location" data-include="./chapters/ModelLocation.html"></section>
+
+    <section id="forecasts" data-include="./chapters/ModelForecast.html"></section>
+
+    <section id="uom" data-include="./chapters/ModelQuantity.html"></section>
+
+    <section id="model-domain" data-include="./chapters/ModelDomainTypes.html"></section>
+
+    <section id="property-instances" data-include="./chapters/ModelPropertyInstance.html"></section>
+
+    <section id="ComplexSystems" data-include="./chapters/ModelComplexSystem.html"></section>
+
+    <section id="SystemType" data-include="./chapters/ModelSystemType.html"></section>
+
+    <section id="ultimate-FoI" data-include="./chapters/ModeluFOI.html"></section>
+
+    <section id="sample-chains" data-include="./chapters/ModelSampleChains.html"></section>
+
+    <section id="observation-collection" data-include="./chapters/ModelObservationCollection.html">
+    </section>
+
+  </section>
 
   <section class="appendix" id="wide-review">
     <h2>Wide review</h2>
@@ -555,8 +590,10 @@
       <li>Add SamplingCollection to provide mechanism for grouping sets of Samplings with common properties</li>
       <li>Deprecate ActuatableProperty, ObservableProperty in favour of generic Property</li>
       <li>Clarify type-vs-instance for Systems; add examples in Common Modeling patterns.</li>
-      <li>Add hasFeatureOfInterest support to Deployments to allow description of systems/platforms tied to specific FoIs</li>
+      <li>Add hasFeatureOfInterest support to Deployments to allow description of systems/platforms tied to specific
+        FoIs</li>
       <li>Remove Functional and InverseFunctional axioms except on hasResult</li>
+      <li>Make patterns for Location, UoM more prescriptive</li>
       </li>
     </ol>
   </section>
