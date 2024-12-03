@@ -157,8 +157,10 @@ sosa:hasInput
   a owl:ObjectProperty ;
   rdfs:label "has input"@en ;
   skos:definition """
-  Relation between a Procedure and an Input to it.
+  Relation between a Procedure and an Input required for its execution.
   """@en ;
+  skos:scopeNote "An input might be a calibration or conditioning parameter, or the result of a previous execution within an extended processing chain."@en ;
+  skos:note "This property will typically describe the type of the inputs required to execute the Procedure."@en ;
   schema:domainIncludes sosa:Procedure ;
   owl:inverseOf sosa:inputFor ;
   rdfs:isDefinedBy sosa-common: .
@@ -167,8 +169,9 @@ sosa:hasOutput
   a owl:ObjectProperty ;
   rdfs:label "has output"@en ;
   skos:definition """
-  Relation between a Procedure and an Output of it.
+  Relation between a Procedure and an Output or Result of its execution.
   """@en ;
+  skos:note "This property will typically describe the type of the result from executing the Procedure."@en ;
   schema:domainIncludes sosa:Procedure ;
   owl:inverseOf sosa:outputFor ;
   rdfs:isDefinedBy sosa-common: .
@@ -209,7 +212,7 @@ sosa:outputFor
   a owl:ObjectProperty ;
   rdfs:label "output for"@en ;
   skos:definition """
-  Relation between an Output and a Procedure that generates it.
+  Relation between an Output or Result and a Procedure that generates it in an Execution.
   """@en ;
   schema:rangeIncludes sosa:Procedure ;
   owl:inverseOf sosa:hasOutput ;
@@ -319,17 +322,8 @@ sosa:hasInputValue
   skos:definition """
   Assigns a value to an input defined by the Procedure that is used in an Execution (Actuation, Observation, Sampling).
   """@en ;
-  skos:note "The input value MUST be suitable for the input definition on the corresponding usedProcedure"@en ;
-  schema:domainIncludes sosa:Execution ;
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:hasOutputValue 
-  a owl:ObjectProperty ;
-  rdfs:label "has output value"@en ;
-  skos:definition """
-  Assigns a value to an output defined by the Procedure that is used in an Execution (Actuation, Observation, Sampling).
-  """@en ;
-  skos:note "The output value MUST be suitable for the output definition on the corresponding usedProcedure"@en ;
+  skos:note "The input value MUST be consistent with a hasInput definition from the corresponding Procedure"@en ;
+  skos:scopeNote "The input might be a calibration or conditioning parameter, or the result of a previous execution within an extended processing chain."@en ;
   schema:domainIncludes sosa:Execution ;
   rdfs:isDefinedBy sosa-common: .
 
@@ -347,6 +341,7 @@ sosa:hasResult
 
   An Execution has a single result, therefore sosa:hasResult is Functional.
   """@en ;
+  skos:note "The result value MUST be consistent with the hasOutput definition from the corresponding Procedure"@en ;
   schema:domainIncludes sosa:Execution ;
   schema:domainIncludes sosa:ExecutionCollection ;
   owl:inverseOf sosa:isResultOf ;
@@ -363,6 +358,7 @@ sosa:hasSimpleResult
   In the case of an Observation, the result is the value of the Property produced by the execution of the Procedure by the Sensor. 
   """@en ;
   skos:example "For instance, the values 23 or true."@en ;
+  skos:note "This DatatypeProperty provides an alternative to hasResult, to be used only if the execution result can be expressed as a Literal"@en ;
   schema:domainIncludes sosa:Execution ;
   rdfs:isDefinedBy sosa-common: .
 
@@ -416,16 +412,6 @@ sosa:madeBySystem
   schema:domainIncludes sosa:Execution ;
   schema:rangeIncludes sosa:System ;
   owl:inverseOf sosa:madeExecution ;
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:outputValueForExecution 
-  a owl:ObjectProperty ;
-  rdfs:label "output for"@en ;
-  skos:definition """
-  Relation between an OutputValue and an Execution that generates it.
-  """@en ;
-  schema:rangeIncludes sosa:Execution ;
-  owl:inverseOf sosa:hasOutputValue ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:phenomenonOccurred 
