@@ -52,7 +52,6 @@
             <p>
                 <a href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a>
                 , <a href="#SOSAProperty">sosa:Property</a>
-                , <a href="#SOSAPropertyOfInterest">sosa:PropertyOfInterest</a>
                 , <a href="#SOSAforProperty">sosa:forProperty</a>
                 , <a href="#SOSAhasProperty">sosa:hasProperty</a>
                 , <a href="#SOSAisFeatureOfInterestOf">sosa:isFeatureOfInterestOf</a>
@@ -206,76 +205,6 @@
             </div>
         </section>
 
-        <section class="informative specterm sosa" id="SOSAPropertyOfInterest" about="sosa:PropertyOfInterest"
-            typeof="owl:Class">
-            <h6><a href="#SOSAPropertyOfInterest">sosa:PropertyOfInterest</a></h6>
-            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/PropertyOfInterest</p>
-            <p><strong>an OWL Class</strong></p>
-            <p class="note">PropertyOfInterest added in the 2024 .
-                This term is non-normative, pending further implementation experience</p>
-            <p>
-                <em property="rdfs:label">Property Of Interest</em> -
-                <span property="skos:definition">An identifiable quality of a specific
-                    <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a> that can be observed or acted upon.
-                    A property of interest is tied to a specific <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a>.
-                    It is inherent to and cannot exist without that feature of interest.</span>
-            </p>
-            <table>
-                <tbody>
-                    <tr>
-                        <th>Example</th>
-                        <td><span about="sosa:PropertyOfInterest" property="skos:example">Abby's car has the
-                                colour red, where "the colour of Abby's car" is a property of interest.</span></td>
-                    </tr>
-                    <tr>
-                        <th>Note</th>
-                        <td><span about="sosa:PropertyOfInterest" property="skos:note">Properties of interest
-                                need not always be explicitly identified. It depends on the use case.</span></td>
-                    </tr>
-                    <tr class="ssn">
-                        <th class="restrictions">Restrictions:</th>
-                        <td>
-                            <span about="sosa:PropertyOfInterest" rel="rdfs:subClassOf"
-                                resource="[_:SOSAPropertyOfInterest1]"></span>
-                            <span about="[_:SOSAPropertyOfInterest1]" typeof="owl:Restriction"></span>
-                            <span about="[_:SOSAPropertyOfInterest1]" rel="owl:onProperty"
-                                resource="sosa:isPropertyOf"><a href="#SOSAisPropertyOf">sosa:isPropertyOf</a></span>
-                            <span about="[_:SOSAPropertyOfInterest1]" property="owl:allValuesFrom"
-                                resource="sosa:FeatureOfInterest"><em><b>ONLY</b></em> <a
-                                    href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a></span>
-                            <br>
-                            <span about="sosa:Property" rel="rdfs:subClassOf"
-                                resource="[_:SOSAPropertyOfInterest2]"></span>
-                            <span about="[_:SOSAPropertyOfInterest2]" typeof="owl:Restriction"></span>
-                            <span about="[_:SOSAPropertyOfInterest2]" rel="owl:onProperty"
-                                resource="sosa:isPropertyOf"><a href="#SOSAisPropertyOf">sosa:isPropertyOf</a></span>
-                            <span about="[_:SOSAPropertyOfInterest2]" property="owl:cardinality"
-                                resource="sosa:FeatureOfInterest"><em><b>EXACTLY 1</b></em></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>is Defined By</th>
-                        <td>
-                            <span rel="rdfs:isDefinedBy"><a
-                                    href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a></span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="buttonpanel">
-                <span>
-                    <span class="sosa" style="display: none;">[<a href="#"
-                            onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
-                            additional SSN axioms</a>]</span>
-                    <span class="ssn">[<a href="#"
-                            onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
-                            additional SSN axioms</a>]</span>
-                </span>
-                <span class="back">[<a href="#Common">Back to module overview</a>]</span>
-                <span class="back">[<a href="#overview-of-classes-and-properties">Back to top</a>]</span>
-            </div>
-        </section>
-
         <section class="specterm" id="SOSAforProperty" about="sosa:forProperty" typeof="owl:ObjectProperty">
             <h6><a href="#SOSAforProperty">sosa:forProperty</a></h6>
             <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/forProperty</p>
@@ -359,9 +288,7 @@
                         <th>Range Includes</th>
                         <td>
                             <span rel="schema:rangeIncludes" resource="sosa:Property"><a
-                                    href="#SOSAProperty">sosa:Property</a></span>,
-                            <span rel="schema:rangeIncludes" resource="sosa:PropertyOfInterest"><a
-                                    href="#SOSAPropertyOfInterest">sosa:PropertyOfInterest</a></span>
+                                    href="#SOSAProperty">sosa:Property</a></span>
                         </td>
                     </tr>
                     <tr>
@@ -458,9 +385,7 @@
                         <th>Domain Includes</th>
                         <td>
                             <span rel="schema:domainIncludes" resource="sosa:Property"><a
-                                    href="#SOSAProperty">sosa:Property</a></span>,
-                            <span rel="schema:rangeIncludes" resource="sosa:PropertyOfInterest"><a
-                                    href="#SOSAPropertyOfInterest">sosa:PropertyOfInterest</a></span>
+                                    href="#SOSAProperty">sosa:Property</a></span>
                         </td>
                     </tr>
                     <tr>

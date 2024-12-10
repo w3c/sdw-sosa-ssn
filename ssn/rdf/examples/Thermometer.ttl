@@ -3,36 +3,12 @@
 @prefix qk: <http://qudt.org/vocab/quantitykind/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix schema: <http://schema.org/> .
 @prefix sensor: <https://example.org/sensor/> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
-@prefix system: <http://www.w3.org/ns/ssn/systems/> .
 @prefix unit: <http://qudt.org/vocab/unit/> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-ex:SickChildATemperature
-  a sosa:Observation ;
-  sosa:hasFeatureOfInterest ex:SickChildA ;
-  sosa:hasSimpleResult "38.2"^^unit:DEG_C ;
-  sosa:madeBySensor ex:Mums-clinical-thermometer ;
-  sosa:observedProperty qk:Temperature ;
-.
-ex:SickChildA
-  a sosa:FeatureOfInterest ;
-.
-ex:Mums-clinical-thermometer
-  a sosa:Sensor ;
-  a sensor:Mercury-in-glass-thermometer ;
-  a sensor:TemperatureSensor ;
-.
 qk:Temperature
   a sosa:Property ;
-.
-sensor:Mercury-in-glass-thermometer
-  a owl:Class ;
-  rdfs:comment "Temperature sensor based on observing the the expansion of a column of mercury inside a glass tube" ;
-  rdfs:label "A specific type of temperature sensor" ;
-  rdfs:subClassOf sensor:TemperatureSensor ;
 .
 sensor:TemperatureSensor
   a owl:Class ;
@@ -43,4 +19,25 @@ sensor:TemperatureSensor
       owl:hasValue qk:Temperature ;
       owl:onProperty sosa:observes ;
     ] ;
+.
+sensor:Mercury-in-glass-thermometer
+  a owl:Class ;
+  rdfs:label "Mercury in glass thermometer" ;
+  rdfs:comment "Temperature sensor based on the expansion of a column of mercury inside a glass tube" ;
+  rdfs:subClassOf sensor:TemperatureSensor ;
+.
+ex:Mums-clinical-thermometer
+  a sosa:Sensor ;
+  a sensor:TemperatureSensor ;
+  a sensor:Mercury-in-glass-thermometer ;
+.
+ex:SickChildA
+  a sosa:FeatureOfInterest ;
+.
+ex:SickChildATempObs
+  a sosa:Observation ;
+  sosa:hasFeatureOfInterest ex:SickChildA ;
+  sosa:hasSimpleResult "38.2"^^unit:DEG_C ;
+  sosa:madeBySensor ex:Mums-clinical-thermometer ;
+  sosa:observedProperty qk:Temperature ;
 .

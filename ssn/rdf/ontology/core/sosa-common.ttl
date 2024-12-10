@@ -49,16 +49,6 @@ sosa:Property
   skos:note "Concepts from existing code lists, vocabularies, and taxonomies, may be used as instances of Property"@en ;
   rdfs:isDefinedBy sosa-common: .
 
-sosa:PropertyOfInterest 
-  a owl:Class ;
-  rdfs:label "Property Of Interest"@en ;
-  skos:definition """
-  An identifiable quality of a specific FeatureOfInterest that can be observed or acted upon. A property of interest is tied to a specific feature of interest. It is inherent to and cannot exist without that FeatureOfInterest.
-  """@en ;
-  skos:example "Abby's car has the colour red, where \"colour red\" is a property of interest of the car."@en ;
-  skos:note "Properties of interest need not always be explicitly identified. It depends on the use case."@en ;
-  rdfs:isDefinedBy sosa-common: .
-
 sosa:forProperty 
   a owl:ObjectProperty ;
   rdfs:label "for property"@en ;
@@ -85,7 +75,6 @@ sosa:hasProperty
   """@en ;
   schema:domainIncludes sosa:FeatureOfInterest ;
   schema:rangeIncludes sosa:Property ;
-  schema:rangeIncludes sosa:PropertyOfInterest ;
   owl:inverseOf sosa:isPropertyOf ;
   rdfs:isDefinedBy sosa-common: .
 
@@ -111,7 +100,6 @@ sosa:isPropertyOf
   Relation between a Property and the entity that it belongs to.
   """@en ;
   schema:domainIncludes sosa:Property ;
-  schema:domainIncludes sosa:PropertyOfInterest ;
   schema:rangeIncludes sosa:FeatureOfInterest ;
   owl:inverseOf sosa:hasProperty ; 
   rdfs:isDefinedBy sosa-common: .

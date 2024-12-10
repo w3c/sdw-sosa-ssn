@@ -1,0 +1,24 @@
+@prefix ex: <https://example.org/data/> .
+@prefix qk: <http://qudt.org/vocab/quantitykind/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+
+qk:Temperature
+  rdfs:subClassOf sosa:Property ;
+.
+ex:SickChildA
+  a sosa:FeatureOfInterest ;
+.
+ex:SickChildATemperature
+  a sosa:Property ;
+  a qk:Temperature ;
+  sosa:isPropertyOf ex:SickChildA ;
+.
+ex:SickChildATempObs
+  a sosa:Observation ;
+  sosa:hasSimpleResult "38.2"^^unit:DEG_C ;
+  sosa:madeBySensor ex:Mums-clinical-thermometer ;
+  sosa:observedProperty ex:SickChildATemperature ;
+.

@@ -1,17 +1,61 @@
 <h3>Generic or Specific Instances of sosa:Property</h3>
 <p>
-    The previous edition of SSN [[vocab-ssn-20171019]] left an ambiguity on whether an instance of <a
-        href="#SOSAProperty"><code>sosa:Property</code></a> should be generic to all features of interest (e.g.,
-    <code>ex:Temperature</code>, <code>ex:OnOffStatus</code>), or specific to a single feature of interest (e.g.,
-    <code>&lt;myBodyTemperature&gt;</code>, <code>&lt;LightStatus&gt;</code>).
-    This version solves the ambiguity by differentiating:
+    The SSN Ontology does not provide a general pattern for describing observable or actuatable properties.
+    A number of existing catalogues of properties are available,
+    such as the <a href="https://www.qudt.org/doc/DOC_VOCAB-QUANTITY-KINDS.html">QUDT catalogue of Quantity Kinds</a>,
+    or the <a href="https://vocab.nerc.ac.uk/search_nvs/S06/">BODC parameter entity names</a>,
+    or the <a href="https://esipfed.github.io/sweet/">SWEET Ontology</a>,
+    or <a href="https://github.com/EnvironmentOntology">The Environment Ontology</a>.
+    Each of these uses a distinct ontology or way of formalizing the definition of a property, which are suitable for
+    many applications.
+    Alternatively, the <a href="https://w3id.org/env/puv">Parameter Usage Vocabulary</a> or
+    <a href="https://doi.org/10.15497/RDA00071">I-ADOPT</a> may be used to define a new observable or actuatable
+    property.
+    The key point is that each individual property is denoted by a URI, which can be used as the value of the
+    <a href="#SOSAactsOnProperty"><code>sosa:actsOnProperty</code></a> or
+    <a href="#SOSAobservedProperty"><code>sosa:observedProperty</code></a> of an Execution.
 </p>
-<ul>
-    <li>
-        <a href="#SOSAProperty"><code>sosa:Property</code></a> for the former case, where properties are generic
-    </li>
-    <li>
-        <a href="#SOSAPropertyOfInterest"><code>sosa:PropertyOfInterest</code></a> for the latter case, where
-        properties are tied to a single entity.
-    </li>
-</ul>
+<p>
+    Most commonly an instance of <a href="#SOSAProperty"><code>sosa:Property</code></a> is generic to many
+    features of interest (e.g. <code>ex:Temperature</code>, <code>ex:OnOffStatus</code>).
+    The catalogs mentioned above primarily support this use case.
+</p>
+<p>
+    A property may be made specific to a single feature of interest using
+    <a href="#SOSAisPropertyOf"><code>sosa:isPropertyOf</code></a>
+    (e.g. <code>ex:SickChildATemperature</code>, <code>ex:LightStatus</code>).
+    Specific properties of individual features would not usually appear in a catalogue of reusable properties,
+    but this pattern is used in some applications.
+    In that context, a key requirement is to relate the specific property to the general case for the underlying
+    quantity-kind and -dimension.
+</p>
+<p>
+    The [[SAREF]] ontologies address this requirement with separate classes:
+    <code>saref:Property</code> for the general case, and <code>saref:PropertyOfInterest</code> for the case where a
+    property is bound to a single feature of interest.
+    An instance of the latter may be connected to an instance of the former using the predicate
+    <code>saref:hasPropertyKind</code>,
+    as shown in the following example:.
+</p>
+<pre class="example" data-include="./rdf/examples/Temperature-of-interest-specialization.ttl"
+    data-include-format="text"></pre>
+<p>
+    [[SAREF]] is closely aligned with SSN as <a href="#SAREF-alignment">documented in the alignments chapter</a>
+    so this may be used in SSN applications.
+</p>
+<p class="note">
+    For properties described as SKOS Concepts ([[skos-primer]]), such as in the
+    <a href="https://vocab.nerc.ac.uk/search_nvs/S06/">BODC parameter entity names</a> catalog,
+    standard SKOS semantic relations may be useful,
+    e.g. <a href="http://www.w3.org/2004/02/skos/core#broader"><code>skos:broader</code></a> to relate a specialized
+    property to the general case.
+</p>
+<p class="note">
+    Where <a href="#SOSAactsOnProperty"><code>sosa:actsOnProperty</code></a> or
+    <a href="#SOSAobservedProperty"><code>sosa:observedProperty</code></a> of an
+    <a href="#SOSAActuation"><code>sosa:Actuation</code></a> or
+    <a href="#SOSAObservation"><code>sosa:Observation</code></a> refers to a <em>specific</em> property bound to a
+    specific feature-of-interest, then the
+    <a href="#SOSAhasFeatureOfInterest"><code>sosa:hasFeatureOfInterest</code></a> is implied and may be omitted in the
+    data.
+</p>

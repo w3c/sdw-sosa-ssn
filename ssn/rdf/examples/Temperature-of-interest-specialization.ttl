@@ -1,0 +1,17 @@
+@prefix ex: <https://example.org/data/> .
+@prefix qk: <http://qudt.org/vocab/quantitykind/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix saref: <https://saref.etsi.org/core/> .
+
+qk:Temperature
+  a saref:Property ;
+.
+ex:SickChildA
+  a saref:FeatureOfInterest ;
+.
+ex:SickChildATemperature
+  a saref:PropertyOfInterest ;
+  saref:hasPropertyKind qk:Temperature ;
+  saref:isPropertyOfInterestOf ex:SickChildA ;
+.
