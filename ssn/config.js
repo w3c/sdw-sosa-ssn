@@ -152,12 +152,12 @@ var respecConfig = {
     },
     "DCAT": {
       authors: [
-          "Riccardo Albertoni",
-          "David Browning",
-          "Simon Cox",
-          "Alejandra Gonzalez Beltran",
-          "Andrea Perego",
-          "Peter Winstanley"
+        "Riccardo Albertoni",
+        "David Browning",
+        "Simon Cox",
+        "Alejandra Gonzalez Beltran",
+        "Andrea Perego",
+        "Peter Winstanley"
       ],
       href: "https://www.w3.org/TR/vocab-dcat/",
       title: "Data Catalog Vocabulary (DCAT) - Version 3",
@@ -166,7 +166,7 @@ var respecConfig = {
       publisher: "W3C",
       edDraft: "https://w3c.github.io/dxwg/dcat/",
       deliveredBy: [
-          "https://www.w3.org/2017/dxwg/"
+        "https://www.w3.org/2017/dxwg/"
       ],
     },
     "DUL": {
@@ -245,6 +245,17 @@ var respecConfig = {
       title: "Ontology of Units of Measure and Related Concepts",
       publisher: "Semantic Web journal, IOS Press",
       date: "2013"
+    },
+    "iso-19157-1": {
+      authors: [
+        "ISO/TC 211"
+      ],
+      href: "https://www.iso.org/standard/78900.html",
+      title: "Geographic information -- Data quality -- Part 1: General requirements",
+      publisher: "ISO",
+      status: "International Standard",
+      date: "2023",
+      isoNumber: "ISO 19157-1:2023"
     }
   },
   issueBase: "https://www.w3.org/2015/spatial/track/issues/"
