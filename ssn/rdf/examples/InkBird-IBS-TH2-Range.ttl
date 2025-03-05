@@ -19,13 +19,22 @@ ex:InkBird-IBS-TH2 a owl:Class;
     rdfs:label "Inkbird IBS-TH2"@en ;
     rdfs:subClassOf gs1:Product, sosa:Platform, equipment:Equipment, <https://w3id.org/seas/BluetoothCommunicationDevice>;
     gs1:pip <https://inkbird.com/products/hygrometer-ibs-th2> ;
-    sosa:hosts ex:IBSTH2TemperatureSensor ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                      owl:onProperty sosa:hosts ;
+                      owl:allValuesFrom ex:IBSTH2TemperatureSensor 
+                    ] ;
 .
 ex:IBSTH2TemperatureSensor rdfs:subClassOf sosa:Sensor ;
     rdfs:label "Inkbird IBS-TH2 built-in Temperature Sensor"@en ;
     sosa:observes ex:airTemperature ;
-    system:hasOperatingRange ex:IBSTH2TemperatureSensorLimits ;
-    system:hasSurvivalRange ex:IBSTH2SurvivalRange ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                      owl:onProperty system:hasOperatingRange ;
+                      owl:allValuesFrom ex:IBSTH2TemperatureSensorLimits 
+                    ] ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                      owl:onProperty system:hasSurvivalRange ;
+                      owl:allValuesFrom ex:IBSTH2SurvivalRange 
+                    ] ;
 .
 ex:IBSTH2TemperatureSensorLimits a system:OperatingRange ;
     sosa:forProperty qk:Temperature ;
