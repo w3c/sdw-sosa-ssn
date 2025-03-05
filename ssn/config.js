@@ -146,9 +146,9 @@ var respecConfig = {
     "UCUM": {
       href: "https://ucum.org/ucum",
       title: "The Unified Code for Units of Measure",
-      authors: ["Gunther Schadow", "Gunther Schadow"],
-      publisher: "Regenstrief Institute, Inc.",
-      date: "21 November 2017"
+      authors: ["Gunther Schadow", "Clement J. McDonald"],
+      publisher: "Regenstrief Institute, Inc. and the UCUM Organization",
+      date: "17 June 2024"
     },
     "DCAT": {
       authors: [
