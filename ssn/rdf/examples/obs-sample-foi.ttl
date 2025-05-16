@@ -1,0 +1,23 @@
+@prefix ex: <https://example.org/data/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+
+ex:Bubble873 a sosa:Sample ;
+  sosa:isSampleOf ex:EarthAtmosphere;
+.
+ex:Ob873c4 a sosa:Observation ;
+  sosa:observedProperty ex:CO2-Concentration ;
+  sosa:hasFeatureOfInterest ex:Bubble873 ;
+  sosa:hasUltimateFeatureOfInterest ex:EarthAtmosphere ;
+  sosa:hasResult "240"^^unit:PPM ;
+.
+ex:EarthAtmosphere a sosa:FeatureOfInterest ;
+  owl:sameAs <https://www.wikidata.org/wiki/Q3230> ;
+  . 
+ex:CO2-Concentration a sosa:Property ;
+  owl:sameAs <http://purl.obolibrary.org/obo/ENVO_04000004> ;
+  skos:prefLabel "concentration of carbon dioxide in air" ;
+. 

@@ -1,0 +1,81 @@
+# baseURI: https://example.org/data/
+# imports: http://www.w3.org/ns/ssn/
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://example.org/data/>
+  a owl:Ontology ;
+  owl:imports ssn: ;
+.
+<https://example.org/data/Observation/235714>
+  a sosa:Observation ;
+  sosa:hasResult [
+      a qudt:QuantityValue ;
+      qudt:hasUnit unit:KiloW-HR ;
+      qudt:numericValue "22.4"^^xsd:double ;
+    ] ;
+  sosa:madeBySensor <https://example.org/data/sensor/926> ;
+  sosa:observedProperty <https://example.org/data/apartment/134/electricConsumption> ;
+  sosa:phenomenonTime [
+      a time:Interval ;
+      time:hasBeginning [
+          a time:Instant ;
+          time:inXSDDateTimeStamp "2017-04-15T00:00:00+00:00"^^xsd:dateTimeStamp ;
+        ] ;
+      time:hasEnd [
+          a time:Instant ;
+          time:inXSDDateTimeStamp "2017-04-16T00:00:00+00:00"^^xsd:dateTimeStamp ;
+        ] ;
+    ] ;
+  sosa:resultTime "2017-04-16T00:00:12+00:00"^^xsd:dateTimeStamp ;
+.
+<https://example.org/data/Observation/235754>
+  a sosa:Observation ;
+  sosa:madeBySensor <https://example.org/data/sensor/926> ;
+.
+<https://example.org/data/actuation/188>
+  a sosa:Actuation ;
+  sosa:actsOnProperty <https://example.org/data/window/104#state> ;
+  sosa:actuationMadeBy <https://example.org/data/windowCloser/987> ;
+  sosa:hasSimplResult true ;
+  sosa:resultTime "2017-04-18T17:24:00+02:00"^^xsd:dateTimeStamp ;
+.
+<https://example.org/data/apartment/134/electricConsumption>
+  a sosa:ObservableProperty ;
+  sosa:isObservedBy <https://example.org/data/sensor/926> ;
+.
+<https://example.org/data/sensor/926>
+  a sosa:Sensor ;
+  sosa:madeObservation <https://example.org/data/Observation/235714> ;
+  sosa:madeObservation <https://example.org/data/Observation/235715> ;
+  sosa:madeObservation <https://example.org/data/Observation/235716> ;
+  sosa:observes <https://example.org/data/apartment/134/electricConsumption> ;
+.
+<https://example.org/data/tempSensor/23>
+  a sosa:Sensor ;
+  sosa:madeObservation <https://example.org/data/tempSensor/23/4572> ;
+  sosa:madeObservation <https://example.org/data/tempSensor/23/4573> ;
+  sosa:madeObservation <https://example.org/data/tempSensor/23/4574> ;
+  sosa:observes <https://example.org/data/tempSensor/23#temperature> ;
+.
+<https://example.org/data/window>
+  a sosa:FeatureOfInterest ;
+  ssn:hasProperty <https://example.org/data/window/104#state> ;
+.
+<https://example.org/data/window/104#state>
+  a sosa:ActuatableProperty ;
+  sosa:isActedOnBy <https://example.org/data/actuation/188> ;
+.
+<https://example.org/data/windowCloser/987>
+  a sosa:Actuator ;
+  sosa:madeActuation <https://example.org/data/actuation/188> ;
+  ssn:forProperty <https://example.org/data/window/104#state> ;
+.

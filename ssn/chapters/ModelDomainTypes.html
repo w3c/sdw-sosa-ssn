@@ -1,7 +1,7 @@
 <h3>Domain types and FeatureOfInterest</h3>
 
 <p>
-    Actuations, Observations, and Samplings can be made on any entity in any context.
+    Actuations, Observations, Samplings, and Deployments can be made on any entity in any context.
     For many applications a domain-model has been previously defined.
     This will include names and definitions for classes of entities in the domain.
     For example: applications in hydrology will refer to types such as water-course, stream, river, reach,
@@ -34,6 +34,7 @@
 <pre>
 sosa:hasFeatureOfInterest 
   schema:domainIncludes sosa:Execution ;
+  schema:domainIncludes sosa:Deployment ;
   schema:rangeIncludes sosa:FeatureOfInterest ;
 .
 </pre>
@@ -65,8 +66,15 @@ sosa:Execution
     owl:onProperty sosa:hasFeatureOfInterest ; 
     owl:allValuesFrom sosa:FeatureOfInterest ] ;
 .
+sosa:Deployment 
+  rdfs:subClassOf [ 
+    a owl:Restriction ; 
+    owl:onProperty sosa:hasFeatureOfInterest ; 
+    owl:allValuesFrom sosa:FeatureOfInterest ] ;
+.
 </pre>
-<p>This says that, in the context of an individual <a href="#SOSAExecution"><code>sosa:Execution</code></a>,
+<p>This says that, in the context of an individual <a href="#SOSAExecution"><code>sosa:Execution</code></a> 
+    or <a href="#SOSADeployment"><code>sosa:Deployment</code></a>,
     the object of <a href="#SOSAhasFeatureOfInterest"><code>sosa:hasFeatureOfInterest</code></a> is always an individual
     <a href="#SOSAFeatureOfInterest"><code>sosa:FeatureOfInterest</code></a>.
 </p>
@@ -80,38 +88,54 @@ sosa:Execution
         when an individual appears as the object of a statement
     </li>
     <li>
-        whose subject is a <a href="#SOSAExecution"><code>sosa:Execution</code></a>
+        whose subject is a <a href="#SOSAExecution"><code>sosa:Execution</code></a> or <a href="#SOSADeployment"><code>sosa:Deployment</code></a>
     </li>
     <li>
         and whose predicate is <a href="#SOSAhasFeatureOfInterest"><code>sosa:hasFeatureOfInterest</code></a>
     </li>
 </ul>
 <p>
-    then it is automatically inferred to be of type <a
-        href="#SOSAFeatureOfInterest"><code>sosa:FeatureOfInterest</code></a>
+    then it is automatically inferred to be of type <a href="#SOSAFeatureOfInterest"><code>sosa:FeatureOfInterest</code></a>
     <em>in addition to</em> any other information that was already available about it, including any pre-existing type.
 </p>
-<p>Note that this constraint does not require you to derive domain types as sub-classes of
-    <a href="#SOSAFeatureOfInterest"><code>sosa:FeatureOfInterest</code></a>.
+<p>Note that <b>this does not require you to derive domain types as sub-classes of
+        <a href="#SOSAFeatureOfInterest"><code>sosa:FeatureOfInterest</code></a></b>.
     It could be argued that would be an error.
-    It merely says that when a domain individual participates in an Execution (e.g. an Observation)
+    It merely says that when a domain individual participates in an Execution (e.g., an Observation) or Deployment
     it becomes a member of the class <a href="#SOSAFeatureOfInterest"><code>sosa:FeatureOfInterest</code></a>
-    in addition to any pre-existing domain class.
-    Membership in the class <a href="#SOSAFeatureOfInterest"><code>sosa:FeatureOfInterest</code></a>
-    does not need to be asserted explicitly,
-    and does not need to be assigned prior to the involvement of an entity in a
-    <a href="#SOSAExecution"><code>sosa:Execution</code></a> (or one of its sub-classes).
+    <b>in addition to</b> any pre-existing domain class.
+    In the context of SSN axiomatization, membership in the class
+    <a href="#SOSAFeatureOfInterest"><code>sosa:FeatureOfInterest</code></a>
+    does not need to be asserted explicitly, and does not need to be assigned prior to the involvement of an entity in a
+    <a href="#SOSAExecution"><code>sosa:Execution</code></a> (or one of its sub-classes) or <a href="#SOSADeployment"><code>sosa:Deployment</code></a>.
 </p>
 <p>
-    For example, the following is a potential scenario.
+    Consider the following scenario.
     There is an entity typed with a class from a domain model:
 </p>
+<figure id="domain-feature">
+    <embed alt="a domain feature" src="./images/domain-feature.svg" style="width:30%" />
+    <figcaption>
+        A feature classified using a domain ontology.
+        <br>
+        <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
+    </figcaption>
+</figure>
 <pre>
 ex:YarraAboveDightsFalls rdf:type hydro:RiverReach .
 </pre>
 <p>
     An observation is made concerning a property of this entity:
 </p>
+<figure id="domain-feature-observed">
+    <embed alt="a domain feature" src="./images/domain-feature-observed.svg" style="width:90%" />
+    <figcaption>
+        An observation on a feature previously classified using a domain ontology.
+        <br>
+        <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
+    </figcaption>
+</figure>
+
 <pre>
 ex:o345 rdf:type sosa:Observation ;
     sosa:hasFeatureOfInterest ex:YarraAboveDightsFalls ;
@@ -130,7 +154,7 @@ ex:o345 rdf:type sosa:Observation ;
     <code>sosa:FeatureOfInterest</code> when a member of <code>hydro:RiverReach</code> participates in an
     <a href="#SOSAObservation"><code>sosa:Observation</code></a> (or any other subclass of
     <a href="#SOSAExecution"><code>sosa:Execution</code></a>).
-    Domain types are not features-of-interest unless they are involved in executions.
+    Domain types are not features-of-interest unless they are involved in Executions or Deployments.
     The additional typing happens to individual members of the class 'automatically', by entailment, but not to the
     domain class as a whole.
 </p>

@@ -1,0 +1,23 @@
+@prefix ex: <https://example.org/data/> .
+@prefix om: <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
+@prefix qk: <http://qudt.org/vocab/quantitykind/> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:Observation-234534 
+   a sosa:Observation ;
+   sosa:hasFeatureOfInterest ex:apt134 ;
+   sosa:observedProperty qk:Temperature ;
+   sosa:hasResult [
+      a om:Measure ;
+      om:hasUnit om:degreeCelsius ;
+      om:hasNumericalValue "24.9"^^xsd:decimal ] ;
+.
+ex:apt134
+  a sosa:FeatureOfInterest ;
+.
+qk:Temperature
+  a sosa:Property ;
+.

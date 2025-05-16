@@ -146,9 +146,28 @@ var respecConfig = {
     "UCUM": {
       href: "https://ucum.org/ucum",
       title: "The Unified Code for Units of Measure",
-      authors: ["Gunther Schadow", "Gunther Schadow"],
-      publisher: "Regenstrief Institute, Inc.",
-      date: "21 November 2017"
+      authors: ["Gunther Schadow", "Clement J. McDonald"],
+      publisher: "Regenstrief Institute, Inc. and the UCUM Organization",
+      date: "17 June 2024"
+    },
+    "DCAT": {
+      authors: [
+        "Riccardo Albertoni",
+        "David Browning",
+        "Simon Cox",
+        "Alejandra Gonzalez Beltran",
+        "Andrea Perego",
+        "Peter Winstanley"
+      ],
+      href: "https://www.w3.org/TR/vocab-dcat/",
+      title: "Data Catalog Vocabulary (DCAT) - Version 3",
+      rawDate: "2024-08-22",
+      status: "REC",
+      publisher: "W3C",
+      edDraft: "https://w3c.github.io/dxwg/dcat/",
+      deliveredBy: [
+        "https://www.w3.org/2017/dxwg/"
+      ],
     },
     "DUL": {
       href: "http://ontologydesignpatterns.org/wiki/Ontology:DOLCE+DnS_Ultralite",
@@ -192,6 +211,12 @@ var respecConfig = {
       page: "453-470",
       authors: ["S.J.D. Cox"]
     },
+    "Project-PROV": {
+      href: "https://linked.data.gov.au/def/project/",
+      authors: ["Simon J D Cox"],
+      title: "A Project Ontology",
+      date: "2017"
+    },
     "SSN-PROV": {
       href: "http://ceur-ws.org/Vol-1401/paper-05.pdf",
       title: "Sensor Data Provenance: SSNO and PROV-O Together at Last",
@@ -220,6 +245,17 @@ var respecConfig = {
       title: "Ontology of Units of Measure and Related Concepts",
       publisher: "Semantic Web journal, IOS Press",
       date: "2013"
+    },
+    "iso-19157-1": {
+      authors: [
+        "ISO/TC 211"
+      ],
+      href: "https://www.iso.org/standard/78900.html",
+      title: "Geographic information -- Data quality -- Part 1: General requirements",
+      publisher: "ISO",
+      status: "International Standard",
+      date: "2023",
+      isoNumber: "ISO 19157-1:2023"
     }
   },
   issueBase: "https://www.w3.org/2015/spatial/track/issues/"

@@ -1,0 +1,60 @@
+@prefix ex: <https://example.org/data/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix time: <http://www.w3.org/2006/time#>.
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+ex:Bubble873 a sosa:Sample , sosa:MaterialSample ;
+  sosa:isSampleOf ex:IceCore12 , ex:EarthAtmosphere;
+  sosa:hasSampledFeature ex:Antarctic_ice_sheet ;
+  sosa:isResultOf ex:CoreEx1923 ;
+.
+ex:Ob873t2 a sosa:Observation ;
+  sosa:observedProperty ex:C14-Age ;
+  sosa:hasFeatureOfInterest ex:Bubble873 ;
+  sosa:hasUltimateFeatureOfInterest ex:EarthAtmosphere ;
+  sosa:hasResult "7530"^^unit:YR ;
+  sosa:resultTime "2018-01-09T14:15:00Z"^^xsd:dateTime ;
+.
+ex:Ob873c4 a sosa:Observation ;
+  sosa:observedProperty ex:CO2-Concentration ;
+  sosa:hasFeatureOfInterest ex:Bubble873 ;
+  sosa:hasUltimateFeatureOfInterest ex:EarthAtmosphere ;
+  sosa:hasResult "240"^^unit:PPM ;
+  sosa:resultTime "2018-01-09T14:16:00Z"^^xsd:dateTime ;
+.
+ex:Oatc349 a sosa:Observation ;
+  sosa:observedProperty ex:CO2-Concentration ;
+  sosa:hasFeatureOfInterest ex:EarthAtmosphere ;
+  sosa:hasResult "240"^^unit:PPM ;
+  sosa:phenomenonTime [ 
+    time:inTimePosition [
+      time:hasTRS ex:BP ;
+      time:numericPosition 7530 ;
+    ] ;
+  ] ;   
+  sosa:resultTime "2018-01-09T14:16:00Z"^^xsd:dateTime ;
+  sosa:hasInputValue ex:Ob873t2 , ex:Ob873c4 ;
+.
+ex:BP
+  a time:TRS ;
+  skos:definition "Years before 1950, positive backwards" ;
+.
+ex:Antarctic_ice_sheet a sosa:FeatureOfInterest ;
+  owl:sameAs <https://www.wikidata.org/wiki/Q571430> ;
+. 
+ex:EarthAtmosphere a sosa:FeatureOfInterest ;
+  owl:sameAs <https://www.wikidata.org/wiki/Q3230> ;
+  . 
+ex:C14-Age a sosa:Property ;
+  owl:sameAs <http://vocab.nerc.ac.uk/collection/S06/current/S0600001/> ;
+  skos:definition "The age of an object, determined by radiocarbon dating, expressed relative to a datum of AD 1950." ;
+  skos:prefLabel "14C age" ;
+.
+ex:CO2-Concentration a sosa:Property ;
+  owl:sameAs <http://purl.obolibrary.org/obo/ENVO_04000004> ;
+  skos:prefLabel "concentration of carbon dioxide in air" ;
+. 

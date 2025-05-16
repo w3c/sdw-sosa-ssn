@@ -1,16 +1,29 @@
+@prefix ex: <https://example.org/data/> .
+@prefix qk: <http://qudt.org/vocab/quantitykind/> .
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix time: <http://www.w3.org/2006/time#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix time: <http://www.w3.org/2006/time#>.
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
-@base <http://example.org/data/> .
+@base <https://example.org/data/sunspot/> .
 
 # The result of an observation of the sunspot number is available a few minutes 
-# after the phenomenon time, due to the light travel duration.
+# after the phenomenon time, due to the light travel duration
 
 <Observation/7536> rdf:type sosa:Observation ;
-  sosa:observedProperty  <Sun#sunspotNumber> ;
+  sosa:observedProperty  ex:sunspotCount ;
+  sosa:hasFeatureOfInterest ex:Sun ;
   sosa:hasSimpleResult 66 ;
   sosa:phenomenonTime [
     rdf:type time:Instant ;
     time:inXSDDateTimeStamp "2017-03-31T11:51:42+00:00"^^xsd:dateTimeStamp ] ;
-  sosa:resultTime "2017-03-31T12:00:00+00:00"^^xsd:dateTimeStamp .
+  sosa:resultTime "2017-03-31T12:00:00+00:00"^^xsd:dateTimeStamp ;
+.
+ex:sunspotCount rdf:type sosa:Property ;
+  skos:broader qk:Count ;
+.
+ex:Sun a sosa:FeatureOfInterest ;
+  owl:sameAs <https://www.wikidata.org/wiki/Q525> .
+  rdfs:label "Sun" ;
+.

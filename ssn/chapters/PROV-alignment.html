@@ -1,7 +1,9 @@
-<!--  <section id="PROV_Alignment" class="informative"> -->
 <h3>PROV Alignment Module</h3>
-<p>This section introduces the alignment of SOSA to W3C PROV ([[prov-overview]], [[prov-dm]], [[prov-o]]).</p>
-<p>The underlying structure of PROV is based around a process-flow model, with three base classes:
+<p>
+  This section introduces the alignment of SOSA to W3C PROV ([[prov-overview]], [[prov-dm]], [[prov-o]]).
+</p>
+<p>
+  The underlying structure of PROV is based around a process-flow model, with three base classes:
   <a href="https://www.w3.org/TR/prov-o/#Entity">Entity</a>,
   which is the class of physical, digital, conceptual, or other kinds of things with some fixed aspects;
   <a href="https://www.w3.org/TR/prov-o/#Activity">Activity</a>,
@@ -11,13 +13,13 @@
   which is the class of things that bear some form of responsibility for an activity taking place, for the existence of
   an entity, or for another agent's activity.
 </p>
-<figure>
-  <a href="images/Prov-alignment.png"><img src="images/Prov-alignment.png" alt="PROV-O" /></a>
+<figure id="PROV-alignment">
+  <embed src="images/Prov-alignment.svg" alt="PROV-O alignment to SSN" style="width:100%" />
   <figcaption>
     Core PROV classes and some of the properties that relate them, alongside the core SOSA
     structure for execution (actuation, observation, and sampling).
     <br>
-    <em><a href="#class-diagram">Explanation of the notation used in class diagrams</a></em>.
+    <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
   </figcaption>
 </figure>
 
@@ -27,10 +29,10 @@
   An alignment of SOSA to PROV is natural.
   Compton et al. [[SSN-PROV]] and Cox [[OM-Lite]] have described alignments of the SSNX and O&amp;M models with
   [[prov-o]].
-  The alignment here is based on that work, also extended to consider actuation.
+  The alignment here is based on that work, also extended to consider actuation and sampling.
 </p>
 
-<section id="PROV_Alignment_ns" class="informative">
+<section id="PROV_Alignment_ns">
   <h4>Namespaces</h4>
   <p>
     The following namespace prefixes are used in the alignment of SOSA to PROV.
@@ -59,7 +61,7 @@
     </tbody>
   </table>
 </section>
-<section id="PROV_Alignment_class" class="informative">
+<section id="PROV_Alignment_class">
   <h4>Class Alignments</h4>
   <p>
     The primary classes from SOSA are aligned with the PROV classes as follows.
@@ -107,7 +109,9 @@
       </tr>
     </tbody>
   </table>
-  <p>3. Procedures for observation, actuation or sampling are a kind of prov:Plan, thus:</p>
+  <p>
+    3. Procedures for observation, actuation or sampling are a kind of prov:Plan, thus:
+  </p>
   <table>
     <tbody>
       <tr>
@@ -117,8 +121,10 @@
       </tr>
     </tbody>
   </table>
-  <p>4. The other classes from the core SOSA ontology represent either real or information resources, so are
-    interpreted as kinds of prov:Entity, thus: </p>
+  <p>
+    4. The other classes from the core SOSA ontology represent either real or information resources, so are
+    interpreted as kinds of prov:Entity, thus:
+  </p>
   <table>
     <tbody>
       <tr>
@@ -142,9 +148,11 @@
     </tbody>
   </table>
 </section>
-<section id="PROV_Alignment_property" class="informative">
+<section id="PROV_Alignment_property">
   <h4>Property Alignments</h4>
-  <p>The following properties from SOSA have simple alignments with PROV properties: </p>
+  <p>
+    The following properties from SOSA have simple alignments with PROV properties:
+  </p>
   <table>
     <tbody>
       <tr>
@@ -168,19 +176,18 @@
         <td> prov:wasDerivedFrom </td>
       </tr>
       <tr>
+        <td> <a href="#SOSAmadeBySystem">sosa:madeBySystem</a> </td>
+        <td rowspan="4"> subproperty of </td>
+        <td rowspan="4"> prov:wasAssociatedWith </td>
+      </tr>
+      <tr>
         <td> <a href="#SOSAmadeByActuator">sosa:madeByActuator</a> </td>
-        <td> subproperty of </td>
-        <td> prov:wasAssociatedWith </td>
       </tr>
       <tr>
         <td> <a href="#SOSAmadeBySensor">sosa:madeBySensor</a> </td>
-        <td> subproperty of </td>
-        <td> prov:wasAssociatedWith </td>
       </tr>
       <tr>
         <td> <a href="#SOSAmadeBySampler">sosa:madeBySampler</a> </td>
-        <td> subproperty of </td>
-        <td> prov:wasAssociatedWith </td>
       </tr>
       <tr>
         <td> <a href="#SOSAstartTime">sosa:startTime</a> </td>
@@ -194,9 +201,9 @@
       </tr>
     </tbody>
   </table>
-
-  <p>The final property alignment first requires some sub-properties of PROV properties to be defined: </p>
-
+  <p>
+    The final property alignment first requires some sub-properties of PROV properties to be defined:
+  </p>
   <table>
     <tbody>
       <tr>
@@ -219,9 +226,9 @@
       </tr>
     </tbody>
   </table>
-
-  <p>Then sosa:usedProcedure is given by a property chain axiom: </p>
-
+  <p>
+    Then sosa:usedProcedure is given by a property chain axiom:
+  </p>
   <table>
     <tbody>
       <tr>
@@ -231,11 +238,8 @@
       </tr>
     </tbody>
   </table>
-
   <p>
     An RDF file containing a <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/rdf/alignments/sosa-prov.ttl">graph
       corresponding to this alignment is available</a>.
   </p>
-
 </section>
-<!--  </section>  -->

@@ -94,16 +94,17 @@ sosa:Sampler
   a owl:Class ;
   rdfs:label "Sampler"@en ;
   skos:definition """
-  A device that implements a (Sampling) Procedure to create one or more samples.
+  An entity that implements a sampling Procedure in the context of a Sampling to generate a Sample.   
+  This may be a device, a piece of infrastructure, an agent (including humans), or software (simulation).
   """@en ;
-  skos:example "A ball mill, diamond drill, hammer, hypodermic syringe and needle, image Sensor or a soil auger can all act as sampling devices (i.e., be Samplers). However, sometimes the distinction between the Sampler and the Sensor is not evident, as they are packaged as a unit. A Sampler need not be a physical device."@en ;
+  skos:example "A ball mill, diamond drill, hammer, hypodermic syringe and needle, image Sensor, or a soil auger can all act as sampling devices (i.e., be Samplers). Sometimes, however, the distinction between the Sampler and the Sensor is not evident, as they are packaged as a unit. A Sampler need not be a physical device."@en ;
   rdfs:isDefinedBy sosa-sam: .
 
 sosa:Sampling 
   a owl:Class ;
   rdfs:label "Sampling"@en ;
   skos:definition """
-  An act of Sampling carries out a sampling Procedure to create or transform one or more samples.
+  Act of carrying out a sampling Procedure using a Sampler to create one or more Samples of the FeatureOfInterest.
   """@en ;
   skos:example "Crushing a rock sample in a ball mill."@en ;
   skos:example "Digging a pit through a soil sequence."@en ;
@@ -351,9 +352,6 @@ sosa:isUltimateFeatureOfInterestOf
 sosa:Property 
   rdfs:isDefinedBy sosa-common: .
 
-sosa:PropertyOfInterest 
-  rdfs:isDefinedBy sosa-common: .
-
 sosa:isPropertyOf 
   rdfs:isDefinedBy sosa-common: .
 
@@ -373,29 +371,23 @@ sosa:Procedure
   rdfs:isDefinedBy sosa-common: .
 
 sosa:usedForExecution 
-  schema:domainIncludes sosa:Procedure ;
   schema:rangeIncludes sosa:Sampling ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:implementedBy 
-  schema:domainIncludes sosa:Procedure ;
   schema:rangeIncludes sosa:Sampler ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hasInput 
-  schema:domainIncludes sosa:Procedure ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:inputFor 
-  schema:rangeIncludes sosa:Procedure ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hasOutput 
-  schema:domainIncludes sosa:Procedure ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:outputFor 
-  schema:rangeIncludes sosa:Procedure ;
   rdfs:isDefinedBy sosa-common: .
 
 ## Executions
@@ -406,12 +398,14 @@ sosa:Execution
 sosa:usedProcedure 
   schema:domainIncludes sosa:Sampling ;
   schema:domainIncludes sosa:SamplingCollection ;
-  schema:rangeIncludes sosa:Procedure ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:startTime 
   schema:domainIncludes sosa:Sampling ;
   schema:domainIncludes sosa:SamplingCollection ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:endTime 
   rdfs:isDefinedBy sosa-common: .
 
 sosa:resultTime 
@@ -431,13 +425,11 @@ sosa:phenomenonOccurred
 sosa:hasFeatureOfInterest 
   schema:domainIncludes sosa:Sampling ;
   schema:domainIncludes sosa:SamplingCollection ;
-  schema:rangeIncludes sosa:Sample ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hasUltimateFeatureOfInterest 
   schema:domainIncludes sosa:Sampling ;
   schema:domainIncludes sosa:SamplingCollection ;
-  schema:rangeIncludes sosa:Sample ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hasInputValue 
@@ -445,14 +437,6 @@ sosa:hasInputValue
   rdfs:isDefinedBy sosa-common: .
 
 sosa:inputValueForExecution 
-  schema:rangeIncludes sosa:Sampling ;
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:hasOutputValue 
-  schema:domainIncludes sosa:Sampling ;
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:outputValueForExecution 
   schema:rangeIncludes sosa:Sampling ;
   rdfs:isDefinedBy sosa-common: .
 
@@ -481,7 +465,6 @@ sosa:System
 
 sosa:implements 
   schema:domainIncludes sosa:Sampler ;
-  schema:rangeIncludes sosa:Procedure ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hasSubSystem 
@@ -520,6 +503,7 @@ sosa:Deployment
   rdfs:isDefinedBy sosa-common: .
 
 sosa:deployedAsset 
+  schema:rangeIncludes sosa:Sampler ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:deployedSystem 

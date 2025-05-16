@@ -1,0 +1,35 @@
+@prefix ex: <https://example.org/data/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:O299877
+  a sosa:Observation ;
+  sosa:hasFeatureOfInterest ex:Community2998 ;
+  sosa:hasResult ex:d77 ;
+  sosa:observedProperty ex:diet ;
+  sosa:phenomenonTime [
+      time:hasBeginning [
+          time:inTimePosition [
+              time:hasTRS ex:BP ;
+              time:numericPosition 12000 ;
+            ] ;
+        ] ;
+      time:hasDuration [
+          time:numericDuration 500 ;
+          time:unitType time:unitYear ;
+        ] ;
+    ] ;
+  sosa:resultTime "2015-06-06T12:00:00+10:00"^^xsd:dateTime ;
+.
+ex:d77 
+  a ex:diet ;
+  rdfs:comment "mainly seafood" ;
+.
+ex:BP
+  a time:TRS ;
+  skos:definition "Years before 1950, positive backwards" ;
+.

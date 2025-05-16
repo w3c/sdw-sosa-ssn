@@ -11,44 +11,35 @@
 
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix sosa-common: <http://www.w3.org/ns/sosa/common/> .
-@prefix sosa-act: <http://www.w3.org/ns/sosa/act/> .
-@prefix sosa-obs: <http://www.w3.org/ns/sosa/obs/> .
 @prefix ssn: <http://www.w3.org/ns/ssn/> .
-@prefix ssn-act: <http://www.w3.org/ns/ssn/act/> .
 @prefix ssn-dep: <http://www.w3.org/ns/ssn/dep/> .
-@prefix ssn-obs: <http://www.w3.org/ns/ssn/obs/> .
 @prefix ssn-system: <http://www.w3.org/ns/ssn/systems/> .
-
-
-voaf:Vocabulary a owl:Class .
-foaf:Agent a owl:Class .
-foaf:name a owl:AnnotationProperty .
-dcterms:title a owl:AnnotationProperty .
-dcterms:description a owl:AnnotationProperty .
-dcterms:rights a owl:AnnotationProperty .
-dcterms:license a owl:AnnotationProperty .
-dcterms:created a owl:AnnotationProperty .
-dcterms:creator a owl:AnnotationProperty .
-skos:definition a owl:AnnotationProperty .
-skos:example a owl:AnnotationProperty .
-vann:preferredNamespacePrefix a owl:AnnotationProperty .
-vann:preferredNamespaceUri a owl:AnnotationProperty .
 
 
 ssn-system: a owl:Ontology , voaf:Vocabulary ;
   dcterms:title "System capabilities, operating ranges, and survival ranges ontology"@en ;
   dcterms:description "This ontology describes system capabilities, operating ranges, and survival ranges."@en ;
   dcterms:creator [ a foaf:Agent ; foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en ] ;
-  dcterms:rights "Copyright 2017 W3C/OGC." ;
+  dcterms:rights "Copyright 2017, 2025 W3C/OGC." ;
   dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
   dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
   rdfs:comment "Please report any errors to the W3C Spatial Data on the Web Working Group via the SDW WG Public List public-sdw-wg@w3.org"@en ;
   rdfs:seeAlso <https://www.w3.org/2015/spatial/wiki/Semantic_Sensor_Network_Ontology> ;
   dcterms:created "2017-05-14"^^xsd:date ;
+  dcterms:modified "2025-04-07"^^xsd:date ;
   vann:preferredNamespacePrefix "ssn-system" ;
   vann:preferredNamespaceUri "http://www.w3.org/ns/ssn/systems/" ;
-  owl:imports ssn-act: , ssn-obs: , ssn-dep: .
+  owl:imports ssn: .
 
+# Range
+
+ssn-system:Range a owl:Class ;
+rdfs:label "Range"@en ;
+skos:definition "A primitive class to represent that the value is within a numerical range."@en ;
+rdfs:isDefinedBy ssn-system: .
+
+xsd:minInclusive rdfs:domain ssn-system:Range .
+xsd:maxInclusive rdfs:domain ssn-system:Range .
 
 # Quality of Observation
 
@@ -58,7 +49,7 @@ ssn-system:qualityOfObservation a owl:ObjectProperty ;
   rdfs:label "quality of observation"@en ;
   skos:definition "Relation linking an Observation to the adjudged quality of the Result. This is complimentary to the SystemCapability information recorded for the Sensor that made the Observation."@en ;
   rdfs:comment "Relation linking an Observation to the adjudged quality of the Result. This is complimentary to the SystemCapability information recorded for the Sensor that made the Observation."@en ;
-  rdfs:isDefinedBy ssn: .
+  rdfs:isDefinedBy ssn-system: .
 
 
 # System
@@ -138,6 +129,7 @@ ssn-system:hasSystemCapability a owl:ObjectProperty ;
       rdfs:label "Measurement Range"@en ;
       skos:definition "The set of values that the Sensor can return as the Result of an Observation under the defined Conditions."@en ;
       rdfs:comment "The set of values that the Sensor can return as the Result of an Observation under the defined Conditions."@en ;
+      rdfs:subClassOf ssn-system:Range;
       rdfs:subClassOf ssn-system:SystemProperty ;
       rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf ssn-system:hasSystemProperty ] ; owl:allValuesFrom [ a owl:Restriction ; owl:onProperty [ owl:inverseOf ssn-system:hasSystemCapability ] ; owl:allValuesFrom sosa:Sensor ] ] ; 
       rdfs:isDefinedBy ssn-system: .
@@ -146,6 +138,7 @@ ssn-system:hasSystemCapability a owl:ObjectProperty ;
       rdfs:label "Actuation Range"@en ;
       skos:definition "The set of values that the Actuator can return as the Result of an Actuation under the defined Conditions with the defined system properties."@en ;
       rdfs:comment "The set of values that the Actuator can return as the Result of an Actuation under the defined Conditions with the defined system properties."@en ;
+      rdfs:subClassOf ssn-system:Range;
       rdfs:subClassOf ssn-system:SystemProperty ;
       rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf ssn-system:hasSystemProperty ] ; owl:allValuesFrom [ a owl:Restriction ; owl:onProperty [ owl:inverseOf ssn-system:hasSystemCapability ] ; owl:allValuesFrom sosa:Actuator ] ] ; 
       rdfs:isDefinedBy ssn-system: .
@@ -267,6 +260,7 @@ ssn-system:hasOperatingRange a owl:ObjectProperty ;
     In the absence of OperatingProperties, simply describes the Conditions in which a System is expected to operate.
 
     The System continues to operate as defined using SystemCapability. If, however, the SurvivalRange is violated, the System is 'damaged' and SystemCapability specifications may no longer hold."""@en ;
+    rdfs:subClassOf ssn-system:Range ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:inCondition ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:inCondition ] ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf ssn-system:hasOperatingRange ] ; owl:allValuesFrom ssn:System ] ;
@@ -301,6 +295,7 @@ ssn-system:hasOperatingRange a owl:ObjectProperty ;
       rdfs:label "Operating Power Range"@en ;
       skos:definition "Power range in which a System is expected to operate in the specified Conditions."@en ;
       rdfs:comment "Power range in which a System is expected to operate in the specified Conditions."@en ;
+      rdfs:subClassOf ssn-system:Range;
       rdfs:subClassOf ssn-system:OperatingProperty ;
       rdfs:isDefinedBy ssn-system: .
 
@@ -326,6 +321,7 @@ ssn-system:hasSurvivalRange a owl:ObjectProperty ;
     In the absence of SurvivalProperties, simply describes the Conditions a System can be exposed to without damage. For example, the temperature range a System can withstand before being considered damaged.
 
     The System continues to operate as defined using SystemCapability. If, however, the OperatingProperty is violated, the System is operating 'out of operating range' and SystemCapability specifications may no longer hold."""@en ;
+    rdfs:subClassOf ssn-system:Range ;
     rdfs:subClassOf ssn:Property ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:inCondition ; owl:minCardinality "1"^^xsd:nonNegativeInteger ] ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ssn-system:hasSurvivalProperty ; owl:allValuesFrom ssn-system:SurvivalProperty ] ;
@@ -361,4 +357,14 @@ ssn-system:hasSurvivalRange a owl:ObjectProperty ;
       skos:definition "Total useful life of a System's battery in the specified Conditions."@en ;
       rdfs:comment "Total useful life of a System's battery in the specified Conditions."@en ;
       rdfs:subClassOf ssn-system:SurvivalProperty ;
+      rdfs:isDefinedBy ssn-system: .
+
+    ssn-system:Battery a owl:Class ;
+      rdfs:label "Battery"@en ;
+      skos:definition "A class representing a Battery powering a System."@en ;
+      rdfs:comment "A class representing a Battery powering a System."@en ;
+      skos:definition "Une classe représentant une batterie alimentant un système."@fr ;
+      rdfs:comment "Une classe représentant une batterie alimentant un système."@fr ;
+      skos:definition "Eine Klasse, die eine Batterie darstellt, die ein System mit Strom versorgt."@de ;
+      rdfs:comment "Eine Klasse, die eine Batterie darstellt, die ein System mit Strom versorgt."@de ;
       rdfs:isDefinedBy ssn-system: .

@@ -1,0 +1,26 @@
+@prefix ex: <https://example.org/data/> .
+@prefix qk: <http://qudt.org/vocab/quantitykind/> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+
+ex:Obs234534
+  a sosa:Observation ;
+  sosa:hasFeatureOfInterest ex:apt134 ;
+  sosa:observedProperty qk:Temperature ;
+  sosa:hasResult [
+      a qudt:QuantityValue ;
+      qudt:hasUnit unit:DEG_C ;
+      qudt:value 24.9 ;
+    ] ;
+.
+unit:DEG_C 
+  a qudt:Unit ;
+.
+ex:apt134
+  a sosa:FeatureOfInterest ;
+.
+qk:Temperature
+  a sosa:Property ;
+.

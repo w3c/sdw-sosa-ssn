@@ -18,26 +18,9 @@
 @prefix sosa-obs: <http://www.w3.org/ns/sosa/obs/> .
 @prefix sosa-sam: <http://www.w3.org/ns/sosa/sam/> .
 @prefix sosa-oms: <http://www.w3.org/ns/sosa/oms/> .
-@prefix ssn: <http://www.w3.org/ns/ssn/> .
 @prefix ssn-obs: <http://www.w3.org/ns/ssn/obs/> .
 @prefix ssn-sam: <http://www.w3.org/ns/ssn/sam/> .
 @prefix ssn-oms: <http://www.w3.org/ns/ssn/oms/> .
-
-dcterms:title a owl:AnnotationProperty .
-dcterms:description a owl:AnnotationProperty .
-dcterms:rights a owl:AnnotationProperty .
-dcterms:license a owl:AnnotationProperty .
-dcterms:created a owl:AnnotationProperty .
-dcterms:creator a owl:AnnotationProperty .
-foaf:Agent a owl:Class .
-foaf:name a owl:AnnotationProperty .
-ogc-ms:implements a owl:ObjectProperty .
-schema:domainIncludes a owl:AnnotationProperty .
-schema:rangeIncludes a owl:AnnotationProperty .
-skos:definition a owl:AnnotationProperty .
-skos:example a owl:AnnotationProperty .
-skos:note a owl:AnnotationProperty .
-time:TemporalEntity a owl:Class .
 
 
 ssn-oms: a owl:Ontology ;
@@ -78,7 +61,3 @@ sosa-oms:SamplingProcedure
   rdfs:subClassOf sosa:Procedure ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implementedBy ; owl:allValuesFrom sosa:Sampler ] ;
   rdfs:isDefinedBy sosa-oms: .
-
-sosa-oms:hasPreparationStep a owl:FunctionalProperty ;
-  rdfs:isDefinedBy sosa-oms: .
-

@@ -1,4 +1,3 @@
-<!--  <section id="SAREF_Alignment" class="informative"> -->
 <h3>SAREF Alignment Module</h3>
 <p>
   The ETSI Smart Applications REFerence (SAREF) suite of ontologies ([[SAREF]]) forms a shared model of consensus
@@ -24,7 +23,7 @@
   <a href="https://github.com/w3c/sdw-sosa-ssn/blob/gh-pages/ssn/rdf/ontology/alignments/sosa-saref.ttl">graph
     corresponding to this alignment is available</a>.
 </p>
-<section id="SAREF_Alignment_ns" class="informative">
+<section id="SAREF_Alignment_ns">
   <h4>Namespaces</h4>
   <p>
     The following namespace prefixes are used in the alignment of SOSA to SAREF.
@@ -53,7 +52,7 @@
     </tbody>
   </table>
 </section>
-<section id="SAREF_Alignment_SOSA_common" class="informative">
+<section id="SAREF_Alignment_SOSA_common">
   <h4>Alignment of SOSA-common to SAREF</h4>
   <p>
     The classes and properties from SOSA-common are aligned with the SAREF classes and properties as follows.
@@ -73,43 +72,41 @@
       <tr>
         <td> <a href="#SOSAisFeatureOfInterestOf">sosa:isFeatureOfInterestOf</a> </td>
         <td> subproperty of </td>
-        <td> <a href="https://saref.etsi.org/core/isActedUponBy">saref:isActedUponBy</a> . # may be renamed <a
-            href="https://saref.etsi.org/core/isTargetOf">saref:isTargetOf</a> in </td>
+        <td> <a href="https://saref.etsi.org/core/isActedUponBy">saref:isActedUponBy</a> . # may be renamed <a href="https://saref.etsi.org/core/isTargetOf">saref:isTargetOf</a> in </td>
       </tr>
       <tr>
-        <td> <a href="#SOSAProperty">sosa:Property</a> </td>
-        <td> equivalent class </td>
         <td> <a href="https://saref.etsi.org/core/Property">saref:Property</a> </td>
+        <td> subclass of </td>
+        <td> <a href="#SOSAProperty">sosa:Property</a> </td>
       </tr>
       <tr>
-        <td> <a href="#SOSAPropertyOfInterest">sosa:PropertyOfInterest</a> </td>
-        <td> equivalent class </td>
         <td> <a href="https://saref.etsi.org/core/PropertyOfInterest">saref:PropertyOfInterest</a> </td>
+        <td> subclass of </td>
+        <td> <a href="#SOSAProperty">sosa:Property</a> </td>
       </tr>
       <tr>
-        <td> <a href="#SOSAisPropertyOf">sosa:isPropertyOf</a> </td>
-        <td> subproperty of </td>
         <td> <a href="https://saref.etsi.org/core/isPropertyOf">saref:isPropertyOf</a> </td>
+        <td rowspan="2"> subproperty of </td>
+        <td rowspan="2"> <a href="#SOSAisPropertyOf">sosa:isPropertyOf</a> </td>
+      </tr>
+      <tr>
+        <td> <a href="https://saref.etsi.org/core/isPropertyOfInterestOf">saref:isPropertyOfInterestOf</a> </td>
       </tr>
       <tr>
         <td> <a href="#SOSAhasInput">sosa:hasInput</a> </td>
-        <td> subproperty of </td>
-        <td> &lt;http://www.w3.org/ns/sosa/saref#hasInput&gt; </td>
+        <td rowspan="2"> subproperty of </td>
+        <td rowspan="2"> &lt;http://www.w3.org/ns/sosa/saref#hasInput&gt; </td>
       </tr>
       <tr>
         <td> <a href="https://saref.etsi.org/core/hasInput">saref:hasInput</a> </td>
-        <td> subproperty of </td>
-        <td> &lt;http://www.w3.org/ns/sosa/saref#hasInput&gt; </td>
       </tr>
       <tr>
         <td> <a href="#SOSAhasOutput">sosa:hasOutput</a> </td>
-        <td> subproperty of </td>
-        <td> &lt;http://www.w3.org/ns/sosa/saref#hasOutput&gt; </td>
+        <td rowspan="2"> subproperty of </td>
+        <td rowspan="2"> &lt;http://www.w3.org/ns/sosa/saref#hasOutput&gt; </td>
       </tr>
       <tr>
         <td> <a href="https://saref.etsi.org/core/hasOutput">saref:hasOutput</a> </td>
-        <td> subproperty of </td>
-        <td> &lt;ttp://www.w3.org/ns/sosa/saref#hasOutput&gt; </td>
       </tr>
       <tr>
         <td> <a href="#SOSAExecution">sosa:Execution</a> </td>
@@ -134,22 +131,15 @@
       <tr>
         <td> <a href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a> </td>
         <td> subproperty of </td>
-        <td> <a href="https://saref.etsi.org/core/actsUpon">saref:actsUpon</a> . # may be renamed <a
-            href="https://saref.etsi.org/core/hasTarget">saref:hasTarget</a> in </td>
+        <td> <a href="https://saref.etsi.org/core/actsUpon">saref:actsUpon</a> . # may be renamed <a href="https://saref.etsi.org/core/hasTarget">saref:hasTarget</a> in </td>
       </tr>
       <tr>
         <td> <a href="#SOSAhasUltimateFeatureOfInterest">sosa:hasUltimateFeatureOfInterest</a> </td>
         <td> subproperty of </td>
-        <td> <a href="https://saref.etsi.org/core/actsUpon">saref:actsUpon</a> . # may be renamed <a
-            href="https://saref.etsi.org/core/hasTarget">saref:hasTarget</a> in </td>
+        <td> <a href="https://saref.etsi.org/core/actsUpon">saref:actsUpon</a> . # may be renamed <a href="https://saref.etsi.org/core/hasTarget">saref:hasTarget</a> in </td>
       </tr>
       <tr>
         <td> <a href="#SOSAhasInputValue">sosa:hasInputValue</a> </td>
-        <td> subproperty of </td>
-        <td> &lt;http://www.w3.org/ns/sosa/saref#hasInput&gt; </td>
-      </tr>
-      <tr>
-        <td> <a href="#SOSAhasOutputValue">sosa:hasOutputValue</a> </td>
         <td> subproperty of </td>
         <td> &lt;http://www.w3.org/ns/sosa/saref#hasInput&gt; </td>
       </tr>
@@ -236,7 +226,7 @@
     </tbody>
   </table>
 </section>
-<section id="SAREF_Alignment_SOSA_observation" class="informative">
+<section id="SAREF_Alignment_SOSA_observation">
   <h4>Alignment of SOSA-observation to SAREF</h4>
   <p>
     The classes and properties from SOSA-observation are aligned with the SAREF classes and properties as follows.
@@ -286,7 +276,7 @@
     </tbody>
   </table>
 </section>
-<section id="SAREF_Alignment_SOSA_actuation" class="informative">
+<section id="SAREF_Alignment_SOSA_actuation">
   <h4>Alignment of SOSA-actuation to SAREF</h4>
   <p>
     The classes and properties from SOSA-actuation are aligned with the SAREF classes and properties as follows.
@@ -331,7 +321,7 @@
     </tbody>
   </table>
 </section>
-<section id="SAREF_Alignment_SOSA_sampling" class="informative">
+<section id="SAREF_Alignment_SOSA_sampling">
   <h4>Alignment of SOSA-sampling to SAREF</h4>
   <p>
     The classes and properties from SOSA-sampling are aligned with the SAREF classes and properties as follows.
@@ -391,4 +381,3 @@
     </tbody>
   </table>
 </section>
-<!--  </section>  -->

@@ -1,0 +1,44 @@
+@prefix ex: <https://example.org/data/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix time: <http://www.w3.org/2006/time#>.
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@base <https://example.org/data/tsoi/> .
+
+ex:ts159i
+  a sosa:Observation ;
+  sosa:hasFeatureOfInterest ex:station223 ;
+  sosa:observedProperty ex:p1 ;
+  sosa:madeBySensor ex:fooglemeter39 ;
+  sosa:phenomenonTime [
+    a time:Interval ;
+    time:hasBeginning [ 
+      a time:Instant ;
+      time:inXSDDateTime "2017-04-15T20:00:00+00:00"^^xsd:dateTime
+    ] ;
+    time:hasEnd [ 
+      a time:Instant ;
+      time:inXSDDateTime "2017-04-15T20:03:00+00:00"^^xsd:dateTime 
+    ] ;
+  ] ;
+  sosa:resultTime "2017-04-15T20:03:30+00:00"^^xsd:dateTime ;
+  sosa:hasSimpleResult """2017-04-15T20:00:00+00:00,3.24
+  2017-04-15T20:01:00+00:00,3.21
+  2017-04-15T20:02:00+00:00,3.15
+  2017-04-15T20:03:00+00:00,3.15"""^^ex:CSV ;
+  rdfs:comment """The result of the observation is encoded as a CSV literal.  
+  In this example, the CSV has four rows each representing a member of the time-series.  
+  Each member value is composed of a timestamp, and a quantity in metres per second."""@en ;
+.
+ex:CSV a rdfs:DataType ;
+  skos:definition """An N-D vector, each row representing a 
+  member composed of N comma-separated values."""@en ;
+  rdfs:comment """This datatype is an informative example only, 
+  and is not part of the SSN Ontology."""@en ;
+.
+ex:station223 a sosa:FeatureOfInterest .
+ex:p1 a sosa:Property .
+ex:fooglemeter39 a sosa:Sensor .

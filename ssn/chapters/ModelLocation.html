@@ -1,0 +1,134 @@
+<h3>Location and Geometry</h3>
+
+<h4>Location</h4>
+<p>
+    Many of the key classes provided by SOSA and SSN represent entities that can be located in space such as
+    sensors, features of interest, actuators, samples, and so forth, or activities that can be located via their
+    participating entities, e.g., platforms.
+    These entities will usually be described using models and ontologies defined for application domains,
+    including technical disciplines, social and business contexts.
+    In these contexts there are a number of implementations that support the expression of spatial properties,
+    including location.
+    These are discussed further in the Spatial Data on the Web Best Practices note [[SDW-BP]].
+</p>
+<p>
+    In particular, GeoSPARQL [[GeoSPARQL]] provides a flexible and relatively complete platform for geospatial
+    objects, that fosters interoperability between geo-datasets.
+    To do so, these entities can be declared as instances of <code>geo:Feature</code> and geometries can be assigned to
+    them via the <code>geo:hasGeometry</code> property.
+    In case of classes, e.g., specific features of interests such as rivers, these MAY be defined as subclasses
+    of <code>geo:Feature</code>.
+</p>
+
+<h5>Systems, Platforms, Deployments</h5>
+
+<p>
+    A number of patterns may be used to characterize the location of a <a href="#SOSASystem">System</a>, depending on
+    how much detail about <a href="#SOSAPlatform">Platforms</a> and <a href="#SOSADeployment">Deployments</a> is useful.
+</p>
+
+<p>
+    For example, a System, such as a <a href="#SOSASensor">Sensor</a>, might be permanently in one specific location,
+    described as follows:
+</p>
+<figure id="LocatedSensor">
+    <embed alt="sensor location - direct" src="./images/LocatedSensor.svg" style="width:60%" />
+    <figcaption>System location - direct description <br>
+        <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
+    </figcaption>
+</figure>
+<pre class="example" data-include="./rdf/examples/LocatedSensor.ttl" data-include-format="text"></pre>
+
+<p>
+    Alternatively, the location may be associated with a Platform, which then might also host other Systems:
+</p>
+<figure id="LocatedPlatform">
+    <embed alt="sensor location - on a platform" src="./images/LocatedPlatform.svg" style="width:75%" />
+    <figcaption>System location - on Platform
+        <br>
+        <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
+    </figcaption>
+</figure>
+<pre class="example" data-include="./rdf/examples/LocatedPlatform.ttl" data-include-format="text"></pre>
+
+<p>
+    If this Sensor location is not permanent, then it may be characterized as a Deployment:
+</p>
+<figure id="LocatedDeployment">
+    <embed alt="sensor location - in a deployment" src="./images/LocatedDeployment.svg" style="width:75%" />
+    <figcaption>System location - in a Deployment <br>
+        <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
+    </figcaption>
+</figure>
+<pre class="example" data-include="./rdf/examples/LocatedDeployment.ttl" data-include-format="text"></pre>
+
+
+<h5>Samples, Features</h5>
+
+<p>Similarly, Location can be associated directly or indirectly with a <a href="#SOSASample">Sample</a>. </p>
+
+<p>
+    Observations of the atmosphere are necessarily made at a specific location.
+    The location of an air Sample might be recorded directly using the following pattern:
+</p>
+<figure id="LocatedSample">
+    <embed alt="Location of a Sample" src="./images/LocatedSample.svg" style="width:75%" />
+    <figcaption>Sample location - direct descriptions <br>
+        <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
+    </figcaption>
+</figure>
+<pre class="example" data-include="./rdf/examples/LocatedSample.ttl" data-include-format="text"></pre>
+<p>
+    Note that, even though <code>EarthAtmosphere_StE</code> is not explicitly typed <code>geo:Feature</code>, the
+    property <code>geo:hasGeometry</code> has a global domain constraint which entails that any resource carrying this
+    property SHALL be inferred to be a <code>geo:Feature</code>.
+    Thus <code>EarthAtmosphere_StE</code> is <em>both</em> a <code>sosa:Sample</code> and a <code>geo:Feature</code>.
+</p>
+
+<p>
+    The location could also be provided as a parameter to the act of Sampling that generated the Sample:
+</p>
+<figure id="LocatedSampling">
+    <embed alt="Location of a Sampling" src="./images/LocatedSampling.svg" style="width:75%" />
+    <figcaption>Sample location - indirect descriptions <br>
+        <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
+    </figcaption>
+</figure>
+<pre class="example" data-include="./rdf/examples/LocatedSampling.ttl" data-include-format="text"></pre>
+
+<h4>Relative location patterns</h4>
+<p>
+    In general, the locations of the <a href="#SOSASystem">System</a> and
+    <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a> for an <a href="#SOSAExecution">Execution</a> are different.
+    For example, the <em>relative</em> locations of the <a href="#SOSASensor">Sensor</a>
+    (or its <a href="#SOSAPlatform">Platform</a> or <a href="#SOSADeployment">Deployment</a>) and the feature of
+    interest (or <a href="#SOSASample">Sample</a>), along with the <a href="#SOSAphenomenonTime">phenomenon-</a> and
+    <a href="#SOSAresultTime">result-time</a>, fall into distinct
+    patterns for different <a href="#SOSAObservation">Observation</a> modes as follows:
+</p>
+<dl>
+    <dt>in situ monitoring</dt>
+    <dd>location of sensor and feature of interest are the same</dd>
+    <dt>remote sensing</dt>
+    <dd>location of sensor is remote from the feature of interest</dd>
+    <dt>ex situ observation (e.g., lab measurements)</dt>
+    <dd>location of sensor and location of the ultimate feature of interest are different; result-time later than
+        phenomenon-time</dd>
+</dl>
+<p>
+    Note that in ex situ measurements, there will usually be a <a href="#SOSASample">Sample</a> and thus an act of
+    <a href="#SOSASampling">Sampling</a> involved, whose properties determine the location and phenomenon-time.
+</p>
+
+<h4>Geometry results</h4>
+<p>
+    Geometry may appear in other contexts.
+    For example, a determination of location using a GPS receiver can be described as an
+    <a href="#SOSAObservation">Observation</a> whose <a href="#SOSAhasResult">hasResult</a> value is a geometry.
+    The following example illustrates this pattern, with the result being a GeoSPARQL <code>Geometry</code> object:
+</p>
+<pre class="example" data-include="./rdf/examples/GeometryResult.ttl" data-include-format="text"></pre>
+<p>
+    The WKT representation of the result could be encoded directly as a 'simple' (literal) result:
+</p>
+<pre class="example" data-include="./rdf/examples/GeometryResultSimple.ttl" data-include-format="text"></pre>

@@ -1,0 +1,26 @@
+ex:TemperatureSensor a owl:Class ;
+  rdfs:subClassOf ssn:System .
+
+<TemperatureSensor/1> a ex:TemperatureSensor , ssn:System .
+
+<Observation/1> a sosa:Observation ;
+  sosa:madeBySensor <TemperatureSensor/1> .
+
+<TemperatureSensor/2> a ex:TemperatureSensor , ssn:System .
+
+<Observation/2> a sosa:Observation ;
+  sosa:madeBySensor <TemperatureSensor/2> .
+
+# describing the system capabilities and operating/survival range can be done at the level of 
+# the class or at the level of each instance with this modeling choice:
+
+ex:TemperatureSensor  rdfs:subClassOf [
+    owl:onProperty ssn-system:hasOperatingRange ;
+    owl:hasValue ex:TemperatureSensorOperatingRange ] .
+
+<TemperatureSensor/1> 
+  ssn-system:hasOperatingRange ex:TemperatureSensorOperatingRange ; # this axiom can be inferred
+  ssn-system:hasOperatingRange <moreSpecificTemperatureSensorOperatingRange> .
+
+<moreSpecificTemperatureSensorOperatingRange> a ssn-system:OperatingRange ;
+  ssn-system:inCondition <modeSpecificTemperatureCondition> , <modeSpecificHumidityCondition> .

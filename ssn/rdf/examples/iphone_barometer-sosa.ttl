@@ -1,53 +1,52 @@
+@prefix ex: <https://example.org/data/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix qk: <http://qudt.org/vocab/quantitykind/> .
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
-@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
-@prefix time: <http://www.w3.org/2006/time#>.
-@prefix qudt: <http://qudt.org/schema/qudt/> .
 @prefix unit: <http://qudt.org/vocab/unit/> .
-@prefix cdt: <http://w3id.org/lindt/custom_datatypes#> .
-@base <http://example.org/data/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@base <https://example.org/data/iphone_barometer/> .
 
+ex:iphone_barometer-sosa a owl:Ontology ;
+  rdfs:comment "The barometric readings from a Bosch Sensortec BMP282 sensor in an Apple IPhone 7 observed on June 6 2017 using only the SOSA core."@en ;
+.
 # The barometric readings from a Bosch Sensortec BMP282 sensor in an Apple IPhone 7 observed on June 6 2017
-# using only the SOSA core.
+# using only the SOSA core
 
-<earthAtmosphere> rdf:type sosa:FeatureOfInterest ;
-  rdfs:label "Atmosphere of Earth"@en .
+ex:EarthAtmosphere rdf:type sosa:FeatureOfInterest ;
+  rdfs:label "Atmosphere of Earth"@en ;
+.
+# An iPhone 7 as the Platform that hosts several sensors, among others the Bosch Sensortec BMP282 atmospheric pressure sensor
 
-
-# An iPhone 7 as the Platform that hosts several sensors, among others the Bosch Sensortec BMP282 atmospheric pressure sensor.
-
-<iphone7/35-207306-844818-0> a sosa:Platform ;
+ex:iphone7_35-207306-844818-0 a sosa:Platform ;
   rdfs:label "IPhone 7 - IMEI 35-207306-844818-0"@en ;
   rdfs:comment "IPhone 7 - IMEI 35-207306-844818-0 - John Doe"@en ;
-  sosa:hosts <sensor/35-207306-844818-0/BMP282> .
-
-<sensor/35-207306-844818-0/BMP282> rdf:type sosa:Sensor ;
+  sosa:hosts ex:sensor_35-207306-844818-0_BMP282 ;
+.
+ex:sensor_35-207306-844818-0_BMP282 rdf:type sosa:Sensor ;
   rdfs:label "Bosch Sensortec BMP282"@en ;
-  sosa:observes <sensor/35-207306-844818-0/BMP282/atmosphericPressure> .
+  sosa:observes qk:AtmosphericPressure ;
+.
+# An observation made by the Bosch Sensortec BMP282 atmospheric pressure sensor
 
-
-# An observation made by the Bosch Sensortec BMP282 atmospheric pressure sensor.
-
-<Observation/346344> rdf:type sosa:Observation ;
-  sosa:observedProperty <sensor/35-207306-844818-0/BMP282/atmosphericPressure> ;
-  sosa:hasFeatureOfInterest <earthAtmosphere> ;
-  sosa:madeBySensor <sensor/35-207306-844818-0/BMP282> ;
-  sosa:hasSimpleResult "1021.45 hPa"^^cdt:ucum ;
-  sosa:resultTime "2017-06-06T12:36:12Z"^^xsd:dateTime .
-
-
+ex:Observation_346344 rdf:type sosa:Observation ;
+  sosa:observedProperty qk:AtmosphericPressure ;
+  sosa:hasFeatureOfInterest ex:EarthAtmosphere ;
+  sosa:madeBySensor ex:sensor_35-207306-844818-0_BMP282 ;
+  sosa:hasSimpleResult "1021.45"^^unit:HectoPA ;
+  sosa:resultTime "2017-06-06T12:36:12Z"^^xsd:dateTime ;
+.
 # Another observation made a second later by the Bosch Sensortec BMP282 atmospheric pressure sensor
-# using the QUDT Ontology for the Units of Measurement and the Time Ontology for the instant.
 
 <Observation/346345> rdf:type sosa:Observation ;
-  sosa:observedProperty <sensor/35-207306-844818-0/BMP282/atmosphericPressure> ;
-  sosa:hasFeatureOfInterest <earthAtmosphere> ;
-  sosa:madeBySensor <sensor/35-207306-844818-0/BMP282> ;
+  sosa:observedProperty qk:AtmosphericPressure ;
+  sosa:hasFeatureOfInterest ex:EarthAtmosphere ;
+  sosa:madeBySensor ex:sensor_35-207306-844818-0_BMP282 ;
   sosa:hasResult [
     rdf:type qudt:QuantityValue ;
     qudt:numericValue "101936"^^xsd:double ;
-    qudt:hasUnit unit:Pascal ] ;
-  sosa:resultTime [
-    rdf:type time:Instant ;
-    time:inXSDDateTimeStamp "2017-06-06T12:36:13+00:00"^^xsd:dateTimeStamp ] .
+    qudt:hasUnit unit:PA ] ;
+  sosa:resultTime "2017-06-06T12:36:13+00:00"^^xsd:dateTime ;
+.

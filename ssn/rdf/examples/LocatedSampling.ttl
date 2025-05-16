@@ -1,0 +1,20 @@
+@prefix ex: <https://example.org/data/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+
+ex:EarthAtmosphere_StE a sosa:Sample ;
+  sosa:isSampleOf ex:EarthAtmosphere ;
+  sosa:isResultOf ex:AirSampling_StE ; 
+.
+ex:AirSampling_StE a sosa:Sampling ;
+  sosa:hasFeatureOfInterest ex:EarthAtmosphere ;
+  sosa:hasInputValue [ 
+    a geo:Point ;
+    geo:asWKT "POINT (4.387611 45.437772)"^^geo:WktLiteral ;
+  ] ;
+.
+ex:EarthAtmosphere a sosa:FeatureOfInterest ;
+  owl:sameAs <https://www.wikidata.org/wiki/Q3230> ;
+. 

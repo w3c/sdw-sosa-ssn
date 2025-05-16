@@ -1,0 +1,26 @@
+@prefix ex: <https://example.org/data/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:TH2-56-2024 a sosa:Deployment ;
+  sosa:deployedSystem ex:IBS-TH2-56 ;
+  sosa:deployedOnPlatform ex:Room31C ;
+  sosa:startTime "2024-01-01T00:00:00Z"^^xsd:dateTime ;
+  sosa:endTime "2024-12-31T23:59:59Z"^^xsd:dateTime ;
+.
+ex:Room31C a sosa:Platform ;
+  geo:hasGeometry [ 
+    a geo:Point ;
+    geo:asWKT "POINT (-73.877244 45.511672)"^^geo:WktLiteral ;
+  ] ;
+.
+ex:IBS-TH2-56 
+    a sosa:Sensor ;
+    rdfs:label "12gth456a-23190"^^ex:serialNumber ;
+  . 
+ex:serialNumber a rdfs:Datatype ;
+    rdfs:subClassOf xsd:string ;
+.

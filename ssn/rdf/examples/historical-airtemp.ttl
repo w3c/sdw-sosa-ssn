@@ -1,0 +1,47 @@
+@prefix ex: <https://example.org/data/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix qk: <http://qudt.org/vocab/quantitykind/> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@base <https://example.org/data/htemp/> .
+
+ex:T99 a sosa:Sensor , ex:Mercury-in-glass-thermometer ;
+  rdfs:label "Mercury in glass thermometer #99"@en ;
+  sosa:observes ex:airTemperature ;
+.
+ex:SHW a sosa:Platform , sosa:FeatureOfInterest;
+  rdfs:label "Station Hohe Warte"@en ;
+  geo:hasGeometry [ 
+    a geo:Point ;
+    geo:asWKT "POINT (16.355804145468635 48.248491274780754)"^^geo:WktLiteral ;
+  ] ;
+  sosa:hosts ex:T99 ;
+.
+ex:airTemperature a sosa:Property ;
+  rdfs:label "air temperature"@en ;
+  sosa:isPropertyOf ex:EarthAtmosphere ;
+  skos:broader qk:Temperature ;
+.
+ex:EarthAtmosphere a sosa:FeatureOfInterest ;
+  owl:sameAs <https://www.wikidata.org/wiki/Q3230> ;
+. 
+ex:SHW_T_1872-04-04T15 a sosa:Observation ;
+  sosa:madeBySensor ex:T99 ; 
+  sosa:hasFeatureOfInterest ex:SHW ;
+  sosa:observedProperty ex:airTemperature ;
+  sosa:phenomenonTime [
+    time:inXSDDateTime "1872-04-04T15:00:00+01:00"^^xsd:dateTime ;
+  ] ;
+  sosa:hasResult [
+     rdf:type qudt:QuantityValue ;
+     qudt:numericValue "22.5"^^xsd:decimal ;
+     qudt:hasUnit unit:DEG_C ] ;
+  sosa:resultTime "1872-04-04T15:00:00+01:00"^^xsd:dateTime ;
+.

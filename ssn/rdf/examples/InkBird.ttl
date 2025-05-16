@@ -1,0 +1,76 @@
+@prefix ex: <https://example.org/data/> .
+@prefix gs1:      <https://ref.gs1.org/voc/> .
+@prefix qk: <http://qudt.org/vocab/quantitykind/> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix system: <http://www.w3.org/ns/ssn/systems/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:IBS-TH2 rdfs:subClassOf sosa:Sensor ;
+    rdfs:comment "The class of IBS-TH2 sensors is a subclass of the general class of sensors" ;
+    gs1:pip <https://inkbird.com/products/hygrometer-ibs-th2> ;
+    rdfs:label "Bluetooth Temperature and Humidity Sensor IBS-TH2" ;
+    skos:notation "IBS-TH2" ;
+    sosa:observes qk:RelativeHumidity ;
+    sosa:observes qk:Temperature ;
+    system:hasSystemCapability [ 
+        a system:SystemCapability ;
+        sosa:observes qk:Temperature ;
+        system:hasSystemProperty [
+            a system:MeasurementRange ;
+            xsd:maxInclusive "60"^^unit:DEG_C ;
+            xsd:minInclusive "-40"^^unit:DEG_C ;
+        ] ;
+        system:hasSystemProperty [
+            a system:Accuracy ;
+            qudt:value "0.5"^^unit:DEG_C ;
+        ] ;
+
+    ] ;
+    system:hasSystemCapability [ 
+        a system:SystemCapability ;
+        sosa:observes qk:RelativeHumidity ;
+        system:hasSystemProperty [
+            a system:MeasurementRange ;
+            xsd:maxInclusive "100"^^unit:PERCENT ;
+            xsd:minInclusive "0"^^unit:PERCENT ;
+        ] ;
+        system:hasSystemProperty [
+            a system:Resolution ;
+            qudt:value "2"^^unit:PERCENT ;
+        ] ;
+
+    ] ;
+    system:hasSurvivalRange [
+        a system:SurvivalRange ;
+        system:hasSurvivalProperty <EFGH> ;
+    ] ;
+    system:hasOperatingRange [
+        a system:OperatingRange ;
+        system:hasOperatingProperty <IJKL> ;
+    ] ;
+. 
+
+ex:IBS-TH2-56 
+    a ex:IBS-TH2 ;
+    rdfs:label "12gth456a-23190"^^ex:serialNumber . 
+
+qk:RelativeHumidity 
+    a sosa:Property ;
+    a qudt:QuantityKind . 
+
+qk:Temperature 
+    a sosa:Property ;
+    a qudt:QuantityKind . 
+
+qudt:QuantityKind
+    rdfs:subClassOf sosa:Property ;
+.
+ex:serialNumber a rdfs:Datatype ;
+    rdfs:subClassOf xsd:string ;
+.

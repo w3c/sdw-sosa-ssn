@@ -30,10 +30,10 @@ sosa:Observation
   a owl:Class ;
   rdfs:label "Observation"@en ;
   skos:definition """
-  Act of carrying out an (Observation) Procedure to estimate or calculate a value of a property of a FeatureOfInterest. Links to a Sensor to describe what made the Observation and how; links to a Property to describe what the result is an estimate of, and to a FeatureOfInterest to detail what entity that property was associated with.
+  An act of carrying out an observing Procedure using a Sensor to estimate or calculate a value of an observable Property of a FeatureOfInterest.  
   """@en ;
   skos:note """
-  When the feature of interest cannot be observed directly, a sample of it might be used in Observations as a proxy for it. In such a case the Sample is the proximate Feature of Interest of the Observation, while the (ultimate) Feature of Interest of the act of Sampling (i.e. the entity that the Sample is ultimately 'isSampleOf') is the ultimate Feature of Interest of the Observation.
+  When the feature of interest cannot be observed directly, a sample of it might be used in Observations as a proxy for it. In such case, the Sample is the proximate Feature of Interest of the Observation, while the (ultimate) Feature of Interest of the act of Sampling (i.e., the entity that the Sample is ultimately 'isSampleOf') is the ultimate Feature of Interest of the Observation.
   """ ;
   skos:scopeNote """
   An Observation concerns a single Property of a single FeatureOfInterest. 
@@ -67,6 +67,10 @@ sosa:ObservationCollection
   5. Where an individual Observation Collection has more than one value for a property that is a range or interval, each member Observation (direct or transitive) MUST have a value for that property that either matches or falls within one of those ranges or intervals.
   """@en ;
   skos:note """The members of a collection do not necessarily share a common value for any property. """@en ;
+  skos:note """The results of collections of observations are often packaged in a 'data cube' whose axes define the
+                range of properties of the set of observations.""" ;
+  skos:note """An instance of ObservationCollection represents a container for a set of data derived from observations.
+            This broadly corresponds with the class Dataset from DCAT."""@en ;
   rdfs:isDefinedBy sosa-obs: .
 
 sosa:Sensor 
@@ -75,13 +79,12 @@ sosa:Sensor
   skos:altLabel "Observer"@en ;
   skos:prefLabel "Sensor"@en ;
   skos:definition """
-  An identifiable entity that can generate Observations pertaining to a Property by implementing a (Observation) Procedure. Device, agent (including humans), or software (simulation) involved in, or implementing, a Procedure. Sensors respond to a stimulus, e.g., a change in the environment, or input data composed from the results of prior Observations, and generate a Result. Sensors can be hosted by Platforms."""@en ;
+  An entity that implements an observing Procedure in the context of an Observation to determine the value of an observable Property. 
+  This may be a device, a piece of infrastructure, an agent (including humans), or software (simulation).
+
+  A Sensor responds to a stimulus (e.g., a change in the environment, or input data composed from the results of prior Observations) to generate a result.
+  """@en ;
   skos:example "Accelerometers, gyroscopes, barometers, magnetometers, and so forth are Sensors that are typically mounted on a modern smartphone (which acts as Host or Platform). Other examples of Sensors include the human eyes."@en ;
-  skos:note "Different Sensors can follow the same (reusable) observing Procedure for the creation of different Observations."@en ;
-  skos:scopeNote "The Sensor is the entity instance, not the entity type. Pertaining to sensors, the Sensor would reference the explicit sensor, while the Procedure would reference the methodology utilized by that sensor type;"@en ;
-  skos:note "A Sensor can be hosted by one or more Platform."@en ;
-  skos:note "The Sensor is an instance of a sensor, instrument, implementation of an algorithm, or a being such as a person."@en ;
-  skos:example "Accelerometers, gyroscopes, barometers, magnetometers, and so forth are Sensors that are typically mounted on a modern smart phone (which acts as Platform). Other examples of sensors include the human eyes."@en ;
   skos:note "The UML class 'Observer' from ISO 19156:2023 is implemented in SOSA by the OWL/RDFS class 'Sensor'. The class name 'Sensor' is preferred for backward compatibility with existing SOSA deployments. " ;
   rdfs:isDefinedBy sosa-obs: .
 
@@ -299,8 +302,8 @@ sosa:hasMember
   rdfs:isDefinedBy sosa-common: .
 
 sosa:isMemberOf 
-  schema:domainIncludes sosa:ObservationCollection ;
   schema:domainIncludes sosa:Observation ;
+  schema:domainIncludes sosa:ObservationCollection ;
   schema:rangeIncludes sosa:ObservationCollection ;
   rdfs:isDefinedBy sosa-common: .
 
@@ -315,33 +318,29 @@ sosa:hasProperty
 
 sosa:isFeatureOfInterestOf 
   schema:rangeIncludes sosa:Observation ;
+  schema:rangeIncludes sosa:ObservationCollection ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:isUltimateFeatureOfInterestOf 
   schema:rangeIncludes sosa:Observation ;
+  schema:rangeIncludes sosa:ObservationCollection ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:Property 
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:PropertyOfInterest 
   rdfs:isDefinedBy sosa-common: .
 
 sosa:isPropertyOf 
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hasProcedure 
-  schema:domainIncludes sosa:Property ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:propertyFor
-  schema:domainIncludes sosa:Property ;
   schema:rangeIncludes sosa:Sensor ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:forProperty 
   schema:domainIncludes sosa:Sensor ;
-  schema:rangeIncludes sosa:Property ;
   rdfs:isDefinedBy sosa-common: .
 
 
@@ -385,6 +384,9 @@ sosa:startTime
   schema:domainIncludes sosa:ObservationCollection ;
   rdfs:isDefinedBy sosa-common: .
 
+sosa:endTime 
+  rdfs:isDefinedBy sosa-common: .
+
 sosa:resultTime 
   schema:domainIncludes sosa:Observation ;
   schema:domainIncludes sosa:ObservationCollection ;
@@ -416,15 +418,6 @@ sosa:hasInputValue
 sosa:inputValueForExecution 
   schema:rangeIncludes sosa:Observation ;
   rdfs:isDefinedBy sosa-common: .
-
-sosa:hasOutputValue 
-  schema:domainIncludes sosa:Observation ;
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:outputValueForExecution 
-  schema:rangeIncludes sosa:Observation ;
-  rdfs:isDefinedBy sosa-common: .
-
 
 
 ## Result 
@@ -489,6 +482,7 @@ sosa:Deployment
   rdfs:isDefinedBy sosa-common: .
 
 sosa:deployedAsset 
+  schema:rangeIncludes sosa:Sensor ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:deployedSystem 

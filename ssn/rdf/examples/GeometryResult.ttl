@@ -1,0 +1,32 @@
+@prefix ex: <https://example.org/data/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@base <https://example.org/data/geor/> .
+
+ex:ObsGeo1 a sosa:Observation ;
+    sosa:madeBySensor ex:MyGPS736   ;
+    sosa:hasFeatureOfInterest ex:AbbysCar ;
+    sosa:phenomenonTime [
+        a time:Instant ;
+        time:inXSDDateTimeStamp "2023-06-20T21:49:18+00:00"^^xsd:dateTimeStamp ;
+    ] ;
+    sosa:resultTime "2023-06-20T21:49:18+00:00"^^xsd:dateTime ;
+    sosa:observedProperty <https://vocab.nerc.ac.uk/collection/S06/current/S0600255/>  ;
+    sosa:hasResult [
+        a geo:Geometry ;
+        geo:asWKT "Point (145.042316 -37.919134)"^^geo:wktLiteral ;
+     ] .
+     
+ex:MyGPS736 
+    a sosa:Sensor ;
+.
+ex:AbbysCar 
+    a sosa:FeatureOfInterest ;
+.
+<https://vocab.nerc.ac.uk/collection/S06/current/S0600255/> 
+    a sosa:Property ;
+    rdfs:label "Location (geographic coordinates)"@en ;
+.

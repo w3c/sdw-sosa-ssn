@@ -1,0 +1,20 @@
+@base <https://example.org/ssn/test/observation/P2> .
+@prefix ex: <https://example.org/ssn/test/observation/> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+ex:OP2 a sosa:Observation ;
+    rdfs:comment "Minimal example of an observation with an object result" ;
+    sosa:observedProperty ex:Temperature ;
+    sosa:hasFeatureOfInterest ex:apartment134 ;
+    sosa:hasResult [
+      a qudt:QuantityValue ;
+      qudt:hasUnit unit:DEG_C ;
+      qudt:value "-29.9"^^xsd:decimal ] ;
+    .
+
+ex:Temperature a sosa:ObservableProperty .
+ex:apartment134 a sosa:FeatureOfInterest . 
