@@ -1,0 +1,28 @@
+@prefix ex: <https://example.org/data/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+
+ex:p1 
+  rdfs:domain ex:C1 ;
+  rdfs:range ex:C2 ;
+.
+
+ex:I1 ex:p1 ex:I2 . 
+
+@prefix ex: <https://example.org/data/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+
+ex:C3 
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty ex:p2 ; owl:allValuesFrom ex:C4 ] ;
+.
+
+ex:I3 ex:p2 ex:I4 .
+
+ex:I5
+  a ex:C3 ;
+  ex:p2 ex:I6 ;
+.
+

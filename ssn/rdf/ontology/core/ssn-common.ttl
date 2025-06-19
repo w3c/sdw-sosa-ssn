@@ -9,10 +9,10 @@
 
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix sosa-common: <http://www.w3.org/ns/sosa/common/> .
-@prefix ssn-base: <http://www.w3.org/ns/ssn/common/> .
+@prefix ssn-common: <http://www.w3.org/ns/ssn/common/> .
 
 
-ssn-base: 
+ssn-common: 
   a owl:Ontology ;
   dcterms:title "SSN Ontology - core module"@en ;
   dcterms:description """Core classes and properties for the SSN Ontology.
@@ -46,6 +46,7 @@ sosa:Property
   rdfs:isDefinedBy sosa-common: .
 
 sosa:forProperty 
+  owl:inverseOf sosa:invForProperty ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hasProperty 
@@ -53,6 +54,10 @@ sosa:hasProperty
 
 sosa:hasFeatureOfInterest 
   rdfs:isDefinedBy sosa-common: .
+
+sosa:invForProperty
+  a owl:ObjectProperty ;
+  rdfs:isDefinedBy ssn-common: .
 
 sosa:isFeatureOfInterestOf 
   rdfs:isDefinedBy sosa-common: .
@@ -64,6 +69,7 @@ sosa:hasUltimateFeatureOfInterest
   rdfs:isDefinedBy sosa-common: .
 
 sosa:propertyFor 
+  rdfs:subPropertyOf sosa:invForProperty ;
   rdfs:isDefinedBy sosa-common: .
 
 
@@ -83,6 +89,7 @@ sosa:hasOutput
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hasProcedure 
+  rdfs:subPropertyOf sosa:invForProperty ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:implementedBy 

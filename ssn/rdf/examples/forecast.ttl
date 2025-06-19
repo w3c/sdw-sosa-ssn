@@ -1,25 +1,32 @@
+@prefix ex: <https://example.org/data/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix siq: <https://si-digital-framework.org/quantities/> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix time: <http://www.w3.org/2006/time#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@base <http://example.org/data/> .
+@base <https://example.org/data/forecast/> .
 
-<Observation/299876>
+ex:Observation299876
   a sosa:Observation ;
-  sosa:hasFeatureOfInterest <feature/earthAtmosphere> ;
+  sosa:hasFeatureOfInterest ex:EarthAtmosphere ;
   sosa:hasResult <grid/299876> ;
-  sosa:observedProperty <https://si-digital-framework.org/quantities/TEMC> ;
+  sosa:observedProperty siq:TEMC ;
   sosa:phenomenonTime [
     time:hasBeginnning [ 
       time:inXSDDateTime "2024-03-09T11:00:00+10:00"^^xsd:dateTime ;
     ];
     time:hasEnd [  
-            time:inXSDDateTime "2024-03-09T12:00:00+10:00"^^xsd:dateTime ;
+      time:inXSDDateTime "2024-03-09T12:00:00+10:00"^^xsd:dateTime ;
     ];
   ];
   sosa:resultTime "2024-03-06T12:00:00+10:00"^^xsd:dateTime ;
 .
 
-
+ex:EarthAtmosphere a sosa:FeatureOfInterest ;
+  skos:exactMatch <https://www.wikidata.org/wiki/Q3230> ;
+. 
+siq:TEMC a sosa:Property ;
+  rdfs:label "Celsius temperature" ;
+.

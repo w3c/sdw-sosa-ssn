@@ -1,0 +1,24 @@
+@prefix ex: <https://example.org/data/> .
+@prefix iop: <https://w3id.org/iadopt/ont/> .
+@prefix qk: <http://qudt.org/vocab/quantitykind/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+
+ex:SickChildTemperature 
+  a iop:Variable , sosa:Property;
+  iop:hasProperty qk:Temperature ;
+  iop:hasObjectOfInterest ex:Child ;
+  iop:hasConstraint iop:SickChild ;
+.
+qk:Temperature 
+  a iop:Property , sosa:Property ;
+.
+ex:Child
+  a iop:Entity ;
+.
+ex:SickChild 
+  a iop:Constraint ;
+  skos:definition "Sick Child"@en ;
+  iop:Constrains ex:Child ;
+.

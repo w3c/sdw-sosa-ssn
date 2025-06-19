@@ -108,23 +108,16 @@ var respecConfig = {
     "SAREF_Patterns": {
       href: "https://www.etsi.org/deliver/etsi_ts/103500_103599/103548/01.02.01_60/ts_103548v010201p.pdf",
       title: "SmartM2M; SAREF reference ontology patterns",
-      id: "ETSI TS 103 548 ",
+      id: "ETSI TS 103 548 (V1.2.1)",
       publisher: "ETSI",
       date: "2024"
     },
     "SAREF": {
-      href: "https://www.etsi.org/deliver/etsi_ts/103200_103299/103264/03.02.01_60/ts_103264v030201p.pdf",
+      href: "https://www.etsi.org/deliver/etsi_ts/103200_103299/103264/04.01.01_60/ts_103264v040101p.pdf",
       title: "SmartM2M; Smart Applications; Reference Ontology and oneM2M Mapping",
-      id: "ETSI TS 103 264 (V3.2.1)",
+      id: "ETSI TS 103 264 (V4.1.1)",
       publisher: "ETSI",
-      date: "2024"
-    },
-    "SmartM2M": {
-      href: "https://www.etsi.org/deliver/etsi_ts/103500_103599/103548/01.02.01_60/ts_103548v010201p.pdf",
-      title: "SmartM2M; Smart Applications; Reference Ontology and oneM2M Mapping",
-      id: "ETSI TS 103 264 (V3.2.1)",
-      publisher: "ETSI",
-      date: "2024"
+      date: "2025"
     },
     "SWE": {
       href: "https://www.ogc.org/about-ogc/domains/swe/",
@@ -136,6 +129,27 @@ var respecConfig = {
       title: "OGC SensorThings API (STA)",
       publisher: "Open Geospatial Consortium"
     },
+    "SWE-Common": {
+      authors: ["Alex Robin"],
+      href: "https://portal.ogc.org/files/?artifact_id=41157",
+      title: "OGC® SWE Common Data Model Encoding Standard",
+      publisher: "Open Geospatial Consortium",
+      date: "January 2011"
+    },
+    "SWE-Common-JSON": {
+      authors: ["Alex Robin"],
+      href: "https://docs.ogc.org/bp/17-011r2/17-011r2.html",
+      title: "JSON Encoding Rules SWE Common / SensorML",
+      publisher: "Open Geospatial Consortium",
+      date: "January 2018"
+    },
+    "CoverageJSON": {
+      authors: ["Chris Little", "Jon Blower", "Maik Reichert"],
+      href: "https://docs.ogc.org/cs/21-069r2/21-069r2.html",
+      title: "OGC CoverageJSON Community Standard",
+      publisher: "Open Geospatial Consortium",
+      date: "August 2023"
+    },
     "SSNX": {
       authors: ["Michael Compton", "Payam Barnaghi", "Luis Bermudez", "Raúl García-Castro", "Oscar Corcho", "Simon Cox", "John Graybeal", "Manfred Hauswirth", "Cory Henson", "Arthur Herzog", "Vincent Huang", "Krzysztof Janowicz", "W. David Kelsey", "Danh Le Phuoc", "Laurent Lefort", "Myriam Leggieri", "Holger Neuhaus", "Andriy Nikolov", "Kevin Page", "Alexandre Passant", "Amit Sheth", "Kerry Taylor"],
       title: "The SSN ontology of the W3C semantic sensor network incubator group",
@@ -146,18 +160,18 @@ var respecConfig = {
     "UCUM": {
       href: "https://ucum.org/ucum",
       title: "The Unified Code for Units of Measure",
-      authors: ["Gunther Schadow", "Gunther Schadow"],
-      publisher: "Regenstrief Institute, Inc.",
-      date: "21 November 2017"
+      authors: ["Gunther Schadow", "Clement J. McDonald"],
+      publisher: "Regenstrief Institute, Inc. and the UCUM Organization",
+      date: "17 June 2024"
     },
     "DCAT": {
       authors: [
-          "Riccardo Albertoni",
-          "David Browning",
-          "Simon Cox",
-          "Alejandra Gonzalez Beltran",
-          "Andrea Perego",
-          "Peter Winstanley"
+        "Riccardo Albertoni",
+        "David Browning",
+        "Simon Cox",
+        "Alejandra Gonzalez Beltran",
+        "Andrea Perego",
+        "Peter Winstanley"
       ],
       href: "https://www.w3.org/TR/vocab-dcat/",
       title: "Data Catalog Vocabulary (DCAT) - Version 3",
@@ -166,7 +180,7 @@ var respecConfig = {
       publisher: "W3C",
       edDraft: "https://w3c.github.io/dxwg/dcat/",
       deliveredBy: [
-          "https://www.w3.org/2017/dxwg/"
+        "https://www.w3.org/2017/dxwg/"
       ],
     },
     "DUL": {
@@ -245,6 +259,17 @@ var respecConfig = {
       title: "Ontology of Units of Measure and Related Concepts",
       publisher: "Semantic Web journal, IOS Press",
       date: "2013"
+    },
+    "iso-19157-1": {
+      authors: [
+        "ISO/TC 211"
+      ],
+      href: "https://www.iso.org/standard/78900.html",
+      title: "Geographic information -- Data quality -- Part 1: General requirements",
+      publisher: "ISO",
+      status: "International Standard",
+      date: "2023",
+      isoNumber: "ISO 19157-1:2023"
     }
   },
   issueBase: "https://www.w3.org/2015/spatial/track/issues/"

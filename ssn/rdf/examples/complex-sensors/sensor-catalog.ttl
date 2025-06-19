@@ -20,12 +20,17 @@ sensor:BME280 a owl:Class ;
     """ ;
     rdfs:subClassOf sosa:Sensor ;
     skos:prefLabel "BME280" ;
-    sosa:observes [ qudt:hasUnit unit:DEG_C ;
-            skos:broader property:temperature ] ,
-          [ qudt:hasUnit unit:MicroGM-PER-M3 ;
-            skos:broader property:pm10 ;
-            sosa:implements [ qb:order 1 ;
-                    skos:broader procedure:pm-humidity-correction ] ] ;
+    sosa:observes 
+      [ qudt:hasUnit unit:DEG_C ;
+        skos:broader property:temperature ;
+      ] ,
+      [ qudt:hasUnit unit:MicroGM-PER-M3 ;
+        skos:broader property:pm10 ;
+        sosa:implements 
+          [ qb:order 1 ;
+            skos:broader procedure:pm-humidity-correction 
+          ] ;
+      ] ;
 .
 
 property:pm10 a sosa:Property ;
@@ -36,6 +41,6 @@ property:temperature a sosa:Property ;
   rdfs:label "Air temperature" ;
 .
 
-procedure:pm-humidity-correction a sosa:Procedure ;
+procedure:pm-humidity-correction a sosa:ObservingProcedure ;
   rdfs:label "Humidity correction for Particulate Matter" ;
 .

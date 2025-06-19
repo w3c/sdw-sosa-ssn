@@ -31,10 +31,11 @@ sosa:FeatureOfInterest
   a owl:Class ;
   rdfs:label "Feature Of Interest"@en ;
   skos:definition """
-  The thing that is the target of the Execution, 
+  The thing that is the target of an Execution or Deployment, 
   i.e. whose property is being estimated or calculated in the course of an Observation to arrive at a result, 
   or whose property is being manipulated by an Actuator, 
-  or which is being sampled or transformed in an act of Sampling.
+  or which is being sampled or transformed in an act of Sampling, 
+  or which is the target of Executions planned as part of a Deployment.
   """@en ;
   skos:example "When measuring the height of a tree, the height is the observed Property, 20m may be the Result of the Observation, and the tree is the FeatureOfInterest. A window is a FeatureOfInterest for an automatic window control Actuator."@en ;
   rdfs:isDefinedBy sosa-common: .
@@ -59,12 +60,6 @@ sosa:forProperty
   schema:domainIncludes sosa:Procedure ;
   schema:domainIncludes sosa:System ;
   schema:rangeIncludes sosa:Property ;
-  owl:inverseOf [
-      owl:unionOf (
-          sosa:hasProcedure
-          sosa:propertyFor
-        ) ;
-    ] ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hasProperty 
@@ -82,9 +77,8 @@ sosa:isFeatureOfInterestOf
   a owl:ObjectProperty ;
   rdfs:label "is feature of interest of"@en ;
   skos:definition """
-  A relation between a FeatureOfInterest and an Execution concerning it, i.e. an Observation about it, an Actuation acting on it, or an act of Sampling that sampled it.
-  
-  A relation between a specific FeatureOfInterest and a System operating on it, i.e. the entity whose property is modified by an Actuator, or the entity whose quality is observed by a Sensor, or the entity that is sampled by a Sampler.
+  A relation between a FeatureOfInterest and an Execution or Deployment operating on it, 
+  i.e.: an Observation about it; an Actuation acting on it; an act of Sampling that sampled it; or a Deployment for which it is the subject.
 """@en ;
   schema:domainIncludes sosa:FeatureOfInterest ;
   schema:rangeIncludes sosa:Deployment ;
@@ -97,7 +91,7 @@ sosa:isPropertyOf
   a owl:ObjectProperty ;
   rdfs:label "is property of"@en ;
   skos:definition """
-  Relation between a Property and the entity that it belongs to.
+  Relation between a Property and the FeatureOfInterest that it belongs to.
   """@en ;
   schema:domainIncludes sosa:Property ;
   schema:rangeIncludes sosa:FeatureOfInterest ;
@@ -108,9 +102,10 @@ sosa:isUltimateFeatureOfInterestOf
   a owl:ObjectProperty ;
   rdfs:label "is ultimate feature of interest of"@en ;
   skos:definition """
-  A relation between a FeatureOfInterest and an Execution that it is the Ultimate subject of. 
+  A relation between a FeatureOfInterest and an Execution or Deployment that it is the ultimate subject of.
   """@en ;
   schema:domainIncludes sosa:FeatureOfInterest ;
+  schema:rangeIncludes sosa:Deployment ;
   schema:rangeIncludes sosa:Execution ;
   schema:rangeIncludes sosa:ExecutionCollection ;
   owl:inverseOf sosa:hasUltimateFeatureOfInterest ;
@@ -223,7 +218,7 @@ sosa:Execution
   a owl:Class ;
   rdfs:label "Execution of a Procedure"@en ;
   skos:definition """
-  Act of carrying out a Procedure. 
+  Act of carrying out a Procedure using a System concerning a FeatureOfInterest  
   """@en ;
   skos:scopeNote """
   Execution generalizes the Actuation, Observation, and Sampling classes. 
@@ -291,9 +286,7 @@ sosa:hasFeatureOfInterest
   a owl:ObjectProperty ;
   rdfs:label "has feature of interest"@en ;
   skos:definition """
-  A relation between an Execution and its target entity, i.e. an Actuation and the entity whose property was modified, or an Observation and the entity whose quality was observed, or an act of Sampling and the entity that was sampled.
-  
-  A relation between a Deployment and its specific target entity.
+  A relation between an Execution and its target entity, i.e.: an Actuation and the entity whose property was modified; an Observation and the entity whose quality was observed; an act of Sampling and the entity that was sampled; or a Deployment and its specific target entity.
   """@en ;
   skos:scopeNote "This is the _proximate_ feature of interest, which may be a proxy entity such as a sample of the _ultimate_ feature of interest. Use `hasUltimateFeatureOfInterest` if the intention is to link to the _ultimate_ feature of interest. " ;
   skos:example "For example, in an Observation of the weight of a person, the FeatureOfInterest is the person and the property is its weight."@en ;
@@ -318,7 +311,7 @@ sosa:hasInputValue
 sosa:hasResult 
   a owl:ObjectProperty ;
   rdfs:label "has result"@en ;
-  skos:definition """""
+  skos:definition """
   Relation linking an Execution (i.e. Actuation or Observation or act of Sampling) to its result or Sample.
 
   In the case of an Actuation, the result is the expected value of the Property following the execution of the Procedure by the Actuator. 
@@ -354,11 +347,13 @@ sosa:hasUltimateFeatureOfInterest
   a owl:ObjectProperty ;
   rdfs:label "has ultimate feature of interest"@en  ;
   skos:definition """
-  A relation between an Execution and its ultimate target entity i.e. an Actuation and the ultimate entity whose property was modified, an Observation and the ultimate entity whose quality was observed, or  between an act of Sampling and the ultimate entity that was sampled. 
+  A relation between an Execution or Deployment and its ultimate target entity, 
+  i.e.: an Actuation and the ultimate entity whose property was modified; an Observation and the ultimate entity whose quality was observed; an act of Sampling and the ultimate entity that was sampled; or a Deployment and its ultimate target entity. 
   """@en ;
   skos:scopeNote "This is useful when the proximate feature of interest is a sample of the ultimate feature of interest, directly or transitively." ;
   skos:note """should match a property chain something like this but with sosa:isSampleOf*
       owl:propertyChainAxiom ( sosa:hasFeatureOfInterest sosa:isSampleOf )""" ;
+  schema:domainIncludes sosa:Deployment ;
   schema:domainIncludes sosa:Execution ;
   schema:domainIncludes sosa:ExecutionCollection ;
   schema:rangeIncludes sosa:FeatureOfInterest ;
@@ -366,7 +361,7 @@ sosa:hasUltimateFeatureOfInterest
 
 sosa:inputValueForExecution 
   a owl:ObjectProperty ;
-  rdfs:label "input for"@en ;
+  rdfs:label "input value for execution"@en ;
   skos:definition """
   Relation between an InputValue and an Execution that used it.
   """@en ;
@@ -508,10 +503,12 @@ sosa:System
   a owl:Class ;
   rdfs:label "System"@en ;
   skos:definition """
-  A piece of infrastructure that implements a Procedure.
+  An entity that implements a Procedure in the context of an Execution. 
+  This may be a device, a piece of infrastructure, an agent (including humans), or software (simulation).
 
   A System may have components, its sub-systems, which are other systems.
   """@en ; 
+  skos:note "Different Systems can implement the same (reusable) Procedure for different Executions."@en ;
   skos:scopeNote """
   System generalizes the Actuator, Sensor, and Sampler classes. 
   It appears in the ontology to support the description of a common pattern for executions and their properties. 
@@ -526,6 +523,10 @@ sosa:System
   """@en ;
   skos:scopeNote """
   The association of a System (Actuator, Sensor, and Sampler) with a FeatureOfInterest is usually in the context of an Execution or a Deployment. 
+
+  A System can be hosted by a Platform. 
+
+  A System can be deployed for a specified time interval as part of a Deployment.
   """@en ;
   rdfs:isDefinedBy sosa-common: .
 

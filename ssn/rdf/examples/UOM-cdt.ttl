@@ -1,10 +1,22 @@
 @prefix cdt: <http://w3id.org/lindt/custom_datatypes#> .
-@prefix ex: <http://www.w3.org/ns/sosa/examples#> .
+@prefix ex: <https://example.org/data/> .
+@prefix qk: <http://qudt.org/vocab/quantitykind/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 
 ex:Obs234534
   a sosa:Observation ;
   sosa:hasFeatureOfInterest ex:apt134 ;
-  sosa:hasSimpleResult "-29.9 Cel"^^cdt:ucum ;
+  sosa:observedProperty qk:Temperature ;
+  sosa:hasSimpleResult "24.9 Cel"^^cdt:ucum ;
+.
+cdt:ucum 
+  a rdfs:Datatype ;
+.
+ex:apt134
+  a sosa:FeatureOfInterest ;
+.
+qk:Temperature
+  a sosa:Property ;
 .

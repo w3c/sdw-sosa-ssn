@@ -1,0 +1,101 @@
+<h3>Temporal properties</h3>
+
+<p>
+    Multiple times are associated with an <a href="#SOSAExecution">Execution</a>.
+    Trivially, since an Execution is a time-bounded activity, there is a <a href="#SOSAstartTime">startTime</a> and <a href="#SOSAendTime">endTime</a>.
+    In the case of <a href="#SOSAObservation">Observation</a> and <a href="#SOSASampling">Sampling</a> the end of the
+    Execution is the time that the result is generated so it is called <a href="#SOSAresultTime">resultTime</a>.
+    In the case of <a href="#SOSAActuation">Actuation</a> and <a href="#SOSAObservation">Observation</a> the <a href="#SOSAphenomenonTime">phenomenonTime</a> is the interval when the change or result applies to the actuated-
+    or observed-property.
+</p>
+<p>
+    In the simplest case, an Execution is instantaneous and all these times are the same.
+    More commonly, these times are different.
+    Different kinds of executions have different relationships between these times.
+</p>
+
+<h4>Forecasts</h4>
+<p>
+    A forecast may be represented as an observation where the value of <code>sosa:phenomenonTime</code> is later in
+    time than the <code>sosa:resultTime</code>.
+    The time when the observation execution was completed is before the time that the result of the observation applies
+    to the FeatureOfInterest.
+</p>
+<figure id="forecast">
+    <embed alt="Forecast modeled as an observation" src="./images/forecast.svg" style="width:90%" />
+    <figcaption>Temperature grid forecast, modeled as an Observation in which the result time is before the phenomenon
+        time, which is when the result applies to the feature of interest.
+        <br>
+        <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
+    </figcaption>
+</figure>
+
+<h5>Serialised in Turtle</h5>
+<pre class="example" data-include="./rdf/examples/forecast.ttl" data-include-format="text"></pre>
+
+<h5>Serialised in JSON-LD</h5>
+<pre class="example" data-include="./rdf/examples/forecast.jsonld" data-include-format="text"></pre>
+
+<p class="note">
+    Other means to represent forecasts are reported, but not in the scope of this specification.
+    For example [[Lefrancois-et-al-2017]] adapt the SSN <code>Sensing/Sensor/Observation</code>
+    pattern to derive explicit <code>Forecasting/Forecaster/Forecast</code> classes.
+</p>
+
+<p class="note">
+    Describing a plan for some actuation or observation in the future is not covered by this
+    specification.
+</p>
+
+<h4>Historical observations</h4>
+<p>
+    Observations in historical sciences, including geology and archeology, may be made to determine the state of the
+    world in the past.
+</p>
+
+<h5>Historical observations &mdash; simple cases</h5>
+<p>
+    Consider a determination of the diet of past communities by examination of middens and other archaeological features
+    (<a href="#diet"></a>)
+</p>
+<figure id="diet">
+    <embed alt="Observation with phenomemon-time in the deep past &mdash; paleo diet" src="./images/diet.svg" style="width:90%" />
+    <figcaption>Observation with phenomemon-time in the deep past.
+        <br>
+        <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
+    </figcaption>
+</figure>
+<pre class="example" data-include="./rdf/examples/diet.ttl" data-include-format="text"></pre>
+<p>
+    An observation transcribed from a historical record, such as a logbook, might be encoded as follows:
+</p>
+<figure id="historical-airtemp">
+    <embed alt="Observation transcribed from a historical record" src="./images/historical-airtemp.svg" style="width:100%" />
+    <figcaption>Observation with phenomenon-time in the past.
+        <br>
+        <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
+    </figcaption>
+</figure>
+<pre class="example" data-include="./rdf/examples/historical-airtemp.ttl" data-include-format="text"></pre>
+
+<h5>Historical observation &mdash; from combination of separate observation of time and property</h5>
+<p>
+    The concentration of CO<sub>2</sub> can be measured in bubbles in ice-cores that are assumed to sample the
+    atmosphere at some past time.
+    In this case, the concentration and age are the results of two initial observations (at the top of <a href="#paleo-atmosphere"></a>).
+    These provide input-values to the final observation (at the bottom of <a href="#paleo-atmosphere"></a>).
+</p>
+<figure id="paleo-atmosphere">
+    <embed alt="Observation with phenomemon-time in the deep past &mdash; atmospheric CO2" src="./images/paleo-atmosphere.svg" style="width:100%" />
+    <figcaption>Observation with phenomenon-time in the deep past,
+        constructed from the output of two primitive observations.
+        <br>
+        <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
+    </figcaption>
+</figure>
+<pre class="example" data-include="./rdf/examples/paleo-atmosphere.ttl" data-include-format="text"></pre>
+
+<p>
+    In each of these cases the ultimate <a href="#SOSAphenomenonTime">phenomenonTime</a> is far in the past,
+    while the <a href="#SOSAresultTime">resultTime</a> is contemporary.
+</p>

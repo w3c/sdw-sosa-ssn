@@ -6,8 +6,8 @@ ex:ObservationEntailments
     sh:construct """
         CONSTRUCT {
             $this sosa:hasResult [
-                  qudt:numericValue ?simpleResult ;
-                  qudt:unit ?unit ;
+                  qudt:value ?simpleResult ;
+                  qudt:hasUnit ?unit ;
                 ] ;
                 sosa:usedProcedure ?procedure ;
             .
@@ -18,7 +18,7 @@ ex:ObservationEntailments
             {
               ?sensorClass rdfs:subClassOf sosa:Sensor ;
                 sosa:observes ?observedProperty .
-              OPTIONAL { ?sensorClass qudt:unit ?unit }
+              OPTIONAL { ?sensorClass qudt:hasUnit ?unit }
               OPTIONAL { ?sensorClass sosa:implements ?procedure }
             } UNION {
               ?sensorClass rdfs:subClassOf sosa:Platform ;
@@ -27,7 +27,7 @@ ex:ObservationEntailments
                 owl:onProperty sosa:hosts ;
                 owl:allValuesFrom/owl:unionOf/rdf:rest*/rdf:first ?actualSensorClass .
               ?actualSensorClass sosa:observes ?observedProperty .
-              OPTIONAL { ?actualSensorClass qudt:unit ?unit }
+              OPTIONAL { ?actualSensorClass qudt:hasUnit ?unit }
               OPTIONAL { ?actualSensorClass sosa:implements ?procedure }
             }
         }

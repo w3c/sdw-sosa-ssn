@@ -1,4 +1,5 @@
-@prefix ex: <http://www.w3.org/ns/sosa/examples#> .
+@prefix ex: <https://example.org/data/> .
+@prefix qk: <http://qudt.org/vocab/quantitykind/> .
 @prefix qudt: <http://qudt.org/schema/qudt/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
@@ -7,18 +8,20 @@
 ex:Obs234534
   a sosa:Observation ;
   sosa:hasFeatureOfInterest ex:apt134 ;
+  sosa:observedProperty qk:Temperature ;
   sosa:hasResult [
       a qudt:QuantityValue ;
       qudt:hasUnit unit:DEG_C ;
-      qudt:value -29.9 ;
+      qudt:value 24.9 ;
     ] ;
 .
-ex:Obs83985
-  a sosa:Observation ;
-  sosa:hasFeatureOfInterest ex:apt134 ;
-  sosa:hasResult [
-      a qudt:QuantityValue ;
-      qudt:hasUnit unit:DEG_C ;
-      qudt:value 22.4 ;
-    ] ;
+unit:DEG_C 
+  a rdfs:Datatype ;
+  rdfs:comment "pun of a QUDT Unit instance" ;
+  .
+ex:apt134
+  a sosa:FeatureOfInterest ;
+.
+qk:Temperature
+  a sosa:Property ;
 .

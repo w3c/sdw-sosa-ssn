@@ -19,22 +19,6 @@
 @prefix sosa-sam: <http://www.w3.org/ns/sosa/sam/> .
 @prefix sosa-oms: <http://www.w3.org/ns/sosa/oms/> .
 
-dcterms:title a owl:AnnotationProperty .
-dcterms:description a owl:AnnotationProperty .
-dcterms:rights a owl:AnnotationProperty .
-dcterms:license a owl:AnnotationProperty .
-dcterms:created a owl:AnnotationProperty .
-dcterms:creator a owl:AnnotationProperty .
-foaf:Agent a owl:Class .
-foaf:name a owl:AnnotationProperty .
-schema:domainIncludes a owl:AnnotationProperty .
-schema:rangeIncludes a owl:AnnotationProperty .
-skos:definition a owl:AnnotationProperty .
-skos:example a owl:AnnotationProperty .
-skos:note a owl:AnnotationProperty .
-time:TemporalEntity a owl:Class .
-
-
 sosa-oms: 
   a owl:Ontology ;
   dcterms:title "OMS Ontology - based on (SOSA) Ontology"@en ;
@@ -71,9 +55,16 @@ sosa-oms:metadata
                         sosa:Sample ,
                         sosa:SampleCollection ,
                         sosa:Sampling ,
+                        sosa:SamplingCollection ,
                         sosa-oms:PreparationStep ,
                         sosa:Procedure ,
+                        sosa:ActuatingProcedure ,
+                        sosa:ObservingProcedure ,
+                        sosa:SamplingProcedure ,
+                        sosa-oms:PreparationProcedure ,
+                        sosa:Actuator ,
                         sosa:Sensor ,
+                        sosa:Sampler ,
                         sosa:Platform ,
                         sosa:Deployment ; 
     rdfs:isDefinedBy sosa-oms: .
@@ -156,31 +147,27 @@ sosa:Procedure
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Procedure> ;
   rdfs:isDefinedBy sosa-common: .
 
-sosa-oms:ObservingProcedure 
+sosa:ObservingProcedure 
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/ObservingProcedure> ;
-  a owl:Class ;
-  rdfs:label "Observing Procedure"@en ;
-  skos:definition """
-  The description of steps performed in order to determine the value of a Property by an Observer (Sensor).
-  """@en ;
-  skos:example "A workflow, protocol, plan, algorithm, or computational method specifying how to make an observation; the description of the process utilized by an observer. This could be a chemical analysis method, a protocol for measuring an object, but could also be a checklist utilized by a human observer during a biodiversity campaign."@en ;
-  skos:scopeNote "The observing procedure cannot describe a sensor instance, but it can describe the sensor type."@en ;
-  rdfs:isDefinedBy sosa-oms: .
+  skos:definition """[ISO 19156:2023] An ObservingProcedure shall be defined as the description of steps performed in order to determine the value of an observableProperty by an Observer.""" ;
+  skos:example """[ISO 19156:2023] An instance of Procedure is a description of the process used by an observer. This could be a chemical analysis method, a protocol for measuring an object, or even a checklist used by a human observer during a biodiversity campaign. Procedure could further describe the algorithms behind simulators or models used to generate a result from other inputs."""@en ;
+  rdfs:isDefinedBy sosa-obs: .
 
-sosa-oms:SamplingProcedure  
+sosa:SamplingProcedure  
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/SamplingProcedure> ;
-  a owl:Class ;
-  rdfs:label "Sampling Procedure"@en ;
-  skos:definition """
-  The description of steps performed by a Sampler in order to extract a Sample from its sampled Feature in the frame of a Sampling.
-  """@en ;
-  rdfs:isDefinedBy sosa-oms: .
+  skos:definition """[ISO 19156:2023] A SamplingProcedure shall be defined as the description of steps performed by a Sampler in order to extract a Sample from its sampledFeature in the frame of a Sampling.""" ;
+  rdfs:isDefinedBy sosa-sam: .
 
 sosa-oms:PreparationProcedure 
   a owl:Class ;
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/PreparationProcedure> ;
   rdfs:label "Preparation Procedure"@en ;
-  skos:definition "The description of preparation steps performed on a Sample."@en ;
+  skos:definition """
+  A workflow, protocol, plan, algorithm, or computational method specifying a step in preparing a Sample. 
+  A Preparation Procedure is re-usable, and might be involved in many preparations. 
+  It explains the steps to be carried out to arrive at reproducible results.
+  """@en ;
+  skos:definition """[ISO 19156:2023] A PreparationProcedure shall be defined as the description of preparation steps performed on a Sample""" ;
   rdfs:isDefinedBy sosa-oms: .
 
 

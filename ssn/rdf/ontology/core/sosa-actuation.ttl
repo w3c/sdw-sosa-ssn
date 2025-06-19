@@ -26,11 +26,21 @@ sosa-act:
   owl:imports sosa-common: ;
   .
 
+sosa:ActuatingProcedure  
+  a owl:Class ;
+  rdfs:label "Actuating Procedure"@en ;
+  skos:definition """
+  A workflow, protocol, plan, algorithm, or computational method specifying how to make an Actuation. 
+  An Actuating Procedure is re-usable, and might be involved in many Actuations. 
+  It explains the steps to be carried out to arrive at reproducible results.
+  """@en ;
+  rdfs:isDefinedBy sosa-act: .
+
 sosa:Actuation 
   a owl:Class ;
   rdfs:label "Actuation"@en ;
   skos:definition """
-  An Actuation carries out an (Actuation) Procedure to change the value of a Property using an Actuator. 
+  Act of carrying out an actuating Procedure using an Actuator to change the value of an actuatable Property of a FeatureOfInterest.  
   
   In this context hasResult shall indicate the expected value of the Property at the completion of the Actuation
   """@en ;
@@ -38,7 +48,7 @@ sosa:Actuation
   An Actuation concerns a single Property of a single FeatureOfInterest. 
   Changes to multiple properties, or other combinations of Actuations, may be described in an ActuationCollection.
     
-  Alternatively, applications may choose to encapsulate complexity by defining a complex property with multiple individual components, and a corresponding complex result (e.g. a vector). 
+  Alternatively, applications may choose to encapsulate complexity by defining a complex property with multiple individual components, and a corresponding complex result (e.g., a vector). 
   This approach is not prohibited by the SSN Ontology, but the details are beyond the scope of SSN.
   """@en ;
   skos:note "relatedObservation SHOULD be used to link to an associated Observation or ObservationCollection that monitors the actuated property to verify that the result value has been obtained. "@en ;
@@ -73,8 +83,8 @@ sosa:Actuator
   a owl:Class ;
   rdfs:label "Actuator"@en ;
   skos:definition """
-  A device or system that is used by, or implements, an (Actuation) Procedure that changes the value of an Actuatable Property.
-  """@en ;
+  An entity that implements an actuating Procedure to change the value of a actuatable Property. 
+  This may be a device, a piece of infrastructure, an agent (including humans), or software (simulation)."""@en ;
   skos:example "A window actuator for automatic window control, i.e., opening or closing the window."@en ;
   rdfs:isDefinedBy sosa-act: .
 
@@ -237,6 +247,7 @@ sosa:Execution
 sosa:usedProcedure 
   schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:ActuationCollection ;
+  schema:rangeIncludes sosa:ActuatingProcedure ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:startTime 
@@ -303,6 +314,7 @@ sosa:System
 
 sosa:implements 
   schema:domainIncludes sosa:Actuator ;
+  schema:rangeIncludes sosa:ActuatingProcedure ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hasSubSystem 

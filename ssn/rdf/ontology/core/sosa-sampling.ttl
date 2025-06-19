@@ -94,16 +94,17 @@ sosa:Sampler
   a owl:Class ;
   rdfs:label "Sampler"@en ;
   skos:definition """
-  A device that implements a (Sampling) Procedure to create one or more samples.
+  An entity that implements a sampling Procedure in the context of a Sampling to generate a Sample.   
+  This may be a device, a piece of infrastructure, an agent (including humans), or software (simulation).
   """@en ;
-  skos:example "A ball mill, diamond drill, hammer, hypodermic syringe and needle, image Sensor or a soil auger can all act as sampling devices (i.e., be Samplers). However, sometimes the distinction between the Sampler and the Sensor is not evident, as they are packaged as a unit. A Sampler need not be a physical device."@en ;
+  skos:example "A ball mill, diamond drill, hammer, hypodermic syringe and needle, image Sensor, or a soil auger can all act as sampling devices (i.e., be Samplers). Sometimes, however, the distinction between the Sampler and the Sensor is not evident, as they are packaged as a unit. A Sampler need not be a physical device."@en ;
   rdfs:isDefinedBy sosa-sam: .
 
 sosa:Sampling 
   a owl:Class ;
   rdfs:label "Sampling"@en ;
   skos:definition """
-  An act of Sampling carries out a sampling Procedure to create or transform one or more samples.
+  Act of carrying out a sampling Procedure using a Sampler to create one or more Samples of the FeatureOfInterest.
   """@en ;
   skos:example "Crushing a rock sample in a ball mill."@en ;
   skos:example "Digging a pit through a soil sequence."@en ;
@@ -140,6 +141,21 @@ sosa:SamplingCollection
   5. Where an individual Sampling Collection has more than one value for a property that is a range or interval, each member Sampling (direct or transitive) MUST have a value for that property that either matches or falls within one of those ranges or intervals.
   """@en ;
   skos:note """The members of a collection do not necessarily share a common value for any property."""@en ;
+  rdfs:isDefinedBy sosa-sam: .
+
+sosa:SamplingProcedure  
+  a owl:Class ;
+  rdfs:label "Sampling Procedure"@en ;
+  skos:definition """
+  A workflow, protocol, plan, algorithm, or computational method specifying how to make a Sampling. 
+  A Sampling Procedure is re-usable, and might be involved in many Samplings. 
+  It explains the steps to be carried out to arrive at reproducible results.
+  """@en ;
+  skos:example """
+spatial distribution of locations where to collect a sample (e.g., river segment)
+instrument (or mode of use thereof) required to collect a sample (e.g., fish net, electric stunner)
+field work instructions (e.g., dig four boreholes in each cardinal direction 2 metre way from the centre of the site; collect soil material from the 15-30 cm depth and mix it in a single bag)
+  """@en ;
   rdfs:isDefinedBy sosa-sam: .
 
 sosa:SpatialSample 
@@ -242,7 +258,7 @@ sosa:isResultOfUsedProcedure
   """@en ;
   schema:domainIncludes sosa:Sample ;
   schema:domainIncludes sosa:SampleCollection ;
-  schema:rangeIncludes sosa:Procedure ;
+  schema:rangeIncludes sosa:SamplingProcedure ;
   owl:inverseOf sosa:usedForExecutionHasResult ;
   rdfs:isDefinedBy sosa-sam: .
 
@@ -299,7 +315,7 @@ sosa:usedForExecutionHasResult
   skos:definition """
   Relation linking a Procedure (plan) to a Sample or SampleCollection used by it.
   """@en ;
-  schema:domainIncludes sosa:Procedure ;
+  schema:domainIncludes sosa:SamplingProcedure ;
   schema:rangeIncludes sosa:Sample ;
   schema:rangeIncludes sosa:SampleCollection ;
   owl:inverseOf sosa:isResultOfUsedProcedure ;
@@ -397,6 +413,7 @@ sosa:Execution
 sosa:usedProcedure 
   schema:domainIncludes sosa:Sampling ;
   schema:domainIncludes sosa:SamplingCollection ;
+  schema:rangeIncludes sosa:SamplingProcedure ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:startTime 
@@ -464,6 +481,7 @@ sosa:System
 
 sosa:implements 
   schema:domainIncludes sosa:Sampler ;
+  schema:rangeIncludes sosa:SamplingProcedure ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hasSubSystem 

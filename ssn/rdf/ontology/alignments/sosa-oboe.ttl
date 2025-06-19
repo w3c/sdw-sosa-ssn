@@ -16,7 +16,10 @@ oboe-core:Characteristic
   owl:equivalentClass sosa:Property ;
 .
 oboe-core:Measurement
-  rdfs:comment "an oboe-core:Measurement is a (atomic) sosa:Observation, whose result (value) is an estimate of the value of one of the characteristics of the observed Entity. A collection of oboe-core:Measurement individuals together compose an oboe-core:Observation, whose results together provide a full description of the feature of interest. " ;
+  rdfs:comment """
+  an oboe-core:Measurement is a (atomic) sosa:Observation, whose result (value) is an estimate of the value of one of the characteristics of the observed Entity. 
+  A collection of oboe-core:Measurement individuals together compose an oboe-core:Observation, whose results together provide a full description of the feature of interest. 
+  """ ;
   owl:equivalentClass sosa:Observation ;
 .
 oboe-core:Observation
@@ -41,7 +44,7 @@ oboe-core:ObservationCollection
     ] ;
 .
 oboe-core:Protocol
-  rdfs:subClassOf sosa:Procedure ;
+  owl:equivalentClass sosa:ObservingProcedure ;
 .
 oboe-core:hasMeasurement
   rdfs:subPropertyOf sosa:hasMember ;
@@ -102,8 +105,8 @@ sosa:oboe
   dcterms:description "Mapping of classes and properties from OBOE to SOSA" ;
   dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
   dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
-  dcterms:modified "2024-01-06"^^xsd:date ;
-  dcterms:rights "Copyright 2024 W3C/OGC." ;
+  dcterms:modified "2025-05-31"^^xsd:date ;
+  dcterms:rights "Copyright 2025 W3C/OGC." ;
   rdfs:label "OBOE -> SOSA map" ;
   owl:imports <http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl> ;
   owl:imports sosa-obs: ;

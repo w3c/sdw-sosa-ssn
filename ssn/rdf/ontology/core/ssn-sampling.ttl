@@ -40,7 +40,7 @@ sosa:Sample
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasOriginalSample ; owl:allValuesFrom sosa:Sample ]  ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasSampledFeature ; owl:allValuesFrom sosa:FeatureOfInterest ]  ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isResultOfMadeBySampler ; owl:allValuesFrom sosa:Sampler ]  ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isResultOfUsedProcedure ; owl:allValuesFrom sosa:Procedure ]  ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isResultOfUsedProcedure ; owl:allValuesFrom sosa:SamplingProcedure ]  ;
   rdfs:isDefinedBy sosa-sam: .
 
 sosa:SampleCollection 
@@ -60,18 +60,21 @@ sosa:SampleCollection
 sosa:Sampler 
   rdfs:subClassOf sosa:System ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeSampling ; owl:allValuesFrom sosa:Sampling ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implements ; owl:allValuesFrom sosa:SamplingProcedure ] ;
   rdfs:isDefinedBy sosa-sam: .
 
 sosa:Sampling 
   rdfs:subClassOf sosa:Execution ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeBySampler ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeBySampler ; owl:allValuesFrom sosa:Sampler ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:usedProcedure; owl:allValuesFrom sosa:SamplingProcedure ] ;
   rdfs:isDefinedBy sosa-sam: .
 
 sosa:SamplingCollection 
   rdfs:subClassOf rdf:Bag ;
   rdfs:subClassOf sosa:ExecutionCollection ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeBySampler ; owl:allValuesFrom sosa:Sampler ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:usedProcedure; owl:allValuesFrom sosa:SamplingProcedure ] ;
   rdfs:subClassOf [ 
     a owl:Restriction ; 
     owl:onProperty sosa:hasMember ; 
@@ -82,6 +85,11 @@ sosa:SamplingCollection
       ) ;
     ] 
   ] ;
+  rdfs:isDefinedBy sosa-sam: .
+
+sosa:SamplingProcedure  
+  rdfs:subClassOf sosa:Procedure ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implementedBy ; owl:allValuesFrom sosa:Sampler ] ;
   rdfs:isDefinedBy sosa-sam: .
 
 sosa:SpatialSample 

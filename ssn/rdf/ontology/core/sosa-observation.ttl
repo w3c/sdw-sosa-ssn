@@ -30,16 +30,16 @@ sosa:Observation
   a owl:Class ;
   rdfs:label "Observation"@en ;
   skos:definition """
-  Act of carrying out an (Observation) Procedure to estimate or calculate a value of a property of a FeatureOfInterest. Links to a Sensor to describe what made the Observation and how; links to a Property to describe what the result is an estimate of, and to a FeatureOfInterest to detail what entity that property was associated with.
+  An act of carrying out an observing Procedure using a Sensor to estimate or calculate a value of an observable Property of a FeatureOfInterest.  
   """@en ;
   skos:note """
-  When the feature of interest cannot be observed directly, a sample of it might be used in Observations as a proxy for it. In such a case the Sample is the proximate Feature of Interest of the Observation, while the (ultimate) Feature of Interest of the act of Sampling (i.e. the entity that the Sample is ultimately 'isSampleOf') is the ultimate Feature of Interest of the Observation.
+  When the feature of interest cannot be observed directly, a sample of it might be used in Observations as a proxy for it. In such case, the Sample is the proximate Feature of Interest of the Observation, while the (ultimate) Feature of Interest of the act of Sampling (i.e., the entity that the Sample is ultimately 'isSampleOf') is the ultimate Feature of Interest of the Observation.
   """ ;
   skos:scopeNote """
   An Observation concerns a single Property of a single FeatureOfInterest. 
   Observations of multiple properties, or other combinations of Observations, may be described in an ObservationCollection. 
   
-  Alternatively, applications may choose to encapsulate complexity by defining a complex property with multiple individual components, and a corresponding complex result (e.g. a vector). 
+  Alternatively, applications may choose to encapsulate complexity by defining a complex property with multiple individual components, and a corresponding complex result (e.g., a vector). 
   This approach is not prohibited by the SSN Ontology, but the details are beyond the scope of SSN.
   """@en ;
   skos:example "The activity of estimating the intensity of an Earthquake using the Mercalli intensity scale is an Observation as is measuring the moment magnitude, i.e., the energy released by said earthquake."@en ;
@@ -73,19 +73,30 @@ sosa:ObservationCollection
             This broadly corresponds with the class Dataset from DCAT."""@en ;
   rdfs:isDefinedBy sosa-obs: .
 
+sosa:ObservingProcedure 
+  a owl:Class ;
+  rdfs:label "Observing Procedure"@en ;
+  skos:definition """
+  A workflow, protocol, plan, algorithm, or computational method specifying how to make an Observation. 
+  An Observing Procedure is re-usable, and might be involved in many Observations. 
+  It explains the steps to be carried out to arrive at reproducible results.
+  """@en ;
+  skos:example """This could be a chemical analysis method, a protocol for measuring an object, or even a checklist used by a human observer during a biodiversity campaign."""@en ;
+  rdfs:isDefinedBy sosa-obs: .
+
+
 sosa:Sensor 
   a owl:Class ;
   rdfs:label "Sensor or Observer"@en ;
   skos:altLabel "Observer"@en ;
   skos:prefLabel "Sensor"@en ;
   skos:definition """
-  An identifiable entity that can generate Observations pertaining to a Property by implementing a (Observation) Procedure. Device, agent (including humans), or software (simulation) involved in, or implementing, a Procedure. Sensors respond to a stimulus, e.g., a change in the environment, or input data composed from the results of prior Observations, and generate a Result. Sensors can be hosted by Platforms."""@en ;
+  An entity that implements an observing Procedure in the context of an Observation to determine the value of an observable Property. 
+  This may be a device, a piece of infrastructure, an agent (including humans), or software (simulation).
+
+  A Sensor responds to a stimulus (e.g., a change in the environment, or input data composed from the results of prior Observations) to generate a result.
+  """@en ;
   skos:example "Accelerometers, gyroscopes, barometers, magnetometers, and so forth are Sensors that are typically mounted on a modern smartphone (which acts as Host or Platform). Other examples of Sensors include the human eyes."@en ;
-  skos:note "Different Sensors can follow the same (reusable) observing Procedure for the creation of different Observations."@en ;
-  skos:scopeNote "The Sensor is the entity instance, not the entity type. Pertaining to sensors, the Sensor would reference the explicit sensor, while the Procedure would reference the methodology utilized by that sensor type;"@en ;
-  skos:note "A Sensor can be hosted by one or more Platform."@en ;
-  skos:note "The Sensor is an instance of a sensor, instrument, implementation of an algorithm, or a being such as a person."@en ;
-  skos:example "Accelerometers, gyroscopes, barometers, magnetometers, and so forth are Sensors that are typically mounted on a modern smart phone (which acts as Platform). Other examples of sensors include the human eyes."@en ;
   skos:note "The UML class 'Observer' from ISO 19156:2023 is implemented in SOSA by the OWL/RDFS class 'Sensor'. The class name 'Sensor' is preferred for backward compatibility with existing SOSA deployments. " ;
   rdfs:isDefinedBy sosa-obs: .
 
@@ -378,6 +389,7 @@ sosa:Execution
 sosa:usedProcedure 
   schema:domainIncludes sosa:Observation ;
   schema:domainIncludes sosa:ObservationCollection ;
+  schema:rangeIncludes sosa:ObservingProcedure ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:startTime 
@@ -445,6 +457,7 @@ sosa:System
 
 sosa:implements 
   schema:domainIncludes sosa:Sensor ;
+  schema:rangeIncludes sosa:ObservingProcedure ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hasSubSystem 

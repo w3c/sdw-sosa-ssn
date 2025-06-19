@@ -1,0 +1,42 @@
+<h3>Proximate and Ultimate feature of interest</h3>
+<p>
+    The object of the
+    <a href="#SOSAhasFeatureOfInterest">hasFeatureOfInterest</a> property of an <a href="#SOSAExecution">Execution</a>
+    (e.g., Actuation, Observation, or Sampling) or <a href="#SOSADeployment">Deployment</a>
+    is the <i>immediate</i> or <i>proximate</i>
+    <a href="https://www.w3.org/TR/vocab-ssn/#SOSAFeatureOfInterest">FeatureOfInterest</a>.
+    For example, <a href="#open-window"></a> shows a description of a simple actuation to open a window.
+</p>
+<figure id="open-window">
+    <embed alt="Observation feature-of-interest patterns 1" src="./images/open-window.svg" style="width:75%" />
+    <figcaption>
+        Simple Actuation to open a window.
+        <br>
+        <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
+    </figcaption>
+</figure>
+<pre class="example" data-include="./rdf/examples/open-window.ttl" data-include-format="text"></pre>
+
+<p>
+    In some cases the feature-of-interest of the execution is not the ultimate thing that the act of actuation,
+    observation, or sampling is concerned with, but is an intermediate thing.
+    This might be a <i>sample</i> of the ultimate feature of interest, or a sample of a sample, etc.
+    The relationship between the proximate and ultimate feature of interest might be specified, such as a
+    sampling-chain.
+    If this relationship is recorded, then an ultimate feature of interest might be inferred.
+</p>
+<p>
+    Nevertheless, it is often the ultimate feature of interest that really matters to the data user, particularly for
+    discovery purposes.
+    This requirement is met using the <a href="#SOSAhasUltimateFeatureOfInterest">hasUltimateFeatureOfInterest</a>
+    property</a>.
+</p>
+<figure id="obs-sample-foi">
+    <embed alt="Observation feature-of-interest patterns" src="./images/obs-sample-foi.svg" style="width:75%" />
+    <figcaption>
+        The observation is on a sample of the ultimate feature of interest.
+        <br>
+        <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
+    </figcaption>
+</figure>
+<pre class="example" data-include="./rdf/examples/obs-sample-foi.ttl" data-include-format="text"></pre>
