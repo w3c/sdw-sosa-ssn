@@ -233,7 +233,7 @@
             <a href="#SOSAactsOnProperty">actsOnProperty</a>,
             <a href="#SOSAendTime">endTime</a>,
             <a href="#SOSAhasResult">hasResult</a>,
-            <a href="#SOSAhasSimpleResult">hasSimpleResult</a>.        
+            <a href="#SOSAhasSimpleResult">hasSimpleResult</a>.
             If it is present, the value of a property summarizes the values of the matching properties of
             the member actuations, where membership is either direct or transitive through one or more member
             actuation collections.
@@ -250,7 +250,8 @@
             <li>
                 Where an individual <a href="#SOSAActuationCollection">ActuationCollection</a> has <i>a
                     single value for a property</i>, each member <a href="#SOSAActuation">Actuation</a>
-                (direct or transitive) MUST have that same value for that property &mdash; i.e., the collection is homogeneous
+                (direct or transitive) MUST have that same value for that property &mdash; i.e., the collection is
+                homogeneous
                 in that property.
                 That property MAY then be omitted in any member <a href="#SOSAActuation">Actuation</a> or
                 <a href="#SOSAActuationCollection">ActuationCollection</a>.
@@ -398,7 +399,9 @@
                     <th class="restrictions">Restrictions</th>
                     <td>
                         <a href="#SOSAmadeActuation">sosa:madeActuation</a>
-                        <em><b>ONLY</b></em> <a href="#SOSAActuation">sosa:Actuation</a>
+                        <em><b>ONLY</b></em>
+                        ( <a href="#SOSAActuation">sosa:Actuation</a> OR
+                        <a href="#SOSAActuationCollection">sosa:ActuationCollection</a> )
                         <br>
                         <a href="#SOSAactsOn">sosa:actsOn</a>
                         <em><b>ONLY</b></em> <a href="#SOSAProperty">sosa:Property</a>
@@ -607,7 +610,8 @@
         <p>
             <em>made actuation</em> &mdash;
             Relation between an <a href="#SOSAActuator">Actuator</a> and an
-            <a href="#SOSAActuation">Actuation</a> made it.
+            <a href="#SOSAActuation">Actuation</a> or
+            <a href="#SOSAActuationCollection">ActuationCollection</a> it has made.
         </p>
         <table>
             <tbody>
@@ -624,7 +628,8 @@
                 <tr>
                     <th>Range Includes</th>
                     <td>
-                        <a href="#SOSAActuation">sosa:Actuation</a>
+                        <a href="#SOSAActuation">sosa:Actuation</a>,
+                        <a href="#SOSAActuationCollection">sosa:ActuationCollection</a>
                     </td>
                 </tr>
                 <tr>
@@ -675,7 +680,8 @@
                 <tr>
                     <th>Domain Includes</th>
                     <td>
-                        <a href="#SOSAActuation">sosa:Actuation</a>
+                        <a href="#SOSAActuation">sosa:Actuation</a>,
+                        <a href="#SOSAActuationCollection">sosa:ActuationCollection</a>
                     </td>
                 </tr>
                 <tr>

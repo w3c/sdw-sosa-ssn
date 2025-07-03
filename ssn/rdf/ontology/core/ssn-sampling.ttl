@@ -59,8 +59,18 @@ sosa:SampleCollection
 
 sosa:Sampler 
   rdfs:subClassOf sosa:System ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeSampling ; owl:allValuesFrom sosa:Sampling ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implements ; owl:allValuesFrom sosa:SamplingProcedure ] ;
+  rdfs:subClassOf [ 
+    a owl:Restriction ; 
+    owl:onProperty sosa:madeSampling ; 
+    owl:allValuesFrom [
+      a owl:Class ;
+      owl:unionOf (
+        sosa:Sampling
+        sosa:SamplingCollection
+      ) ;
+    ] 
+  ] ;
   rdfs:isDefinedBy sosa-sam: .
 
 sosa:Sampling 

@@ -470,21 +470,18 @@
                 <tr>
                     <th>Note</th>
                     <td>
-                        The UML class 'Observer' from ISO 19156:2023 is implemented in SOSA
-                        by the
-                        OWL/RDFS class 'Sensor'. The class name 'Sensor' is preferred for backward compatibility
-                        with existing
-                        SOSA deployments.
+                        The UML class 'Observer' from ISO 19156:2023 is implemented in SOSA by the OWL/RDFS class
+                        'Sensor'.
+                        The class name 'Sensor' is preferred for backward compatibility with existing SOSA deployments.
                     </td>
                 </tr>
                 <tr>
                     <th>Examples</th>
                     <td>
                         Accelerometers, gyroscopes, barometers, magnetometers, etc are <a href="#SOSASensor">Sensors</a>
-                        that are typically mounted on a modern smart
-                        phone (which acts as <a href="#SOSAPlatform">Platform</a>).
-                        Other examples of <a href="#SOSASensor">Sensors</a> include the human
-                        eyes.
+                        that are typically mounted on a modern smart phone (which acts as
+                        <a href="#SOSAPlatform">Platform</a>).
+                        Other examples of <a href="#SOSASensor">Sensors</a> include the human eyes.
                     </td>
                 </tr>
                 <tr class="ssn">
@@ -497,7 +494,9 @@
                     <th class="restrictions">Restrictions</th>
                     <td>
                         <a href="#SOSAmadeObservation">sosa:madeObservation</a>
-                        <em><b>ONLY</b></em> <a href="#SOSAObservation">sosa:Observation</a>
+                        <em><b>ONLY</b></em>
+                        ( <a href="#SOSAObservation">sosa:Observation</a> OR
+                        <a href="#SOSAObservationCollection">sosa:ObservationCollection</a> )
                         <br>
                         <a href="#SOSAobserves">sosa:observes</a>
                         <em><b>ONLY</b></em> <a href="#SOSAProperty">sosa:Property</a>
@@ -857,9 +856,8 @@
         </p>
         <p>
             <em>made by <a href="#SOSASensor">Sensor</a></em> &mdash;
-            Relation between an <a href="#SOSAObservation">Observation</a> and
-            the <a href="#SOSASensor">Sensor</a>
-            which made the <a href="#SOSAObservation">Observations</a>.
+            Relation linking an <a href="#SOSAObservation">Observation</a> to the
+            <a href="#SOSASensor">Sensor</a> that made it.
         </p>
         <table>
             <tbody>
@@ -908,22 +906,30 @@
         </p>
         <p>
             <em>made observation</em> &mdash;
-            Relation between a <a href="#SOSASensor">Sensor</a>
-            and an <a href="#SOSAObservation">Observation</a> made by the <a href="#SOSASensor">Sensor</a>.
+            Relation between a <a href="#SOSASensor">Sensor</a> and an
+            <a href="#SOSAObservation">Observation</a> or
+            <a href="#SOSAObservationCollection">ObservationCollection</a> it has made.
         </p>
         <table>
             <tbody>
                 <tr class="ssn">
                     <th>Sub property of</th>
-                    <td><a href="#SOSAmadeExecution">sosa:madeExecution</a></td>
+                    <td>
+                        <a href="#SOSAmadeExecution">sosa:madeExecution</a>
+                    </td>
                 </tr>
                 <tr>
                     <th>Domain Includes</th>
-                    <td><a href="#SOSASensor">sosa:Sensor</a></td>
+                    <td>
+                        <a href="#SOSASensor">sosa:Sensor</a>
+                    </td>
                 </tr>
                 <tr>
                     <th>Range Includes</th>
-                    <td><a href="#SOSAObservation">sosa:Observation</a></td>
+                    <td>
+                        <a href="#SOSAObservation">sosa:Observation</a>,
+                        <a href="#SOSAObservationCollection">sosa:ObservationCollection</a>
+                    </td>
                 </tr>
                 <tr>
                     <th>Inverse property of</th>

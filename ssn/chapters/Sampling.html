@@ -486,8 +486,7 @@
             An entity that implements a sampling
             <a href="#SOSAProcedure">Procedure</a> in the context of an <a href="#SOSASampling">Sampling</a>
             to generate a <a href="#SOSASample">Sample</a>.
-            This may be a device, a piece of infrastructure, an agent (including humans), or software
-            (simulation).
+            This may be a device, a piece of infrastructure, an agent (including humans), or software (simulation).
         </p>
         <p class="note">
             A Sampler may have a geographic location.
@@ -522,7 +521,9 @@
                         <em><b>ONLY</b></em> <a href="#SOSASamplingProcedure">sosa:SamplingProcedure</a>
                         <br>
                         <a href="#SOSAmadeSampling">sosa:madeSampling</a>
-                        <em><b>ONLY</b></em> <a href="#SOSASampling">sosa:Sampling</a>
+                        <em><b>ONLY</b></em>
+                        ( <a href="#SOSASampling">sosa:Sampling</a> OR
+                        <a href="#SOSASamplingCollection">sosa:SamplingCollection</a> )
                     </td>
                 </tr>
                 <tr>
@@ -1267,8 +1268,8 @@
         </p>
         <p>
             <em>made by sampler</em> &mdash;
-            Relation linking an act of <a href="#SOSASampling">Sampling</a> to
-            the <a href="#SOSASampler">Sampler</a> (sampling device or entity) that made it.
+            Relation linking an act of <a href="#SOSASampling">Sampling</a> to the
+            <a href="#SOSASampler">Sampler</a> that made it.
         </p>
         <table>
             <tbody>
@@ -1279,7 +1280,7 @@
                 <tr>
                     <th>Domain Includes</th>
                     <td><a href="#SOSASampling">sosa:Sampling</a>,
-                        <a href="#SOSASampleCollection">sosa:SampleCollection</a>
+                        <a href="#SOSASamplingCollection">sosa:SamplingCollection</a>
                     </td>
                 </tr>
                 <tr>
@@ -1316,22 +1317,30 @@
         </p>
         <p>
             <em>made sampling</em> &mdash;
-            Relation between a <a href="#SOSASampler">Sampler</a> (sampling
-            device or entity) and the <a href="#SOSASampling">Sampling</a> act it performed.
+            Relation between a <a href="#SOSASampler">Sampler</a> and the
+            <a href="#SOSASampling">Sampling</a> or
+            <a href="#SOSASamplingCollection">SamplingCollection</a> it has made.
         </p>
         <table>
             <tbody>
                 <tr class="ssn">
                     <th>Sub property of</th>
-                    <td><a href="#SOSAmadeExecution">sosa:madeExecution</a></td>
+                    <td>
+                        <a href="#SOSAmadeExecution">sosa:madeExecution</a>
+                    </td>
                 </tr>
                 <tr>
                     <th>Domain Includes</th>
-                    <td><a href="#SOSASampler">sosa:Sampler</a></td>
+                    <td>
+                        <a href="#SOSASampler">sosa:Sampler</a>
+                    </td>
                 </tr>
                 <tr>
                     <th>Range Includes</th>
-                    <td><a href="#SOSASampling">sosa:Sampling</a></td>
+                    <td>
+                        <a href="#SOSASampling">sosa:Sampling</a>,
+                        <a href="#SOSASamplingCollection">sosa:SamplingCollection</a>
+                    </td>
                 </tr>
                 <tr>
                     <th>Inverse property of</th>
