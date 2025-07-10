@@ -1,8 +1,32 @@
 <h3>Planning</h3>
 <p>
-    Systems and platforms may be deployed with the intention of executing actuations, observations, or sampling at some future time. 
-    Specific deployments will usually be made for a specified target entity or feature-of-interest. 
+    Systems and platforms may be deployed with the intention of executing actuations, observations, or sampling at some
+    future time.
+    Two patterns are particularly useful for this purpose.
 </p>
+<ol>
+    <li>
+        A <a>sosa:System</a> (<a>sosa:Actuator</a>, <a>sosa:Sensor</a>, <a>sosa:Sampler</a>) can be attached to a
+        <a>sosa:Platform</a> as part of a <a>sosa:Deployment</a>.
+        <br><br>
+        The Deployment will usually be focussed on a specified Feature of Interest, and will be for a specified time
+        interval.
+        The System might be composed of sub-systems.
+        Actuators and Sensors will each address specified Properties of the Feature of Interest.
+    </li>
+    <li>
+        A Collection (i.e., <a>sosa:ActuationCollection</a>, <a>sosa:ObservationCollection</a>,
+        <a>sosa:SamplingCollection</a>, or <a>sosa:SampleCollection</a>) with one or more common properties, but with no
+        members.
+        <br><br>
+        This can denote a 'potential' or 'future' collection, with subsequent individual Executions or Samples asserting
+        that they are <a>sosa:memberOf</a> the pre-defined collection.
+        These collection members must follow the consistency requirements, and will thus have the pre-defined values for
+        the shared properties (e.g., <a>sosa:usedProcedure</a>, <a>sosa:madeBySystem</a>,
+        <a>sosa:hasFeatureOfInterest</a>, <a>sosa:actsOnProperty</a>, <a>sosa:observedProperty</a>, etc). 
+        The empty collection thus defines a plan for future executions or samples.
+    </li>
+</ol>
 <p>
-    TBC
+    Concrete examples TBC - e.g., https://github.com/w3c/sdw-sosa-ssn/issues/318#issuecomment-3033791087 
 </p>
