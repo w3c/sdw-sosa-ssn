@@ -1,32 +1,75 @@
-<h3>Planning</h3>
+<h3>Planning executions and collections</h3>
 <p>
-    Systems and platforms may be deployed with the intention of executing actuations, observations, or sampling at some
+    Assets may be deployed with the intention of executing actuations, observations, or sampling at some
     future time.
     Two patterns are particularly useful for this purpose.
 </p>
-<ol>
-    <li>
-        A <a>sosa:System</a> (<a>sosa:Actuator</a>, <a>sosa:Sensor</a>, <a>sosa:Sampler</a>) can be attached to a
-        <a>sosa:Platform</a> as part of a <a>sosa:Deployment</a>.
-        <br><br>
-        The Deployment will usually be focussed on a specified Feature of Interest, and will be for a specified time
-        interval.
-        The System might be composed of sub-systems.
-        Actuators and Sensors will each address specified Properties of the Feature of Interest.
-    </li>
-    <li>
+
+<section id="ModelPlan-Collections">
+    <h4>Planned Collections</h4>
+    <p>
         A Collection (i.e., <a>sosa:ActuationCollection</a>, <a>sosa:ObservationCollection</a>,
         <a>sosa:SamplingCollection</a>, or <a>sosa:SampleCollection</a>) with one or more common properties, but with no
         members.
-        <br><br>
-        This can denote a 'potential' or 'future' collection, with subsequent individual Executions or Samples asserting
-        that they are <a>sosa:memberOf</a> the pre-defined collection.
-        These collection members must follow the consistency requirements, and will thus have the pre-defined values for
-        the shared properties (e.g., <a>sosa:usedProcedure</a>, <a>sosa:madeBySystem</a>,
-        <a>sosa:hasFeatureOfInterest</a>, <a>sosa:actsOnProperty</a>, <a>sosa:observedProperty</a>, etc). 
-        The empty collection thus defines a plan for future executions or samples.
-    </li>
-</ol>
-<p>
-    Concrete examples TBC - e.g., https://github.com/w3c/sdw-sosa-ssn/issues/318#issuecomment-3033791087 
-</p>
+    </p>
+    <p>
+        For example, <a href="#Fig-PlannedSampleCollection"></a> describes a potential set of samples, packaged in a
+        <a>sosa:SampleCollection</a>, of the Loire River collected from a specified <a>sosa:Platform</a>, using a given
+        <a>sosa:SamplingProcedure</a>.
+        The actual <a>sosa:Sampler</a> is not specified, only that it must implement the nominated SamplingProcedure.
+    </p>
+    <figure id="Fig-PlannedSampleCollection">
+        <embed alt="Planned sample collection" src="./images/PlannedSampleCollection.svg" style="width:90%" />
+        <figcaption>
+            A planned SampleCollection
+            <br>
+            <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
+        </figcaption>
+    </figure>
+    <pre class="example" data-include="./rdf/examples/PlannedSampleCollection.ttl" data-include-format="text"></pre>
+
+    <p>
+        Then <a href="#Fig-PlannedObservationCollection"></a> describes a potential set of observationsof <em>pH</em>,
+        packaged in a <a>sosa:ObservationCollection</a>, whose (proximate) feature of interest is a member of this
+        collection, and thus must be consistent with the requirements for membership - i.e., be sampled on the specified
+        <a>sosa:Platform</a> using the nominated <a>sosa:ObservingProcedure</a>.
+        Again, the actual System (<a>sosa:Sensor</a>) is not specified, only that it must implement the nominated
+        ObservingProcedure.
+        It is also not specified that the observations are made at any particular time or place, so might be
+        <em>ex-situ</em>.
+    </p>
+    <figure id="Fig-PlannedObservationCollection">
+        <embed alt="Planned observation collection" src="./images/PlannedObservationCollection.svg" style="width:90%" />
+        <figcaption>
+            A planned ObservationCollection
+            <br>
+            <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
+        </figcaption>
+    </figure>
+    <pre class="example" data-include="./rdf/examples/PlannedObservationCollection.ttl"
+        data-include-format="text"></pre>
+</section>
+
+
+<section id="ModelPlan-Deployments">
+    <h4>Deployments</h4>
+    <p>
+        A <a>sosa:System</a> (<a>sosa:Actuator</a>, <a>sosa:Sensor</a>, <a>sosa:Sampler</a>) can be attached to a
+        <a>sosa:Platform</a> as part of a <a>sosa:Deployment</a> during a nominated time interval.
+    </p>
+    <p>
+        For example, <a href="#Fig-SamplerDeployment"></a> describes the deployment of a <a>sosa:Sampler</a> on a
+        specified <a>sosa:Platform</a> on the Loire River between 2022 and 2028.
+        This Sampler implements a nominated <a>sosa:SamplingProcedure</a> and is associated with a potential set of
+        Samples, packaged in a <a>sosa:SampleCollection</a>.
+    </p>
+    <figure id="Fig-SamplerDeployment">
+        <embed alt="Sampler deployment" src="./images/SamplerDeployment.svg" style="width:90%" />
+        <figcaption>
+            Deployment of a Sampler
+            <br>
+            <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
+        </figcaption>
+    </figure>
+    <pre class="example" data-include="./rdf/examples/PlannedSampleCollection.ttl" data-include-format="text"></pre>
+</section>

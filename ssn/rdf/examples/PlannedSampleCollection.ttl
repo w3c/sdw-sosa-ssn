@@ -1,0 +1,21 @@
+@prefix ex: <https://example.org/data/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+
+ex:SamCappH a sosa:SampleCollection ;
+    sosa:isSampleOf ex:Loire_River ;  
+    sosa:isResultOfMadeBySampler [
+        a sosa:Sampler ;  
+        sosa:isHostedBy ex:LOIRE_A_JARGEAU_WQ_Station ; 
+        sosa:implements ex:pH_sampling-A56 ; 
+    ] ;
+.
+ex:Loire_River
+    a sosa:FeatureOfInterest ;  
+.
+ex:LOIRE_A_JARGEAU_WQ_Station 
+    a sosa:Platform ;  
+. 
+ex:pH_sampling-A56 
+    a sosa:SamplingProcedure ;
+. 
