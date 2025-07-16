@@ -26,32 +26,32 @@
         This section introduces the following classes and properties:</p>
     <div class="azlist">
         <p>
-            <a href="#SOSASample">sosa:Sample</a>,
-            <a href="#SOSAMaterialSample">sosa:MaterialSample</a>,
-            <a href="#SOSASpatialSample">sosa:SpatialSample</a>,
-            <a href="#SOSAStatisticalSample">sosa:StatisticalSample</a>,
-            <a href="#SOSASampleCollection">sosa:SampleCollection</a>,
-            <a href="#SOSASampler">sosa:Sampler</a>,
-            <a href="#SOSASampling">sosa:Sampling</a>,
-            <a href="#SOSASamplingCollection">sosa:SamplingCollection</a>,
-            <a href="#SOSASamplingProcedure">sosa:SamplingProcedure</a>,
-            <a href="#SOSAfeatureSampledBy">sosa:featureSampledBy</a>,
-            <a href="#SOSAhasOriginalSample">sosa:hasOriginalSample</a>,
-            <a href="#SOSAhasSample">sosa:hasSample</a>,
-            <a href="#SOSAhasSampledFeature">sosa:hasSampledFeature</a>,
-            <a href="#SOSAisOriginalSampleOf">sosa:isOriginalSampleOf</a>,
-            <a href="#SOSAisResultOfMadeBySampler">sosa:isResultOfMadeBySampler</a>,
-            <a href="#SOSAisResultOfUsedProcedure">sosa:isResultOfUsedProcedure</a>,
-            <a href="#SOSAisSampleOf">sosa:isSampleOf</a>,
-            <a href="#SOSAmadeBySampler">sosa:madeBySampler</a>,
-            <a href="#SOSAmadeSampling">sosa:madeSampling</a>,
-            <a href="#SOSAmadeSamplingHasResult">sosa:madeSamplingHasResult</a>,
-            <a href="#SOSAusedForExecutionHasResult">sosa:usedForExecutionHasResult</a>
+            <a>sosa:Sample</a>,
+            <a>sosa:MaterialSample</a>,
+            <a>sosa:SpatialSample</a>,
+            <a>sosa:StatisticalSample</a>,
+            <a>sosa:SampleCollection</a>,
+            <a>sosa:Sampler</a>,
+            <a>sosa:Sampling</a>,
+            <a>sosa:SamplingCollection</a>,
+            <a>sosa:SamplingProcedure</a>,
+            <a>sosa:featureSampledBy</a>,
+            <a>sosa:hasOriginalSample</a>,
+            <a>sosa:hasSample</a>,
+            <a>sosa:hasSampledFeature</a>,
+            <a>sosa:isOriginalSampleOf</a>,
+            <a>sosa:isResultOfMadeBySampler</a>,
+            <a>sosa:isResultOfUsedProcedure</a>,
+            <a>sosa:isSampleOf</a>,
+            <a>sosa:madeBySampler</a>,
+            <a>sosa:madeSampling</a>,
+            <a>sosa:madeSamplingHasResult</a>,
+            <a>sosa:usedForExecutionHasResult</a>
         </p>
     </div>
 
     <section class="specterm sosa" id="SOSASample">
-        <h5><a href="#SOSASample">sosa:Sample</a></h5>
+        <h5><dfn>sosa:Sample</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/Sample
         </p>
@@ -60,9 +60,7 @@
         </p>
         <p>
             <em>Sample</em> &mdash;
-            Feature which is intended to be representative of a
-            <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a> on which
-            <a href="#SOSAObservation">Observations</a> may be made.
+            piece or subset that is intended to be representative of a FeatureOfInterest
         </p>
         <p class="note">
             In the previous edition Sample was axiomatized as a sub-class of
@@ -95,10 +93,10 @@
                         one isSampleOf property.
                         However, in some cases the identity, and even the exact type, of the sampled feature may not
                         be known when observations are made using the sample.
-                        <br>
+                        <br><br>
                         Physical samples are sometimes known as 'specimens'.
-                        A transient sample, such as a ships-track or flight-line, might
-                        be identified and described, but is unlikely to be revisited exactly.
+                        A transient sample, such as a ships-track or flight-line, might be identified and described, but
+                        is unlikely to be revisited exactly.
                     </td>
                 </tr>
                 <tr>
@@ -109,7 +107,7 @@
                         In the context of the observation model, it connotes the 'world in the vicinity of the
                         station', so the observed properties relate to the physical medium at the station, and not
                         to any physical artifact such as a mooring, buoy, benchmark, monument, well, etc.
-                        <br>
+                        <br><br>
                         A statistical sample is often designed to be characteristic of an
                         entire population, so that <a href="#SOSAObservation">Observations</a> can be
                         made regarding the sample that provide a good estimate of the properties of the
@@ -119,31 +117,21 @@
                 <tr class="ssn">
                     <th class="restrictions">Restrictions</th>
                     <td>
-                        <a href="#SOSAisResultOf">sosa:isResultOf</a>
-                        <em><b>ONLY</b></em> <a href="#SOSASampling">sosa:Sampling</a>
+                        <a>sosa:isResultOf</a> <em><b>ONLY</b></em> <a>sosa:Sampling</a>
                         <br>
-                        <a href="#SOSAisResultOf">sosa:isResultOf</a>
-                        <em><b>MIN 1</b></em> <a href="#SOSASampling">sosa:Sampling</a>
+                        <a>sosa:isResultOf</a> <em><b>MIN 1</b></em> <a>sosa:Sampling</a>
                         <br>
-                        <a href="#SOSAisSampleOf">sosa:isSampleOf</a>
-                        <em><b>ONLY</b></em> <a href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a>
+                        <a>sosa:isSampleOf</a> <em><b>ONLY</b></em> <a>sosa:FeatureOfInterest</a>
                         <br>
-                        <a href="#SOSAisSampleOf">sosa:isSampleOf</a>
-                        <em><b>MIN 1</b></em>
+                        <a>sosa:isSampleOf</a> <em><b>MIN 1</b></em>
                         <br>
-                        <a href="#SOSAhasOriginalSample">sosa:hasOriginalSample</a>
-                        <em><b>ONLY</b></em>
-                        <a href="#SOSASample">sosa:Sample</a>
+                        <a>sosa:hasOriginalSample</a> <em><b>ONLY</b></em> <a>sosa:Sample</a>
                         <br>
-                        <a href="#SOSAhasSampledFeature">sosa:hasSampledFeature</a>
-                        <em><b>ONLY</b></em> <a href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a>
+                        <a>sosa:hasSampledFeature</a> <em><b>ONLY</b></em> <a>sosa:FeatureOfInterest</a>
                         <br>
-                        <a href="#SOSAisResultOfMadeBySampler">sosa:isResultOfMadeBySampler</a>
-                        <em><b>ONLY</b></em> <a href="#SOSASampler">sosa:Sampler</a>
+                        <a>sosa:isResultOfMadeBySampler</a> <em><b>ONLY</b></em> <a>sosa:Sampler</a>
                         <br>
-                        <a href="#SOSAisResultOfUsedProcedure">sosa:isResultOfUsedProcedure</a>
-                        <em><b>ONLY</b></em> <a href="#SOSASamplingProcedure">sosa:SamplingProcedure</a>
-                        <br>
+                        <a>sosa:isResultOfUsedProcedure</a> <em><b>ONLY</b></em> <a>sosa:SamplingProcedure</a>
                     </td>
                 </tr>
                 <tr>
@@ -159,11 +147,11 @@
             <span class="back">[<a href="#Overview">Back to top</a>]</span>
         </div>
 
-        <p>Three specializations of <a href="#SOSASample">sosa:Sample</a> are provided:</p>
+        <p>Three specializations of <a>sosa:Sample</a> are provided:</p>
         <ul>
-            <li><a href="#SOSAMaterialSample">sosa:MaterialSample</a></li>
-            <li><a href="#SOSASpatialSample">sosa:SpatialSample</a></li>
-            <li><a href="#SOSAStatisticalSample">sosa:StatisticalSample</a></li>
+            <li><a>sosa:MaterialSample</a></li>
+            <li><a>sosa:SpatialSample</a></li>
+            <li><a>sosa:StatisticalSample</a></li>
         </ul>
 
         <figure id="SampleSpecializations">
@@ -178,18 +166,19 @@
     </section>
 
     <section class="informative specterm sosa" id="SOSAMaterialSample">
-        <h5><a href="#SOSAMaterialSample">sosa:MaterialSample</a></h5>
+        <h5><dfn>sosa:MaterialSample</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/MaterialSample
         </p>
         <p>
             <strong>an OWL Class</strong>
         </p>
-        <p class="warning">MaterialSample added in the 2025 edition.
+        <p class="warning">
+            MaterialSample added in the 2025 edition.
             This term is non-normative, pending further implementation experience</p>
         <p>
             <em>Material Sample</em> &mdash;
-            A MaterialSample is a physical, tangible Sample.
+            subset of a FeatureOfInterest that is physical (i.e., tangible)
         </p>
         <table>
             <tbody>
@@ -202,22 +191,16 @@
                 <tr>
                     <th>Examples</th>
                     <td>
-                        A piece of rock,
-                        a blood sample,
-                        a water sample
+                        A piece of rock, a blood sample, a water sample
                     </td>
                 </tr>
                 <tr>
                     <th>Note</th>
                     <td>
-                        MaterialSamples that are curated and preserved are sometimes
-                        known as
-                        'specimens'.
+                        MaterialSamples that are curated and preserved are sometimes known as 'specimens'.
                         <br>
-                        MaterialSamples may be destroyed in connexion with the
-                        observation act or
-                        a
-                        subsequent preparation step.
+                        MaterialSamples may be destroyed in connexion with the observation act or a subsequent
+                        preparation step.
                     </td>
                 </tr>
                 <tr>
@@ -236,21 +219,23 @@
     </section>
 
     <section class="informative specterm sosa" id="SOSASpatialSample">
-        <h5><a href="#SOSASpatialSample">sosa:SpatialSample</a></h5>
+        <h5><dfn>sosa:SpatialSample</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/SpatialSample
         </p>
         <p>
             <strong>an OWL Class</strong>
         </p>
-        <p class="warning">SpatialSample added in the 2025 edition.
+        <p class="warning">
+            SpatialSample added in the 2025 edition.
             This term is non-normative, pending further implementation experience</p>
         <p>
             <em>Spatial Sample</em> &mdash;
-            A SpatialSample is a geospatial Sample.
-            When observations are made to estimate properties of a geospatial feature, in particular where the
-            value
-            of a property varies within the scope of the feature, a SpatialSample is used.
+            subset of a FeatureOfInterest defined by its location and shape in space
+        </p>
+        <p>
+            When observations are made to estimate properties of a geospatial feature, particularly where the value of
+            a property varies within the scope of the feature, a SpatialSample is used.
         </p>
         <table>
             <tbody>
@@ -286,9 +271,8 @@
                 <tr>
                     <th>Note</th>
                     <td>
-                        Depending on accessibility and on the nature of the expected
-                        property variation, the SpatialSample may be extensive in one, two or three spatial
-                        dimensions.
+                        Depending on accessibility and on the nature of the expected property variation, a
+                        SpatialSample may extend in one, two or three spatial dimensions.
                     </td>
                 </tr>
                 <tr>
@@ -307,19 +291,19 @@
     </section>
 
     <section class="informative specterm sosa" id="SOSAStatisticalSample">
-        <h5><a href="#SOSAStatisticalSample">sosa:StatisticalSample</a></h5>
+        <h5><dfn>sosa:StatisticalSample</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/StatisticalSample
         </p>
         <p>
             <strong>an OWL Class</strong>
         </p>
-        <p class="warning">StatisticalSample added in the 2025 edition.
+        <p class="warning">
+            StatisticalSample added in the 2025 edition.
             This term is non-normative, pending further implementation experience</p>
         <p>
             <em>Statistical Sample</em> &mdash;
-            A StatisticalSample is a statistical subset of a
-            feature-of-interest, defined for the purpose of creating Observation(s).
+            subset of a FeatureOfInterest defined by the statistical process used to create it
         </p>
         <table>
             <tbody>
@@ -338,9 +322,8 @@
                 <tr>
                     <th>Note</th>
                     <td>
-                        StatisticalSamples usually apply to populations or other sets, of
-                        which
-                        certain subset may be of specific interest.
+                        StatisticalSamples usually apply to populations or other sets, of which a certain subset may be
+                        of specific interest.
                     </td>
                 </tr>
                 <tr>
@@ -359,29 +342,28 @@
     </section>
 
     <section class="informative specterm sosa" id="SOSASampleCollection">
-        <h5><a href="#SOSASampleCollection">sosa:SampleCollection</a></h5>
+        <h5><dfn>sosa:SampleCollection</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/SampleCollection
         </p>
         <p>
             <strong>an OWL Class</strong>
         </p>
-        <p class="warning">SampleCollection added in the 2025 edition.
+        <p class="warning">
+            SampleCollection added in the 2025 edition.
             This term is non-normative, pending further implementation experience</p>
         <p>
             <em>Sample Collection</em> &mdash;
-            A <a href="#SOSASampleCollection">SampleCollection</a> is a collection
-            (set) of one or more <a href="#SOSASample">Samples</a> or
-            <a href="#SOSASampleCollection">SampleCollections</a>, i.e., collections may be nested.
+            set of one or more Samples or SampleCollections; collections may be nested
         </p>
         <p>
             The following <a href="#SOSASample">Sample</a> properties may appear in a
-            <a href="#SOSASampleCollection">SampleCollection</a> &mdash;
-            <a href="#SOSAhasOriginalSample">hasOriginalSample</a>,
-            <a href="#SOSAhasSampledFeature">hasSampledFeature</a>,
-            <a href="#SOSAisSampleOf">isSampleOf</a>,
-            <a href="#SOSAisResultOfUsedProcedure">isResultOfUsedProcedure</a>,
-            <a href="#SOSAisResultOfMadeBySampler">isResultOfMadeBySampler</a>.
+            <a>sosa:SampleCollection</a> &mdash;
+            <a>sosa:hasOriginalSample</a>,
+            <a>sosa:hasSampledFeature</a>,
+            <a>sosa:isSampleOf</a>,
+            <a>sosa:isResultOfUsedProcedure</a>,
+            <a>sosa:isResultOfMadeBySampler</a>.
             If it is present, the values of a property summarizes the values of the matching properties of the
             member samples, where membership is either direct or transitive through onw or more member sample
             collections.
@@ -398,9 +380,8 @@
             <li>
                 Where an individual <a href="#SOSASampleCollection">SampleCollection</a> has <i>a single value for a
                     property</i>, each ember <a href="#SOSASample">Sample</a> (direct or transitive) MUST have that same
-                value for that property &mdash; i.e., the collection is homogeneous in that property. That property MAY
-                be
-                omitted in any member <a href="#SOSASample">Sample</a> or
+                value for that property; i.e., the collection is homogeneous in that property. That property MAY
+                be omitted in any member <a href="#SOSASample">Sample</a> or
                 <a href="#SOSASampleCollection">SampleCollection</a>.
             </li>
             <li>
@@ -421,8 +402,7 @@
             </li>
         </ol>
         <p>
-            The members of a collection do not necessarily share a common value for any
-            property.
+            The members of a collection do not necessarily share a common value for any property.
         </p>
         <p class="note">
             Examples of Collections conforming to the rules are provided in and
@@ -433,8 +413,10 @@
             <tbody>
                 <tr>
                     <th>Note</th>
-                    <td>The members of a collection do not necessarily share a common value
-                        for any property.</td>
+                    <td>
+                        The members of a collection do not necessarily share a common value
+                        for any property.
+                    </td>
                 </tr>
                 <tr class="ssn">
                     <th>Sub class of</th>
@@ -445,18 +427,17 @@
                 <tr class="ssn">
                     <th>Disjoint with</th>
                     <td>
-                        <a href="#SOSAActuationCollection">sosa:ActuationCollection</a> ,
-                        <a href="#SOSAObservationCollection">sosa:ObservationCollection</a> ,
-                        <a href="#SOSASamplingCollection">sosa:SamplingCollection</a>
+                        <a>sosa:ActuationCollection</a> ,
+                        <a>sosa:ObservationCollection</a> ,
+                        <a>sosa:SamplingCollection</a>
                     </td>
                 </tr>
                 <tr class="ssn">
                     <th class="restrictions">Restrictions</th>
                     <td>
 
-                        <a href="#SOSAhasMember">sosa:hasMember</a>
-                        <em><b>ONLY</b></em> (<a href="#SOSASample">sosa:Sample</a>
-                        OR <a href="#SOSASampleCollection">sosa:SampleCollection</a> )
+                        <a>sosa:hasMember</a> <em><b>ONLY</b></em>
+                        (<a>sosa:Sample</a> OR <a>sosa:SampleCollection</a> )
                     </td>
                 </tr>
                 <tr>
@@ -474,7 +455,7 @@
     </section>
 
     <section class="specterm sosa" id="SOSASampler">
-        <h5><a href="#SOSASampler">sosa:Sampler</a></h5>
+        <h5><dfn>sosa:Sampler</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/Sampler
         </p>
@@ -483,10 +464,7 @@
         </p>
         <p>
             <em>Sampler</em> &mdash;
-            An entity that implements a sampling
-            <a href="#SOSAProcedure">Procedure</a> in the context of an <a href="#SOSASampling">Sampling</a>
-            to generate a <a href="#SOSASample">Sample</a>.
-            This may be a device, a piece of infrastructure, an agent (including humans), or software (simulation).
+            System that implements a SamplingProcedure to generate a Sample
         </p>
         <p class="note">
             A Sampler may have a geographic location.
@@ -496,7 +474,8 @@
             <tbody>
                 <tr>
                     <th>Examples</th>
-                    <td>A ball mill, diamond drill, hammer, hypodermic syringe and needle,
+                    <td>
+                        A ball mill, diamond drill, hammer, hypodermic syringe and needle,
                         image <a href="#SOSASensor">Sensor</a> or a soil auger can all act as
                         <a href="#SOSASampler">Samplers</a>.
                         Sometimes the distinction between the <a href="#SOSASampler">Sampler</a> and the
@@ -508,22 +487,18 @@
                 <tr class="ssn">
                     <th>Sub class of</th>
                     <td>
-                        <a href="#SOSASystem">sosa:System</a>
+                        <a>sosa:System</a>
                     </td>
                 </tr>
                 <tr class="ssn">
                     <th class="restrictions">Restrictions</th>
                     <td>
-                        <a href="#SOSAimplements">sosa:implements</a>
-                        <em><b>MIN 1</b></em>
+                        <a>sosa:implements</a> <em><b>MIN 1</b></em>
                         <br>
-                        <a href="#SOSAimplements">sosa:implements</a>
-                        <em><b>ONLY</b></em> <a href="#SOSASamplingProcedure">sosa:SamplingProcedure</a>
+                        <a>sosa:implements</a> <em><b>ONLY</b></em> <a>sosa:SamplingProcedure</a>
                         <br>
-                        <a href="#SOSAmadeSampling">sosa:madeSampling</a>
-                        <em><b>ONLY</b></em>
-                        ( <a href="#SOSASampling">sosa:Sampling</a> OR
-                        <a href="#SOSASamplingCollection">sosa:SamplingCollection</a> )
+                        <a>sosa:madeSampling</a> <em><b>ONLY</b></em>
+                        ( <a>sosa:Sampling</a> OR <a>sosa:SamplingCollection</a> )
                     </td>
                 </tr>
                 <tr>
@@ -541,7 +516,7 @@
     </section>
 
     <section class="specterm sosa" id="SOSASampling">
-        <h5><a href="#SOSASampling">sosa:Sampling</a></h5>
+        <h5><dfn>sosa:Sampling</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/Sampling
         </p>
@@ -550,13 +525,11 @@
         </p>
         <p>
             <em>Sampling</em> &mdash;
-            Act of carrying out a sampling <a href="#SOSAProcedure">Procedure</a> using
-            a <a href="#SOSASampler">Sampler</a> to create one or more <a href="#SOSASample">Samples</a> of the
-            <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a>.
+            act of carrying out a SamplingProcedure using a Sampler to create one or more Samples of a FeatureOfInterest
         </p>
         <p class="note">
-            The different time-properties on a <a href="#SOSASampling">sosa:Sampling</a> support
-            the description of plans, forecasts and predictions as well as descriptions of various historical scenarios.
+            The different time-properties on a <a>sosa:Sampling</a> support
+            the description of plans, forecasts, and predictions, as well as descriptions of various historical scenarios.
             See <a href="#ModelTimes">Temporal properties</a> for patterns related to these.
         </p>
         <table>
@@ -580,32 +553,25 @@
                 <tr class="ssn">
                     <th>Sub class of</th>
                     <td>
-                        <a href="#SOSAExecution">sosa:Execution</a>
+                        <a>sosa:Execution</a>
                     </td>
                 </tr>
                 <tr class="ssn">
                     <th class="restrictions">Restrictions</th>
                     <td>
-                        <a href="#SOSAmadeBySampler">sosa:madeBySampler</a>
-                        <em><b>EXACTLY 1</b></em>
+                        <a>sosa:madeBySampler</a> <em><b>EXACTLY 1</b></em>
                         <br>
-                        <a href="#SOSAmadeBySampler">sosa:madeBySampler</a>
-                        <em><b>ONLY</b></em> <a href="#SOSASampler">sosa:Sampler</a>
+                        <a>sosa:madeBySampler</a> <em><b>ONLY</b></em> <a>sosa:Sampler</a>
                         <br>
-                        <a href="#SOSAusedProcedure">sosa:usedProcedure</a>
-                        <em><b>ONLY</b></em> <a href="#SOSASamplingProcedure">sosa:SamplingProcedure</a>
+                        <a>sosa:usedProcedure</a> <em><b>ONLY</b></em> <a>sosa:SamplingProcedure</a>
                         <br>
-                        <a href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a>
-                        <em><b>EXACTLY 1</b></em>
+                        <a>sosa:hasFeatureOfInterest</a> <em><b>EXACTLY 1</b></em>
                         <br>
-                        <a href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a>
-                        <em><b>ONLY</b></em> <a href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a>
+                        <a>sosa:hasFeatureOfInterest</a> <em><b>ONLY</b></em> <a>sosa:FeatureOfInterest</a>
                         <br>
-                        <a href="#SOSAhasResult">sosa:hasResult</a>
-                        <em><b>EXACTLY 1</b></em> <a href="#SOSASample">sosa:Sample</a>
+                        <a>sosa:hasResult</a> <em><b>EXACTLY 1</b></em> <a>sosa:Sample</a>
                         <br>
-                        <a href="#SOSAhasResult">sosa:hasResult</a>
-                        <em><b>ONLY</b></em> <a href="#SOSASample">sosa:Sample</a>
+                        <a>sosa:hasResult</a> <em><b>ONLY</b></em> <a>sosa:Sample</a>
                     </td>
                 </tr>
                 <tr>
@@ -623,7 +589,7 @@
     </section>
 
     <section class="informative specterm sosa" id="SOSASamplingCollection">
-        <h5><a href="#SOSASamplingCollection">sosa:SamplingCollection</a></h5>
+        <h5><dfn>sosa:SamplingCollection</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/SamplingCollection
         </p>
@@ -635,22 +601,20 @@
             This term is non-normative pending further implementation experience</p>
         <p>
             <em>Sampling Collection</em> &mdash;
-            Collection (set) of one or more <a href="#SOSASampling">Samplings</a> or
-            <a href="#SOSASamplingCollection">SamplingCollections</a>, i.e., collections may be
-            nested.
+            set of one or more Samplings or SamplingCollections; collections may be nested
         </p>
         <p>
             The following <a href="#SOSASampling">Sampling</a> properties may appear in an
-            <a href="#SOSASamplingCollection">SamplingCollection</a> &mdash;
-            <a href="#SOSAhasFeatureOfInterest">hasFeatureOfInterest</a>,
-            <a href="#SOSAhasUltimateFeatureOfInterest">hasUltimateFeatureOfInterest</a>,
-            <a href="#SOSAmadeBySampler">madeBySampler</a>,
-            <a href="#SOSAusedProcedure">usedProcedure</a>,
-            <a href="#SOSAhasInputValue">hasInputValue</a>,
-            <a href="#SOSAstartTime">startTime</a>,
-            <a href="#SOSAphenomenonTime">phenomenonTime</a>,
-            <a href="#SOSAresultTime">resultTime</a>,
-            <a href="#SOSAhasResult">hasResult</a>.
+            <a>sosa:SamplingCollection</a> &mdash;
+            <a>sosa:hasFeatureOfInterest</a>,
+            <a>sosa:hasUltimateFeatureOfInterest</a>,
+            <a>sosa:madeBySampler</a>,
+            <a>sosa:usedProcedure</a>,
+            <a>sosa:hasInputValue</a>,
+            <a>sosa:startTime</a>,
+            <a>sosa:phenomenonTime</a>,
+            <a>sosa:resultTime</a>,
+            <a>sosa:hasResult</a>.
             If it is present, the value of a property summarizes the values of the matching properties of
             the member samplings, where membership is either direct or transitive through one or more member
             sampling collections.
@@ -667,9 +631,8 @@
             <li>
                 Where an individual <a href="#SOSASamplingCollection">SamplingCollection</a> has <i>a
                     single value for a property</i>, each member <a href="#SOSASampling">Sampling</a>
-                (direct or transitive) MUST have that same value for that property &mdash; i.e., the collection is
-                homogeneous
-                in that property.
+                (direct or transitive) MUST have that same value for that property; i.e., the collection is
+                homogeneous in that property.
                 That property MAY then be omitted in any member <a href="#SOSASampling">Sampling</a> or
                 <a href="#SOSASamplingCollection">SamplingCollection</a>.
             </li>
@@ -694,8 +657,7 @@
             </li>
         </ol>
         <p>
-            The members of a collection do not necessarily share a common value for any
-            property.
+            The members of a collection do not necessarily share a common value for any property.
         </p>
         <p class="note">
             Examples of Collections conforming to the rules are provided in and
@@ -708,40 +670,30 @@
                     <th>Sub class of</th>
                     <td>
                         <a href="https://www.w3.org/TR/rdf12-schema/#ch_bag">rdf:Bag</a>,
-                        <a href="#SOSAExecutionCollection">sosa:ExecutionCollection</a>
+                        <a>sosa:ExecutionCollection</a>
                     </td>
                 </tr>
                 <tr class="ssn">
                     <th>Disjoint with</th>
                     <td>
-                        <a href="#SOSAActuationCollection">sosa:ActuationCollection</a>,
-                        <a href="#SOSAObservationCollection">sosa:ObservationCollection</a>,
-                        <a href="#SOSASampleCollection">sosa:SampleCollection</a>
+                        <a>sosa:ActuationCollection</a>,
+                        <a>sosa:ObservationCollection</a>,
+                        <a>sosa:SampleCollection</a>
                     </td>
                 </tr>
                 <tr class="ssn">
                     <th class="restrictions">Restrictions</th>
                     <td>
-
-                        <a href="#SOSAmadeBySampler">sosa:madeBySampler</a>
-                        <em><b>ONLY</b></em> <a href="#SOSASampler">sosa:Sampler</a>
+                        <a>sosa:madeBySampler</a> <em><b>ONLY</b></em> <a>sosa:Sampler</a>
                         <br>
-
-                        <a href="#SOSAusedProcedure">sosa:usedProcedure</a>
-                        <em><b>ONLY</b></em> <a href="#SOSASamplingProcedure">sosa:SamplingProcedure</a>
+                        <a>sosa:usedProcedure</a> <em><b>ONLY</b></em> <a>sosa:SamplingProcedure</a>
                         <br>
-
-                        <a href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a>
-                        <em><b>ONLY</b></em> <a href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a>
+                        <a>sosa:hasFeatureOfInterest</a> <em><b>ONLY</b></em> <a>sosa:FeatureOfInterest</a>
                         <br>
-
-                        <a href="#SOSAhasResult">sosa:hasResult</a>
-                        <em><b>ONLY</b></em> <a href="#SOSASample">sosa:Sample</a>
+                        <a>sosa:hasResult</a> <em><b>ONLY</b></em> <a>sosa:Sample</a>
                         <br>
-
-                        <a href="#SOSAhasMember">sosa:hasMember</a>
-                        <em><b>ONLY</b></em> (<a href="#SOSASampling">sosa:Sampling</a> OR
-                        <a href="#SOSASamplingCollection">sosa:SamplingCollection</a> )
+                        <a>sosa:hasMember</a> <em><b>ONLY</b></em>
+                        (<a>sosa:Sampling</a> OR <a>sosa:SamplingCollection</a> )
                     </td>
                 </tr>
                 <tr>
@@ -759,7 +711,7 @@
     </section>
 
     <section class="informative specterm sosa" id="SOSASamplingProcedure">
-        <h6><a href="#SOSASamplingProcedure">sosa:SamplingProcedure</a></h6>
+        <h5><dfn>sosa:SamplingProcedure</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/SamplingProcedure
         </p>
@@ -772,9 +724,9 @@
         </p>
         <p>
             <em>Sampling Procedure</em> &mdash;
-            A workflow, protocol, plan, algorithm, or computational method specifying
-            how to
-            make a Sampling.
+            workflow, protocol, plan, algorithm, or computational method specifying how to make a Sampling
+        </p>
+        <p>
             A Sampling Procedure is re-usable, and might be applied in many Samplings.
             It explains the steps to be carried out to arrive at reproducible results.
         </p>
@@ -783,14 +735,13 @@
                 <tr class="ssn">
                     <th>Sub class of</th>
                     <td>
-                        <a href="#SOSAProcedure">sosa:Procedure</a>
+                        <a>sosa:Procedure</a>
                     </td>
                 </tr>
                 <tr class="ssn">
                     <th class="restrictions">Restriction</th>
                     <td>
-                        <a href="#SOSAimplementedBy">sosa:implementedBy</a>
-                        <em><b>ONLY</b></em> <a href="#SOSASampler">sosa:Sampler</a>
+                        <a>sosa:implementedBy</a> <em><b>ONLY</b></em> <a>sosa:Sampler</a>
 
                     </td>
                 </tr>
@@ -798,11 +749,13 @@
                     <th>Examples</th>
                     <td>
                         spatial distribution of locations where to collect a sample (e.g., river segment)
-                        <br>instrument (or mode of use thereof) required to collect a sample
-                        (e.g., fish net, electric stunner)
-                        <br>field work instructions
-                        (e.g., dig four boreholes in each cardinal direction 2 metre way from the centre of the site;
-                        collect soil material from the 15-30 cm depth and mix it in a single bag)
+                        <br>
+                        instrument (or mode of use thereof) required to collect a sample (e.g., fish net, electric
+                        stunner)
+                        <br>
+                        field work instructions (e.g., dig four boreholes in each cardinal direction 2 metre way from
+                        the centre of the site; collect soil material from the 15-30 cm depth and mix it in a single
+                        bag)
                     </td>
                 </tr>
                 <tr>
@@ -822,14 +775,6 @@
         </table>
 
         <div class="buttonpanel">
-            <span>
-                <span class="sosa" style="display: none;">[<a href="#"
-                        onclick="hide_ssn(false,this.parentElement.parentElement.parentElement.parentElement);return false;">Show
-                        additional SSN axioms</a>]</span>
-                <span class="ssn">[<a href="#"
-                        onclick="hide_ssn(true,this.parentElement.parentElement.parentElement.parentElement);return false;">Hide
-                        additional SSN axioms</a>]</span>
-            </span>
             <span class="back">[<a href="#Sampling">Back to module overview</a>]</span>
             <span class="back">[<a href="#Overview">Back to top</a>]</span>
         </div>
@@ -837,7 +782,7 @@
 
 
     <section class="informative specterm sosa" id="SOSAfeatureSampledBy">
-        <h5><a href="#SOSAfeatureSampledBy">sosa:featureSampledBy</a></h5>
+        <h5><dfn>sosa:featureSampledBy</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/featureSampledBy
         </p>
@@ -849,10 +794,8 @@
             This term is non-normative, pending further implementation experience</p>
         <p>
             <em>feature sampled by</em> &mdash;
-            Relation from an ultimate <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a> to a
-            <a href="#SOSASample">Sample</a> or
-            <a href="#SOSASampleCollection">SampleCollection</a> that is intended to be
-            representative of it &mdash; i.e., the end of a chain of hasSample relations. <br>
+            relation from an ultimate FeatureOfInterest to a Sample or SampleCollection that is intended to be
+            representative of it; i.e., the end of a chain of hasSample relations
         </p>
         <p class="note">
             Some examples of relationships between samples and features of interest within chains are
@@ -861,18 +804,20 @@
             <tbody>
                 <tr>
                     <th>Domain Includes</th>
-                    <td><a href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a>
+                    <td>
+                        <a>sosa:FeatureOfInterest</a>
                     </td>
                 </tr>
                 <tr>
                     <th>Range Includes</th>
-                    <td><a href="#SOSASample">sosa:Sample</a>, <a href="#SOSASampleCollection">sosa:SampleCollection</a>
+                    <td>
+                        <a>sosa:Sample</a>, <a>sosa:SampleCollection</a>
                     </td>
                 </tr>
                 <tr>
                     <th>Inverse property of</th>
                     <td>
-                        <a href="#SOSAhasSampledFeature">sosa:hasSampledFeature</a>
+                        <a>sosa:hasSampledFeature</a>
                     </td>
                 </tr>
                 <tr>
@@ -890,7 +835,7 @@
     </section>
 
     <section class="informative specterm sosa" id="SOSAhasOriginalSample">
-        <h5><a href="#SOSAhasOriginalSample">sosa:hasOriginalSample</a></h5>
+        <h5><dfn>sosa:hasOriginalSample</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/hasOriginalSample
         </p>
@@ -902,9 +847,8 @@
             This term is non-normative, pending further implementation experience</p>
         <p>
             <em>has original sample</em> &mdash;
-            Relation from a <a href="#SOSASample">Sample</a> or <a href="#SOSASampleCollection">SampleCollection</a> to
-            the original <a href="#SOSASample">Sample</a>
-            collected from the ultimate feature of interest.
+            relation from a Sample or SampleCollection to the initial Sample collected from the ultimate
+            FeatureOfInterest
         </p>
         <p class="note">Some examples of relationships between samples and features of interest within chains are
             illustrated in <a href="#ModelSampleChains">Sample chains</a>.</p>
@@ -912,18 +856,20 @@
             <tbody>
                 <tr>
                     <th>Domain Includes</th>
-                    <td><a href="#SOSASample">sosa:Sample</a>, <a href="#SOSASampleCollection">sosa:SampleCollection</a>
+                    <td>
+                        <a>sosa:Sample</a>, <a>sosa:SampleCollection</a>
                     </td>
                 </tr>
                 <tr>
                     <th>Range Includes</th>
-                    <td><a href="#SOSASample">sosa:Sample</a>
+                    <td>
+                        <a>sosa:Sample</a>
                     </td>
                 </tr>
                 <tr>
                     <th>Inverse property of</th>
                     <td>
-                        <a href="#SOSAisOriginalSampleOf">sosa:isOriginalSampleOf</a>
+                        <a>sosa:isOriginalSampleOf</a>
                     </td>
                 </tr>
                 <tr>
@@ -941,7 +887,7 @@
     </section>
 
     <section class="specterm sosa" id="SOSAhasSample">
-        <h5><a href="#SOSAhasSample">sosa:hasSample</a></h5>
+        <h5><dfn>sosa:hasSample</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/hasSample
         </p>
@@ -950,26 +896,26 @@
         </p>
         <p>
             <em>has sample</em> &mdash;
-            Relation between a <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a>
-            and the <a href="#SOSASample">Sample</a> or <a href="#SOSASampleCollection">SampleCollection</a> used to
-            represent it.
-            <br>
+            relation from a FeatureOfInterest to the Sample or SampleCollection used to represent it
         </p>
         <table>
             <tbody>
                 <tr>
                     <th>Domain Includes</th>
-                    <td><a href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a></td>
+                    <td>
+                        <a>sosa:FeatureOfInterest</a>
+                    </td>
                 </tr>
                 <tr>
                     <th>Range Includes</th>
-                    <td><a href="#SOSASample">sosa:Sample</a>
+                    <td>
+                        <a>sosa:Sample</a>
                     </td>
                 </tr>
                 <tr>
                     <th>Inverse property of</th>
                     <td>
-                        <a href="#SOSAisSampleOf">sosa:isSampleOf</a>
+                        <a>sosa:isSampleOf</a>
                     </td>
                 </tr>
                 <tr>
@@ -987,7 +933,7 @@
     </section>
 
     <section class="informative specterm sosa" id="SOSAhasSampledFeature">
-        <h5><a href="#SOSAhasSampledFeature">sosa:hasSampledFeature</a></h5>
+        <h5><dfn>sosa:hasSampledFeature</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/hasSampledFeature
         </p>
@@ -999,10 +945,8 @@
             This term is non-normative, pending further implementation experience</p>
         <p>
             <em>has ultimate sampled feature</em> &mdash;
-            Relation from a <a href="#SOSASample">Sample</a> or <a href="#SOSASampleCollection">SampleCollection</a> to
-            the ultimate <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a> that it is intended to be
-            representative
-            of &mdash; i.e., the end of a chain of isSampleOf relations.
+            relation from a Sample or SampleCollection to the ultimate FeatureOfInterest that it is intended to be
+            representative of; i.e., the end of a chain of isSampleOf relations
         </p>
         <p class="note">
             Some examples of relationships between samples and features of interest within chains are
@@ -1011,17 +955,20 @@
             <tbody>
                 <tr>
                     <th>Domain Includes</th>
-                    <td><a href="#SOSASample">sosa:Sample</a>, <a href="#SOSASampleCollection">sosa:SampleCollection</a>
+                    <td>
+                        <a>sosa:Sample</a>, <a>sosa:SampleCollection</a>
                     </td>
                 </tr>
                 <tr>
                     <th>Range Includes</th>
-                    <td><a href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a></td>
+                    <td>
+                        <a>sosa:FeatureOfInterest</a>
+                    </td>
                 </tr>
                 <tr>
                     <th>Inverse property of</th>
                     <td>
-                        <a href="#SOSAfeatureSampledBy">sosa:featureSampledBy</a>
+                        <a>sosa:featureSampledBy</a>
                     </td>
                 </tr>
                 <tr>
@@ -1039,7 +986,7 @@
     </section>
 
     <section class="informative specterm sosa" id="SOSAisOriginalSampleOf">
-        <h5><a href="#SOSAisOriginalSampleOf">sosa:isOriginalSampleOf</a></h5>
+        <h5><dfn>sosa:isOriginalSampleOf</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/isOriginalSampleOf
         </p>
@@ -1051,9 +998,8 @@
             This term is non-normative, pending further implementation experience</p>
         <p>
             <em>is original sample of</em> &mdash;
-            Relation from the original <a href="#SOSASample">Sample</a>
-            collected from the ultimate feature of interest to a downstream <a href="#SOSASample">Sample</a> or
-            <a href="#SOSASampleCollection">SampleCollection</a>.
+            relation from the initial Sample collected from the ultimate FeatureOfInterest to a downstream Sample or
+            SampleCollection
         </p>
         <p class="note">
             Some examples of relationships between samples and features of interest within chains are
@@ -1062,19 +1008,21 @@
             <tbody>
                 <tr>
                     <th>Domain Includes</th>
-                    <td><a href="#SOSASample">sosa:Sample</a>
+                    <td>
+                        <a>sosa:Sample</a>
                     </td>
                 </tr>
                 <tr>
                     <th>Range Includes</th>
-                    <td><a href="#SOSASample">sosa:Sample</a>,
-                        <a href="#SOSASampleCollection">sosa:SampleCollection</a>
+                    <td>
+                        <a>sosa:Sample</a>,
+                        <a>sosa:SampleCollection</a>
                     </td>
                 </tr>
                 <tr>
                     <th>Inverse property of</th>
                     <td>
-                        <a href="#SOSAhasOriginalSample">sosa:hasOriginalSample</a>
+                        <a>sosa:hasOriginalSample</a>
                     </td>
                 </tr>
                 <tr>
@@ -1092,7 +1040,7 @@
     </section>
 
     <section class="informative specterm sosa" id="SOSAisResultOfMadeBySampler">
-        <h5><a href="#SOSAisResultOfMadeBySampler">sosa:isResultOfMadeBySampler</a></h5>
+        <h5><dfn>sosa:isResultOfMadeBySampler</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/isResultOfMadeBySampler
         </p>
@@ -1105,41 +1053,38 @@
             This term is non-normative, pending further implementation experience</p>
         <p>
             <em>is a result of made by sampler</em> &mdash;
-            Relation from a <a href="#SOSASample">Sample</a> or <a href="#SOSASampleCollection">SampleCollection</a> to
-            the <a href="#SOSASampler">Sampler</a>
-            (sampling device or entity) that made it.
-            <br>
+            relation from a Sample or SampleCollection to the Sampler that made it
         </p>
         <table>
             <tbody>
                 <tr>
                     <th>Domain Includes</th>
-                    <td><a href="#SOSASample">sosa:Sample</a>,
-                        <a href="#SOSASampleCollection">sosa:SampleCollection</a>
+                    <td>
+                        <a>sosa:Sample</a>,
+                        <a>sosa:SampleCollection</a>
                     </td>
                 </tr>
                 <tr>
                     <th>Range Includes</th>
-                    <td><a href="#SOSASampler">sosa:Sampler</a></td>
+                    <td>
+                        <a>sosa:Sampler</a>
+                    </td>
                 </tr>
                 <tr>
                     <th>Inverse property of</th>
                     <td>
-                        <a href="#SOSAmadeSamplingHasResult">sosa:madeSamplingHasResult</a>
+                        <a>sosa:madeSamplingHasResult</a>
                     </td>
                 </tr>
                 <tr class="ssn">
                     <th>Sub property of Chain</th>
                     <td>
-                        <a href="#SOSAisResultOf">sosa:isResultOf</a> o
-
-                        <a href="#SOSAmadeBySampler">sosa:madeBySampler</a>
+                        <a>sosa:isResultOf</a> o <a>sosa:madeBySampler</a>
                     </td>
                 </tr>
                 <tr>
                     <th>is Defined By</th>
                     <td>
-
                         <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>
                     </td>
                 </tr>
@@ -1152,7 +1097,7 @@
     </section>
 
     <section class="informative specterm sosa" id="SOSAisResultOfUsedProcedure">
-        <h5><a href="#SOSAisResultOfUsedProcedure">sosa:isResultOfUsedProcedure</a></h5>
+        <h5><dfn>sosa:isResultOfUsedProcedure</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/isResultOfUsedProcedure
         </p>
@@ -1164,36 +1109,35 @@
             This term is non-normative, pending further implementation experience</p>
         <p>
             <em>is a result of used procedure</em> &mdash;
-            Relation from a <a href="#SOSASample">Sample</a> or
-            <a href="#SOSASampleCollection">SampleCollection</a> to the <a href="#SOSAProcedure">Procedure</a>
-            (plan) used to make it. <br>
+            relation from a Sample or SampleCollection to the Procedure (plan) used to make it
         </p>
         <table>
             <tbody>
                 <tr>
                     <th>Domain Includes</th>
-                    <td><a href="#SOSASample">sosa:Sample</a>,
-                        <a href="#SOSASampleCollection">sosa:SampleCollection</a>
+                    <td>
+                        <a>sosa:Sample</a>,
+                        <a>sosa:SampleCollection</a>
                     </td>
                 </tr>
                 <tr>
                     <th>Range Includes</th>
                     <td>
-                        <a href="#SOSAProcedure">sosa:Procedure</a>
+                        <a>sosa:Procedure</a>
                     </td>
                 </tr>
                 <tr>
                     <th>Inverse property of</th>
                     <td>
-                        <a href="#SOSAusedForExecutionHasResult">sosa:usedForExecutionHasResult</a>
+                        <a>sosa:usedForExecutionHasResult</a>
                     </td>
                 </tr>
                 <tr class="ssn">
                     <th>Sub property of Chain</th>
                     <td>
-                        <a href="#SOSAisResultOf">sosa:isResultOf</a> o
+                        <a>sosa:isResultOf</a> o
 
-                        <a href="#SOSAusedProcedure">sosa:usedProcedure</a>
+                        <a>sosa:usedProcedure</a>
                     </td>
                 </tr>
                 <tr>
@@ -1211,7 +1155,7 @@
     </section>
 
     <section class="specterm sosa" id="SOSAisSampleOf">
-        <h5><a href="#SOSAisSampleOf">sosa:isSampleOf</a></h5>
+        <h5><dfn>sosa:isSampleOf</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/isSampleOf
         </p>
@@ -1220,9 +1164,7 @@
         </p>
         <p>
             <em>is sample of</em> &mdash;
-            Relation from a <a href="#SOSASample">Sample</a> or <a href="#SOSASampleCollection">SampleCollection</a> to
-            the <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a> that it is intended to be
-            representative of. <br>
+            relation from a Sample or SampleCollection to the FeatureOfInterest that it is intended to represent
         </p>
         <p class="note">
             Some examples of relationships between samples and features of interest within chains are
@@ -1231,17 +1173,20 @@
             <tbody>
                 <tr>
                     <th>Domain Includes</th>
-                    <td><a href="#SOSASample">sosa:Sample</a>, <a href="#SOSASampleCollection">sosa:SampleCollection</a>
+                    <td>
+                        <a>sosa:Sample</a>, <a>sosa:SampleCollection</a>
                     </td>
                 </tr>
                 <tr>
                     <th>Range Includes</th>
-                    <td><a href="#SOSAFeatureOfInterest">sosa:FeatureOfInterest</a></td>
+                    <td>
+                        <a>sosa:FeatureOfInterest</a>
+                    </td>
                 </tr>
                 <tr>
                     <th>Inverse property of</th>
                     <td>
-                        <a href="#SOSAhasSample">sosa:hasSample</a>
+                        <a>sosa:hasSample</a>
                     </td>
                 </tr>
                 <tr>
@@ -1259,7 +1204,7 @@
     </section>
 
     <section class="specterm sosa" id="SOSAmadeBySampler">
-        <h5><a href="#SOSAmadeBySampler">sosa:madeBySampler</a></h5>
+        <h5><dfn>sosa:madeBySampler</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/madeBySampler
         </p>
@@ -1268,29 +1213,33 @@
         </p>
         <p>
             <em>made by sampler</em> &mdash;
-            Relation linking an act of <a href="#SOSASampling">Sampling</a> to the
-            <a href="#SOSASampler">Sampler</a> that made it.
+            relation from an act of Sampling to the Sampler that made it
         </p>
         <table>
             <tbody>
                 <tr class="ssn">
                     <th>Sub property of</th>
-                    <td><a href="#SOSAmadeBySystem">sosa:madeBySystem</a></td>
+                    <td>
+                        <a>sosa:madeBySystem</a>
+                    </td>
                 </tr>
                 <tr>
                     <th>Domain Includes</th>
-                    <td><a href="#SOSASampling">sosa:Sampling</a>,
-                        <a href="#SOSASamplingCollection">sosa:SamplingCollection</a>
+                    <td>
+                        <a>sosa:Sampling</a>,
+                        <a>sosa:SamplingCollection</a>
                     </td>
                 </tr>
                 <tr>
                     <th>Range Includes</th>
-                    <td><a href="#SOSASampler">sosa:Sampler</a></td>
+                    <td>
+                        <a>sosa:Sampler</a>
+                    </td>
                 </tr>
                 <tr>
                     <th>Inverse property of</th>
                     <td>
-                        <a href="#SOSAmadeSampling">sosa:madeSampling</a>
+                        <a>sosa:madeSampling</a>
                     </td>
                 </tr>
                 <tr>
@@ -1308,7 +1257,7 @@
     </section>
 
     <section class="specterm sosa" id="SOSAmadeSampling">
-        <h5><a href="#SOSAmadeSampling">sosa:madeSampling</a></h5>
+        <h5><dfn>sosa:madeSampling</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/madeSampling
         </p>
@@ -1317,35 +1266,33 @@
         </p>
         <p>
             <em>made sampling</em> &mdash;
-            Relation between a <a href="#SOSASampler">Sampler</a> and the
-            <a href="#SOSASampling">Sampling</a> or
-            <a href="#SOSASamplingCollection">SamplingCollection</a> it has made.
+            relation from a Sampler to the Sampling or SamplingCollection it has made
         </p>
         <table>
             <tbody>
                 <tr class="ssn">
                     <th>Sub property of</th>
                     <td>
-                        <a href="#SOSAmadeExecution">sosa:madeExecution</a>
+                        <a>sosa:madeExecution</a>
                     </td>
                 </tr>
                 <tr>
                     <th>Domain Includes</th>
                     <td>
-                        <a href="#SOSASampler">sosa:Sampler</a>
+                        <a>sosa:Sampler</a>
                     </td>
                 </tr>
                 <tr>
                     <th>Range Includes</th>
                     <td>
-                        <a href="#SOSASampling">sosa:Sampling</a>,
-                        <a href="#SOSASamplingCollection">sosa:SamplingCollection</a>
+                        <a>sosa:Sampling</a>,
+                        <a>sosa:SamplingCollection</a>
                     </td>
                 </tr>
                 <tr>
                     <th>Inverse property of</th>
                     <td>
-                        <a href="#SOSAmadeBySampler">sosa:madeBySampler</a>
+                        <a>sosa:madeBySampler</a>
                     </td>
                 </tr>
                 <tr>
@@ -1363,7 +1310,7 @@
     </section>
 
     <section class="informative specterm sosa" id="SOSAmadeSamplingHasResult">
-        <h5><a href="#SOSAmadeSamplingHasResult">sosa:madeSamplingHasResult</a></h5>
+        <h5><dfn>sosa:madeSamplingHasResult</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/madeSamplingHasResult
         </p>
@@ -1375,39 +1322,33 @@
             This term is non-normative, pending further implementation experience</p>
         <p>
             <em>made sampling has result</em> &mdash;
-            Relation from a <a href="#SOSASampler">Sampler</a>
-            (sampling device or entity) to a <a href="#SOSASample">Sample</a> or
-            <a href="#SOSASampleCollection">SampleCollection</a> made by it.
-            <br>
+            relation from a Sampler to a Sample or SampleCollection made by it
         </p>
         <table>
             <tbody>
-                <tr class="ssn">
-                    <th>Sub property of</th>
-                    <td><a href="#SOSAmadeBySystem">sosa:madeBySystem</a></td>
-                </tr>
                 <tr>
                     <th>Domain Includes</th>
-                    <td><a href="#SOSASample">sosa:Sample</a>,
-                        <a href="#SOSASampleCollection">sosa:SampleCollection</a>
+                    <td>
+                        <a>sosa:Sample</a>,
+                        <a>sosa:SampleCollection</a>
                     </td>
                 </tr>
                 <tr>
                     <th>Range Includes</th>
-                    <td><a href="#SOSASampler">sosa:Sampler</a></td>
+                    <td>
+                        <a>sosa:Sampler</a>
+                    </td>
                 </tr>
                 <tr>
                     <th>Inverse property of</th>
                     <td>
-                        <a href="#SOSAisResultOfMadeBySampler">sosa:isResultOfMadeBySampler</a>
+                        <a>sosa:isResultOfMadeBySampler</a>
                     </td>
                 </tr>
                 <tr class="ssn">
                     <th>Sub property of Chain</th>
                     <td>
-                        <a href="#SOSAmadeSampling">sosa:madeSampling</a> o
-
-                        <a href="#SOSAmadeBySampler">sosa:hasResult</a>
+                        <a>sosa:madeSampling</a> o <a>sosa:hasResult</a>
                     </td>
                 </tr>
                 <tr>
@@ -1425,7 +1366,7 @@
     </section>
 
     <section class="informative specterm sosa" id="SOSAusedForExecutionHasResult">
-        <h5><a href="#SOSAusedForExecutionHasResult">sosa:usedForExecutionHasResult</a></h5>
+        <h5><dfn>sosa:usedForExecutionHasResult</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/usedForExecutionHasResult
         </p>
@@ -1437,37 +1378,33 @@
             This term is non-normative, pending further implementation experience</p>
         <p>
             <em>used for execution has result</em> &mdash;
-            Relation from a <a href="#SOSAProcedure">Procedure</a> to a
-            <a href="#SOSASample">Sample</a> or <a href="#SOSASampleCollection">SampleCollection</a> made by
-            it. <br>
+            relation from a Procedure to a Sample or SampleCollection made by it
         </p>
         <table>
             <tbody>
                 <tr>
                     <th>Domain Includes</th>
-                    <td><a href="#SOSAProcedure">sosa:Procedure</a>
+                    <td>
+                        <a>sosa:Procedure</a>
                     </td>
                 </tr>
                 <tr>
                     <th>Range Includes</th>
                     <td>
-                        <a href="#SOSASample">sosa:Sample</a>,
-                        <a href="#SOSASampleCollection">sosa:SampleCollection</a>
+                        <a>sosa:Sample</a>,
+                        <a>sosa:SampleCollection</a>
                     </td>
                 </tr>
                 <tr>
                     <th>Inverse property of</th>
                     <td>
-                        <a href="#SOSAisResultOfUsedProcedure">sosa:isResultOfUsedProcedure</a>
+                        <a>sosa:isResultOfUsedProcedure</a>
                     </td>
                 </tr>
                 <tr class="ssn">
                     <th>Sub property of Chain</th>
                     <td>
-                        <a href="#SOSAisResultOf">sosa:usedForExecution</a>
-                        o
-
-                        <a href="#SOSAusedProcedure">sosa:hasResult</a>
+                        <a>sosa:usedForExecution</a> o <a>sosa:hasResult</a>
                     </td>
                 </tr>
                 <tr>

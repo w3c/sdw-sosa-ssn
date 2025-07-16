@@ -26,31 +26,18 @@ sosa-sam:
   owl:imports sosa-common: ;
   .
 
-sosa:MaterialSample 
-  a owl:Class ;
-  rdfs:label "Material Sample"@en ;
-  skos:definition """
-  A MaterialSample is a physical, tangible Sample.
-  """@en ;
-  skos:example "A piece of rock, a blood sample, a water sample, etc."@en ;
-  skos:note "MaterialSamples that are curated and preserved are sometimes known as 'specimens'."@en ;
-  skos:note "MaterialSamples may be destroyed in connexion with the observation act or a subsequent preparation step."@en ;
-  rdfs:isDefinedBy sosa-sam: .
-
 sosa:Sample 
   a owl:Class ;
   rdfs:label "Sample"@en ;
   skos:definition """
-  Feature which is intended to be representative of a FeatureOfInterest on which Observations may be made.
-
-  A Sample is the result from an act of Sampling.
+  piece or subset that is intended to be representative of a FeatureOfInterest
   """@en ;
   rdfs:comment "Physical samples are sometimes known as 'specimens'."@en ;
   skos:scopeNote """
   Samples are typically subsets or extracts from an entity or feature.
   Every sample is expected to (eventually) be the feature-of-interest of an Observation. 
   
-  When the feature of interest cannot be observed directly, a sample of it might be used in Observations as a proxy for it. In such a case the Sample is the proximate Feature of Interest of the Observation, while the Feature of Interest of the act of Sampling (i.e. the entity that the Sample 'isSampleOf') is the ultimate Feature of Interest of the Observation.
+  When the feature of interest cannot be observed directly, a sample of it might be used in Observations as a proxy for it. In such a case the Sample is the proximate Feature of Interest of the Observation, while the Feature of Interest of the act of Sampling (i.e., the entity that the Sample 'isSampleOf') is the ultimate Feature of Interest of the Observation.
   Samples are used in situations where observations cannot be made directly on the ultimate feature of interest, either because the entire feature cannot be observed, or because it is more convenient to use a proxy.
   Samples are thus artifacts of an observational strategy, and have no significant function outside of their role in the observation process. 
   The characteristics of the samples themselves are of little interest, except perhaps to the manager of a sampling campaign.
@@ -63,11 +50,44 @@ sosa:Sample
   skos:note "A transient sample, such as a ships-track or flight-line, might be identified and described, but is unlikely to be revisited exactly."@en ;
   rdfs:isDefinedBy sosa-sam: .
 
+sosa:MaterialSample 
+  a owl:Class ;
+  rdfs:label "Material Sample"@en ;
+  skos:definition """
+  subset of a FeatureOfInterest that is physical (i.e., tangible)
+  """@en ;
+  skos:example "A piece of rock, a blood sample, a water sample, etc."@en ;
+  skos:note "MaterialSamples that are curated and preserved are sometimes known as 'specimens'."@en ;
+  skos:note "MaterialSamples may be destroyed in connexion with the observation act or a subsequent preparation step."@en ;
+  rdfs:isDefinedBy sosa-sam: .
+
+sosa:SpatialSample 
+  a owl:Class ;
+  rdfs:label "Spatial Sample"@en ;
+  skos:definition """
+  subset of a FeatureOfInterest defined by its location and shape in space
+  
+  When observations are made to estimate properties of a geospatial feature, particularly where the value of a property varies within the scope of the feature, a SpatialSample is used.
+  """@en ;
+  skos:example "Some common names for spatial samples include: borehole, flightline, interval, lidar cloud, map horizon, microscope slide, mine level, mine, observation well, profile,  quadrat, scene, section, ship track, spot, station, swath, trajectory, traverse, etc..."@en ;
+  skos:note "Depending on accessibility and on the nature of the expected property variation, a SpatialSample may extend in one, two or three spatial dimensions."@en ;
+  rdfs:isDefinedBy sosa-sam: .
+
+sosa:StatisticalSample 
+  a owl:Class ;
+  rdfs:label "Statistical Sample"@en ;
+  skos:definition """
+  subset of a FeatureOfInterest defined by the statistical process used to create it
+  """@en ;
+  skos:example "The male or female subset of a population."@en ;
+  skos:note "StatisticalSamples usually apply to populations or other sets, of which a certain subset may be of specific interest."@en ;
+  rdfs:isDefinedBy sosa-sam: .
+
 sosa:SampleCollection 
   a owl:Class ;
   rdfs:label "Sample Collection"@en ;
   skos:definition """
-  Collection of one or more samples or sample collections, i.e. collections may be nested. 
+  set of one or more Samples or SampleCollections &mdash; collections may be nested.
 
   The following Sample properties may appear in a Sample Collection: 
   hasOriginalSample , hasSampledFeature , isSampleOf , isResultOfUsedProcedure , isResultOfMadeBySampler . 
@@ -77,7 +97,7 @@ sosa:SampleCollection
   
   1. Where an individual Sample Collection omits a property, a member Sample (direct or transitive) MAY have any value for that property.
 
-  2. Where an individual Sample Collection has a single value for a property, each member Sample (direct or transitive) MUST have that same value for the property - i.e. the collection is homogeneous in that property.  That property MAY be omitted in any member Sample or Sample Collection.
+  2. Where an individual Sample Collection has a single value for a property, each member Sample (direct or transitive) MUST have that same value for the property - i.e., the collection is homogeneous in that property.  That property MAY be omitted in any member Sample or Sample Collection.
 
   3. Where an individual Sample Collection has more than one value for a property, each member Sample (direct or transitive) MUST have a value for that property that matches one of the values for the property in the collection. 
   
@@ -94,8 +114,7 @@ sosa:Sampler
   a owl:Class ;
   rdfs:label "Sampler"@en ;
   skos:definition """
-  An entity that implements a sampling Procedure in the context of a Sampling to generate a Sample.   
-  This may be a device, a piece of infrastructure, an agent (including humans), or software (simulation).
+  System that implements a SamplingProcedure to generate a Sample
   """@en ;
   skos:example "A ball mill, diamond drill, hammer, hypodermic syringe and needle, image Sensor, or a soil auger can all act as sampling devices (i.e., be Samplers). Sometimes, however, the distinction between the Sampler and the Sensor is not evident, as they are packaged as a unit. A Sampler need not be a physical device."@en ;
   rdfs:isDefinedBy sosa-sam: .
@@ -104,7 +123,7 @@ sosa:Sampling
   a owl:Class ;
   rdfs:label "Sampling"@en ;
   skos:definition """
-  Act of carrying out a sampling Procedure using a Sampler to create one or more Samples of the FeatureOfInterest.
+  act of carrying out a SamplingProcedure using a Sampler to create one or more Samples of a FeatureOfInterest
   """@en ;
   skos:example "Crushing a rock sample in a ball mill."@en ;
   skos:example "Digging a pit through a soil sequence."@en ;
@@ -123,7 +142,7 @@ sosa:SamplingCollection
   a owl:Class ;
   rdfs:label "Sampling Collection"@en ;
   skos:definition """
-  Collection of one or more samplings or sampling collections, i.e. collections may be nested. 
+  set of one or more Samplings or SamplingCollections &mdash; collections may be nested
 
   The following Sampling properties may appear in a Sampling Collection: 
   hasFeatureOfInterest , hasUltimateFeatureOfInterest , usedProcedure , madeBySampler , startTime , resultTime , hasResult . 
@@ -132,7 +151,7 @@ sosa:SamplingCollection
   
   1. Where an individual Sampling Collection omits a property, a member Sampling (direct or transitive) MAY have any value for that property.
 
-  2. Where an individual Sampling Collection has a single value for a property, each member Sampling (direct or transitive) MUST have that same value for the property - i.e. the collection is homogeneous in that property.  That property MAY then be omitted in any member Actuation or Actuation Collection.
+  2. Where an individual Sampling Collection has a single value for a property, each member Sampling (direct or transitive) MUST have that same value for the property - i.e., the collection is homogeneous in that property.  That property MAY then be omitted in any member Actuation or Actuation Collection.
 
   3. Where an individual Sampling Collection has more than one value for a property, each member Sampling (direct or transitive) MUST have a value for that property that matches one of the values for the property in the collection. 
   
@@ -147,7 +166,8 @@ sosa:SamplingProcedure
   a owl:Class ;
   rdfs:label "Sampling Procedure"@en ;
   skos:definition """
-  A workflow, protocol, plan, algorithm, or computational method specifying how to make a Sampling. 
+  workflow, protocol, plan, algorithm, or computational method specifying how to make a Sampling
+
   A Sampling Procedure is re-usable, and might be involved in many Samplings. 
   It explains the steps to be carried out to arrive at reproducible results.
   """@en ;
@@ -158,32 +178,11 @@ field work instructions (e.g., dig four boreholes in each cardinal direction 2 m
   """@en ;
   rdfs:isDefinedBy sosa-sam: .
 
-sosa:SpatialSample 
-  a owl:Class ;
-  rdfs:label "Spatial Sample"@en ;
-  skos:definition """
-  A SpatialSample is a geospatial Sample. 
-  When observations are made to estimate properties of a geospatial feature, in particular where the value of a property varies within the scope of the feature, a SpatialSample is used.
-  """@en ;
-  skos:example "Some common names for spatial samples include: borehole, flightline, interval, lidar cloud, map horizon, microscope slide, mine level, mine, observation well, profile,  quadrat, scene, section, ship track, spot, station, swath, trajectory, traverse, etc..."@en ;
-  skos:note "Depending on accessibility and on the nature of the expected property variation, the SpatialSample may be extensive in one, two or three spatial dimensions."@en ;
-  rdfs:isDefinedBy sosa-sam: .
-
-sosa:StatisticalSample 
-  a owl:Class ;
-  rdfs:label "Statistical Sample"@en ;
-  skos:definition """
-  A StatisticalSample is a statistical subset of a feature-of-interest, defined for the purpose of creating Observation(s).
-  """@en ;
-  skos:example "The male or female subset of a population."@en ;
-  skos:note "StatisticalSamples usually apply to populations or other sets, of which certain subset may be of specific interest."@en ;
-  rdfs:isDefinedBy sosa-sam: .
-
 sosa:featureSampledBy 
   a owl:ObjectProperty ;
   rdfs:label "feature sampled by"@en ;
   skos:definition """
-  Links the ultimate feature of interest to a Sample or SampleCollection - i.e. the beginning of a chain of isSampleOf relations
+  relation from an ultimate FeatureOfInterest to a Sample or SampleCollection that is intended to be representative of it; i.e., the end of a chain of hasSample relations
   """@en ;
   schema:domainIncludes sosa:FeatureOfInterest ;
   schema:rangeIncludes sosa:Sample ;
@@ -195,7 +194,7 @@ sosa:hasOriginalSample
   a owl:ObjectProperty ;
   rdfs:label "has original sample"@en ;
   skos:definition """
-  Link to the original sample collected from the ultimate feature of interest that is related to the context Sample or SampleCollection through a chain of isSampleOf relations.
+  relation from a Sample or SampleCollection to the initial Sample collected from the ultimate FeatureOfInterest
   """@en ;
   schema:domainIncludes sosa:Sample ;
   schema:domainIncludes sosa:SampleCollection ;
@@ -207,7 +206,7 @@ sosa:hasSample
   a owl:ObjectProperty ;
   rdfs:label "has sample"@en ;
   skos:definition """
-  Relation between a FeatureOfInterest and the Sample or SampleCollection used to represent it.
+  relation from a FeatureOfInterest to the Sample or SampleCollection used to represent it
   """@en ;
   schema:domainIncludes sosa:FeatureOfInterest ;
   schema:rangeIncludes sosa:Sample ;
@@ -218,7 +217,7 @@ sosa:hasSampledFeature
   a owl:ObjectProperty ;
   rdfs:label "has sampled feature"@en ;
   skos:definition """
-  Link to the ultimate feature of interest of the context Sample or SampleCollection - i.e. the end of a chain of isSampleOf relations
+  relation from a Sample or SampleCollection to the ultimate FeatureOfInterest that it is intended to be representative of; i.e., the end of a chain of isSampleOf relations
   """@en ;
   schema:domainIncludes sosa:Sample ;
   schema:domainIncludes sosa:SampleCollection ;
@@ -230,7 +229,7 @@ sosa:isOriginalSampleOf
   a owl:ObjectProperty ;
   rdfs:label "is original sample  of"@en ;
   skos:definition """
-  Link the original sample collected from the ultimate feature of interest to a Sample or SampleCollection that it is related to through a chain of isSampleOf relations.
+  relation from the initial Sample collected from the ultimate FeatureOfInterest to a downstream Sample or SampleCollection
   """@en ;
   schema:domainIncludes sosa:Sample ;
   schema:rangeIncludes sosa:Sample ;
@@ -242,7 +241,7 @@ sosa:isResultOfMadeBySampler
   a owl:ObjectProperty ;
   rdfs:label "is a result of made by sampler"@en ;
   skos:definition """
-  Relation linking a Sample or SampleCollection to the Sampler (sampling device or entity) that made it.
+  relation from a Sample or SampleCollection to the Sampler that made it
   """@en ;
   schema:domainIncludes sosa:Sample ;
   schema:domainIncludes sosa:SampleCollection ;
@@ -254,7 +253,7 @@ sosa:isResultOfUsedProcedure
   a owl:ObjectProperty ;
   rdfs:label "is a result of used procedure"@en ;
   skos:definition """
-  Relation linking a Sample or SampleCollection to the Procedure (plan) used to make it.
+  relation from a Sample or SampleCollection to the Procedure (plan) used to make it
   """@en ;
   schema:domainIncludes sosa:Sample ;
   schema:domainIncludes sosa:SampleCollection ;
@@ -266,7 +265,7 @@ sosa:isSampleOf
   a owl:ObjectProperty ;
   rdfs:label "is sample of"@en ;
   skos:definition """
-  Relation from a Sample or SampleCollection to the FeatureOfInterest that it is intended to be representative of.
+  relation from a Sample or SampleCollection to the FeatureOfInterest that it is intended to represent
   """@en ;
   schema:domainIncludes sosa:Sample ;
   schema:domainIncludes sosa:SampleCollection ;
@@ -278,7 +277,7 @@ sosa:madeBySampler
   a owl:ObjectProperty ;
   rdfs:label "made by sampler"@en ;
   skos:definition """
-  Relation linking an act of Sampling to the Sampler (sampling device or entity) that made it.
+  relation from an act of Sampling to the Sampler that made it
   """@en ;
   schema:domainIncludes sosa:Sampling ;
   schema:domainIncludes sosa:SamplingCollection ;
@@ -290,7 +289,7 @@ sosa:madeSampling
   a owl:ObjectProperty ;
   rdfs:label "made sampling"@en ;
   skos:definition """
-  Relation between a Sampler (sampling device or entity) and the Sampling act it performed.
+  relation from a Sampler to the Sampling or SamplingCollection it has made
   """@en ;
   schema:domainIncludes sosa:Sampler ;
   schema:rangeIncludes sosa:Sampling ;
@@ -302,7 +301,7 @@ sosa:madeSamplingHasResult
   a owl:ObjectProperty ;
   rdfs:label "made sampling has result"@en ;
   skos:definition """
-  Relation linking a Sampler (sampling device or entity) to a Sample or SampleCollection made by it.
+  relation from a Sampler to a Sample or SampleCollection made by it
   """@en ;
   schema:domainIncludes sosa:Sampler ;
   schema:rangeIncludes sosa:Sample ;
@@ -314,7 +313,7 @@ sosa:usedForExecutionHasResult
   a owl:ObjectProperty ;
   rdfs:label "procedure used for execution having result"@en ;
   skos:definition """
-  Relation linking a Procedure (plan) to a Sample or SampleCollection used by it.
+  relation from a Procedure to a Sample or SampleCollection made by it
   """@en ;
   schema:domainIncludes sosa:SamplingProcedure ;
   schema:rangeIncludes sosa:Sample ;
