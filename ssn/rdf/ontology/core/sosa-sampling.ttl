@@ -90,7 +90,7 @@ sosa:SampleCollection
   set of one or more Samples or SampleCollections &mdash; collections may be nested.
 
   The following Sample properties may appear in a Sample Collection: 
-  hasOriginalSample , hasSampledFeature , isSampleOf , isResultOfUsedProcedure , isResultOfMadeBySampler . 
+  hasOriginalSample , isSampleOfUltimateFOI , isSampleOf , isResultOfUsedProcedure , isResultOfMadeBySampler . 
   If it is present, the value of a property summarizes the values of the matching properties of the member samples, where membership is either direct or transitive through onw or more member sample collections. 
 
   The following consistency rules apply with respect to the Sample properties listed above: 
@@ -178,16 +178,16 @@ field work instructions (e.g., dig four boreholes in each cardinal direction 2 m
   """@en ;
   rdfs:isDefinedBy sosa-sam: .
 
-sosa:featureSampledBy 
+sosa:featureHasUltimateSample 
   a owl:ObjectProperty ;
-  rdfs:label "feature sampled by"@en ;
+  rdfs:label "feature has ultimate sample"@en ;
   skos:definition """
   relation from an ultimate FeatureOfInterest to a Sample or SampleCollection that is intended to be representative of it; i.e., the end of a chain of hasSample relations
   """@en ;
   schema:domainIncludes sosa:FeatureOfInterest ;
   schema:rangeIncludes sosa:Sample ;
   schema:rangeIncludes sosa:SampleCollection ;
-  owl:inverseOf sosa:hasSampledFeature ;
+  owl:inverseOf sosa:isSampleOfUltimateFOI ;
   rdfs:isDefinedBy sosa-sam: .
 
 sosa:hasOriginalSample 
@@ -213,7 +213,7 @@ sosa:hasSample
   owl:inverseOf sosa:isSampleOf ;
   rdfs:isDefinedBy sosa-sam: .
 
-sosa:hasSampledFeature 
+sosa:isSampleOfUltimateFOI 
   a owl:ObjectProperty ;
   rdfs:label "has sampled feature"@en ;
   skos:definition """
@@ -222,7 +222,7 @@ sosa:hasSampledFeature
   schema:domainIncludes sosa:Sample ;
   schema:domainIncludes sosa:SampleCollection ;
   schema:rangeIncludes sosa:FeatureOfInterest ;
-  owl:inverseOf sosa:featureSampledBy ;
+  owl:inverseOf sosa:featureHasUltimateSample ;
   rdfs:isDefinedBy sosa-sam: .
 
 sosa:isOriginalSampleOf 

@@ -35,14 +35,14 @@
             <a>sosa:Sampling</a>,
             <a>sosa:SamplingCollection</a>,
             <a>sosa:SamplingProcedure</a>,
-            <a>sosa:featureSampledBy</a>,
+            <a>sosa:featureHasUltimateSample</a>,
             <a>sosa:hasOriginalSample</a>,
             <a>sosa:hasSample</a>,
-            <a>sosa:hasSampledFeature</a>,
             <a>sosa:isOriginalSampleOf</a>,
             <a>sosa:isResultOfMadeBySampler</a>,
             <a>sosa:isResultOfUsedProcedure</a>,
             <a>sosa:isSampleOf</a>,
+            <a>sosa:isSampleOfUltimateFOI</a>,
             <a>sosa:madeBySampler</a>,
             <a>sosa:madeSampling</a>,
             <a>sosa:madeSamplingHasResult</a>,
@@ -127,7 +127,7 @@
                         <br>
                         <a>sosa:hasOriginalSample</a> <em><b>ONLY</b></em> <a>sosa:Sample</a>
                         <br>
-                        <a>sosa:hasSampledFeature</a> <em><b>ONLY</b></em> <a>sosa:FeatureOfInterest</a>
+                        <a>sosa:isSampleOfUltimateFOI</a> <em><b>ONLY</b></em> <a>sosa:FeatureOfInterest</a>
                         <br>
                         <a>sosa:isResultOfMadeBySampler</a> <em><b>ONLY</b></em> <a>sosa:Sampler</a>
                         <br>
@@ -360,7 +360,7 @@
             The following <a href="#SOSASample">Sample</a> properties may appear in a
             <a>sosa:SampleCollection</a> &mdash;
             <a>sosa:hasOriginalSample</a>,
-            <a>sosa:hasSampledFeature</a>,
+            <a>sosa:isSampleOfUltimateFOI</a>,
             <a>sosa:isSampleOf</a>,
             <a>sosa:isResultOfUsedProcedure</a>,
             <a>sosa:isResultOfMadeBySampler</a>.
@@ -528,9 +528,8 @@
             act of carrying out a SamplingProcedure using a Sampler to create one or more Samples of a FeatureOfInterest
         </p>
         <p class="note">
-            The different time-properties on a <a>sosa:Sampling</a> support
-            the description of plans, forecasts, and predictions, as well as descriptions of various historical
-            scenarios.
+            The different time-properties on a <a>sosa:Sampling</a> support the description of plans, forecasts, and
+            predictions, as well as descriptions of various historical scenarios.
             See <a href="#ModelTimes">Temporal properties</a> for patterns related to these.
         </p>
         <table>
@@ -782,19 +781,19 @@
     </section>
 
 
-    <section class="informative specterm sosa" id="SOSAfeatureSampledBy">
-        <h5><dfn>sosa:featureSampledBy</dfn></h5>
+    <section class="informative specterm sosa" id="SOSAfeatureHasUltimateSample">
+        <h5><dfn>sosa:featureHasUltimateSample</dfn></h5>
         <p class="crossreference">
-            <strong>IRI:</strong> http://www.w3.org/ns/sosa/featureSampledBy
+            <strong>IRI:</strong> http://www.w3.org/ns/sosa/featureHasUltimateSample
         </p>
         <p>
             <strong>an OWL Object Property</strong>
         </p>
         <p class="warning">
-            featureSampledBy added in 2025 edition.
+            featureHasUltimateSample added in 2025 edition.
             This term is non-normative, pending further implementation experience</p>
         <p>
-            <em>feature sampled by</em> &mdash;
+            <em>feature has ultimate sample</em> &mdash;
             relation from an ultimate FeatureOfInterest to a Sample or SampleCollection that is intended to be
             representative of it; i.e., the end of a chain of hasSample relations
         </p>
@@ -818,7 +817,7 @@
                 <tr>
                     <th>Inverse property of</th>
                     <td>
-                        <a>sosa:hasSampledFeature</a>
+                        <a>sosa:isSampleOfUltimateFOI</a>
                     </td>
                 </tr>
                 <tr>
@@ -917,59 +916,6 @@
                     <th>Inverse property of</th>
                     <td>
                         <a>sosa:isSampleOf</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="buttonpanel">
-            <span class="back">[<a href="#Samplings-overview">Back to module overview</a>]</span>
-            <span class="back">[<a href="#Overview">Back to top</a>]</span>
-        </div>
-    </section>
-
-    <section class="informative specterm sosa" id="SOSAhasSampledFeature">
-        <h5><dfn>sosa:hasSampledFeature</dfn></h5>
-        <p class="crossreference">
-            <strong>IRI:</strong> http://www.w3.org/ns/sosa/hasSampledFeature
-        </p>
-        <p>
-            <strong>an OWL Object Property</strong>
-        </p>
-        <p class="warning">
-            hasSampledFeature added in 2025 edition.
-            This term is non-normative, pending further implementation experience</p>
-        <p>
-            <em>has ultimate sampled feature</em> &mdash;
-            relation from a Sample or SampleCollection to the ultimate FeatureOfInterest that it is intended to be
-            representative of; i.e., the end of a chain of isSampleOf relations
-        </p>
-        <p class="note">
-            Some examples of relationships between samples and features of interest within chains are
-            illustrated in <a href="#ModelSampleChains">Sample chains</a>.</p>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Domain Includes</th>
-                    <td>
-                        <a>sosa:Sample</a>, <a>sosa:SampleCollection</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Range Includes</th>
-                    <td>
-                        <a>sosa:FeatureOfInterest</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Inverse property of</th>
-                    <td>
-                        <a>sosa:featureSampledBy</a>
                     </td>
                 </tr>
                 <tr>
@@ -1188,6 +1134,56 @@
                     <th>Inverse property of</th>
                     <td>
                         <a>sosa:hasSample</a>
+                    </td>
+                </tr>
+                <tr>
+                    <th>is Defined By</th>
+                    <td>
+                        <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Samplings-overview">Back to module overview</a>]</span>
+            <span class="back">[<a href="#Overview">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="informative specterm sosa" id="SOSAisSampleOfUltimateFOI">
+        <h5><dfn>sosa:isSampleOfUltimateFOI</dfn></h5>
+        <p class="crossreference">
+            <strong>IRI:</strong> http://www.w3.org/ns/sosa/isSampleOfUltimateFOI
+        </p>
+        <p>
+            <strong>an OWL Object Property</strong>
+        </p>
+        <p class="warning">
+            isSampleOfUltimateFOI added in 2025 edition.
+            This term is non-normative, pending further implementation experience</p>
+        <p>
+            <em>is sample of ultimate feature of interest</em> &mdash;
+            relation from a Sample or SampleCollection to the ultimate FeatureOfInterest that it is intended to be
+            representative of; i.e., the end of a chain of isSampleOf relations
+        </p>
+        <p class="note">
+            Some examples of relationships between samples and features of interest within chains are
+            illustrated in <a href="#ModelSampleChains">Sample chains</a>.</p>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Domain Includes</th>
+                    <td><a>sosa:Sample</a>, <a>sosa:SampleCollection</a>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Range Includes</th>
+                    <td><a>sosa:FeatureOfInterest</a></td>
+                </tr>
+                <tr>
+                    <th>Inverse property of</th>
+                    <td>
+                        <a>sosa:featureHasUltimateSample</a>
                     </td>
                 </tr>
                 <tr>
