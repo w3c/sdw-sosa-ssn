@@ -44,15 +44,20 @@
 <h4>Feature-specific properties</h4>
 <p>
     Most commonly an instance of <a href="#SOSAProperty"><code>sosa:Property</code></a> is generic to many
-    features of interest (e.g., <code>ex:Temperature</code>, <code>ex:OnOffStatus</code>).
-    The catalogs listed above support this use case.
+    features of interest (e.g., <code>ex:Temperature</code>, <code>ex:Concentration</code>, or <code>ex:OnOffStatus</code>).
+    These <em>shared</em> properties are then used across executions. For instance, thousands of observations about CO<sub>2</sub> concentrations 
+    all share the same <code>ex:Concentration</code> property, thereby ensuring scalability, indexing, interoperability, reuse,
+    and a concise semantics. Similarly, one could define <code>ex:CO2Concentration</code> as a sub-property of 
+    <code>ex:Concentration</code> using a single axiom. This new property (and resulting hierarchy) can then be used to distinguish 
+    CO<sub>2</sub> concentration observations from more general concentration observations without giving up on their commonality 
+    with other types of concentration observations. This improves structure and retrieval. The catalogs listed above support this usage.
 </p>
 <p>
-    Alternatively, a property may be made specific to a single feature of interest using
+    Alternatively, an <em>individual</em> property may be made specific to an individual feature of interest using
     <a href="#SOSAisPropertyOf"><code>sosa:isPropertyOf</code></a>
     (e.g., <code>ex:SickChildATemperature</code>, <code>ex:Room34LightStatus</code>).
-    Specific properties of individual features would not usually appear in a catalogue of reusable properties,
-    but this pattern is used in some applications.
+    Such specific properties of individual features would not usually appear in a catalogue of reusable properties and can potentially 
+    lead to reduced reuse and performance (due to data size and indexing). However, this pattern has proven useful in some applications.
     In that context, a key requirement is to relate the specific property to the general case for the underlying
     quantity-kind and -dimension.
 </p>

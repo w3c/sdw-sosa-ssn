@@ -15,7 +15,7 @@
 @base <https://example.org/data/> .
 
 
-<DHT22#Procedure> a sosa:Procedure ;
+<DHT22#Procedure> a sosa:ObservingProcedure ;
   ssn:hasOutput <DHT22#output> .
 
 <DHT22#output> a ssn:Output , rdfp:GraphDescription ;
@@ -60,7 +60,7 @@
   rdfs:comment "A temperature range of -40 to 80 Celsius."@en ;
   schema:minValue -40.0 ;
   schema:maxValue 80.0 ;
-  schema:unitCode unit:DegreeCelsius .
+  schema:unitCode unit:DEG_C .
 
 <NormalHumidityCondition> a ssn-system:Condition , schema:PropertyValue ;
   rdfs:comment "A relative humidity range of 5 to 85 %."@en ;
@@ -79,23 +79,23 @@
   rdfs:comment "The accuracy of the temperature sensor is +-0.5 °C in normal temperature and humidity conditions."@en ;
   schema:minValue -0.5 ;
   schema:maxValue 0.5 ;
-  schema:unitCode unit:DegreeCelsius .
+  schema:unitCode unit:DEG_C .
 
 <DHT22/4578#TemperatureSensorSensitivity> a ssn:Property , ssn-system:Sensitivity , ssn-system:Resolution , schema:PropertyValue ;
   rdfs:comment "The sensitivity and resolution of the temperature sensor is 0.1 °C in normal temperature and humidity conditions."@en ;
   schema:value 0.1 ;
-  schema:unitCode unit:DegreeCelsius .
+  schema:unitCode unit:DEG_C .
 
 <DHT22/4578#TemperatureSensorPrecision> a ssn:Property , ssn-system:Precision , schema:PropertyValue ;
   rdfs:comment "The precision (= repeatability) of the temperature sensor is +-0.2 °C in normal temperature and humidity conditions."@en ;
   schema:minValue 0.2 ;
   schema:maxValue 0.2 ;
-  schema:unitCode unit:DegreeCelsius .
+  schema:unitCode unit:DEG_C .
 
 <DHT22/4578#TemperatureSensorFrequency> a ssn:Property , ssn-system:Frequency , schema:PropertyValue ;
   rdfs:comment "The smallest possible time between one observation and the next is 2 s on average."@en ;
   schema:value 2 ;
-  schema:unitCode unit:Second .
+  schema:unitCode unit:SEC .
 
 
 <observation/1087> rdf:type sosa:Observation ;
@@ -124,5 +124,5 @@
 <observation/1087#quality> rdf:type qudt:Quantity ;
   qudt:quantityValue [
     rdf:type qudt:QuantityValue ;
-    qudt:numericValue "98.4"^^xsd:double ;
+    qudt:value "98.4"^^xsd:double ;
     qudt:hasUnit unit:PERCENT ] .

@@ -1,9 +1,9 @@
+@prefix cdt: <http://w3id.org/lindt/custom_datatypes#> .
 @prefix ex: <https://example.org/data/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix time: <http://www.w3.org/2006/time#>.
-@prefix unit: <http://qudt.org/vocab/unit/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @base <https://example.org/data/tsoc/> .
 
@@ -35,7 +35,7 @@ ex:t1
     a time:Instant ;
     time:inXSDDateTime "2017-04-15T20:00:00+00:00"^^xsd:dateTime ;
   ] ;
-  sosa:hasSimpleResult "3.24"^^unit:M-PER-SEC ;
+  sosa:hasSimpleResult "3.24 m/s"^^cdt:ucum ;
 .
 ex:t2
   a sosa:Observation ;
@@ -43,7 +43,7 @@ ex:t2
     a time:Instant ;
     time:inXSDDateTime "2017-04-15T20:01:00+00:00"^^xsd:dateTime ;
   ] ;
-  sosa:hasSimpleResult "3.21"^^unit:M-PER-SEC ;
+  sosa:hasSimpleResult "3.21 m/s"^^cdt:ucum ;
 .
 ex:t3
   a sosa:Observation ;
@@ -51,7 +51,7 @@ ex:t3
     a time:Instant ;
     time:inXSDDateTime "2017-04-15T20:02:00+00:00"^^xsd:dateTime ;
   ] ;
-  sosa:hasSimpleResult "3.15"^^unit:M-PER-SEC ;
+  sosa:hasSimpleResult "3.15 m/s"^^cdt:ucum ;
 .
 ex:t4
   a sosa:Observation ;
@@ -59,9 +59,13 @@ ex:t4
     a time:Instant ;
     time:inXSDDateTime "2017-04-15T20:03:00+00:00"^^xsd:dateTime ;
   ] ;
-  sosa:hasSimpleResult "3.15"^^unit:M-PER-SEC ;
+  sosa:hasSimpleResult "3.15 m/s"^^cdt:ucum ;
 .
 ex:station223 a sosa:FeatureOfInterest .
 ex:p1 a sosa:Property .
 ex:fooglemeter39 a sosa:Sensor .
-unit:M-PER-SEC a rdfs:Datatype .
+
+unit:M-PER-SEC 
+  a rdfs:Datatype ;
+  rdfs:comment "pun of a QUDT Unit instance" ;
+  .

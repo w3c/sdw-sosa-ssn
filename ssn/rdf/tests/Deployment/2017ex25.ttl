@@ -17,7 +17,7 @@
 @base <https://data.grandlyon.com/> .
 
 <Organization/1> a org:Organization ;
-    owl:sameAs <http://dbpedia.org/page/Metropolis_of_Lyon> .
+    skos:exactMatch <http://dbpedia.org/page/Metropolis_of_Lyon> .
 
 <Air> a sosa:FeatureOfInterest ;
   rdfs:label "The air."@en .
@@ -39,7 +39,7 @@
   rdfs:comment "A temperature range of -20 to 70 Celsius."@en ;
   schema:minValue -20.0 ;
   schema:maxValue 70.0 ;
-  schema:unitCode unit:DegreeCelsius .
+  schema:unitCode unit:DEG_C .
 
 <IP68_Outdoor_Temperature_Sensor#systemCapability> a ssn:Property , ssn-system:SystemCapability ;
   rdfs:comment "The sensor capability in normal operating conditions."@en ;
@@ -48,18 +48,18 @@
 
 <IP68_Outdoor_Temperature_Sensor#RFSensitivity> a ssn:Property , ssn-system:Sensitivity , schema:PropertyValue ;
   schema:value -137 ;
-  schema:unitCode unit:DecibelReferredToOneMilliwatt .
+  schema:unitCode unit:DeciB-MilliW .
 
 <IP68_Outdoor_Temperature_Sensor#TemperatureAccuracy> a ssn:Property , ssn-system:Accuracy , schema:PropertyValue ;
   ssn:forProperty <Air?lat=45.75&long=4.85#temperature> ;
   schema:minValue -0.2 ;
   schema:maxValue 0.2 ;
-  schema:unitCode unit:DegreeCelsius .
+  schema:unitCode unit:DEG_C .
 
 <IP68_Outdoor_Temperature_Sensor#TemperatureResolution> a ssn:Property , ssn-system:Resolution , schema:PropertyValue ;
   ssn:forProperty <Air?lat=45.75&long=4.85#temperature> ;
   schema:value 0.0625 ;
-  schema:unitCode unit:DegreeCelsius .
+  schema:unitCode unit:DEG_C .
 
 <IP68_Outdoor_Temperature_Sensor#BatteryResolution> a ssn:Property , ssn-system:Resolution , schema:PropertyValue ;
   ssn:forProperty <Sensor/SL-T-P1#battery> ;
@@ -71,7 +71,7 @@
   sosa:isSampleOf <Air> ;
   ssn:hasProperty <Air?lat=45.75&long=4.85#temperature> .
 
-<Air?lat=45.75&long=4.85#temperature> a ssn:Property , sosa:ObservableProperty ;
+<Air?lat=45.75&long=4.85#temperature> a ssn:Property , sosa:Property ;
   ssn:isPropertyOf <Air?lat=45.75&long=4.85> .
 
 <Sensor/SL-T-P1> a gr:ProductOrService, sosa:Sensor , seas:LoRaCommunicationDevice , <IP68_Outdoor_Temperature_Sensor> ;

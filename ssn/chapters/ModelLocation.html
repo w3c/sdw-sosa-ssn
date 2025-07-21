@@ -14,10 +14,13 @@
 <p>
     In particular, GeoSPARQL [[GeoSPARQL]] provides a flexible and relatively complete platform for geospatial
     objects, that fosters interoperability between geo-datasets.
-    To do so, these entities can be declared as instances of <code>geo:Feature</code> and geometries can be assigned to
-    them via the <code>geo:hasGeometry</code> property.
-    In case of classes, e.g., specific features of interests such as rivers, these MAY be defined as subclasses
-    of <code>geo:Feature</code>.
+    The property <code>geo:hasGeometry</code> MAY be used to attach a geometry or location to any entity.
+    Note that <code>geo:hasGeometry</code> has a global domain constraint which entails that any resource carrying this
+    property SHALL be inferred to be a <code>geo:Feature</code>
+    (<a href="https://docs.ogc.org/is/22-047r1/22-047r1.html#_01414b7a-8464-4a9b-897d-46c471274ea6">GeoSPARQL 1.1,
+        clause 8.4.1</a>).
+    In case of classes, e.g., specific types of features of interest such as rivers, these MAY be explicitly defined as
+    subclasses of <code>geo:Feature</code>.
 </p>
 
 <h5>Systems, Platforms, Deployments</h5>
@@ -32,8 +35,8 @@
     described as follows:
 </p>
 <figure id="LocatedSensor">
-    <embed alt="sensor location - direct" src="./images/LocatedSensor.svg" style="width:60%" />
-    <figcaption>System location - direct description <br>
+    <embed alt="sensor location &mdash; direct" src="./images/LocatedSensor.svg" style="width:60%" />
+    <figcaption>System location &mdash; direct description <br>
         <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
     </figcaption>
 </figure>
@@ -43,8 +46,8 @@
     Alternatively, the location may be associated with a Platform, which then might also host other Systems:
 </p>
 <figure id="LocatedPlatform">
-    <embed alt="sensor location - on a platform" src="./images/LocatedPlatform.svg" style="width:75%" />
-    <figcaption>System location - on Platform
+    <embed alt="sensor location &mdash; on a platform" src="./images/LocatedPlatform.svg" style="width:75%" />
+    <figcaption>System location &mdash; on Platform
         <br>
         <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
     </figcaption>
@@ -55,8 +58,8 @@
     If this Sensor location is not permanent, then it may be characterized as a Deployment:
 </p>
 <figure id="LocatedDeployment">
-    <embed alt="sensor location - in a deployment" src="./images/LocatedDeployment.svg" style="width:75%" />
-    <figcaption>System location - in a Deployment <br>
+    <embed alt="sensor location &mdash; in a deployment" src="./images/LocatedDeployment.svg" style="width:75%" />
+    <figcaption>System location &mdash; in a Deployment <br>
         <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
     </figcaption>
 </figure>
@@ -73,24 +76,18 @@
 </p>
 <figure id="LocatedSample">
     <embed alt="Location of a Sample" src="./images/LocatedSample.svg" style="width:75%" />
-    <figcaption>Sample location - direct descriptions <br>
+    <figcaption>Sample location &mdash; direct descriptions <br>
         <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
     </figcaption>
 </figure>
 <pre class="example" data-include="./rdf/examples/LocatedSample.ttl" data-include-format="text"></pre>
-<p>
-    Note that, even though <code>EarthAtmosphere_StE</code> is not explicitly typed <code>geo:Feature</code>, the
-    property <code>geo:hasGeometry</code> has a global domain constraint which entails that any resource carrying this
-    property SHALL be inferred to be a <code>geo:Feature</code>.
-    Thus <code>EarthAtmosphere_StE</code> is <em>both</em> a <code>sosa:Sample</code> and a <code>geo:Feature</code>.
-</p>
 
 <p>
     The location could also be provided as a parameter to the act of Sampling that generated the Sample:
 </p>
 <figure id="LocatedSampling">
     <embed alt="Location of a Sampling" src="./images/LocatedSampling.svg" style="width:75%" />
-    <figcaption>Sample location - indirect descriptions <br>
+    <figcaption>Sample location &mdash; indirect descriptions <br>
         <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
     </figcaption>
 </figure>
@@ -127,6 +124,12 @@
     <a href="#SOSAObservation">Observation</a> whose <a href="#SOSAhasResult">hasResult</a> value is a geometry.
     The following example illustrates this pattern, with the result being a GeoSPARQL <code>Geometry</code> object:
 </p>
+<figure id="GeometryResult">
+    <embed alt="Geometry as the result of an observation" src="./images/GeometryResult.svg" style="width:75%" />
+    <figcaption>Geometry as the result of an observation <br>
+        <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
+    </figcaption>
+</figure>
 <pre class="example" data-include="./rdf/examples/GeometryResult.ttl" data-include-format="text"></pre>
 <p>
     The WKT representation of the result could be encoded directly as a 'simple' (literal) result:

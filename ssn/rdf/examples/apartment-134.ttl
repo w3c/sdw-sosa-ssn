@@ -7,6 +7,8 @@
 @prefix unit: <http://qudt.org/vocab/unit/> .
 @base <https://example.org/data/apt134/> .
 
+# Electricity consumption of apartment #134
+
 # The electric consumption of apartment #134 on April 15 2017 was 22.4 kWh as 
 # observed by sensor #926. The result was available 12 seconds later
 
@@ -15,17 +17,14 @@ ex:Observation_235714 rdf:type sosa:Observation ;
   sosa:madeBySensor ex:sensor_926 ; 
   sosa:hasResult [
      rdf:type qudt:QuantityValue ;
-     qudt:numericValue "22.4"^^xsd:double ;
-     qudt:hasUnit unit:Kilowatthour ] ;
+     qudt:value "22.4"^^xsd:decimal ;
+     qudt:hasUnit unit:KiloW-HR ] ;
   sosa:phenomenonTime [
-    rdf:type time:Interval ;
     time:hasBeginning [ 
-      rdf:type time:Instant ;
-      time:inXSDDateTimeStamp "2017-04-15T23:59:30+00:00"^^xsd:dateTimeStamp ] ;
+      time:inXSDDateTimeStamp "2017-04-15T23:59:30+00:00"^^xsd:dateTime ] ;
     time:hasEnd [ 
-      rdf:type time:Instant ;
-      time:inXSDDateTimeStamp "2017-04-16T00:00:00+00:00"^^xsd:dateTimeStamp ] ] ;
-  sosa:resultTime "2017-04-16T00:00:12+00:00"^^xsd:dateTimeStamp ;
+      time:inXSDDateTimeStamp "2017-04-16T00:00:00+00:00"^^xsd:dateTime ] ] ;
+  sosa:resultTime "2017-04-16T00:00:12+00:00"^^xsd:dateTime ;
 .
 # Sensor #926 observes the electric consumption of apartment #134, and we know that 
 # it made some observations
@@ -83,5 +82,5 @@ ex:actuation_188 rdf:type sosa:Actuation ;
   sosa:actsOnProperty ex:window_104_state ;
   sosa:madeByActuator ex:windowCloser_987 ; 
   sosa:hasSimpleResult true ;
-  sosa:resultTime "2017-04-18T17:24:00+02:00"^^xsd:dateTimeStamp ;
+  sosa:resultTime "2017-04-18T17:24:00+02:00"^^xsd:dateTime ;
 .  

@@ -28,17 +28,43 @@ ex:ts159i
   sosa:hasSimpleResult """2017-04-15T20:00:00+00:00,3.24
   2017-04-15T20:01:00+00:00,3.21
   2017-04-15T20:02:00+00:00,3.15
-  2017-04-15T20:03:00+00:00,3.15"""^^ex:CSV ;
-  rdfs:comment """The result of the observation is encoded as a CSV literal.  
-  In this example, the CSV has four rows each representing a member of the time-series.  
-  Each member value is composed of a timestamp, and a quantity in metres per second."""@en ;
-.
-ex:CSV a rdfs:DataType ;
-  skos:definition """An N-D vector, each row representing a 
-  member composed of N comma-separated values."""@en ;
-  rdfs:comment """This datatype is an informative example only, 
-  and is not part of the SSN Ontology."""@en ;
+  2017-04-15T20:03:00+00:00,3.15"""^^ex:SpeedObservationCSVRecord ;
+  rdfs:comment """The result of this observation is encoded as a CSV literal.  
+  The CSV has four rows each representing a member of the time-series.  
+  The CSV structure is defined in the datatype definition."""@en ;
 .
 ex:station223 a sosa:FeatureOfInterest .
 ex:p1 a sosa:Property .
 ex:fooglemeter39 a sosa:Sensor .
+
+ex:SpeedObservationCSVRecord a rdfs:Datatype ;
+  rdfs:comment """Datatype definition for CSV-encoded data records conforming to the speed observation data model.
+  The speed observation data model is defined using the OGC SWE Data Model given as the object of ex:asSWEDataModel.
+  The formal definition of this datatype (a lexical space, value space, lexical-to-value mapping) is left unspecified in this example.""" ;
+  ex:asSWEDataModel """{
+  "type": "DataRecord",
+  "label": "Speed Observation",
+  "fields": [
+      {
+          "name": "time",
+          "type": "Time",
+          "definition": "http://www.opengis.net/def/property/OGC/0/SamplingTime",
+          "referenceFrame": "http://www.opengis.net/def/trs/BIPM/0/UTC",
+          "label": "Sampling Time",
+          "uom": {
+              "href": "http://www.opengis.net/def/uom/ISO-8601/0/Gregorian"
+          }
+      },
+      {
+          "name": "speed",
+          "type": "Quantity",
+          "definition": "http://qudt.org/vocab/quantitykind/Speed",
+          "label": "Vehicle Speed",
+          "uom": {
+              "code": "m/s",
+              "href": "https://qudt.org/vocab/unit/M-PER-SEC"
+          }
+      }
+  ]
+}"""^^rdf:JSON ;
+.

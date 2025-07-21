@@ -1,0 +1,88 @@
+<h3>Collections and their members' property values</h3>
+
+<p>
+    Properties of the members of <a href="#Collections">Collections</a> must follow the consistency
+    rules given in their definitions &mdash; see <a href="#SOSAExecutionCollection">ExecutionCollection</a>,
+    <a href="#SOSAActuationCollection">ActuationCollection</a>,
+    <a href="#SOSAObservationCollection">ObservationCollection</a>,
+    <a href="#SOSASampleCollection">SampleCollection</a>, and <a href="#SOSASamplingCollection">SamplingCollection</a>.
+    The following examples illustrate each case from the rules, in the context of an
+    <a href="#SOSAObservationCollection">ObservationCollection</a>.
+    The patterns shown also apply to the other collection types.
+</p>
+
+<h4>Rule 1 &mdash; absent property on the collection</h4>
+
+<blockquote>
+    Where an individual Collection <i>omits a property</i>, a member (direct or transitive) MAY have any
+    value for that property.
+</blockquote>
+
+<p>
+    The properties <code>sosa:hasFeatureOfInterest</code>, <code>sosa:phenomenonTime</code>,
+    <code>sosa:hasSimpleResult</code> are not specified on the collection, but are provided individually on each member.
+</p>
+
+<pre class="example" data-include="./rdf/tests/ObservationCollection/OCrule1.ttl" data-include-format="text"></pre>
+
+<h4>Rule 2 &mdash; single property value on the collection</h4>
+
+<blockquote>
+    Where an individual Collection has <i>a single value for a property</i>, each member (direct or
+    transitive) MUST have that same value for that property i.e., the collection (set) is homogeneous in
+    that property.
+    That property MAY then be omitted in any member.
+</blockquote>
+
+<p>
+    The properties <code>sosa:observedProperty</code>, <code>sosa:madeBySensor</code>, <code>qudt:hasUnit</code> are
+    specified on the collection with single values, which apply to every member.
+    A member that also specifies <code>sosa:observedProperty</code> individually has the same value as the collection.
+</p>
+
+<pre class="example" data-include="./rdf/tests/ObservationCollection/OCrule2.ttl" data-include-format="text"></pre>
+
+<h4>Rule 3 &mdash; multiple property values on the collection</h4>
+
+<blockquote>
+    Where an individual Collection has <i>more than one value for a property</i>, each member (direct or
+    transitive) MUST have a value for that property that matches one of the values for the property in the
+    collection.
+</blockquote>
+
+<p>
+    The collection specifies a multiple values for <code>sosa:hasFeatureOfInterest</code>.
+    Each member has a value for <code>sosa:hasFeatureOfInterest</code> taken from this set of values.
+</p>
+
+<pre class="example" data-include="./rdf/tests/ObservationCollection/OCrule3.ttl" data-include-format="text"></pre>
+
+<h4>Rule 4 &mdash; range property value on the collection</h4>
+
+<blockquote>
+    Where an individual Collection <i>has a value for a property that is a range or interval</i>, each
+    member (direct or transitive) MUST have a value for that property that matches or falls within that
+    range or interval.
+</blockquote>
+
+<p>
+    The collection specifies a range of values for <code>sosa:phenomenonTime</code>.
+    Each member has a value for <code>sosa:phenomenonTime</code> that falls within the range.
+</p>
+
+<pre class="example" data-include="./rdf/tests/ObservationCollection/OCrule4.ttl" data-include-format="text"></pre>
+
+<h4>Rule 5 &mdash; multiple ranges property value on the collection</h4>
+
+<blockquote>
+    Where an individual Collection <i>has more than one value for a property that is a range or
+        interval</i>, each member (direct or transitive) MUST have a value for that property that matches or
+    falls within one of those ranges or intervals.
+</blockquote>
+
+<p>
+    The collection has two ranges of values for <code>sosa:phenomenonTime</code>.
+    Each member has a value for <code>sosa:phenomenonTime</code> that falls within one of the ranges.
+</p>
+
+<pre class="example" data-include="./rdf/tests/ObservationCollection/OCrule5.ttl" data-include-format="text"></pre>

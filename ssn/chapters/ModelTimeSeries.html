@@ -4,13 +4,16 @@
     There are a number of ways these may be modeled using the SSN Ontology.
 </p>
 <p>
-    The most explicit representation has each member of the series as an individual member of a <a href="#Collections">Collection</a>.
-    For example <a href="#timeseries-oc"></a> shows an <a href="#SOSAObservationCollection">Collection of Observations</a> that has a member for each time-step in the series.
+    The most explicit representation has each member of the series as an individual member of a <a
+        href="#Collections">Collection</a>.
+    For example <a href="#timeseries-oc"></a> shows a <a href="#SOSAObservationCollection">Collection of
+        Observations</a> that has a member for each time-step in the series.
 </p>
 <figure id="timeseries-oc">
     <embed alt="Explicit time-series" src="./images/timeseries-oc.svg" style="width:100%" />
     <figcaption>
-        Collection of observations of the same property on the same feature of interest, with each member representing a step in the time-series.
+        Collection of observations of the same property on the same feature of interest, with each member representing a
+        step in the time-series.
         <br>
         <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
     </figcaption>
@@ -18,9 +21,23 @@
 <pre class="example" data-include="./rdf/examples/timeseries-oc.ttl" data-include-format="text"></pre>
 
 <p>
-    Alternatively, the series may be represented as a single <a href="#SOSAObservation">Observation</a> with a <a href="#SOSAhasResult">hasResult</a> that is a complex value, such as a vector or array.
-    This may be indicated 'inline' as a complex literal, or be 'linked' to an external resource, as in the following two examples.
+    Alternatively, the series may be represented as a single <a href="#SOSAObservation">Observation</a> whose result is
+    a complex value, such as a vector or array.
+    This may be indicated 'inline' as a complex literal, e.g. CSV:
 </p>
 <pre class="example" data-include="./rdf/examples/timeseries-result-inline.ttl" data-include-format="text"></pre>
-<br>
+<p>
+    In this example, an OGC SWE Common <code>DataRecord</code> ([[SWE-Common]], [[SWE-Common-JSON]]) is used to
+    define an RDF Datatype that encodes data records encoded in CSV. 
+</p>
+
+<p>
+    The result of a time series observation can also be 'linked' to an external resource:
+</p>
 <pre class="example" data-include="./rdf/examples/timeseries-result-link.ttl" data-include-format="text"></pre>
+
+<p>
+    In addition to the encodings shown above, terms from SOSA can be directly integrated into existing structures, e.g.
+    OGC Coverages [[CoverageJSON]].
+    In such cases, it is no longer necessary to provide a paired Observation.
+</p>

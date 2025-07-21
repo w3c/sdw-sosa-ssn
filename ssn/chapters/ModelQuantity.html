@@ -1,35 +1,41 @@
 <h3>Quantity Values and Units of Measure</h3>
 <p>
-    The result of an <a href="#SOSAObservation"><code>sosa:Observation</code></a> or an <a href="#SOSAActuation"><code>sosa:Actuation</code></a> can be a quantity value with a numeric value and a unit
+    The result of an <a href="#SOSAObservation"><code>sosa:Observation</code></a> or an
+    <a href="#SOSAActuation"><code>sosa:Actuation</code></a> can be a quantity value with a numeric value and a unit
     of measure.
 </p>
 <p>
     It is out of the scope of this specification to recommend a particular way of representing quantitative results.
-    Several external vocabularies are available for expressing quantities as OWL individuals, or as datatypes.
-    Examples include
-    the Quantities, Units, Dimensions and Data Types Ontologies (QUDT, [[QUDT]])
-    , and the St Etienne School of Mines <i>Custom Datatypes</i> (CDT, [[CDT]]).
+    Several options from external vocabularies are available for expressing quantities as OWL individuals, or as
+    datatypes.
+    Examples include:
+    <code>qudt:QuantityValue</code> from the <i>Quantities, Units, Dimensions, and Data Types</i> ontologies [[QUDT]];
+    <code>cdt:ucum</code> from <i>Custom Datatypes</i> [[CDT]].
 </p>
+
+<h4>Single values</h4>
 <p>
-    With QUDT, a quantitative result can be a <a href="http://qudt.org/"><code>qudt:QuantityValue</code></a>.
-    In the following example, its unit of measure <a href="http://qudt.org/vocab/unit/DEG_C">unit:DEG_C</a> is an
-    individual from the QUDT catalogue of units of measure.
+    The following examples show alternative encodings of a single observation with a scalar result, as shown in <a
+        href="#UOM-general"></a>.
 </p>
 <figure id="UOM-general">
-    <embed alt="A simple Observation with a scaled number (Quantity) as its result" src="./images/UOM-general.svg" style="width:80%" />
+    <embed alt="A simple Observation with a scaled number (Quantity) as its result" src="./images/UOM-general.svg"
+        style="width:80%" />
     <figcaption>
         A simple Observation with a scaled number (Quantity) as its result.
         <br>
         <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
     </figcaption>
 </figure>
-<pre class="example" data-include="./rdf/examples/UOM-qudt-object.ttl" data-include-format="text"></pre>
+
 <p>
-    Alternatively, an IRI from the <a href="">QUDT catalogue of units of measure</a> might be used as the
-    <em>type designator</em> of a <a href="#SOSAhasSimpleResult"><code>sosa:hasSimpleResult</code></a>.
-    For this usage the resource <code>unit:DEG_C</code> is an <code>rdfs:Datatype</code>.
+    With QUDT, a quantitative result can be represented as a <a
+        href="http://qudt.org/"><code>qudt:QuantityValue</code></a>.
+    In the following example <a href="http://qudt.org/vocab/unit/DEG_C">unit:DEG_C</a> is an
+    individual from the QUDT catalogue of units of measurement.
 </p>
-<pre class="example" data-include="./rdf/examples/UOM-qudt-datatype.ttl" data-include-format="text"></pre>
+<pre class="example" data-include="./rdf/examples/UOM-qudt-object.ttl" data-include-format="text"></pre>
+
 <p>
     With CDT, the value of <a href="#SOSAhasSimpleResult"><code>sosa:hasSimpleResult</code></a> is a literal structured
     as space-separated quantiy-value using the UCUM code for the unit of measurement [[UCUM]].
@@ -38,7 +44,33 @@
 </p>
 <pre class="example" data-include="./rdf/examples/UOM-cdt.ttl" data-include-format="text"></pre>
 
-<p class="note">
-    Custom datatypes are not strictly compatible with OWL, which restricts the set of datatypes that can be used.
-    See sec. 5.2 in [[owl2-syntax]] for more details.
+<!-- 
+<p>
+    Alternatively, the <em>type designator</em> can indicate the unit of measurement.
+    The advantage of this approach is that the numeric value is available directly in the data, without the need to
+    split the string representation.
+    The datatype can be linked to the definition of the unit of measurement, using an IRI from the
+    <a href="https://www.qudt.org/doc/2025/01/DOC_VOCAB-UNITS.html">catalogue of units of measurement</a> from [[QUDT]].
 </p>
+<pre class="example" data-include="./rdf/examples/UOM-qudt-datatype.ttl" data-include-format="text"></pre>
+-->
+
+<h4>Collections</h4>
+<p>
+    In a collection of observations or actuations the members will often use a common unit of measurement.
+    This can be specified at the level of the collection using <a
+        href="http://qudt.org/schema/qudt/hasUnit"><code>qudt:hasUnit</code></a>.
+</p>
+
+<p>
+    If <code>qudt:hasUnit</code> is present on a collection, then the consistency rules described for
+    <a href="#SOSAActuationCollection">Actuation properties</a> or
+    <a href="#SOSAObservationCollection">Observation properties</a> apply.
+</p>
+
+<p>
+    In the following example, the unit of measurement <a href="http://qudt.org/vocab/unit/DEG_C">unit:DEG_C</a> is
+    provided for all members of collection of observations.
+</p>
+
+<pre class="example" data-include="./rdf/examples/UOM-qudt-collection.ttl" data-include-format="text"></pre>

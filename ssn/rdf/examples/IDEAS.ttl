@@ -1,5 +1,6 @@
 @prefix ex: <https://example.org/data/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix qk: <http://qudt.org/vocab/quantitykind/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sosa: <http://www.w3.org/ns/sosa#> .
@@ -7,16 +8,14 @@
 @prefix cdt: <http://w3id.org/lindt/custom_datatypes#>.
 @base <https://example.org/data/IDEA/> .
 
-ex:IDEA a owl:Ontology ;
-   owl:imports <http://www.w3.org/ns/sosa> ;
-.
+# Temperature and Humidity at Coal Oil Point Reserve
+
  ex:COPR a sosa:FeatureOfInterest ;
    sosa:hasSample ex:COPR_SL ;
    rdfs:comment "Coal Oil Point Reserve: UC Santa Barbara Natural Reserve System"@en ;
    rdfs:label "Coal Oil Point Reserve"@en ;
 .
 ex:COPR_SL a sosa:Sample ;
-   rdfs:comment "."@en ;
    rdfs:label "Air around COPR Station"@en ;
    sosa:isSampleOf ex:COPR ;
 .
@@ -33,22 +32,24 @@ ex:COPR-HMP45C-L a sosa:Platform ;
 .
 ex:HUMICAP-H a sosa:Sensor ;
    rdfs:label "Vaisala HUMICAP H-chip"@en ;
+   sosa:observes ex:RelativeHumidity ;
    sosa:isHostedBy ex:COPR-HMP45C-L ;
 .
 ex:RelativeHumidity a sosa:Property ;
    rdfs:comment "Humidity is a measure of the moisture content of air."@en ;
    rdfs:label "Relative Humidity"@en ;
+   skos:exactMatch qk:RelativeHumidity ;
 .
-ex:MeasuringRelativeHumidity a sosa:Procedure ;
+ex:MeasuringRelativeHumidity a sosa:ObservingProcedure ;
    rdfs:comment "Instructions for measuring relative humidity"@en ;
+   rdfs:comment "Relative humidity as averaged over 15min."@en ;
 .
 ex:RH_avg_1_COPR_15min_201706020300PM a sosa:Observation ;
-   rdfs:comment "Relative humidity as averaged over 15min at COPR."@en ;
    rdfs:label "Relative humidity, AVG, 15min, COPR, 06.02.2017, 3:00 PM"@en ;
    sosa:madeBySensor ex:HUMICAP-H ;
    sosa:hasFeatureOfInterest ex:COPR_SL ;
    sosa:hasSimpleResult "92.5 %"^^cdt:ucum ;
-   sosa:resultTime "2017-06-02T03:00:00-07:00"^^xsd:dateTime ;
+   sosa:resultTime "2017-06-02T15:00:00-07:00"^^xsd:dateTime ;
    sosa:observedProperty ex:RelativeHumidity ;
    sosa:usedProcedure ex:MeasuringRelativeHumidity ;
 .

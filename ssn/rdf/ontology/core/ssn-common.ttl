@@ -160,6 +160,9 @@ sosa:inputValueForExecution
 sosa:isResultOf 
   rdfs:isDefinedBy sosa-common: .
 
+sosa:madeBySystem 
+  rdfs:isDefinedBy sosa-common: .
+
 sosa:phenomenonOccurred 
   rdfs:isDefinedBy sosa-common: .
 
@@ -200,8 +203,18 @@ sosa:System
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:forProperty ; owl:allValuesFrom sosa:Property ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasSubSystem ; owl:allValuesFrom sosa:System ]  ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isSubSystemOf ; owl:allValuesFrom sosa:System ]  ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeExecution ; owl:allValuesFrom sosa:Execution ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasDeployment ; owl:allValuesFrom sosa:Deployment ]  ;
+  rdfs:subClassOf [ 
+    a owl:Restriction ; 
+    owl:onProperty sosa:madeExecution ; 
+    owl:allValuesFrom [
+      a owl:Class ;
+      owl:unionOf (
+        sosa:Execution
+        sosa:ExecutionCollection
+      ) ;
+    ] 
+  ] ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:deployedAsset 

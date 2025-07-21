@@ -1,3 +1,4 @@
+@prefix cdt: <http://w3id.org/lindt/custom_datatypes#> .
 @prefix ex: <https://example.org/data/> .
 @prefix gs1:      <https://ref.gs1.org/voc/> .
 @prefix qk: <http://qudt.org/vocab/quantitykind/> .
@@ -8,7 +9,6 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix system: <http://www.w3.org/ns/ssn/systems/> .
-@prefix unit: <http://qudt.org/vocab/unit/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 ex:IBS-TH2 rdfs:subClassOf sosa:Sensor ;
@@ -23,12 +23,12 @@ ex:IBS-TH2 rdfs:subClassOf sosa:Sensor ;
         sosa:observes qk:Temperature ;
         system:hasSystemProperty [
             a system:MeasurementRange ;
-            xsd:maxInclusive "60"^^unit:DEG_C ;
-            xsd:minInclusive "-40"^^unit:DEG_C ;
+            xsd:maxInclusive "60 Cel"^^cdt:ucum ;
+            xsd:minInclusive "-40 Cel"^^cdt:ucum ;
         ] ;
         system:hasSystemProperty [
             a system:Accuracy ;
-            qudt:value "0.5"^^unit:DEG_C ;
+            qudt:value "0.5 Cel"^^cdt:ucum ;
         ] ;
 
     ] ;
@@ -37,12 +37,12 @@ ex:IBS-TH2 rdfs:subClassOf sosa:Sensor ;
         sosa:observes qk:RelativeHumidity ;
         system:hasSystemProperty [
             a system:MeasurementRange ;
-            xsd:maxInclusive "100"^^unit:PERCENT ;
-            xsd:minInclusive "0"^^unit:PERCENT ;
+            xsd:maxInclusive "100 %"^^cdt:ucum ;
+            xsd:minInclusive "0 %"^^cdt:ucum ;
         ] ;
         system:hasSystemProperty [
             a system:Resolution ;
-            qudt:value "2"^^unit:PERCENT ;
+            qudt:value "2 %"^^cdt:ucum ;
         ] ;
 
     ] ;
@@ -73,4 +73,12 @@ qudt:QuantityKind
 .
 ex:serialNumber a rdfs:Datatype ;
     rdfs:subClassOf xsd:string ;
+.
+unit:DEG_C
+  a rdfs:Datatype ;
+  rdfs:comment "pun of a QUDT Unit instance" ;
+.
+unit:PERCENT
+  a rdfs:Datatype ;
+  rdfs:comment "pun of a QUDT Unit instance" ;
 .

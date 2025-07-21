@@ -1,14 +1,15 @@
 <h3>Sample Relations Module</h3>
 <p>
-    Samples are often related to other samples, by sub-sampling,
-    topological relationships (stations along a traverse, pixels within an
-    image, probe spots on a polished section, specimens retrieved within a
-    borehole) or as parts of sample processing chains (crushing,
-    splitting, dissecting, disolving). There are an essentially unlimited
-    set of relationships between samples, so the nature of the
-    relationship has its own class. This section describes a flexible
-    model to describe such relationships between samples. The model is
-    based on the <a href="http://patterns.dataincubator.org/book/qualified-relation.html">QualifiedRelation
+    Samples are often related to other samples by sub-sampling, topological relationships
+    (e.g., stations along a traverse, pixels within an image, probe spots on a polished section, or
+    specimens retrieved within a borehole),
+    or as parts of sample processing chains
+    (e.g., crushing, splitting, dissecting, or dissolving).
+    There is an essentially unlimited set of relationships between samples,
+    so the nature of the relationship has its own class.
+    This section describes a flexible model to describe such relationships between samples.
+    The model is based on the
+    <a href="http://patterns.dataincubator.org/book/qualified-relation.html">QualifiedRelation
         pattern</a>.
 </p>
 <p>
@@ -19,14 +20,16 @@
     terms is <span class="repeated" style="font-family: courier;">http://www.w3.org/ns/sosa/sampling/</span>
 </p>
 <p>
-    The suggested prefix for the sample relationships namespace is <span class="repeated" style="font-family: courier;">sosa-rel</span>
+    The suggested prefix for the sample relationships namespace is <span class="repeated"
+        style="font-family: courier;">sosa-rel</span>
 </p>
 <p>
     An <a href="http://w3c.github.io/sdw-sosa-ssn/ssn/rdf/ontology/extensions/sample-relations.ttl">ontology
         graph for this is available</a>.
 </p>
 <p style="text-align: center;">
-    The Sample-Relations graph is available at <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>.
+    The Sample-Relations graph is available at
+    <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>.
 </p>
 <p>
     The following figure provides an overview on the classes
@@ -50,15 +53,15 @@
     </p>
     <div class="azlist">
         <p>
-            <a href="#SAMRRelationshipNature">sosa-rel:RelationshipNature</a>
-            , <a href="#SAMRhasSampleRelationship">sosa-rel:hasSampleRelationship</a>
-            , <a href="#SAMRnatureOfRelationship">sosa-rel:natureOfRelationship</a>
-            , <a href="#SAMRrelatedSample">sosa-rel:relatedSample</a>
+            <a>sosa-rel:RelationshipNature</a>,
+            <a>sosa-rel:hasSampleRelationship</a>,
+            <a>sosa-rel:natureOfRelationship</a>,
+            <a>sosa-rel:relatedSample</a>
         </p>
     </div>
 
     <section class="specterm" id="SAMRRelationshipNature">
-        <h5><a href="#SAMRRelationshipNature">sosa-rel:RelationshipNature</a></h5>
+        <h5><dfn>sosa-rel:RelationshipNature</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/sampling/RelationshipNature
         </p>
@@ -66,16 +69,15 @@
             <strong>an OWL Class</strong>
         </p>
         <p>
-            <em>Nature of relationship (between samples)</em> -
-            Members of this class indicate the nature of a relationship
-            between two <a href="#SOSASample"><code>Samples.</code></a>
+            <em>Nature of relationship</em> &mdash;
+            the nature of a relationship between two Samples
         </p>
         <table>
             <tbody>
                 <tr>
                     <th>Sub class of</th>
                     <td>
-                        skos:Concept
+                        <a href="https://www.w3.org/2009/08/skos-reference/skos.html#Concept">skos:Concept</a>
                     </td>
                 </tr>
                 <tr>
@@ -85,8 +87,6 @@
                         Females
                         <br>
                         Juveniles
-                        <br>
-                        Males
                         <br>
                         Pixel within image or scene
                         <br>
@@ -112,11 +112,12 @@
         </table>
         <div class="buttonpanel">
             <span class="back">[<a href="#Sample-Relations">Back to module overview</a>]</span>
+            <span class="back">[<a href="#Overview">Back to top</a>]</span>
         </div>
     </section>
 
     <section class="specterm" id="SAMRSampleRelationship">
-        <h5><a href="#SAMRSampleRelationship">sosa-rel:SampleRelationship</a></h5>
+        <h5><dfn>sosa-rel:SampleRelationship</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/sampling/SampleRelationship
         </p>
@@ -124,8 +125,8 @@
             <strong>an OWL Class</strong>
         </p>
         <p>
-            <em>Sample relationship</em> -
-            Members of this class represent a relationship between a <a href="#SOSASample">Sample</a> and another.
+            <em>Sample relationship</em> &mdash;
+            relationship from one Sample to another Sample
         </p>
         <table>
             <tbody>
@@ -139,12 +140,13 @@
         </table>
         <div class="buttonpanel">
             <span class="back">[<a href="#Sample-Relations">Back to module overview</a>]</span>
+            <span class="back">[<a href="#Overview">Back to top</a>]</span>
         </div>
     </section>
 
 
     <section class="specterm" id="SAMRhasSampleRelationship">
-        <h5><a href="#SAMRhasSampleRelationship">sosa-rel:hasSampleRelationship</a></h5>
+        <h5><dfn>sosa-rel:hasSampleRelationship</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/sampling/hasSampleRelationship
         </p>
@@ -152,19 +154,23 @@
             <strong>an OWL Object Property</strong>
         </p>
         <p>
-            <em>has sample relationship</em> -
-            Links a sample to a <a href="#SAMRSampleRelationship"><code>Sample Relationship</code></a> (which links to a related <a href="#SOSASample">Sample</a>).
+            <em>has sample relationship</em> &mdash;
+            links a Sample to a SampleRelationship
         </p>
 
         <table>
             <tbody>
                 <tr>
                     <th>Domain Includes</th>
-                    <td><a href="#SOSASample">sosa:Sample</a></td>
+                    <td>
+                        <a>sosa:Sample</a>
+                    </td>
                 </tr>
                 <tr>
                     <th>Range Includes</th>
-                    <td><a href="#SAMRSampleRelationship">sosa-rel:SampleRelationship</a></td>
+                    <td>
+                        <a>sosa-rel:SampleRelationship</a>
+                    </td>
                 </tr>
                 <tr>
                     <th>is Defined By</th>
@@ -176,11 +182,12 @@
         </table>
         <div class="buttonpanel">
             <span class="back">[<a href="#Sample-Relations">Back to module overview</a>]</span>
+            <span class="back">[<a href="#Overview">Back to top</a>]</span>
         </div>
     </section>
 
     <section class="specterm" id="SAMRnatureOfRelationship">
-        <h5><a href="#SAMRnatureOfRelationship">sosa-rel:natureOfRelationship</a></h5>
+        <h5><dfn>sosa-rel:natureOfRelationship</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/sampling/natureOfRelationship
         </p>
@@ -188,20 +195,23 @@
             <strong>an OWL Object Property</strong>
         </p>
         <p>
-            <em>nature of (sample) relationship</em> -
-            Links a <a href="#SAMRSampleRelationship"><code>Sample Relationship</code></a> to an indication of the nature
-            of the relationship.
+            <em>nature of (sample) relationship</em> &mdash;
+            links a SampleRelationship to an indication of the nature of the relationship
         </p>
 
         <table>
             <tbody>
                 <tr>
                     <th>Domain Includes</th>
-                    <td><a href="#SAMRSampleRelationship">sosa-rel:SampleRelationship</a></td>
+                    <td>
+                        <a>sosa-rel:SampleRelationship</a>
+                    </td>
                 </tr>
                 <tr>
                     <th>Range Includes</th>
-                    <td><a href="#SAMRRelationshipNature">sosa-rel:SampleRelationship</a></td>
+                    <td>
+                        <a>sosa-rel:RelationshipNature</a>
+                    </td>
                 </tr>
                 <tr>
                     <th>is Defined By</th>
@@ -213,11 +223,12 @@
         </table>
         <div class="buttonpanel">
             <span class="back">[<a href="#Sample-Relations">Back to module overview</a>]</span>
+            <span class="back">[<a href="#Overview">Back to top</a>]</span>
         </div>
     </section>
 
     <section class="specterm" id="SAMRrelatedSample">
-        <h5><a href="#SAMRrelatedSample">sosa-rel:relatedSample</a></h5>
+        <h5><dfn>sosa-rel:relatedSample</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/sampling/relatedSample
         </p>
@@ -225,18 +236,21 @@
             <strong>an OWL Object Property</strong>
         </p>
         <p>
-            <em>related sample</em> -
-            Links a <a href="#SAMRSampleRelationship"><code>Sample Relationship</code></a> to the related <a href="#SOSASample"><code>Sample.</code></a>
+            <em>related sample</em> &mdash;
+            links a SampleRelationship to the related Sample
         </p>
         <table>
             <tbody>
                 <tr>
                     <th>Domain Includes</th>
-                    <td><a href="#SAMRSampleRelationship">sosa-rel:SampleRelationship</a></td>
+                    <td>
+                        <a>sosa-rel:SampleRelationship</a>
+                    </td>
                 </tr>
                 <tr>
                     <th>Range Includes</th>
-                    <td><a href="#SOSASample">sosa:Sample</a>
+                    <td>
+                        <a>sosa:Sample</a>
                     </td>
                 </tr>
                 <tr>
@@ -249,6 +263,7 @@
         </table>
         <div class="buttonpanel">
             <span class="back">[<a href="#Sample-Relations">Back to module overview</a>]</span>
+            <span class="back">[<a href="#Overview">Back to top</a>]</span>
         </div>
     </section>
 </section>

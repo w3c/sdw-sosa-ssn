@@ -1,0 +1,42 @@
+@prefix ex: <https://example.org/data/> .
+@prefix qk: <http://qudt.org/vocab/quantitykind/> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:OCa134
+  a sosa:ObservationCollection ;
+  sosa:hasFeatureOfInterest ex:apt134 ;
+  sosa:observedProperty qk:Temperature ;
+  qudt:hasUnit unit:DEG_C ;
+  sosa:hasMember ex:OCa134t1 , ex:OCa134t2 , ex:OCa134t3 ;
+.
+
+ex:OCa134t1
+  a sosa:Observation ;
+  sosa:phenomenonTime  [ time:inXSDDateTime "2017-04-15T09:00:00+00:00"^^xsd:dateTime ] ;
+  sosa:hasSimpleResult 22.5 ;
+.
+ex:OCa134t2
+  a sosa:Observation ;
+  sosa:phenomenonTime  [ time:inXSDDateTime "2017-04-15T09:15:00+00:00"^^xsd:dateTime ] ;
+  sosa:hasSimpleResult 24.9 ;
+.
+ex:OCa134t3
+  a sosa:Observation ;
+  sosa:phenomenonTime  [ time:inXSDDateTime "2017-04-15T09:30:00+00:00"^^xsd:dateTime ] ;
+  sosa:hasSimpleResult 21.3 ;
+.
+
+unit:DEG_C 
+  a qudt:hasUnit ;
+.
+ex:apt134
+  a sosa:FeatureOfInterest ;
+.
+qk:Temperature
+  a sosa:Property ;
+.

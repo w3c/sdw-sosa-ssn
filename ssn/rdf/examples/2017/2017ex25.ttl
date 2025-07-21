@@ -4,8 +4,10 @@
 @prefix gr: <http://purl.org/goodrelations/v1#> .
 @prefix org: <http://www.w3.org/ns/org#> .
 @prefix schema: <http://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix ssn-system: <http://www.w3.org/ns/ssn/systems/> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
 @prefix unit: <http://qudt.org/vocab/unit/> .
 @prefix prov: <http://www.w3.org/ns/prov#>.
 @prefix owl: <http://www.w3.org/2002/07/owl#>.
@@ -16,7 +18,7 @@
 @base <https://data.grandlyon.com/> .
 
 <Organization/1> a org:Organization ;
-    owl:sameAs <http://dbpedia.org/page/Metropolis_of_Lyon> .
+    skos:exactMatch <http://dbpedia.org/page/Metropolis_of_Lyon> .
 
 <Air> a sosa:FeatureOfInterest ;
   rdfs:label "The air."@en .
@@ -38,7 +40,7 @@
   rdfs:comment "A temperature range of -20 to 70 Celsius."@en ;
   xsd:minInclusive -20.0 ;
   xsd:maxInclusive 70.0 ;
-  qudt:unit unit:DegreeCelsius .
+  qudt:hasUnit unit:DEG_C .
 
 <IP68_Outdoor_Temperature_Sensor#systemCapability> a sosa:Property , ssn-system:SystemCapability ;
   rdfs:comment "The sensor capability in normal operating conditions."@en ;
@@ -47,23 +49,23 @@
 
 <IP68_Outdoor_Temperature_Sensor#RFSensitivity> a sosa:Property , ssn-system:Sensitivity , schema:PropertyValue ;
   schema:value -137 ;
-  qudt:unit unit:DecibelReferredToOneMilliwatt .
+  qudt:hasUnit unit:DeciB-MilliW .
 
 <IP68_Outdoor_Temperature_Sensor#TemperatureAccuracy> a sosa:Property , ssn-system:Accuracy , schema:PropertyValue ;
   sosa:forProperty <Air?lat=45.75&long=4.85#temperature> ;
   xsd:minInclusive -0.2 ;
   xsd:maxInclusive 0.2 ;
-  qudt:unit unit:DegreeCelsius .
+  qudt:hasUnit unit:DEG_C .
 
 <IP68_Outdoor_Temperature_Sensor#TemperatureResolution> a sosa:Property , ssn-system:Resolution , schema:PropertyValue ;
   sosa:forProperty <Air?lat=45.75&long=4.85#temperature> ;
   schema:value 0.0625 ;
-  qudt:unit unit:DegreeCelsius .
+  qudt:hasUnit unit:DEG_C .
 
 <IP68_Outdoor_Temperature_Sensor#BatteryResolution> a sosa:Property , ssn-system:Resolution , schema:PropertyValue ;
   sosa:forProperty <Sensor/SL-T-P1#battery> ;
   schema:value 3.937e-3 ;
-  qudt:unit unit:PERCENT .
+  qudt:hasUnit unit:PERCENT .
 
 <Air?lat=45.75&long=4.85> a sosa:Sample ;
   rdfs:label "The air at lat 45.75 and long 4.85."@en ;

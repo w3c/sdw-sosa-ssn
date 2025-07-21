@@ -1,3 +1,4 @@
+@prefix cdt: <http://w3id.org/lindt/custom_datatypes#> .
 @prefix ex: <https://example.org/data/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix qk: <http://qudt.org/vocab/quantitykind/> .
@@ -14,7 +15,9 @@
 @prefix rdfp: <https://w3id.org/rdfp/>.
 @base <https://example.org/data/dht22/> .
 
-ex:DHT22_Procedure a sosa:Procedure ;
+# Complex sensor capabilities -- DHT22
+
+ex:DHT22_Procedure a sosa:ObservingProcedure ;
   sosa:hasOutput ex:DHT22_output ;
 .
 ex:DHT22_output a rdfp:GraphDescription ;
@@ -40,20 +43,20 @@ ex:NormalTemperatureCondition a schema:PropertyValue ;
   sosa:forProperty qk:Temperature ;
   xsd:minInclusive -40.0 ;
   xsd:maxInclusive 80.0 ;
-  qudt:unit unit:DEG_C ;
+  qudt:hasUnit unit:DEG_C ;
 .
 ex:NormalHumidityCondition a schema:PropertyValue ;
   rdfs:comment "A relative humidity range of 0 to 100 %."@en ;
   sosa:forProperty qk:RelativeHumidity ;
   xsd:minInclusive 0.0 ;
   xsd:maxInclusive 100.0 ;
-  qudt:unit unit:PERCENT ;
+  qudt:hasUnit unit:PERCENT ;
 .
 ex:DHT22_4578_SystemOperatingPowerRange a system:OperatingPowerRange , schema:PropertyValue ;
   rdfs:comment "DC power of 3.3 to 6 volts."@en ;
   xsd:minInclusive 3.3 ;
   xsd:maxInclusive 6.0 ;
-  qudt:unit unit:V ;
+  qudt:hasUnit unit:V ;
 .
 ex:DHT22_4578_TemperatureSensor a sosa:Sensor , sosa:System ;
   rdfs:comment "The embedded temperature sensor, a specific instance of temperature sensor."@en ;
@@ -77,14 +80,14 @@ ex:NormalOperatingCondition a schema:PropertyValue ;
   sosa:forProperty qk:Temperature ;
   xsd:minInclusive -40.0 ;
   xsd:maxInclusive 80.0 ;
-  qudt:unit unit:DEG_C ;
+  qudt:hasUnit unit:DEG_C ;
 .
 ex:NormalHumidityCondition a schema:PropertyValue ;
   rdfs:comment "A relative humidity range of 5 to 85 %."@en ;
   sosa:forProperty qk:RelativeHumidity ;
   xsd:minInclusive 5.0 ;
   xsd:maxInclusive 85.0 ;
-  qudt:unit unit:PERCENT ;
+  qudt:hasUnit unit:PERCENT ;
 .
 ex:DHT22_4578_TemperatureSensorCapability a sosa:Property , system:SystemCapability , schema:PropertyValue ;
   rdfs:comment "The capabilities of the temperature sensor in normal temperature and humidity conditions." ;
@@ -96,43 +99,45 @@ ex:DHT22_4578_TemperatureSensorAccuracy a system:Accuracy , schema:PropertyValue
   sosa:forProperty qk:Temperature ;
   xsd:minInclusive -0.5 ;
   xsd:maxInclusive 0.5 ;
-  qudt:unit unit:DegreeCelsius ;
+  qudt:hasUnit unit:DEG_C ;
 .
 ex:DHT22_4578_TemperatureSensorSensitivity a system:Sensitivity , system:Resolution , schema:PropertyValue ;
   rdfs:comment "The sensitivity and resolution of the temperature sensor is 0.1 °C in normal temperature and humidity conditions."@en ;
   sosa:forProperty qk:Temperature ;
   qudt:value 0.1 ;
-  qudt:unit unit:DegreeCelsius ;
+  qudt:hasUnit unit:DEG_C ;
 .
 ex:DHT22_4578_TemperatureSensorRepeatability a system:Repeatability , schema:PropertyValue ;
   rdfs:comment "The precision (= repeatability) of the temperature sensor is +-0.2 °C in normal temperature and humidity conditions."@en ;
   sosa:forProperty qk:Temperature ;
   xsd:minInclusive 0.2 ;
   xsd:maxInclusive 0.2 ;
-  qudt:unit unit:DegreeCelsius ;
+  qudt:hasUnit unit:DEG_C ;
 .
 ex:DHT22_4578_TemperatureSensorFrequency a system:Frequency , schema:PropertyValue ;
   rdfs:comment "The smallest possible time between one observation and the next is 2 s on average."@en ;
   sosa:forProperty qk:Period ;
   qudt:value 2 ;
-  qudt:unit unit:Second ;
+  qudt:hasUnit unit:SEC ;
 .
 ex:observation_1087 rdf:type sosa:Observation ;
   sosa:observedProperty <http://qudt.org/vocab/quantitykind/Temperature> ;
   sosa:madeBySensor ex:DHT22_4578_TemperatureSensor ;
   sosa:usedProcedure ex:DHT22_Procedure ;
   sosa:resultQuality ex:observation_1087_quality ;
-  sosa:hasSimpleResult "21.4"^^unit:DEG_C ;
+  sosa:hasResult [ 
+    qudt:hasUnit unit:DEG_C ; 
+    qudt:value "21.4"^^xsd:decimal ] ;
 .
 
-# one may use some other ontology to further qualify this quality
+# use some other ontology to further qualify this quality
 
 ex:observation_1087_quality 
   ex:evaluatedBy ex:Tom ;
   ex:confidenceValue "6"^^xsd:integer ;
   rdfs:comment """Tom gave a confidence value of 6 out of 10 on this observation."""@en ;
 .
-# one may use some quantity ontology
+# use some quantity ontology
 
 @prefix qudt: <http://qudt.org/schema/qudt/> .
 @prefix unit: <http://qudt.org/vocab/unit/> .
@@ -140,5 +145,5 @@ ex:observation_1087_quality
 ex:observation_1087_quality rdf:type qudt:Quantity ;
   qudt:quantityValue [
     rdf:type qudt:QuantityValue ;
-    qudt:numericValue "98.4"^^xsd:double ;
+    qudt:value "98.4"^^xsd:decimal ;
     qudt:hasUnit unit:PERCENT ] .

@@ -1,9 +1,9 @@
 @base <https://example.org/ssn/test/observation/F3> .
+@prefix cdt: <http://w3id.org/lindt/custom_datatypes#> .
 @prefix ex: <https://example.org/ssn/test/observation/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix time: <http://www.w3.org/2006/time#>.
-@prefix unit: <http://qudt.org/vocab/unit/> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 
 ex:OF3 a sosa:Observation ;
@@ -20,9 +20,9 @@ ex:OF3 a sosa:Observation ;
     ] ;
     sosa:resultTime "2020-01-05T04:31:00"^^xsd:dateTime ;
     sosa:hasFeatureOfInterest ex:apartment134 ;
-    sosa:hasSimpleResult "-29.9"^^unit:DEG_C ;
+    sosa:hasSimpleResult "-29.9 Cel"^^cdt:ucum ;
     .
 
 ex:apartment134 a sosa:FeatureOfInterest . 
-ex:T9 a sosa:Procedure .
+ex:T9 a sosa:ObservingProcedure .
 ex:Th3 a sosa:Sensor .

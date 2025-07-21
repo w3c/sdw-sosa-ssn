@@ -14,6 +14,18 @@
 @prefix rdfp: <https://w3id.org/rdfp/>.
 @base <https://example.org/data/dht22d/> .
 
+#     This example shows how the conditions (temperature and humidity) in a room can be measured using one or
+#     more sensors.
+#     Each sensor observes the conditions in its immediate vicinity, and the values are then used to characterize
+#     the room. 
+#
+# In Room 145, one of the walls is external in the building, so there is expected to be a temperature gradient
+#     across the room, and there are two sensors on different walls.
+#     In Room 245, there is one sensor on the south wall.
+#     Each of these locations corresponds to a sosa:Sample of the entire room.
+#     The wall also serves as a sosa:Platform on which the sensors are mounted. 
+
+
 ex:Room145 a sosa:FeatureOfInterest ;
   rdfs:label "Room #145"@en ;
   sosa:hasSample ex:Room145_east ;

@@ -8,6 +8,7 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @base <https://example.org/data/sunspot/> .
 
+# Number of sunspots
 # The result of an observation of the sunspot number is available a few minutes 
 # after the phenomenon time, due to the light travel duration
 
@@ -17,13 +18,13 @@
   sosa:hasSimpleResult 66 ;
   sosa:phenomenonTime [
     rdf:type time:Instant ;
-    time:inXSDDateTimeStamp "2017-03-31T11:51:42+00:00"^^xsd:dateTimeStamp ] ;
-  sosa:resultTime "2017-03-31T12:00:00+00:00"^^xsd:dateTimeStamp ;
+    time:inXSDDateTimeStamp "2017-03-31T11:51:42+00:00"^^xsd:dateTime ] ;
+  sosa:resultTime "2017-03-31T12:00:00+00:00"^^xsd:dateTime ;
 .
 ex:sunspotCount rdf:type sosa:Property ;
   skos:broader qk:Count ;
 .
 ex:Sun a sosa:FeatureOfInterest ;
-  owl:sameAs <https://www.wikidata.org/wiki/Q525> .
+  skos:exactMatch <https://www.wikidata.org/wiki/Q525> .
   rdfs:label "Sun" ;
 .

@@ -1,3 +1,4 @@
+@prefix cdt: <http://w3id.org/lindt/custom_datatypes#> .
 @prefix ex: <https://example.org/data/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
@@ -7,7 +8,6 @@
 @prefix sensor: <https://example.org/sensor/> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix system: <http://www.w3.org/ns/ssn/systems/> .
-@prefix unit: <http://qudt.org/vocab/unit/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @base <https://example.org/data/TH2-PLUS/> .
 
@@ -41,8 +41,8 @@ sensor:IBS-TH2-Plus-systemCapability
   a system:SystemCapability ;
   system:hasSystemProperty [
       a system:Frequency ;
-      xsd:maxInclusive "0.1"^^unit:HZ ;
-      xsd:minInclusive "5.556e-4"^^unit:HZ ;
+      xsd:maxInclusive "0.1 Hz"^^cdt:ucum ;
+      xsd:minInclusive "5.556e-4 Hz"^^cdt:ucum ;
     ] ;
 .
 sensor:IBS-TH2-Plus-H
@@ -79,23 +79,23 @@ sensor:IBS-TH2-Plus-H-systemCapability
   a system:SystemCapability ;
   system:hasSystemProperty [
       a system:Accuracy ;
-      rdf:value "4.5"^^unit:PERCENT_RH ;
+      rdf:value "4.5 %"^^cdt:ucum ;
     ] ;
   system:hasSystemProperty [
       a system:MeasurementRange ;
-      xsd:maxInclusive "99.0"^^unit:PERCENT_RH ;
-      xsd:minInclusive "0.0"^^unit:PERCENT_RH ;
+      xsd:maxInclusive "99.0 %"^^cdt:ucum ;
+      xsd:minInclusive "0.0 %"^^cdt:ucum ;
     ] ;
 .
 sensor:IBS-TH2-Plus-T-systemCapability
   a system:SystemCapability ;
   system:hasSystemProperty [
       a system:Accuracy ;
-      rdf:value "0.5"^^unit:DEG_C ;
+      rdf:value "0.5 Cel"^^cdt:ucum ;
     ] ;
   system:hasSystemProperty [
       a system:MeasurementRange ;
-      xsd:maxInclusive "60.0"^^unit:DEG_C ;
-      xsd:minInclusive "-40.0"^^unit:DEG_C ;
+      xsd:maxInclusive "60.0 Cel"^^cdt:ucum ;
+      xsd:minInclusive "-40.0 Cel"^^cdt:ucum ;
     ] ;
 .

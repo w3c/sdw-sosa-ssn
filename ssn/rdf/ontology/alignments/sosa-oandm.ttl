@@ -79,7 +79,7 @@ iso19156-om:OM_Process
       rdf:type owl:Class ;
       owl:unionOf (
           sosa:Sensor
-          sosa-om:ObservationProcedure
+          sosa-om:ObservingProcedure
         ) ;
     ] ;
 .
@@ -131,35 +131,35 @@ sosa:Procedure
   owl:equivalentClass [
       rdf:type owl:Class ;
       owl:disjointUnionOf (
-          sosa-om:ActuationProcedure
-          sosa-om:ObservationProcedure
+          sosa-om:ActuatingProcedure
+          sosa-om:ObservingProcedure
           sosa-om:SamplingProcedure
         ) ;
     ] ;
 .
-sosa-om:ActuationProcedure
+sosa-om:ActuatingProcedure
   rdf:type owl:Class ;
-  rdfs:comment "(Notional) Actuation procedure or recipe, complementing SamplingProcedure and ObservationProcedure"@en ;
+  rdfs:comment "(Notional) Actuation procedure or recipe, complementing SamplingProcedure and ObservingProcedure"@en ;
   rdfs:label "Actuation procedure"@en ;
   rdfs:subClassOf sosa:Procedure ;
-  owl:disjointWith sosa-om:ObservationProcedure ;
+  owl:disjointWith sosa-om:ObservingProcedure ;
   owl:disjointWith sosa-om:SamplingProcedure ;
 .
-sosa-om:ObservationProcedure
+sosa-om:ObservingProcedure
   rdf:type owl:Class ;
-  rdfs:comment "(Notional) Observation or sensing procedure or recipe, complementing SamplingProcedure and ActuationProcedure"@en ;
+  rdfs:comment "(Notional) Observation or sensing procedure or recipe, complementing SamplingProcedure and ActuatingProcedure"@en ;
   rdfs:label "Observation procedure"@en ;
   rdfs:subClassOf iso19156-om:OM_Process ;
   rdfs:subClassOf sosa:Procedure ;
-  owl:disjointWith sosa-om:ActuationProcedure ;
+  owl:disjointWith sosa-om:ActuatingProcedure ;
   owl:disjointWith sosa-om:SamplingProcedure ;
 .
 sosa-om:SamplingProcedure
   rdf:type owl:Class ;
-  rdfs:comment "(Notional) Sampling or sample preparation or processing procedure or recipe, complementing ObservationProcedure and ActuationProcedure"@en ;
+  rdfs:comment "(Notional) Sampling or sample preparation or processing procedure or recipe, complementing ObservingProcedure and ActuatingProcedure"@en ;
   rdfs:label "Sampling procedure"@en ;
   rdfs:subClassOf iso19156-sp:SF_Process ;
   rdfs:subClassOf sosa:Procedure ;
-  owl:disjointWith sosa-om:ActuationProcedure ;
-  owl:disjointWith sosa-om:ObservationProcedure ;
+  owl:disjointWith sosa-om:ActuatingProcedure ;
+  owl:disjointWith sosa-om:ObservingProcedure ;
 .

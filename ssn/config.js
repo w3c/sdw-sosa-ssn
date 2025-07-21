@@ -108,23 +108,16 @@ var respecConfig = {
     "SAREF_Patterns": {
       href: "https://www.etsi.org/deliver/etsi_ts/103500_103599/103548/01.02.01_60/ts_103548v010201p.pdf",
       title: "SmartM2M; SAREF reference ontology patterns",
-      id: "ETSI TS 103 548 ",
+      id: "ETSI TS 103 548 (V1.2.1)",
       publisher: "ETSI",
       date: "2024"
     },
     "SAREF": {
-      href: "https://www.etsi.org/deliver/etsi_ts/103200_103299/103264/03.02.01_60/ts_103264v030201p.pdf",
+      href: "https://www.etsi.org/deliver/etsi_ts/103200_103299/103264/04.01.01_60/ts_103264v040101p.pdf",
       title: "SmartM2M; Smart Applications; Reference Ontology and oneM2M Mapping",
-      id: "ETSI TS 103 264 (V3.2.1)",
+      id: "ETSI TS 103 264 (V4.1.1)",
       publisher: "ETSI",
-      date: "2024"
-    },
-    "SmartM2M": {
-      href: "https://www.etsi.org/deliver/etsi_ts/103500_103599/103548/01.02.01_60/ts_103548v010201p.pdf",
-      title: "SmartM2M; Smart Applications; Reference Ontology and oneM2M Mapping",
-      id: "ETSI TS 103 264 (V3.2.1)",
-      publisher: "ETSI",
-      date: "2024"
+      date: "2025"
     },
     "SWE": {
       href: "https://www.ogc.org/about-ogc/domains/swe/",
@@ -135,6 +128,27 @@ var respecConfig = {
       href: "https://www.ogc.org/standard/sensorthings/",
       title: "OGC SensorThings API (STA)",
       publisher: "Open Geospatial Consortium"
+    },
+    "SWE-Common": {
+      authors: ["Alex Robin"],
+      href: "https://portal.ogc.org/files/?artifact_id=41157",
+      title: "OGC® SWE Common Data Model Encoding Standard",
+      publisher: "Open Geospatial Consortium",
+      date: "January 2011"
+    },
+    "SWE-Common-JSON": {
+      authors: ["Alex Robin"],
+      href: "https://docs.ogc.org/bp/17-011r2/17-011r2.html",
+      title: "JSON Encoding Rules SWE Common / SensorML",
+      publisher: "Open Geospatial Consortium",
+      date: "January 2018"
+    },
+    "CoverageJSON": {
+      authors: ["Chris Little", "Jon Blower", "Maik Reichert"],
+      href: "https://docs.ogc.org/cs/21-069r2/21-069r2.html",
+      title: "OGC CoverageJSON Community Standard",
+      publisher: "Open Geospatial Consortium",
+      date: "August 2023"
     },
     "SSNX": {
       authors: ["Michael Compton", "Payam Barnaghi", "Luis Bermudez", "Raúl García-Castro", "Oscar Corcho", "Simon Cox", "John Graybeal", "Manfred Hauswirth", "Cory Henson", "Arthur Herzog", "Vincent Huang", "Krzysztof Janowicz", "W. David Kelsey", "Danh Le Phuoc", "Laurent Lefort", "Myriam Leggieri", "Holger Neuhaus", "Andriy Nikolov", "Kevin Page", "Alexandre Passant", "Amit Sheth", "Kerry Taylor"],

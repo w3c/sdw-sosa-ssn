@@ -15,17 +15,17 @@
   sosa:madeBySensor <sensor/926> ; 
   sosa:hasResult [
      rdf:type qudt:QuantityValue ;
-     qudt:numericValue "22.4"^^xsd:double ;
+     qudt:value "22.4"^^xsd:decimal ;
      qudt:hasUnit unit:KiloW-HR ] ;
   sosa:phenomenonTime [
     rdf:type time:Interval ;
     time:hasBeginning [ 
       rdf:type time:Instant ;
-      time:inXSDDateTimeStamp "2017-04-15T00:00:00+00:00"^^xsd:dateTimeStamp ] ;
+      time:inXSDDateTimeStamp "2017-04-15T00:00:00+00:00"^^xsd:dateTime ] ;
     time:hasEnd [ 
       rdf:type time:Instant ;
-      time:inXSDDateTimeStamp "2017-04-16T00:00:00+00:00"^^xsd:dateTimeStamp ] ] ;
-  sosa:resultTime "2017-04-16T00:00:12+00:00"^^xsd:dateTimeStamp .
+      time:inXSDDateTimeStamp "2017-04-16T00:00:00+00:00"^^xsd:dateTime ] ] ;
+  sosa:resultTime "2017-04-16T00:00:12+00:00"^^xsd:dateTime .
 
 
 # Sensor #926 observes the electric consumption of apartment #134, and we know that 
@@ -51,7 +51,7 @@
 # This is equivalent to saying that the electric consumption of apartment #134 is 
 # observed by Sensor #926
 
-<apartment/134/electricConsumption> rdf:type sosa:ObservableProperty ;
+<apartment/134/electricConsumption> rdf:type sosa:Property ;
   sosa:isObservedBy <sensor/926>  .
 
 
@@ -69,13 +69,13 @@
   sosa:madeBySensor <sensor/926> .
 
 
-# the window opening state is an ActuatableProperty.
+# the window opening state is an actuatable Property.
 # SSN allows to explicitly say that <window/104#state> is a property of <window>
 
 <window> rdf:type sosa:FeatureOfInterest ;
   ssn:hasProperty <window/104#state> .
 
-<window/104#state> rdf:type sosa:ActuatableProperty ;
+<window/104#state> rdf:type sosa:Property ;
   sosa:isActedOnBy <actuation/188> .
 
 
@@ -93,4 +93,4 @@
   sosa:actsOnProperty  <window/104#state> ;
   sosa:actuationMadeBy <windowCloser/987> ; 
   sosa:hasSimplResult true ;
-  sosa:resultTime "2017-04-18T17:24:00+02:00"^^xsd:dateTimeStamp .
+  sosa:resultTime "2017-04-18T17:24:00+02:00"^^xsd:dateTime .

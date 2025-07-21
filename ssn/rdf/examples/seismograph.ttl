@@ -10,6 +10,8 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @base <https://example.org/data/seis/> .
 
+# Seismograph measuring ground displacement speed
+#
 # Observation #358 of seismograph VCAB DP1 BP 40 (Vineyard Canyon, Parkfield, Ca) measured
 # a earth displacement speed of 0.000500 cm/sec at 8:23 am on April 18, 2017, Pacific
 # Daylight Time
@@ -28,7 +30,7 @@ ex:VCAB-DP1-BP-40_location a sosa:Sample ;
   sosa:isSampleOf ex:Earth ;
 .
 ex:Earth a sosa:FeatureOfInterest ;
-  owl:sameAs <https://www.wikidata.org/wiki/Q2> ;
+  skos:exactMatch <https://www.wikidata.org/wiki/Q2> ;
   rdfs:label "Earth" ;
 .
 ex:groundDisplacementSpeed a sosa:Property ;
@@ -41,7 +43,7 @@ ex:VCAB-DP1-BP-40_t2017-04-18T08%3A23%3A00-07%3A00 a sosa:Observation ;
   sosa:observedProperty ex:groundDisplacementSpeed ;
   sosa:hasResult [
      rdf:type qudt:QuantityValue ;
-     qudt:numericValue "5e-4"^^xsd:double ;
+     qudt:value "5e-4"^^xsd:double ;
      qudt:hasUnit unit:CentiM-PER-SEC ] ;
-  sosa:resultTime "2017-04-18T08:23:00-07:00"^^xsd:dateTimeStamp ;
+  sosa:resultTime "2017-04-18T08:23:00-07:00"^^xsd:dateTime ;
 .

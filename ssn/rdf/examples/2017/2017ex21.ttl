@@ -14,7 +14,7 @@
 @base <https://example.org/data/> .
 
 
-<DHT22#Procedure> a sosa:Procedure ;
+<DHT22#Procedure> a sosa:ObservingProcedure ;
   sosa:hasOutput <DHT22#output> .
 
 <DHT22#output> a sosa:Output , rdfp:GraphDescription ;
@@ -59,13 +59,13 @@
   rdfs:comment "A temperature range of -40 to 80 Celsius."@en ;
   xsd:minInclusive -40.0 ;
   xsd:maxInclusive 80.0 ;
-  qudt:unit unit:DegreeCelsius .
+  qudt:hasUnit unit:DEG_C .
 
 <NormalHumidityCondition> a ssn-system:Condition , schema:PropertyValue ;
   rdfs:comment "A relative humidity range of 5 to 85 %."@en ;
   xsd:minInclusive 5.0 ;
   xsd:maxInclusive 85.0 ;
-  qudt:unit unit:PERCENT .
+  qudt:hasUnit unit:PERCENT .
 
 
 
@@ -78,23 +78,23 @@
   rdfs:comment "The accuracy of the temperature sensor is +-0.5 °C in normal temperature and humidity conditions."@en ;
   xsd:minInclusive -0.5 ;
   xsd:maxInclusive 0.5 ;
-  qudt:unit unit:DegreeCelsius .
+  qudt:hasUnit unit:DEG_C .
 
 <DHT22/4578#TemperatureSensorSensitivity> a sosa:Property , ssn-system:Sensitivity , ssn-system:Resolution , schema:PropertyValue ;
   rdfs:comment "The sensitivity and resolution of the temperature sensor is 0.1 °C in normal temperature and humidity conditions."@en ;
   schema:value 0.1 ;
-  qudt:unit unit:DegreeCelsius .
+  qudt:hasUnit unit:DEG_C .
 
 <DHT22/4578#TemperatureSensorPrecision> a sosa:Property , ssn-system:Precision , schema:PropertyValue ;
   rdfs:comment "The precision (= repeatability) of the temperature sensor is +-0.2 °C in normal temperature and humidity conditions."@en ;
   xsd:minInclusive 0.2 ;
   xsd:maxInclusive 0.2 ;
-  qudt:unit unit:DegreeCelsius .
+  qudt:hasUnit unit:DEG_C .
 
 <DHT22/4578#TemperatureSensorFrequency> a sosa:Property , ssn-system:Frequency , schema:PropertyValue ;
   rdfs:comment "The smallest possible time between one observation and the next is 2 s on average."@en ;
   schema:value 2 ;
-  qudt:unit unit:Second .
+  qudt:hasUnit unit:SEC .
 
 
 <observation/1087> rdf:type sosa:Observation ;
@@ -123,5 +123,5 @@
 <observation/1087#quality> rdf:type qudt:Quantity ;
   qudt:quantityValue [
     rdf:type qudt:QuantityValue ;
-    qudt:numericValue "98.4"^^xsd:double ;
+    qudt:value "98.4"^^xsd:decimal ;
     qudt:hasUnit unit:PERCENT ] .

@@ -28,7 +28,7 @@ sosa-rel:RelationshipNature
   rdf:type owl:Class ;
   rdfs:label "Nature of relationship (between samples)"@en ;
   rdfs:subClassOf skos:Concept ;
-  skos:definition "Members of this class indicate the nature of a relationship between two samples"@en ;
+  skos:definition "the nature of a relationship between two Samples"@en ;
   skos:example "Adjacent flight-line" ;
   skos:example "Females" ;
   skos:example "Juveniles" ;
@@ -44,7 +44,7 @@ sosa-rel:RelationshipNature
 sosa-rel:SampleRelationship
   rdf:type owl:Class ;
   rdfs:label "Sample relationship"@en ;
-  skos:definition "Members of this class represent a relationship between a sample and another"@en ;
+  skos:definition "relationship from one Sample to another Sample"@en ;
   rdfs:isDefinedBy sosa-rel: ;
 .
 sosa-rel:hasSampleRelationship
@@ -52,7 +52,7 @@ sosa-rel:hasSampleRelationship
   schema:domainIncludes sosa:Sample ;
   schema:rangeIncludes sosa-rel:SampleRelationship ;
   rdfs:label "has sample relationship"@en ;
-  skos:definition "Links a sample to a sample relationship (which links to a related sample)"@en ;
+  skos:definition "links a Sample to a SampleRelationship"@en ;
   rdfs:isDefinedBy sosa-rel: ;
 .
 sosa-rel:natureOfRelationship
@@ -60,7 +60,7 @@ sosa-rel:natureOfRelationship
   schema:domainIncludes sosa-rel:SampleRelationship ;
   schema:rangeIncludes sosa-rel:RelationshipNature ;
   rdfs:label "nature of (sample) relationship"@en ;
-  skos:definition "Links a SampleRelationship to an indication of the nature of the relationship"@en ;
+  skos:definition "links a SampleRelationship to an indication of the nature of the relationship"@en ;
   rdfs:isDefinedBy sosa-rel: ;
 .
 sosa-rel:relatedSample
@@ -68,6 +68,6 @@ sosa-rel:relatedSample
   schema:domainIncludes sosa-rel:SampleRelationship ;
   schema:rangeIncludes sosa:Sample ;
   rdfs:label "related sample"@en ;
-  skos:definition "Links a sample relationship to the related sample"@en ;
+  skos:definition "links a SampleRelationship to the related Sample"@en ;
   rdfs:isDefinedBy sosa-rel: ;
 .
