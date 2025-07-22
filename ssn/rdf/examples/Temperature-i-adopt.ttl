@@ -9,16 +9,23 @@ ex:SickChildTemperature
   a iop:Variable , sosa:Property;
   iop:hasProperty qk:Temperature ;
   iop:hasObjectOfInterest ex:Child ;
-  iop:hasConstraint iop:SickChild ;
+  iop:hasConstraint [ 
+    a iop:Constraint, ex:Sick ;
+    iop:constrains ex:Child ] ;
+    skos:prefLabel "sick child" ;
 .
-qk:Temperature 
+qk:Temperature
   a iop:Property , sosa:Property ;
+  skos:prefLabel "Temperature"@en ;
 .
-ex:Child
+ex:Child skos:exactMatch http://hadatac.org/ont/chear#Child .
+ex:Sick skos:exactMatch http://semanticscience.org/resource/SIO_000954 .
+
+http://hadatac.org/ont/chear#Child
   a iop:Entity ;
+  skos:prefLabel "Child"@en ;
 .
-ex:SickChild 
-  a iop:Constraint ;
-  skos:definition "Sick Child"@en ;
-  iop:Constrains ex:Child ;
+http://semanticscience.org/resource/SIO_000954
+  skos:prefLabel "Sick"@en , "Krank"@de ; 
+  skos:altLabel "Unwell"@en , "Poorly"@en ;
 .

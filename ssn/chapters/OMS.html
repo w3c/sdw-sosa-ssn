@@ -1,57 +1,72 @@
 <h3>OMS Extension Module</h3>
-<p>
-  This section introduces extensions to the SSN Ontology to provide a canonical RDF implementation of [[[OMS]]] (ISO
-  19156:2023).
-</p>
-<p>
-  OMS is the latest edition of the OGC and ISO standard previously known as Observations and Measurements [[OandM]],
-  which was a key influence and input in the development of SSN.
-</p>
-<p class="note">
-  OMS was published by ISO 19156:2023 [[iso-19156-2023]], but is freely available as OGC Abstract
-  Specification &mdash; Topic 20 [[OMS]].
-</p>
 
-<p>
-  This module provides (i) additional classes and properties required for an RDF implementation of OMS, (ii) a detailed
-  mapping of SOSA terms to discrete requirements in [[OMS]].
-  Note that [[OMS]] is formalized using UML, which does not provide accessible global identifiers for terms in the
-  structure model.
-  The URI for each formal Requirement relating to a class or property in [[OMS]] denotes the UML class or
-  property.
-  The predicate <code>ogc-ms:implements</code> links a SOSA term to the corresponding OMS class or property,
-  and <code>ogc-ms:implementedBy</code> its inverse, defined as follows: </p>
-<pre>ogc-ms:implements an OWL:ObjectProperty ;
+<section id="OMS-req">
+  <h4>OMS Requirement</h4>
+  <p>
+    This section introduces extensions to the SSN Ontology to provide a canonical RDF implementation of [[OMS]].
+  </p>
+  <p>
+    OMS is the 2023 Edition of the OGC and ISO standard previously known as Observations and Measurements [[OandM]],
+    which was a key influence and input in the development of SSN.
+  </p>
+  <p class="note">
+    OMS was published by ISO 19156:2023 [[iso-19156-2023]], but is freely available as OGC Abstract
+    Specification &mdash; Topic 20 [[OMS]].
+  </p>
+  <p>
+    This module provides (i) additional classes and properties required for an RDF implementation of OMS, (ii) a
+    detailed mapping of SOSA terms to discrete requirements in OMS.
+    Note that OMS is formalized using UML, which does not provide accessible global identifiers for terms in the
+    structure model.
+    The URI for each formal Requirement relating to a class or property in OMS denotes the UML class or
+    property.
+    The predicate `ogc-ms:implements` links a SOSA term to the corresponding OMS class or property,
+    and `ogc-ms:implementedBy` its inverse, defined as follows:
+  </p>
+
+  <pre>ogc-ms:implements an OWL:ObjectProperty ;
   rdfs:subPropertyOf dcterms:source , prov:wasDerivedFrom . </pre>
 
-<pre>ogc-ms:implementedBy an OWL:ObjectProperty ;
+  <pre>ogc-ms:implementedBy an OWL:ObjectProperty ;
     owl:inverseOf ogc-ms:implements . </pre>
 
-<h4>SOSA-OMS</h4>
-<p>
-  SOSA-OMS describes the implementation of ISO 19156:2023 [[OMS]] using terms from the SSN Ontology.
-  SOSA-OMS imports SOSA Observation and SOSA Sampling and declares additional terms required for OMS.
-  <b>SOSA-OMS is the canonical RDF implementation of OMS.</b>
-</p>
-<p style="text-align: center;">
-  The SOSA-OMS graph is available at <a href="http://www.w3.org/ns/sosa-oms/">http://www.w3.org/ns/sosa-oms/</a>.
-</p>
+  <p class="note">
+    Some classes and properties from OMS are not yet represented in the OMS Extension Module.
+    It is intended to resolve this before the 2023 edition of the SSN Ontology is finalized.
+    This is likely to be through additional patterns for the use of SSN,
+    and additional terms in the `sosa-oms:` namespace.
+  </p>
 
-<h4>SSN-OMS</h4>
-<p>
-  SSN-OMS describes the implementation of ISO 19156:2023 [[OMS]] using terms from the SSN Ontology, with RDFS/OWL
-  axiomatization.
-  SSN-OMS imports SOSA-OMS and SSN Observation and SSN Sampling.
-  <b>SSN-OMS is the canonical OWL implementation of OMS.</b>
-</p>
-<p style="text-align: center;">
-  The SSN-OMS graph is available at <a href="http://www.w3.org/ns/ssn-oms/">http://www.w3.org/ns/ssn-oms/</a>.
-</p>
+</section>
 
-<section id="OMS-namespaces">
-  <h4>Namespaces</h4>
+<section id="OMS-modules">
+  <h4>OMS modules</h4>
+
+  <h5>SOSA-OMS</h5>
   <p>
-    The following namespace prefixes are used in the RDF implementation of OMS:</p>
+    SOSA-OMS describes the implementation of ISO 19156:2023 [[OMS]] using terms from the SSN Ontology.
+    SOSA-OMS imports SOSA Observation and SOSA Sampling and declares additional terms required for OMS.
+    <b>SOSA-OMS is the canonical RDF implementation of OMS.</b>
+  </p>
+  <p style="text-align: center;">
+    The SOSA-OMS graph is available at <a href="http://www.w3.org/ns/sosa-oms/">http://www.w3.org/ns/sosa-oms/</a>.
+  </p>
+
+  <h5>SSN-OMS</h5>
+  <p>
+    SSN-OMS describes the implementation of ISO 19156:2023 [[OMS]] using terms from the SSN Ontology, with RDFS/OWL
+    axiomatization.
+    SSN-OMS imports SOSA-OMS and SSN Observation and SSN Sampling.
+    <b>SSN-OMS is the canonical OWL implementation of OMS.</b>
+  </p>
+  <p style="text-align: center;">
+    The SSN-OMS graph is available at <a href="http://www.w3.org/ns/ssn-oms/">http://www.w3.org/ns/ssn-oms/</a>.
+  </p>
+
+  <h5>Namespaces</h5>
+  <p>
+    The following namespace prefixes are used in the RDF implementation of OMS:
+  </p>
   <table>
     <tbody>
       <tr>
@@ -109,6 +124,7 @@
     </tbody>
   </table>
 </section>
+
 <section id="OMS-New-Terms">
   <h4>New terms</h4>
   <p>
@@ -133,9 +149,9 @@
     </p>
   </div>
 
-  <p class="warning">Terms in the <code>sosa-oms:</code> namespace were added in the 2025 edition.
-    These are non-normative, pending further implementation experience</p>
-  <p>
+  <p class="warning">Terms in the `sosa-oms:` namespace were added in the 2025 edition.
+    These are non-normative, pending further implementation experience.</p>
+
 
   <section class="informative specterm sosa" id="OMSPreparationProcedure">
     <h5><dfn>sosa-oms:PreparationProcedure</dfn></h5>
@@ -813,17 +829,14 @@
       <tr>
         <td> <a>sosa:hasFeatureOfInterest</a> </td>
         <td> ogc-ms:implements </td>
-        <td> obs-cpt:Observation/featureOfInterest-sem ,
-          <br> obs-core:AbstractObservationCharacteristics/pFoI-sem ,
+        <td> obs-cpt:Observation/featureOfInterest-sem , <br> obs-core:AbstractObservationCharacteristics/pFoI-sem ,
           <br> sam-cpt:Sampling/featureOfInterest-sem
         </td>
       </tr>
       <tr>
         <td> <a>sosa:hasMember</a> </td>
         <td> ogc-ms:implements </td>
-        <td> sam-basic:SampleCollection/member-sem ,
-          <br> obs-basic:ObservationCollection/member-sem
-        </td>
+        <td> sam-basic:SampleCollection/member-sem , <br> obs-basic:ObservationCollection/member-sem </td>
       </tr>
       <tr>
         <td> <a>sosa-oms:hasPreparationStep</a> </td>
@@ -850,17 +863,13 @@
       <tr>
         <td> <a>sosa:implementedBy</a> </td>
         <td> ogc-ms:implements </td>
-        <td> obs-cpt:ObservingProcedure/observer-sem ,
-          <br> sam-cpt:SamplingProcedure/sampler-sem
-        </td>
+        <td> obs-cpt:ObservingProcedure/observer-sem , <br> sam-cpt:SamplingProcedure/sampler-sem </td>
       </tr>
       <tr>
         <td> <a>sosa:implements</a> </td>
         <td> ogc-ms:implements </td>
-        <td> obs-cpt:Observer/observingProcedure-sem ,
-          <br> sam-cpt:Sampling/samplingProcedure-sem ,
-          <br> sam-cpt:PreparationStep/processingDetails-sem
-        </td>
+        <td> obs-cpt:Observer/observingProcedure-sem , <br> sam-cpt:Sampling/samplingProcedure-sem , <br>
+          sam-cpt:PreparationStep/processingDetails-sem </td>
       </tr>
       <tr>
         <td> <a>sosa:inDeployment</a> </td>
@@ -985,9 +994,7 @@
       <tr>
         <td> <a>sosa:usedProcedure</a> </td>
         <td> ogc-ms:implements </td>
-        <td> obs-cpt:Observation/observingProcedure-sem ,
-          <br> sam-cpt:Sampling/samplingProcedure-sem
-        </td>
+        <td> obs-cpt:Observation/observingProcedure-sem , <br> sam-cpt:Sampling/samplingProcedure-sem </td>
       </tr>
       <tr>
         <td> <a>sosa-oms:validTime</a> </td>
@@ -1030,8 +1037,7 @@
           <br> <a>sosa:relatedObservation</a>,
           <br> <a>sosa:usedForExecution</a>,
           <br> <a>sosa:wasObservedBy</a>,
-          <br> ( <a>sosa:deployedSystem</a> o
-          <a>sosa:madeObservation</a> ),
+          <br> ( <a>sosa:deployedSystem</a> o <a>sosa:madeObservation</a> ),
           <br> ( <a>sosa:hosts</a> o <a>sosa:madeObservation</a> )
         </td>
       </tr>
@@ -1108,9 +1114,7 @@
       <tr>
         <td> obs-cpt:Observation/result-sem </td>
         <td> ogc:implementedBy </td>
-        <td> <a>sosa:hasResult</a> ,
-          <br> <a>sosa:hasSimpleResult</a>
-        </td>
+        <td> <a>sosa:hasResult</a> , <br> <a>sosa:hasSimpleResult</a> </td>
       </tr>
       <tr>
         <td> obs-cpt:Observation/resultTime-sem </td>
@@ -1186,10 +1190,7 @@
       <tr>
         <td> sam-cpt:Sampler/sampling-sem </td>
         <td> ogc:implementedBy </td>
-        <td>
-          <a>sosa:madeSampling</a> ,
-          <br> <a>sosa:madeBySampler</a>
-        </td>
+        <td> <a>sosa:madeSampling</a> , <br> <a>sosa:madeBySampler</a> </td>
       </tr>
       <tr>
         <td> sam-cpt:Sampling/featureOfInterest-sem </td>
@@ -1214,9 +1215,7 @@
       <tr>
         <td> sam-cpt:Sampling/samplingProcedure-sem </td>
         <td> ogc:implementedBy </td>
-        <td> <a>sosa:implements</a> ,
-          <br> <a>sosa:usedProcedure</a>
-        </td>
+        <td> <a>sosa:implements</a> , <br> <a>sosa:usedProcedure</a> </td>
       </tr>
     </tbody>
   </table>

@@ -1,7 +1,7 @@
 <h3>Quantity Values and Units of Measure</h3>
 <p>
-    The result of an <a href="#SOSAObservation"><code>sosa:Observation</code></a> or an
-    <a href="#SOSAActuation"><code>sosa:Actuation</code></a> can be a quantity value with a numeric value and a unit
+    The result of an <a>sosa:Observation</a> or an
+    <a>sosa:Actuation</a> can be a quantity value with a numeric value and a unit
     of measure.
 </p>
 <p>
@@ -9,16 +9,16 @@
     Several options from external vocabularies are available for expressing quantities as OWL individuals, or as
     datatypes.
     Examples include:
-    <code>qudt:QuantityValue</code> from the <i>Quantities, Units, Dimensions, and Data Types</i> ontologies [[QUDT]];
-    <code>cdt:ucum</code> from <i>Custom Datatypes</i> [[CDT]].
+    `qudt:QuantityValue` from the <i>Quantities, Units, Dimensions, and Data Types</i> ontologies [[QUDT]];
+    `cdt:ucum` from <i>Custom Datatypes</i> [[CDT]].
 </p>
 
 <h4>Single values</h4>
 <p>
     The following examples show alternative encodings of a single observation with a scalar result, as shown in <a
-        href="#UOM-general"></a>.
+        href="#Fig-UOM-general"></a>.
 </p>
-<figure id="UOM-general">
+<figure id="Fig-UOM-general">
     <embed alt="A simple Observation with a scaled number (Quantity) as its result" src="./images/UOM-general.svg"
         style="width:80%" />
     <figcaption>
@@ -30,17 +30,17 @@
 
 <p>
     With QUDT, a quantitative result can be represented as a <a
-        href="http://qudt.org/"><code>qudt:QuantityValue</code></a>.
+        href="http://qudt.org/">`qudt:QuantityValue`</a>.
     In the following example <a href="http://qudt.org/vocab/unit/DEG_C">unit:DEG_C</a> is an
     individual from the QUDT catalogue of units of measurement.
 </p>
 <pre class="example" data-include="./rdf/examples/UOM-qudt-object.ttl" data-include-format="text"></pre>
 
 <p>
-    With CDT, the value of <a href="#SOSAhasSimpleResult"><code>sosa:hasSimpleResult</code></a> is a literal structured
+    With CDT, the value of <a>sosa:hasSimpleResult</a> is a literal structured
     as space-separated quantiy-value using the UCUM code for the unit of measurement [[UCUM]].
     The type designator is
-    <a href="https://ci.mines-stetienne.fr/lindt/v4/custom_datatypes#ucum"><code>cdt:ucum</code></a> taken from [[CDT]].
+    <a href="https://ci.mines-stetienne.fr/lindt/v4/custom_datatypes#ucum">`cdt:ucum`</a> taken from [[CDT]].
 </p>
 <pre class="example" data-include="./rdf/examples/UOM-cdt.ttl" data-include-format="text"></pre>
 
@@ -59,11 +59,11 @@
 <p>
     In a collection of observations or actuations the members will often use a common unit of measurement.
     This can be specified at the level of the collection using <a
-        href="http://qudt.org/schema/qudt/hasUnit"><code>qudt:hasUnit</code></a>.
+        href="http://qudt.org/schema/qudt/hasUnit">`qudt:hasUnit`</a>.
 </p>
 
 <p>
-    If <code>qudt:hasUnit</code> is present on a collection, then the consistency rules described for
+    If `qudt:hasUnit` is present on a collection, then the consistency rules described for
     <a href="#SOSAActuationCollection">Actuation properties</a> or
     <a href="#SOSAObservationCollection">Observation properties</a> apply.
 </p>

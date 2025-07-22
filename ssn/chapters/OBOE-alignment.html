@@ -20,12 +20,12 @@
         <th> Namespace </th>
       </tr>
       <tr>
-        <td> <code>sosa:</code> </td>
+        <td> `sosa:` </td>
         <td> <a href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a>
         </td>
       </tr>
       <tr>
-        <td> <code>oboe:</code> </td>
+        <td> `oboe:` </td>
         <td>
           <a href="http://ecoinformatics.org/oboe/oboe.1.1/oboe-core.owl#">http://ecoinformatics.org/oboe/oboe.1.1/oboe-core.owl#</a>
         </td>
@@ -36,25 +36,28 @@
 <section id="OBOE_Alignment_class">
   <h4>Class Alignments</h4>
   <p>
-    An <code>oboe:Observation</code> is composed of a collection of <code>oboe:Measurements</code> concerning a single
-    <code>oboe:Entity</code>.
-    Each individual <code>oboe:Measurement</code> concerns a distinct <code>oboe:Characteristic</code> and uses a
-    distinct <code>oboe:Protocol</code>.
+    An `oboe:Observation` is composed of a collection of `oboe:Measurements` concerning a single
+    `oboe:Entity`.
+    Each individual `oboe:Measurement` concerns a distinct `oboe:Characteristic` and uses a
+    distinct `oboe:Protocol`.
     This aligns to a <a>sosa:ObservationCollection</a> whose member <a>sosa:Observations</a> each concern a different
     <a>sosa:observedProperty</a> of a single <a>sosa:hasFeatureOfInterest</a>.
   </p>
   <p>
-    An <code>oboe:ObservationCollection</code> is composed of a collection of <code>oboe:Observations</code>
+    An `oboe:ObservationCollection` is composed of a collection of `oboe:Observations`
     with no particular homogeneity expectation of the members.
     This aligns to a <a>sosa:ObservationCollection</a> whose members are <a>sosa:ObservationCollections</a> each having
     a single <a>sosa:hasFeatureOfInterest</a>.
   </p>
-  <figure id="oboe-implementation">
+  <p>
+    The overall alignment is illustrated in <a href="#Fig-oboe-implementation"></a>.
+  </p>
+  <figure id="Fig-oboe-implementation">
     <embed alt="OBOE core aligned to SOSA Observation and ObservationCollection" src="./images/OBOE-alignment.svg"
       style="width:100%" />
     <figcaption>
       The OBOE core model (left), shown alongside the SOSA model including two levels of
-      <a>sosa:ObservationCollection</a> (right) with matching classes and properties aligned.
+      <a>sosa:ObservationCollection</a> (right) with matching classes and properties aligned visually.
       <br>
       <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
     </figcaption>
@@ -65,14 +68,14 @@
   <table>
     <tbody>
       <tr>
-        <td> <code>oboe:ObservationCollection</code> </td>
+        <td> `oboe:ObservationCollection` </td>
         <td> subclass of </td>
         <td> <a>sosa:ObservationCollection</a>
           <br><a>sosa:hasMember</a> <b>ONLY</b> <a>sosa:ObservationCollection</a>
         </td>
       </tr>
       <tr>
-        <td> <code>oboe:Observation</code> </td>
+        <td> `oboe:Observation` </td>
         <td> subclass of </td>
         <td> <a>sosa:ObservationCollection</a>
           <br><a>sosa:hasFeatureOfInterest</a> <b>EXACTLY 1</b>
@@ -80,17 +83,17 @@
         </td>
       </tr>
       <tr>
-        <td> <code>oboe:Measurement</code> </td>
+        <td> `oboe:Measurement` </td>
         <td> equivalent class </td>
         <td> <a>sosa:Observation</a> </td>
       </tr>
       <tr>
-        <td> <code>oboe:Characteristic</code> </td>
+        <td> `oboe:Characteristic` </td>
         <td> equivalent class </td>
         <td> <a>sosa:Property</a> </td>
       </tr>
       <tr>
-        <td> <code>oboe:Protocol</code> </td>
+        <td> `oboe:Protocol` </td>
         <td> equivalent class </td>
         <td> <a>sosa:ObservingProcedure</a> </td>
       </tr>
@@ -105,7 +108,7 @@
       <tr>
         <td> <a>sosa:FeatureOfInterest</a> </td>
         <td> subclass of </td>
-        <td> <code>oboe:Entity</code> </td>
+        <td> `oboe:Entity` </td>
       </tr>
     </tbody>
   </table>
@@ -118,27 +121,27 @@
   <table>
     <tbody>
       <tr>
-        <td> <code>oboe:ofEntity</code> </td>
+        <td> `oboe:ofEntity` </td>
         <td> equivalent property </td>
         <td> <a>sosa:hasFeatureOfInterest</a> </td>
       </tr>
       <tr>
-        <td> <code>oboe:ofCharacteristic</code> </td>
+        <td> `oboe:ofCharacteristic` </td>
         <td> equivalent property </td>
         <td> <a>sosa:observedProperty</a> </td>
       </tr>
       <tr>
-        <td> <code>oboe:usesProtocol</code> </td>
+        <td> `oboe:usesProtocol` </td>
         <td> subproperty of </td>
         <td> <a>sosa:usedProcedure</a> </td>
       </tr>
       <tr>
-        <td> <code>oboe:usesMethod</code> </td>
+        <td> `oboe:usesMethod` </td>
         <td> subproperty of </td>
         <td> <a>sosa:usedProcedure</a> </td>
       </tr>
       <tr>
-        <td> <code>oboe:hasValue</code> </td>
+        <td> `oboe:hasValue` </td>
         <td> equivalent property </td>
         <td> <a>sosa:hasResult</a> </td>
       </tr>
@@ -153,12 +156,12 @@
   <table>
     <tbody>
       <tr>
-        <td> <code>oboe:hasMember</code> </td>
+        <td> `oboe:hasMember` </td>
         <td> sub-property of </td>
         <td> <a>sosa:hasMember</a> </td>
       </tr>
       <tr>
-        <td> <code>oboe:hasMeasurement</code> </td>
+        <td> `oboe:hasMeasurement` </td>
         <td> sub-property of </td>
         <td> <a>sosa:hasMember</a> </td>
       </tr>

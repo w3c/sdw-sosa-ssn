@@ -25,7 +25,7 @@
     For example, using the I-ADOPT terminology, the property <a href="http://qudt.org/vocab/quantitykind/Temperature">Temperature</a> may be specialized to apply to a sick
     child as follows:
 </p>
-<figure id="Temperature-i-adopt">
+<figure id="Fig-Temperature-i-adopt">
     <embed alt="Constrained temperature definition" src="./images/Temperature-i-adopt.svg" style="width:90%" />
     <figcaption>
         Definition of a constrained temperature property for a sick child, using the I-ADOPT vocabulary.
@@ -38,24 +38,24 @@
     The key point is that an individual property, whether taken from a catalogue or defined using a specialist
     vocabaulary, is denoted by a URI.
     This URI can then be used as the value of the
-    <a href="#SOSAactsOnProperty"><code>sosa:actsOnProperty</code></a> or
-    <a href="#SOSAobservedProperty"><code>sosa:observedProperty</code></a> of an Execution.
+    <a>sosa:actsOnProperty</a> or
+    <a>sosa:observedProperty</a> of an Execution.
 </p>
 <h4>Feature-specific properties</h4>
 <p>
-    Most commonly an instance of <a href="#SOSAProperty"><code>sosa:Property</code></a> is generic to many
-    features of interest (e.g., <code>ex:Temperature</code>, <code>ex:Concentration</code>, or <code>ex:OnOffStatus</code>).
+    Most commonly an instance of <a>sosa:Property</a> is generic to many
+    features of interest (e.g., `ex:Temperature`, `ex:Concentration`, or `ex:OnOffStatus`).
     These <em>shared</em> properties are then used across executions. For instance, thousands of observations about CO<sub>2</sub> concentrations 
-    all share the same <code>ex:Concentration</code> property, thereby ensuring scalability, indexing, interoperability, reuse,
-    and a concise semantics. Similarly, one could define <code>ex:CO2Concentration</code> as a sub-property of 
-    <code>ex:Concentration</code> using a single axiom. This new property (and resulting hierarchy) can then be used to distinguish 
+    all share the same `ex:Concentration` property, thereby ensuring scalability, indexing, interoperability, reuse,
+    and a concise semantics. Similarly, one could define `ex:CO2Concentration` as a sub-property of 
+    `ex:Concentration` using a single axiom. This new property (and resulting hierarchy) can then be used to distinguish 
     CO<sub>2</sub> concentration observations from more general concentration observations without giving up on their commonality 
     with other types of concentration observations. This improves structure and retrieval. The catalogs listed above support this usage.
 </p>
 <p>
     Alternatively, an <em>individual</em> property may be made specific to an individual feature of interest using
-    <a href="#SOSAisPropertyOf"><code>sosa:isPropertyOf</code></a>
-    (e.g., <code>ex:SickChildATemperature</code>, <code>ex:Room34LightStatus</code>).
+    <a>sosa:isPropertyOf</a>
+    (e.g., `ex:SickChildATemperature`, `ex:Room34LightStatus`).
     Such specific properties of individual features would not usually appear in a catalogue of reusable properties and can potentially 
     lead to reduced reuse and performance (due to data size and indexing). However, this pattern has proven useful in some applications.
     In that context, a key requirement is to relate the specific property to the general case for the underlying
@@ -63,10 +63,10 @@
 </p>
 <p>
     The [[SAREF]] ontologies address this requirement with separate classes:
-    <code>saref:Property</code> for the general case, and <code>saref:PropertyOfInterest</code> for the case where a
+    `saref:Property` for the general case, and `saref:PropertyOfInterest` for the case where a
     property is bound to a single feature of interest.
     An instance of the latter may be connected to an instance of the former using the predicate
-    <code>saref:hasPropertyKind</code>, as shown in the following example:.
+    `saref:hasPropertyKind`, as shown in the following example:.
 </p>
 <pre class="example" data-include="./rdf/examples/Temperature-of-interest-specialization.ttl" data-include-format="text"></pre>
 <p>
@@ -78,11 +78,11 @@
     concerning any other feature of interest.
 </p>
 <p class="note">
-    Where <a href="#SOSAactsOnProperty"><code>sosa:actsOnProperty</code></a> or
-    <a href="#SOSAobservedProperty"><code>sosa:observedProperty</code></a> of an
-    <a href="#SOSAActuation"><code>sosa:Actuation</code></a> or
-    <a href="#SOSAObservation"><code>sosa:Observation</code></a> refers to a <em>specific</em> property bound to a
+    Where <a>sosa:actsOnProperty</a> or
+    <a>sosa:observedProperty</a> of an
+    <a>sosa:Actuation</a> or
+    <a>sosa:Observation</a> refers to a <em>specific</em> property bound to a
     specific feature-of-interest, then the
-    <a href="#SOSAhasFeatureOfInterest"><code>sosa:hasFeatureOfInterest</code></a> is implied and may be omitted in the
+    <a>sosa:hasFeatureOfInterest</a> is implied and may be omitted in the
     data.
 </p>
