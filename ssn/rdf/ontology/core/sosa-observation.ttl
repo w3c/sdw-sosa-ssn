@@ -198,13 +198,13 @@ sosa:observationRelatedTo
   a owl:ObjectProperty ;
   rdfs:label "observation related to"@en ;
   skos:definition """
-  relation from an Observation or ObservationCollection
+  relation from an Observation or ObservationCollection to another Execution or ExecutionCollection
   """@en ;
   skos:scopeNote "This general relationship complements the specific predicates outbound from Observation. It is particularly useful to relate Observations (and collections) to other Executions (and collections)" ;
   schema:domainIncludes sosa:Observation ;
   schema:domainIncludes sosa:ObservationCollection ;
-  schema:rangeIncludes sosa:Observation ;
-  schema:rangeIncludes sosa:ObservationCollection ;
+  schema:rangeIncludes sosa:Execution ;
+  schema:rangeIncludes sosa:ExecutionCollection ;
   owl:inverseOf sosa:relatedObservation ;
   rdfs:isDefinedBy sosa-obs: .
 
@@ -257,17 +257,11 @@ sosa:relatedObservation
   a owl:ObjectProperty ;
   rdfs:label "related observation"@en ;
   skos:definition """
-  relation from an Execution or ExecutionCollection to a related Observation or ObservationCollection
+  relation from an Execution or ExecutionCollection to an Observation or ObservationCollection
   """@en ;
   skos:scopeNote "This general relationship complements the specific predicates inbound to Observation. It is particularly useful to relate Observations (and collections) to other Executions (and collections)" ;
   schema:domainIncludes sosa:Execution ;
   schema:domainIncludes sosa:ExecutionCollection ;
-  schema:domainIncludes sosa:Actuation ;
-  schema:domainIncludes sosa:ActuationCollection ;
-  schema:domainIncludes sosa:Observation ;
-  schema:domainIncludes sosa:ObservationCollection ;
-  schema:domainIncludes sosa:Sampling ;
-  schema:domainIncludes sosa:SamplingCollection ;
   schema:rangeIncludes sosa:Observation ;
   schema:rangeIncludes sosa:ObservationCollection ;
   owl:inverseOf sosa:observationRelatedTo ;
