@@ -3,7 +3,7 @@
 
 <head>
   <meta content="text/html; charset=utf-8" http-equiv="content-type">
-  <title>Semantic Sensor Network Ontology</title>
+  <title>Semantic Sensor Network Ontology - 2023 Edition</title>
   <script class="remove" src="https://www.w3.org/Tools/respec/respec-w3c"></script>
   <script class="remove" src="config.js"></script>
   <script src="https://www.w3.org/2007/OWL/toggles.js"></script>
@@ -94,22 +94,21 @@
 
   <section id="abstract">
     <p>
-      The Semantic Sensor Network (SSN) ontology is an ontology for describing
-      sensors and their observations, the involved procedures, the studied features of
-      interest, the samples used to do so, and the observed properties, as well as actuators.
-      SSN follows a horizontal and vertical modularization architecture, with the core classes
-      and properties defined using minimal axiomatization in a graph called SOSA (Sensor, Observation, Sample, and
-      Actuator)
-      supplemented with additional axiomatization and terms in further graphs.
-      These allow SSN to support a wide range of applications and use
-      cases, including satellite imagery, large-scale scientific monitoring, industrial and
-      household infrastructures, social sensing, citizen science, observation-driven ontology
-      engineering, and the Web of Things.
+      The Semantic Sensor Network ontology (SSN) describes actuators and their actuations, sensors and their
+      observations, samplers and their samplings, the procedures implemented, the features of interest and samples
+      changed or studied, and the actuated and observed properties.
+      The core SSN classes and properties are defined using minimal axiomatization in a module called SOSA (Sensor,
+      Observation, Sample, and Actuator) supplemented with additional axiomatization and terms in further modules.
+      These allow SSN to support a wide range of applications and use cases, including satellite imagery, large-scale
+      scientific monitoring, industrial and household infrastructures, social sensing, citizen science,
+      observation-driven ontology engineering, and the Web of Things.
+      Alignments to some existing ontologies and specifications are provided. 
+      Patterns for application of SSN are provided.
     </p>
     <p style="text-align: center;">
-      The namespace for the core terms is <code>http://www.w3.org/ns/sosa/</code>.</p>
+      The namespace for the core terms is `http://www.w3.org/ns/sosa/`.</p>
     <p style="text-align: center;">
-      The suggested prefix for the SOSA namespace is <code>sosa</code>. </p>
+      The suggested prefix for the SOSA namespace is `sosa`. </p>
     <p style="text-align: center;">
       The SOSA graph containing the core definitions is available at
       <a href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a>.
@@ -125,10 +124,9 @@
       <b>General Information</b>
     </p>
     <p>
-      For <strong>OGC</strong> this is a Public Draft of a document prepared by the Spatial Data on the Web Working
-      Group
-      (<a href="http://www.opengeospatial.org/projects/groups/sdwwg">SDWWG</a>)
-      — a joint W3C-OGC project (see <a href="https://www.w3.org/2015/spatial/charter">charter</a>).
+      For <strong>OGC</strong> this is a Public Draft of a document prepared by the Spatio-temporal Data on the Web
+      Working Group (<a href="https://www.w3.org/groups/wg/sdw/">SDW</a>) — a joint W3C-OGC project
+      (see <a href="https://www.w3.org/2024/11/sdw-wg-charter.html">charter</a>).
       The document is prepared following W3C conventions.
       The document is released at this time to solicit public comment.
     </p>
@@ -230,8 +228,7 @@
   <section class="appendix informative" id="wide-review">
     <h2>Wide review</h2>
     <p>
-      Results of the wide review of SOSA and SSN is
-      <a href="https://www.w3.org/2015/spatial/wiki/Wide_Review">summarized here</a>.
+      TBC
     </p>
   </section>
 
@@ -252,12 +249,13 @@
     <p>
       The editors recognize the major contribution of the members of the original W3C Semantic Sensor Networks Incubator
       Group.
-      The editors also gratefully acknowledge the contributions made to this document by all members of the SSN subgroup
-      of the Spatial Data on the Web working group.
+      The editors also gratefully acknowledge the contributions made by all members of the SSN subgroup of the original
+      Spatial Data on the Web working group.
     </p>
     <p>
       For this new edition of SSN, in addition to the contributors listed at the top of the document, the editors
-      acknowledge the work of the editors of ISO 19156:2023 [[OMS]].
+      acknowledge the work of the editors of ISO 19156:2023 ([[iso-19156-2023]], [[OMS]]).
+      Ted Thibodeau Jr, Openlink Software, made many small grammatical improvements to the text.
     </p>
   </section>
 
@@ -270,45 +268,41 @@
         (https://www.w3.org/TR/2017/REC-vocab-ssn-20171019/)</a></h3>
     <ol>
       <li>Updated Abstract to reflect the revised graph and axiomatization design</li>
+      <li>Updated and streamlined Introduction; moved Origins section to an Annex. </li>
       <li>Updated Chapter 2 'Modularization' to simplify and to reflect the revised graph arrangement</li>
       <li>Add conformance clause Chapter 3</li>
       <li>Updated Chapter 4 and Chapter 5.1 to explain modularization and RDF implementation</li>
+      <li>Refactored SOSA and SSN into modules - sosa-common sosa-actuation sosa-observation sosa-sampling sosa (all),
+        and matching ssn-* files (also ssn-deprecated).
+        Refactored HTML sources to match. </li>
+      <li>re-drafted all figures as SVG; added a clause on notation</li>
+      <li>Mark `ssn:Input`, `ssn:Output`, `sosa:Result` deprecated</li>
+      <li>Add `ExecutionCollection`, `ActuationCollection`, `ObservationCollection`, `SamplingCollection`, `SampleCollection`,
+        `hasMember`, `isMemberOf`</li>
+      <li>remove `rdfs:range` on `resultTime`</li>
+      <li>Clarify meaning of `hasResult, resultTime, phenomenonTime in the context of  `Actuations`</li>
+      <li>Add `startTime` property</li>
+      <li>Add `forProperty` links from `Procedure`, and inverse `hasProcedure`</li>
+      <li>add inverses for all object-properties, add tabulation of all properties</li>
+      <li>Add `madeBySystem`, `madeExecution` </li>
+      <li>Remove `Sample is subclass of FeatureOfInterest` axiom</li>
+      <li>Add Sample sub-classes - `MaterialSample`, `SpatialSample`, `StatisticalSample`</li>
+      <li>Add `madeSamplingHasResult` and `usedForExecutionHasResult` properties</li>
+      <li>Add `hasOriginalSample`, `isSampleOfUltimateFOI` from SSN-ext</li>
+      <li>Deprecate `ActuatableProperty`, `ObservableProperty` in favour of generic `Property`</li>
+      <li>Add `ActuatingProcedure`, `ObservingProcedure`, `SamplingProcedure` specializations of `Procedure` for each execution
+        type</li>
+      <li>Add `hasFeatureOfInterest support to Deployments</li>
+      <li>Remove Functional and InverseFunctional axioms except on `hasResult</li>
+      <li>Move System Capabilities module to Appendix</li>
+      <li>Add SAREF alignment</li>
+      <li>Update OBOE alignment - using `ObservationCollection`, `SampleCollection`, `hasMember`</li>
       <li>Retire O&amp;Mv2 alignment - superseded by OMS extension</li>
       <li>Retire SSNX alignment - leave behind a stub giving links to the previous edition of the recommendation and to
         the RDF alignment file</li>
-      <li>Mark ssn:Input, ssn:Output deprecated</li>
-      <li>Mark ssn-system:Condition deprecated</li>
-      <li>Mark sosa:Result deprecated</li>
-      <li>Add ObservationCollection, SampleCollection, hasMember</li>
-      <li>Add ActuationCollection to provide basic support for sets of actuations on multiple properties with multiple
-        results; clarify meaning of Actuation result</li>
-      <li>Add SamplingCollection to provide mechanism for grouping sets of Samplings with common properties</li>
-      <li>Update OBOE alignment - using ObservationCollection, SampleCollection, hasMember</li>
-      <li>remove rdfs:range on sosa:resultTime</li>
-      <li>Add content model for Execution, ExecutionCollection, including hasInputValue and hasResult</li>
-      <li>Clarify meaning of hasResult, resultTime, phenomenonTime in the context of Actuations</li>
-      <li>introduced startTime property</li>
-      <li>Refactored SOSA and SSN into modules - sosa-common sosa-actuation sosa-observation sosa-sampling sosa (all),
-        and matching ssn-* files (also ssn-deprecated). Refactored HTML sources to match. </li>
-      <li>Update and streamline Introduction; move Origins section to an Annex. </li>
-      <li>re-drafted all figures; added a clause on notation</li>
-      <li>retire ssn-system:qualityOfObservation - functionally equivalent to sosa:resultQuality</li>
-      <li>add alignment to SAREF</li>
-      <li>Add `forProperty` links from `Procedure`, and inverse `hasProcedure`</li>
-      <li>add inverses for all object-properties, add tabulation of all properties</li>
-      <li>Add madeBySystem, madeExecution </li>
-      <li>Add explanation of how domain types relate to feature-of-interest; remove Sample is subclass of
-        FeatureOfInterest axiom</li>
-      <li>Add SamplingCollection to provide mechanism for grouping sets of Samplings with common properties</li>
-      <li>Deprecate ActuatableProperty, ObservableProperty in favour of generic Property</li>
-      <li>Add a procedure specialization for each execution type</li>
-      <li>Clarify type-vs-instance for Systems; add examples in Common Modeling patterns.</li>
-      <li>Add hasFeatureOfInterest support to Deployments to allow description of systems/platforms tied to specific
-        FoIs</li>
-      <li>Remove Functional and InverseFunctional axioms except on hasResult</li>
+      <li>Fully revise Common Modeling patterns, also with diagrams</li>
       <li>Make patterns for Location, UoM more prescriptive</li>
-      <li>Move System Capabilities module to Appendix</li>
-      </li>
+      <li>Move extended examples out of the document into an online repository</li>
     </ol>
   </section>
 </body>

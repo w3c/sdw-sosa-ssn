@@ -5,12 +5,6 @@ data: [
       orcid: "0000-0002-7815-2472"
     },
     {
-      name: "Luis de Sousa",
-      company: "ISRIC",
-      companyURL: "https://www.isric.org/",
-      orcid: "0000-0002-6668-7138"
-    },
-    {
       name: "Sylvain Grellet",
       company: "BRGM",
       companyURL: "https://brgm.fr/",

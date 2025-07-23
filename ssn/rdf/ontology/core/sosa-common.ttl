@@ -142,7 +142,10 @@ sosa:Procedure
   It explains the steps to be carried out to arrive at reproducible results.
   """@en ;
   skos:example "The measured wind speed differs depending on the height of the sensor above the surface, e.g., due to friction. Consequently, procedures for measuring wind speed define a standard height for anemometers above ground, typically 10m for meteorological measures and 2m in Agrometeorology. This definition of height, sensor placement, and so forth are defined by the Procedure."@en ;
-  skos:note "Many observations may be created via the same Procedure, the same way as many tables are assembled using the same instructions (as information objects, not their concrete realization)."@en ;
+  skos:scopeNote """
+  Procedure generalizes the ActuationProcedure, ObservationProcedure, and SamplingProcedure classes. 
+  It appears in the ontology to support the description of a common pattern for executions and their properties. 
+  """@en ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hasInput 
@@ -241,10 +244,10 @@ sosa:ExecutionCollection
   a owl:Class ;
   rdfs:label "Execution Collection"@en ;
   skos:definition """
-  set of one or more Executions or ExecutionCollections &mdash; collections may be nested
+  set of one or more Executions or ExecutionCollections; collections may be nested
 
   The following execution properties may appear in an Execution Collection: 
-  hasFeatureOfInterest , usedProcedure , madeBySystem , resultTime , startTime . 
+  hasFeatureOfInterest , usedProcedure , madeBySystem , endTime, resultTime , startTime . 
   If it is present, the value of a property summarizes the values of the matching properties of the member executions, where membership is either direct or transitive through one or more member execution collections. 
   The following consistency rules apply with respect to the execution properties listed above: 
   
@@ -301,7 +304,6 @@ sosa:hasFeatureOfInterest
   from an Observation to the entity whose quality was observed;
   from an act of Sampling to the entity that was sampled;
   or from a Deployment to its target
-
   """@en ;
   skos:scopeNote "This is the _proximate_ feature of interest, which may be a proxy entity such as a sample of the _ultimate_ feature of interest. Use `hasUltimateFeatureOfInterest` if the intention is to link to the _ultimate_ feature of interest. " ;
   skos:example "For example, in an Observation of the weight of a person, the FeatureOfInterest is the person and the property is its weight."@en ;
@@ -356,6 +358,7 @@ sosa:hasSimpleResult
   skos:example "For instance, the values 23 or true."@en ;
   skos:note "This DatatypeProperty provides an alternative to hasResult, to be used only if the execution result can be expressed as a Literal"@en ;
   schema:domainIncludes sosa:Execution ;
+  schema:domainIncludes sosa:ExecutionCollection ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hasUltimateFeatureOfInterest 
@@ -511,7 +514,7 @@ sosa:Platform
   skos:prefLabel "Platform" ;
   skos:altLabel "Host" ;
   skos:definition """
-  an entity that hosts other entities, particularly Systems and other Platforms
+  entity that hosts other entities, particularly Systems and other Platforms
   """@en ;
   skos:scopeNote "The INSPIRE 'Environmental Monitoring Facility' may be implemented using SOSA by the OWL/RDFS class 'Platform'" ;
   dcterms:source <https://inspire.ec.europa.eu/id/document/tg/ef> ;
@@ -570,7 +573,7 @@ sosa:deployedOnPlatform
   a owl:ObjectProperty ;
   rdfs:label "deployed on platform"@en ;
   skos:definition """
-  relation from a Deployment to the Platform on which the Systems are hosted
+  relation from a Deployment to a Platform on which Systems are hosted
   """@en ;
   schema:domainIncludes sosa:Deployment ;
   schema:rangeIncludes sosa:Platform ;
@@ -581,7 +584,7 @@ sosa:deployedSystem
   a owl:ObjectProperty ;
   rdfs:label "deployed system"@en ;
   skos:definition """
-  relation from a Deployment to a deployed System.
+  relation from a Deployment to a deployed System
   """@en ;
   schema:domainIncludes sosa:Deployment ;
   schema:rangeIncludes sosa:System ;
@@ -592,7 +595,7 @@ sosa:hasDeployment
   a owl:ObjectProperty ;
   rdfs:label "has deployment"@en ;
   skos:definition """
-  relation from a System to a Deployment in which it is deploye.
+  relation from a System to a Deployment in which it is deployed
   """@en ;
   schema:domainIncludes sosa:System ;
   schema:domainIncludes sosa:Platform ;
@@ -615,7 +618,7 @@ sosa:hosts
   a owl:ObjectProperty ;
   rdfs:label "hosts"@en ;
   skos:definition """
-  relation from a Platform to a System or Platform hosted or mounted on it
+  relation from a Platform to an asset (System or Platform) hosted or mounted on it
   """@en ;
   schema:domainIncludes sosa:Platform ;
   schema:rangeIncludes sosa:Platform ;
@@ -627,7 +630,7 @@ sosa:implements
   a owl:ObjectProperty ;
   rdfs:label "implements"@en ;
   skos:definition """
-  relation from a System to the Procedure that it implements
+  relation from a System to the Procedure that it is capable of executing
   """@en ;
   skos:example "For example, the relationship between a sensor and the scientific measuring Procedure via which it senses."@en ;
   schema:domainIncludes sosa:System ;
@@ -639,7 +642,7 @@ sosa:inDeployment
   a owl:ObjectProperty ;
   rdfs:label "in deployment"@en ;
   skos:definition """
-  relation from a Platform that may host Systems to a Deployment
+  relation from a Platform to a Deployment
   """@en ;
   skos:example "For example, a relation between a buoy and a deployment of several Sensors."@en ;
   schema:domainIncludes sosa:Platform ;
@@ -651,7 +654,7 @@ sosa:isHostedBy
   a owl:ObjectProperty ;
   rdfs:label "is hosted by"@en ;
   skos:definition """
-  relation from an System or Platform, to a Platform that it is mounted on or hosted by
+  relation from an asset (System or Platform), to a Platform that it is mounted on or hosted by
   """@en ;
   schema:domainIncludes sosa:System ;
   schema:domainIncludes sosa:Platform ;
@@ -695,13 +698,16 @@ sosa:hasMember
   a owl:ObjectProperty ;
   rdfs:label "has member of collection" ;
   skos:definition """
-  link from a Collection to an Execution or Sample or Collection that is part of it
+  link from a Collection to an Execution or Sample or Collection of these that is part of it
   """ ;
   skos:scopeNote "rules for the consistency of values of properties of collections and properties of their members are given for each collection type" ;
   skos:editorialNote "Note that there is a single `member` property. OWL or SHACL constraints may limit the range depending on the context of different collection types" ;
   schema:domainIncludes sosa:ExecutionCollection ;
+  schema:domainIncludes sosa:SampleCollection ;
   schema:rangeIncludes sosa:Execution ;
+  schema:rangeIncludes sosa:Sample ;
   schema:rangeIncludes sosa:ExecutionCollection ;
+  schema:rangeIncludes sosa:SampleCollection ;
   owl:inverseOf sosa:isMemberOf ;
   rdfs:isDefinedBy sosa-common: .
 
@@ -709,13 +715,16 @@ sosa:isMemberOf
   a owl:ObjectProperty ;
   rdfs:label "is member of collection" ;
   skos:definition """
-  link from an Execution or Sample or Collection to a collection that it is part of
+  link from an Execution or Sample or Collection of these, to a collection that it is part of
   """ ;
   skos:scopeNote "rules for the consistency of values of properties of collections and properties of their members are given for each collection type" ;
   skos:editorialNote "Note that there is a single `member` property. OWL or SHACL constraints may limit the range depending on the context of different collection types" ;
   schema:domainIncludes sosa:Execution ; 
+  schema:domainIncludes sosa:Sample ;
   schema:domainIncludes sosa:ExecutionCollection ;
+  schema:domainIncludes sosa:SampleCollection ;
   schema:rangeIncludes sosa:ExecutionCollection ;
+  schema:rangeIncludes sosa:SampleCollection ;
   owl:inverseOf sosa:hasMember ;
   rdfs:isDefinedBy sosa-common: .
 
