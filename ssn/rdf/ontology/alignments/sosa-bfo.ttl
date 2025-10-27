@@ -1,0 +1,78 @@
+# baseURI: http://www.w3.org/ns/sosa/prov
+# imports: http://www.w3.org/ns/prov-o#
+# imports: http://www.w3.org/ns/sosa/
+
+@prefix cco: <https://www.commoncoreontologies.org/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix sp: <http://www.w3.org/ns/sosa/prov/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+sosa:Execution
+  rdfs:subClassOf obo:BFO_0000015 ; # Process
+.
+sosa:System
+  rdfs:subClassOf obo:BFO_0000002 ; # Continuant
+.
+sosa:FeatureOfInterest
+  rdfs:subClassOf obo:BFO_0000001 ; # Entity
+.
+sosa:Property
+  rdfs:subClassOf obo:BFO_0000019 ; # Quality
+.
+sosa:Platform
+  rdfs:subClassOf obo:BFO_0000040 , cco:ont00000591 ; # Material Entity , Artifact Location
+.
+sosa:Procedure
+  rdfs:subClassOf obo:BFO_0000031 , cco:ont00000253 , cco:ont00000958 ; # Generically Dependent Entity , Information Bearing Entity , Information Content Entity
+.
+sosa:hasFeatureOfInterest
+  rdfs:subPropertyOf obo:BFO_0000057 , cco:ont00001921 ; # has participant , has input
+.
+sosa:hasResult
+  rdfs:subPropertyOf obo:BFO_0000057 , cco:ont00001986 ; # has participant , has output 
+.
+sosa:hasSample
+  rdfs:subPropertyOf cco:ont00001928 ; # is predecessor of
+.
+sosa:implements
+  rdfs:subPropertyOf obo:BFO_0000034 ; # function
+.
+sosa:isSampleOf
+  rdfs:subPropertyOf cco:ont00001775 ; # is successor of
+.
+sosa:madeBySystem
+  rdfs:subPropertyOf obo:BFO_0000057 ; # has participant
+.
+sosa:originated 
+  rdfs:subPropertyOf cco:ont00001803 , cco:ont00001933 ; # is cause of , process starts
+.
+sosa:usedProcedure
+  rdfs:subPropertyOf obo:BFO_0000057 , obo:BFO_0000055 ; # has participant , realizes
+.
+sosa:wasOriginatedBy 
+  rdfs:subPropertyOf cco:ont00001819 , cco:ont00001962 ; # caused by , process started by
+.
+sosa:bfo
+  rdf:type owl:Ontology ;
+  dcterms:created "2025-10-23"^^xsd:date ;
+  dcterms:creator "Simon J D Cox" ;
+  dcterms:creator [
+      rdf:type foaf:Agent ;
+      foaf:name "W3C/OGC Spatiotemporal Data on the Web Working Group"@en ;
+    ] ;
+  dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
+  dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
+  dcterms:modified "2025-10-27"^^xsd:date ;
+  dcterms:rights "Copyright 2017, 2025 W3C/OGC." ;
+  rdfs:comment "Alignment of the the W3C/OGC SOSA Ontology with the BFO and CCO Ontologies"@en ;
+  rdfs:label "Alignment of SOSA with BFO + CCO"@en ;
+  owl:imports <http://purl.obolibrary.org/obo/bfo> ;
+  owl:imports <https://www.commoncoreontologies.org/CommonCoreOntologiesMerged> ; 
+  owl:imports sosa: ;
+.
