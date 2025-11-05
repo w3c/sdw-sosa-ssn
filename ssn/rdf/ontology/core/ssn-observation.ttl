@@ -40,7 +40,6 @@ sosa:Property
   rdfs:isDefinedBy sosa-common: .
 
 sosa:Observation 
-  rdfs:subClassOf sosa:Execution ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeBySensor ; owl:allValuesFrom sosa:Sensor ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:usedProcedure; owl:allValuesFrom sosa:ObservingProcedure ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasFeatureOfInterest ; owl:allValuesFrom sosa:FeatureOfInterest ] ;
@@ -50,7 +49,6 @@ sosa:Observation
   rdfs:isDefinedBy sosa-obs: .
 
 sosa:ObservationCollection 
-  rdfs:subClassOf sosa:ExecutionCollection ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasUltimateFeatureOfInterest ; owl:allValuesFrom sosa:FeatureOfInterest ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:madeBySensor ; owl:allValuesFrom sosa:Sensor ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:observedProperty ; owl:allValuesFrom sosa:Property ] ;
@@ -68,12 +66,10 @@ sosa:ObservationCollection
   rdfs:isDefinedBy sosa-obs: .
 
 sosa:ObservingProcedure  
-  rdfs:subClassOf sosa:Procedure ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implementedBy ; owl:allValuesFrom sosa:Sensor ] ;
   rdfs:isDefinedBy sosa-obs: .
 
 sosa:Sensor 
-  rdfs:subClassOf sosa:System ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:detects ; owl:allValuesFrom sosa:Stimulus ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:observes ; owl:allValuesFrom sosa:Property ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implements ; owl:allValuesFrom sosa:ObservingProcedure ] ;
@@ -118,11 +114,9 @@ sosa:isProxyFor
   rdfs:isDefinedBy sosa-obs: .
 
 sosa:madeBySensor 
-  rdfs:subPropertyOf sosa:madeBySystem ;
   rdfs:isDefinedBy sosa-obs: .
 
 sosa:madeObservation 
-  rdfs:subPropertyOf sosa:madeExecution ;
   rdfs:isDefinedBy sosa-obs: .
 
 sosa:observationRelatedTo 
@@ -132,11 +126,9 @@ sosa:observedProperty
   rdfs:isDefinedBy sosa-obs: .
 
 sosa:observes 
-  rdfs:subPropertyOf sosa:forProperty ;
   rdfs:isDefinedBy sosa-obs: .
 
 sosa:originated 
-  rdfs:subPropertyOf sosa:forProperty ;
   rdfs:isDefinedBy sosa-obs: .
 
 sosa:qualityOf 

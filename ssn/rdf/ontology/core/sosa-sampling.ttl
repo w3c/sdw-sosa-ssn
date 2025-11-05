@@ -51,6 +51,7 @@ sosa:Sample
 
 sosa:MaterialSample 
   a owl:Class ;
+  rdfs:subClassOf sosa:Sample ;
   rdfs:label "Material Sample"@en ;
   skos:definition """
   subset of a FeatureOfInterest that is physical (i.e., tangible)
@@ -62,6 +63,7 @@ sosa:MaterialSample
 
 sosa:SpatialSample 
   a owl:Class ;
+  rdfs:subClassOf sosa:Sample ;
   rdfs:label "Spatial Sample"@en ;
   skos:definition """
   subset of a FeatureOfInterest defined by its location and shape in space
@@ -74,6 +76,7 @@ sosa:SpatialSample
 
 sosa:StatisticalSample 
   a owl:Class ;
+  rdfs:subClassOf sosa:Sample ;
   rdfs:label "Statistical Sample"@en ;
   skos:definition """
   subset of a FeatureOfInterest defined by the statistical process used to create it
@@ -111,6 +114,7 @@ sosa:SampleCollection
 
 sosa:Sampler 
   a owl:Class ;
+  rdfs:subClassOf sosa:System ;
   rdfs:label "Sampler"@en ;
   skos:definition """
   System that implements a SamplingProcedure to generate a Sample
@@ -121,6 +125,7 @@ sosa:Sampler
 
 sosa:Sampling 
   a owl:Class ;
+  rdfs:subClassOf sosa:Execution ;
   rdfs:label "Sampling"@en ;
   skos:definition """
   act of carrying out a SamplingProcedure using a Sampler to create one or more Samples of a FeatureOfInterest
@@ -140,6 +145,7 @@ sosa:Sampling
 
 sosa:SamplingCollection 
   a owl:Class ;
+  rdfs:subClassOf sosa:ExecutionCollection ;
   rdfs:label "Sampling Collection"@en ;
   skos:definition """
   set of one or more Samplings or SamplingCollections; collections may be nested
@@ -164,6 +170,7 @@ sosa:SamplingCollection
 
 sosa:SamplingProcedure  
   a owl:Class ;
+  rdfs:subClassOf sosa:Procedure ;
   rdfs:label "Sampling Procedure"@en ;
   skos:definition """
   workflow, protocol, plan, algorithm, or computational method specifying how to make a Sampling
@@ -278,6 +285,7 @@ sosa:isSampleOfUltimateFOI
 
 sosa:madeBySampler 
   a owl:ObjectProperty ;
+  rdfs:subPropertyOf sosa:madeBySystem ;
   rdfs:label "made by sampler"@en ;
   skos:definition """
   relation from an act of Sampling to the Sampler that made it
@@ -290,6 +298,7 @@ sosa:madeBySampler
 
 sosa:madeSampling 
   a owl:ObjectProperty ;
+  rdfs:subPropertyOf sosa:madeExecution ;
   rdfs:label "made sampling"@en ;
   skos:definition """
   relation from a Sampler to the Sampling or SamplingCollection it has made

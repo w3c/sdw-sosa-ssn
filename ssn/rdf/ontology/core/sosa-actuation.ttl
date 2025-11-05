@@ -28,6 +28,7 @@ sosa-act:
 
 sosa:ActuatingProcedure  
   a owl:Class ;
+  rdfs:subClassOf sosa:Procedure ;
   rdfs:label "Actuating Procedure"@en ;
   skos:definition """
   workflow, protocol, plan, algorithm, or computational method specifying how to make an Actuation
@@ -39,6 +40,7 @@ sosa:ActuatingProcedure
 
 sosa:Actuation 
   a owl:Class ;
+  rdfs:subClassOf sosa:Execution ;
   rdfs:label "Actuation"@en ;
   skos:definition """
   act of carrying out an ActuatingProcedure using an Actuator to change the value of an actuatable Property of a FeatureOfInterest
@@ -58,6 +60,7 @@ sosa:Actuation
 
 sosa:ActuationCollection 
   a owl:Class ;
+  rdfs:subClassOf sosa:ExecutionCollection ;
   rdfs:label "Actuation Collection"@en ;
   skos:definition """
   set of one or more Actuations or ActuationCollections; collections may be nested
@@ -82,6 +85,7 @@ sosa:ActuationCollection
 
 sosa:Actuator 
   a owl:Class ;
+  rdfs:subClassOf sosa:System ;
   rdfs:label "Actuator"@en ;
   skos:definition """
   System that implements an ActuatingProcedure to change the value of an actuatable Property
@@ -92,6 +96,7 @@ sosa:Actuator
 
 sosa:actsOn 
   a owl:ObjectProperty ;
+  rdfs:subPropertyOf sosa:forProperty ;
   rdfs:label "acts on"@en ;
   skos:definition """
   relation from an Actuator to a Property whose state may be changed by using it
@@ -129,6 +134,7 @@ sosa:isActedOnBy
 
 sosa:madeActuation 
   a owl:ObjectProperty ;
+  rdfs:subPropertyOf sosa:madeExecution ;
   rdfs:label "made actuation"@en ;
   skos:definition """
   relation from an Actuator to an Actuation or ActuationCollection it has made
@@ -141,6 +147,7 @@ sosa:madeActuation
 
 sosa:madeByActuator 
   a owl:ObjectProperty ;
+  rdfs:subPropertyOf sosa:madeBySystem ;
   rdfs:label "made by actuator"@en ;
   skos:definition """
   relation from an Actuation or ActuationCollection to the Actuator that made it
