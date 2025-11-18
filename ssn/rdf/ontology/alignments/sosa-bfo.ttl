@@ -16,29 +16,45 @@
 sosa:Execution
   rdfs:subClassOf obo:BFO_0000015 ; # Process
 .
-sosa:System
-  rdfs:subClassOf obo:BFO_0000002 ; # Continuant
-.
 sosa:FeatureOfInterest
   rdfs:subClassOf obo:BFO_0000001 ; # Entity
 .
 sosa:Property
   rdfs:subClassOf obo:BFO_0000019 ; # Quality
 .
+sosa:Sample
+  rdfs:subClassOf obo:BFO_0000002 ; # Continuant
+.
+sosa:System
+  rdfs:subClassOf obo:BFO_0000002 ; # Continuant
+.
+sosa:Deployment
+  rdfs:subClassOf obo:BFO_0000003 ; # Occurrent 
+.
 sosa:Platform
-  rdfs:subClassOf obo:BFO_0000040 , cco:ont00000591 ; # Material Entity , Artifact Location
+  rdfs:subClassOf [ 
+    a owl:Class ; 
+    owl:unionOf ( 
+      obo:BFO_0000040 
+      cco:ont00000591 
+      ) 
+    ] ; # Material Entity , Artifact Location
 .
 sosa:Procedure
-  rdfs:subClassOf obo:BFO_0000031 , cco:ont00000253 , cco:ont00000958 ; # Generically Dependent Entity , Information Bearing Entity , Information Content Entity
+  rdfs:subClassOf [ 
+    a owl:Class ; 
+    owl:unionOf ( 
+      obo:BFO_0000031 
+      cco:ont00000253 
+      cco:ont00000958 
+      ) 
+    ] ; # Generically Dependent Entity , Information Bearing Entity , Information Content Entity
 .
 sosa:hasFeatureOfInterest
-  rdfs:subPropertyOf obo:BFO_0000057 , cco:ont00001921 ; # has participant , has input
+  rdfs:subPropertyOf obo:BFO_0000057 ; # has participant 
 .
 sosa:hasResult
-  rdfs:subPropertyOf obo:BFO_0000057 , cco:ont00001986 ; # has participant , has output 
-.
-sosa:hasSample
-  rdfs:subPropertyOf cco:ont00001928 ; # is predecessor of
+  rdfs:subPropertyOf cco:ont00001986 ; # has output 
 .
 sosa:implements
   rdfs:subPropertyOf obo:BFO_0000034 ; # function
@@ -49,14 +65,11 @@ sosa:isSampleOf
 sosa:madeBySystem
   rdfs:subPropertyOf obo:BFO_0000057 ; # has participant
 .
-sosa:originated 
-  rdfs:subPropertyOf cco:ont00001803 , cco:ont00001933 ; # is cause of , process starts
-.
 sosa:usedProcedure
-  rdfs:subPropertyOf obo:BFO_0000057 , obo:BFO_0000055 ; # has participant , realizes
+  rdfs:subPropertyOf obo:BFO_0000055 ; # realizes
 .
 sosa:wasOriginatedBy 
-  rdfs:subPropertyOf cco:ont00001819 , cco:ont00001962 ; # caused by , process started by
+  rdfs:subPropertyOf cco:ont00001819 ; # caused by 
 .
 sosa:bfo
   rdf:type owl:Ontology ;
