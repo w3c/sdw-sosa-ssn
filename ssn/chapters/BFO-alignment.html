@@ -1,6 +1,6 @@
 <h3>BFO/CCO Alignment Module</h3>
 <p>
-  This section introduces the alignment of SOSA to the Basic Formal Ontology ([[BFO]]) and Common Core Ontologies
+  This section introduces the alignment of SSN to the Basic Formal Ontology ([[BFO]]) and Common Core Ontologies
   ([[CCO]]).
 </p>
 <p>
@@ -23,8 +23,6 @@
   <span class="logic">≡</span> indicates equivalence, corresponding to either <code>EquivalentClasses</code> or
   <code>EquivalentObjectProperties</code>, depending on the context.
   <br>
-  <span class="logic">&cup;</span> denotes <code>Union</code> class.
-  <br>
   The expression <code>OP1 <span class="logic">o</span> OP2 <span class="logic">⊑</span> OP3</code> represents a
   subproperty chain axiom.
 </p>
@@ -32,7 +30,7 @@
 <section id="BFO_Alignment_ns">
   <h4>Namespaces</h4>
   <p>
-    The following namespace prefixes are used in the alignment of SOSA to BFO and CCO.
+    The following namespace prefixes are used in the alignment of SSN to BFO and CCO.
   </p>
   <dl>
     <dt>sosa:</dt>
@@ -60,32 +58,55 @@
     <li>
       <span class="lhs"><a>sosa:Execution</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs"><a href="http://purl.obolibrary.org/obo/BFO_0000015">obo:BFO_0000015</a> process</span>
+      <span class="rhs">
+        <span
+          title="process: p is a process means p is an occurrent that has some temporal proper part and for some time t, p has some material entity as participant">obo:BFO_0000015</span>
+        process
+      </span>
     </li>
     <li>
       <span class="lhs"><a>sosa:FeatureOfInterest</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs"><a href="http://purl.obolibrary.org/obo/BFO_0000001">obo:BFO_0000001</a> entity</span>
+      <span class="rhs">
+        <span title="entity: An entity is anything that exists or has existed or will exist">obo:BFO_0000001</span>
+        entity
+      </span>
     </li>
     <li>
       <span class="lhs"><a>sosa:Property</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs"><a href="http://purl.obolibrary.org/obo/BFO_0000019">obo:BFO_0000019</a> quality</span>
+      <span class="rhs">
+        <span
+          title="quality: A quality is a specifically dependent continuant that, in contrast to roles and dispositions, does not require any further process in order to be realized">obo:BFO_0000019</span>
+        quality
+      </span>
     </li>
     <li>
       <span class="lhs"><a>sosa:Sample</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs"><a href="http://purl.obolibrary.org/obo/BFO_0000002">obo:BFO_0000002</a> continuant</span>
+      <span class="rhs">
+        <span
+          title="independent continuant: b is an independent continuant =Def b is a continuant & there is no c such that b specifically depends on c or b generically depends on c">obo:BFO_0000004</span>
+        independent continuant
+      </span>
     </li>
     <li>
       <span class="lhs"><a>sosa:System</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs"><a href="http://purl.obolibrary.org/obo/BFO_0000004">obo:BFO_0000004</a> independent continuant</span>
+      <span class="rhs">
+        <span
+          title="independent continuant: b is an independent continuant =Def b is a continuant & there is no c such that b specifically depends on c or b generically depends on c">obo:BFO_0000004</span>
+        independent continuant
+      </span>
     </li>
     <li>
       <span class="lhs"><a>sosa:Deployment</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs"><a href="http://purl.obolibrary.org/obo/BFO_0000015">obo:BFO_0000015</a> process</span>
+      <span class="rhs">
+        <span
+          title="process: p is a process means p is an occurrent that has some temporal proper part and for some time t, p has some material entity as participant">obo:BFO_0000015</span>
+        process
+      </span>
     </li>
   </ul>
 
@@ -93,15 +114,22 @@
     <li>
       <span class="lhs"><a>sosa:Platform</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs">(
-        <a href="http://purl.obolibrary.org/obo/BFO_0000040">obo:BFO_0000040</a>
-        &cup; <a href="https://www.commoncoreontologies.org/ont00000591">cco:ont00000591</a>
-        ) ( Material Entity &cup; Artifact Location )</span>
+      <span class="rhs">
+        <span
+          title="material entity: A material entity is an independent continuant has some portion of matter as continuant part">obo:BFO_0000040</span>
+        <span class="logic">or</span>
+        <span title="Artifact Location: A Site that is the location of some Artifact">cco:ont00000591</span>
+        ( Material Entity or Artifact Location )
+      </span>
     </li>
     <li>
       <span class="lhs"><a>sosa:Procedure</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs"><a href="https://www.commoncoreontologies.org/ont00000958">cco:ont00000958</a> Information Content Entity</span>
+      <span class="rhs">
+        <span
+          title="Information Content Entity: A Generically Dependent Continuant that generically depends on some Information Bearing Entity and stands in relation of aboutness to some Entity.">cco:ont00000958</span>
+        Information Content Entity
+      </span>
     </li>
   </ul>
 </section>
@@ -115,42 +143,64 @@
     <li>
       <span class="lhs"><a>sosa:hasFeatureOfInterest</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs"><a href="http://purl.obolibrary.org/obo/BFO_0000057">obo:BFO_0000057</a> has
-        participant</span>
+      <span class="rhs">
+        <span
+          title="has input: y has_input x iff x is an instance of Continuant and y is an instance of Process, such that the presence of x at the beginning of y is a necessary condition for the start of y.">cco:ont00001921</span>
+        has input
+      </span>
     </li>
     <li>
       <span class="lhs"><a>sosa:hasResult</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs"><a href="https://www.commoncoreontologies.org/ont00001986">cco:ont00001986</a> has
-        output</span>
+      <span class="rhs">
+        <span
+          title="has output: y has_output x iff x is an instance of Continuant and y is an instance of Process, such that the presence of x at the end of y is a necessary condition for the completion of y.">cco:ont00001986</span>
+        has output
+      </span>
     </li>
     <li>
       <span class="lhs"><a>sosa:implements</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs"><a href="http://purl.obolibrary.org/obo/BFO_0000034">obo:BFO_0000034</a> function</span>
+      <span class="rhs">
+        <span
+          title="function: A function is a disposition that exists in virtue of its bearer's physical make-up & this physical make-up is something the bearer possesses because it came into being either through evolution (in the case of natural biological entities) or through intentional design (in the case of artefacts) in order to realize processes of a certain sort">obo:BFO_0000034</span>
+        function
+      </span>
     </li>
     <li>
       <span class="lhs"><a>sosa:isSampleOf</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs"><a href="https://www.commoncoreontologies.org/ont00001775">cco:ont00001775</a> is successor
-        of</span>
+      <span class="rhs">
+        <span
+          title="is successor of: A continuant c2 is a successor of some continuant c1 iff there is some process p1 and c1 is an input to p1 and c2 is an output of p1. Inverse of is predecessor.">cco:ont00001775</span>
+        is successor of
+      </span>
     </li>
     <li>
       <span class="lhs"><a>sosa:madeBySystem</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs"><a href="http://purl.obolibrary.org/obo/BFO_0000057">obo:BFO_0000057</a> has
-        participant</span>
+      <span class="rhs">
+        <span title="has participant: p has participant c =Def c participates in p">obo:BFO_0000057</span>
+        has participant
+      </span>
     </li>
     <li>
       <span class="lhs"><a>sosa:usedProcedure</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs"><a href="http://purl.obolibrary.org/obo/BFO_0000055">obo:BFO_0000055</a> realizes</span>
+      <span class="rhs">
+        <span
+          title="realizes: realizes is a relation between a process b and realizable entity c such that c inheres in some d & for all t, if b has participant d then c exists & the type instantiated by b is correlated with the type instantiated by c">obo:BFO_0000055</span>
+        realizes
+      </span>
     </li>
     <li>
       <span class="lhs"><a>sosa:wasOriginatedBy</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs"><a href="https://www.commoncoreontologies.org/ont00001819">cco:ont00001819</a> caused
-        by</span>
+      <span class="rhs">
+        <span
+          title="caused by: x caused_by y iff x and y are instances of Occurrent, and x is a consequence of y.">cco:ont00001819</span>
+        caused by
+      </span>
     </li>
   </ul>
 
