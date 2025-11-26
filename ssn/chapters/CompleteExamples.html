@@ -1,8 +1,157 @@
 <h2>Extended Examples</h2>
 
 <p>
-    A set of extended examples of instances using the SSN ontology are available in the <a href="https://github.com/w3c/sdw-sosa-ssn/tree/gh-pages/ssn/rdf/examples">examples folder</a>.
+    A set of extended examples of instances using the SOSA ontology are available in the <a href="./rdf/examples">examples folder</a>.
 </p>
+
+<section id="beerTemp">
+<h3>Tracking Beer Temperature with IBS-TH2</h3>
+
+    <p>An RDF file containing a <a
+            href="/ssn/rdf/examples/Beer-Full-IBS-TH2.ttl">graph corresponding to
+            this example is available</a>. </p>
+    <div>
+     <p>The following is a detailed example where a IBS-TH2 sensor is used to monitor a crate (carton) of beer from the time of its
+     packaging at a brewery up until its display in the supermarket cooler where it is purchased.  Beer degrades both
+     at high and low temperatures.  This requires that it be kept cool during storage and shipping to preserve the
+     product. Humidity has no effect the beer owing to sealed containers through excess humidity will weaken cardboard and degrade
+     the adhesives potentially resulting in product breakage.  Brewers will on occasion insert a temperature logger into
+     their shipping process as part of their quality control program and we present such a hypothetical situation here.<p>
+
+     <p>This example is of interest because it involves the repurposing of a commodity, consumer-grade <a href="#SOSAPlatform">sosa:Platform</a> to a
+     domain-specific problem, the movement of a platform from environment to environment and the possible ambiguity of data-ownership in each of these environments. It also demonstrates the location 
+     ambiguity that can sometimes be present in modeling sensor readings.</p>
+
+     <p class="note">The use of long identifiers is made for readability purposes and is non-normative.</p>
+    </div>
+     
+     <h4>Packaging and initial storage</h4>
+     <div>
+     <figure id="InkBird_IBS_TH2-packaging" style="float: right; max-width: 30%; height: auto;vertical-align: top;margin: -10% 15px 0px 15px;"><img src="/ssn/images/InkBird_IBS_TH2-packaging.png"> 
+      <figcaption>The sensor platform and the beer are packaged into a container as a product.</figcaption> 
+     </figure>
+     
+     <p>Alice works for Acme Brewery Co., she procures an InkBird IBS-TH2 Platform (Serial Number: 12345) and places it inside a beer carton with six
+     bottles (a &quot;six-pack&quot;) of Acme Brewery's famous Porter beers with a product lot code of PO202402. She seals the packaging and places it inside of Acme
+     Brewery's cooler while awaiting shipment.</p>
+     <p>We model the packaging activity and the placement of the Platform into the
+     crate before it is sealed. The platform is thus monitoring the ambient air temperature and the relative humidity from within
+     the beer crate every few minutes. In the following snippet we instantiate both the IBS-TH2 Platform, the carton and the
+     activity that represents the packaging of the beer and the creation of the beer carton as a product:<p>
+     </div>     
+     
+     <p>The platform then begins to take measurements that are recorded as part of a data logging activity.</p>
+     <pre class="example turtle" data-include="./rdf/examples/Beer-Packaging-IBS-TH2.ttl" data-include-format="text"></pre>
+
+   <p>In the above example the concurrent use of the <a href="#SOSAhasFeatureOfInterest">sosa:hasFeatureOfInterest</a> and <a
+   href="#SOSAhasUltimateFeatureOfInterest">sosa:hasUltimateFeatureOfInterest</a> properties is made to account for the repurposing of a generic
+   sensor. The actual measurement being performed by the platform is the air temperature within the carton as a proxy for the beer
+   temperature within each beer vessel. Modeling the full thermodynamics activity relating one measurement to the other is beyond the
+   scope of this document but could be implemented as a second order &quot;virtual&quot; <a href="#SOSASensor">sosa:Sensor</a> or a
+   sophisticated <a href="#SOSAProcedure">sosa:Procedure</a>. Thus the use of the <a href="#SOSAhasUltimateFeatureOfInterest">sosa:hasUltimateFeatureOfInterest</a> property allows for flexibility in the interpretation of the measurement
+   within a context <i>not necessarily intended by the original sensor design itself</i>.</p>
+   
+   <p>Physically, both &lt;12345/HumiditySensor&gt; and &lt;12345/TemperatureSensor&gt; are monitoring the ambient air within the
+   specific Porter carton which we define as <small>&lt;10/PO202402/21/0001/acmePorterSixPackAirSample&gt;</small> which resolves the issue of the
+   location of the measurement when the carton itself is in motion. The <a href="#SOSAhasUltimateFeatureOfInterest">sosa:hasUltimateFeatureOfInterest</a> property
+   then targets the beer temperature within that carton and the humidity the cardboard of the carton was subject to:</p>
+   <pre class="example turtle" data-include="./rdf/examples/Beer-FeatureOfInterest-IBS-TH2.ttl" data-include-format="text"></pre>
+
+   <p>The Sosa ontology takes a &quot;feature and property&quot; approach that is then referenced by observations. The
+   feature of interest, in this case the ambient air within the carton ( <small>&lt;10/PO202402/21/0001/acmePorterSixPackAirSample&gt;
+   </small>) is
+   the feature that the Platform is concerned with. However, it really is a proxy for both the temperature of the beer within the
+   individual containers ( <small>&lt;10/PO202402/21/0001/acmePorterSixPackBeerSample&gt; </small>) within the carton and the relative humidity that
+   the packaging ( <small>&lt;0001/ProductPackaging&gt; </small>) is being exposed to. The beer &quot;sample&quot; in this case is virtual; the node
+   serves only to semantically link the observation to the beer liquid itself without any physical sample being taken. A more
+   detailed example with physical beer samples is listed in [[[#beerCollections]]].</p>     
+     </div> 
+
+     <h4>Shipping to Retail Store</h4>
+     <div>
+      <figure id="InkBird_IBS_TH2-shipping" style="float: right; max-width: 30%; height: auto;vertical-align: top;margin: -10% 15px 0px 15px;">
+      <img src="/ssn/images/InkBird_IBS_TH2-shipping.png"> 
+      <figcaption>The beer carton is being moved from the brewery to the retail location.</figcaption> 
+      </figure> 
+     </div> 
+      <p>After being
+     chilled in the brewery cooler, the beer carton is then loaded on one of the Acme delivery trucks for shipment to the retail
+     store.  The truck's cooling management system is recording the sensor readings for both the shipping company and the brewery.
+     An on-board GPS unit is annotating the activity of recording observations as the truck moves from location to location. This
+     position information represents the location of the shipping truck itself without making reference to the beer carton or the
+     platform generating the readings. This is important in that the underlying properties and features referenced by the sensors
+     of the platform have not changed, even
+     through the beer carton and the platform have obviously changed physical location.</p>
+
+     <p>The information recorded during this time period would be:</p>
+     <pre class="example turtle" data-include="./rdf/examples/Beer-Shipping-IBS-TH2.ttl" data-include-format="text"></pre>
+ 
+    <p>The sensors of the platform are reporting values for the same properties of the same features of interest; the physical
+    location of the carton of beer does not effect the process because the platform monitors the inside of the carton itself. Modeling
+    its location and the process of (un)loading of the carton from the truck is done through other rdf nodes.</p> 
+    <p>The truck on-board monitoring system does report a GPS geometry as a Location. This is the location at which the data was
+    recorded from the platform. It is conceivable that the geometry node is shared with a vehicle tracking system rdf representation
+    or the vehicle's delivery scheduling application but it is not mandated by Sosa.</p> 
+
+     <p class="note">Locations of Platform, Sensors, and measured samples are often conflated in
+     non-semantically enabled systems and the semantics often implicitly assumed by the application. The deep semantic modeling
+     within Sosa makes no such implicit assumptions and locations can be assigned to all elements independently.</p>
+      
+     <h4>Display in Retail Store Cooler</h4> 
+     <p style="margin-bottom: 0.5cm"></p>
+     <div>
+      <figure id="InkBird_IBS_TH2-receiving" style="float: right; max-width: 30%; height: auto;vertical-align: top; margin: -10px 15px 0px 15px;">
+      <img src="/ssn/images/InkBird_IBS_TH2-receiving.png"> 
+      <figcaption>The beer carton is stored in the display cooler for retail sale.</figcaption> 
+      </figure> 
+      <p>When received at the retail store from the delivery company, the beer is displayed for sale in retail coolers which log
+      the sensors, the data being held by the retail store. We notice again the semantics of location and containment; the sensor is
+      contained within the carton which is contained within the cooler which is itself located within the store. However, none of this
+      semantic is recorded. The only location activity is 
+      the activity is taking place within the supermarket cooler; not the supermarket itself. </p>
+      </div>
+      <p>The information recorded during this time period would be:</p>
+      <pre class="example turtle" data-include="./rdf/examples/Beer-Supermarket-IBS-TH2.ttl" data-include-format="text"></pre>
+     
+      </div>
+
+      <h4>Notes on deployment and observation aggregation</h4>
+      
+      <p>In previous examples, <a href="https://www.w3.org/TR/prov-o/Activity">prov:Activity</a> was used as a means of aggregating
+      results as an archiving reception. Other mechanisms exists to define the purpose of the System and aggregate collections of
+      results within specific contexts. </p>
+
+      
+      <h5>Recording data and sensor tasking through sensor deployments</h5>
+      
+      <p>Sosa provides a notion of a <a href="#SOSADeployment">Deployment</a> class. This permits the tasking
+      or installation of sensors to different environments, purposes, locations or
+      leases. Intended to link Platforms to System this allows the application of different semantics to different situations,
+      for example by recording different configuration parameters, thought deployments may be concurrent. Reusing the example of [[[#beerTemp]]], the sensor can be seen to be concurrently deployed within the
+      beer carton and multiple coolers / storage sites:</p>
+      <pre class="example turtle" data-include="./rdf/examples/Beer-PlatformDeployment-IBS-TH2.ttl" data-include-format="text"></pre>
+      
+      <h5 id="beerCollections">Recording data using observation collection</h5>
+
+      <p>Sosa provides a lightweight capability to aggregate members for convenience. In previous examples observations where
+      clustered according to Deployment or recording Activity. In some circumstances it is useful to aggregate observations
+      according to an ad-hoc classification, here following the location storage of the carton while dispensing with geospatial
+      data:</p>
+      
+      <pre class="example turtle" data-include="./rdf/examples/Beer-ObservationCollections-IBS-TH2.ttl" data-include-format="text"></pre>
+      <h5 id="beerSamples">Recording data using sample collection</h5> 
+    <p>A similar class <a href="#SOSASampleCollection">sosa:SampleCollection</a> allows for the aggregation of <a
+    href="#SOSASample">sosa:Sample</a>s, for example as part of a collection of samples taken as part of a
+    quality assurance program. In the case of Acme Brewery, a collection of beer samples could be represented in this manner:</p>       
+
+    <pre class="example turtle" data-include="./rdf/examples/Beer-SampleCollections-IBS-TH2.ttl" data-include-format="text"></pre>
+    
+    <p class="note">Note: Thank you to Tudor Whiteley for the images.</p> 
+    </section>
+
+    
+
+
 
 <!---
 
