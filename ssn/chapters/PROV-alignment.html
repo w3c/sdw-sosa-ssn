@@ -1,6 +1,6 @@
 <h3>PROV Alignment Module</h3>
 <p>
-  This section introduces the alignment of SOSA to W3C PROV ([[prov-overview]], [[prov-dm]], [[prov-o]]).
+  This section introduces the alignment of SSN to W3C PROV ([[prov-overview]], [[prov-dm]], [[prov-o]]).
 </p>
 <p>
   The underlying structure of PROV is based around a process-flow model, with three base classes:
@@ -24,9 +24,9 @@
 </figure>
 
 <p>
-  The SOSA/SSN ontologies conceive executions (actuations, observations, and acts of sampling) as activities or events,
+  The SSN ontology conceives executions (acts of actuation, observation, and sampling) as activities or events,
   which result in a change in the world, or information being produced, or the production or transformation of a sample.
-  An alignment of SOSA to PROV is natural.
+  An alignment of SSN to PROV is natural.
   Compton et al. [[SSN-PROV]] and Cox [[OM-Lite]] have described alignments of the [[SSNX]] and [[OandM]] models with [[prov-o]].
   The alignment here (see <a href="#Fig-PROV-Alignment"></a>) is based on that work, also extended to consider actuation and sampling.
 </p>
@@ -47,7 +47,7 @@
 <section id="PROV_Alignment_ns">
   <h4>Namespaces</h4>
   <p>
-    The following namespace prefixes are used in the alignment of SOSA to PROV.
+    The following namespace prefixes are used in the alignment of SSN to PROV.
   </p>
   <dl>
     <dt>sosa:</dt>
@@ -68,7 +68,7 @@
 <section id="PROV_Alignment_class">
   <h4>Class Alignments</h4>
   <p>
-    The primary classes from SOSA are aligned with the PROV classes as follows.
+    The primary classes from SSN are aligned with the PROV classes as follows.
   </p>
   <p>
     1. Execution (acts of Observation, Actuation and Sampling) is a kind of Activity, thus:
@@ -76,21 +76,6 @@
   <ul class="align-on-symbol">
     <li>
       <span class="lhs"><a>sosa:Execution</a></span>
-      <span class="symbol logic">⊑</span>
-      <span class="rhs"><a href="http://www.w3.org/ns/prov#Activity">prov:Activity</a></span>
-    </li>
-    <li>
-      <span class="lhs"><a>sosa:Actuation</a></span>
-      <span class="symbol logic">⊑</span>
-      <span class="rhs"><a href="http://www.w3.org/ns/prov#Activity">prov:Activity</a></span>
-    </li>
-    <li>
-      <span class="lhs"><a>sosa:Observation</a></span>
-      <span class="symbol logic">⊑</span>
-      <span class="rhs"><a href="http://www.w3.org/ns/prov#Activity">prov:Activity</a></span>
-    </li>
-    <li>
-      <span class="lhs"><a>sosa:Sampling</a></span>
       <span class="symbol logic">⊑</span>
       <span class="rhs"><a href="http://www.w3.org/ns/prov#Activity">prov:Activity</a></span>
     </li>
@@ -102,21 +87,6 @@
   <ul class="align-on-symbol">
     <li>
       <span class="lhs"><a>sosa:System</a></span>
-      <span class="symbol logic">⊑</span>
-      <span class="rhs"><a href="http://www.w3.org/ns/prov#Agent">prov:Agent</a> , <a href="http://www.w3.org/ns/prov#Entity">prov:Entity</a></span>
-    </li>
-    <li>
-      <span class="lhs"><a>sosa:Actuator</a></span>
-      <span class="symbol logic">⊑</span>
-      <span class="rhs"><a href="http://www.w3.org/ns/prov#Agent">prov:Agent</a> , <a href="http://www.w3.org/ns/prov#Entity">prov:Entity</a></span>
-    </li>
-    <li>
-      <span class="lhs"><a>sosa:Sensor</a></span>
-      <span class="symbol logic">⊑</span>
-      <span class="rhs"><a href="http://www.w3.org/ns/prov#Agent">prov:Agent</a> , <a href="http://www.w3.org/ns/prov#Entity">prov:Entity</a></span>
-    </li>
-    <li>
-      <span class="lhs"><a>sosa:Sampler</a></span>
       <span class="symbol logic">⊑</span>
       <span class="rhs"><a href="http://www.w3.org/ns/prov#Agent">prov:Agent</a> , <a href="http://www.w3.org/ns/prov#Entity">prov:Entity</a></span>
     </li>
@@ -132,7 +102,7 @@
     </li>
   </ul>
   <p>
-    4. The other classes from the core SOSA ontology represent either real or information resources, so are
+    4. The other classes from the core SSN ontology represent either real or information resources, so are
     interpreted as kinds of prov:Entity, thus:
   </p>
   <ul class="align-on-symbol">
@@ -162,7 +132,7 @@
 <section id="PROV_Alignment_property">
   <h4>Property Alignments</h4>
   <p>
-    The following properties from SOSA have simple alignments with PROV properties:
+    The following properties from SSN have simple alignments with PROV properties:
   </p>
   <ul class="align-on-symbol">
     <li>
@@ -191,27 +161,12 @@
       <span class="rhs"><a href="http://www.w3.org/ns/prov#wasAssociatedWith">prov:wasAssociatedWith</a></span>
     </li>
     <li>
-      <span class="lhs"><a>sosa:madeByActuator</a></span>
-      <span class="symbol logic">⊑</span>
-      <span class="rhs"><a href="http://www.w3.org/ns/prov#wasAssociatedWith">prov:wasAssociatedWith</a></span>
-    </li>
-    <li>
-      <span class="lhs"><a>sosa:madeBySensor</a></span>
-      <span class="symbol logic">⊑</span>
-      <span class="rhs"><a href="http://www.w3.org/ns/prov#wasAssociatedWith">prov:wasAssociatedWith</a></span>
-    </li>
-    <li>
-      <span class="lhs"><a>sosa:madeBySampler</a></span>
-      <span class="symbol logic">⊑</span>
-      <span class="rhs"><a href="http://www.w3.org/ns/prov#wasAssociatedWith">prov:wasAssociatedWith</a></span>
-    </li>
-    <li>
       <span class="lhs"><a>sosa:startTime</a></span>
       <span class="symbol logic">⊑</span>
       <span class="rhs"><a href="http://www.w3.org/ns/prov#startedAtTime">prov:startedAtTime</a></span>
     </li>
     <li>
-      <span class="lhs"><a>sosa:resultTime</a></span>
+      <span class="lhs"><a>sosa:endTime</a></span>
       <span class="symbol logic">⊑</span>
       <span class="rhs"><a href="http://www.w3.org/ns/prov#endedAtTime">prov:endedAtTime</a></span>
     </li>
