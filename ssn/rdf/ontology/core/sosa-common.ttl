@@ -331,6 +331,7 @@ sosa:hasInputValue
 
 sosa:hasResult 
   a owl:ObjectProperty ;
+  a owl:FunctionalProperty ;
   rdfs:label "has result"@en ;
   skos:definition """
   relation from an Execution to its result
@@ -351,6 +352,7 @@ sosa:hasResult
 
 sosa:hasSimpleResult 
   a owl:DatatypeProperty ;
+  a owl:FunctionalProperty ;
   rdfs:label "has simple result"@en ;
   skos:definition """
   relation from an Execution to its value expressed as a literal
@@ -579,6 +581,7 @@ sosa:deployedAsset
 
 sosa:deployedOnPlatform 
   a owl:ObjectProperty ;
+  rdfs:subPropertyOf sosa:deployedAsset ;
   rdfs:label "deployed on platform"@en ;
   skos:definition """
   relation from a Deployment to a Platform on which Systems are hosted
@@ -590,6 +593,7 @@ sosa:deployedOnPlatform
 
 sosa:deployedSystem 
   a owl:ObjectProperty ;
+  rdfs:subPropertyOf sosa:deployedAsset ;
   rdfs:label "deployed system"@en ;
   skos:definition """
   relation from a Deployment to a deployed System
@@ -647,6 +651,7 @@ sosa:implements
 
 sosa:inDeployment 
   a owl:ObjectProperty ;
+  rdfs:subPropertyOf sosa:hasDeployment ;
   rdfs:label "in deployment"@en ;
   skos:definition """
   relation from a Platform to a Deployment
