@@ -127,6 +127,8 @@ var respecConfig = {
         {
           value: "Krzysztof Janowicz, Universität Wien, AT"
         }, {
+          value: "Maja Milicic Brandt, Siemens AG, DE"
+        }, {
           value: "Alex Robin, Georobotix, FR"
         }, {
           value: "Hylke van der Schaaf, Fraunhofer IOSB, DE"
@@ -198,6 +200,13 @@ var respecConfig = {
       authors: ["Simon J D Cox"],
       title: "A Project Ontology",
       date: "2017"
+    },
+    "RDFS-Plus": {
+      href: "https://doi.org/10.1016/B978-0-12-385965-5.10008-1",
+      authors: ["Dean Allemang", "Jim Hendler"],
+      title: "Chapter 8 - RDFS-Plus",
+      publisher: "Semantic Web for the Working Ontologist (Second Edition), Morgan Kaufmann",
+      date: "2011"
     },
     "SSN-PROV": {
       href: "http://ceur-ws.org/Vol-1401/paper-05.pdf",
