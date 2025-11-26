@@ -39,7 +39,7 @@
 # We use GS1-style lot and serial numbers as part of the 
 # identifier to highlight that this is a physical instance of the product.
  
-<10/PO202402/21/0001/acmePorterSixPack> a beer:Porter, gs1:Product ;
+<10/PO202402/21/0001/acmePorterSixPack> a schema:IndividualProduct;
     rdfs:subClassOf <acmePorterSixPack>;
     gs1:packaging <0001/ProductPackaging>;
     gs1:hasBatchLotNumber "PO202402" ;
@@ -50,10 +50,10 @@
 
 # Alice packages the Beer.
 
-<12345/someTH2> a sensor:IBS-TH2-Plus ;
+<12345/someTH2> a sensor:IBS-TH2-Plus, schema:IndividualProduct ;
     rel:own <acmeBreweryCo> ; # Sensor may be returned.
     rdfs:label "InkBird Sensor that Alice bought to track beer storage."@en ;
-    sosa:hosts <12345/HumiditySensor>, <12345/TemperatureSensor> ;
+    sosa:hasSubSystem <12345/HumiditySensor>, <12345/TemperatureSensor> ;
     gs1:hasSerialNumber "12345" ;
     ex:deviceAddress "12:34:56:12:34:56" .
 
