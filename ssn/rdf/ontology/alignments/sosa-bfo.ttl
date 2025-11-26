@@ -20,7 +20,13 @@ sosa:FeatureOfInterest
   rdfs:subClassOf obo:BFO_0000001 ; # Entity
 .
 sosa:Property
-  rdfs:subClassOf obo:BFO_0000019 ; # Quality
+  rdfs:subClassOf [ 
+    a owl:Class ; 
+    owl:unionOf (
+      obo:BFO_0000019 
+      obo:BFO_0000031 
+      )
+    ] ; # Quality , Generically dependent continuant
 .
 sosa:Sample
   rdfs:subClassOf obo:BFO_0000004 ; # Independent Continuant
@@ -49,9 +55,9 @@ sosa:hasFeatureOfInterest
 sosa:hasResult
   rdfs:subPropertyOf cco:ont00001986 ; # has output 
 .
-sosa:implements
-  rdfs:subPropertyOf obo:BFO_0000034 ; # function
-.
+# sosa:implements
+#   rdfs:subPropertyOf  ; # 
+# .
 sosa:isSampleOf
   rdfs:subPropertyOf cco:ont00001775 ; # is successor of
 .
