@@ -13,18 +13,6 @@
   <a href="https://github.com/w3c/sdw-sosa-ssn/blob/gh-pages/ssn/rdf/ontology/alignments/sosa-oboe.ttl">graph corresponding to this alignment is available</a>.
 </p>
 
-<p class="note">
-  This section uses a combination of [[Description-Logics]] notation (see also the [[Description-Logics-Home-Page]]) and the Manchester Syntax [[owl2-manchester-syntax]].
-  <br>
-  <span class="logic">⊑</span> denotes either <code>SubClassOf</code> or <code>SubObjectPropertyOf</code>, depending on the context.
-  <br>
-  <span class="logic">≡</span> indicates equivalence, corresponding to either <code>EquivalentClasses</code> or <code>EquivalentObjectProperties</code>, depending on the context.
-  <br>
-  The expression <code>OP <b>ONLY</b> C</code> represents an <code>ObjectAllValuesFrom</code> restriction.
-  <br>
-  The expression <code>OP <b>EXACTLY 1</b></code> represents an <code>ObjectExactCardinality</code> restriction.
-</p>
-
 <section id="OBOE_Alignment_ns">
   <h4>Namespaces</h4>
   <p>
@@ -73,6 +61,9 @@
   <p>
     The primary classes from [[OBOE]] are aligned with SOSA classes as follows.
   </p>
+  <p class="note">
+    The notation used in this section is described in <a href="#Alignment-notation"></a>.
+  </p>
   <ul class="align-on-symbol">
     <li>
       <span class="lhs">`oboe:ObservationCollection`</span>
@@ -82,7 +73,7 @@
     <li>
       <span class="lhs">`oboe:ObservationCollection`</span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs"><a>sosa:hasMember</a> <b>ONLY</b> <a>sosa:ObservationCollection</a></span>
+      <span class="rhs"><a>sosa:hasMember</a> <span class="logic">only</span> <a>sosa:ObservationCollection</a></span>
     </li>
     <li>
       <span class="lhs">`oboe:Observation`</span>
@@ -92,12 +83,12 @@
     <li>
       <span class="lhs">`oboe:Observation`</span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs"><a>sosa:hasFeatureOfInterest</a> <b>EXACTLY 1</b></span>
+      <span class="rhs"><a>sosa:hasFeatureOfInterest</a> <span class="logic">exactly 1</span></span>
     </li>
     <li>
       <span class="lhs">`oboe:Observation`</span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs"><a>sosa:hasMember</a> <b>ONLY</b> <a>sosa:Observation</a></span>
+      <span class="rhs"><a>sosa:hasMember</a> <span class="logic">only</span> <a>sosa:Observation</a></span>
     </li>
     <li>
       <span class="lhs">`oboe:Measurement`</span>
