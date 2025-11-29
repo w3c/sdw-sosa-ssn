@@ -13,11 +13,26 @@
 @prefix sp: <http://www.w3.org/ns/sosa/prov/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+sosa:Deployment
+  rdfs:subClassOf obo:BFO_0000015 ; # Process 
+.
 sosa:Execution
   rdfs:subClassOf obo:BFO_0000015 ; # Process
 .
 sosa:FeatureOfInterest
   rdfs:subClassOf obo:BFO_0000001 ; # Entity
+.
+sosa:Platform
+  rdfs:subClassOf [ 
+    a owl:Class ; 
+    owl:unionOf ( 
+      obo:BFO_0000040 
+      cco:ont00000591 
+      ) 
+    ] ; # Material Entity , Artifact Location
+.
+sosa:Procedure
+  rdfs:subClassOf cco:ont00000853 ; # Descriptive Information Content Entity
 .
 sosa:Property
   rdfs:subClassOf [ 
@@ -33,21 +48,6 @@ sosa:Sample
 .
 sosa:System
   rdfs:subClassOf obo:BFO_0000004 ; # Independent Continuant
-.
-sosa:Deployment
-  rdfs:subClassOf obo:BFO_0000015 ; # Process 
-.
-sosa:Platform
-  rdfs:subClassOf [ 
-    a owl:Class ; 
-    owl:unionOf ( 
-      obo:BFO_0000040 
-      cco:ont00000591 
-      ) 
-    ] ; # Material Entity , Artifact Location
-.
-sosa:Procedure
-  rdfs:subClassOf cco:ont00000958 ; # Information Content Entity
 .
 sosa:hasFeatureOfInterest
   rdfs:subPropertyOf cco:ont00001921 ; # has input 
@@ -80,7 +80,7 @@ sosa:bfo
     ] ;
   dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
   dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
-  dcterms:modified "2025-10-27"^^xsd:date ;
+  dcterms:modified "2025-11-29"^^xsd:date ;
   dcterms:rights "Copyright 2017, 2025 W3C/OGC." ;
   rdfs:comment "Alignment of the the W3C/OGC SOSA Ontology with the BFO and CCO Ontologies"@en ;
   rdfs:label "Alignment of SOSA with BFO + CCO"@en ;
