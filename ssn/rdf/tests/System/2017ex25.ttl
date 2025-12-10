@@ -92,14 +92,22 @@
   ssn:deployedOnPlatform <Tree/1> .
 
 <Observation/5872357#temperature> a sosa:Observation ;
-    sosa:hasSimpleResult "64.5244681928429 Cel"^^cdt:ucum ;
+    sosa:hasResult [
+      a qudt:QuantityValue ;
+      qudt:value 64.5244681928429 ;
+      qudt:hasUnit unit:DEG_C ; 
+    ] ;
     sosa:madeBySensor <Sensor/SL-T-P1> ;
     sosa:hasFeatureOfInterest <Air?lat=45.75&long=4.85> ;
     sosa:observedProperty <Air?lat=45.75&long=4.85#temperature> ;
     sosa:resultTime "2017-06-20T21:49:18+00:00"^^xsd:dateTime .
 
 <Observation/5872357#battery> a sosa:Observation ;
-    sosa:hasSimpleResult "73.2 %"^^cdt:ucum ;
+    sosa:hasResult [
+      a qudt:QuantityValue ;
+      qudt:value 73.2 ;
+      qudt:hasUnit unit:PERCENT ; 
+    ] ;
     sosa:madeBySensor <Sensor/SL-T-P1> ;
     sosa:hasFeatureOfInterest <Sensor/SL-T-P1> ;
     sosa:observedProperty <Sensor/SL-T-P1#battery> ;

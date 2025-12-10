@@ -8,7 +8,11 @@ ex:OP1 a sosa:Observation ;
     rdfs:comment "Minimal example of an observation with a simple result" ;
     sosa:observedProperty ex:Temperature ;
     sosa:hasFeatureOfInterest ex:apartment134 ;
-    sosa:hasSimpleResult "-29.9 Cel"^^cdt:ucum ;
+    sosa:hasResult [
+      a qudt:QuantityValue ;
+      qudt:hasUnit unit:DEG_C ;
+      qudt:value -29.9 ;
+    ] ;
     .
 
 ex:Temperature a sosa:Property .

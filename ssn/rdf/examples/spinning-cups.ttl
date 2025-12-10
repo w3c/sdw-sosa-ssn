@@ -31,7 +31,11 @@ ex:observation_147 rdf:type sosa:Observation ;
   sosa:madeBySensor ex:windSensor_14 ;
   sosa:wasOriginatedBy ex:observation_147_spinningCupsMovement ;
   sosa:resultTime "2017-04-12T12:00:00+00:00"^^xsd:dateTime ;
-  sosa:hasSimpleResult "47 km/h"^^cdt:ucum ;
+  sosa:hasResult [
+      a qudt:QuantityValue ;
+      qudt:hasUnit unit:KiloM-PER-HR ;
+      qudt:value 47. ;
+  ] ;
 .
 # wind sensor #14 detected some movement of spinning cups, from which originated the
 # observations #147 and #148
@@ -50,7 +54,11 @@ ex:observation_148 rdf:type sosa:Observation ;
   sosa:madeBySensor ex:windSensor_14 ;
   sosa:wasOriginatedBy ex:observation_148_spinningCupsMovement ;
   sosa:resultTime "2017-04-12T12:01:00+00:00"^^xsd:dateTime ;
-  sosa:hasSimpleResult "47 km/h"^^cdt:ucum ;
+  sosa:hasResult [
+      a qudt:QuantityValue ;
+      qudt:hasUnit unit:KiloM-PER-HR ;
+      qudt:value 47. ;
+  ] ;
 .
 ex:observation_148_spinningCupsMovement rdf:type sosa:Stimulus ;
   sosa:isProxyFor ex:windSpeed ;

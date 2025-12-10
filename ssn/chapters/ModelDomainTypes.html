@@ -140,10 +140,19 @@ ex:YarraAboveDightsFalls rdf:type hydro:RiverReach .
 ex:o345 rdf:type sosa:Observation ;
     sosa:hasFeatureOfInterest ex:YarraAboveDightsFalls ;
     sosa:observedProperty hydro:elevation ;
-    sosa:hasSimpleResult "30 m"^^cdt:ucum ;
-    sosa:phenomenonTime [ a time:Instant ; time:inXSDDateTime "2024-07-15T13:30:00+10:00" ; ] ;
+    sosa:hasResult [
+        a qudt:QuantityValue ;
+        qudt:hasUnit unit:M ;
+        qudt:value 30 ;
+        ] ;
+    sosa:phenomenonTime [ 
+        a time:Instant ; 
+        time:inXSDDateTime "2024-07-15T13:30:00+10:00" ; 
+        ] ;
 .
 </pre>
+
+
 <p>
     The SSN constraint shown above entails:
     `ex:YarraAboveDightsFalls rdf:type sosa:FeatureOfInterest . `

@@ -20,7 +20,11 @@ ex:OF3 a sosa:Observation ;
     ] ;
     sosa:resultTime "2020-01-05T04:31:00"^^xsd:dateTime ;
     sosa:hasFeatureOfInterest ex:apartment134 ;
-    sosa:hasSimpleResult "-29.9 Cel"^^cdt:ucum ;
+    sosa:hasResult [
+      a qudt:QuantityValue ;
+      qudt:hasUnit unit:DEG_C ;
+      qudt:value -29.9 ;
+    ] ;
     .
 
 ex:apartment134 a sosa:FeatureOfInterest . 

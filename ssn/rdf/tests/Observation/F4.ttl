@@ -7,7 +7,7 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 
 ex:OF4 a sosa:Observation ;
-    rdfs:comment "Invalid observation - two result (simple)" ;
+    rdfs:comment "Invalid observation - two result" ;
     sosa:usedProcedure ex:T9 ;
     sosa:madeBySensor ex:Th3 ;
     sosa:phenomenonTime [
@@ -21,8 +21,16 @@ ex:OF4 a sosa:Observation ;
     sosa:resultTime "2020-01-05T04:31:00"^^xsd:dateTime ;
     sosa:observedProperty ex:Temperature ;
     sosa:hasFeatureOfInterest ex:apartment134 ;
-    sosa:hasSimpleResult "-29.9 Cel"^^cdt:ucum ;
-    sosa:hasSimpleResult "-2.9 Cel"^^cdt:ucum ;
+    sosa:hasResult [
+      a qudt:QuantityValue ;
+      qudt:hasUnit unit:DEG_C ;
+      qudt:value -29.9 ;
+    ] ;
+    sosa:hasResult [
+      a qudt:QuantityValue ;
+      qudt:hasUnit unit:DEG_C ;
+      qudt:value -2.9 ;
+    ] ;
     .
 
 ex:Temperature a sosa:Property .
