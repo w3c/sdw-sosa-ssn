@@ -503,6 +503,7 @@
                 <a>sosa:hasProcedure</a>,
                 <a>sosa:implementedBy</a>,
                 <a>sosa:inputFor</a>,
+                <a>sosa:isProcedureFor</a>,
                 <a>sosa:outputFor</a>,
                 <a>sosa:usedForExecution</a>
             </p>
@@ -671,6 +672,10 @@
                 relation from a Property to a Procedure that can observe or act on it
             </p>
             <dl>
+                <dt>Subproperty of</dt>
+                <dd>
+                    <a>sosa:propertyFor</a>
+                </dd>
                 <dt>Domain Includes</dt>
                 <dd>
                     <a>sosa:Property</a>
@@ -679,9 +684,9 @@
                 <dd>
                     <a>sosa:Procedure</a>
                 </dd>
-                <dt class="ssn">Inverse property of</dt>
-                <dd class="ssn">
-                    (<em><b>sub-property of</b></em> <a>sosa:forProperty</a>)
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:isProcedureFor</a>
                 </dd>
                 <dt>is Defined By</dt>
                 <dd>
@@ -754,6 +759,49 @@
                 <dt>Inverse property of</dt>
                 <dd>
                     <a>sosa:hasInput</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="informative specterm sosa" id="SOSAisProcedureFor">
+            <h6><dfn>sosa:isProcedureFor</dfn></h6>
+            <p class="crossreference">
+                <strong>IRI:</strong> http://www.w3.org/ns/sosa/isProcedureFor
+            </p>
+            <p>
+                <strong>an OWL Object Property</strong>
+            </p>
+            <p class="warning">isProcedureFor added in the 2023 Edition.
+                This term is non-normative, pending further implementation experience</p>
+            <p>
+                <em>is Procedure for</em> &mdash;
+                relation from a Procedure to a Property that it can observe or act on
+            </p>
+            <dl>
+                <dt>Subproperty of</dt>
+                <dd>
+                    <a>sosa:forProperty</a>
+                </dd>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:Procedure</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:Property</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:hasProcedure</a>
                 </dd>
                 <dt>is Defined By</dt>
                 <dd>
@@ -1911,7 +1959,8 @@
                 <a>sosa:inDeployment</a>,
                 <a>sosa:isHostedBy</a>,
                 <a>sosa:isSubSystemOf</a>,
-                <a>sosa:madeExecution</a>
+                <a>sosa:madeExecution</a>,
+                <a>sosa:systemDeployment</a>
             </p>
         </div>
 
@@ -2228,9 +2277,9 @@
                 <dd>
                     <a>sosa:System</a>
                 </dd>
-                <dt class="ssn">Inverse property of</dt>
-                <dd class="ssn">
-                    (<em><b>Subproperty of</b></em> <a>sosa:hasDeployment</a>)
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:systemDeployment</a>
                 </dd>
                 <dt>is Defined By</dt>
                 <dd>
@@ -2250,7 +2299,7 @@
             <p><strong>an OWL Object Property</strong></p>
             <p>
                 <em>has deployment</em> &mdash;
-                relation from a System or Platform to a Deployment in which it is deployed
+                relation from an asset (System or Platform) to a Deployment
             </p>
             <dl>
                 <dt>Domain Includes</dt>
@@ -2537,6 +2586,44 @@
                 <dt>Inverse property of</dt>
                 <dd>
                     <a>sosa:madeBySystem</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="specterm sosa" id="SOSAsystemDeployment">
+            <h6><dfn>sosa:systemDeployment</dfn></h6>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/systemDeployment</p>
+            <p><strong>an OWL Object Property</strong></p>
+
+            <p class="warning">systemDeployment added in the 2023 Edition.
+                This term is non-normative, pending further implementation experience</p>
+            <p>
+
+            <p>
+                <em>system deployment</em> &mdash;
+                relation from a System to a Deployment
+            </p>
+            <dl>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:System</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:Deployment</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:deployedSystem</a>
                 </dd>
                 <dt>is Defined By</dt>
                 <dd>
