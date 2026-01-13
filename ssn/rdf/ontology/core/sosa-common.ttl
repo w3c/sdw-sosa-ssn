@@ -176,11 +176,13 @@ sosa:hasOutput
 sosa:hasProcedure 
   a owl:ObjectProperty ;
   rdfs:label "has procedure"@en ;
+  rdfs:subPropertyOf sosa:propertyFor ;
   skos:definition """
   relation from a Property to a Procedure that can observe or act on it
   """@en ;
   schema:domainIncludes sosa:Property ;
   schema:rangeIncludes sosa:Procedure ;
+  owl:inverseOf sosa:isProcedureFor ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:implementedBy 
@@ -203,6 +205,18 @@ sosa:inputFor
   """@en ;
   schema:rangeIncludes sosa:Procedure ;
   owl:inverseOf sosa:hasInput ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:isProcedureFor
+  a owl:ObjectProperty ;
+  rdfs:label "is procedure for"@en ;
+  rdfs:subPropertyOf sosa:forProperty ;
+  skos:definition """
+  relation from a Procedure to a Property that it can observe or act on
+  """@en ;
+  schema:domainIncludes sosa:Procedure ;
+  schema:rangeIncludes sosa:Property ;
+  owl:inverseOf sosa:hasProcedure ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:outputFor 
@@ -470,7 +484,7 @@ sosa:resultTime
   a owl:DatatypeProperty ;
   rdfs:label "result time"@en ;
   skos:definition """
-  instant of time when the Execution was completed
+  instant of time when the result of the Execution became available
   """@en ;
   rdfs:comment "The value would usually be encoded using xsd:dateTime xsd:date xsd:gYearMonth xsd:gYear"@en ;
   schema:domainIncludes sosa:Execution ;
@@ -600,13 +614,14 @@ sosa:deployedSystem
   """@en ;
   schema:domainIncludes sosa:Deployment ;
   schema:rangeIncludes sosa:System ;
+  owl:inverseOf sosa:systemDeployment ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:hasDeployment 
   a owl:ObjectProperty ;
   rdfs:label "has deployment"@en ;
   skos:definition """
-  relation from a System or Platform to a Deployment in which it is deployed
+  relation from an asset (System or Platform) to a Deployment
   """@en ;
   schema:domainIncludes sosa:System ;
   schema:domainIncludes sosa:Platform ;
@@ -702,6 +717,18 @@ sosa:madeExecution
   schema:rangeIncludes sosa:Execution ;
   schema:rangeIncludes sosa:ExecutionCollection ;
   owl:inverseOf sosa:madeBySystem ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:systemDeployment 
+  a owl:ObjectProperty ;
+  rdfs:subPropertyOf sosa:hasDeployment ;
+  rdfs:label "system deployment"@en ;
+  skos:definition """
+  relation from a System to a Deployment
+  """@en ;
+  schema:domainIncludes sosa:System ;
+  schema:rangeIncludes sosa:Deployment ;
+  owl:inverseOf sosa:deployedSystem ;
   rdfs:isDefinedBy sosa-common: .
 
 ## Utility terms 
