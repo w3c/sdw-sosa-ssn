@@ -206,7 +206,7 @@ ogc-ms:implementedBy a owl:ObjectProperty ;
     </p>
     <p>
       <em>has preparation step</em> &mdash;
-      link from a Sample to a PreparationStep used for it
+      relation from a Sample to a PreparationStep used to prepare it
     </p>
     <dl>
         <dt>Domain Includes</dt>
@@ -243,12 +243,11 @@ ogc-ms:implementedBy a owl:ObjectProperty ;
     </p>
     <p>
       <em>made on platform</em> &mdash;
-      Relation from an Observation to the associated Platform.
+      relation from an ObservationCollection to the associated Platform.
     </p>
     <dl>
         <dt>Domain Includes</dt>
         <dd>
-            <a>sosa:Observation</a>,
             <a>sosa:ObservationCollection</a>
         </dd>
         <dt>Range Includes</dt>
@@ -287,8 +286,8 @@ ogc-ms:implementedBy a owl:ObjectProperty ;
       <strong>an OWL Object Property</strong>
     </p>
     <p>
-      <em>observation collection</em> &mdash;
-      Observations stemming from this Platform.
+      <em>makes observation collection</em> &mdash;
+      relation from a Platform to an ObservationCollection arising from it
     </p>
     <p class="note">
         In order to indicate potential Observations at a Platform, an empty ObservationCollection can be 
@@ -310,7 +309,6 @@ ogc-ms:implementedBy a owl:ObjectProperty ;
         </dd>
         <dt>Range Includes</dt>
         <dd>
-            <a>sosa:Observation</a>,
             <a>sosa:ObservationCollection</a>
         </dd>
         <dt>Inverse property of</dt>
@@ -570,7 +568,9 @@ ogc-ms:implementedBy a owl:ObjectProperty ;
       <dt>Domain Includes</dt>
       <dd>
         <a>sosa:Observation</a>,
-        <a>sosa:Sampling</a>
+        <a>sosa:ObservationCollection</a>,
+        <a>sosa:Sampling</a>,
+        <a>sosa:SamplingCollection</a>
       </dd>
       <dt>Range Includes</dt>
       <dd>

@@ -269,22 +269,20 @@ sosa-oms:madeOnPlatform
   a owl:ObjectProperty ;
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/host-sem> ;
   rdfs:label "made on platform"@en ;
-  skos:definition "Relation from an Observation to the associated Platform."@en ;
-  schema:domainIncludes sosa:Observation ;
+  skos:definition "relation from an ObservationCollection to the associated Platform."@en ;
   schema:domainIncludes sosa:ObservationCollection ;
   schema:rangeIncludes sosa:Platform ;
-  owl:inverseOf sosa-oms:observationCollection ;
+  owl:inverseOf sosa-oms:makesObservationCollection ;
   rdfs:isDefinedBy sosa-oms: .
 
-sosa-oms:observationCollection
+sosa-oms:makesObservationCollection
   a owl:ObjectProperty ;
-  rdfs:label "observation collection"@en ;
-  skos:definition "Observations stemming from this Platform."@en ;
+  rdfs:label "makes observation collection"@en ;
+  skos:definition "relation from a Platform to an ObservationCollection arising from it."@en ;
   skos:note """
   In order to indicate potential Observations at a Platform, an empty ObservationCollection can be provided. This mimics the semantics of the OMS ObservingCapability class.
   """@en ;
   schema:domainIncludes sosa:Platform ;
-  schema:rangeIncludes sosa:Observation ;
   schema:rangeIncludes sosa:ObservationCollection ;
   owl:inverseOf sosa-oms:madeOnPlatform ;
   rdfs:isDefinedBy sosa-oms: .
@@ -409,6 +407,7 @@ sosa-oms:validTime
   schema:domainIncludes sosa:Observation ;
   schema:domainIncludes sosa:ObservationCollection ;
   schema:domainIncludes sosa:Sampling ;
+  schema:domainIncludes sosa:SamplingCollection ;
   schema:rangeIncludes time:Interval , dcterms:PeriodOfTime ;
   rdfs:isDefinedBy sosa-oms: .
 
