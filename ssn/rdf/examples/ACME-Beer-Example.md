@@ -18,13 +18,15 @@ that can sometimes be present when modeling sensor readings.
 
 Note: The use of long identifiers is for readability purposes and is non-normative.
 
-
 ## Packaging and initial storage
+![InkBird_IBS_TH2-packaging](../../images/InkBird_IBS_TH2-packaging.png "The sensor platform and the beer are packaged into a container as a product")
+
+<!-- 
 <div>
 <figure id="InkBird_IBS_TH2-packaging" style="float: right; max-width: 30%; height: auto;vertical-align: top;margin: -10% 15px 0px 15px;">
 <img src="./images/InkBird_IBS_TH2-packaging.png"> 
  <figcaption>The sensor platform and the beer are packaged into a container as a product.</figcaption> 
-</figure>
+</figure> -->
 
 Alice works for Acme Brewery Co. She procures an InkBird IBS-TH2 Platform (Serial Number: 12345) and places it inside a beer carton with six
 bottles (a &quot;six-pack&quot;) of Acme Brewery's famous Porter beers with a product lot code of PO202402. She seals the package and places it inside of Acme
