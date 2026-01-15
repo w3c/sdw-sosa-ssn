@@ -1,6 +1,6 @@
 # Tracking Beer Temperature with IBS-TH2 Sensor
 
-An RDF file containing a <a href="./rdf/examples/Beer-Full-IBS-TH2.ttl">graph corresponding to this example is available.
+An RDF file containing a [graph corresponding to this example is available](./rdf/examples/Beer-Full-IBS-TH2.ttl).
 
 The following is a detailed example where a IBS-TH2 sensor is used to monitor a crate (carton) of beer from the time of its
 packaging at a brewery up until its display in the supermarket cooler where it is purchased.  Beer degrades both
@@ -10,7 +10,7 @@ the adhesives, potentially resulting in product breakage.  Brewers will on occas
 their shipping process as part of their quality control program. We present such a hypothetical situation here.
 
 This example is of interest because it involves the repurposing of a
-commodity, a consumer-grade <a href="#SOSAPlatform">sosa:Platform</a>
+commodity, a consumer-grade [sosa:Platform](https://www.w3.org/TR/vocab-ssn/#SOSAPlatform)
 deployed to address a domain-specific problem, the movement of a platform
 from environment to environment and the possible ambiguity of data-ownership
 in each of these environments.  It also demonstrates the location ambiguity
