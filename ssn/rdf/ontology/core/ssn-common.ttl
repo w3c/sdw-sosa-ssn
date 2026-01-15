@@ -183,20 +183,20 @@ sosa:usedProcedure
 
 ## Systems
 
+sosa:Asset 
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasDeployment ; owl:allValuesFrom sosa:Deployment ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isHostedBy ; owl:allValuesFrom sosa:Platform ] ;
+  rdfs:isDefinedBy sosa-common: .
+
 sosa:Deployment 
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:deployedAsset ; owl:allValuesFrom [ a owl:Class ; owl:unionOf ( sosa:Platform sosa:System ) ] ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:deployedAsset ; owl:allValuesFrom sosa:Asset ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:deployedOnPlatform ; owl:allValuesFrom sosa:Platform ]  ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:deployedSystem ; owl:allValuesFrom sosa:System ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasFeatureOfInterest ; owl:allValuesFrom sosa:FeatureOfInterest ]  ;
   rdfs:isDefinedBy sosa-common: .
 
 sosa:Platform 
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hosts ; owl:allValuesFrom [
-          owl:unionOf (
-              sosa:System
-              sosa:Platform
-            ) ;
-        ] ]  ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hosts ; owl:allValuesFrom sosa:Asset ]  ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:inDeployment ; owl:allValuesFrom sosa:Deployment ]  ;
   rdfs:isDefinedBy sosa-common: .
 
@@ -206,7 +206,7 @@ sosa:System
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:forProperty ; owl:allValuesFrom sosa:Property ] ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasSubSystem ; owl:allValuesFrom sosa:System ]  ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isSubSystemOf ; owl:allValuesFrom sosa:System ]  ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasDeployment ; owl:allValuesFrom sosa:Deployment ]  ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:systemDeployment ; owl:allValuesFrom sosa:Deployment ]  ;
   rdfs:subClassOf [ 
     a owl:Restriction ; 
     owl:onProperty sosa:madeExecution ; 
@@ -250,5 +250,8 @@ sosa:isHostedBy
   rdfs:isDefinedBy sosa-common: .
 
 sosa:isSubSystemOf 
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:systemDeployment 
   rdfs:isDefinedBy sosa-common: .
 

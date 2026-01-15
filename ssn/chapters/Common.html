@@ -10,7 +10,7 @@
         <a href="#SOSAPlatform">Platform</a>,
         <a href="#SOSADeployment">Deployment</a>).
         Other classes in the Common module are super-classes of more specific classes used in the application modules
-        (<a href="#SOSAProcedure">Procedure</a>, <a href="#SOSASystem">System</a>, <a href="#SOSAExecution">Execution</a>).
+        (<a href="#SOSAProcedure">Procedure</a>, <a href="#SOSASystem">System</a>, <a href="#SOSAExecution">Execution</a>, <a href="#SOSAAsset">Asset</a>).
         They all support the description of <a href="#SOSAActuation">Actuation</a>,
         <a href="#SOSAObservation">Observation</a> and <a href="#SOSASampling">Sampling</a> instances using patterns that
         are common
@@ -118,7 +118,7 @@
                 <dd class="ssn">
                     <a>sosa:isFeatureOfInterestOf</a>
                     <em><b>SOME</b></em>
-                    (<a>sosa:Execution</a> <em><b>or</b></em> <a>sosa:Deployment</a>)
+                    (<a>sosa:Execution</a> <em><b>OR</b></em> <a>sosa:Deployment</a>)
                     <br>
                     <a>sosa:hasProperty</a>
                     <em><b>ONLY</b></em>
@@ -193,7 +193,7 @@
                     <br>
                     <a>sosa:wasActedOnBy</a>
                     <em><b>ONLY</b></em>
-                    (<a>sosa:Actuation</a> <em><b>or</b></em>
+                    (<a>sosa:Actuation</a> <em><b>OR</b></em>
                     <a>sosa:ActuationCollection</a>)
                     <br>
                     <a>sosa:isObservedBy</a>
@@ -202,7 +202,7 @@
                     <br>
                     <a>sosa:wasObservedBy</a>
                     <em><b>ONLY</b></em>
-                    (<a>sosa:Observation</a> <em><b>or</b></em>
+                    (<a>sosa:Observation</a> <em><b>OR</b></em>
                     <a>sosa:ObservationCollection</a>)
                 </dd>
                 <dt>is Defined By</dt>
@@ -1113,7 +1113,7 @@
                     <br>
                     <a>sosa:hasMember</a>
                     <em><b>ONLY</b></em>
-                    (<a>sosa:Execution</a> <em><b>or</b></em>
+                    (<a>sosa:Execution</a> <em><b>OR</b></em>
                     <a>sosa:ExecutionCollection</a>)
                 </dd>
                 <dt>is Defined By</dt>
@@ -1906,7 +1906,7 @@
             </p>
             <figure id="System">
                 <embed
-                    alt="Systems and deployment diagram; showing System, Deployment, Platform, Property, Procedure, Execution"
+                    alt="Systems and deployment diagram; showing Asset, System, Deployment, Platform, Property, Procedure, Execution"
                     src="images/System.svg" style="width: 100%;" />
                 <figcaption>Classes and relationships related to systems and deployments
                     <br>
@@ -1925,9 +1925,12 @@
                 Mobile platforms include vehicles, marine- and air-craft, satellites, mobile phones, etc.
             </p>
             <p>
-                A <a>sosa:Deployment</a> is an arrangement of assets (systems and platforms) with the intention of
+                A <a>sosa:Deployment</a> is an arrangement of Assets (systems and platforms) with the intention of
                 executing actuation, observation or sampling procedures with respect to designated features of interest
                 for a specified time interval.
+            </p>
+            <p>
+                A <a>sosa:Asset</a> is a system or platform.
             </p>
         </div>
 
@@ -1937,6 +1940,7 @@
         <p>This section introduces the following classes and properties:</p>
         <div class="azlist">
             <p>
+                <a>sosa:Asset</a>,
                 <a>sosa:Deployment</a>,
                 <a>sosa:Platform</a>,
                 <a>sosa:System</a>,
@@ -1955,6 +1959,50 @@
             </p>
         </div>
 
+        <section class="specterm sosa" id="SOSAAsset">
+            <h6><dfn>sosa:Asset</dfn></h6>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/Asset</p>
+            <p><strong>an OWL Class</strong></p>
+
+            <p>
+                <em>Asset</em> &mdash;
+                Resources involved in Deployments.
+            </p>
+            <dl>
+                <dt>Scope note</dt>
+                <dd>
+                    Asset generalizes the
+                    <a href="#SOSASystem">System</a> and
+                    <a href="#SOSAPlatform">Platform</a> classes.
+                    It is included in the ontology to support the definition of a common
+                    pattern for deployments.
+                    <br>
+                    <br>
+                    Asset MUST be considered to be abstract, so any individual Asset SHOULD be declared to be an
+                    instance of a concrete sub-class, and not of the Asset class.
+                </dd>
+                <dt class="ssn restrictions">Restrictions in SSN</dt>
+                <dd class="ssn">
+                    <a>sosa:hasDeployment</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:Deployment</a>
+                    <br>
+                    <a>sosa:isHostedBy</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:Platform</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
         <section class="specterm sosa" id="SOSADeployment">
             <h6><dfn>sosa:Deployment</dfn></h6>
             <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/Deployment</p>
@@ -1962,8 +2010,7 @@
 
             <p>
                 <em>Deployment</em> &mdash;
-                arrangement of one or more assets (Systems or Platforms) to execute Procedures with respect to
-                designated features of interest.
+                arrangement of one or more Assets to execute Procedures with respect to                designated features of interest.
             </p>
             <p class="note">
                 A Deployment may have a geographic location.
@@ -1987,7 +2034,7 @@
                 <dd class="ssn">
                     <a>sosa:deployedAsset</a>
                     <em><b>ONLY</b></em>
-                    (<a>sosa:System</a> <em><b>or</b></em> <a>sosa:Platform</a>)
+                    <a>sosa:Asset</a>
                     <br>
                     <a>sosa:deployedOnPlatform</a>
                     <em><b>ONLY</b></em>
@@ -2020,7 +2067,7 @@
 
             <p>
                 <em>Platform</em> &mdash;
-                entity that hosts other entities, particularly Systems, and other Platforms.
+                Asset that hosts other Assets, particularly Systems, and other Platforms.
             </p>
             <p class="note">A Platform may have a geographic location.
                 See <a href="#ModelLocation">Location and Geometry</a> for patterns to describe this.</p>
@@ -2048,9 +2095,7 @@
                 <dd class="ssn">
                     <a>sosa:hosts</a>
                     <em><b>ONLY</b></em>
-                    (<a>sosa:System</a>
-                    <em><b>or</b></em>
-                    <a>sosa:Platform</a>)
+                    <a>sosa:Asset</a>
                     <br>
                     <a>sosa:inDeployment</a>
                     <em><b>ONLY</b></em>
@@ -2074,7 +2119,7 @@
             <p><strong>an OWL Class</strong></p>
             <p>
                 <em>System</em> &mdash;
-                entity that implements a Procedure in the context of an Execution
+                Asset that implements a Procedure in the context of an Execution
             </p>
             <p>
                 This may be a device, a piece of infrastructure, an agent (including humans), or software
@@ -2158,7 +2203,7 @@
                     <br>
                     <a>sosa:madeExecution</a>
                     <em><b>ONLY</b></em>
-                    (<a>sosa:Execution</a> <em><b>or</b></em>
+                    (<a>sosa:Execution</a> <em><b>OR</b></em>
                     <a>sosa:ExecutionCollection</a>)
                 </dd>
                 <dt>is Defined By</dt>
@@ -2182,7 +2227,7 @@
                 This term is non-normative, pending further implementation experience</p>
             <p>
                 <em>deployed asset</em> &mdash;
-                relation from a Deployment to an asset (System or Platform).
+                relation from a Deployment to an Asset (System or Platform).
             </p>
             <dl>
                 <dt>Domain Includes</dt>
@@ -2191,8 +2236,9 @@
                 </dd>
                 <dt>Range Includes</dt>
                 <dd>
-                    <a>sosa:System</a>,
-                    <a>sosa:Platform</a>
+                    <a>sosa:Asset</a>,
+                    <a>sosa:Platform</a>,
+                    <a>sosa:System</a>
                 </dd>
                 <dt>Inverse property of</dt>
                 <dd>
@@ -2290,13 +2336,14 @@
             <p><strong>an OWL Object Property</strong></p>
             <p>
                 <em>has deployment</em> &mdash;
-                relation from an asset (System or Platform) to a Deployment
+                relation from an Asset (System or Platform) to a Deployment
             </p>
             <dl>
                 <dt>Domain Includes</dt>
                 <dd>
-                    <a>sosa:System</a>,
-                    <a>sosa:Platform</a>
+                    <a>sosa:Asset</a>,
+                    <a>sosa:Platform</a>,
+                    <a>sosa:System</a>
                 </dd>
                 <dt>Range Includes</dt>
                 <dd>
@@ -2361,7 +2408,7 @@
             <p><strong>an OWL Object Property</strong></p>
             <p>
                 <em>hosts</em> &mdash;
-                relation from a Platform to an asset (System or Platform) hosted or mounted on it
+                relation from a Platform to an Asset (System or Platform) hosted or mounted on it
             </p>
             <dl>
                 <dt>Domain Includes</dt>
@@ -2370,8 +2417,9 @@
                 </dd>
                 <dt>Range Includes</dt>
                 <dd>
-                    <a>sosa:System</a>,
-                    <a>sosa:Platform</a>
+                    <a>sosa:Asset</a>,
+                    <a>sosa:Platform</a>,
+                    <a>sosa:System</a>
                 </dd>
                 <dt>Inverse property of</dt>
                 <dd>
@@ -2477,13 +2525,14 @@
             <p><strong>an OWL Object Property</strong></p>
             <p>
                 <em>is hosted by</em> &mdash;
-                relation from an asset (System or Platform), to a Platform that it is mounted on or hosted by
+                relation from an Asset (System or Platform), to a Platform that it is mounted on or hosted by
             </p>
             <dl>
                 <dt>Domain Includes</dt>
                 <dd>
-                    <a>sosa:System</a>,
-                    <a>sosa:Platform</a>
+                    <a>sosa:Asset</a>,
+                    <a>sosa:Platform</a>,
+                    <a>sosa:System</a>
                 </dd>
                 <dt>Range Includes</dt>
                 <dd>
