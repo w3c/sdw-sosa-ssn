@@ -14,13 +14,13 @@ example.
 
 # Table of Contents
 
-* [Packaging and initial storage](##packaging-and-initial-storage)
-* [Shipping to Retail Store](##shipping-to-retail-store)
-* [Display in Retail Store Cooler](##display-in-retail-store-cooler)
-* [Notes on deployment and observation aggregation](##notes-on-deployment-and-observation-aggregation)
-* [Recording data and sensor tasking through sensorvdeployments](###recording-data-and-sensor-tasking-through-sensor-deployments)
-* [Recording data using observation collection](###recording-data-using-observation-collection)
-* [Recording data using sample collection](###recording-data-using-sample-collection)
+* [Packaging and initial storage](#packaging-and-initial-storage)
+* [Shipping to Retail Store](#shipping-to-retail-store)
+* [Display in Retail Store Cooler](#display-in-retail-store-cooler)
+* [Notes on deployment and observation aggregation](#notes-on-deployment-and-observation-aggregation)
+* [Recording data and sensor tasking through sensorvdeployments](#recording-data-and-sensor-tasking-through-sensor-deployments)
+* [Recording data using observation collection](#recording-data-using-observation-collection)
+* [Recording data using sample collection](#recording-data-using-sample-collection)
 
 
 The example is of interest because it involves the repurposing of a
