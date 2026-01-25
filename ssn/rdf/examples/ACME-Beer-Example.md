@@ -12,6 +12,17 @@ therefore insert a temperature logger into their shipments for occasional
 quality control.  We present such a hypothetical situation here as an
 example.
 
+# Table of Contents
+
+[Packaging and initial storage](## Packaging and initial storage)
+[Shipping to Retail Store](##Shipping to Retail Store)
+[Display in Retail Store Cooler](## Display in Retail Store Cooler)
+[Notes on deployment and observation aggregation](## Notes on deployment and observation aggregation)
+[Recording data and sensor tasking through sensor deployments](### Recording data and sensor tasking through sensor deployments)
+[Recording data using observation collection](### Recording data using observation collection)
+[Recording data using sample collection](### Recording data using sample collection)
+
+
 The example is of interest because it involves the repurposing of a
 commodity, a consumer-grade [sosa:Platform](https://www.w3.org/TR/vocab-ssn/#SOSAPlatform) deployed to
 address a domain-specific problem, the movement of a platform from
