@@ -32,7 +32,119 @@ activity that represents the packaging of the beer and the creation of the beer 
 
 The platform then begins to take measurements that are recorded as part of a data logging activity.
 
-<pre class="example turtle" data-include="./rdf/examples/Beer-Packaging-IBS-TH2.ttl" data-include-format="text"></pre>
+```
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <http://schema.org/> .
+@prefix gs1: <https://gs1.org/voc/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rel: <http://id.loc.gov/vocabulary/relators/> .
+@prefix sosa-env: <http://www.w3.org/ns/sosa/system-environment-properties#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix beer: <https://rdf.ag/o/beer#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ex: <http://example.org/> .
+@prefix sensor: <https://example.org/sensor/> .
+@base <http://example.org/data/> .
+#In this scenario a local brewery makes use of the sensor to track the 
+#temperature of their beer as it is packaged, stored, shipped and displayed for sale.
+
+<acmeBreweryCo> a org:Organization, beer:Brewery ;
+	foaf:name "Acme Brewery Co." .
+
+<acmeBrewerCooler> a ex:Cooler .
+
+<alice> a foaf:Person, prov:Agent ;
+	foaf:name "Alice" .
+
+# A "six pack" as packaged and sold by Acme Brewery Co.
+
+<acmePorterSixPack> a beer:Porter, gs1:Product, schema:Product ;
+    skos:definition "A six pack of Acme Porter."@en .
+
+# A specific (instance) six pack of Acme Porter Beers
+# We use GS1-style lot and serial numbers as part of the 
+# identifier to highlight that this is a physical instance of the product.
+ 
+<10/PO202402/21/0001/acmePorterSixPack> a schema:IndividualProduct;
+    rdfs:subClassOf <acmePorterSixPack>;
+    gs1:packaging <0001/ProductPackaging>;
+    gs1:hasBatchLotNumber "PO202402" ;
+    gs1:hasSerialNumber "0001" .
+
+<0001/ProductPackaging> a gs1:PackagingDetails, sosa:FeatureOfInterest ;  
+    rdfs:label "An instance of a beer carton used to package a six pack."@en .
+
+# Alice packages the Beer.
+
+<12345/someTH2> a sensor:IBS-TH2-Plus, schema:IndividualProduct ;
+    rel:own <acmeBreweryCo> ; # Sensor may be returned.
+    rdfs:label "InkBird Sensor that Alice bought to track beer storage."@en ;
+    sosa:hasSubSystem <12345/HumiditySensor>, <12345/TemperatureSensor> ;
+    gs1:hasSerialNumber "12345" ;
+    ex:deviceAddress "12:34:56:12:34:56" .
+
+<00001/packingSixPack> a prov:Activity ;
+    rdfs:comment "When Alice packaged Porter bottles into the box, she added an InkBird logger to check that the beer wasn't getting too warm in transit and storage." ;    
+    prov:wasAssociatedWith <alice> ;
+    prov:used <12345/someTH2> ;
+    prov:used <0001/ProductPackaging> ;
+    prov:startedAtTime "2024-02-20T01:35:00Z"^^xsd:dateTime;
+    prov:endedAtTime   "2024-02-20T01:40:00Z"^^xsd:dateTime;   
+    prov:atLocation <acmeBreweryCo> ;
+    prov:generated <10/PO202402/21/0001/acmePorterSixPack> .
+
+# These definitions look redundant; but they represent the specific, physical instantiation of the sensors.
+
+<12345/HumiditySensor> a sensor:IBS-TH2-Plus-H ;
+    rdf:comment "This is the instance of the humidity sensor instance."@en .
+
+<12345/TemperatureSensor> a sensor:IBS-TH2-Plus-T ;
+    rdf:comment "This is the instance of the temperature sensor instance."@en .
+#
+# Sensor activates and records temperature while in the brewery cooler.
+    
+<1a/observation> a sosa:Observation ;
+    rel:own <acmeBreweryCo> ;
+    sosa:observedProperty sosa-env:AmbientTemperature ;
+    sosa:hasUltimateFeatureOfInterest <10/PO202402/21/0001/acmePorterSixPackBeerSample> ; 
+    sosa:madeBySensor <12345/TemperatureSensor>  ;
+    sosa:hasFeatureOfInterest <10/PO202402/21/0001/acmePorterSixPackAirSample> ;
+    sosa:resultTime "2024-02-20T01:35:45Z"^^xsd:dateTime ;
+    sosa:hasResult [
+      a qudt:QuantityValue ;
+      qudt:hasUnit unit:DEG_C ;
+      qudt:value 12.0 ;
+    ] ;
+.
+<1b/observation> rdf:type sosa:Observation ;
+    rel:own <acmeBreweryCo> ;
+    sosa:observedProperty sosa-env:AmbientHumidity;
+    sosa:hasUltimateFeatureOfInterest <0001/ProductPackaging>;
+    sosa:madeBySensor <12345/HumiditySensor>  ;
+    sosa:hasFeatureOfInterest <10/PO202402/21/0001/acmePorterSixPackAirSample> ;
+    sosa:resultTime "2024-02-20T01:35:45Z"^^xsd:dateTime ;
+    sosa:hasResult [
+      a qudt:QuantityValue ;
+      qudt:hasUnit unit:PERCENT ;
+      qudt:value 60 ;
+    ] ;
+.
+<breweryObserver> a prov:Activity ;
+    rdfs:comment "Brewery operating system logging process." ;
+    prov:atLocation <acmeBreweryCo> ;
+    prov:generated <1a/observation> ;
+    prov:generated <1b/observation> ;
+    prov:wasStartedBy <alice> . # She turned it on last time.     
+```
 
    In the example above, concurrent use of the <a href="#SOSAhasFeatureOfInterest"><code>sosa:hasFeatureOfInterest</code></a> and <a
    href="#SOSAhasUltimateFeatureOfInterest"><code>sosa:hasUltimateFeatureOfInterest</code></a> properties is made to account for the repurposing of a generic
