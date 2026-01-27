@@ -14,6 +14,7 @@ example.
 
 # Table of Contents
 
+* [A short note about sensors as commercial products](#a-short-note-about-sensors-as-commercial-products)
 * [Packaging and initial storage](#packaging-and-initial-storage)
 * [Shipping to Retail Store](#shipping-to-retail-store)
 * [Display in Retail Store Cooler](#display-in-retail-store-cooler)
@@ -31,6 +32,43 @@ each of these environments.  It also demonstrates the location ambiguity
 that can sometimes be present when modeling sensor readings.
 
 Note: The use of long identifiers is for readability purposes and is non-normative.
+
+### A short note about sensors as commercial products
+
+Sensors are often sourced
+commercially and installed
+as part of larger
+[deployments]((https://www.w3.org/TR/vocab-ssn/#SOSADeployment) or
+[platforms](https://www.w3.org/TR/vocab-ssn/#SOSAPlatform). These
+standardized offerings need to be communicated in a way that is machine
+readable and other vocabularies are available to do so.
+
+From a procurement and product recall approach, vocabulatories are
+differentiate between the product class and the specific instance of the
+product being consumed.  The ability to align Sosa and product vocabularies
+are beneficial in that it permits a unified description of the sensor.  This
+include modeling the sensor throughout its lifetime, announcing commercial
+availability, procurement, deployment, operation, decomissioning and
+disposal.
+
+To this end this example models IBS TH2 sensors using schema.org Product and
+[GS1 WebVoc](https://ref.gs1.org/voc/) Product classes.  This permits concurrent support for both Search Engine
+Optimization (SOA) and consumer supply chain product identification using
+barcodes.
+
+Different design decisions also mean that design desision such as [punning](https://www.w3.org/2007/OWL/wiki/Punning)
+are needed to retain compatibility across different vocabularies. 
+[Schema.org](https://schema.org/)
+distinguishes between the product and its materialization with two
+classes: [Product](https://schema.org/Product) and
+[IndividualProduct](https://schema.org/IndividualProduct). Documented within
+Section 9.6 of 
+the [GS1 Digital Link
+Standard](https://www.gs1.org/docs/Digital-Link/GS1_Digital_link_Standard_i1.1.1.pdf), 
+GS1 deals with this same problem by subclassing its [Product](https://ref.gs1.org/voc/Product)
+class for both unique instances or indicating lot membership. Concurrently
+supporting both vocabularies obviously requires that a physical instance of
+a sensor be both an instance and a class. 
 
 ## Packaging and initial storage
 <img src="../../images/InkBird_IBS_TH2-packaging.png" width="25%" alt="The sensor platform and the beer are packaged into a container as a product">
