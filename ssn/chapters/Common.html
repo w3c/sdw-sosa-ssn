@@ -10,13 +10,11 @@
         <a href="#SOSAPlatform">Platform</a>,
         <a href="#SOSADeployment">Deployment</a>).
         Other classes in the Common module are super-classes of more specific classes used in the application modules
-        (<a href="#SOSAProcedure">Procedure</a>, <a href="#SOSASystem">System</a>,
-        <a href="#SOSAExecution">Execution</a>, <a href="#SOSAAsset">Asset</a>).
+        (<a href="#SOSAExecution">Execution</a>, <a href="#SOSAProcedure">Procedure</a>, <a href="#SOSAAsset">Asset</a>,
+        and <a href="#SOSASystem">System</a>).
         They all support the description of <a href="#SOSAActuation">Actuation</a>,
         <a href="#SOSAObservation">Observation</a> and <a href="#SOSASampling">Sampling</a> instances using patterns
-        that
-        are common
-        across the applications.
+        that are common across the applications.
     </p>
     <p>
         The description of the Common module is organized into the following sections:
@@ -1917,22 +1915,22 @@
             </figure>
 
             <p>
+                A <a>sosa:Deployment</a> is an arrangement of assets (typically systems and platforms) with the intention of
+                executing actuation, observation or sampling procedures with respect to designated features of interest
+                for a specified time interval.
+            </p>
+            <p>
+                A <a>sosa:Asset</a> is a resource involved in a deployment, such as a system or platform.
+            </p>
+            <p>
                 A <a>sosa:System</a> is an instrument or equipment, including software systems and
                 agents where relevant, that implements a procedure in the context of executions.
                 A system may be composed of sub-systems.
             </p>
             <p>
-                A <a>sosa:Platform</a> hosts one or more <a>sosa:Systems</a>.
+                A <a>sosa:Platform</a> hosts one or more systems in the context of a deployment.
                 Stationary platforms include stations, or fixtures.
                 Mobile platforms include vehicles, marine- and air-craft, satellites, mobile phones, etc.
-            </p>
-            <p>
-                A <a>sosa:Deployment</a> is an arrangement of Assets (systems and platforms) with the intention of
-                executing actuation, observation or sampling procedures with respect to designated features of interest
-                for a specified time interval.
-            </p>
-            <p>
-                A <a>sosa:Asset</a> is a system or platform.
             </p>
         </div>
 
@@ -1968,16 +1966,14 @@
 
             <p>
                 <em>Asset</em> &mdash;
-                Resources involved in Deployments.
+                resource involved in a Deployment.
             </p>
             <dl>
                 <dt>Scope note</dt>
                 <dd>
-                    Asset generalizes the
-                    <a href="#SOSASystem">System</a> and
-                    <a href="#SOSAPlatform">Platform</a> classes.
-                    It is included in the ontology to support the definition of a common
-                    pattern for deployments.
+                    Asset generalizes the <a href="#SOSASystem">System</a> and <a href="#SOSAPlatform">Platform</a>
+                    classes, or other resource types that are relevant to deployments.
+                    It is included in the ontology to support the definition of a common pattern for deployments.
                     <br>
                     <br>
                     Asset MUST be considered to be abstract, so any individual Asset SHOULD be declared to be an
