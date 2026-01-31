@@ -15,7 +15,6 @@
 @prefix gr: <http://purl.org/goodrelations/v1#> .
 @prefix prov: <http://www.w3.org/ns/prov#>.
 @prefix seas: <https://w3id.org/seas/>.
-@prefix cdt: <http://w3id.org/lindt/custom_datatypes#>.
 @prefix sosa-cap: <http://www.w3.org/ns/sosa/system-capability-properties#> .
 @prefix sosa-env: <http://www.w3.org/ns/sosa/system-environment-properties#> .
 @base <https://data.grandlyon.com/> .
@@ -101,14 +100,20 @@ ex:Deployment_SL-T-P1_2017-06-06 a sosa:Deployment ;
   sosa:deployedOnPlatform ex:Tree_1 ;
 .
 ex:Observation_5872357_temperature a sosa:Observation ;
-    sosa:hasSimpleResult "64.5244681928429 Cel"^^cdt:ucum ;
+    sosa:hasResult [
+      qudt:hasUnit unit:DEG_C ;
+      qudt:value 64.5244681928429 ;
+    ] ;
     sosa:madeBySensor ex:Sensor_SL-T-P1 ;
     sosa:hasFeatureOfInterest ex:Air_4575_485 ;
     sosa:observedProperty qk:Temperature ;
     sosa:resultTime "2017-06-20T21:49:18+00:00"^^xsd:dateTime ;
 .
 ex:Observation_5872357_battery a sosa:Observation ;
-    sosa:hasSimpleResult "73.2 %"^^cdt:ucum ;
+    sosa:hasResult [
+      qudt:hasUnit unit:PERCENT ;
+      qudt:value 73.2 ;
+    ] ;
     sosa:madeBySensor ex:Sensor_SL-T-P1 ;
     sosa:hasFeatureOfInterest ex:Sensor_SL-T-P1 ;
     sosa:observedProperty ex:Sensor_SL-T-P1_battery ;

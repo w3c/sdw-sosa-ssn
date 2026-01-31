@@ -1,4 +1,3 @@
-@prefix cdt: <http://w3id.org/lindt/custom_datatypes#> .
 @prefix ex: <https://example.org/data/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix qudt: <http://qudt.org/schema/qudt/> .
@@ -12,44 +11,55 @@
 
 # iPhone Barometer
 
-ex:iphone_barometer-sosa a owl:Ontology ;
+ex:iphone_barometer-sosa 
+  a owl:Ontology ;
   rdfs:comment "The barometric readings from a Bosch Sensortec BMP282 sensor in an Apple IPhone 7 observed on June 6 2017 using only the SOSA core."@en ;
 .
 # The barometric readings from a Bosch Sensortec BMP282 sensor in an Apple IPhone 7 observed on June 6 2017
 # using only the SOSA core
 
-ex:EarthAtmosphere rdf:type sosa:FeatureOfInterest ;
+ex:EarthAtmosphere 
+  a sosa:FeatureOfInterest ;
   rdfs:label "Atmosphere of Earth"@en ;
 .
 # An iPhone 7 as the Platform that hosts several sensors, among others the Bosch Sensortec BMP282 atmospheric pressure sensor
 
-ex:iphone7_35-207306-844818-0 a sosa:Platform ;
+ex:iphone7_35-207306-844818-0 
+  a sosa:Platform ;
   rdfs:label "IPhone 7 - IMEI 35-207306-844818-0"@en ;
   rdfs:comment "IPhone 7 - IMEI 35-207306-844818-0 - John Doe"@en ;
   sosa:hosts ex:sensor_35-207306-844818-0_BMP282 ;
 .
-ex:sensor_35-207306-844818-0_BMP282 rdf:type sosa:Sensor ;
+ex:sensor_35-207306-844818-0_BMP282 
+  a sosa:Sensor ;
   rdfs:label "Bosch Sensortec BMP282"@en ;
   sosa:observes qk:AtmosphericPressure ;
 .
 # An observation made by the Bosch Sensortec BMP282 atmospheric pressure sensor
 
-ex:Observation_346344 rdf:type sosa:Observation ;
-  sosa:observedProperty qk:AtmosphericPressure ;
-  sosa:hasFeatureOfInterest ex:EarthAtmosphere ;
-  sosa:madeBySensor ex:sensor_35-207306-844818-0_BMP282 ;
-  sosa:hasSimpleResult "1021.45 hPa"^^cdt:ucum ;
-  sosa:resultTime "2017-06-06T12:36:12+00:00"^^xsd:dateTime ;
-.
-# Another observation made a second later by the Bosch Sensortec BMP282 atmospheric pressure sensor
-
-<Observation/346345> rdf:type sosa:Observation ;
+ex:Observation_346344 
+  a sosa:Observation ;
   sosa:observedProperty qk:AtmosphericPressure ;
   sosa:hasFeatureOfInterest ex:EarthAtmosphere ;
   sosa:madeBySensor ex:sensor_35-207306-844818-0_BMP282 ;
   sosa:hasResult [
-    rdf:type qudt:QuantityValue ;
+      a qudt:QuantityValue ;
+      qudt:hasUnit unit:HectoPA ;
+      qudt:value 1021.45 ;
+  ] ;
+  sosa:resultTime "2017-06-06T12:36:12+00:00"^^xsd:dateTime ;
+.
+# Another observation made a second later by the Bosch Sensortec BMP282 atmospheric pressure sensor
+
+<Observation/346345> 
+  a sosa:Observation ;
+  sosa:observedProperty qk:AtmosphericPressure ;
+  sosa:hasFeatureOfInterest ex:EarthAtmosphere ;
+  sosa:madeBySensor ex:sensor_35-207306-844818-0_BMP282 ;
+  sosa:hasResult [
+    a qudt:QuantityValue ;
     qudt:value "101936"^^xsd:decimal ;
-    qudt:hasUnit unit:PA ] ;
+    qudt:hasUnit unit:PA 
+  ] ;
   sosa:resultTime "2017-06-06T12:36:13+00:00"^^xsd:dateTime ;
 .
