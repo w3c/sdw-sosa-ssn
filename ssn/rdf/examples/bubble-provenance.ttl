@@ -1,12 +1,13 @@
-@prefix cdt: <http://w3id.org/lindt/custom_datatypes#> .
 @prefix ex: <https://example.org/data/> .
 @prefix geo: <http://www.opengis.net/ont/geosparql#> .
 @prefix orcid: <https://orcid.org/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix unit: <http://qudt.org/vocab/unit/>.
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 
 ex:IceCore12 a sosa:Sample , sosa:MaterialSample ;
@@ -30,7 +31,11 @@ ex:WellDrilling4578 a sosa:Sampling ;
 .
 ex:CoreEx1923 a sosa:Sampling ;
   sosa:hasInputValue [
-      ex:offset "15.202 m"^^cdt:ucum ;
+    ex:offset [
+      a qudt:QuantityValue ;
+      qudt:hasUnit unit:M ;
+      qudt:value 15.202 ;
+    ] ;
   ] ;
   sosa:hasResult ex:Bubble873 ;
   sosa:madeBySampler orcid:0000-0002-3884-3420 ;

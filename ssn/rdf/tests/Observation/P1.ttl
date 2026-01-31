@@ -1,14 +1,19 @@
 @base <https://example.org/ssn/test/observation/P1> .
-@prefix cdt: <http://w3id.org/lindt/custom_datatypes#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
 @prefix ex: <https://example.org/ssn/test/observation/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix unit: <http://qudt.org/vocab/unit/>.
 
 ex:OP1 a sosa:Observation ;
     rdfs:comment "Minimal example of an observation with a simple result" ;
     sosa:observedProperty ex:Temperature ;
     sosa:hasFeatureOfInterest ex:apartment134 ;
-    sosa:hasSimpleResult "-29.9 Cel"^^cdt:ucum ;
+    sosa:hasResult [
+      a qudt:QuantityValue ;
+      qudt:hasUnit unit:DEG_C ;
+      qudt:value -29.9 ;
+    ] ;
     .
 
 ex:Temperature a sosa:Property .

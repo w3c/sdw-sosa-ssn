@@ -1,11 +1,12 @@
-@prefix cdt: <http://w3id.org/lindt/custom_datatypes#> .
 @prefix ex: <https://example.org/data/> .
 @prefix qk: <http://qudt.org/vocab/quantitykind/> .
+@prefix qudt: <http://qudt.org/schema/qudt/>.
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix time: <http://www.w3.org/2006/time#>.
+@prefix unit: <http://qudt.org/vocab/unit/>.
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @base <https://example.org/data/wind/> .
 
@@ -31,7 +32,11 @@ ex:observation_147 rdf:type sosa:Observation ;
   sosa:madeBySensor ex:windSensor_14 ;
   sosa:wasOriginatedBy ex:observation_147_spinningCupsMovement ;
   sosa:resultTime "2017-04-12T12:00:00+00:00"^^xsd:dateTime ;
-  sosa:hasSimpleResult "47 km/h"^^cdt:ucum ;
+  sosa:hasResult [
+      a qudt:QuantityValue ;
+      qudt:hasUnit unit:KiloM-PER-HR ;
+      qudt:value 47.0 ;
+  ] ;
 .
 # wind sensor #14 detected some movement of spinning cups, from which originated the
 # observations #147 and #148
@@ -50,7 +55,11 @@ ex:observation_148 rdf:type sosa:Observation ;
   sosa:madeBySensor ex:windSensor_14 ;
   sosa:wasOriginatedBy ex:observation_148_spinningCupsMovement ;
   sosa:resultTime "2017-04-12T12:01:00+00:00"^^xsd:dateTime ;
-  sosa:hasSimpleResult "47 km/h"^^cdt:ucum ;
+  sosa:hasResult [
+      a qudt:QuantityValue ;
+      qudt:hasUnit unit:KiloM-PER-HR ;
+      qudt:value 47.0 ;
+  ] ;
 .
 ex:observation_148_spinningCupsMovement rdf:type sosa:Stimulus ;
   sosa:isProxyFor ex:windSpeed ;
