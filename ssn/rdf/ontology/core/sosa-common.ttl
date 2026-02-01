@@ -252,8 +252,8 @@ sosa:Execution
   Execution generalizes the Actuation, Observation, and Sampling classes. 
   It is included in the ontology to support the definition of a common pattern for executions and their properties. 
 
-  The Execution class is considered to be abstract. 
-  An individual SHOULD NOT be typed as an Execution, but MAY be typed with one of the (concrete) sub-classes of Execution.
+  Execution is considered to be abstract. 
+  Individual executions SHOULD be typed with one of the (concrete) sub-classes of Execution.
   """@en ;
   rdfs:isDefinedBy sosa-common: .
 
@@ -284,7 +284,8 @@ sosa:ExecutionCollection
   Execution Collection generalizes the Actuation Collection, Observation Collection, and Sampling Collection classes. 
   It is included in the ontology to support the definition of a common pattern for executions and their properties. 
 
-  Execution Collection MUST be considered to be abstract, so any individual Execution Collection SHOULD be declared to be an instance of one of the concrete sub-classes, and not of the Execution Collection class.
+  ExecutionCollection is considered to be abstract. 
+  Individual execution collections SHOULD be typed with one of the (concrete) sub-classes of ExecutionCollection.
   """@en ;
   rdfs:isDefinedBy sosa-common: .
 
@@ -434,8 +435,8 @@ sosa:madeBySystem
   madeBySystem generalizes the madeByActuator, madeBySensor, and madeBySampler properties. 
   It is included in the ontology to support the definition of a common pattern for executions and their properties. 
 
-  madeBySystem MUST be considered to be abstract, so SHOULD NOT appear in data instances. 
-  Applications can use concrete sub-properties of madeBySystem.
+  madeBySystem is considered to be abstract. 
+  Applications SHOULD use concrete sub-properties of madeBySystem.
   """@en ;
   schema:domainIncludes sosa:Execution ;
   schema:domainIncludes sosa:ExecutionCollection ;
@@ -528,8 +529,8 @@ sosa:Asset
   Asset generalizes the System and Platform classes, or other resource types that are relevant to deployments. 
   It is included in the ontology to support the definition of a common pattern for deployments. 
 
-  The Asset class is considered to be abstract. 
-  An individual SHOULD NOT be typed as an Asset, but MAY be typed with one of the (concrete) sub-classes of Asset.
+  Asset is considered to be abstract. 
+  Individual assets SHOULD be typed with one of the (concrete) sub-classes of Asset.
   """@en ;
   rdfs:isDefinedBy sosa-common: .
 
@@ -583,8 +584,8 @@ sosa:System
   System generalizes the Actuator, Sensor, and Sampler classes. 
   It is included in the ontology to support the definition of a common pattern for executions and their properties. 
 
-  The System class is considered to be abstract. 
-  An individual SHOULD NOT be typed as a System, but MAY be typed with one of the (concrete) sub-classes of System.
+  System is considered to be abstract. 
+  Individual systems SHOULD be typed with one of the (concrete) sub-classes of System.
   """@en ;
   skos:scopeNote """
   Specific system types may be implemented as sub-classes of this class or its sub-classes.
@@ -734,8 +735,8 @@ sosa:madeExecution
   madeExecution generalizes the madeActuation, madeObservation, and madeSampling properties. 
   It is included in the ontology to support the definition of a common pattern for executions and their properties. 
 
-  madeExecution MUST be considered to be abstract, so SHOULD NOT appear in data instances. 
-  Applications can use concrete sub-properties of madeExecution.
+  madeExecution is considered to be abstract. 
+  Applications SHOULD use concrete sub-properties of madeExecution.
   """@en ;
   schema:domainIncludes sosa:System ;
   schema:rangeIncludes sosa:Execution ;
