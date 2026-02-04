@@ -13,14 +13,36 @@
 @prefix sp: <http://www.w3.org/ns/sosa/prov/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+
+sosa:Actuation
+  owl:equivalentClass [
+    a owl:Class ; 
+    owl:unionOf ( 
+      cco:ont00000357 
+      cco:ont00000908 
+      ) 
+
+  ]  ; # "Act of Motion" or "Act of Artifact Processing" 
+.
 sosa:Deployment
   rdfs:subClassOf obo:BFO_0000015 ; # Process 
 .
 sosa:Execution
-  rdfs:subClassOf obo:BFO_0000015 ; # Process
+  rdfs:subClassOf cco:ont00000228 ; # Planned Act
 .
 sosa:FeatureOfInterest
   rdfs:subClassOf obo:BFO_0000001 ; # Entity
+.
+sosa:Observation
+  owl:equivalentClass [
+    a owl:Class ; 
+    owl:unionOf ( 
+      cco:ont00000037 
+      cco:ont00000345
+      cco:ont00000371
+      ) 
+
+  ]  ; # "Act of Observation" or "Act of Measuring" or "Act of Prediction" 
 .
 sosa:Platform
   rdfs:subClassOf [ 
@@ -46,8 +68,25 @@ sosa:Property
 sosa:Sample
   rdfs:subClassOf obo:BFO_0000004 ; # Independent Continuant
 .
+sosa:Sampling
+  rdfs:subClassOf [
+    a owl:Class ; 
+    owl:unionOf ( 
+      cco:ont00000908 
+      cco:ont00000566
+      cco:ont00000366
+      ) 
+  ]  ; # "Act of Artifact Processing" or "Act of Artifact Employment" or "Act of Information Processing" 
+.
 sosa:Stimulus
-  rdfs:subClassOf obo:BFO_0000015 ; # Process
+  rdfs:subClassOf [
+    a owl:Class ; 
+    owl:unionOf ( 
+      obo:BFO_0000031 
+      obo:BFO_0000019
+      obo:BFO_0000015
+      ) 
+  ]  ; # "generically dependent continuant" or "quality" or "process" 
 .
 sosa:System
   rdfs:subClassOf obo:BFO_0000004 ; # Independent Continuant
