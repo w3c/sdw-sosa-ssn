@@ -23,6 +23,11 @@ sosa:Actuation
       ) 
 
   ]  ; # "Act of Motion" or "Act of Artifact Processing" 
+  rdfs:subClassOf [ 
+    a owl:Restriction ; 
+    owl:onProperty sosa:hasResult ; 
+    owl:allValuesFrom cco:ont00000958 
+  ] ; # Information Content Entity
 .
 sosa:Deployment
   rdfs:subClassOf obo:BFO_0000015 ; # Process 
@@ -43,6 +48,11 @@ sosa:Observation
       ) 
 
   ]  ; # "Act of Observation" or "Act of Measuring" or "Act of Prediction" 
+  rdfs:subClassOf [ 
+    a owl:Restriction ; 
+    owl:onProperty sosa:hasResult ; 
+    owl:allValuesFrom cco:ont00000958 
+  ] ; # Information Content Entity
 .
 sosa:Platform
   rdfs:subClassOf [ 
@@ -77,6 +87,11 @@ sosa:Sampling
       cco:ont00000366
       ) 
   ]  ; # "Act of Artifact Processing" or "Act of Artifact Employment" or "Act of Information Processing" 
+  rdfs:subClassOf [ 
+    a owl:Restriction ; 
+    owl:onProperty sosa:hasResult ; 
+    owl:allValuesFrom obo:BFO_0000004 
+  ] ; # independent continuant
 .
 sosa:Stimulus
   rdfs:subClassOf [
