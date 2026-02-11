@@ -49,3 +49,11 @@ sosa-oms:PreparationStep
 sosa:Sample
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa-oms:hasPreparationStep ; owl:allValuesFrom sosa-oms:PreparationStep ] ;
   rdfs:isDefinedBy sosa-sam: .
+
+sosa-oms:madeOnPlatform
+  owl:propertyChainAxiom ( sosa:hasFeatureOfInterest sosa:isResultOfMadeBySampler sosa:isHostedBy ) ;
+  rdfs:isDefinedBy sosa-oms: .
+
+sosa-oms:makesObservationCollection
+  owl:propertyChainAxiom ( sosa:hosts sosa:madeSamplingHasResult sosa:isFeatureOfInterestOf ) ;
+  rdfs:isDefinedBy sosa-oms: .

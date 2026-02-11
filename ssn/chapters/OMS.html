@@ -51,8 +51,10 @@ ogc-ms:implementedBy a owl:ObjectProperty ;
     <b>SOSA-OMS is the canonical RDF implementation of OMS.</b>
   </p>
   <p style="text-align: center;">
-    The ontology IRI of the SOSA-OMS Alignment module is <a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a><br>
-    The version IRI of the SOSA-OMS Alignment module 2023 edition is <a href="http://www.w3.org/ns/sosa/2023/oms/">http://www.w3.org/ns/sosa/2023/oms/</a>
+    The ontology IRI of the SOSA-OMS Alignment module is
+    <a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a><br>
+    The version IRI of the SOSA-OMS Alignment module 2023 edition is
+    <a href="http://www.w3.org/ns/sosa/2023/oms/">http://www.w3.org/ns/sosa/2023/oms/</a>
   </p>
 
   <h5>SSN-OMS</h5>
@@ -63,8 +65,10 @@ ogc-ms:implementedBy a owl:ObjectProperty ;
     <b>SSN-OMS is the canonical OWL implementation of OMS.</b>
   </p>
   <p style="text-align: center;">
-    The ontology IRI of the OMS Extension module is <a href="http://www.w3.org/ns/ssn/oms/">http://www.w3.org/ns/ssn/oms/</a><br>
-    The version IRI of the OMS Extension module 2023 edition is <a href="http://www.w3.org/ns/ssn/2023/oms/">http://www.w3.org/ns/ssn/2023/oms/</a>
+    The ontology IRI of the OMS Extension module is
+    <a href="http://www.w3.org/ns/ssn/oms/">http://www.w3.org/ns/ssn/oms/</a><br>
+    The version IRI of the OMS Extension module 2023 edition is
+    <a href="http://www.w3.org/ns/ssn/2023/oms/">http://www.w3.org/ns/ssn/2023/oms/</a>
   </p>
 
   <h5>Namespaces</h5>
@@ -125,6 +129,7 @@ ogc-ms:implementedBy a owl:ObjectProperty ;
       <a>sosa-oms:PreparationStep</a>,
       <a>sosa-oms:hasPreparationStep</a>,
       <a>sosa-oms:madeOnPlatform</a>,
+      <a>sosa-oms:makesObservationCollection</a>,
       <a>sosa-oms:metadata</a>,
       <a>sosa-oms:observationType</a>,
       <a>sosa-oms:preparedSample</a>,
@@ -152,14 +157,14 @@ ogc-ms:implementedBy a owl:ObjectProperty ;
       description of preparation steps performed on a Sample
     </p>
     <dl>
-        <dt>Subclass of</dt>
-        <dd>
-            <a>sosa:Procedure</a>
-        </dd>
-        <dt>is Defined By</dt>
-        <dd>
-            <a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a>
-        </dd>
+      <dt>Subclass of</dt>
+      <dd>
+        <a>sosa:Procedure</a>
+      </dd>
+      <dt>is Defined By</dt>
+      <dd>
+        <a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a>
+      </dd>
     </dl>
 
 
@@ -205,7 +210,7 @@ ogc-ms:implementedBy a owl:ObjectProperty ;
     </p>
     <p>
       <em>has preparation step</em> &mdash;
-      link from a Sample to a PreparationStep used for it
+      relation from a Sample to a PreparationStep used to prepare it
     </p>
     <dl>
       <dt>Domain Includes</dt>
@@ -215,6 +220,10 @@ ogc-ms:implementedBy a owl:ObjectProperty ;
       <dt>Range Includes</dt>
       <dd>
         <a>sosa-oms:PreparationStep</a>
+      </dd>
+      <dt>Inverse property of</dt>
+      <dd>
+        <a>sosa-oms:preparedSample</a>
       </dd>
       <dt>is Defined By</dt>
       <dd>
@@ -238,17 +247,83 @@ ogc-ms:implementedBy a owl:ObjectProperty ;
     </p>
     <p>
       <em>made on platform</em> &mdash;
-      relation from an Observation to the Platform that the Sensor was attached to at the time it was made
+      relation from an ObservationCollection to the associated Platform.
     </p>
     <dl>
       <dt>Domain Includes</dt>
       <dd>
-        <a>sosa:Observation</a>,
         <a>sosa:ObservationCollection</a>
       </dd>
       <dt>Range Includes</dt>
       <dd>
         <a>sosa:Platform</a>
+      </dd>
+      <dt>Inverse property of</dt>
+      <dd>
+        <a>sosa-oms:makesObservationCollection</a>
+      </dd>
+      <dt class="ssn">Super property of chain</dt>
+      <dd class="ssn">
+        <a>sosa:hasFeatureOfInterest</a> <b>o</b>
+        <a>sosa:isResultOfMadeBySampler</a> <b>o</b>
+        <a>sosa:isHostedBy</a>
+      </dd>
+      <dt>is Defined By</dt>
+      <dd>
+        <a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a>
+      </dd>
+    </dl>
+
+
+    <div class="buttonpanel">
+      <span class="back">[<a href="#OMS">Back to module overview</a>]</span>
+      <span class="back">[<a href="#Overview">Back to top</a>]</span>
+    </div>
+  </section>
+
+  <section class="informative specterm" id="OMSmakesObservationCollection">
+    <h5><dfn>sosa-oms:makesObservationCollection</dfn></h5>
+    <p class="crossreference">
+      <strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/makesObservationCollection
+    </p>
+    <p>
+      <strong>an OWL Object Property</strong>
+    </p>
+    <p>
+      <em>makes observation collection</em> &mdash;
+      relation from a Platform to an ObservationCollection arising from it
+    </p>
+    <p class="note">
+      In order to indicate potential Observations at a Platform, an empty ObservationCollection can be provided.
+      This mimics the semantics of the OMS ObservingCapability class.
+      The underlying property chain is represented in <a href="#Fig-MadeOnPlatform"></a>.
+    </p>
+
+    <figure id="Fig-MadeOnPlatform">
+      <embed alt="Made on platform path" src="images/MadeOnPlatform.svg" style="width:75%" />
+      <figcaption>
+        <a href="#OMSmakesObservationCollection">osa-oms:makesObservationCollection</a>
+        and <a href="#OMSmadeOnPlatform">sosa-oms:madeOnPlatform</a> property chains explained
+      </figcaption>
+    </figure>
+    <dl>
+      <dt>Domain Includes</dt>
+      <dd>
+        <a>sosa:Platform</a>
+      </dd>
+      <dt>Range Includes</dt>
+      <dd>
+        <a>sosa:ObservationCollection</a>
+      </dd>
+      <dt>Inverse property of</dt>
+      <dd>
+        <a>sosa-oms:madeOnPlatform</a>
+      </dd>
+      <dt class="ssn">Super property of chain</dt>
+      <dd class="ssn">
+        <a>sosa:hosts</a> <b>o</b>
+        <a>sosa:madeSamplingHasResult</a> <b>o</b>
+        <a>sosa:isFeatureOfInterestOf</a>
       </dd>
       <dt>is Defined By</dt>
       <dd>
@@ -354,6 +429,10 @@ ogc-ms:implementedBy a owl:ObjectProperty ;
       <dd>
         <a>sosa:Sample</a>
       </dd>
+      <dt>Inverse property of</dt>
+      <dd>
+        <a>sosa-oms:hasPreparationStep</a>
+      </dd>
       <dt>is Defined By</dt>
       <dd>
         <a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a>
@@ -387,6 +466,10 @@ ogc-ms:implementedBy a owl:ObjectProperty ;
       <dt>Range Includes</dt>
       <dd>
         <a>sosa-oms:PreparationProcedure</a>
+      </dd>
+      <dt>Inverse property of</dt>
+      <dd>
+        <a>sosa-oms:samplePreparationStep</a>
       </dd>
       <dt>is Defined By</dt>
       <dd>
@@ -456,6 +539,10 @@ ogc-ms:implementedBy a owl:ObjectProperty ;
       <dd>
         <a>sosa-oms:PreparationStep</a>
       </dd>
+      <dt>Inverse property of</dt>
+      <dd>
+        <a>sosa-oms:processingDetails</a>
+      </dd>
       <dt>is Defined By</dt>
       <dd>
         <a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a>
@@ -485,7 +572,9 @@ ogc-ms:implementedBy a owl:ObjectProperty ;
       <dt>Domain Includes</dt>
       <dd>
         <a>sosa:Observation</a>,
-        <a>sosa:Sampling</a>
+        <a>sosa:ObservationCollection</a>,
+        <a>sosa:Sampling</a>,
+        <a>sosa:SamplingCollection</a>
       </dd>
       <dt>Range Includes</dt>
       <dd>
@@ -729,7 +818,8 @@ ogc-ms:implementedBy a owl:ObjectProperty ;
     <li>
       <span class="lhs"><a>sosa:hasFeatureOfInterest</a></span>
       <span class="symbol">ogc-ms:implements</span>
-      <span class="rhs">obs-cpt:Observation/featureOfInterest-sem , <br> obs-core:AbstractObservationCharacteristics/pFoI-sem ,
+      <span class="rhs">obs-cpt:Observation/featureOfInterest-sem , <br>
+        obs-core:AbstractObservationCharacteristics/pFoI-sem ,
         <br> sam-cpt:Sampling/featureOfInterest-sem</span>
     </li>
     <li>
