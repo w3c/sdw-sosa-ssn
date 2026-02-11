@@ -116,21 +116,23 @@
                     <a>sosa:FeatureOfInterest</a> for an automatic window control
                     <a>sosa:Actuation</a>.
                 </dd>
-                <dt class="ssn restrictions" id="SSNFeatureOfInterest">Restrictions in SSN</dt>
-                <dd class="ssn">
-                    <a>sosa:isFeatureOfInterestOf</a>
-                    <em><b>SOME</b></em>
-                    (<a>sosa:Execution</a> <em><b>or</b></em> <a>sosa:Deployment</a>)
-                    <br>
-                    <a>sosa:hasProperty</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:Property</a>
-                    <br>
-                    <a>sosa:hasSample</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:Sample</a>
-                    <br>
-                </dd>
+                <div class="ssn" id="SSNFeatureOfInterest">
+                    <dt class="restrictions">Restrictions in SSN</dt>
+                    <dd>
+                        <a>sosa:isFeatureOfInterestOf</a>
+                        <em><b>SOME</b></em>
+                        (<a>sosa:Execution</a> <em><b>or</b></em> <a>sosa:Deployment</a>)
+                        <br>
+                        <a>sosa:hasProperty</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:Property</a>
+                        <br>
+                        <a>sosa:hasSample</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:Sample</a>
+                        <br>
+                    </dd>
+                </div>
                 <dt>is Defined By</dt>
                 <dd>
                     <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
@@ -179,34 +181,36 @@
                     <br>
                     Windows have a property "open state".
                 </dd>
-                <dt class="ssn restrictions" id="SSNProperty">Restrictions in SSN</dt>
-                <dd class="ssn">
-                    <a>sosa:hasProcedure</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:Procedure</a>
-                    <br>
-                    <a>sosa:isPropertyOf</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:FeatureOfInterest</a>
-                    <br>
-                    <a>sosa:isActedOnBy</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:Actuator</a>
-                    <br>
-                    <a>sosa:wasActedOnBy</a>
-                    <em><b>ONLY</b></em>
-                    (<a>sosa:Actuation</a> <em><b>or</b></em>
-                    <a>sosa:ActuationCollection</a>)
-                    <br>
-                    <a>sosa:isObservedBy</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:Sensor</a>
-                    <br>
-                    <a>sosa:wasObservedBy</a>
-                    <em><b>ONLY</b></em>
-                    (<a>sosa:Observation</a> <em><b>or</b></em>
-                    <a>sosa:ObservationCollection</a>)
-                </dd>
+                <div class="ssn" id="SSNProperty">
+                    <dt class="restrictions">Restrictions in SSN</dt>
+                    <dd>
+                        <a>sosa:hasProcedure</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:Procedure</a>
+                        <br>
+                        <a>sosa:isPropertyOf</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:FeatureOfInterest</a>
+                        <br>
+                        <a>sosa:isActedOnBy</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:Actuator</a>
+                        <br>
+                        <a>sosa:wasActedOnBy</a>
+                        <em><b>ONLY</b></em>
+                        (<a>sosa:Actuation</a> <em><b>or</b></em>
+                        <a>sosa:ActuationCollection</a>)
+                        <br>
+                        <a>sosa:isObservedBy</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:Sensor</a>
+                        <br>
+                        <a>sosa:wasObservedBy</a>
+                        <em><b>ONLY</b></em>
+                        (<a>sosa:Observation</a> <em><b>or</b></em>
+                        <a>sosa:ObservationCollection</a>)
+                    </dd>
+                </div>
                 <dt>is Defined By</dt>
                 <dd>
                     <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
@@ -554,16 +558,19 @@
                     It is included in the ontology to support the definition of a common pattern for executions and
                     their properties.
                 </dd>
-                <dt class="ssn restrictions" id="SSNProcedure">Restrictions in SSN</dt>
-                <dd class="ssn">
-                    <a>sosa:implementedBy</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:System</a>
-                    <br>
-                    <a>sosa:forProperty</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:Property</a>
-                </dd>
+                <div class="ssn" id="SSNProcedure">
+
+                    <dt class="restrictions">Restrictions in SSN</dt>
+                    <dd>
+                        <a>sosa:implementedBy</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:System</a>
+                        <br>
+                        <a>sosa:forProperty</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:Property</a>
+                    </dd>
+                </div>
                 <dt>is Defined By</dt>
                 <dd>
                     <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
@@ -973,28 +980,30 @@
                     declared to be an instance of one of the concrete sub-classes, and not of the Execution
                     class.
                 </dd>
-                <dt class="ssn restrictions" id="SSNExecution">Restrictions in SSN</dt>
-                <dd class="ssn">
-                    <a>sosa:madeBySystem</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:System</a>
-                    <br>
-                    <a>sosa:usedProcedure</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:Procedure</a>
-                    <br>
-                    <a>sosa:hasFeatureOfInterest</a>
-                    <em><b>SOME</b></em>
-                    <a>sosa:FeatureOfInterest</a>
-                    <br>
-                    <a>sosa:hasFeatureOfInterest</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:FeatureOfInterest</a>
-                    <br>
-                    <a>sosa:hasUltimateFeatureOfInterest</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:FeatureOfInterest</a>
-                </dd>
+                <div class="ssn" id="SSNExecution">
+                    <dt class="restrictions">Restrictions in SSN</dt>
+                    <dd>
+                        <a>sosa:madeBySystem</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:System</a>
+                        <br>
+                        <a>sosa:usedProcedure</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:Procedure</a>
+                        <br>
+                        <a>sosa:hasFeatureOfInterest</a>
+                        <em><b>SOME</b></em>
+                        <a>sosa:FeatureOfInterest</a>
+                        <br>
+                        <a>sosa:hasFeatureOfInterest</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:FeatureOfInterest</a>
+                        <br>
+                        <a>sosa:hasUltimateFeatureOfInterest</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:FeatureOfInterest</a>
+                    </dd>
+                </div>
                 <dt>is Defined By</dt>
                 <dd>
                     <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
@@ -1095,29 +1104,31 @@
                     sub-classes, and not of the ExecutionCollection
                     class.
                 </dd>
-                <dt class="ssn restrictions" id="SSNExecutionCollection">Restrictions in SSN</dt>
-                <dd class="ssn">
-                    <a>sosa:madeBySystem</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:System</a>
-                    <br>
-                    <a>sosa:usedProcedure</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:Procedure</a>
-                    <br>
-                    <a>sosa:hasFeatureOfInterest</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:FeatureOfInterest</a>
-                    <br>
-                    <a>sosa:hasUltimateFeatureOfInterest</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:FeatureOfInterest</a>
-                    <br>
-                    <a>sosa:hasMember</a>
-                    <em><b>ONLY</b></em>
-                    (<a>sosa:Execution</a> <em><b>or</b></em>
-                    <a>sosa:ExecutionCollection</a>)
-                </dd>
+                <div class="ssn" id="SSNExecutionCollection">
+                    <dt class="restrictions">Restrictions in SSN</dt>
+                    <dd>
+                        <a>sosa:madeBySystem</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:System</a>
+                        <br>
+                        <a>sosa:usedProcedure</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:Procedure</a>
+                        <br>
+                        <a>sosa:hasFeatureOfInterest</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:FeatureOfInterest</a>
+                        <br>
+                        <a>sosa:hasUltimateFeatureOfInterest</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:FeatureOfInterest</a>
+                        <br>
+                        <a>sosa:hasMember</a>
+                        <em><b>ONLY</b></em>
+                        (<a>sosa:Execution</a> <em><b>or</b></em>
+                        <a>sosa:ExecutionCollection</a>)
+                    </dd>
+                </div>
                 <dt>is Defined By</dt>
                 <dd>
                     <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
@@ -1992,24 +2003,26 @@
                     A <a>sosa:Deployment</a> can be used quite flexibly to describe the use of systems, and
                     platforms that host systems, with respect to a feature of interest.
                 </dd>
-                <dt class="ssn restrictions" id="SSNDeployment">Restrictions in SSN</dt>
-                <dd class="ssn">
-                    <a>sosa:deployedAsset</a>
-                    <em><b>ONLY</b></em>
-                    (<a>sosa:System</a> <em><b>or</b></em> <a>sosa:Platform</a>)
-                    <br>
-                    <a>sosa:deployedOnPlatform</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:Platform</a>
-                    <br>
-                    <a>sosa:deployedSystem</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:System</a>
-                    <br>
-                    <a>sosa:hasFeatureOfInterest</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:FeatureOfInterest</a>
-                </dd>
+                <div class="ssn" id="SSNDeployment">
+                    <dt class="restrictions">Restrictions in SSN</dt>
+                    <dd>
+                        <a>sosa:deployedAsset</a>
+                        <em><b>ONLY</b></em>
+                        (<a>sosa:System</a> <em><b>or</b></em> <a>sosa:Platform</a>)
+                        <br>
+                        <a>sosa:deployedOnPlatform</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:Platform</a>
+                        <br>
+                        <a>sosa:deployedSystem</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:System</a>
+                        <br>
+                        <a>sosa:hasFeatureOfInterest</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:FeatureOfInterest</a>
+                    </dd>
+                </div>
                 <dt>is Defined By</dt>
                 <dd>
                     <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
@@ -2053,18 +2066,20 @@
                     <br>
                     A team performing a survey, where each team member would be modeled as an Observer.
                 </dd>
-                <dt class="ssn restrictions" id="SSNPlatform">Restrictions in SSN</dt>
-                <dd class="ssn">
-                    <a>sosa:hosts</a>
-                    <em><b>ONLY</b></em>
-                    (<a>sosa:System</a>
-                    <em><b>or</b></em>
-                    <a>sosa:Platform</a>)
-                    <br>
-                    <a>sosa:inDeployment</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:Deployment</a>
-                </dd>
+                <div class="ssn" id="SSNPlatform">
+                    <dt class="restrictions">Restrictions in SSN</dt>
+                    <dd>
+                        <a>sosa:hosts</a>
+                        <em><b>ONLY</b></em>
+                        (<a>sosa:System</a>
+                        <em><b>or</b></em>
+                        <a>sosa:Platform</a>)
+                        <br>
+                        <a>sosa:inDeployment</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:Deployment</a>
+                    </dd>
+                </div>
                 <dt>is Defined By</dt>
                 <dd>
                     <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
@@ -2139,37 +2154,39 @@
                     A <a>sosa:System</a> can be deployed for a specified time interval as
                     part of a <a>sosa:Deployment</a>.
                 </dd>
-                <dt class="ssn restrictions" id="SSNSystem">Restrictions in SSN</dt>
-                <dd class="ssn">
-                    <a>sosa:isHostedBy</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:Platform</a>
-                    <br>
-                    <a>sosa:implements</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:Procedure</a>
-                    <br>
-                    <a>sosa:forProperty</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:Property</a>
-                    <br>
-                    <a>sosa:hasSubSystem</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:System</a>
-                    <br>
-                    <a>sosa:isSubSystemOf</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:System</a>
-                    <br>
-                    <a>sosa:hasDeployment</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:Deployment</a>
-                    <br>
-                    <a>sosa:madeExecution</a>
-                    <em><b>ONLY</b></em>
-                    (<a>sosa:Execution</a> <em><b>or</b></em>
-                    <a>sosa:ExecutionCollection</a>)
-                </dd>
+                <div class="ssn" id="SSNSystem">
+                    <dt class="restrictions">Restrictions in SSN</dt>
+                    <dd>
+                        <a>sosa:isHostedBy</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:Platform</a>
+                        <br>
+                        <a>sosa:implements</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:Procedure</a>
+                        <br>
+                        <a>sosa:forProperty</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:Property</a>
+                        <br>
+                        <a>sosa:hasSubSystem</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:System</a>
+                        <br>
+                        <a>sosa:isSubSystemOf</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:System</a>
+                        <br>
+                        <a>sosa:hasDeployment</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:Deployment</a>
+                        <br>
+                        <a>sosa:madeExecution</a>
+                        <em><b>ONLY</b></em>
+                        (<a>sosa:Execution</a> <em><b>or</b></em>
+                        <a>sosa:ExecutionCollection</a>)
+                    </dd>
+                </div>
                 <dt>is Defined By</dt>
                 <dd>
                     <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
@@ -2386,11 +2403,13 @@
                 <dd>
                     <a>sosa:isHostedBy</a>
                 </dd>
-                <dt class="ssn" id="SSNhosts">Super property of chain</dt>
-                <dd class="ssn">
-                    <a>sosa:inDeployment</a> <b>o</b>
-                    <a>sosa:deployedSystem</a>
-                </dd>
+                <div class="ssn" id="SSNhosts">
+                    <dt>Super property of chain</dt>
+                    <dd>
+                        <a>sosa:inDeployment</a> <b>o</b>
+                        <a>sosa:deployedSystem</a>
+                    </dd>
+                </div>
                 <dt>is Defined By</dt>
                 <dd>
                     <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
