@@ -126,6 +126,8 @@ var respecConfig = {
       key: "Contributors (ordered alphabetically by surname)",
       data: [
         {
+          value: "Abdelfettah Feliachi, BRGM, FR"
+        }, {
           value: "Krzysztof Janowicz, Universität Wien, AT"
         }, {
           value: "Maja Milicic Brandt, Siemens AG, DE"

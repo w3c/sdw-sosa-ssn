@@ -51,7 +51,7 @@ sosa:ObservationCollection
   rdfs:subClassOf sosa:ExecutionCollection ;
   rdfs:label "Observation Collection"@en ;
   skos:definition """
-  set of one or more Observations or ObservationCollections; collections may be nested
+  set of Observations or ObservationCollections; collections may be nested
 
   All Observation properties may appear in an Observation Collection, including: 
   hasFeatureOfInterest , hasUltimateFeatureOfInterest , usedProcedure , madeBySensor , observedProperty , phenomenonTime , startTime, resultTime , hasResult , hasSimpleResult : 
@@ -185,7 +185,7 @@ sosa:madeBySensor
   rdfs:subPropertyOf sosa:madeBySystem ;
   rdfs:label "made by sensor or observer"@en ;
   skos:definition """
-  relation from an Observation or ObservationCollection to the Sensor that made it
+  relation from an Observation or ObservationCollection to the Sensor involved
   """@en ;
   schema:domainIncludes sosa:Observation ;
   schema:domainIncludes sosa:ObservationCollection ;
@@ -224,7 +224,7 @@ sosa:observedProperty
   a owl:ObjectProperty ;
   rdfs:label "observed property"@en ;
   skos:definition """
-  relation from an Observation or ObservationCollection to the property that was observed
+  relation from an Observation or ObservationCollection to the property observed
   """@en ;
   skos:note """
   'observed property' covers the concepts referred to in [VIM] as 'measurand' (quantitative values) and 'examinand' (categorical and nominal values — [VIM4]), as well as complex and structured properties whose values may be represented as lists, vectors, arrays, rasters, geometries, etc. More specific terms are used in other contexts for related concepts, such as 'analyte' (chemistry) and 'determinand' (water quality).
