@@ -6,7 +6,7 @@ This folder contains long running examples previously contained within the RDF f
 ## Tracking Beer Temperature with IBS-TH2
 
 This example is documented in more detail in [ACME-Beer-Example.md](./ACME-Beer-Example.md) 
-An RDF file containing a [example ttl graph file](Beer-Full-IBS-TH2.ttl) corresponding tothis example is available.
+An RDF file containing a [example ttl graph file](Beer-Full-IBS-TH2.ttl) corresponding to this example is available.
 
 ## Tree height measurement
 
