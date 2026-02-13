@@ -48,7 +48,7 @@ An RDF file containing a [example ttl graph file](dht22-deployment.ttl)  corresp
 
 ## IP68 Smart Sensor
 
-This example describes the IP68 Smart Sensor that and some of its capabilities and operating ranges. A specific IP68 Smart Sensor observes the air temperature, and its own battery state.</p>
+This example describes the IP68 Smart Sensor and some of its capabilities and operating ranges. A specific IP68 Smart Sensor observes the air temperature, and its own battery state.</p>
 
 An RDF file containing a [example ttl graph file](ip68.ttl)  corresponding to this example is available..
 
