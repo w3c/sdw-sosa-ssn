@@ -14,7 +14,7 @@ An RDF file containing a [example ttl graph file](tree-height.ttl) corresponding
 
 ## Number of sunspots
 
-An RDF file containing a [example ttl graph file](sunspots.ttl) corresponding tothis example is available.
+An RDF file containing a [example ttl graph file](sunspots.ttl) corresponding to this example is available.
 
 ## Seismograph measuring ground displacement speed
 
