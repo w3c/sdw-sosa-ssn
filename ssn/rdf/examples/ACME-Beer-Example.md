@@ -450,7 +450,7 @@ An RDF file containing a [graph corresponding to this example is available in AC
 
 ## Notes on deployment and observation aggregation
  
-In previous examples, <a href="https://www.w3.org/TR/prov-o/Activity">prov:Activity</a> was used as a means of aggregating results in an archiving reception. Other mechanisms exists to define the purpose of the System and to aggregate collections of results within specific contexts. 
+In previous examples, <a href="https://www.w3.org/TR/prov-o/Activity">prov:Activity</a> was used as a means of aggregating results in an archiving reception. Other mechanisms exist to define the purpose of the System and to aggregate collections of results within specific contexts. 
 
  
 ### Recording data and sensor tasking through sensor deployments
