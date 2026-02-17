@@ -40,7 +40,7 @@ Sensors and sensor-systems are often sourced commercially and installed as part 
 standardized offerings need to be communicated in a way that is machine
 readable and other vocabularies are available to do so.
 
-From a procurement and product recall approach, vocabulatories are
+From a procurement and product recall approach, vocabularies
 differentiate between the product class and the specific instance of the
 product being consumed.  The ability to align Sosa and product vocabularies
 are beneficial in that it permits a unified description of the sensor.  This
