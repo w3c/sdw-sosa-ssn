@@ -271,7 +271,7 @@ samples is found in [[[#beerCollections]]].
 
 After being chilled in the brewery cooler, the beer carton is then loaded on
 one of the Acme delivery trucks for shipment to the retail store.  The
-truck's cooling management system is recording the sensor readings for both
+cooling management system of the truck is recording the sensor readings for both
 the shipping company and the brewery.  An on-board GPS unit annotates the
 activity of recording observations as the truck moves from location to
 location.  This position information represents the location of the shipping
