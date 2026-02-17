@@ -13,9 +13,9 @@ quality control.  We present such a hypothetical situation here as an
 example.
 
 The example is of interest as an application because it involves the repurposing of a
-commodity, a consumer-grade [sosa:System](https://www.w3.org/TR/vocab-ssn/#SOSASystem) deployed to
-address a domain-specific problem, the movement of a [sosa:Platform](https://www.w3.org/TR/vocab-ssn/#SOSAPlatform) hosting the System from
-environment to environment and the possible ambiguity of data-ownership in
+commodity, a consumer-grade [sosa:System](https://www.w3.org/TR/vocab-ssn/#SSNSystem) deployed to
+address a domain-specific problem: the movement of a [sosa:Platform](https://www.w3.org/TR/vocab-ssn/#SSNPlatform) hosting the System from one
+environment to another, with possible data-ownership ambiguity in
 each of these environments.  It also demonstrates the location ambiguity
 that can sometimes be present when modeling sensor readings.
 
@@ -35,14 +35,14 @@ that can sometimes be present when modeling sensor readings.
 ## A short note about sensors as commercial products
 
 Sensors and sensor-systems are often sourced commercially and installed as part of larger
-[deployments]((https://www.w3.org/TR/vocab-ssn/#SOSADeployment) or
-[platforms](https://www.w3.org/TR/vocab-ssn/#SOSAPlatform). These
+[deployments]((https://www.w3.org/TR/vocab-ssn/#SSNDeployment) or
+[platforms](https://www.w3.org/TR/vocab-ssn/#SSNPlatform). These
 standardized offerings need to be communicated in a way that is machine
 readable and other vocabularies are available to do so.
 
 From a procurement and product recall approach, vocabulatories are
 differentiate between the product class and the specific instance of the
-product being consumed.  The ability to align Sosa and product vocabularies
+product being consumed.  The ability to align SSN and product vocabularies
 are beneficial in that it permits a unified description of the sensor.  This
 include modeling the sensor throughout its lifetime, announcing commercial
 availability, procurement, deployment, operation, decomissioning and
@@ -94,8 +94,8 @@ activity:
 An RDF file containing a [graph corresponding to this example is available in ACME-Beer/Beer-Packaging-IBS-TH2.ttl](./ACME-Beer/Beer-Packaging-IBS-TH2.ttl).
 
 ```
-@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix RDF:  <http://www.w3.org/1999/02/22-RDF-syntax-ns#> .
+@prefix RDFs: <http://www.w3.org/2000/01/RDF-schema#>.
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix qudt: <http://qudt.org/schema/qudt/> .
@@ -108,7 +108,7 @@ An RDF file containing a [graph corresponding to this example is available in AC
 @prefix sosa-env: <http://www.w3.org/ns/sosa/system-environment-properties#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix org: <http://www.w3.org/ns/org#> .
-@prefix beer: <https://rdf.ag/o/beer#> .
+@prefix beer: <https://RDF.ag/o/beer#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix ex: <http://example.org/> .
@@ -135,25 +135,25 @@ An RDF file containing a [graph corresponding to this example is available in AC
 # identifier to highlight that this is a physical instance of the product.
  
 <10/PO202402/21/0001/acmePorterSixPack> a schema:IndividualProduct;
-    rdfs:subClassOf <acmePorterSixPack>;
+    RDFs:subClassOf <acmePorterSixPack>;
     gs1:packaging <0001/ProductPackaging>;
     gs1:hasBatchLotNumber "PO202402" ;
     gs1:hasSerialNumber "0001" .
 
 <0001/ProductPackaging> a gs1:PackagingDetails, sosa:FeatureOfInterest ;  
-    rdfs:label "An instance of a beer carton used to package a six pack."@en .
+    RDFs:label "An instance of a beer carton used to package a six pack."@en .
 
 # Alice packages the Beer.
 
 <12345/someTH2> a sensor:IBS-TH2-Plus, schema:IndividualProduct ;
     rel:own <acmeBreweryCo> ; # Sensor may be returned.
-    rdfs:label "InkBird Sensor that Alice bought to track beer storage."@en ;
+    RDFs:label "InkBird Sensor that Alice bought to track beer storage."@en ;
     sosa:hasSubSystem <12345/HumiditySensor>, <12345/TemperatureSensor> ;
     gs1:hasSerialNumber "12345" ;
     ex:deviceAddress "12:34:56:12:34:56" .
 
 <00001/packingSixPack> a prov:Activity ;
-    rdfs:comment "When Alice packaged Porter bottles into the box, she added an InkBird logger to check that the beer wasn't getting too warm in transit and storage." ;    
+    RDFs:comment "When Alice packaged Porter bottles into the box, she added an InkBird logger to check that the beer wasn't getting too warm in transit and storage." ;    
     prov:wasAssociatedWith <alice> ;
     prov:used <12345/someTH2> ;
     prov:used <0001/ProductPackaging> ;
@@ -165,10 +165,10 @@ An RDF file containing a [graph corresponding to this example is available in AC
 # These definitions look redundant; but they represent the specific, physical instantiation of the sensors.
 
 <12345/HumiditySensor> a sensor:IBS-TH2-Plus-H ;
-    rdf:comment "This is the instance of the humidity sensor instance."@en .
+    RDF:comment "This is the instance of the humidity sensor instance."@en .
 
 <12345/TemperatureSensor> a sensor:IBS-TH2-Plus-T ;
-    rdf:comment "This is the instance of the temperature sensor instance."@en .
+    RDF:comment "This is the instance of the temperature sensor instance."@en .
 #
 # Sensor activates and records temperature while in the brewery cooler.
     
@@ -185,7 +185,7 @@ An RDF file containing a [graph corresponding to this example is available in AC
       qudt:value 12.0 ;
     ] ;
 .
-<1b/observation> rdf:type sosa:Observation ;
+<1b/observation> RDF:type sosa:Observation ;
     rel:own <acmeBreweryCo> ;
     sosa:observedProperty sosa-env:AmbientHumidity;
     sosa:hasUltimateFeatureOfInterest <0001/ProductPackaging>;
@@ -199,7 +199,7 @@ An RDF file containing a [graph corresponding to this example is available in AC
     ] ;
 .
 <breweryObserver> a prov:Activity ;
-    rdfs:comment "Brewery operating system logging process." ;
+    RDFs:comment "Brewery operating system logging process." ;
     prov:atLocation <acmeBreweryCo> ;
     prov:generated <1a/observation> ;
     prov:generated <1b/observation> ;
@@ -207,41 +207,41 @@ An RDF file containing a [graph corresponding to this example is available in AC
 ```
 
 In the example above, concurrent use of the 
-[sosa:hasFeatureOfInterest](https://www.w3.org/TR/vocab-ssn/#SOSAhasFeatureOfInterest) 
-and [sosa:hasUltimateFeatureOfInterest](https://www.w3.org/TR/vocab-ssn/#SOSAhasUltimateFeatureOfInterest) 
+[sosa:hasFeatureOfInterest](https://www.w3.org/TR/vocab-ssn/#SSNhasFeatureOfInterest) 
+and [sosa:hasUltimateFeatureOfInterest](https://www.w3.org/TR/vocab-ssn/#SSNhasUltimateFeatureOfInterest) 
 properties is made to account for the repurposing of a generic sensor.  The
 actual measurement performed by the system is the air temperature within
 the carton, as a proxy for the beer temperature within each beer vessel. 
 Modeling the full thermodynamic activity relating one measurement to the
 other is beyond the scope of this document, but could be implemented as a
-second order "virtual" [sosa:Sensor](https://www.w3.org/TR/vocab-ssn/#SOSASensor) or a sophisticated [sosa:Procedure](https://www.w3.org/TR/vocab-ssn/#SOSAProcedure).  Thus the use of the [sosa:hasUltimateFeatureOfInterest](https://www.w3.org/TR/vocab-ssn/#SOSAhasUltimateFeatureOfInterest) property allows for flexibility in interpretation of the measurement within a context *not necessarily intended by the original sensor design*.
+second order "virtual" [sosa:Sensor](https://www.w3.org/TR/vocab-ssn/#SSNSensor) or a sophisticated [sosa:Procedure](https://www.w3.org/TR/vocab-ssn/#SSNProcedure).  Thus the use of the [sosa:hasUltimateFeatureOfInterest](https://www.w3.org/TR/vocab-ssn/#SSNhasUltimateFeatureOfInterest) property allows for flexibility in interpretation of the measurement within a context *not necessarily intended by the original sensor design*.
    
-Physically, both <12345/HumiditySensor> and <12345/TemperatureSensor> are monitoring the ambient air within the specific Porter carton which we define as <10/PO202402/21/0001/acmePorterSixPackAirSample> which resolves the issue of the location of the measurement when the carton itself is in motion. The <a href="#SOSAhasUltimateFeatureOfInterest">`sosa:hasUltimateFeatureOfInterest`</a> property targets the beer temperature within that carton and the humidity the cardboard of the carton was subjected to:
+Physically, both <12345/HumiditySensor> and <12345/TemperatureSensor> are monitoring the ambient air within the specific Porter carton which we define as <10/PO202402/21/0001/acmePorterSixPackAirSample> which resolves the issue of the location of the measurement when the carton itself is in motion. The <a href="#SSNhasUltimateFeatureOfInterest">`sosa:hasUltimateFeatureOfInterest`</a> property targets the beer temperature within that carton and the humidity the cardboard of the carton was subjected to:
 
 An RDF file containing a [graph corresponding to this example is available in ACME-Beer/Beer-FeatureOfInterest-IBS-TH2.ttl](ACME-Beer/Beer-FeatureOfInterest-IBS-TH2.ttl).
 
 ```
-@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix RDF:  <http://www.w3.org/1999/02/22-RDF-syntax-ns#> .
+@prefix RDFs: <http://www.w3.org/2000/01/RDF-schema#>.
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix unit: <http://qudt.org/vocab/unit/> .
 @prefix qudt: <http://qudt.org/schema/qudt/> .
 @prefix sosa-env: <http://www.w3.org/ns/sosa/system-environment-properties#> .
-@prefix beer: <https://rdf.ag/o/beer#> .
+@prefix beer: <https://RDF.ag/o/beer#> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix sensor: <https://example.org/sensor/> .
 @base <http://example.org/data/> .
 
 # A (virtual) sample of air within the six pack
 <10/PO202402/21/0001/acmePorterSixPackAirSample> a sosa:Sample ;
-    rdfs:label "Air within the six pack"@en ;
+    RDFs:label "Air within the six pack"@en ;
     sosa:isSampleOf <10/PO202402/21/0001/acmePorterSixPack> .
 
 # A (virtual) sample of the beer from the six pack, implicitly assumes that the
 # sample is representative of the contents of all bottles. 
 <10/PO202402/21/0001/acmePorterSixPackBeerSample> a  sosa:FeatureOfInterest, sosa:Sample, beer:Porter ;
-    rdfs:label "A (virtual) sample of beer within the six pack"@en ;
+    RDFs:label "A (virtual) sample of beer within the six pack"@en ;
     sosa:isSampleOf <10/PO202402/21/0001/acmePorterSixPack> .
 
 # We define this as the beer temperature, but ontologically it is a 
@@ -249,12 +249,12 @@ An RDF file containing a [graph corresponding to this example is available in AC
 <10/PO202402/21/0001/BeerTemperature> a sosa:Property ;
     qudt:hasUnit unit:DEG_C ;
     sosa:isPropertyOf <10/PO202402/21/0001/acmePorterSixPackBeerSample> ;
-    rdfs:label "Biertemperatur"@de, "Beer Temperature"@en, "Température de la bière"@fr ;
+    RDFs:label "Biertemperatur"@de, "Beer Temperature"@en, "Température de la bière"@fr ;
     skos:definition "Temperature of Beer."@en .
 
 ```
 
-The SOSA ontology takes a "feature and property" approach that is referenced
+The SSN ontology takes a "feature and property" approach that is referenced
 by observations.  The feature of interest &mdash; in this case, the ambient
 air within the carton (<10/PO202402/21/0001/acmePorterSixPackAirSample>) is
 the feature that the system is concerned with.  However, it is really a
@@ -271,7 +271,7 @@ samples is found in [[[#beerCollections]]].
 
 After being chilled in the brewery cooler, the beer carton is then loaded on
 one of the Acme delivery trucks for shipment to the retail store.  The
-truck's cooling management system is recording the sensor readings for both
+cooling management system of the truck is recording the sensor readings for both
 the shipping company and the brewery.  An on-board GPS unit annotates the
 activity of recording observations as the truck moves from location to
 location.  This position information represents the location of the shipping
@@ -286,8 +286,8 @@ The information recorded during this time period would be:
 An RDF file containing a [graph corresponding to this example is available in ACME-Beer/Beer-Shipping-IBS-TH2.ttl](ACME-Beer/Beer-Shipping-IBS-TH2.ttl).
 
 ```
-@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix RDF:  <http://www.w3.org/1999/02/22-RDF-syntax-ns#> .
+@prefix RDFs: <http://www.w3.org/2000/01/RDF-schema#>.
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix qudt: <http://qudt.org/schema/qudt/> .
 @prefix unit: <http://qudt.org/vocab/unit/> .
@@ -297,7 +297,7 @@ An RDF file containing a [graph corresponding to this example is available in AC
 @prefix sosa-env: <http://www.w3.org/ns/sosa/system-environment-properties#> .
 @prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
 @prefix org: <http://www.w3.org/ns/org#> .
-@prefix beer: <https://rdf.ag/o/beer#> .
+@prefix beer: <https://RDF.ag/o/beer#> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix ex: <http://example.org/> .
 @prefix sensor: <https://example.org/sensor/> .
@@ -328,7 +328,7 @@ An RDF file containing a [graph corresponding to this example is available in AC
       qudt:value 19.0 ;
     ] ;
 .
-<67b/observation> rdf:type sosa:Observation,prov:Entity ;
+<67b/observation> RDF:type sosa:Observation,prov:Entity ;
     rel:own <acmeBreweryCo> ;
     rel:own <acmeDelivery> ;
     sosa:observedProperty ex:airRelativeHumidity ;
@@ -343,14 +343,14 @@ An RDF file containing a [graph corresponding to this example is available in AC
     ] ;
 .
 <123/TruckObserver> a prov:Activity ;
-    rdfs:comment "Truck onboard monitoring system" ;
+    RDFs:comment "Truck onboard monitoring system" ;
     prov:used <acmeTruck> ;
     prov:generated <67a/observation> ;
     prov:generated <67b/observation> ;
     prov:startedAtTime "2024-02-22T04:15:05Z"^^xsd:dateTime ;
     prov:endedAtTime "2024-02-22T05:55:38Z"^^xsd:dateTime ;
     prov:wasStartedBy <driver> ;
-    prov:atLocation <gpsLocation> .
+    prov:atLocation <123/gpsLocation> .
 
 # This is the output from the truck's GPS receiver. We only get coordinates
 # from it.
@@ -363,32 +363,32 @@ The sensors of the system are reporting values for the same properties of
 the same features of interest; the physical location of the carton of beer
 does not effect the process because the system monitors the inside of the
 carton itself.  Modeling its location and the process of (un)loading of the
-carton from the truck is done through other rdf nodes.  The truck on-board
+carton from the truck is done through other RDF nodes.  The truck on-board
 monitoring system does report a GPS geometry as a Location.  This is the
 location at which the data was recorded from the system.  It is
 conceivable that the geometry node is shared with a vehicle tracking system
-rdf representation or the vehicle's delivery scheduling application but it
-is not mandated by Sosa.
+RDF representation or the delivery scheduling application of the vehicle but that
+is not mandated by SSN.
 
 Note: Locations of System, its component Sensors, and observed Samples are often
 conflated in non-semantically enabled systems and the semantics often
 implicitly assumed by the application.  The deep semantic modeling within
-Sosa makes no such implicit assumptions and locations can be assigned to all
+SSN makes no such implicit assumptions and locations can be assigned to all
 elements independently.
  
 ## Display in Retail Store Cooler 
 
 <img src="../../images/InkBird_IBS_TH2-receiving.png" width="25%" alt="The beer carton is stored in the display cooler for retail sale.">
 
-When received from the delivery company by the retail store, the beer is displayed for sale in retail coolers which log the sensors to the data being held by the retail store. We notice again the semantics of location and containment; the sensor is contained within the carton, which is contained within the cooler, which is itself located within the store. However, none of these semantic is recorded. The only location activity is the activity is taking place within the supermarket cooler; not the supermarket itself. 
+When received from the delivery company by the retail store, the beer is displayed for sale in retail coolers which log the sensors to the data being held by the retail store. We notice again the semantics of location and containment; the sensor is contained within the carton, which is contained within the cooler, which is itself located within the store. However, none of these semantics is recorded. The only relevant location is the activity taking place within the supermarket cooler; not the supermarket itself. 
 
 The information recorded during this time period would be:
 
 An RDF file containing a [graph corresponding to this example is available in ACME-Beer/Beer-Supermarket-IBS-TH2.ttl](ACME-Beer/Beer-Supermarket-IBS-TH2.ttl).
 
 ```
-@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix RDF:  <http://www.w3.org/1999/02/22-RDF-syntax-ns#> .
+@prefix RDFs: <http://www.w3.org/2000/01/RDF-schema#>.
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix qudt: <http://qudt.org/schema/qudt/> .
 @prefix unit: <http://qudt.org/vocab/unit/> .
@@ -412,7 +412,7 @@ An RDF file containing a [graph corresponding to this example is available in AC
 # changed and observation data is now only being recorded / owned by supermarket.
 #
     
-<98a/observation> rdf:type sosa:Observation,prov:Entity ;
+<98a/observation> RDF:type sosa:Observation,prov:Entity ;
     rel:own <acmeSupermarket> ;
     sosa:observedProperty <10/PO202402/21/0001/BeerTemperature> ;
     sosa:hasUltimateFeatureOfInterest <10/PO202402/21/0001/acmePorterSixPackBeerSample> ;    
@@ -425,7 +425,7 @@ An RDF file containing a [graph corresponding to this example is available in AC
       qudt:value 12 ;
     ] ;
 .
-<98b/observation> rdf:type sosa:Observation,prov:Entity ;
+<98b/observation> RDF:type sosa:Observation,prov:Entity ;
     rel:own <acmeSupermarket> ;
     sosa:observedProperty ex:airRelativeHumidity ;
     sosa:hasUltimateFeatureOfInterest <0001/ProductPackaging> ;
@@ -439,7 +439,7 @@ An RDF file containing a [graph corresponding to this example is available in AC
     ] ;
 .
 <CoolerMonitoringProcess> a prov:Activity ;
-    rdfs:comment "Smart cooler monitoring system" ;
+    RDFs:comment "Smart cooler monitoring system" ;
     prov:startedAtTime "2024-02-22T06:00:13Z"^^xsd:dateTime ;
     prov:atLocation <acmeSupermarketCooler> ;
     prov:generated <98a/observation> ;
@@ -455,13 +455,13 @@ In previous examples, <a href="https://www.w3.org/TR/prov-o/Activity">prov:Activ
  
 ### Recording data and sensor tasking through sensor deployments
  
-SOSA provides the notion of a <a href="#SOSADeployment">Deployment</a> class. This permits the tasking or installation of sensors to different environments, purposes, locations, or leases. Intended to link Platforms to Systems, it allows the application of different semantics to different situations, by recording different configuration parameters, for example, though deployments may be concurrent. Reusing the example of [[[#beerTemp]]], the sensor can be seen to be concurrently deployed within one beer carton and multiple coolers or storage sites:
+SSN provides the notion of a <a href="#SSNDeployment">Deployment</a> class. This permits the tasking or installation of sensors to different environments, purposes, locations, or leases. Intended to link Platforms to Systems, it allows the application of different semantics to different situations, by recording different configuration parameters, for example, though deployments may be concurrent. Reusing the example of [[[#beerTemp]]], the sensor can be seen to be concurrently deployed within one beer carton and multiple coolers or storage sites:
 
 An RDF file containing a [graph corresponding to this example is available in ACME-Beer/Beer-PlatformDeployment-IBS-TH2.ttl](ACME-Beer/Beer-PlatformDeployment-IBS-TH2.ttl).
 
 ```
-@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix RDF:  <http://www.w3.org/1999/02/22-RDF-syntax-ns#> .
+@prefix RDFs: <http://www.w3.org/2000/01/RDF-schema#>.
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix qudt: <http://qudt.org/schema/qudt/> .
@@ -524,7 +524,7 @@ An RDF file containing a [graph corresponding to this example is available in AC
 # Beer in the supermarket cooler.
 
 <acmeSupermarketCoolerDeployment> a prov:Activity, sosa:Deployment;
-    rdfs:comment "Smart cooler monitoring system" ;
+    RDFs:comment "Smart cooler monitoring system" ;
     prov:startedAtTime "2024-02-22T06:00:13Z"^^xsd:dateTime ;
     sosa:startTime "2024-02-22T06:00:13Z"^^xsd:dateTime ;
     sosa:deployedOnPlatform <acmeSupermarketCooler> ;
@@ -535,12 +535,12 @@ An RDF file containing a [graph corresponding to this example is available in AC
  
 ### Recording data using observation collection
 
-SOSA provides a lightweight capability to aggregate members for convenience. In previous examples, observations where clustered according to Deployment or recording Activity. In some circumstances, it is useful to aggregate observations according to an ad-hoc classification, here following the storage location of the carton while dispensing with geospatial data:
+SSN provides a lightweight capability to aggregate members for convenience. In previous examples, observations where clustered according to Deployment or recording Activity. In some circumstances, it is useful to aggregate observations according to an ad-hoc classification, here following the storage location of the carton while dispensing with geospatial data:
 
 
 ```
-@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix RDF:  <http://www.w3.org/1999/02/22-RDF-syntax-ns#> .
+@prefix RDFs: <http://www.w3.org/2000/01/RDF-schema#>.
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix qudt: <http://qudt.org/schema/qudt/> .
@@ -577,14 +577,14 @@ SOSA provides a lightweight capability to aggregate members for convenience. In 
 
 ### Recording data using sample collection
 
-A similar class <a href="#SOSASampleCollection">`sosa:SampleCollection`</a> allows for the aggregation of <a href="#SOSASample">`sosa:Samples`</a>, for example as part of a collection of samples taken as part of a quality assurance program. In the case of Acme Brewery, a collection of beer samples could be represented in this manner:  
+A similar class <a href="#SSNSampleCollection">`sosa:SampleCollection`</a> allows for the aggregation of <a href="#SSNSample">`sosa:Samples`</a>, for example as part of a collection of samples taken as part of a quality assurance program. In the case of Acme Brewery, a collection of beer samples could be represented in this manner:  
 
 An RDF file containing a [graph corresponding to this example is available in ACME-Beer/Beer-SampleCollections-IBS-TH2.ttl](ACME-Beer/Beer-SampleCollections-IBS-TH2.ttl).
 
 
 ```
-@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix RDF:  <http://www.w3.org/1999/02/22-RDF-syntax-ns#> .
+@prefix RDFs: <http://www.w3.org/2000/01/RDF-schema#>.
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix qudt: <http://qudt.org/schema/qudt/> .
@@ -600,10 +600,10 @@ An RDF file containing a [graph corresponding to this example is available in AC
 <ACMEqualityAssuranceProgram> a prov:Activity, sosa:Sampling .
 
 <beerSamplingProcedure> a sosa:SamplingProcedure;
-    rdfs:label "The procedure used by employees when taking a sample of the beer during production and packaging." .
+    RDFs:label "The procedure used by employees when taking a sample of the beer during production and packaging." .
 
 <10/PO202402/21/0001/acmePorterSixPackLabSample> a sosa:Sample;
-    rdfs:label "A sample of beer within the six pack"@en ;
+    RDFs:label "A sample of beer within the six pack"@en ;
     sosa:isResultOf <ACMEqualityAssuranceProgram>;
     sosa:isResultOfUsedProcedure <beerSamplingProcedure> ;
     ex:inside <0005/sampleFlask>;
@@ -613,7 +613,7 @@ An RDF file containing a [graph corresponding to this example is available in AC
     dcterms:identifier "0005" .
 
 <qualityAssuranceSamples> a sosa:SampleCollection;
-    rdfs:labels "All samples taken from shipments this quarter.";
+    RDFs:labels "All samples taken from shipments this quarter.";
     sosa:hasMember <10/PO202402/21/0001/acmePorterSixPackLabSample>;
     sosa:hasMember <10/PO202402/21/0002/acmePorterSixPackLabSample>;
     sosa:hasMember <10/PO202401/21/0031/acmePorterSixPackLabSample>;
