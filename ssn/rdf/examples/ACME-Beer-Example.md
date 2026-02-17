@@ -12,9 +12,17 @@ therefore insert a temperature logger into their shipments for occasional
 quality control.  We present such a hypothetical situation here as an
 example.
 
+The example is of interest as an application because it involves the repurposing of a
+commodity, a consumer-grade [sosa:System](https://www.w3.org/TR/vocab-ssn/#SOSASystem) deployed to
+address a domain-specific problem, the movement of a [sosa:Platform](https://www.w3.org/TR/vocab-ssn/#SOSAPlatform) hosting the System from
+environment to environment and the possible ambiguity of data-ownership in
+each of these environments.  It also demonstrates the location ambiguity
+that can sometimes be present when modeling sensor readings.
+
 # Table of Contents
 
 * [A short note about sensors as commercial products](#a-short-note-about-sensors-as-commercial-products)
+* [Technical challenges](#technical-challenges)
 * [Packaging and initial storage](#packaging-and-initial-storage)
 * [Shipping to Retail Store](#shipping-to-retail-store)
 * [Display in Retail Store Cooler](#display-in-retail-store-cooler)
@@ -24,20 +32,9 @@ example.
 * [Recording data using sample collection](#recording-data-using-sample-collection)
 
 
-The example is of interest because it involves the repurposing of a
-commodity, a consumer-grade [sosa:Platform](https://www.w3.org/TR/vocab-ssn/#SOSAPlatform) deployed to
-address a domain-specific problem, the movement of a platform from
-environment to environment and the possible ambiguity of data-ownership in
-each of these environments.  It also demonstrates the location ambiguity
-that can sometimes be present when modeling sensor readings.
+## A short note about sensors as commercial products
 
-Note: The use of long identifiers is for readability purposes and is non-normative.
-
-### A short note about sensors as commercial products
-
-Sensors are often sourced
-commercially and installed
-as part of larger
+Sensors and sensor-systems are often sourced commercially and installed as part of larger
 [deployments]((https://www.w3.org/TR/vocab-ssn/#SOSADeployment) or
 [platforms](https://www.w3.org/TR/vocab-ssn/#SOSAPlatform). These
 standardized offerings need to be communicated in a way that is machine
@@ -51,13 +48,13 @@ include modeling the sensor throughout its lifetime, announcing commercial
 availability, procurement, deployment, operation, decomissioning and
 disposal.
 
-To this end this example models IBS TH2 sensors using schema.org Product and
-[GS1 WebVoc](https://ref.gs1.org/voc/) Product classes.  This permits concurrent support for both Search Engine
-Optimization (SOA) and consumer supply chain product identification using
-barcodes.
+To this end this example models IBS TH2 sensors using [schema.org](https://schema.org/) Product and
+[GS1 WebVoc](https://ref.gs1.org/voc/) Product classes.  This permits concurrent support for both Search Engine Optimization (SOA) and consumer supply chain product identification using barcodes.
 
-Different design decisions also mean that design desision such as [punning](https://www.w3.org/2007/OWL/wiki/Punning)
-are needed to retain compatibility across different vocabularies. 
+## Technical challenges 
+
+The example is of technical interest as it combines terms from the SSN Ontology with [schema.org](https://schema.org/) and [GS1 WebVoc](https://ref.gs1.org/voc/). Those vocabularies are important in the commercial and search context, but make different modeling choices and assumptions. This leads to the need to make use of [punning](https://www.w3.org/2007/OWL/wiki/Punning) and/or synonyms to maintain compatibility across different vocabularies.
+
 [Schema.org](https://schema.org/)
 distinguishes between the product and its materialization with two
 classes: [Product](https://schema.org/Product) and
@@ -70,23 +67,28 @@ class for both unique instances or indicating lot membership. Concurrently
 supporting both vocabularies obviously requires that a physical instance of
 a sensor be both an instance and a class. 
 
+Note: The use of long identifiers is for readability purposes and is non-normative.
+
 ## Packaging and initial storage
+
 <img src="../../images/InkBird_IBS_TH2-packaging.png" width="25%" alt="The sensor platform and the beer are packaged into a container as a product">
 
-Alice works for Acme Brewery Co.  She procures an InkBird IBS-TH2 Platform
+Alice works for Acme Brewery Co.  She procures an InkBird IBS-TH2 System
 (Serial Number: 12345) and places it inside a beer carton with six bottles
 (a "six-pack") of Acme Brewery's famous Porter beers with a product lot code
 of PO202402.  She seals the package and places it inside of Acme Brewery's
 cooler to await shipment.
 
-We model the packaging activity and the placement of the Platform into the
-crate before it is sealed.  The platform monitors the ambient air
+We model the packaging activity and the placement of the system into the
+crate before it is sealed.  The system has two sensor sub-systems to monitor the ambient air
 temperature and the relative humidity within the beer crate every few
-minutes.  In the following snippet, we instantiate the IBS-TH2 Platform, the
+minutes.  In the following snippet, we instantiate the IBS-TH2 System, the
 carton, and the activity that represents the packaging of the beer and the
-creation of the beer carton as a product:
+creation of the beer carton as a product. Note that a detailed model of the 
+IBS-TH2 System is given in the [Complex System modeling pattern](https://w3c.github.io/sdw-sosa-ssn/ssn/#ModelComplexSystem) 
+in the SSN Ontology (2023 Edition) Recommendation. 
 
-The platform then begins to take measurements that are recorded as part of a data logging
+The system then begins to take measurements that are recorded as part of a data logging
 activity:
 
 An RDF file containing a [graph corresponding to this example is available in ACME-Beer/Beer-Packaging-IBS-TH2.ttl](./ACME-Beer/Beer-Packaging-IBS-TH2.ttl).
@@ -208,7 +210,7 @@ In the example above, concurrent use of the
 [sosa:hasFeatureOfInterest](https://www.w3.org/TR/vocab-ssn/#SOSAhasFeatureOfInterest) 
 and [sosa:hasUltimateFeatureOfInterest](https://www.w3.org/TR/vocab-ssn/#SOSAhasUltimateFeatureOfInterest) 
 properties is made to account for the repurposing of a generic sensor.  The
-actual measurement performed by the platform is the air temperature within
+actual measurement performed by the system is the air temperature within
 the carton, as a proxy for the beer temperature within each beer vessel. 
 Modeling the full thermodynamic activity relating one measurement to the
 other is beyond the scope of this document, but could be implemented as a
@@ -255,7 +257,7 @@ An RDF file containing a [graph corresponding to this example is available in AC
 The SOSA ontology takes a "feature and property" approach that is referenced
 by observations.  The feature of interest &mdash; in this case, the ambient
 air within the carton (<10/PO202402/21/0001/acmePorterSixPackAirSample>) is
-the feature that the Platform is concerned with.  However, it is really a
+the feature that the system is concerned with.  However, it is really a
 proxy for both the temperature of the beer within the individual containers
 (<10/PO202402/21/0001/acmePorterSixPackBeerSample>) within the carton and
 the relative humidity to which the packaging (<0001/ProductPackaging>) is
@@ -273,10 +275,10 @@ truck's cooling management system is recording the sensor readings for both
 the shipping company and the brewery.  An on-board GPS unit annotates the
 activity of recording observations as the truck moves from location to
 location.  This position information represents the location of the shipping
-truck itself without reference to the beer carton or the platform generating
+truck itself without reference to the beer carton or the system generating
 the readings.  This is important, in that the underlying properties and
-features referenced by the sensors of the platform have not changed, even
-through the beer carton and the platform have obviously changed physical
+features referenced by the sensors of the system have not changed, even
+through the beer carton and the system have obviously changed physical
 location.
 
 The information recorded during this time period would be:
@@ -357,18 +359,18 @@ An RDF file containing a [graph corresponding to this example is available in AC
    geosparql:asWKT "POINT(-79.35553 43.66372)"^^geosparql:wktLiteral .
 ```
  
-The sensors of the platform are reporting values for the same properties of
+The sensors of the system are reporting values for the same properties of
 the same features of interest; the physical location of the carton of beer
-does not effect the process because the platform monitors the inside of the
+does not effect the process because the system monitors the inside of the
 carton itself.  Modeling its location and the process of (un)loading of the
 carton from the truck is done through other rdf nodes.  The truck on-board
 monitoring system does report a GPS geometry as a Location.  This is the
-location at which the data was recorded from the platform.  It is
+location at which the data was recorded from the system.  It is
 conceivable that the geometry node is shared with a vehicle tracking system
 rdf representation or the vehicle's delivery scheduling application but it
 is not mandated by Sosa.
 
-Note: Locations of Platform, Sensors, and measured samples are often
+Note: Locations of System, its component Sensors, and observed Samples are often
 conflated in non-semantically enabled systems and the semantics often
 implicitly assumed by the application.  The deep semantic modeling within
 Sosa makes no such implicit assumptions and locations can be assigned to all
@@ -487,6 +489,7 @@ An RDF file containing a [graph corresponding to this example is available in AC
 <acmePorterSixPackDeployment> a prov:Activity, sosa:Deployment;
     prov:startedAtTime "2024-02-20T01:35:00Z"^^xsd:dateTime;
     prov:wasAssociatedWith <alice> ;
+    sosa:startTime "2024-02-20T01:35:00Z"^^xsd:dateTime;
     sosa:deployedOnPlatform <10/PO202402/21/0001/acmePorterSixPack> ;
     sosa:deployedSystem <12345/someTH2> ;
     sosa:forProperty sosa-env:AmbientHumidity, <10/PO202402/21/0001/BeerTemperature> ;
@@ -499,6 +502,8 @@ An RDF file containing a [graph corresponding to this example is available in AC
 <acmeCoolerDeployment> a prov:Activity, sosa:Deployment;
     prov:startedAtTime "2024-02-20T01:35:00Z"^^xsd:dateTime;
     prov:endedAtTime   "2024-02-20T01:40:00Z"^^xsd:dateTime;   
+    sosa:startTime "2024-02-20T01:35:00Z"^^xsd:dateTime;
+    sosa:endTime   "2024-02-20T01:40:00Z"^^xsd:dateTime;   
     sosa:deployedOnPlatform <acmeBrewerCooler> ;
     sosa:deployedSystem <12345/someTH2> ;
     sosa:forProperty sosa-env:AmbientHumidity, <10/PO202402/21/0001/BeerTemperature> ;
@@ -509,6 +514,8 @@ An RDF file containing a [graph corresponding to this example is available in AC
 <acmeTruckDeployment> a prov:Activity, sosa:Deployment;
     prov:startedAtTime "2024-02-22T04:15:05Z"^^xsd:dateTime ;
     prov:endedAtTime "2024-02-22T05:55:38Z"^^xsd:dateTime ;
+    sosa:startTime "2024-02-22T04:15:05Z"^^xsd:dateTime ;
+    sosa:endTime "2024-02-22T05:55:38Z"^^xsd:dateTime ;
     sosa:deployedOnPlatform <acmeTruck> ;
     sosa:deployedSystem <12345/someTH2> ;
     sosa:forProperty sosa-env:AmbientHumidity, <10/PO202402/21/0001/BeerTemperature>;
@@ -519,6 +526,7 @@ An RDF file containing a [graph corresponding to this example is available in AC
 <acmeSupermarketCoolerDeployment> a prov:Activity, sosa:Deployment;
     rdfs:comment "Smart cooler monitoring system" ;
     prov:startedAtTime "2024-02-22T06:00:13Z"^^xsd:dateTime ;
+    sosa:startTime "2024-02-22T06:00:13Z"^^xsd:dateTime ;
     sosa:deployedOnPlatform <acmeSupermarketCooler> ;
     sosa:deployedSystem <12345/someTH2> ;
     sosa:forProperty sosa-env:AmbientHumidity, <10/PO202402/21/0001/BeerTemperature>;
