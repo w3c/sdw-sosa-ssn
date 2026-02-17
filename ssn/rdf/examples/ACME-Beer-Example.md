@@ -44,7 +44,7 @@ From a procurement and product recall approach, vocabularies
 differentiate between the product class and the specific instance of the
 product being consumed.  The ability to align Sosa and product vocabularies
 are beneficial in that it permits a unified description of the sensor.  This
-include modeling the sensor throughout its lifetime, announcing commercial
+includes modeling the sensor throughout its lifetime, announcing commercial
 availability, procurement, deployment, operation, decomissioning and
 disposal.
 
