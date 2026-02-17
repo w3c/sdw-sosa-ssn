@@ -40,11 +40,11 @@ Sensors and sensor-systems are often sourced commercially and installed as part 
 standardized offerings need to be communicated in a way that is machine
 readable and other vocabularies are available to do so.
 
-From a procurement and product recall approach, vocabulatories are
+From a procurement and product recall approach, vocabularies
 differentiate between the product class and the specific instance of the
 product being consumed.  The ability to align SSN and product vocabularies
 are beneficial in that it permits a unified description of the sensor.  This
-include modeling the sensor throughout its lifetime, announcing commercial
+includes modeling the sensor throughout its lifetime, announcing commercial
 availability, procurement, deployment, operation, decomissioning and
 disposal.
 
@@ -450,7 +450,7 @@ An RDF file containing a [graph corresponding to this example is available in AC
 
 ## Notes on deployment and observation aggregation
  
-In previous examples, <a href="https://www.w3.org/TR/prov-o/Activity">prov:Activity</a> was used as a means of aggregating results in an archiving reception. Other mechanisms exists to define the purpose of the System and to aggregate collections of results within specific contexts. 
+In previous examples, <a href="https://www.w3.org/TR/prov-o/Activity">prov:Activity</a> was used as a means of aggregating results in an archiving reception. Other mechanisms exist to define the purpose of the System and to aggregate collections of results within specific contexts. 
 
  
 ### Recording data and sensor tasking through sensor deployments
