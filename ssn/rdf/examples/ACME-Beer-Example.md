@@ -209,14 +209,14 @@ An RDF file containing a [graph corresponding to this example is available in AC
 In the example above, concurrent use of the 
 [sosa:hasFeatureOfInterest](https://www.w3.org/TR/vocab-ssn/#SSNhasFeatureOfInterest) 
 and [sosa:hasUltimateFeatureOfInterest](https://www.w3.org/TR/vocab-ssn/#SSNhasUltimateFeatureOfInterest) 
-properties is made to account for the repurposing of a generic sensor.  The
+object properties is made to account for the repurposing of a generic sensor.  The
 actual measurement performed by the system is the air temperature within
 the carton, as a proxy for the beer temperature within each beer vessel. 
 Modeling the full thermodynamic activity relating one measurement to the
 other is beyond the scope of this document, but could be implemented as a
 second order "virtual" [sosa:Sensor](https://www.w3.org/TR/vocab-ssn/#SSNSensor) or a sophisticated [sosa:Procedure](https://www.w3.org/TR/vocab-ssn/#SSNProcedure).  Thus the use of the [sosa:hasUltimateFeatureOfInterest](https://www.w3.org/TR/vocab-ssn/#SSNhasUltimateFeatureOfInterest) property allows for flexibility in interpretation of the measurement within a context *not necessarily intended by the original sensor design*.
    
-Physically, both <12345/HumiditySensor> and <12345/TemperatureSensor> are monitoring the ambient air within the specific Porter carton which we define as <10/PO202402/21/0001/acmePorterSixPackAirSample> which resolves the issue of the location of the measurement when the carton itself is in motion. The <a href="#SSNhasUltimateFeatureOfInterest">`sosa:hasUltimateFeatureOfInterest`</a> property targets the beer temperature within that carton and the humidity the cardboard of the carton was subjected to:
+Physically, both <12345/HumiditySensor> and <12345/TemperatureSensor> are monitoring the ambient air within the specific Porter carton which we define as <10/PO202402/21/0001/acmePorterSixPackAirSample> which resolves the issue of the location of the measurement when the carton itself is in motion. The <a href="#SSNhasUltimateFeatureOfInterest">`sosa:hasUltimateFeatureOfInterest`</a> object property targets the beer temperature within that carton and the humidity the cardboard of the carton was subjected to:
 
 An RDF file containing a [graph corresponding to this example is available in ACME-Beer/Beer-FeatureOfInterest-IBS-TH2.ttl](ACME-Beer/Beer-FeatureOfInterest-IBS-TH2.ttl).
 
@@ -269,7 +269,7 @@ samples is found in [[[#beerCollections]]].
 ## Shipping to Retail Store<
 <img src="../../images/InkBird_IBS_TH2-shipping.png" width="25%" alt="The beer carton is moved from the brewery to the retail location.">
 
-After being chilled in the brewery cooler, the beer carton is then loaded on
+After being chilled in the brewery cooler, the beer carton is loaded onto
 one of the Acme delivery trucks for shipment to the retail store.  The
 cooling management system of the truck is recording the sensor readings for both
 the shipping company and the brewery.  An on-board GPS unit annotates the
@@ -278,7 +278,7 @@ location.  This position information represents the location of the shipping
 truck itself without reference to the beer carton or the system generating
 the readings.  This is important, in that the underlying properties and
 features referenced by the sensors of the system have not changed, even
-through the beer carton and the system have obviously changed physical
+though the beer carton and the system have obviously changed physical
 location.
 
 The information recorded during this time period would be:
@@ -359,19 +359,19 @@ An RDF file containing a [graph corresponding to this example is available in AC
    geosparql:asWKT "POINT(-79.35553 43.66372)"^^geosparql:wktLiteral .
 ```
  
-The sensors of the system are reporting values for the same properties of
-the same features of interest; the physical location of the carton of beer
-does not effect the process because the system monitors the inside of the
+The sensors of the system report values for the same properties of
+the same features of interest. The physical location of the carton of beer
+does not affect the process because the system monitors the inside of the
 carton itself.  Modeling its location and the process of (un)loading of the
-carton from the truck is done through other RDF nodes.  The truck on-board
-monitoring system does report a GPS geometry as a Location.  This is the
+carton from the truck is done through other RDF nodes.  The on-board
+monitoring system of the truck reports a GPS geometry as a Location.  This is the
 location at which the data was recorded from the system.  It is
 conceivable that the geometry node is shared with a vehicle tracking system
-RDF representation or the delivery scheduling application of the vehicle but that
+RDF representation, or the delivery scheduling application of the vehicle, but that
 is not mandated by SSN.
 
 Note: Locations of System, its component Sensors, and observed Samples are often
-conflated in non-semantically enabled systems and the semantics often
+conflated in non-semantically enabled systems and in the semantics often
 implicitly assumed by the application.  The deep semantic modeling within
 SSN makes no such implicit assumptions and locations can be assigned to all
 elements independently.
@@ -380,7 +380,7 @@ elements independently.
 
 <img src="../../images/InkBird_IBS_TH2-receiving.png" width="25%" alt="The beer carton is stored in the display cooler for retail sale.">
 
-When received from the delivery company by the retail store, the beer is displayed for sale in retail coolers which log the sensors to the data being held by the retail store. We notice again the semantics of location and containment; the sensor is contained within the carton, which is contained within the cooler, which is itself located within the store. However, none of these semantics is recorded. The only relevant location is the activity taking place within the supermarket cooler; not the supermarket itself. 
+When received from the delivery company by the retail store, the beer is displayed for sale in retail coolers which log the sensors to the data being held by the retail store. We notice again the semantics of location and containment; the sensor is contained within the carton, which is contained within the cooler, which is itself located within the store. However, none of these semantics are recorded. The only relevant location is the activity taking place within the supermarket cooler; not the supermarket itself. 
 
 The information recorded during this time period would be:
 
