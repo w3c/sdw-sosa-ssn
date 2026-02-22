@@ -40,8 +40,8 @@ var respecConfig = {
     {
       src: "images/OGC-0.png",
       alt: "OGC",
-      height: "70",
-      width: "62",
+      height: "128",
+      width: "114",
       url: "https://www.ogc.org/"
     }
   ],
