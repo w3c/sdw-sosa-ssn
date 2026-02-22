@@ -1,0 +1,33 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix schema: <http://schema.org/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix sosa-env: <http://www.w3.org/ns/sosa/system-environment-properties#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ex: <http://example.org/> .
+@prefix sensor: <https://example.org/sensor/> .
+@base <http://example.org/data/> .
+# Represent all data as Observation collections.
+
+<acmePorterSixPackObservations> a sosa:ObservationCollection;
+    sosa:hasMember <observation1a>, <observation1b>;
+    sosa:hasMember <observation67a>, <observation67b> ;
+    sosa:hasMember <observation98a>, <observation98b> .
+
+# Beer in the cooler.
+
+<acmeCoolerObservaions> a sosa:ObservationCollection;
+    sosa:hasMember <observation1a>, <observation1b> .
+
+# Beer in the delivery truck.
+
+<acmeTruckObservations> a sosa:ObservationCollection;
+    sosa:hasMember <observation67a>, <observation67b> .
+
+# Beer in the supermarket cooler.
+
+<acmeSupermarketCoolerObservations> a sosa:ObservationCollection;
+    sosa:hasMember <observation98a>, <observation98b>  .
