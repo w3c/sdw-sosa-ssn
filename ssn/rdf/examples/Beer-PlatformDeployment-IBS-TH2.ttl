@@ -1,0 +1,67 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix schema: <http://schema.org/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix sosa-env: <http://www.w3.org/ns/sosa/system-environment-properties#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ex: <http://example.org/> .
+@prefix sensor: <https://example.org/sensor/> .
+@base <http://example.org/data/> .
+
+# This example represents the same data using deployments on platforms, which can make
+# the modeling a bit more intuitive.
+
+# Anything can be a Platform, including a carton.
+
+<10/PO202402/21/0001/acmePorterSixPack> a sosa:Platform .
+<acmeBrewerCooler> a sosa:Platform .
+<acmeTruck> a sosa:Platform .
+<acmeSupermarketCooler> a sosa:Platform .
+
+# Alice packaged the sensor in the box. The carton is now
+# the Platform that hosts the System.
+
+<acmePorterSixPackDeployment> a prov:Activity, sosa:Deployment;
+    prov:startedAtTime "2024-02-20T01:35:00Z"^^xsd:dateTime;
+    prov:wasAssociatedWith <alice> ;
+    sosa:deployedOnPlatform <10/PO202402/21/0001/acmePorterSixPack> ;
+    sosa:deployedSystem <12345/someTH2> ;
+    sosa:forProperty sosa-env:AmbientHumidity, <10/PO202402/21/0001/BeerTemperature> ;
+    prov:generated <observation1a>, <observation1b> ;
+    prov:generated <observation67a>, <observation67b> ;
+    prov:generated <observation98a>, <observation98b> .
+
+# Beer in the cooler.
+
+<acmeCoolerDeployment> a prov:Activity, sosa:Deployment;
+    prov:startedAtTime "2024-02-20T01:35:00Z"^^xsd:dateTime;
+    prov:endedAtTime   "2024-02-20T01:40:00Z"^^xsd:dateTime;   
+    sosa:deployedOnPlatform <acmeBrewerCooler> ;
+    sosa:deployedSystem <12345/someTH2> ;
+    sosa:forProperty sosa-env:AmbientHumidity, <10/PO202402/21/0001/BeerTemperature> ;
+    prov:generated <observation1a>, <observation1b> .
+
+# Beer in the delivery truck.
+
+<acmeTruckDeployment> a prov:Activity, sosa:Deployment;
+    prov:startedAtTime "2024-02-22T04:15:05Z"^^xsd:dateTime ;
+    prov:endedAtTime "2024-02-22T05:55:38Z"^^xsd:dateTime ;
+    sosa:deployedOnPlatform <acmeTruck> ;
+    sosa:deployedSystem <12345/someTH2> ;
+    sosa:forProperty sosa-env:AmbientHumidity, <10/PO202402/21/0001/BeerTemperature>;
+    prov:generated <observation67a>, <observation67b> .
+
+# Beer in the supermarket cooler.
+
+<acmeSupermarketCoolerDeployment> a prov:Activity, sosa:Deployment;
+    rdfs:comment "Smart cooler monitoring system" ;
+    prov:startedAtTime "2024-02-22T06:00:13Z"^^xsd:dateTime ;
+    sosa:deployedOnPlatform <acmeSupermarketCooler> ;
+    sosa:deployedSystem <12345/someTH2> ;
+    sosa:forProperty sosa-env:AmbientHumidity, <10/PO202402/21/0001/BeerTemperature>;
+    prov:generated <observation98a>, <observation98b> .
+
+
