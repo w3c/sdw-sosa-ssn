@@ -1,0 +1,58 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rel: <http://id.loc.gov/vocabulary/relators/> .
+@prefix sosa-env: <http://www.w3.org/ns/sosa/system-environment-properties#> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ex: <http://example.org/> .
+@prefix sensor: <https://example.org/sensor/> .
+@base <http://example.org/data/> .
+
+<acmeSupermarket> a <org:Organization> ;
+	foaf:name "Acme Supermarket Co." .
+
+<acmeSupermarketCooler> a <ex:Cooler> .
+
+# 
+# Product is now in display cooler at supermarket. Ownership of product has
+# changed and observation data is now only being recorded / owned by supermarket.
+#
+    
+<98a/observation> rdf:type sosa:Observation,prov:Entity ;
+    rel:own <acmeSupermarket> ;
+    sosa:observedProperty <10/PO202402/21/0001/BeerTemperature> ;
+    sosa:hasUltimateFeatureOfInterest <10/PO202402/21/0001/acmePorterSixPackBeerSample> ;    
+    sosa:madeBySensor <12345/TemperatureSensor>  ;
+    sosa:hasFeatureOfInterest <10/PO202402/21/0001/acmePorterSixPackAirSample> ;
+    sosa:resultTime "2024-02-22T06:00:13Z"^^xsd:dateTime ;
+    sosa:hasResult [
+      a qudt:QuantityValue ;
+      qudt:hasUnit unit:DEG_C ;
+      qudt:value 12 ;
+    ] ;
+.
+<98b/observation> rdf:type sosa:Observation,prov:Entity ;
+    rel:own <acmeSupermarket> ;
+    sosa:observedProperty ex:airRelativeHumidity ;
+    sosa:hasUltimateFeatureOfInterest <0001/ProductPackaging> ;
+    sosa:madeBySensor <12345/HumiditySensor>  ;
+    sosa:hasFeatureOfInterest <10/PO202402/21/0001/acmePorterSixPackAirSample> ;
+    sosa:resultTime "2024-02-22T06:00:13Z"^^xsd:dateTime ;
+    sosa:hasResult [
+      a qudt:QuantityValue ;
+      qudt:hasUnit unit:PERCENT ;
+      qudt:value 55 ;
+    ] ;
+.
+<CoolerMonitoringProcess> a prov:Activity ;
+    rdfs:comment "Smart cooler monitoring system" ;
+    prov:startedAtTime "2024-02-22T06:00:13Z"^^xsd:dateTime ;
+    prov:atLocation <acmeSupermarketCooler> ;
+    prov:generated <98a/observation> ;
+    prov:generated <98b/observation> ;
+    prov:wasStartedBy <acmeSupermarket> .

@@ -1,0 +1,36 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix schema: <http://schema.org/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix sosa-env: <http://www.w3.org/ns/sosa/system-environment-properties#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ex: <http://example.org/> .
+@prefix sensor: <https://example.org/sensor/> .
+@base <http://example.org/data/> .
+
+<ACMEqualityAssuranceProgram> a prov:Activity, sosa:Sampling .
+
+<beerSamplingProcedure> a sosa:SamplingProcedure;
+    rdfs:label "The procedure used by employees when taking a sample of the beer during production and packaging." .
+
+<10/PO202402/21/0001/acmePorterSixPackLabSample> a sosa:Sample;
+    rdfs:label "A sample of beer within the six pack"@en ;
+    sosa:isResultOf <ACMEqualityAssuranceProgram>;
+    sosa:isResultOfUsedProcedure <beerSamplingProcedure> ;
+    ex:inside <0005/sampleFlask>;
+    sosa:isSampleOf <10/PO202402/21/0001/acmePorterSixPack> .
+
+<0005/sampleFlask> a <ex:Flask> ;
+    dcterms:identifier "0005" .
+
+<qualityAssuranceSamples> a sosa:SampleCollection;
+    rdfs:labels "All samples taken from shipments this quarter.";
+    sosa:hasMember <10/PO202402/21/0001/acmePorterSixPackLabSample>;
+    sosa:hasMember <10/PO202402/21/0002/acmePorterSixPackLabSample>;
+    sosa:hasMember <10/PO202401/21/0031/acmePorterSixPackLabSample>;
+    sosa:hasMember <10/PO202401/21/0032/acmePorterSixPackLabSample> .
+

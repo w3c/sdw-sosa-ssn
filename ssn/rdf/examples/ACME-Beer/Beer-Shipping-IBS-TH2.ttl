@@ -1,0 +1,72 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rel: <http://id.loc.gov/vocabulary/relators/> .
+@prefix sosa-env: <http://www.w3.org/ns/sosa/system-environment-properties#> .
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix beer: <https://rdf.ag/o/beer#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ex: <http://example.org/> .
+@prefix sensor: <https://example.org/sensor/> .
+@base <http://example.org/data/> .
+
+<acmeBreweryCo> a org:Organization, beer:Brewery ;
+	foaf:name "Acme Brewery Co." .
+
+<acmeDelivery> a org:Organization ;
+	foaf:name "Acme Delivery Co." .
+
+<acmeTruck> a ex:RefrigeratedTruck .
+
+#
+# Product is loaded on the truck
+#
+<67a/observation> a sosa:Observation, prov:Entity ;
+    rel:own <acmeBreweryCo> ;
+    rel:own <acmeDelivery> ;
+    sosa:observedProperty <10/PO202402/21/0001/BeerTemperature> ;
+    sosa:hasUltimateFeatureOfInterest <10/PO202402/21/0001/acmePorterSixPackBeerSample> ;
+    sosa:madeBySensor <12345/TemperatureSensor>  ;
+    sosa:hasFeatureOfInterest <10/PO202402/21/0001/acmePorterSixPackAirSample> ;
+    sosa:resultTime "2024-02-22T04:15:05Z"^^xsd:dateTime ;
+    sosa:hasResult  [
+      a qudt:QuantityValue ;
+      qudt:hasUnit unit:DEG_C ;
+      qudt:value 19.0 ;
+    ] ;
+.
+<67b/observation> rdf:type sosa:Observation,prov:Entity ;
+    rel:own <acmeBreweryCo> ;
+    rel:own <acmeDelivery> ;
+    sosa:observedProperty ex:airRelativeHumidity ;
+    sosa:hasUltimateFeatureOfInterest <0001/ProductPackaging>;
+    sosa:madeBySensor <12345/HumiditySensor>  ;
+    sosa:hasFeatureOfInterest <10/PO202402/21/0001/acmePorterSixPackAirSample> ;
+    sosa:resultTime "2024-02-22T04:15:05Z"^^xsd:dateTime ;
+    sosa:hasResult [
+      a qudt:QuantityValue ;
+      qudt:hasUnit unit:PERCENT ;
+      qudt:value 74 ;
+    ] ;
+.
+<123/TruckObserver> a prov:Activity ;
+    rdfs:comment "Truck onboard monitoring system" ;
+    prov:used <acmeTruck> ;
+    prov:generated <67a/observation> ;
+    prov:generated <67b/observation> ;
+    prov:startedAtTime "2024-02-22T04:15:05Z"^^xsd:dateTime ;
+    prov:endedAtTime "2024-02-22T05:55:38Z"^^xsd:dateTime ;
+    prov:wasStartedBy <driver> ;
+    prov:atLocation <gpsLocation> .
+
+# This is the output from the truck's GPS receiver. We only get coordinates
+# from it.
+
+<gpsLocation> a prov:Location, geosparql:Geometry; 
+   geosparql:asWKT "POINT(-79.35553 43.66372)"^^geosparql:wktLiteral .
+
