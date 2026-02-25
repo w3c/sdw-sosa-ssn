@@ -3,8 +3,8 @@ pre {
 }
 
 span.logic {
-  font-weight:bold;
-  color:purple;
+  font-weight: bold;
+  color: purple;
 }
 
 /* Styles to replicate key SpecGen styles */
@@ -16,14 +16,15 @@ span.logic {
 }
 
 .specterm {
-    margin-top: 1em;
+  margin-top: 1em;
 }
 
 .specterm h4 {
-    margin-top: 1em;
+  margin-top: 1em;
 }
 
-.specterm h5 , .specterm h6 {
+.specterm h5,
+.specterm h6 {
   font-weight: bold;
   font-style: normal;
   font-variant: normal;
@@ -32,31 +33,31 @@ span.logic {
 }
 
 section.specterm {
-    padding-left: 1.5em;
-    padding-right: 1.5em;
-    padding-top: 0.1ex;
-    padding-bottom: 0.1ex;
-    background-color: #eefafc;
-    border: 1px solid;
-    border-left: 0.5em solid;
-    border-color: #52c8e0;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  padding-top: 0.1ex;
+  padding-bottom: 0.1ex;
+  background-color: #eefafc;
+  border: 1px solid;
+  border-left: 0.5em solid;
+  border-color: #52c8e0;
 }
 
 .ssn {
-    background-color: #beeaf3;
+  background-color: #beeaf3;
 }
 
 .buttonpanel {
-   display: flex;
-   justify-content: flex-end ;
-    margin-top: 1ex;
-    margin-bottom: 1ex;
-    padding-left: 1ex;
-    padding-right: 1ex;
-    padding-top: 1ex;
-    padding-bottom: 0.6ex;
-    border: 0px dotted black;
-    font-size: small;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1ex;
+  margin-bottom: 1ex;
+  padding-left: 1ex;
+  padding-right: 1ex;
+  padding-top: 1ex;
+  padding-bottom: 0.6ex;
+  border: 0px dotted black;
+  font-size: small;
 }
 
 ul.align-on-symbol {
@@ -70,16 +71,19 @@ ul.align-on-symbol li {
   padding-left: 0;
   display: flex;
   /*gap: 0.5em;*/
-  font-family: monospace; /* optional for better alignment */
+  font-family: monospace;
+  /* optional for better alignment */
 }
 
 ul.align-on-symbol li .lhs {
-  min-width: 30ch;  /* fixed width for alignment */
+  min-width: 30ch;
+  /* fixed width for alignment */
   text-align: right;
 }
 
 ul.align-on-symbol.align-on-symbol-long li .lhs {
-  min-width: 50ch;  /* fixed width for alignment */
+  min-width: 50ch;
+  /* fixed width for alignment */
   text-align: right;
 }
 
@@ -95,11 +99,12 @@ ul.align-on-symbol li .rhs {
 /* Responsive behavior for small screens */
 @media (max-width: 600px) {
   ul.align-on-symbol li {
-    display: block; /* stack vertically */
+    display: block;
+    /* stack vertically */
     margin-bottom: 1em;
   }
 
-  
+
   ul.align-on-symbol li .lhs {
     min-width: 0;
     text-align: left;
@@ -120,7 +125,7 @@ ul.align-on-symbol li .rhs {
   }
 
   /* Wrap symbol+rhs in a flex container */
-  ul.align-on-symbol li .symbol + .rhs {
+  ul.align-on-symbol li .symbol+.rhs {
     display: inline;
   }
 
@@ -129,4 +134,34 @@ ul.align-on-symbol li .rhs {
     padding-left: 1.5em;
     padding-right: 0.5ch;
   }
+}
+
+/* --- TABLE --- */
+
+table.simple {
+  border-spacing: 0;
+  border-collapse: collapse;
+  border-bottom: 3px solid #005a9c;
+}
+
+.simple th {
+  background: #005a9c;
+  color: #fff;
+  padding: 3px 5px;
+  text-align: left;
+}
+
+.simple th[scope="row"] {
+  background: inherit;
+  color: inherit;
+  border-top: 1px solid #ddd;
+}
+
+.simple td {
+  padding: 3px 10px;
+  border-top: 1px solid #ddd;
+}
+
+.simple tr:nth-child(even) {
+  background: #f0f6ff;
 }
