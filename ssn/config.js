@@ -40,8 +40,8 @@ var respecConfig = {
     {
       src: "images/OGC-0.png",
       alt: "OGC",
-      height: "70",
-      width: "62",
+      height: "128",
+      width: "114",
       url: "https://www.ogc.org/"
     }
   ],
@@ -199,6 +199,13 @@ var respecConfig = {
       status: "Deliverable 2.2",
       publisher: "ITEA2 12004 Smart Energy Aware Systems",
       date: "2017"
+    },
+    "ModSpec": {
+      href: "https://portal.ogc.org/files/?artifact_id=34762",
+      authors: ["OGC Policy SWG"],
+      title: "The Specification Model — A Standard for Modular specifications",
+      publisher: "Open Geospatial Consortium",
+      date: "2009"
     },
     "OM-Lite": {
       href: "http://content.iospress.com/articles/semantic-web/sw214",
