@@ -252,7 +252,8 @@ sosa:Execution
   Execution generalizes the Actuation, Observation, and Sampling classes. 
   It is included in the ontology to support the definition of a common pattern for executions and their properties. 
 
-  Execution MUST be considered to be abstract, so any individual Execution SHOULD be declared to be an instance of one of the concrete sub-classes, and not of the Execution class.
+  Execution is considered to be abstract. 
+  Individual executions SHOULD be typed with one of the (concrete) sub-classes of Execution.
   """@en ;
   rdfs:isDefinedBy sosa-common: .
 
@@ -283,7 +284,8 @@ sosa:ExecutionCollection
   Execution Collection generalizes the Actuation Collection, Observation Collection, and Sampling Collection classes. 
   It is included in the ontology to support the definition of a common pattern for executions and their properties. 
 
-  Execution Collection MUST be considered to be abstract, so any individual Execution Collection SHOULD be declared to be an instance of one of the concrete sub-classes, and not of the Execution Collection class.
+  ExecutionCollection is considered to be abstract. 
+  Individual execution collections SHOULD be typed with one of the (concrete) sub-classes of ExecutionCollection.
   """@en ;
   rdfs:isDefinedBy sosa-common: .
 
@@ -433,8 +435,8 @@ sosa:madeBySystem
   madeBySystem generalizes the madeByActuator, madeBySensor, and madeBySampler properties. 
   It is included in the ontology to support the definition of a common pattern for executions and their properties. 
 
-  madeBySystem MUST be considered to be abstract, so SHOULD NOT appear in data instances. 
-  Applications can use concrete sub-properties of madeBySystem.
+  madeBySystem is considered to be abstract. 
+  Applications SHOULD use concrete sub-properties of madeBySystem.
   """@en ;
   schema:domainIncludes sosa:Execution ;
   schema:domainIncludes sosa:ExecutionCollection ;
@@ -517,11 +519,27 @@ sosa:usedProcedure
 
 ## Systems
 
+sosa:Asset 
+  a owl:Class ;
+  rdfs:label "Asset"@en ;
+  skos:definition """
+  resource involved in a Deployment.
+  """@en ;
+  skos:scopeNote """
+  Asset generalizes the System and Platform classes, or other resource types that are relevant to deployments. 
+  It is included in the ontology to support the definition of a common pattern for deployments. 
+
+  Asset is considered to be abstract. 
+  Individual assets SHOULD be typed with one of the (concrete) sub-classes of Asset.
+  """@en ;
+  rdfs:isDefinedBy sosa-common: .
+
+
 sosa:Deployment 
   a owl:Class ;
   rdfs:label "Deployment"@en ;
   skos:definition """
-  arrangement of one or more assets (Systems or Platforms) to execute Procedures with respect to designated features of interest.
+  arrangement of one or more Assets to execute Procedures with respect to designated features of interest.
   """@en ;
   skos:note """
   A Deployment will usually be for a specified time interval. 
@@ -533,11 +551,12 @@ sosa:Deployment
 
 sosa:Platform 
   a owl:Class ;
+  rdfs:subClassOf sosa:Asset ;
   rdfs:label "Platform or Host"@en ;
   skos:prefLabel "Platform" ;
   skos:altLabel "Host" ;
   skos:definition """
-  entity that hosts other entities, particularly Systems and other Platforms
+  An Asset that hosts other Assets, particularly Systems and other Platforms
   """@en ;
   skos:scopeNote "The INSPIRE 'Environmental Monitoring Facility' may be implemented using SOSA by the OWL/RDFS class 'Platform'" ;
   dcterms:source <https://inspire.ec.europa.eu/id/document/tg/ef> ;
@@ -549,9 +568,10 @@ sosa:Platform
 
 sosa:System 
   a owl:Class ;
+  rdfs:subClassOf sosa:Asset ;
   rdfs:label "System"@en ;
   skos:definition """
-  entity that implements a Procedure in the context of an Execution
+  An Asset that implements a Procedure in the context of an Execution
   """@en ; 
   skos:note """
   This may be a device, a piece of infrastructure, an agent (including humans), or software (simulation).
@@ -564,7 +584,8 @@ sosa:System
   System generalizes the Actuator, Sensor, and Sampler classes. 
   It is included in the ontology to support the definition of a common pattern for executions and their properties. 
 
-  System MUST be considered to be abstract, so any individual System SHOULD be declared to be an instance of a concrete sub-class, and not of the System class.
+  System is considered to be abstract. 
+  Individual systems SHOULD be typed with one of the (concrete) sub-classes of System.
   """@en ;
   skos:scopeNote """
   Specific system types may be implemented as sub-classes of this class or its sub-classes.
@@ -585,9 +606,10 @@ sosa:deployedAsset
   a owl:ObjectProperty ;
   rdfs:label "deployed asset"@en ;
   skos:definition """
-  relation from a Deployment to an asset (System or Platform)
+  relation from a Deployment to an Asset (System or Platform)
   """@en ;
   schema:domainIncludes sosa:Deployment ;
+  schema:rangeIncludes sosa:Asset ;
   schema:rangeIncludes sosa:Platform ;
   schema:rangeIncludes sosa:System ;
   owl:inverseOf sosa:hasDeployment ;
@@ -621,10 +643,11 @@ sosa:hasDeployment
   a owl:ObjectProperty ;
   rdfs:label "has deployment"@en ;
   skos:definition """
-  relation from an asset (System or Platform) to a Deployment
+  relation from an Asset (System or Platform) to a Deployment
   """@en ;
-  schema:domainIncludes sosa:System ;
+  schema:domainIncludes sosa:Asset ;
   schema:domainIncludes sosa:Platform ;
+  schema:domainIncludes sosa:System ;
   schema:rangeIncludes sosa:Deployment ;
   owl:inverseOf sosa:deployedAsset ;
   rdfs:isDefinedBy sosa-common: .
@@ -644,9 +667,10 @@ sosa:hosts
   a owl:ObjectProperty ;
   rdfs:label "hosts"@en ;
   skos:definition """
-  relation from a Platform to an asset (System or Platform) hosted or mounted on it
+  relation from a Platform to an Asset (System or Platform) hosted or mounted on it
   """@en ;
   schema:domainIncludes sosa:Platform ;
+  schema:rangeIncludes sosa:Asset ;
   schema:rangeIncludes sosa:Platform ;
   schema:rangeIncludes sosa:System ;
   owl:inverseOf sosa:isHostedBy ;
@@ -681,10 +705,11 @@ sosa:isHostedBy
   a owl:ObjectProperty ;
   rdfs:label "is hosted by"@en ;
   skos:definition """
-  relation from an asset (System or Platform), to a Platform that it is mounted on or hosted by
+  relation from an Asset (System or Platform), to a Platform that it is mounted on or hosted by
   """@en ;
-  schema:domainIncludes sosa:System ;
+  schema:domainIncludes sosa:Asset ;
   schema:domainIncludes sosa:Platform ;
+  schema:domainIncludes sosa:System ;
   schema:rangeIncludes sosa:Platform ;
   owl:inverseOf sosa:hosts ;
   rdfs:isDefinedBy sosa-common: .
@@ -710,8 +735,8 @@ sosa:madeExecution
   madeExecution generalizes the madeActuation, madeObservation, and madeSampling properties. 
   It is included in the ontology to support the definition of a common pattern for executions and their properties. 
 
-  madeExecution MUST be considered to be abstract, so SHOULD NOT appear in data instances. 
-  Applications can use concrete sub-properties of madeExecution.
+  madeExecution is considered to be abstract. 
+  Applications SHOULD use concrete sub-properties of madeExecution.
   """@en ;
   schema:domainIncludes sosa:System ;
   schema:rangeIncludes sosa:Execution ;
