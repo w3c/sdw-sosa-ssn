@@ -1,0 +1,74 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
+
+@prefix schema: <http://schema.org/> .
+
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix sosa-act: <http://www.w3.org/ns/sosa/act/> .
+@prefix sosa-common: <http://www.w3.org/ns/sosa/common/> .
+@prefix sosa-obs: <http://www.w3.org/ns/sosa/obs/> .
+@prefix sosa-sam: <http://www.w3.org/ns/sosa/sam/> .
+@prefix sosa-dep: <http://www.w3.org/ns/sosa/dep/> .
+
+
+sosa: 
+  a owl:Ontology ;
+  dcterms:title "Sensor, Observation, Sample, and Actuator (SOSA) Ontology"@en ;
+  dcterms:description """
+  This module imports all the terms in the SOSA module, and adds cross-module annotations (domain/rangeIncludes). 
+  """@en ;
+  dcterms:creator [ a foaf:Agent ; foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en ] ;
+  dcterms:rights "Copyright 2025 W3C/OGC." ;
+  dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
+  dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
+  dcterms:created "2017-04-17"^^xsd:date ;
+  dcterms:modified "2024-02-03"^^xsd:date ;
+  owl:versionIRI <http://www.w3.org/ns/sosa/2023/> ;
+  owl:priorVersion <http://www.w3.org/ns/sosa/2017/> ;
+  owl:imports sosa-act: , sosa-obs: , sosa-sam:, sosa-dep: .
+
+sosa:madeBySystem 
+  schema:domainIncludes sosa:Actuation ;
+  schema:domainIncludes sosa:ActuationCollection ;
+  schema:domainIncludes sosa:Observation ;
+  schema:domainIncludes sosa:ObservationCollection ;
+  schema:domainIncludes sosa:Sampling ;
+  schema:domainIncludes sosa:SamplingCollection ;
+  schema:rangeIncludes sosa:Actuator ;
+  schema:rangeIncludes sosa:Sensor ;
+  schema:rangeIncludes sosa:Sampler ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:madeExecution 
+  schema:domainIncludes sosa:Actuator ;
+  schema:domainIncludes sosa:Sensor ;
+  schema:domainIncludes sosa:Sampler ;
+  schema:rangeIncludes sosa:Actuation ;
+  schema:rangeIncludes sosa:ActuationCollection ;
+  schema:rangeIncludes sosa:Observation ;
+  schema:rangeIncludes sosa:ObservationCollection ;
+  schema:rangeIncludes sosa:Sampling ;
+  schema:rangeIncludes sosa:SamplingCollection ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa:observationRelatedTo 
+  schema:rangeIncludes sosa:Actuation ;
+  schema:rangeIncludes sosa:ActuationCollection ;
+  schema:rangeIncludes sosa:Sampling ;
+  schema:rangeIncludes sosa:SamplingCollection ;
+  rdfs:isDefinedBy sosa-obs: .
+
+sosa:relatedObservation 
+  schema:domainIncludes sosa:Actuation ;
+  schema:domainIncludes sosa:ActuationCollection ;
+  schema:domainIncludes sosa:Sampling ;
+  schema:domainIncludes sosa:SamplingCollection ;
+  rdfs:isDefinedBy sosa-obs: .
+

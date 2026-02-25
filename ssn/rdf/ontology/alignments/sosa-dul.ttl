@@ -1,0 +1,95 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
+
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+
+
+<http://www.w3.org/ns/sosa/dul> rdf:type owl:Ontology ;
+  dcterms:creator "Maxime Lefrançois" ;
+  dcterms:creator [
+      rdf:type foaf:Agent ;
+      foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en ;
+    ] ;
+  dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
+  dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
+  dcterms:created "2025-08-06"^^xsd:date ;
+  dcterms:modified "2025-08-06"^^xsd:date ;
+  dcterms:rights "Copyright 2025 W3C/OGC." ;
+  rdfs:comment """Alignment of the the W3C/OGC SOSA Ontology with the DOLCE UltraLite upper ontology (DUL)."""@en ;
+  rdfs:label "Alignment of SOSA with DUL"@en ;
+  owl:imports <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+  owl:imports sosa: .
+
+sosa:Deployment
+  rdfs:subClassOf [
+    a owl:Class ;
+    owl:unionOf ( dul:Event dul:Description dul:Situation )
+  ] .
+
+sosa:Execution
+  rdfs:subClassOf [
+    a owl:Class ;
+    owl:unionOf ( dul:Event dul:Situation )
+  ] .
+
+sosa:ExecutionCollection
+  rdfs:subClassOf dul:Collection ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty dul:hasPart ;
+    owl:allValuesFrom [
+      a owl:Class ;
+      owl:unionOf ( dul:Event dul:Situation )
+    ]
+  ] .
+
+sosa:FeatureOfInterest
+  rdfs:subClassOf dul:Entity .
+
+sosa:Platform
+  rdfs:subClassOf [
+    a owl:Class ;
+    owl:unionOf ( dul:Object dul:Description )
+  ] .
+
+sosa:Procedure
+  rdfs:subClassOf [
+    a owl:Class ;
+    owl:unionOf ( dul:Method dul:Plan )
+  ] .
+
+sosa:Property
+  rdfs:subClassOf [
+    a owl:Class ;
+    owl:unionOf ( dul:Region dul:Quality )
+  ] .
+
+sosa:Sample
+  rdfs:subClassOf dul:Object .
+
+sosa:SampleCollection
+  rdfs:subClassOf dul:Collection ;
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty dul:hasPart ;
+    owl:allValuesFrom dul:Object
+  ] .
+
+sosa:Stimulus
+  rdfs:subClassOf [
+    a owl:Class ;
+    owl:unionOf ( dul:Event dul:Situation )
+  ] .
+
+sosa:System
+  rdfs:subClassOf [
+    a owl:Class ;
+    owl:unionOf ( dul:Object dul:Description )
+  ] .

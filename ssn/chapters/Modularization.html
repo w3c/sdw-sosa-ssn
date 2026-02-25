@@ -1,0 +1,213 @@
+<h2>SSN Ontology Modularization</h2>
+
+<p>
+    The SSN Ontology is distributed in several modules.
+    The segmentation allows users to access the knowledge they require, reducing the scope to what is necessary in a
+    given use case.
+    Lower level modules are independent of their higher level modules and are logically consistent on their own.
+</p>
+<p class="note">
+    Higher level here is not to be confused with <i>upper level ontologies</i> or <i>foundational ontologies</i>.
+    Upper level ontologies are <i>general knowledge</i> ontologies that can be directionally imported in many domains.
+</p>
+
+<section id="SSNcoreModules">
+    <h3>Core modules</h3>
+    <p>
+        <a href="#Fig-SSN-core-modules"></a> summarizes the modules and dependencies within the core SSN
+        Ontology.
+    </p>
+    <figure id="Fig-SSN-core-modules">
+        <embed alt="SSN core modules" src="images/SSN-core-modules.svg" style="width:100%">
+        <figcaption>
+            The modular SSN ontology &mdash; core packages, showing classes and dependencies.
+            <br>
+            <em><a href="#Module-diagram">Explanation of the notation used in module diagrams</a></em>.
+        </figcaption>
+    </figure>
+
+    <h4 id="sosa-module">SOSA</h4>
+    <p>
+        The <i>SOSA Module</i> (Sensors, Observations, Samples and Actuations) defines the <b>core</b> classes and
+        properties, and provides textual definitions and other annotations.
+        This module uses the lightweight RDFS-Plus profile [[RDFS-Plus]].
+        SOSA may be used <i>as-is</i> by an audience who wish to use terminology consistent with the SSN Ontology, thus
+        ensuring interoperability with SSN-based repositories.
+    </p>
+    <p>
+        <b>SOSA</b> is composed of four lower level modules:
+    </p>
+    <ol>
+        <li>
+            <b>SOSA Common</b> defines classes and properties that are shared across
+            Actuation, Observation and Sampling applications, documented in section <a href="#Common"></a>
+        </li>
+        <li>
+            <b>SOSA Actuation</b> imports <b>SOSA Common</b> and defines classes and properties used in Actuations,
+            documented in section <a href="#Actuation"></a>
+        </li>
+        <li>
+            <b>SOSA Observation</b> imports <b>SOSA Common</b> and defines classes and properties used in Observations,
+            documented in section <a href="#Observation"></a>
+        </li>
+        <li>
+            <b>SOSA Sampling</b> imports <b>SOSA Common</b> and defines classes and properties used in Samplings,
+            documented in section <a href="#Sampling"></a>
+        </li>
+    </ol>
+    <p>
+        Finally, <i>SOSA</i> imports <b>SOSA Actuation</b>, <b>SOSA Observation</b> and <b>SOSA Sampling</b>.
+    </p>
+    <p>
+        <i>SOSA</i> as the core, does not import any other ontologies, so it is truly independent of modules that add
+        more expressivity and further ontological commitments to the lightweight semantics of <i>SOSA</i>.
+    </p>
+
+    <h4 id="ssn-module">SSN</h4>
+    <p>
+        The <i>SSN Module</i> adds OWL axioms that formally indicate how properties relate to classes.
+        SSN may be used in semantic web systems that use inference and reasoning, and check consistency of
+        datasets. </p>
+    <p>
+        The modularization of <b>SSN</b> mirrors <b>SOSA</b>.
+        <b>SSN</b> is composed of four lower level modules:
+    </p>
+    <ol>
+        <li>
+            <b>SSN Common</b> imports <b>SOSA Common</b> and axiomatizes classes and properties that are shared across
+            Actuation, Observation and Sampling applications, as documented in section <a href="#Common"></a>
+        </li>
+        <li>
+            <b>SSN Actuation</b> imports <b>SSN Common</b> and <b>SOSA Actuation</b>, and axiomatizes classes and
+            properties used in Actuations, as documented in section <a href="#Actuation"></a>
+        </li>
+        <li>
+            <b>SSN Observation</b> imports <b>SSN Common</b> and <b>SOSA Observation</b>, and axiomatizes classes and
+            properties used in Observations, as documented in section <a href="#Observation"></a>
+        </li>
+        <li>
+            <b>SSN Sampling</b> imports <b>SSN Common</b> and <b>SOSA Sampling</b>, and axiomatizes classes and
+            properties used in Samplings, as documented in section <a href="#Sampling"></a>
+        </li>
+    </ol>
+    <p>
+        Finally, <i>SSN</i> imports <b>SSN Actuation</b>, <b>SSN Observation</b> and <b>SSN Sampling</b>.
+    </p>
+</section>
+
+<section id="SSNextensionModules">
+    <h3>Extension modules</h3>
+    <p>
+        <a href="#Fig-SSN-extension-modules"></a> summarizes the extension modules described in this document and their
+        dependencies on the SSN Ontology.
+    </p>
+    <figure id="Fig-SSN-extension-modules">
+        <embed alt="SSN extension modules" src="images/SSN-extension-modules.svg" style="width:100%">
+        <figcaption>
+            The modular SSN ontology &mdash; extensions.
+            <br>
+            <em><a href="#Module-diagram">Explanation of the notation used in module diagrams</a></em>.
+        </figcaption>
+    </figure>
+
+    <h4 id="sosa-oms-module">OMS</h4>
+    <p>
+        The <i>SOSA-OMS module</i> imports <b>SOSA Observation</b> and <b>SOSA Sampling</b> and adds classes and
+        properties required to provide an RDF implementation of [[[OMS]]].
+        <b><i>SOSA-OMS</i> may be used by audiences for whom full conformance to [[OMS]] (also known as ISO 19156:2023)
+            is a requirement</b>
+    </p>
+
+    <p>
+        The <i>SSN-OMS module</i> imports <i>SOSA-OMS</i> and <b>SSN Observation</b> and <b>SSN Sampling</b> and adds
+        OWL/RDFS axiomatization to the RDF implementation of [[OMS]].
+        <b><i>SSN-OMS</i> may be used by audiences for whom full conformance to [[OMS]] (also known as ISO 19156:2023)
+            is a requirement, with reasoning support</b>
+    </p>
+    <p>
+        The <i>SOSA-OMS module</i> and the <i>SSN-OMS module</i> are documented in section <a href="#OMS"></a>
+    </p>
+
+    <h4 id="sample-relations-module">Sample Relations</h4>
+    <p>
+        The <i>Sample Relations module</i> imports <i>SOSA Sampling</i>, and adds classes and properties required for
+        the description of networks of samples.
+    </p>
+    <p>
+        The <i>Sample Relations module</i> is documented in section <a href="#Sample-Relations"></a>.
+    </p>
+
+    <h4 id="system-capabilities-module">System Capabilities</h4>
+    <p>
+        The <i>System Capabilities module</i> imports <i>SOSA</i> and adds classes and properties required for the
+        description of the
+        operating conditions and capabilities of systems, in particular Sensors and Actuators.
+    </p>
+    <p>
+        The <i>System Capabilities module</i> is documented in appendix <a href="#System-capabilities"></a>.
+    </p>
+
+</section>
+
+<section id="SSNalignmentModules">
+    <h3>Alignment modules</h3>
+    <p>
+        <a href="#Fig-SSN-alignment-modules"></a> summarizes alignments of other ontologies and specifications with the
+        SSN Ontology that are described in this document.
+    </p>
+    <figure id="Fig-SSN-alignment-modules">
+        <embed alt="SSN alignment modules" src="images/SSN-alignment-modules.svg" style="width:100%">
+        <figcaption>
+            The modular SSN ontology &mdash; alignments.
+            <br>
+            <em><a href="#Module-diagram">Explanation of the notation used in module diagrams</a></em>.
+        </figcaption>
+    </figure>
+
+    <h4 id="sosa-prov-module">PROV</h4>
+    <p>
+        The <i>SOSA-PROV module</i> imports <b>SOSA Common</b>, and describes the alignment of SOSA to [[[prov-o]]].
+        <i>SOSA-PROV</i> may be used to integrate data designed using SSN into provenance systems.
+    </p>
+    <p>
+        The <i>SOSA-PROV module</i> is documented in section <a href="#PROV-alignment"></a>.
+    </p>
+
+    <h4 id="sosa-saref-module">SAREF</h4>
+    <p>
+        The <i>SOSA-SAREF module</i> imports <b>SOSA</b>, and describes the alignment of SOSA to [[[SAREF]]].
+        <i>SOSA-SAREF</i> may be used to integrate data designed using SSN with data designed using SAREF.
+    </p>
+    <p>
+        The <i>SOSA-SAREF module</i> is documented in section <a href="#SAREF-alignment"></a>.
+    </p>
+
+    <h4 id="sosa-oboe-module">OBOE</h4>
+    <p>
+        The <i>SOSA-OBOE module</i> imports <b>SOSA Observation</b>, and describes the alignment of SOSA to [[[OBOE]]].
+        <i>SOSA-OBOE</i> may be used to integrate observation data structured using OBOE with data using SOSA.
+    </p>
+    <p>
+        The <i>SOSA-OBOE module</i> is documented in section <a href="#OBOE-alignment"></a>.
+    </p>
+
+    <h4 id="sosa-dul-module">DUL</h4>
+    <p>
+        The <i>SOSA-DUL module</i> imports <b>SOSA</b>, and adds axioms that position SOSA within <i>DOLCE UltraLite</i>
+        [[DUL]].
+        <i>SOSA-DUL</i> may be used to integrate data designed using SOSA into systems otherwise built in the
+        <i>DOLCE UltraLite</i> framework.
+    </p>
+    <p>
+        The <i>SOSA-DUL module</i> is documented in section <a href="#DUL-alignment"></a>.
+    </p>
+
+    <h4 id="sosa-ido-module">IDO</h4>
+    <p>
+        The <i>SOSA-IDO module</i> imports <b>SOSA</b> and <b>IDO</b>, and describes the alignment of SOSA to <i>Industrial Data Ontology (IDO)</i>.
+        <i>SOSA-IDO</i> may be used to integrate data designed using SOSA with data designed using IDO.
+    </p>
+    <p>
+        The <i>SOSA-IDO module</i> is documented in section <a href="#IDO-alignment"></a>.
+    </p>
+</section>

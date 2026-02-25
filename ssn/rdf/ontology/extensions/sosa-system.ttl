@@ -1,0 +1,111 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+
+@prefix schema: <http://schema.org/> .
+
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix sosa-systems: <http://www.w3.org/ns/sosa/systems/> .
+
+
+sosa-systems: a owl:Ontology , voaf:Vocabulary ;
+  dcterms:title "Ontology of operating conditions and capabilities of systems"@en ;
+  dcterms:description "The System Capabilities Module imports SOSA and adds classes and properties required for the description of the operating conditions and capabilities of systems, particularly Sensors and Actuators."@en ;
+  dcterms:creator [ a foaf:Agent ; foaf:name "W3C/OGC Spatio-temporal Data on the Web Working Group"@en ] ;
+  dcterms:rights "Copyright 2025 W3C/OGC." ;
+  dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
+  dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
+  rdfs:comment "Please report any errors to the W3C Spatio-temporal Data on the Web Working Group via the SDW WG Public List public-sdw-wg@w3.org"@en ;
+  rdfs:seeAlso <https://www.w3.org/2015/spatial/wiki/Semantic_Sensor_Network_Ontology> ;
+  dcterms:created "2017-05-14"^^xsd:date ;
+  dcterms:modified "2025-06-24"^^xsd:date ;
+  vann:preferredNamespacePrefix "sosa" ;
+  vann:preferredNamespaceUri "http://www.w3.org/ns/sosa/" ;
+  owl:imports sosa: .
+
+## Classes and relationships involved in the description of the operating conditions of a system (typically an observation collection about the system environment).
+
+sosa:hasOperatingConditions
+  a owl:ObjectProperty ;
+  rdfs:label "has operating conditions"@en ;
+  skos:definition """
+  Relation between a System and its Operating Conditions, modelled as ObservationCollection (or Observation) describing
+  conditions under which the System can operate. A short but extensible list of sub-classes of OperatingConditions is
+  provided in SSN-System, such as normal operating conditions, suboptimal conditions, and survivable conditions.
+  """@en ;
+  schema:domainIncludes sosa:System , sosa:Sensor, sosa:Actuator, sosa:Sampler ;
+  schema:rangeIncludes sosa:Observation , sosa:ObservationCollection , sosa:OperatingConditions ;
+  rdfs:isDefinedBy sosa-systems: .
+
+
+sosa:OperatingConditions a owl:Class ;
+  rdfs:label "Operating Conditions"@en ;
+  skos:definition """
+  Type of observation or observation collection that describe operating conditions of systems.
+  Sub-classes of this class explicit the desirability of the conditions.
+  Three such sub-classes are provided as a basic classification:
+  NormalOperatingConditions, SuboptimalOperatingConditions, and SurvivableConditions.
+  """@en ;
+  rdfs:isDefinedBy sosa-systems: .
+
+## A short but extensible list of operating condition kinds is provided in SOSA-System, such as normal operating conditions, suboptimal conditions, and survivable conditions.
+
+sosa:NormalOperatingConditions a owl:Class ;
+  rdfs:subClassOf sosa:OperatingConditions ;
+  rdfs:label "Normal Operating Conditions"@en ;
+  skos:definition """
+  Type of observation or observation collection that describe the conditions under which a system is expected to operate normally.
+  """@en ;
+  rdfs:isDefinedBy sosa-systems: .
+
+sosa:SuboptimalOperatingConditions a owl:Class ;
+  rdfs:subClassOf sosa:OperatingConditions ;
+  rdfs:label "Suboptimal Conditions"@en ;
+  skos:definition """
+ Type of observation or observation collection that describe the conditions under which a system is expected to operate sub-optimally.
+ Results will still be reported but the performance of the sensor, in term of precision for example, will be impaired.
+  """@en ;
+  rdfs:isDefinedBy sosa-systems: .
+
+sosa:SurvivableConditions a owl:Class ;
+  rdfs:subClassOf sosa:OperatingConditions ;
+  rdfs:label "Survivable Conditions"@en ;
+  skos:definition """
+  Type of observation or observation collection that describe the conditions under which a system is expected to survive, that is to continue to exist in its current form,
+  even if its future operations are impaired. A typical example is the temperature at which a sensor looses physical integrity and looses its shape.
+  A system or sensor exposed to conditions outside of those reported by SurvivableConditions will no longer be serviceable.
+  """@en ;
+  rdfs:isDefinedBy sosa-systems: .
+
+## Relationship involved in the description of the System capability
+
+sosa:hasSystemCapability a owl:ObjectProperty ;
+  schema:domainIncludes sosa:System , sosa:Sensor, sosa:Actuator, sosa:Sampler ;
+  schema:rangeIncludes sosa:Observation , sosa:ObservationCollection ;
+  rdfs:label "has system capability"@en ;
+  skos:definition "Relation between a System and an ObservationCollection (or Observation) describing the capability of the system. A sensor or system may have more than one set of system capabilities with different validity contexts."@en ;
+  rdfs:isDefinedBy sosa-systems: .
+  
+
+## Detailed classes and relationships involved in the description of the conditions (typically an observation collection about the system environment) under which an observation or property (typically about the system capabilities) is valid
+
+sosa:hasValidityContext a owl:ObjectProperty ;
+  schema:domainIncludes sosa:Observation , sosa:ObservationCollection , sosa:Property ;
+  schema:rangeIncludes sosa:ObservationCollection , sosa:Observation ;
+  rdfs:label "has validity context"@en ;
+  skos:definition "Links a an observation collection or observation (typically about the system capabilities) or a property (typically about the system capabilities) to its validity context, described as an observation collection or observation (typically about the system environment)."@en ;
+  rdfs:isDefinedBy sosa-systems: .
+
+
+## Battery
+sosa:Battery rdfs:subClassOf sosa:System ;
+  rdfs:label "Battery"@en ;
+  skos:definition "A Battery powering a System as its primary or secondary power source. As this is a specialization of the System class modeling of integrated battery management systems is also possible."@en ;
+  rdfs:isDefinedBy sosa-systems: .

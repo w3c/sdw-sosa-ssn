@@ -1,0 +1,31 @@
+@prefix ex: <https://example.org/data/> .
+@prefix iop: <https://w3id.org/iadopt/ont/> .
+@prefix qk: <http://qudt.org/vocab/quantitykind/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+
+ex:SickChildTemperature 
+  a iop:Variable , sosa:Property;
+  iop:hasProperty qk:Temperature ;
+  iop:hasObjectOfInterest ex:Child ;
+  iop:hasConstraint [ 
+    a iop:Constraint, ex:Sick ;
+    iop:constrains ex:Child ] ;
+    skos:prefLabel "sick child" ;
+.
+qk:Temperature
+  a iop:Property , sosa:Property ;
+  skos:prefLabel "Temperature"@en ;
+.
+ex:Child skos:exactMatch <http://hadatac.org/ont/chear#Child> .
+ex:Sick skos:exactMatch <http://semanticscience.org/resource/SIO_000954> .
+
+<http://hadatac.org/ont/chear#Child>
+  a iop:Entity ;
+  skos:prefLabel "Child"@en ;
+.
+<http://semanticscience.org/resource/SIO_000954>
+  skos:prefLabel "Sick"@en , "Krank"@de ; 
+  skos:altLabel "Unwell"@en , "Poorly"@en ;
+.

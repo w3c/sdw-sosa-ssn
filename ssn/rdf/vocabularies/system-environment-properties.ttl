@@ -1,0 +1,121 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+
+@prefix schema: <http://schema.org/> .
+
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix sosa-systems: <http://www.w3.org/ns/sosa/systems/> .
+@prefix sosa-env: <http://www.w3.org/ns/sosa/system-environment-properties#> .
+
+sosa-env: a owl:Ontology , voaf:Vocabulary ;
+  dcterms:title "Sample vocabulary of properties about the system environment"@en ;
+  dcterms:description """This vocabulary defines a short list of properties about the system environment. 
+
+  It is only for illustration purposes, as the Spatio-temporal Data on the Web Working Group does not ambition to maintain a living list of properties. Extensions of this list should be led by other organization, and publications done to relevant vocabulary portals."""@en ;
+  dcterms:creator [ a foaf:Agent ; foaf:name "W3C/OGC Spatio-temporal Data on the Web Working Group"@en ] ;
+  dcterms:rights "Copyright 2025 W3C/OGC." ;
+  dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
+  dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
+  rdfs:comment "Please report any errors to the W3C Spatio-temporal Data on the Web Working Group via the SDW WG Public List public-sdw-wg@w3.org"@en ;
+  dcterms:modified "2025-08-05"^^xsd:date ;
+  vann:preferredNamespacePrefix "sosa-env" ;
+  vann:preferredNamespaceUri "http://www.w3.org/ns/sosa/system-environment-properties#" ;
+  owl:imports sosa-systems: .
+
+sosa-env:AmbientTemperature a sosa:Property ;
+  rdfs:label "ambient temperature"@en ;
+  skos:definition "The temperature of the environment of the system."@en ;
+  rdfs:isDefinedBy sosa-env: .
+
+sosa-env:AmbientHumidity a sosa:Property ;
+  rdfs:label "ambient humidity"@en ;
+  skos:definition "The humidity of the environment of the system."@en ;
+  rdfs:isDefinedBy sosa-env: .
+  
+sosa-env:AmbientPressure a sosa:Property ;
+  rdfs:label "ambient pressure"@en ;
+  skos:definition "The atmospheric pressure in the environment surrounding the system."@en ;
+  rdfs:isDefinedBy sosa-env: .
+
+sosa-env:AmbientLightLevel a sosa:Property ;
+  rdfs:label "ambient light level"@en ;
+  skos:definition "The level of illumination in the environment surrounding the system."@en ;
+  rdfs:isDefinedBy sosa-env: .
+
+sosa-env:Altitude a sosa:Property ;
+  rdfs:label "altitude"@en ;
+  skos:definition "The vertical distance of the system above mean sea level."@en ;
+  rdfs:isDefinedBy sosa-env: .
+
+sosa-env:DeploymentLocation a sosa:Property ;
+  rdfs:label "deployment location"@en ;
+  skos:definition "The spatial location at which the system is deployed."@en ;
+  rdfs:isDefinedBy sosa-env: .
+
+sosa-env:DeploymentEnvironmentType a sosa:Property ;
+  rdfs:label "deployment environment type"@en ;
+  skos:definition "The type of environment in which the system is deployed, e.g., indoor, outdoor, marine, underground."@en ;
+  rdfs:isDefinedBy sosa-env: .
+
+sosa-env:ExposureToVibration a sosa:Property ;
+  rdfs:label "exposure to vibration"@en ;
+  skos:definition "Indicates whether and to what extent the system is subject to vibration in its environment."@en ;
+  rdfs:isDefinedBy sosa-env: .
+
+sosa-env:MinAmbientRelativeHumidity a sosa:Property ;
+  rdfs:label "minimum ambient humidity"@en ;
+  skos:definition "The minimum ambient humidity in the environment in which the system is expected to operate."@en ;
+  rdfs:isDefinedBy sosa-env: .
+
+sosa-env:MinAmbientTemperature a sosa:Property ;
+  rdfs:label "minimum ambient temperature"@en ;
+  skos:definition "The minimum ambient temperature in the environment in which the system is expected to operate."@en ;
+  rdfs:isDefinedBy sosa-env: .
+
+sosa-env:MagneticInterferenceLevel a sosa:Property ;
+  rdfs:label "magnetic interference level"@en ;
+  skos:definition "The level of magnetic interference present in the system's environment."@en ;
+  rdfs:isDefinedBy sosa-env: .
+
+sosa-env:MaxAmbientRelativeHumidity a sosa:Property ;
+  rdfs:label "maximum ambient humidity"@en ;
+  skos:definition "The maximum ambient humidity in the environment in which the system is expected to operate."@en ;
+  rdfs:isDefinedBy sosa-env: .
+
+sosa-env:MaxAmbientTemperature a sosa:Property ;
+  rdfs:label "maximum ambient temperature"@en ;
+  skos:definition "The maximum ambient temperature in the environment in which the system is expected to operate."@en ;
+  rdfs:isDefinedBy sosa-env: .
+
+sosa-env:PollutionLevel a sosa:Property ;
+  rdfs:label "pollution level"@en ;
+  skos:definition "The level of pollutants (e.g., particulate matter, NO₂, CO) in the air around the system."@en ;
+  rdfs:isDefinedBy sosa-env: .
+
+sosa-env:Salinity a sosa:Property ;
+  rdfs:label "salinity"@en ;
+  skos:definition "The concentration of salts in the environment surrounding the system, typically used for aquatic or marine deployments."@en ;
+  rdfs:isDefinedBy sosa-env: .
+
+sosa-env:UVExposure a sosa:Property ;
+  rdfs:label "UV exposure"@en ;
+  skos:definition "The level of ultraviolet radiation in the system's environment."@en ;
+  rdfs:isDefinedBy sosa-env: .
+
+sosa-env:WindSpeed a sosa:Property ;
+  rdfs:label "wind speed"@en ;
+  skos:definition "The speed of wind in the system's surrounding environment."@en ;
+  rdfs:isDefinedBy sosa-env: .
+
+sosa-env:WindDirection a sosa:Property ;
+  rdfs:label "wind direction"@en ;
+  skos:definition "The direction from which the wind is blowing in the system's environment."@en ;
+  rdfs:isDefinedBy sosa-env: .

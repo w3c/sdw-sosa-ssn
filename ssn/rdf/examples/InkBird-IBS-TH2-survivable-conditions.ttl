@@ -1,0 +1,33 @@
+@prefix ex: <https://example.org/data/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix sosa-env: <http://www.w3.org/ns/sosa/system-environment-properties#> .
+
+ex:InkBird-IBS-TH2 a owl:Class;
+    rdfs:label "Inkbird IBS-TH2"@en ;
+.
+
+ex:InkBird-IBS-TH2-0354313547 a ex:InkBird-IBS-TH2 ;
+    rdfs:label "Inkbird IBS-TH2 instance 0354313547"@en ;
+    sosa:hasOperatingConditions ex:IBSTH2SurvivalRange ;
+.
+
+ex:IBSTH2SurvivalRange a sosa:ObservationCollection , sosa:SurvivableConditions ;
+    rdfs:label "Inkbird IBS-TH2 Failiure limits"@en ;
+    sosa:hasMember [
+      sosa:observedProperty sosa-env:MinAmbientTemperature ;
+      sosa:hasResult [ 
+        qudt:value -273.0 ;
+        qudt:hasUnit unit:DEG_C ;
+      ] ;
+    ] , [
+      sosa:observedProperty sosa-env:MaxAmbientTemperature ;
+      sosa:hasResult [ 
+        qudt:value 80.0 ;
+        qudt:hasUnit unit:DEG_C ;
+      ] ;
+    ]
+.

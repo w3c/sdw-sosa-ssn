@@ -1,0 +1,169 @@
+<h3>Domain types and FeatureOfInterest</h3>
+
+<p>
+    Actuations, Observations, Samplings, and Deployments can be made on any entity in any context.
+    For many applications a domain-model has been previously defined.
+    This will include names and definitions for classes of entities in the domain.
+    For example: applications in hydrology will refer to types such as water-course, stream, river, reach,
+    storage, aquifer, lake, reservoir, spring, water-table, etc.
+</p>
+<p>
+    A property of an instance of any domain type may be observed using a sensor, or changed using an actuator,
+    or the entity may be sampled following a sampling procedure.
+    When this occurs, the domain entity is the <em>feature of interest</em> of the Execution.
+</p>
+<p>
+    Does this therefore require that classes in the domain model are defined as sub-classes of
+    <a>sosa:FeatureOfInterest</a>?
+    No, absolutely not.
+    RDF and OWL entailments do not work that way.
+</p>
+<p>
+    The way the SSN Ontology addresses this is described in the following sub-sections.
+    There are different implications depending on whether you are using the simple
+    <a href="#sosa-module">SOSA</a> module, or the more expressive <a href="#ssn-module">SSN</a> module.
+</p>
+
+<h4>FeatureOfInterest in SOSA</h4>
+<p>
+    In SOSA the domain and range indications use the Schema.org [[schema-org]] predicates
+    `schema:domainIncludes` and
+    `schema:rangeIncludes`.
+    For <a href="#SOSAFeatureOfInterest">feature of interest</a>, SOSA has:
+</p>
+<pre class="turtle">
+sosa:hasFeatureOfInterest
+  schema:domainIncludes sosa:Execution ;
+  schema:domainIncludes sosa:Deployment ;
+  schema:rangeIncludes sosa:FeatureOfInterest ;
+.
+</pre>
+<p>Note:</p>
+<ol>
+    <li>these have no formal entailments, they are just hints</li>
+    <li>'Includes' means these types are non-exclusive, so any other type is acceptable, including types from
+        application-domains</li>
+</ol>
+<p>
+    So the 'domain and range' indications in SOSA are functionally harmless.
+    The fact that
+<code class="turtle">sosa:hasFeatureOfInterest schema:rangeIncludes sosa:FeatureOfInterest .</code>
+merely says that things of type
+<a>sosa:FeatureOfInterest</a> might be found as the object of
+hasFeatureOfInterest statements.
+No more, no less.
+</p>
+
+<h4>FeatureOfInterest in SSN</h4>
+<p>
+    In SSN there are local (guarded) constraints, which can fix the range of a property
+    when it appears in the context of a member of a specific class.
+    Related to the <a href="#SOSAFeatureOfInterest">feature of interest</a>, SSN has:
+</p>
+<pre class="turtle">
+sosa:Execution
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty sosa:hasFeatureOfInterest ;
+    owl:allValuesFrom sosa:FeatureOfInterest ] ;
+.
+sosa:Deployment
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty sosa:hasFeatureOfInterest ;
+    owl:allValuesFrom sosa:FeatureOfInterest ] ;
+.
+</pre>
+<p>This says that, in the context of an individual <a>sosa:Execution</a>
+    or <a>sosa:Deployment</a>,
+    the object of <a>sosa:hasFeatureOfInterest</a> is always an individual
+    <a>sosa:FeatureOfInterest</a>.
+</p>
+<p>
+    However, this does not mean that (i) the object of the statement must be declared to have
+    `rdf:type sosa:FeatureOfInterest` in advance, or (ii) this is its only type.
+    Rather, it means that
+</p>
+<ul>
+    <li>
+        when an individual appears as the object of a statement
+    </li>
+    <li>
+        whose subject is a <a>sosa:Execution</a> or <a>sosa:Deployment</a>
+    </li>
+    <li>
+        and whose predicate is <a>sosa:hasFeatureOfInterest</a>
+    </li>
+</ul>
+<p>
+    then it is automatically inferred to be of type <a>sosa:FeatureOfInterest</a>
+    <em>in addition to</em> any other information that was already available about it, including any pre-existing type.
+</p>
+<p><b>This does not require you to derive domain types as sub-classes of
+        <a>sosa:FeatureOfInterest</a></b>.
+    It merely says that when a domain individual participates in an Execution (e.g., an Observation)
+    it becomes a member of the class <a>sosa:FeatureOfInterest</a>
+    <b>in addition to</b> any pre-existing domain class.
+    In the context of SSN axiomatization, membership in the class
+    <a>sosa:FeatureOfInterest</a>
+    does not need to be asserted explicitly, and does not need to be assigned prior to the involvement of an entity in a
+    <a>sosa:Execution</a> (or one of its sub-classes) or <a>sosa:Deployment</a>.
+</p>
+<p>
+    Consider the following scenario (<a href="#Fig-domain-feature"></a>, <a href="#Fig-domain-feature-observed"></a>).
+    There is an entity typed with a class from a domain model:
+</p>
+<figure id="Fig-domain-feature">
+    <embed alt="a domain feature" src="./images/domain-feature.svg" style="width:30%" />
+    <figcaption>
+        A feature classified using a domain ontology.
+        <br>
+        <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
+    </figcaption>
+</figure>
+<pre class="turtle">
+ex:YarraAboveDightsFalls rdf:type hydro:RiverReach .
+</pre>
+<p>
+    An observation is made concerning a property of this entity:
+</p>
+<figure id="Fig-domain-feature-observed">
+    <embed alt="a domain feature" src="./images/domain-feature-observed.svg" style="width:90%" />
+    <figcaption>
+        An observation on a feature previously classified using a domain ontology.
+        <br>
+        <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
+    </figcaption>
+</figure>
+
+<pre class="turtle">
+ex:o345 rdf:type sosa:Observation ;
+    sosa:hasFeatureOfInterest ex:YarraAboveDightsFalls ;
+    sosa:observedProperty hydro:elevation ;
+    sosa:hasResult [
+        a qudt:QuantityValue ;
+        qudt:hasUnit unit:M ;
+        qudt:value 30 ;
+        ] ;
+    sosa:phenomenonTime [ 
+        a time:Instant ; 
+        time:inXSDDateTime "2024-07-15T13:30:00+10:00" ; 
+        ] ;
+.
+</pre>
+
+
+<p>
+    The SSN constraint shown above entails:
+    `ex:YarraAboveDightsFalls rdf:type sosa:FeatureOfInterest . `
+    <em>in addition to</em> the type `hydro:RiverReach` already asserted.
+</p>
+<p>
+    In terms of set theory, the class `hydro:RiverReach` has a non-empty intersection with the class
+    `sosa:FeatureOfInterest` when a member of `hydro:RiverReach` participates in an
+    <a>sosa:Observation</a> (or any other subclass of
+    <a>sosa:Execution</a>).
+    Domain types are not features-of-interest unless they are involved in Executions or Deployments.
+    The additional typing happens to individual members of the class 'automatically', by entailment, but not to the
+    domain class as a whole.
+</p>

@@ -1,0 +1,1197 @@
+<h3>OMS Extension Module</h3>
+
+<section id="OMS-req">
+  <h4>OMS Requirement</h4>
+  <p>
+    This section introduces extensions to the SSN Ontology to provide a canonical RDF implementation of [[OMS]].
+  </p>
+  <p>
+    OMS is the 2023 Edition of the OGC and ISO standard previously known as Observations and Measurements [[OandM]],
+    which was a key influence and input in the development of SSN.
+  </p>
+  <p class="note">
+    OMS was published as ISO 19156:2023 [[iso-19156-2023]], but is freely available as OGC Abstract
+    Specification &mdash; Topic 20 [[OMS]].
+  </p>
+  <p>
+    This module provides (i) additional classes and properties required for an RDF implementation of OMS, (ii) a
+    detailed mapping of SOSA terms to discrete requirements in OMS.
+    Note that OMS is formalized using UML, which does not provide accessible global identifiers for terms in the
+    structure model.
+    The URI for each formal Requirement relating to a class or property in OMS denotes the UML class or
+    property.
+    The predicate `ogc-ms:implements` links a SOSA term to the corresponding OMS class or property,
+    and `ogc-ms:implementedBy` its inverse, defined as follows:
+  </p>
+
+  <pre class="turtle">
+ogc-ms:implements a owl:ObjectProperty ;
+  rdfs:subPropertyOf dcterms:source , prov:wasDerivedFrom .
+
+ogc-ms:implementedBy a owl:ObjectProperty ;
+  owl:inverseOf ogc-ms:implements .
+</pre>
+
+  <p class="note">
+    Some classes and properties from OMS are not yet represented in the OMS Extension Module.
+    It is intended to resolve this before the 2023 edition of the SSN Ontology is finalized.
+    This is likely to be through additional patterns for the use of SSN,
+    and additional terms in the `sosa-oms:` namespace.
+  </p>
+
+</section>
+
+<section id="OMS-modules">
+  <h4>OMS modules</h4>
+
+  <h5>SOSA-OMS</h5>
+  <p>
+    SOSA-OMS describes the implementation of ISO 19156:2023 [[OMS]] using terms from the SSN Ontology.
+    SOSA-OMS imports SOSA Observation and SOSA Sampling and declares additional terms required for OMS.
+    <b>SOSA-OMS is the canonical RDF implementation of OMS.</b>
+  </p>
+  <p style="text-align: center;">
+    The ontology IRI of the SOSA-OMS Alignment module is
+    <a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a><br>
+    The version IRI of the SOSA-OMS Alignment module 2023 edition is
+    <a href="http://www.w3.org/ns/sosa/2023/oms/">http://www.w3.org/ns/sosa/2023/oms/</a>
+  </p>
+
+  <h5>SSN-OMS</h5>
+  <p>
+    SSN-OMS describes the implementation of ISO 19156:2023 [[OMS]] using terms from the SSN Ontology, with RDFS/OWL
+    axiomatization.
+    SSN-OMS imports SOSA-OMS and SSN Observation and SSN Sampling.
+    <b>SSN-OMS is the canonical OWL implementation of OMS.</b>
+  </p>
+  <p style="text-align: center;">
+    The ontology IRI of the OMS Extension module is
+    <a href="http://www.w3.org/ns/ssn/oms/">http://www.w3.org/ns/ssn/oms/</a><br>
+    The version IRI of the OMS Extension module 2023 edition is
+    <a href="http://www.w3.org/ns/ssn/2023/oms/">http://www.w3.org/ns/ssn/2023/oms/</a>
+  </p>
+
+  <h5>Namespaces</h5>
+  <p>
+    The following namespace prefixes are used in the RDF implementation of OMS:
+  </p>
+  <dl>
+    <dt>sosa:</dt>
+    <dd>
+      <a href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a>
+    </dd>
+    <dt>sosa-oms:</dt>
+    <dd>
+      <a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a>
+    </dd>
+    <dt>ogc-ms:</dt>
+    <dd>
+      <a href="http://www.opengis.net/def/ont/modspec/">http://www.opengis.net/def/ont/modspec/</a>
+    </dd>
+    <dt>obs-cpt:</dt>
+    <dd>
+      <a href="https://docs.ogc.org/as/20-082r4/20-082r4.html#_conceptual_observation_schema">http://www.opengis.net/spec/om/3.0/req/obs-cpt/</a>
+    </dd>
+    <dt>obs-core:</dt>
+    <dd>
+      <a href="https://docs.ogc.org/as/20-082r4/20-082r4.html#_abstract_observation_core">http://www.opengis.net/spec/om/3.0/req/obs-core/</a>
+    </dd>
+    <dt>obs-basic:</dt>
+    <dd>
+      <a href="https://docs.ogc.org/as/20-082r4/20-082r4.html#_basic_observations">http://www.opengis.net/spec/om/3.0/req/obs-basic/</a>
+    </dd>
+    <dt>sam-cpt:</dt>
+    <dd>
+      <a href="https://docs.ogc.org/as/20-082r4/20-082r4.html#_conceptual_sample_schema">http://www.opengis.net/spec/om/3.0/req/sam-cpt/</a>
+    </dd>
+    <dt>sam-core:</dt>
+    <dd>
+      <a href="https://docs.ogc.org/as/20-082r4/20-082r4.html#_abstract_sample_core">http://www.opengis.net/spec/om/3.0/req/sam-core/</a>
+    </dd>
+    <dt>sam-basic:</dt>
+    <dd>
+      <a href="https://docs.ogc.org/as/20-082r4/20-082r4.html#_basic_samples">http://www.opengis.net/spec/om/3.0/req/sam-basic/</a>
+    </dd>
+  </dl>
+</section>
+
+<section id="OMS-New-Terms">
+  <h4>New terms</h4>
+  <p>
+    A number of terms in OMS do not have matches in the SSN Ontology.
+  </p>
+  <p>
+    This section introduces the following classes and properties:
+  </p>
+  <div class="azlist">
+    <p>
+      <a>sosa-oms:PreparationProcedure</a>,
+      <a>sosa-oms:PreparationStep</a>,
+      <a>sosa-oms:hasPreparationStep</a>,
+      <a>sosa-oms:madeOnPlatform</a>,
+      <a>sosa-oms:makesObservationCollection</a>,
+      <a>sosa-oms:metadata</a>,
+      <a>sosa-oms:observationType</a>,
+      <a>sosa-oms:preparedSample</a>,
+      <a>sosa-oms:processingDetails</a>,
+      <a>sosa-oms:relatedSampling</a>,
+      <a>sosa-oms:samplePreparationStep</a>,
+      <a>sosa-oms:validTime</a>
+    </p>
+  </div>
+
+  <p class="warning">Terms in the `sosa-oms:` namespace were added in the 2023 edition.
+    These are non-normative, pending further implementation experience.</p>
+
+
+  <section class="informative specterm sosa" id="OMSPreparationProcedure">
+    <h5><dfn>sosa-oms:PreparationProcedure</dfn></h5>
+    <p class="crossreference">
+      <strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/PreparationProcedure
+    </p>
+    <p>
+      <strong>an OWL Class</strong>
+    </p>
+    <p>
+      <em>Preparation Procedure</em> &mdash;
+      description of preparation steps performed on a Sample
+    </p>
+    <dl>
+      <dt>Subclass of</dt>
+      <dd>
+        <a>sosa:Procedure</a>
+      </dd>
+      <dt>is Defined By</dt>
+      <dd>
+        <a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a>
+      </dd>
+    </dl>
+
+
+    <div class="buttonpanel">
+      <span class="back">[<a href="#OMS">Back to module overview</a>]</span>
+      <span class="back">[<a href="#Overview">Back to top</a>]</span>
+    </div>
+  </section>
+
+  <section class="informative specterm" id="OMSPreparationStep">
+    <h5><dfn>sosa-oms:PreparationStep</dfn></h5>
+    <p class="crossreference">
+      <strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/PreparationStep
+    </p>
+    <p>
+      <strong>an OWL Class</strong>
+    </p>
+    <p>
+      <em>Preparation Step</em> &mdash;
+      individual step pertaining to a Sample PreparationProcedure
+    </p>
+    <dl>
+      <dt>is Defined By</dt>
+      <dd>
+        <a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a>
+      </dd>
+    </dl>
+
+
+    <div class="buttonpanel">
+      <span class="back">[<a href="#OMS">Back to module overview</a>]</span>
+      <span class="back">[<a href="#Overview">Back to top</a>]</span>
+    </div>
+  </section>
+
+  <section class="informative specterm" id="OMShasPreparationStep">
+    <h5><dfn>sosa-oms:hasPreparationStep</dfn></h5>
+    <p class="crossreference">
+      <strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/hasPreparationStep
+    </p>
+    <p>
+      <strong>an OWL Object Property</strong>
+    </p>
+    <p>
+      <em>has preparation step</em> &mdash;
+      relation from a Sample to a PreparationStep used to prepare it
+    </p>
+    <dl>
+      <dt>Domain Includes</dt>
+      <dd>
+        <a>sosa:Sample</a>
+      </dd>
+      <dt>Range Includes</dt>
+      <dd>
+        <a>sosa-oms:PreparationStep</a>
+      </dd>
+      <dt>Inverse property of</dt>
+      <dd>
+        <a>sosa-oms:preparedSample</a>
+      </dd>
+      <dt>is Defined By</dt>
+      <dd>
+        <a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a>
+      </dd>
+    </dl>
+
+    <div class="buttonpanel">
+      <span class="back">[<a href="#OMS">Back to module overview</a>]</span>
+      <span class="back">[<a href="#Overview">Back to top</a>]</span>
+    </div>
+  </section>
+
+  <section class="informative specterm" id="OMSmadeOnPlatform">
+    <h5><dfn>sosa-oms:madeOnPlatform</dfn></h5>
+    <p class="crossreference">
+      <strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/madeOnPlatform
+    </p>
+    <p>
+      <strong>an OWL Object Property</strong>
+    </p>
+    <p>
+      <em>made on platform</em> &mdash;
+      relation from an ObservationCollection to the associated Platform.
+    </p>
+    <dl>
+      <dt>Domain Includes</dt>
+      <dd>
+        <a>sosa:ObservationCollection</a>
+      </dd>
+      <dt>Range Includes</dt>
+      <dd>
+        <a>sosa:Platform</a>
+      </dd>
+      <dt>Inverse property of</dt>
+      <dd>
+        <a>sosa-oms:makesObservationCollection</a>
+      </dd>
+      <dt class="ssn">Super property of chain</dt>
+      <dd class="ssn">
+        <a>sosa:hasFeatureOfInterest</a> <b>o</b>
+        <a>sosa:isResultOfMadeBySampler</a> <b>o</b>
+        <a>sosa:isHostedBy</a>
+      </dd>
+      <dt>is Defined By</dt>
+      <dd>
+        <a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a>
+      </dd>
+    </dl>
+
+
+    <div class="buttonpanel">
+      <span class="back">[<a href="#OMS">Back to module overview</a>]</span>
+      <span class="back">[<a href="#Overview">Back to top</a>]</span>
+    </div>
+  </section>
+
+  <section class="informative specterm" id="OMSmakesObservationCollection">
+    <h5><dfn>sosa-oms:makesObservationCollection</dfn></h5>
+    <p class="crossreference">
+      <strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/makesObservationCollection
+    </p>
+    <p>
+      <strong>an OWL Object Property</strong>
+    </p>
+    <p>
+      <em>makes observation collection</em> &mdash;
+      relation from a Platform to an ObservationCollection arising from it
+    </p>
+    <p class="note">
+      In order to indicate potential Observations at a Platform, an empty ObservationCollection can be provided.
+      This mimics the semantics of the OMS ObservingCapability class.
+      The underlying property chain is represented in <a href="#Fig-MadeOnPlatform"></a>.
+    </p>
+
+    <figure id="Fig-MadeOnPlatform">
+      <embed alt="Made on platform path" src="images/MadeOnPlatform.svg" style="width:75%" />
+      <figcaption>
+        <a href="#OMSmakesObservationCollection">osa-oms:makesObservationCollection</a>
+        and <a href="#OMSmadeOnPlatform">sosa-oms:madeOnPlatform</a> property chains explained
+      </figcaption>
+    </figure>
+    <dl>
+      <dt>Domain Includes</dt>
+      <dd>
+        <a>sosa:Platform</a>
+      </dd>
+      <dt>Range Includes</dt>
+      <dd>
+        <a>sosa:ObservationCollection</a>
+      </dd>
+      <dt>Inverse property of</dt>
+      <dd>
+        <a>sosa-oms:madeOnPlatform</a>
+      </dd>
+      <dt class="ssn">Super property of chain</dt>
+      <dd class="ssn">
+        <a>sosa:hosts</a> <b>o</b>
+        <a>sosa:madeSamplingHasResult</a> <b>o</b>
+        <a>sosa:isFeatureOfInterestOf</a>
+      </dd>
+      <dt>is Defined By</dt>
+      <dd>
+        <a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a>
+      </dd>
+    </dl>
+
+
+    <div class="buttonpanel">
+      <span class="back">[<a href="#OMS">Back to module overview</a>]</span>
+      <span class="back">[<a href="#Overview">Back to top</a>]</span>
+    </div>
+  </section>
+
+  <section class="informative specterm" id="OMSmetadata">
+    <h5><dfn>sosa-oms:metadata</dfn></h5>
+    <p class="crossreference">
+      <strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/metadata
+    </p>
+    <p>
+      <strong>an OWL Object Property</strong>
+    </p>
+    <p>
+      <em>metadata</em> &mdash;
+      link from an individual to a metadata description
+    </p>
+    <dl>
+      <dt>Domain Includes</dt>
+      <dd>
+        <a>sosa:FeatureOfInterest</a>,
+        <a>sosa:Property</a>,
+        <a>sosa:Observation</a>,
+        <a>sosa:ObservationCollection</a>,
+        <a>sosa:Sample</a>,
+        <a>sosa:SampleCollection</a>,
+        <a>sosa:Sampling</a>,
+        <a>sosa-oms:PreparationStep</a>,
+        <a>sosa:Procedure</a>,
+        <a>sosa:Sensor</a>,
+        <a>sosa:Platform</a>,
+        <a>sosa:Deployment</a>
+      </dd>
+      <dt>is Defined By</dt>
+      <dd>
+        <a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a>
+      </dd>
+    </dl>
+
+    <div class="buttonpanel">
+      <span class="back">[<a href="#OMS">Back to module overview</a>]</span>
+      <span class="back">[<a href="#Overview">Back to top</a>]</span>
+    </div>
+  </section>
+
+  <section class="informative specterm" id="OMSobservationType">
+    <h5><dfn>sosa-oms:observationType</dfn></h5>
+    <p class="crossreference">
+      <strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/observationType
+    </p>
+    <p>
+      <strong>an OWL Object Property</strong>
+    </p>
+    <p>
+      <em>observation type</em> &mdash;
+      further detail on the type of Observations.
+    </p>
+    <dl>
+      <dt>Domain Includes</dt>
+      <dd>
+        <a>sosa:Observation</a>
+      </dd>
+      <dt>is Defined By</dt>
+      <dd>
+        <a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a>
+      </dd>
+    </dl>
+
+
+    <div class="buttonpanel">
+      <span class="back">[<a href="#OMS">Back to module overview</a>]</span>
+      <span class="back">[<a href="#Overview">Back to top</a>]</span>
+    </div>
+  </section>
+
+  <section class="informative specterm" id="OMSpreparedSample">
+    <h5><dfn>sosa-oms:preparedSample</dfn></h5>
+    <p class="crossreference">
+      <strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/preparedSample
+    </p>
+    <p>
+      <strong>an OWL Object Property</strong>
+    </p>
+    <p>
+      <em>prepared sample</em> &mdash;
+      link from a PreparationStep to a Sample on which the PreparationProcedure was performed
+    </p>
+    <dl>
+      <dt>Domain Includes</dt>
+      <dd>
+        <a>sosa-oms:PreparationStep</a>
+      </dd>
+      <dt>Range Includes</dt>
+      <dd>
+        <a>sosa:Sample</a>
+      </dd>
+      <dt>Inverse property of</dt>
+      <dd>
+        <a>sosa-oms:hasPreparationStep</a>
+      </dd>
+      <dt>is Defined By</dt>
+      <dd>
+        <a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a>
+      </dd>
+    </dl>
+
+
+    <div class="buttonpanel">
+      <span class="back">[<a href="#OMS">Back to module overview</a>]</span>
+      <span class="back">[<a href="#Overview">Back to top</a>]</span>
+    </div>
+  </section>
+
+  <section class="informative specterm" id="OMSprocessingDetails">
+    <h5><dfn>sosa-oms:processingDetails</dfn></h5>
+    <p class="crossreference">
+      <strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/processingDetails
+    </p>
+    <p>
+      <strong>an OWL Object Property</strong>
+    </p>
+    <p>
+      <em>processing details</em> &mdash;
+      link from a PreparationStep to the PreparationProcedure used
+    </p>
+    <dl>
+      <dt>Domain Includes</dt>
+      <dd>
+        <a>sosa-oms:PreparationStep</a>
+      </dd>
+      <dt>Range Includes</dt>
+      <dd>
+        <a>sosa-oms:PreparationProcedure</a>
+      </dd>
+      <dt>Inverse property of</dt>
+      <dd>
+        <a>sosa-oms:samplePreparationStep</a>
+      </dd>
+      <dt>is Defined By</dt>
+      <dd>
+        <a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a>
+      </dd>
+    </dl>
+
+
+    <div class="buttonpanel">
+      <span class="back">[<a href="#OMS">Back to module overview</a>]</span>
+      <span class="back">[<a href="#Overview">Back to top</a>]</span>
+    </div>
+  </section>
+
+  <section class="informative specterm" id="OMSrelatedSampling">
+    <h5><dfn>sosa-oms:relatedSampling</dfn></h5>
+    <p class="crossreference">
+      <strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/relatedSampling
+    </p>
+    <p>
+      <strong>an OWL Object Property</strong>
+    </p>
+    <p>
+      <em>related sampling</em> &mdash;
+      relation from a Sampling to another Sampling
+    </p>
+    <dl>
+      <dt>Domain Includes</dt>
+      <dd>
+        <a>sosa:Sampling</a>
+      </dd>
+      <dt>Range Includes</dt>
+      <dd>
+        <a>sosa:Sampling</a>
+      </dd>
+      <dt>is Defined By</dt>
+      <dd>
+        <a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a>
+      </dd>
+    </dl>
+
+
+    <div class="buttonpanel">
+      <span class="back">[<a href="#OMS">Back to module overview</a>]</span>
+      <span class="back">[<a href="#Overview">Back to top</a>]</span>
+    </div>
+  </section>
+
+  <section class="informative specterm" id="OMSsamplePreparationStep">
+    <h5><dfn>sosa-oms:samplePreparationStep</dfn></h5>
+    <p class="crossreference">
+      <strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/samplePreparationStep
+    </p>
+    <p>
+      <strong>an OWL Object Property</strong>
+    </p>
+    <p>
+      <em>sample preparation step</em> &mdash;
+      link from a PreparationProcedure to a PreparationStep used in it
+    </p>
+    <dl>
+      <dt>Domain Includes</dt>
+      <dd>
+        <a>sosa-oms:PreparationProcedure</a>
+      </dd>
+      <dt>Range Includes</dt>
+      <dd>
+        <a>sosa-oms:PreparationStep</a>
+      </dd>
+      <dt>Inverse property of</dt>
+      <dd>
+        <a>sosa-oms:processingDetails</a>
+      </dd>
+      <dt>is Defined By</dt>
+      <dd>
+        <a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a>
+      </dd>
+    </dl>
+
+
+    <div class="buttonpanel">
+      <span class="back">[<a href="#OMS">Back to module overview</a>]</span>
+      <span class="back">[<a href="#Overview">Back to top</a>]</span>
+    </div>
+  </section>
+
+  <section class="informative specterm" id="OMSvalidTime">
+    <h5><dfn>sosa-oms:validTime</dfn></h5>
+    <p class="crossreference">
+      <strong>IRI:</strong> http://www.w3.org/ns/sosa/oms/validTime
+    </p>
+    <p>
+      <strong>an OWL Object Property</strong>
+    </p>
+    <p>
+      <em>valid time</em> &mdash;
+      time interval during which the result is assumed to be applicable for use.
+    </p>
+    <dl>
+      <dt>Domain Includes</dt>
+      <dd>
+        <a>sosa:Observation</a>,
+        <a>sosa:ObservationCollection</a>,
+        <a>sosa:Sampling</a>,
+        <a>sosa:SamplingCollection</a>
+      </dd>
+      <dt>Range Includes</dt>
+      <dd>
+        <a href="https://www.w3.org/TR/owl-time/#time:Interval">time:Interval</a>,
+        <a href="https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/PeriodOfTime">dcterms:PeriodOfTime</a>
+      </dd>
+      <dt>is Defined By</dt>
+      <dd>
+        <a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a>
+      </dd>
+    </dl>
+
+
+    <div class="buttonpanel">
+      <span class="back">[<a href="#OMS">Back to module overview</a>]</span>
+      <span class="back">[<a href="#Overview">Back to top</a>]</span>
+    </div>
+  </section>
+
+</section>
+
+<section id="OMS-Class-SOSA">
+  <h4>Class Alignments &mdash; SOSA focus</h4>
+  <p>
+    The following classes from the SSN Ontology and this extension implement UML classes from OMS as indicated: </p>
+
+  <ul class="align-on-symbol">
+    <li>
+      <span class="lhs"><a>sosa:Deployment</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-cpt:Deployment</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:MaterialSample</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">sam-basic:MaterialSample</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:Property</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-cpt:ObservableProperty</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:Observation</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-cpt:Observation</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:ObservationCollection</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-basic:ObservationCollection</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:ObservingProcedure</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-cpt:ObservingProcedure</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:Platform</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-cpt:Host</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa-oms:PreparationProcedure</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">sam-cpt:PreparationProcedure</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa-oms:PreparationStep</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">sam-cpt:PreparationStep</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:Procedure</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-cpt:Procedure</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:Sample</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">sam-cpt:Sample</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:SampleCollection</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">sam-basic:SampleCollection</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:Sampler</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">sam-cpt:Sampler</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:Sampling</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">sam-cpt:Sampling</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:SamplingProcedure</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">sam-cpt:SamplingProcedure</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:Sensor</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-cpt:Observer</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:SpatialSample</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">sam-basic:SpatialSample</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:StatisticalSample</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">sam-basic:StatisticalSample</span>
+    </li>
+  </ul>
+</section>
+
+<section id="OMS-Class-OMS">
+  <h4>Class Alignments &mdash; OMS focus</h4>
+  <p>
+    The following UML classes in OMS are implemented by classes from the SSN Ontology and this extension as indicated:
+  </p>
+  <ul class="align-on-symbol">
+    <li>
+      <span class="lhs">obs-cpt:Deployment</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:Deployment</a></span>
+    </li>
+    <li>
+      <span class="lhs">obs-cpt:Host</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:Platform</a></span>
+    </li>
+    <li>
+      <span class="lhs">sam-basic:MaterialSample</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:MaterialSample</a></span>
+    </li>
+    <li>
+      <span class="lhs">obs-cpt:ObservableProperty</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:Property</a></span>
+    </li>
+    <li>
+      <span class="lhs">obs-cpt:Observation</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:Observation</a></span>
+    </li>
+    <li>
+      <span class="lhs">obs-basic:ObservationCollection</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:ObservationCollection</a></span>
+    </li>
+    <li>
+      <span class="lhs">obs-cpt:Observer</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:Sensor</a></span>
+    </li>
+    <li>
+      <span class="lhs">obs-cpt:ObservingProcedure</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:ObservingProcedure</a></span>
+    </li>
+    <li>
+      <span class="lhs">sam-cpt:PreparationProcedure</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa-oms:PreparationProcedure</a></span>
+    </li>
+    <li>
+      <span class="lhs">sam-cpt:PreparationStep</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa-oms:PreparationStep</a></span>
+    </li>
+    <li>
+      <span class="lhs">obs-cpt:Procedure</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:Procedure</a></span>
+    </li>
+    <li>
+      <span class="lhs">sam-cpt:Sample</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:Sample</a></span>
+    </li>
+    <li>
+      <span class="lhs">sam-basic:SampleCollection</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:SampleCollection</a></span>
+    </li>
+    <li>
+      <span class="lhs">sam-cpt:Sampler</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:Sampler</a></span>
+    </li>
+    <li>
+      <span class="lhs">sam-cpt:Sampling</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:Sampling</a></span>
+    </li>
+    <li>
+      <span class="lhs">sam-cpt:SamplingProcedure</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:SamplingProcedure</a></span>
+    </li>
+    <li>
+      <span class="lhs">sam-basic:SpatialSample</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:SpatialSample</a></span>
+    </li>
+    <li>
+      <span class="lhs">sam-basic:StatisticalSample</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:StatisticalSample</a></span>
+    </li>
+  </ul>
+</section>
+
+<section id="OMS-Property-SOSA">
+  <h4>Property Alignments &mdash; SOSA focus</h4>
+  <p>
+    The following properties from the SSN Ontology and this extension implement attributes and association roles from
+    OMS as indicated: </p>
+  <ul class="align-on-symbol">
+    <li>
+      <span class="lhs"><a>sosa:deployedOnPlatform</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-cpt:Deployment/host-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:deployedSystem</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-cpt:Deployment/observer-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:hasDeployment</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-cpt:Observer/deployment-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:hasFeatureOfInterest</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-cpt:Observation/featureOfInterest-sem , <br>
+        obs-core:AbstractObservationCharacteristics/pFoI-sem ,
+        <br> sam-cpt:Sampling/featureOfInterest-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:hasMember</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">sam-basic:SampleCollection/member-sem , <br> obs-basic:ObservationCollection/member-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa-oms:hasPreparationStep</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">sam-cpt:Sample/preparationStep-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:hasResult</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-cpt:Observation/result-sem ,
+        <br> sam-cpt:Sampling/sample-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:hasSimpleResult</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-cpt:Observation/result-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:hasUltimateFeatureOfInterest</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-core:AbstractObservationCharacteristics/uFoI-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:implementedBy</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-cpt:ObservingProcedure/observer-sem , <br> sam-cpt:SamplingProcedure/sampler-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:implements</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-cpt:Observer/observingProcedure-sem , <br> sam-cpt:Sampling/samplingProcedure-sem , <br>
+        sam-cpt:PreparationStep/processingDetails-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:inDeployment</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-cpt:Host/deployment-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:isFeatureOfInterestOf</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-cpt:gen/relatedObservation-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:isObservedBy</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-cpt:ObservableProperty/observer-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:isResultOf</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-cpt:gen/relatedObservation-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:isSampleOf</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">sam-cpt:Sample/sampledFeature-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:isSampleOfUltimateFOI</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">sam-cpt:Sample/sampledFeature-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:madeBySampler</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">sam-cpt:Sampling/sampler-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:madeBySensor</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-cpt:Observation/observer-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:madeObservation</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-cpt:gen/relatedObservation-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa-oms:madeOnPlatform</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-cpt:Observation/host-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:madeSampling</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">sam-cpt:Sampler/sampling-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa-oms:metadata</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-core:gen/metadata-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa-oms:observationType</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-core:AbstractObservationCharacteristics/type-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:observedProperty</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-cpt:Observation/observedProperty-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:observes</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-cpt:Observer/observableProperty-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:phenomenonTime</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-cpt:Observation/phenomenonTime-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa-oms:preparedSample</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">sam-cpt:PreparationStep/preparedSample-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa-oms:processingDetails</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">sam-cpt:PreparationStep/processingDetails-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:relatedObservation</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-cpt:gen/relatedObservation-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa-oms:relatedSampling</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">sam-cpt:Sampling/relatedSampling-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:resultQuality</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-core:AbstractObservationCharacteristics/resultQuality-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:resultTime</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-cpt:Observation/resultTime-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa-oms:samplePreparationStep</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">sam-cpt:PreparationProcedure/samplePreparationStep-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:usedForExecution</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-cpt:gen/relatedObservation-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:usedProcedure</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-cpt:Observation/observingProcedure-sem , <br> sam-cpt:Sampling/samplingProcedure-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa-oms:validTime</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-cpt:Observation/validTime-sem</span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:wasObservedBy</a></span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs">obs-cpt:gen/relatedObservation-sem</span>
+    </li>
+  </ul>
+</section>
+
+<section id="OMS-Property-OMS">
+  <h4>Property Alignments &mdash; OMS focus</h4>
+  <p>
+    The following attributes and association roles from OMS are implemented by properties from the SSN Ontology and
+    this extension as indicated: </p>
+  <ul class="align-on-symbol align-on-symbol-long">
+    <li>
+      <span class="lhs">obs-core:gen/metadata-sem</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa-oms:metadata</a></span>
+    </li>
+    <li>
+      <span class="lhs">obs-cpt:gen/relatedObservation-sem</span>
+      <span class="symbol">ogc-ms:implementedBy</span>
+      <span class="rhs"><a>sosa:isFeatureOfInterestOf</a>,
+        <br> <a>sosa:isResultOf</a>,
+        <br> <a>sosa:madeObservation</a>,
+        <br> <a>sosa:relatedObservation</a>,
+        <br> <a>sosa:usedForExecution</a>,
+        <br> <a>sosa:wasObservedBy</a>,
+        <br> ( <a>sosa:deployedSystem</a> <span class="logic">o</span> <a>sosa:madeObservation</a> ),
+        <br> ( <a>sosa:hosts</a> <span class="logic">o</span> <a>sosa:madeObservation</a> )</span>
+    </li>
+    <li>
+      <span class="lhs">obs-core:AbstractObservationCharacteristics/resultQuality-sem</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:resultQuality</a></span>
+    </li>
+    <li>
+      <span class="lhs">obs-core:AbstractObservationCharacteristics/type-sem</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa-oms:observationType</a></span>
+    </li>
+    <li>
+      <span class="lhs">obs-core:AbstractObservationCharacteristics/pFoI-sem</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:hasFeatureOfInterest</a></span>
+    </li>
+    <li>
+      <span class="lhs">obs-core:AbstractObservationCharacteristics/uFoI-sem</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:hasUltimateFeatureOfInterest</a></span>
+    </li>
+    <li>
+      <span class="lhs">obs-cpt:Deployment/host-sem</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:deployedOnPlatform</a></span>
+    </li>
+    <li>
+      <span class="lhs">obs-cpt:Deployment/observer-sem</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:deployedSystem</a></span>
+    </li>
+    <li>
+      <span class="lhs">obs-cpt:Host/deployment-sem</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:inDeployment</a></span>
+    </li>
+    <li>
+      <span class="lhs">obs-cpt:ObservableProperty/observer-sem</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:isObservedBy</a></span>
+    </li>
+    <li>
+      <span class="lhs">obs-cpt:Observation/featureOfInterest-sem</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:hasFeatureOfInterest</a></span>
+    </li>
+    <li>
+      <span class="lhs">obs-cpt:Observation/host-sem</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa-oms:madeOnPlatform</a></span>
+    </li>
+    <li>
+      <span class="lhs">obs-cpt:Observation/observedProperty-sem</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:observedProperty</a></span>
+    </li>
+    <li>
+      <span class="lhs">obs-cpt:Observation/observer-sem</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:madeBySensor</a></span>
+    </li>
+    <li>
+      <span class="lhs">obs-cpt:Observation/observingProcedure-sem</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:usedProcedure</a></span>
+    </li>
+    <li>
+      <span class="lhs">obs-cpt:Observation/phenomenonTime-sem</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:phenomenonTime</a></span>
+    </li>
+    <li>
+      <span class="lhs">obs-cpt:Observation/result-sem</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:hasResult</a> , <br> <a>sosa:hasSimpleResult</a></span>
+    </li>
+    <li>
+      <span class="lhs">obs-cpt:Observation/resultTime-sem</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:resultTime</a></span>
+    </li>
+    <li>
+      <span class="lhs">obs-cpt:Observation/validTime-sem</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa-oms:validTime</a></span>
+    </li>
+    <li>
+      <span class="lhs">obs-basic:ObservationCollection/member-sem</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:hasMember</a></span>
+    </li>
+    <li>
+      <span class="lhs">obs-cpt:Observer/deployment-sem</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:hasDeployment</a></span>
+    </li>
+    <li>
+      <span class="lhs">obs-cpt:Observer/observableProperty-sem</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:observes</a></span>
+    </li>
+    <li>
+      <span class="lhs">obs-cpt:Observer/observingProcedure-sem</span>
+      <span class="symbol">ogc-ms:implementedBy</span>
+      <span class="rhs"><a>sosa:implements</a> ,
+        <br> <a>sosa:usedProcedure</a></span>
+    </li>
+    <li>
+      <span class="lhs">obs-cpt:ObservingProcedure/observer-sem</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:implementedBy</a></span>
+    </li>
+    <li>
+      <span class="lhs">sam-cpt:PreparationProcedure/samplePreparationStep-sem</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa-oms:samplePreparationStep</a></span>
+    </li>
+    <li>
+      <span class="lhs">sam-cpt:PreparationStep/preparedSample-sem</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa-oms:preparedSample</a></span>
+    </li>
+    <li>
+      <span class="lhs">sam-cpt:PreparationStep/processingDetails-sem</span>
+      <span class="symbol">ogc-ms:implementedBy</span>
+      <span class="rhs"><a>sosa:implements</a> ,
+        <br> <a>sosa-oms:processingDetails</a></span>
+    </li>
+    <li>
+      <span class="lhs">sam-cpt:Sample/preparationStep-sem</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa-oms:hasPreparationStep</a></span>
+    </li>
+    <li>
+      <span class="lhs">sam-cpt:Sample/sampledFeature-sem</span>
+      <span class="symbol">ogc-ms:implementedBy</span>
+      <span class="rhs"><a>sosa:isSampleOf</a> ,
+        <br> <a>sosa:isSampleOfUltimateFOI</a></span>
+    </li>
+    <li>
+      <span class="lhs">sam-basic:SampleCollection/member-sem</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:hasMember</a></span>
+    </li>
+    <li>
+      <span class="lhs">sam-cpt:Sampler/sampling-sem</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:madeSampling</a> , <br> <a>sosa:madeBySampler</a></span>
+    </li>
+    <li>
+      <span class="lhs">sam-cpt:Sampling/featureOfInterest-sem</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:hasFeatureOfInterest</a></span>
+    </li>
+    <li>
+      <span class="lhs">sam-cpt:Sampling/relatedSampling-sem</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa-oms:relatedSampling</a></span>
+    </li>
+    <li>
+      <span class="lhs">sam-cpt:Sampling/sample-sem</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:hasResult</a></span>
+    </li>
+    <li>
+      <span class="lhs">sam-cpt:SamplingProcedure/sampler-sem</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:implementedBy</a></span>
+    </li>
+    <li>
+      <span class="lhs">sam-cpt:Sampling/samplingProcedure-sem</span>
+      <span class="symbol">ogc-ms:implements</span>
+      <span class="rhs"><a>sosa:implements</a> , <br> <a>sosa:usedProcedure</a></span>
+    </li>
+  </ul>
+</section>

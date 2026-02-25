@@ -1,0 +1,71 @@
+@prefix equipment: <https://rdf.ag/o/equipment/> .
+@prefix ex: <https://example.org/data/> .
+@prefix gs1: <https://gs1.org/voc/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix qk: <http://qudt.org/vocab/quantitykind/> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix sosa-env: <http://www.w3.org/ns/sosa/system-environment-properties#> .
+@base <https://rdf.ag/o/equipment/> .
+
+# This example is a partial specification for a common over-the-shelf temperature and humidity sensor.  Different instantions can
+# be derived for each specific physical the product. 
+
+ex:InkBird-IBS-TH2 a owl:Class;
+    rdfs:label "Inkbird IBS-TH2"@en ;
+    rdfs:subClassOf gs1:Product, sosa:Platform, equipment:Equipment, <https://w3id.org/seas/BluetoothCommunicationDevice>;
+    gs1:pip <https://inkbird.com/products/hygrometer-ibs-th2> ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                      owl:onProperty sosa:hosts ;
+                      owl:allValuesFrom ex:IBSTH2TemperatureSensor 
+                    ] ;
+.
+ex:IBSTH2TemperatureSensor rdfs:subClassOf sosa:Sensor ;
+    rdfs:label "Inkbird IBS-TH2 built-in Temperature Sensor"@en ;
+    sosa:observes ex:airTemperature ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                      owl:onProperty sosa:hasOperatingConditions ;
+                      owl:allValuesFrom ex:IBSTH2TemperatureSensorLimits 
+                    ] ;
+    rdfs:subClassOf [ a owl:Restriction ;
+                      owl:onProperty sosa:hasOperatingConditions ;
+                      owl:allValuesFrom ex:IBSTH2SurvivalRange 
+                    ] ;
+.
+ex:IBSTH2TemperatureSensorLimits a sosa:ObservationCollection , sosa:NormalOperatingConditions ;
+    rdfs:label "Inkbird IBS-TH2 Temperature Sensor Limits"@en ;
+    sosa:hasMember [
+      sosa:observedProperty sosa-env:MinAmbientTemperature ;
+      sosa:hasResult [ 
+        qudt:value -40.0 ;
+        qudt:hasUnit unit:DEG_C ;
+      ] ;
+    ] , [
+      sosa:observedProperty sosa-env:MaxAmbientTemperature ;
+      sosa:hasResult [ 
+        qudt:value 60.0 ;
+        qudt:hasUnit unit:DEG_C ;
+      ] ;
+    ]
+.
+# Physical limits of the sensor (and platform) where structural failure occurs.
+ex:IBSTH2SurvivalRange a sosa:ObservationCollection , sosa:SurvivableConditions ;
+    rdfs:label "Inkbird IBS-TH2 Failiure limits"@en ;
+    sosa:hasMember [
+      sosa:observedProperty sosa-env:MinAmbientTemperature ;
+      sosa:hasResult [ 
+        qudt:value -273.0 ;
+        qudt:hasUnit unit:DEG_C ;
+      ] ;
+    ] , [
+      sosa:observedProperty sosa-env:MaxAmbientTemperature ;
+      sosa:hasResult [ 
+        qudt:value 80.0 ;
+        qudt:hasUnit unit:DEG_C ;
+      ] ;
+    ]
+.

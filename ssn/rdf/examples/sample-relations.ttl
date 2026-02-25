@@ -1,0 +1,34 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix relex: <https://example.org/data/sample-relations#> .
+@prefix sosa-rel: <http://www.w3.org/ns/sosa/sampling/> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@base <https://example.org/data/sample-relations> .
+
+<https://example.org/data/sample-relations>
+  rdf:type owl:Ontology ;
+  owl:imports <http://www.w3.org/ns/sosa/sam/> ;
+.
+relex:CSRWA25569
+  rdf:type sosa:Sample ;
+  rdfs:label "Specimen CSRWA25569" ;
+.
+relex:CSRWA25569-mount7
+  rdf:type sosa:Sample ;
+  rdfs:label "CSRWA25569 mount 7" ;
+  sosa:isSampleOf relex:CSRWA25569 ;
+.
+relex:CSRWA25569-mount7-spot1
+  rdf:type sosa:Sample ;
+  rdfs:label "spot 1" ;
+  sosa-rel:hasSampleRelationship [
+      rdf:type sosa-rel:SampleRelationship ;
+      sosa-rel:natureOfRelationship [
+          rdf:type sosa-rel:RelationshipNature ;
+          rdfs:comment "probe spot on polished mount" ;
+        ] ;
+      sosa-rel:relatedSample relex:CSRWA25569-mount7 ;
+    ] ;
+.

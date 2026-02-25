@@ -1,0 +1,61 @@
+@prefix ex: <https://example.org/data/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix qk: <http://qudt.org/vocab/quantitykind/> .
+@prefix qudt: <http://qudt.org/schema/qudt/>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+@prefix sosa: <http://www.w3.org/ns/sosa#> .
+@prefix unit: <http://qudt.org/vocab/unit/>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@base <https://example.org/data/IDEA/> .
+
+# Temperature and Humidity at Coal Oil Point Reserve
+
+ ex:COPR a sosa:FeatureOfInterest ;
+   sosa:hasSample ex:COPR_SL ;
+   rdfs:comment "Coal Oil Point Reserve: UC Santa Barbara Natural Reserve System"@en ;
+   rdfs:label "Coal Oil Point Reserve"@en ;
+.
+ex:COPR_SL a sosa:Sample ;
+   rdfs:label "Air around COPR Station"@en ;
+   sosa:isSampleOf ex:COPR ;
+.
+ex:COPR_Station a sosa:Platform ;
+   rdfs:comment "Station at Coal Oil Point Reserve, CA (see http://www.geog.ucsb.edu/ideas/COPR.html for details)"@en ;
+   rdfs:label "Coal Oil Point Reserve Wx Station"@en ;
+   rdfs:seeAlso <http://www.geog.ucsb.edu/ideas/COPR.html> ;
+   sosa:hosts ex:COPR-HMP45C-L ;
+.
+ex:COPR-HMP45C-L a sosa:Platform ;
+   rdfs:label "HMP45C-L Temperature and Relative Humidity Probe at Coal Oil Point, UCSB, CA"@en ;
+   sosa:hosts ex:HUMICAP-H ;
+   sosa:isHostedBy ex:COPR_Station ;
+.
+ex:HUMICAP-H a sosa:Sensor ;
+   rdfs:label "Vaisala HUMICAP H-chip"@en ;
+   sosa:observes ex:RelativeHumidity ;
+   sosa:isHostedBy ex:COPR-HMP45C-L ;
+.
+ex:RelativeHumidity a sosa:Property ;
+   rdfs:comment "Humidity is a measure of the moisture content of air."@en ;
+   rdfs:label "Relative Humidity"@en ;
+   skos:exactMatch qk:RelativeHumidity ;
+.
+ex:MeasuringRelativeHumidity a sosa:ObservingProcedure ;
+   rdfs:comment "Instructions for measuring relative humidity"@en ;
+   rdfs:comment "Relative humidity as averaged over 15min."@en ;
+.
+ex:RH_avg_1_COPR_15min_201706020300PM a sosa:Observation ;
+   rdfs:label "Relative humidity, AVG, 15min, COPR, 06.02.2017, 3:00 PM"@en ;
+   sosa:madeBySensor ex:HUMICAP-H ;
+   sosa:hasFeatureOfInterest ex:COPR_SL ;
+   sosa:hasResult [
+      a qudt:QuantityValue ;
+      qudt:hasUnit unit:PERCENT ;
+      qudt:value 92.5 ;
+   ] ;
+   sosa:resultTime "2017-06-02T15:00:00-07:00"^^xsd:dateTime ;
+   sosa:observedProperty ex:RelativeHumidity ;
+   sosa:usedProcedure ex:MeasuringRelativeHumidity ;
+.

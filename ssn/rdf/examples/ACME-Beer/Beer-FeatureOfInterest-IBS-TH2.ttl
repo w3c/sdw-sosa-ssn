@@ -1,0 +1,30 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix sosa-env: <http://www.w3.org/ns/sosa/system-environment-properties#> .
+@prefix beer: <https://rdf.ag/o/beer#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix sensor: <https://example.org/sensor/> .
+@base <http://example.org/data/> .
+
+# A (virtual) sample of air within the six pack
+<10/PO202402/21/0001/acmePorterSixPackAirSample> a sosa:Sample ;
+    rdfs:label "Air within the six pack"@en ;
+    sosa:isSampleOf <10/PO202402/21/0001/acmePorterSixPack> .
+
+# A (virtual) sample of the beer from the six pack, implicitly assumes that the
+# sample is representative of the contents of all bottles. 
+<10/PO202402/21/0001/acmePorterSixPackBeerSample> a  sosa:FeatureOfInterest, sosa:Sample, beer:Porter ;
+    rdfs:label "A (virtual) sample of beer within the six pack"@en ;
+    sosa:isSampleOf <10/PO202402/21/0001/acmePorterSixPack> .
+
+# We define this as the beer temperature, but ontologically it is a 
+# generic definition for the temperature of the sample.
+<10/PO202402/21/0001/BeerTemperature> a sosa:Property ;
+    qudt:hasUnit unit:DEG_C ;
+    sosa:isPropertyOf <10/PO202402/21/0001/acmePorterSixPackBeerSample> ;
+    rdfs:label "Biertemperatur"@de, "Beer Temperature"@en, "Température de la bière"@fr ;
+    skos:definition "Temperature of Beer."@en .

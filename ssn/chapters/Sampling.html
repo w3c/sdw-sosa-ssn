@@ -1,0 +1,1217 @@
+<h3>Sampling</h3>
+
+<section class="informative" id="Samplings-overview">
+    <h4>Overview</h4>
+    <p>
+        <a href="#Fig-Sampling"></a> provides an overview of the core classes
+        and properties that are specifically related to modeling Samplings.
+    </p>
+    <figure id="Fig-Sampling">
+        <embed
+            alt="Sampling and samples diagram; showing Sampling, SamplingCollection, Procedure, Sampler, Sample, SampleCollection, FeatureOfInterest"
+            src="images/Sampling.svg" style="width:100%" />
+        <figcaption>
+            Classes and relationships involved in Sampling
+            <br>
+            <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
+        </figcaption>
+    </figure>
+
+</section>
+
+<section id="Sampling-specification">
+    <h4>Specification</h4>
+
+    <p>
+        This section introduces the following classes and properties:</p>
+    <div class="azlist">
+        <p>
+            <a>sosa:Sample</a>,
+            <a>sosa:MaterialSample</a>,
+            <a>sosa:SpatialSample</a>,
+            <a>sosa:StatisticalSample</a>,
+            <a>sosa:SampleCollection</a>,
+            <a>sosa:Sampler</a>,
+            <a>sosa:Sampling</a>,
+            <a>sosa:SamplingCollection</a>,
+            <a>sosa:SamplingProcedure</a>,
+            <a>sosa:featureHasUltimateSample</a>,
+            <a>sosa:hasOriginalSample</a>,
+            <a>sosa:hasSample</a>,
+            <a>sosa:isOriginalSampleOf</a>,
+            <a>sosa:isResultOfMadeBySampler</a>,
+            <a>sosa:isResultOfUsedProcedure</a>,
+            <a>sosa:isSampleOf</a>,
+            <a>sosa:isSampleOfUltimateFOI</a>,
+            <a>sosa:madeBySampler</a>,
+            <a>sosa:madeSampling</a>,
+            <a>sosa:madeSamplingHasResult</a>,
+            <a>sosa:usedForExecutionHasResult</a>
+        </p>
+    </div>
+
+    <section class="specterm sosa" id="SOSASample">
+        <h5><dfn>sosa:Sample</dfn></h5>
+        <p class="crossreference">
+            <strong>IRI:</strong> http://www.w3.org/ns/sosa/Sample
+        </p>
+        <p>
+            <strong>an OWL Class</strong>
+        </p>
+        <p>
+            <em>Sample</em> &mdash;
+            piece or subset that is intended to be representative of a FeatureOfInterest
+        </p>
+        <p>Three specializations of <a>sosa:Sample</a> are provided:</p>
+        <ul>
+            <li><a>sosa:MaterialSample</a></li>
+            <li><a>sosa:SpatialSample</a></li>
+            <li><a>sosa:StatisticalSample</a></li>
+        </ul>
+
+        <figure id="Fig-SampleSpecializations">
+            <embed alt="Sample specializations" src="images/SampleSpecializations.svg" style="width:75%" />
+            <figcaption>
+                Specialized sample types: MaterialSample, SpatialSample, StatisticalSample
+                <br>
+                <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
+            </figcaption>
+        </figure>
+
+        <p class="note">
+            A Sample may have a geographic location.
+            See <a href="#ModelLocation">Location and Geometry</a> for patterns to describe this.</p>
+        <p class="note">
+            In the previous edition Sample was axiomatized as a sub-class of
+            <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a>.
+            The subclass relationship is removed in this edition.
+            See <a href="#ModelDomainTypes">Domain types and FeatureOfInterest</a> for a discussion of the relationship
+            between types and <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a>.
+        </p>
+        <dl>
+            <dt>Comment</dt>
+            <dd>Samples are typically subsets or extracts from an entity or feature.
+                Every sample is expected to (eventually) be the feature of interest of an Observation.
+                <br><br>
+                Samples are used in situations where observations cannot be made directly on the ultimate
+                feature of interest, either because the entire feature cannot be observed, or because it is
+                more convenient to use a proxy.
+                Samples are thus artifacts of an observational strategy, and have no significant function
+                outside of their role in the observation process.
+                The characteristics of the samples themselves are of little interest, except perhaps to the
+                manager of a sampling campaign.
+                <br><br>
+                A Sample is intended to sample some FatureOfInterest, so there is an expectation of at least
+                one isSampleOf property.
+                However, in some cases the identity, and even the exact type, of the sampled feature may not
+                be known when observations are made using the sample.
+                <br><br>
+                Physical samples are sometimes known as 'specimens'.
+                A transient sample, such as a ships-track or flight-line, might be identified and described, but
+                is unlikely to be revisited exactly.
+            </dd>
+            <dt>Examples</dt>
+            <dd>A 'station' is a spatial sample, in the form of an identifiable locality where a
+                <a href="#SOSASensor">Sensor</a> system or procedure may be deployed and an observation made.
+                In the context of the observation model, it connotes the 'world in the vicinity of the station',
+                so the observed properties relate to the physical medium at the station, and not to any physical
+                artifact such as a mooring, buoy, benchmark, monument, well, etc.
+                <br><br>
+                A statistical sample is often designed to be characteristic of an entire population, so that
+                <a href="#SOSAObservation">Observations</a> can be made regarding the sample that provide a good
+                estimate of the properties of the population.
+            </dd>
+            <dt class="ssn restrictions">Restrictions in SSN</dt>
+            <dd class="ssn">
+                <a>sosa:isResultOf</a> <em><b>ONLY</b></em> (<a>sosa:Sampling</a> <em><b>or</b></em> <a>sosa:SamplingCollection</a>)
+                <br>
+                <a>sosa:isSampleOf</a> <em><b>ONLY</b></em> <a>sosa:FeatureOfInterest</a>
+                <br>
+                <a>sosa:isSampleOf</a> <em><b>MIN 1</b></em>
+                <br>
+                <a>sosa:hasOriginalSample</a> <em><b>ONLY</b></em> <a>sosa:Sample</a>
+                <br>
+                <a>sosa:isSampleOfUltimateFOI</a> <em><b>ONLY</b></em> <a>sosa:FeatureOfInterest</a>
+                <br>
+                <a>sosa:isResultOfMadeBySampler</a> <em><b>ONLY</b></em> <a>sosa:Sampler</a>
+                <br>
+                <a>sosa:isResultOfUsedProcedure</a> <em><b>ONLY</b></em> <a>sosa:SamplingProcedure</a>
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>
+            </dd>
+        </dl>
+
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Samplings-overview">Back to module overview</a>]</span>
+            <span class="back">[<a href="#Overview">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="informative specterm sosa" id="SOSAMaterialSample">
+        <h5><dfn>sosa:MaterialSample</dfn></h5>
+        <p class="crossreference">
+            <strong>IRI:</strong> http://www.w3.org/ns/sosa/MaterialSample
+        </p>
+        <p>
+            <strong>an OWL Class</strong>
+        </p>
+        <p class="warning">
+            MaterialSample added in the 2023 edition.
+            This term is non-normative, pending further implementation experience
+        </p>
+        <p>
+            <em>Material Sample</em> &mdash;
+            subset of a FeatureOfInterest that is physical (i.e., tangible)
+        </p>
+        <dl>
+            <dt>Subclass of</dt>
+            <dd>
+                sosa:Sample
+            </dd>
+            <dt>Examples</dt>
+            <dd>
+                A piece of rock, a blood sample, a water sample
+            </dd>
+            <dt>Note</dt>
+            <dd>
+                MaterialSamples that are curated and preserved are sometimes known as 'specimens'.
+                <br>
+                MaterialSamples may be destroyed in connexion with the observation act or a subsequent
+                preparation step.
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>
+            </dd>
+        </dl>
+
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Samplings-overview">Back to module overview</a>]</span>
+            <span class="back">[<a href="#Overview">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="informative specterm sosa" id="SOSASpatialSample">
+        <h5><dfn>sosa:SpatialSample</dfn></h5>
+        <p class="crossreference">
+            <strong>IRI:</strong> http://www.w3.org/ns/sosa/SpatialSample
+        </p>
+        <p>
+            <strong>an OWL Class</strong>
+        </p>
+        <p class="warning">
+            SpatialSample added in the 2023 edition.
+            This term is non-normative, pending further implementation experience
+        </p>
+        <p>
+            <em>Spatial Sample</em> &mdash;
+            subset of a FeatureOfInterest defined by its location and shape in space
+        </p>
+        <p>
+            When observations are made to estimate properties of a geospatial feature, particularly where the value of
+            a property varies within the scope of the feature, a SpatialSample is used.
+        </p>
+        <dl>
+            <dt>Subclass of</dt>
+            <dd>
+                sosa:Sample
+            </dd>
+            <dt>Examples</dt>
+            <dd>
+                borehole,
+                interval,
+                flightline,
+                lidar cloud,
+                map horizon,
+                microscope slide,
+                mine level,
+                mine,
+                observation well,
+                profile,
+                quadrat,
+                scene,
+                section,
+                spot,
+                station,
+                swath,
+                trajectory,
+                traverse
+            </dd>
+            <dt>Note</dt>
+            <dd>
+                Depending on accessibility and on the nature of the expected property variation, a
+                SpatialSample may extend in one, two or three spatial dimensions.
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>
+            </dd>
+        </dl>
+
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Samplings-overview">Back to module overview</a>]</span>
+            <span class="back">[<a href="#Overview">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="informative specterm sosa" id="SOSAStatisticalSample">
+        <h5><dfn>sosa:StatisticalSample</dfn></h5>
+        <p class="crossreference">
+            <strong>IRI:</strong> http://www.w3.org/ns/sosa/StatisticalSample
+        </p>
+        <p>
+            <strong>an OWL Class</strong>
+        </p>
+        <p class="warning">
+            StatisticalSample added in the 2023 edition.
+            This term is non-normative, pending further implementation experience
+        </p>
+        <p>
+            <em>Statistical Sample</em> &mdash;
+            subset of a FeatureOfInterest defined by the statistical process used to create it
+        </p>
+        <dl>
+            <dt>Subclass of</dt>
+            <dd>
+                sosa:Sample
+            </dd>
+            <dt>Examples</dt>
+            <dd>
+                The male or female subset of a population.
+            </dd>
+            <dt>Note</dt>
+            <dd>
+                StatisticalSamples usually apply to populations or other sets, of which a certain subset may be
+                of specific interest.
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>
+            </dd>
+        </dl>
+
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Samplings-overview">Back to module overview</a>]</span>
+            <span class="back">[<a href="#Overview">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="informative specterm sosa" id="SOSASampleCollection">
+        <h5><dfn>sosa:SampleCollection</dfn></h5>
+        <p class="crossreference">
+            <strong>IRI:</strong> http://www.w3.org/ns/sosa/SampleCollection
+        </p>
+        <p>
+            <strong>an OWL Class</strong>
+        </p>
+        <p class="warning">
+            SampleCollection added in the 2023 edition.
+            This term is non-normative, pending further implementation experience
+        </p>
+        <p>
+            <em>Sample Collection</em> &mdash;
+            set of one or more Samples or SampleCollections; collections may be nested
+        </p>
+        <p>
+            All <a href="#SOSASample">Sample</a> properties may appear in a
+            <a>sosa:SampleCollection</a>, including:
+            <a>sosa:hasOriginalSample</a>,
+            <a>sosa:isSampleOfUltimateFOI</a>,
+            <a>sosa:isSampleOf</a>,
+            <a>sosa:isResultOfUsedProcedure</a>,
+            <a>sosa:isResultOfMadeBySampler</a>.
+            If they are present, the value of these properties summarize the values of the matching properties of the
+            member samples, where membership is either direct or transitive through one or more member sample
+            collections.
+        </p>
+        <p>
+            The following consistency rules apply to the Sample properties listed above:
+        </p>
+        <ol>
+            <li>
+                Where an individual <a href="#SOSASampleCollection">SampleCollection</a> <i>omits a property</i>, a
+                member <a href="#SOSASample">Sample</a> (direct or transitive) MAY have any value for that property.
+            </li>
+            <li>
+                Where an individual <a href="#SOSASampleCollection">SampleCollection</a> has <i>a single value for a
+                property</i>, each ember <a href="#SOSASample">Sample</a> (direct or transitive) MUST have that same
+                value for that property; i.e., the collection is homogeneous in that property. That property MAY
+                be omitted in any member <a href="#SOSASample">Sample</a> or
+                <a href="#SOSASampleCollection">SampleCollection</a>.
+            </li>
+            <li>
+                Where an individual <a href="#SOSASampleCollection">SampleCollection</a> has <i>more than one value
+                for a property</i>, each member <a href="#SOSASample">Sample</a> (direct or transitive) MUST have a
+                value for that property that matches one of the values for the property in the collection.
+            </li>
+            <li>
+                Where an individual <a href="#SOSASampleCollection">SampleCollection</a> <i>has a value for a
+                property that is a range or interval</i>, each member <a href="#SOSASample">Sample</a> (direct or
+                transitive) MUST have a value for that property that matches or falls within that range or interval.
+            </li>
+            <li>
+                Where an individual <a href="#SOSASampleCollection">SampleCollection</a> <i>has more than one value
+                for a property that is a range or interval</i>, each member <a href="#SOSASample">Sample</a> (direct
+                or transitive) MUST have a value for that property that matches or falls within one of those ranges or
+                intervals.
+            </li>
+        </ol>
+        <p>
+            The members of a collection do not necessarily share a common value for any property.
+        </p>
+        <p class="note">
+            Examples of Collections conforming to the rules are provided in and
+            <a href="#ModelCollectionRules">Collections and their members' property values</a>.
+            These illustrate all the cases described above.
+        </p>
+        <dl>
+            <dt>Note</dt>
+            <dd>
+                The members of a collection do not necessarily share a common value
+                for any property.
+            </dd>
+            <dt class="ssn">Disjoint with</dt>
+            <dd class="ssn">
+                <a>sosa:ActuationCollection</a> ,
+                <a>sosa:ObservationCollection</a> ,
+                <a>sosa:SamplingCollection</a>
+            </dd>
+            <dt class="ssn restrictions">Restrictions in SSN</dt>
+            <dd class="ssn">
+                <a>sosa:isResultOf</a> <em><b>ONLY</b></em> (<a>sosa:Sampling</a> <em><b>or</b></em> <a>sosa:SamplingCollection</a>)
+                <br>
+                <a>sosa:isSampleOf</a> <em><b>ONLY</b></em> <a>sosa:FeatureOfInterest</a>
+                <br>
+                <a>sosa:hasOriginalSample</a> <em><b>ONLY</b></em> <a>sosa:Sample</a>
+                <br>
+                <a>sosa:isSampleOfUltimateFOI</a> <em><b>ONLY</b></em> <a>sosa:FeatureOfInterest</a>
+                <br>
+                <a>sosa:isResultOfMadeBySampler</a> <em><b>ONLY</b></em> <a>sosa:Sampler</a>
+                <br>
+                <a>sosa:isResultOfUsedProcedure</a> <em><b>ONLY</b></em> <a>sosa:SamplingProcedure</a>
+                <br>
+                <a>sosa:hasMember</a> <em><b>ONLY</b></em>
+                (<a>sosa:Sample</a> <em><b>or</b></em> <a>sosa:SampleCollection</a>)
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>
+            </dd>
+        </dl>
+
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Samplings-overview">Back to module overview</a>]</span>
+            <span class="back">[<a href="#Overview">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="specterm sosa" id="SOSASampler">
+        <h5><dfn>sosa:Sampler</dfn></h5>
+        <p class="crossreference">
+            <strong>IRI:</strong> http://www.w3.org/ns/sosa/Sampler
+        </p>
+        <p>
+            <strong>an OWL Class</strong>
+        </p>
+        <p>
+            <em>Sampler</em> &mdash;
+            System that implements a SamplingProcedure to generate a Sample
+        </p>
+        <p class="note">
+            A Sampler may have a geographic location.
+            See <a href="#ModelLocation">Location and Geometry</a> for patterns to describe this.</p>
+
+        <dl>
+            <dt>Examples</dt>
+            <dd>
+                A ball mill, diamond drill, hammer, hypodermic syringe and needle, image
+                <a href="#SOSASensor">Sensor</a> or a soil auger can all act as
+                <a href="#SOSASampler">Samplers</a>.
+                Sometimes the distinction between the <a href="#SOSASampler">Sampler</a> and the
+                <a href="#SOSASampler">Sensor</a> is not evident, if they are packaged as a unit.
+            </dd>
+            <dt>Note</dt>
+            <dd>
+                A <a href="#SOSASampler">Sampler</a> need not be a physical device.
+            </dd>
+            <dt>Subclass of</dt>
+            <dd>
+                <a>sosa:System</a>
+            </dd>
+            <dt class="ssn restrictions">Restrictions in SSN</dt>
+            <dd class="ssn">
+                <a>sosa:implements</a> <em><b>ONLY</b></em> <a>sosa:SamplingProcedure</a>
+                <br>
+                <a>sosa:madeSampling</a> <em><b>ONLY</b></em>
+                (<a>sosa:Sampling</a> <em><b>or</b></em> <a>sosa:SamplingCollection</a>)
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>
+            </dd>
+        </dl>
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Samplings-overview">Back to module overview</a>]</span>
+            <span class="back">[<a href="#Overview">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="specterm sosa" id="SOSASampling">
+        <h5><dfn>sosa:Sampling</dfn></h5>
+        <p class="crossreference">
+            <strong>IRI:</strong> http://www.w3.org/ns/sosa/Sampling
+        </p>
+        <p>
+            <strong>an OWL Class</strong>
+        </p>
+        <p>
+            <em>Sampling</em> &mdash;
+            act of carrying out a SamplingProcedure using a Sampler to create one or more Samples of a FeatureOfInterest
+        </p>
+        <p class="note">
+            The different time-properties on a <a>sosa:Sampling</a> support the description of plans, forecasts, and
+            predictions, as well as descriptions of various historical scenarios.
+            See <a href="#ModelTimes">Temporal properties</a> for patterns related to these.
+        </p>
+        <dl>
+            <dt>Examples</dt>
+            <dd>
+                Drawing blood from a patient<br>
+                Drilling a core from an ice sheet<br>
+                Digging a pit through a soil sequence<br>
+                Dividing a field site into quadrants<br>
+                Drilling an observation well<br>
+                Establishing a station for environmental monitoring<br>
+                Registering an image of the landscape<br>
+                Sieving a powder to separate the subset finer than 100-mesh<br>
+                Selecting a subset of a population<br>
+                Splitting a piece of drill-core to create two new samples<br>
+                Taking a diamond-drill core from a rock outcrop<br>
+            </dd>
+            <dt>Subclass of</dt>
+            <dd>
+                <a>sosa:Execution</a>
+            </dd>
+            <dt class="ssn restrictions">Restrictions in SSN</dt>
+            <dd class="ssn">
+                <a>sosa:madeBySampler</a> <em><b>ONLY</b></em> <a>sosa:Sampler</a>
+                <br>
+                <a>sosa:usedProcedure</a> <em><b>ONLY</b></em> <a>sosa:SamplingProcedure</a>
+                <br>
+                <a>sosa:hasFeatureOfInterest</a> <em><b>ONLY</b></em> <a>sosa:FeatureOfInterest</a>
+                <br>
+                <a>sosa:hasResult</a> <em><b>ONLY</b></em> <a>sosa:Sample</a>
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>
+            </dd>
+        </dl>
+
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Samplings-overview">Back to module overview</a>]</span>
+            <span class="back">[<a href="#Overview">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="informative specterm sosa" id="SOSASamplingCollection">
+        <h5><dfn>sosa:SamplingCollection</dfn></h5>
+        <p class="crossreference">
+            <strong>IRI:</strong> http://www.w3.org/ns/sosa/SamplingCollection
+        </p>
+        <p>
+            <strong>an OWL Class</strong>
+        </p>
+        <p class="warning">
+            SamplingCollection added in 2023 Edition.
+            This term is non-normative pending further implementation experience</p>
+        <p>
+            <em>Sampling Collection</em> &mdash;
+            set of one or more Samplings or SamplingCollections; collections may be nested
+        </p>
+        <p>
+            All <a href="#SOSASampling">Sampling</a> properties may appear in an
+            <a>sosa:SamplingCollection</a>, including:
+            <a>sosa:hasFeatureOfInterest</a>,
+            <a>sosa:hasUltimateFeatureOfInterest</a>,
+            <a>sosa:madeBySampler</a>,
+            <a>sosa:usedProcedure</a>,
+            <a>sosa:hasInputValue</a>,
+            <a>sosa:startTime</a>,
+            <a>sosa:phenomenonTime</a>,
+            <a>sosa:resultTime</a>,
+            <a>sosa:hasResult</a>.
+            If they are present, the value of these properties summarize the values of the matching properties of
+            the member samplings, where membership is either direct or transitive through one or more member
+            sampling collections.
+        </p>
+        <p>
+            The following consistency rules apply to the Sampling properties listed above:
+        </p>
+        <ol>
+            <li>
+                Where an individual <a href="#SOSASamplingCollection">SamplingCollection</a> <i>omits a property</i>, a
+                member <a href="#SOSASampling">Sampling</a> (direct or transitive) MAY have any value for that property.
+            </li>
+            <li>
+                Where an individual <a href="#SOSASamplingCollection">SamplingCollection</a> has <i>a
+                single value for a property</i>, each member <a href="#SOSASampling">Sampling</a> (direct or transitive) MUST have that same value for that property; i.e., the collection is
+                homogeneous in that property.
+                That property MAY then be omitted in any member <a href="#SOSASampling">Sampling</a> or
+                <a href="#SOSASamplingCollection">SamplingCollection</a>.
+            </li>
+            <li>
+                Where an individual <a href="#SOSASamplingCollection">SamplingCollection</a> has <i>more than one value
+                for a property</i>, each member <a href="#SOSASampling">Sampling</a> (direct or transitive) MUST
+                have a value for that property that matches one of the values for the property in the collection.
+            </li>
+            <li>
+                Where an individual <a href="#SOSASamplingCollection">SamplingCollection</a> <i>has a value for a
+                property that is a range or interval</i>, each member <a href="#SOSASampling">Sampling</a> (direct
+                or transitive) MUST have a value for that property that matches or falls within that range or interval.
+            </li>
+            <li>
+                Where an individual <a href="#SOSASamplingCollection">SamplingCollection</a> <i>has more than one value
+                for a property that is a range or interval</i>, each member <a href="#SOSASampling">Sampling</a> (direct or transitive) MUST have a value for that property that matches or falls within one of those
+                ranges or intervals.
+            </li>
+        </ol>
+        <p>
+            The members of a collection do not necessarily share a common value for any property.
+        </p>
+        <p class="note">
+            Examples of Collections conforming to the rules are provided in and
+            <a href="#ModelCollectionRules">Collections and their members' property values</a>.
+            These illustrate all the cases described above.
+        </p>
+        <dl>
+            <dt>Subclass of</dt>
+            <dd>
+                <a>sosa:ExecutionCollection</a>
+            </dd>
+            <dt class="ssn">Disjoint with</dt>
+            <dd class="ssn">
+                <a>sosa:ActuationCollection</a>,
+                <a>sosa:ObservationCollection</a>,
+                <a>sosa:SampleCollection</a>
+            </dd>
+            <dt class="ssn restrictions">Restrictions in SSN</dt>
+            <dd class="ssn">
+                <a>sosa:madeBySampler</a> <em><b>ONLY</b></em> <a>sosa:Sampler</a>
+                <br>
+                <a>sosa:hasFeatureOfInterest</a> <em><b>ONLY</b></em> <a>sosa:FeatureOfInterest</a>
+                <br>
+                <a>sosa:hasResult</a> <em><b>ONLY</b></em> <a>sosa:Sample</a>
+                <br>
+                <a>sosa:usedProcedure</a> <em><b>ONLY</b></em> <a>sosa:SamplingProcedure</a>
+                <br>
+                <a>sosa:hasMember</a> <em><b>ONLY</b></em>
+                (<a>sosa:Sampling</a> <em><b>or</b></em> <a>sosa:SamplingCollection</a>)
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>
+            </dd>
+        </dl>
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Samplings-overview">Back to module overview</a>]</span>
+            <span class="back">[<a href="#Overview">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="informative specterm sosa" id="SOSASamplingProcedure">
+        <h5><dfn>sosa:SamplingProcedure</dfn></h5>
+        <p class="crossreference">
+            <strong>IRI:</strong> http://www.w3.org/ns/sosa/SamplingProcedure
+        </p>
+        <p>
+            <strong>an OWL Class</strong>
+        </p>
+        <p class="warning">
+            SamplingProcedure added in the 2023 Edition
+            This term is non-normative, pending further implementation experience
+        </p>
+        <p>
+            <em>Sampling Procedure</em> &mdash;
+            workflow, protocol, plan, algorithm, or computational method specifying how to make a Sampling
+        </p>
+        <p>
+            A Sampling Procedure is re-usable, and might be applied in many Samplings.
+            It explains the steps to be carried out to arrive at reproducible results.
+        </p>
+        <dl>
+            <dt>Subclass of</dt>
+            <dd>
+                <a>sosa:Procedure</a>
+            </dd>
+            <dt class="ssn restrictions">Restriction</dt>
+            <dd class="ssn">
+                <a>sosa:implementedBy</a>
+                <em><b>ONLY</b></em>
+                <a>sosa:Sampler</a>
+            </dd>
+            <dt>Examples</dt>
+            <dd>
+                spatial distribution of locations where to collect a sample (e.g., river segment)
+                <br>
+                instrument (or mode of use thereof) required to collect a sample (e.g., fish net, electric
+                stunner)
+                <br>
+                field work instructions (e.g., dig four boreholes in each cardinal direction 2 metre way from
+                the centre of the site; collect soil material from the 15-30 cm depth and mix it in a single
+                bag)
+            </dd>
+            <dt>Note</dt>
+            <dd>
+                [ISO 19156:2023] A SamplingProcedure shall be defined as the description of steps performed by a
+                Sampler in order to extract a Sample from its sampledFeature in the frame of a Sampling.
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a>
+            </dd>
+        </dl>
+
+
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Sampling">Back to module overview</a>]</span>
+            <span class="back">[<a href="#Overview">Back to top</a>]</span>
+        </div>
+    </section>
+
+
+    <section class="informative specterm sosa" id="SOSAfeatureHasUltimateSample">
+        <h5><dfn>sosa:featureHasUltimateSample</dfn></h5>
+        <p class="crossreference">
+            <strong>IRI:</strong> http://www.w3.org/ns/sosa/featureHasUltimateSample
+        </p>
+        <p>
+            <strong>an OWL Object Property</strong>
+        </p>
+        <p class="warning">
+            featureHasUltimateSample added in 2023 edition.
+            This term is non-normative, pending further implementation experience</p>
+        <p>
+            <em>feature has ultimate sample</em> &mdash;
+            relation from an ultimate FeatureOfInterest to a Sample or SampleCollection that is intended to be
+            representative of it; i.e., the end of a chain of hasSample relations
+        </p>
+        <p class="note">
+            Some examples of relationships between samples and features of interest within chains are
+            illustrated in <a href="#ModelSampleChains">Sample chains</a>.</p>
+        <dl>
+            <dt>Domain Includes</dt>
+            <dd>
+                <a>sosa:FeatureOfInterest</a>
+            </dd>
+            <dt>Range Includes</dt>
+            <dd>
+                <a>sosa:Sample</a>,
+                <a>sosa:SampleCollection</a>
+            </dd>
+            <dt>Inverse property of</dt>
+            <dd>
+                <a>sosa:isSampleOfUltimateFOI</a>
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>
+            </dd>
+        </dl>
+
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Samplings-overview">Back to module overview</a>]</span>
+            <span class="back">[<a href="#Overview">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="informative specterm sosa" id="SOSAhasOriginalSample">
+        <h5><dfn>sosa:hasOriginalSample</dfn></h5>
+        <p class="crossreference">
+            <strong>IRI:</strong> http://www.w3.org/ns/sosa/hasOriginalSample
+        </p>
+        <p>
+            <strong>an OWL Object Property</strong>
+        </p>
+        <p class="warning">
+            hasOriginalSample added in 2023 Edition.
+            This term is non-normative, pending further implementation experience</p>
+        <p>
+            <em>has original sample</em> &mdash;
+            relation from a Sample or SampleCollection to the initial Sample collected from the ultimate
+            FeatureOfInterest
+        </p>
+        <p class="note">Some examples of relationships between samples and features of interest within chains are
+            illustrated in <a href="#ModelSampleChains">Sample chains</a>.</p>
+        <dl>
+            <dt>Domain Includes</dt>
+            <dd>
+                <a>sosa:Sample</a>,
+                <a>sosa:SampleCollection</a>
+            </dd>
+            <dt>Range Includes</dt>
+            <dd>
+                <a>sosa:Sample</a>
+            </dd>
+            <dt>Inverse property of</dt>
+            <dd>
+                <a>sosa:isOriginalSampleOf</a>
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>
+            </dd>
+        </dl>
+
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Samplings-overview">Back to module overview</a>]</span>
+            <span class="back">[<a href="#Overview">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="specterm sosa" id="SOSAhasSample">
+        <h5><dfn>sosa:hasSample</dfn></h5>
+        <p class="crossreference">
+            <strong>IRI:</strong> http://www.w3.org/ns/sosa/hasSample
+        </p>
+        <p>
+            <strong>an OWL Object Property</strong>
+        </p>
+        <p>
+            <em>has sample</em> &mdash;
+            relation from a FeatureOfInterest to the Sample or SampleCollection used to represent it
+        </p>
+        <dl>
+            <dt>Domain Includes</dt>
+            <dd>
+                <a>sosa:FeatureOfInterest</a>
+            </dd>
+            <dt>Range Includes</dt>
+            <dd>
+                <a>sosa:Sample</a>
+            </dd>
+            <dt>Inverse property of</dt>
+            <dd>
+                <a>sosa:isSampleOf</a>
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>
+            </dd>
+        </dl>
+
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Samplings-overview">Back to module overview</a>]</span>
+            <span class="back">[<a href="#Overview">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="informative specterm sosa" id="SOSAisOriginalSampleOf">
+        <h5><dfn>sosa:isOriginalSampleOf</dfn></h5>
+        <p class="crossreference">
+            <strong>IRI:</strong> http://www.w3.org/ns/sosa/isOriginalSampleOf
+        </p>
+        <p>
+            <strong>an OWL Object Property</strong>
+        </p>
+        <p class="warning">
+            isOriginalSampleOf added in 2023 Edition.
+            This term is non-normative, pending further implementation experience</p>
+        <p>
+            <em>is original sample of</em> &mdash;
+            relation from the initial Sample collected from the ultimate FeatureOfInterest to a downstream Sample or
+            SampleCollection
+        </p>
+        <p class="note">
+            Some examples of relationships between samples and features of interest within chains are
+            illustrated in <a href="#ModelSampleChains">Sample chains</a>.</p>
+        <dl>
+            <dt>Domain Includes</dt>
+            <dd>
+                <a>sosa:Sample</a>
+            </dd>
+            <dt>Range Includes</dt>
+            <dd>
+                <a>sosa:Sample</a>,
+                <a>sosa:SampleCollection</a>
+            </dd>
+            <dt>Inverse property of</dt>
+            <dd>
+                <a>sosa:hasOriginalSample</a>
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>
+            </dd>
+        </dl>
+
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Samplings-overview">Back to module overview</a>]</span>
+            <span class="back">[<a href="#Overview">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="informative specterm sosa" id="SOSAisResultOfMadeBySampler">
+        <h5><dfn>sosa:isResultOfMadeBySampler</dfn></h5>
+        <p class="crossreference">
+            <strong>IRI:</strong> http://www.w3.org/ns/sosa/isResultOfMadeBySampler
+        </p>
+        <p>
+            <strong>an OWL Object Property</strong>
+        </p>
+
+        <p class="warning">
+            isResultOfMadeBySampler added in 2023 Edition.
+            This term is non-normative, pending further implementation experience</p>
+        <p>
+            <em>is a result of made by sampler</em> &mdash;
+            relation from a Sample or SampleCollection to the Sampler that made it
+        </p>
+        <dl>
+            <dt>Domain Includes</dt>
+            <dd>
+                <a>sosa:Sample</a>,
+                <a>sosa:SampleCollection</a>
+            </dd>
+            <dt>Range Includes</dt>
+            <dd>
+                <a>sosa:Sampler</a>
+            </dd>
+            <dt>Inverse property of</dt>
+            <dd>
+                <a>sosa:madeSamplingHasResult</a>
+            </dd>
+            <dt class="ssn">Super property of chain</dt>
+            <dd class="ssn">
+                <a>sosa:isResultOf</a> <b>o</b>
+                <a>sosa:madeBySampler</a>
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>
+            </dd>
+        </dl>
+
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Samplings-overview">Back to module overview</a>]</span>
+            <span class="back">[<a href="#Overview">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="informative specterm sosa" id="SOSAisResultOfUsedProcedure">
+        <h5><dfn>sosa:isResultOfUsedProcedure</dfn></h5>
+        <p class="crossreference">
+            <strong>IRI:</strong> http://www.w3.org/ns/sosa/isResultOfUsedProcedure
+        </p>
+        <p>
+            <strong>an OWL Object Property</strong>
+        </p>
+        <p class="warning">
+            isResultOfUsedProcedure added in 2023 Edition.
+            This term is non-normative, pending further implementation experience</p>
+        <p>
+            <em>is a result of used procedure</em> &mdash;
+            relation from a Sample or SampleCollection to the Procedure (plan) used to make it
+        </p>
+        <dl>
+            <dt>Domain Includes</dt>
+            <dd>
+                <a>sosa:Sample</a>,
+                <a>sosa:SampleCollection</a>
+            </dd>
+            <dt>Range Includes</dt>
+            <dd>
+                <a>sosa:SamplingProcedure</a>
+            </dd>
+            <dt>Inverse property of</dt>
+            <dd>
+                <a>sosa:usedForExecutionHasResult</a>
+            </dd>
+            <dt class="ssn">Super property of chain</dt>
+            <dd class="ssn">
+                <a>sosa:isResultOf</a> <b>o</b>
+                <a>sosa:usedProcedure</a>
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>
+            </dd>
+        </dl>
+
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Samplings-overview">Back to module overview</a>]</span>
+            <span class="back">[<a href="#Overview">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="specterm sosa" id="SOSAisSampleOf">
+        <h5><dfn>sosa:isSampleOf</dfn></h5>
+        <p class="crossreference">
+            <strong>IRI:</strong> http://www.w3.org/ns/sosa/isSampleOf
+        </p>
+        <p>
+            <strong>an OWL Object Property</strong>
+        </p>
+        <p>
+            <em>is sample of</em> &mdash;
+            relation from a Sample or SampleCollection to the FeatureOfInterest that it is intended to represent
+        </p>
+        <p class="note">
+            Some examples of relationships between samples and features of interest within chains are
+            illustrated in <a href="#ModelSampleChains">Sample chains</a>.</p>
+        <dl>
+            <dt>Domain Includes</dt>
+            <dd>
+                <a>sosa:Sample</a>,
+                <a>sosa:SampleCollection</a>
+            </dd>
+            <dt>Range Includes</dt>
+            <dd>
+                <a>sosa:FeatureOfInterest</a>
+            </dd>
+            <dt>Inverse property of</dt>
+            <dd>
+                <a>sosa:hasSample</a>
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>
+            </dd>
+        </dl>
+
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Samplings-overview">Back to module overview</a>]</span>
+            <span class="back">[<a href="#Overview">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="informative specterm sosa" id="SOSAisSampleOfUltimateFOI">
+        <h5><dfn>sosa:isSampleOfUltimateFOI</dfn></h5>
+        <p class="crossreference">
+            <strong>IRI:</strong> http://www.w3.org/ns/sosa/isSampleOfUltimateFOI
+        </p>
+        <p>
+            <strong>an OWL Object Property</strong>
+        </p>
+        <p class="warning">
+            isSampleOfUltimateFOI added in 2023 edition.
+            This term is non-normative, pending further implementation experience
+        </p>
+        <p>
+            <em>is sample of ultimate feature of interest</em> &mdash;
+            relation from a Sample or SampleCollection to the ultimate FeatureOfInterest that it is intended to be
+            representative of; i.e., the end of a chain of isSampleOf relations
+        </p>
+        <p class="note">
+            Some examples of relationships between samples and features of interest within chains are
+            illustrated in <a href="#ModelSampleChains">Sample chains</a>.
+        </p>
+        <p class="note">
+            isSampleOfUltimateFOI renames the property that was called hasSampledFeature in
+            Extensions to the Semantic Sensor Network Ontology [[vocab-ssn-ext]]
+        </p>
+        <dl>
+            <dt>Domain Includes</dt>
+            <dd>
+                <a>sosa:Sample</a>,
+                <a>sosa:SampleCollection</a>
+            </dd>
+            <dt>Range Includes</dt>
+            <dd>
+                <a>sosa:FeatureOfInterest</a>
+            </dd>
+            <dt>Inverse property of</dt>
+            <dd>
+                <a>sosa:featureHasUltimateSample</a>
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>
+            </dd>
+        </dl>
+
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Samplings-overview">Back to module overview</a>]</span>
+            <span class="back">[<a href="#Overview">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="specterm sosa" id="SOSAmadeBySampler">
+        <h5><dfn>sosa:madeBySampler</dfn></h5>
+        <p class="crossreference">
+            <strong>IRI:</strong> http://www.w3.org/ns/sosa/madeBySampler
+        </p>
+        <p>
+            <strong>an OWL Object Property</strong>
+        </p>
+        <p>
+            <em>made by sampler</em> &mdash;
+            relation from an act of Sampling to the Sampler that made it
+        </p>
+        <dl>
+            <dt>Subproperty of</dt>
+            <dd>
+                <a>sosa:madeBySystem</a>
+            </dd>
+            <dt>Domain Includes</dt>
+            <dd>
+                <a>sosa:Sampling</a>,
+                <a>sosa:SamplingCollection</a>
+            </dd>
+            <dt>Range Includes</dt>
+            <dd>
+                <a>sosa:Sampler</a>
+            </dd>
+            <dt>Inverse property of</dt>
+            <dd>
+                <a>sosa:madeSampling</a>
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>
+            </dd>
+        </dl>
+
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Samplings-overview">Back to module overview</a>]</span>
+            <span class="back">[<a href="#Overview">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="specterm sosa" id="SOSAmadeSampling">
+        <h5><dfn>sosa:madeSampling</dfn></h5>
+        <p class="crossreference">
+            <strong>IRI:</strong> http://www.w3.org/ns/sosa/madeSampling
+        </p>
+        <p>
+            <strong>an OWL Object Property</strong>
+        </p>
+        <p>
+            <em>made sampling</em> &mdash;
+            relation from a Sampler to the Sampling or SamplingCollection it has made
+        </p>
+        <dl>
+            <dt>Subproperty of</dt>
+            <dd>
+                <a>sosa:madeExecution</a>
+            </dd>
+            <dt>Domain Includes</dt>
+            <dd>
+                <a>sosa:Sampler</a>
+            </dd>
+            <dt>Range Includes</dt>
+            <dd>
+                <a>sosa:Sampling</a>,
+                <a>sosa:SamplingCollection</a>
+            </dd>
+            <dt>Inverse property of</dt>
+            <dd>
+                <a>sosa:madeBySampler</a>
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>
+            </dd>
+        </dl>
+
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Samplings-overview">Back to module overview</a>]</span>
+            <span class="back">[<a href="#Overview">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="informative specterm sosa" id="SOSAmadeSamplingHasResult">
+        <h5><dfn>sosa:madeSamplingHasResult</dfn></h5>
+        <p class="crossreference">
+            <strong>IRI:</strong> http://www.w3.org/ns/sosa/madeSamplingHasResult
+        </p>
+        <p>
+            <strong>an OWL Object Property</strong>
+        </p>
+        <p class="warning">
+            madeSamplingHasResult added in 2023 Edition.
+            This term is non-normative, pending further implementation experience</p>
+        <p>
+            <em>made sampling has result</em> &mdash;
+            relation from a Sampler to a Sample or SampleCollection made by it
+        </p>
+        <dl>
+            <dt>Domain Includes</dt>
+            <dd>
+                <a>sosa:Sampler</a>
+            </dd>
+            <dt>Range Includes</dt>
+            <dd>
+                <a>sosa:Sample</a>,
+                <a>sosa:SampleCollection</a>
+            </dd>
+            <dt>Inverse property of</dt>
+            <dd>
+                <a>sosa:isResultOfMadeBySampler</a>
+            </dd>
+            <dt class="ssn">Super property of chain</dt>
+            <dd class="ssn">
+                <a>sosa:madeSampling</a> <b>o</b>
+                <a>sosa:hasResult</a>
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>
+            </dd>
+        </dl>
+
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Samplings-overview">Back to module overview</a>]</span>
+            <span class="back">[<a href="#Overview">Back to top</a>]</span>
+        </div>
+    </section>
+
+    <section class="informative specterm sosa" id="SOSAusedForExecutionHasResult">
+        <h5><dfn>sosa:usedForExecutionHasResult</dfn></h5>
+        <p class="crossreference">
+            <strong>IRI:</strong> http://www.w3.org/ns/sosa/usedForExecutionHasResult
+        </p>
+        <p>
+            <strong>an OWL Object Property</strong>
+        </p>
+        <p class="warning">
+            usedForExecutionHasResult added in 2023 Edition.
+            This term is non-normative, pending further implementation experience</p>
+        <p>
+            <em>used for execution has result</em> &mdash;
+            relation from a Procedure to a Sample or SampleCollection made by it
+        </p>
+        <dl>
+            <dt>Domain Includes</dt>
+            <dd>
+                <a>sosa:SamplingProcedure</a>
+            </dd>
+            <dt>Range Includes</dt>
+            <dd>
+                <a>sosa:Sample</a>,
+                <a>sosa:SampleCollection</a>
+            </dd>
+            <dt>Inverse property of</dt>
+            <dd>
+                <a>sosa:isResultOfUsedProcedure</a>
+            </dd>
+            <dt class="ssn">Super property of chain</dt>
+            <dd class="ssn">
+                <a>sosa:usedForExecution</a> <b>o</b>
+                <a>sosa:hasResult</a>
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>
+            </dd>
+        </dl>
+
+        <div class="buttonpanel">
+            <span class="back">[<a href="#Samplings-overview">Back to module overview</a>]</span>
+            <span class="back">[<a href="#Overview">Back to top</a>]</span>
+        </div>
+    </section>
+
+</section>

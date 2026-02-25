@@ -1,0 +1,27 @@
+@prefix ex:   <http://example.org/>.
+@prefix sosa: <https://www.w3.org/TR/vocab-ssn/>.
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#>.
+@prefix qudt: <http://qudt.org/schema/qudt/>.
+@prefix unit: <http://qudt.org/vocab/unit/>.
+@prefix sosa-cap: <http://www.w3.org/ns/sosa/system-capability-properties#> .
+@prefix sosa-env: <http://www.w3.org/ns/sosa/system-environment-properties#> .
+
+ex:observation_233 a sosa:Observation ;
+  sosa:hasFeatureOfInterest ex:TheAir;
+  sosa:observedProperty sosa-env:AmbientTemperature;
+  sosa:madeBySensor ex:TemperatureSensor ;
+  sosa:resultQuality ex:observation_233_MeasurementAccuracy ;
+  sosa:hasResult [ 
+    qudt:value 21.4 ;
+    qudt:hasUnit unit:DEG_C ;
+  ] ;
+.
+   
+ex:observation_233_MeasurementAccuracy a sosa:Observation ;
+  sosa:hasFeatureOfInterest ex:observation_233 ;
+  sosa:observedProperty sosa-cap:TemperatureAccuracy ;
+  sosa:hasResult [ 
+    qudt:value 1.5 ;
+    qudt:hasUnit unit:DEG_C ;
+  ] ;
+.

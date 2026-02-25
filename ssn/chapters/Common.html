@@ -1,0 +1,2895 @@
+<h3>Common terms</h3>
+
+<section class="informative" id="Common-overview">
+    <h4>Overview</h4>
+    <p>
+        The <b>Common</b> module defines terms that are common across Sensing, Observation, Sampling and Actuation
+        applications.
+        Some of the classes in the Common module are used as-is in applications
+        (<a href="#SOSAFeatureOfInterest">FeatureOfInterest</a>, <a href="#SOSAProperty">Property</a>,
+        <a href="#SOSAPlatform">Platform</a>,
+        <a href="#SOSADeployment">Deployment</a>).
+        Other classes in the Common module are super-classes of more specific classes used in the application modules
+        (<a href="#SOSAExecution">Execution</a>, <a href="#SOSAProcedure">Procedure</a>, <a href="#SOSAAsset">Asset</a>,
+        and <a href="#SOSASystem">System</a>).
+        They all support the description of <a href="#SOSAActuation">Actuation</a>,
+        <a href="#SOSAObservation">Observation</a> and <a href="#SOSASampling">Sampling</a> instances using patterns
+        that are common across the applications.
+    </p>
+    <p>
+        The description of the Common module is organized into the following sections:
+    </p>
+    <ul>
+        <li><a href="#Features-of-Interest-and-Properties">Features of interest and their properties</a></li>
+        <li><a href="#Procedures">Procedures</a></li>
+        <li><a href="#Execution">Execution of procedures</a></li>
+        <li><a href="#Systems-and-their-Deployment">Systems and their Deployment</a></li>
+        <li><a href="#Collections">Collections</a></li>
+    </ul>
+</section>
+
+<section id="Features-of-Interest-and-Properties">
+    <h4>Features of Interest and Properties</h4>
+    <section class="informative" id="Features-of-Interest-and-Properties-overview">
+        <h5>Overview</h5>
+        <p>
+            <a href="#Fig-FeatureOfInterest"></a> provides an overview of the classes and properties related to modeling
+            Features of Interest and Properties.
+        </p>
+        <figure id="Fig-FeatureOfInterest">
+            <embed
+                alt="Features of Interest and Properties; showing Property, PropertyOfInterest, FeatureOfInterest, Execution"
+                src="images/FeatureOfInterest.svg" style="width: 100%;" />
+            <figcaption>
+                Classes and relationships related to features of interest and properties
+                <br>
+                <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
+            </figcaption>
+        </figure>
+    </section>
+
+    <section id="Features-of-Interest-and-Properties-specification">
+        <h5>Specification</h5>
+        <p>
+            This section introduces the following classes and properties:</p>
+        <div class="azlist">
+            <p>
+                <a>sosa:FeatureOfInterest</a>,
+                <a>sosa:Property</a>,
+                <a>sosa:forProperty</a>,
+                <a>sosa:hasProperty</a>,
+                <a>sosa:isFeatureOfInterestOf</a>,
+                <a>sosa:isPropertyOf</a>,
+                <a>sosa:isUltimateFeatureOfInterestOf</a>,
+                <a>sosa:propertyFor</a>
+            </p>
+        </div>
+
+        <section class="specterm sosa" id="SOSAFeatureOfInterest">
+            <h6><dfn>sosa:FeatureOfInterest</dfn></h6>
+            <p class="crossreference">
+                <strong>IRI:</strong> http://www.w3.org/ns/sosa/FeatureOfInterest
+            </p>
+            <p>
+                <strong>an OWL Class</strong>
+            </p>
+            <p>
+                <em>Feature Of Interest</em> &mdash;
+                entity that is the target of an Execution or Deployment
+            </p>
+            <p>
+                i.e., the entity whose property is being estimated by an Observation,
+                or whose property is being manipulated by an Actuation,
+                or which is being sampled or transformed by an act of Sampling,
+                or which is the target of Executions planned as part of a Deployment.
+            </p>
+            <p class="note">
+                The relationship between <a>sosa:FeatureOfInterest</a>,
+                and types or classes defined in a domain model is explained below in
+                <a href="#ModelDomainTypes">Domain types and FeatureOfInterest</a>
+            </p>
+            <p class="note">
+                A Feature of Interest may have a geographic location.
+                See <a href="#ModelLocation">Location and Geometry</a> for patterns to describe this.
+            </p>
+
+            <dl>
+                <dt>Example</dt>
+                <dd>
+                    When measuring the height of a tree, the
+                    <em>height</em>
+                    is the
+                    <a>sosa:observedProperty</a>,
+                    <em>20m</em>
+                    is the result of the
+                    <a>sosa:Observation</a>, and the
+                    <em>specific tree</em>
+                    is the
+                    <a>sosa:FeatureOfInterest</a>.
+                    <br>
+                    <br>
+                    A
+                    <em>specified window</em>
+                    is a
+                    <a>sosa:FeatureOfInterest</a> for an automatic window control
+                    <a>sosa:Actuation</a>.
+                </dd>
+                <dt class="ssn restrictions">Restrictions in SSN</dt>
+                <dd class="ssn">
+                    <a>sosa:isFeatureOfInterestOf</a>
+                    <em><b>SOME</b></em>
+                    (<a>sosa:Execution</a> <em><b>OR</b></em> <a>sosa:Deployment</a>)
+                    <br>
+                    <a>sosa:hasProperty</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:Property</a>
+                    <br>
+                    <a>sosa:hasSample</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:Sample</a>
+                    <br>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="specterm sosa" id="SOSAProperty">
+            <h6><dfn>sosa:Property</dfn></h6>
+            <p class="crossreference">
+                <strong>IRI:</strong> http://www.w3.org/ns/sosa/Property
+            </p>
+            <p>
+                <strong>an OWL Class</strong>
+            </p>
+            <p class="note">
+                The 2017 edition defined ActuatableProperty and ObservableProperty.
+                Those specializations of Property are deprecated in this 2023 edition.
+                <a>sosa:Property</a> should be used instead.
+            </p>
+            <p>
+                <em>Property</em> &mdash;
+                identifiable quality of features of interest that can be observed or acted upon
+            </p>
+            <p>
+                A property can apply to different features of interest.
+            </p>
+
+            <p class="note">
+                A model for the description of observable and actuatable Properties is outside the scope of the SSN
+                Ontology.
+                See <a href="#ModelPropertyDefinition">Property definitions</a> for links to some external resources
+                that address this, and to some catalogues and code lists whose members may be used as instances of
+                <a>sosa:Property</a>.
+            </p>
+
+            <dl>
+                <dt>Example</dt>
+                <dd>
+                    Cars (a feature type) have a property "colour"
+                    <br>
+                    Windows have a property "open state".
+                </dd>
+                <dt class="ssn restrictions">Restrictions in SSN</dt>
+                <dd class="ssn">
+                    <a>sosa:hasProcedure</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:Procedure</a>
+                    <br>
+                    <a>sosa:isPropertyOf</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:FeatureOfInterest</a>
+                    <br>
+                    <a>sosa:isActedOnBy</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:Actuator</a>
+                    <br>
+                    <a>sosa:wasActedOnBy</a>
+                    <em><b>ONLY</b></em>
+                    (<a>sosa:Actuation</a> <em><b>OR</b></em>
+                    <a>sosa:ActuationCollection</a>)
+                    <br>
+                    <a>sosa:isObservedBy</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:Sensor</a>
+                    <br>
+                    <a>sosa:wasObservedBy</a>
+                    <em><b>ONLY</b></em>
+                    (<a>sosa:Observation</a> <em><b>OR</b></em>
+                    <a>sosa:ObservationCollection</a>)
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="specterm" id="SOSAforProperty">
+            <h6><dfn>sosa:forProperty</dfn></h6>
+            <p class="crossreference">
+                <strong>IRI:</strong> http://www.w3.org/ns/sosa/forProperty
+            </p>
+            <p>
+                <strong>an OWL Object Property</strong>
+            </p>
+            <p>
+                <em>for property</em> &mdash;
+                relation from some Procedure or System to a Property it acts on or observes
+            </p>
+            <dl>
+                <dt>Example</dt>
+                <dd>
+                    from a
+                    <a href="#SOSASensor">Sensor</a> to the properties it can observe;
+                    <br>
+                    from an
+                    <a href="#SOSAActuator">Actuator</a> to the properties it can act on;
+                    <br>
+                    from a
+                    <a href="#SOSAProcedure">Procedure</a> to the properties it can observe or act
+                    on.
+                </dd>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:Procedure</a>,
+                    <a>sosa:System</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:Property</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:propertyFor</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="specterm" id="SOSAhasProperty">
+            <h6><dfn>sosa:hasProperty</dfn></h6>
+            <p class="crossreference">
+                <strong>IRI:</strong> http://www.w3.org/ns/sosa/hasProperty
+            </p>
+            <p>
+                <strong>an OWL Object Property</strong>
+            </p>
+            <p>
+                <em>has property</em> &mdash;
+                relation from an entity to a Property of that entity
+            </p>
+            <dl>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:FeatureOfInterest</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:Property</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:isPropertyOf</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="specterm sosa" id="SOSAisFeatureOfInterestOf">
+            <h6><dfn>sosa:isFeatureOfInterestOf</dfn></h6>
+            <p class="crossreference">
+                <strong>IRI:</strong> http://www.w3.org/ns/sosa/isFeatureOfInterestOf
+            </p>
+            <p>
+                <strong>an OWL Object Property</strong>
+            </p>
+            <p>
+                <em>is feature of interest of</em> &mdash;
+                relation from a FeatureOfInterest to an Execution, Execution Collection, or Deployment, operating on it
+            </p>
+            <p>
+                i.e., to an Observation about it, to an Actuation acting on it, to an act of Sampling that sampled it,
+                or to a Deployment for which it is the subject.
+            </p>
+            <dl>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:FeatureOfInterest</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:Deployment</a>,
+                    <a>sosa:Execution</a>,
+                    <a>sosa:ExecutionCollection</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:hasFeatureOfInterest</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="specterm" id="SOSAisPropertyOf">
+            <h6><dfn>sosa:isPropertyOf</dfn></h6>
+            <p class="crossreference">
+                <strong>IRI:</strong> http://www.w3.org/ns/sosa/isPropertyOf
+            </p>
+            <p>
+                <strong>an OWL Object Property</strong>
+            </p>
+            <p>
+                <em>is property of</em> &mdash;
+                relation from a Property to a FeatureOfInterest that it is a quality of
+            </p>
+            <dl>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:Property</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:FeatureOfInterest</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:hasProperty</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="informative specterm sosa" id="SOSAisUltimateFeatureOfInterestOf">
+            <h6><dfn>sosa:isUltimateFeatureOfInterestOf</dfn></h6>
+            <p class="crossreference">
+                <strong>IRI:</strong> http://www.w3.org/ns/sosa/isUltimateFeatureOfInterestOf
+            </p>
+            <p>
+                <strong>an OWL Object Property</strong>
+            </p>
+
+            <p class="warning">isUltimateFeatureOfInterestOf added in 2023 Edition.
+                This term is non-normative, pending further implementation experience</p>
+            <p>
+                <em>is ultimate feature of interest of</em> &mdash;
+                relation from an ultimate FeatureOfInterest to an Execution, ExecutionCollection, or Deployment, for
+                which it is the ultimate subject
+            </p>
+            <dl>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:FeatureOfInterest</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:Deployment</a>,
+                    <a>sosa:Execution</a>,
+                    <a>sosa:ExecutionCollection</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:hasUltimateFeatureOfInterest</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="specterm" id="SOSApropertyFor">
+            <h6><dfn>sosa:propertyFor</dfn></h6>
+            <p class="crossreference">
+                <strong>IRI:</strong> http://www.w3.org/ns/sosa/propertyFor
+            </p>
+            <p>
+                <strong>an OWL Object Property</strong>
+            </p>
+            <p>
+                <em>property for</em> &mdash;
+                relation from a Property to some Procedure or System that acts on it or observes it
+            </p>
+            <dl>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:Property</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:Procedure</a>,
+                    <a>sosa:System</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:forProperty</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+    </section>
+</section>
+
+<section id="Procedures">
+    <h4>Procedures</h4>
+    <section class="informative" id="Procedures-overview">
+        <h5>Overview</h5>
+        <div>
+            <p>
+                <a href="#Fig-Procedure"></a> provides an overview of the classes and properties related to modeling
+                Procedures.
+            </p>
+            <figure id="Fig-Procedure">
+                <embed alt="Procedure diagram; showing Procedure, Execution, Property, System"
+                    src="images/Procedure.svg" style="width: 100%;" />
+                <figcaption>Classes and relationships related to procedures
+                    <br>
+                    <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
+                </figcaption>
+            </figure>
+        </div>
+
+    </section>
+
+    <section id="Procedures-specification">
+        <h5>Specification</h5>
+        <p>
+            This section introduces the following classes and properties:</p>
+        <div class="azlist">
+            <p>
+                <a>sosa:Procedure</a>,
+                <a>sosa:hasInput</a>,
+                <a>sosa:hasOutput</a>,
+                <a>sosa:hasProcedure</a>,
+                <a>sosa:implementedBy</a>,
+                <a>sosa:inputFor</a>,
+                <a>sosa:isProcedureFor</a>,
+                <a>sosa:outputFor</a>,
+                <a>sosa:usedForExecution</a>
+            </p>
+        </div>
+
+        <section class="specterm sosa" id="SOSAProcedure">
+            <h6><dfn>sosa:Procedure</dfn></h6>
+            <p class="crossreference">
+                <strong>IRI:</strong> http://www.w3.org/ns/sosa/Procedure
+            </p>
+            <p>
+                <strong>an OWL Class</strong>
+            </p>
+            <p>
+                <em>Procedure</em> &mdash;
+                workflow, protocol, plan, algorithm, or computational method specifying how to make an Execution
+            </p>
+            <p>
+                A Procedure is re-usable, and might be applied in many Executions (Actuations, Observations, or
+                Samplings).
+                It explains the steps to be carried out to arrive at reproducible results.
+            </p>
+            <p class="note">
+                A specific model for the description of execution Procedures is outside the scope of the SSN
+                Ontology.
+            </p>
+            <dl>
+                <dt>Example</dt>
+                <dd>
+                    The measured
+                    <em>wind speed</em>
+                    differs depending on the height of the
+                    <a href="#SOSASensor">Sensor</a> above the surface, due to friction.
+                    For this reason, procedures for measuring wind speed define a standard height for
+                    anemometers above ground, typically 10m for meteorological measures and 2m in
+                    Agrometeorology.
+                    This definition of height,
+                    <a href="#SOSASensor">Sensor</a> placement, etc are defined by
+                    the
+                    <a href="#SOSAProcedure">Procedure</a>.
+                </dd>
+                <dt>Scope Note</dt>
+                <dd>
+                    Procedure generalizes the
+                    <a href="#SOSAActuatingProcedure">ActuatingProcedure</a>,
+                    <a href="#SOSAObservingProcedure">ObservingProcedure</a>, and
+                    <a href="#SOSASamplingProcedure">SamplingProcedure</a> classes.
+                    It is included in the ontology to support the definition of a common pattern for executions and
+                    their properties.
+                </dd>
+                <dt class="ssn restrictions">Restrictions in SSN</dt>
+                <dd class="ssn">
+                    <a>sosa:implementedBy</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:System</a>
+                    <br>
+                    <a>sosa:forProperty</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:Property</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="specterm sosa" id="SOSAhasInput">
+            <h6><dfn>sosa:hasInput</dfn></h6>
+            <p class="crossreference">
+                <strong>IRI:</strong> http://www.w3.org/ns/sosa/hasInput
+            </p>
+            <p>
+                <strong>an OWL Object Property</strong>
+            </p>
+            <p>
+                <em>has Input</em> &mdash;
+                relation from a Procedure to an input required for its execution
+            </p>
+            <dl>
+                <dt>Note</dt>
+                <dd>
+                    This property will typically describe the type of the inputs
+                    required to execute the Procedure.
+                </dd>
+                <dt>Note</dt>
+                <dd>
+                    An input might be a calibration or conditioning parameter,
+                    or the output of a previous procedure within an extended processing chain.
+                </dd>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:Procedure</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:inputFor</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="specterm sosa" id="SOSAhasOutput">
+            <h6><dfn>sosa:hasOutput</dfn></h6>
+            <p class="crossreference">
+                <strong>IRI:</strong> http://www.w3.org/ns/sosa/hasOutput
+            </p>
+            <p>
+                <strong>an OWL Object Property</strong>
+            </p>
+            <p>
+                <em>has Output</em> &mdash;
+                relation from a Procedure to an output of its execution
+            </p>
+            <dl>
+                <dt>Note</dt>
+                <dd>
+                    This property will typically describe the type of the result from
+                    executing the Procedure.
+                </dd>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:Procedure</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:outputFor</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="informative specterm sosa" id="SOSAhasProcedure">
+            <h6><dfn>sosa:hasProcedure</dfn></h6>
+            <p class="crossreference">
+                <strong>IRI:</strong> http://www.w3.org/ns/sosa/hasProcedure
+            </p>
+            <p>
+                <strong>an OWL Object Property</strong>
+            </p>
+            <p class="warning">hasProcedure added in the 2023 Edition.
+                This term is non-normative, pending further implementation experience</p>
+            <p>
+                <em>has Procedure</em> &mdash;
+                relation from a Property to a Procedure that can observe or act on it
+            </p>
+            <dl>
+                <dt>Subproperty of</dt>
+                <dd>
+                    <a>sosa:propertyFor</a>
+                </dd>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:Property</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:Procedure</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:isProcedureFor</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="specterm sosa" id="SOSAimplementedBy">
+            <h6><dfn>sosa:implementedBy</dfn></h6>
+            <p class="crossreference">
+                <strong>IRI:</strong> http://www.w3.org/ns/sosa/implementedBy
+            </p>
+            <p>
+                <strong>an OWL Object Property</strong>
+            </p>
+            <p>
+                <em>implemented by</em> &mdash;
+                relation from a Procedure to a System that is capable of executing it
+            </p>
+            <dl>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:Procedure</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:System</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:implements</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="informative specterm sosa" id="SOSAinputFor">
+            <h6><dfn>sosa:inputFor</dfn></h6>
+            <p class="crossreference">
+                <strong>IRI:</strong> http://www.w3.org/ns/sosa/inputFor
+            </p>
+            <p>
+                <strong>an OWL Object Property</strong>
+            </p>
+            <p class="warning">inputFor added in the 2023 Edition.
+                This term is non-normative, pending further implementation experience</p>
+            <p>
+                <em>input for</em> &mdash;
+                relation from an input to a Procedure that uses it in an Execution
+            </p>
+            <dl>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:Procedure</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:hasInput</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="informative specterm sosa" id="SOSAisProcedureFor">
+            <h6><dfn>sosa:isProcedureFor</dfn></h6>
+            <p class="crossreference">
+                <strong>IRI:</strong> http://www.w3.org/ns/sosa/isProcedureFor
+            </p>
+            <p>
+                <strong>an OWL Object Property</strong>
+            </p>
+            <p class="warning">isProcedureFor added in the 2023 Edition.
+                This term is non-normative, pending further implementation experience</p>
+            <p>
+                <em>is Procedure for</em> &mdash;
+                relation from a Procedure to a Property that it can observe or act on
+            </p>
+            <dl>
+                <dt>Subproperty of</dt>
+                <dd>
+                    <a>sosa:forProperty</a>
+                </dd>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:Procedure</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:Property</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:hasProcedure</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="informative specterm sosa" id="SOSAoutputFor">
+            <h6><dfn>sosa:outputFor</dfn></h6>
+            <p class="crossreference">
+                <strong>IRI:</strong> http://www.w3.org/ns/sosa/outputFor
+            </p>
+            <p>
+                <strong>an OWL Object Property</strong>
+            </p>
+            <p class="warning">outputFor added in 2023 Edition.
+                This term is non-normative, pending further implementation experience</p>
+            <p>
+                <em>output for</em> &mdash;
+                relation from an output to a Procedure that generates it in an Execution
+            </p>
+            <dl>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:Procedure</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:hasOutput</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="specterm sosa" id="SOSAusedForExecution">
+            <h6><dfn>sosa:usedForExecution</dfn></h6>
+            <p class="crossreference">
+                <strong>IRI:</strong> http://www.w3.org/ns/sosa/usedForExecution
+            </p>
+            <p>
+                <strong>an OWL Object Property</strong>
+            </p>
+            <p>
+                <em>used for execution</em> &mdash;
+                relation from a Procedure to an Execution or ExecutionCollection made using it
+            </p>
+            <dl>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:Procedure</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:Execution</a>,
+                    <a>sosa:ExecutionCollection</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:usedProcedure</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+    </section>
+</section>
+
+<section id="Execution">
+    <h4>Execution of Procedures</h4>
+    <section class="informative" id="Execution-overview">
+        <h5>Overview</h5>
+        <div>
+            <p>
+                <a href="#Fig-Execution"></a> provides an overview of the classes and properties related to modeling
+                Execution of Procedures.
+            </p>
+            <figure id="Fig-Execution">
+                <embed alt="Execution of Procedures diagram; showing Execution, System, FeatureOfInterest, Procedure"
+                    src="images/Execution.svg" style="width: 100%;" />
+                <figcaption>Classes and relationships related to execution of procedures.
+                    Note that for each specialized (concrete) Execution type
+                    (i.e., Actuation, Observation, Sampling),
+                    the matching specialized System and Procedure type shall be used
+                    (i.e., Actuator and ActuatingProcedure, Sensor and ObservingProcedure, Sampler and
+                    SamplingProcedure, respectively).
+                    <br>
+                    <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
+                </figcaption>
+            </figure>
+        </div>
+
+    </section>
+
+    <section id="Execution-specification">
+        <h5>Specification</h5>
+        <p>
+            This section introduces the following classes and properties:</p>
+        <div class="azlist">
+            <p>
+                <a>sosa:Execution</a>,
+                <a>sosa:ExecutionCollection</a>,
+                <a>sosa:endTime</a>,
+                <a>sosa:hasFeatureOfInterest</a>,
+                <a>sosa:hasInputValue</a>,
+                <a>sosa:hasResult</a>,
+                <a>sosa:hasSimpleResult</a>,
+                <a>sosa:hasUltimateFeatureOfInterest</a>,
+                <a>sosa:inputValueForExecution</a>,
+                <a>sosa:isResultOf</a>,
+                <a>sosa:madeBySystem</a>,
+                <a>sosa:phenomenonOccurred</a>,
+                <a>sosa:phenomenonTime</a>,
+                <a>sosa:resultTime</a>,
+                <a>sosa:startTime</a>,
+                <a>sosa:usedProcedure</a>
+            </p>
+        </div>
+
+        <section class="specterm sosa" id="SOSAExecution">
+            <h6><dfn>sosa:Execution</dfn></h6>
+            <p class="crossreference">
+                <strong>IRI:</strong> http://www.w3.org/ns/sosa/Execution
+            </p>
+            <p>
+                <strong>an OWL Class</strong>
+            </p>
+            <p>
+                <em>Execution</em> &mdash;
+                act of carrying out a Procedure using a System
+            </p>
+            <p class="note">The different time-properties on a <a>sosa:Execution</a> support
+                the description of plans, forecasts and predictions as well as descriptions of various historical
+                scenarios.
+                See <a href="#ModelTimes">Temporal properties</a> for patterns related to these.</p>
+            <dl>
+                <dt>Scope note</dt>
+                <dd>
+                    Execution generalizes the
+                    <a href="#SOSAActuation">Actuation</a>,
+                    <a href="#SOSAObservation">Observation</a>, and
+                    <a href="#SOSASampling">Sampling</a> classes.
+                    It is included in the ontology to support the definition of a common pattern for
+                    executions and their properties.
+                    <br>
+                    <br>
+                    Execution is considered to be abstract. 
+                    Individual Executions SHOULD be typed with one of the (concrete) sub-classes of Execution.
+                </dd>
+                <dt class="ssn restrictions">Restrictions in SSN</dt>
+                <dd class="ssn">
+                    <a>sosa:madeBySystem</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:System</a>
+                    <br>
+                    <a>sosa:usedProcedure</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:Procedure</a>
+                    <br>
+                    <a>sosa:hasFeatureOfInterest</a>
+                    <em><b>SOME</b></em>
+                    <a>sosa:FeatureOfInterest</a>
+                    <br>
+                    <a>sosa:hasFeatureOfInterest</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:FeatureOfInterest</a>
+                    <br>
+                    <a>sosa:hasUltimateFeatureOfInterest</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:FeatureOfInterest</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="informative specterm sosa" id="SOSAExecutionCollection">
+            <h6><dfn>sosa:ExecutionCollection</dfn></h6>
+            <p class="crossreference">
+                <strong>IRI:</strong> http://www.w3.org/ns/sosa/ExecutionCollection
+            </p>
+            <p>
+                <strong>an OWL Class</strong>
+            </p>
+            <p class="warning">ExecutionCollection added in the 2023 Edition
+                This term is non-normative, pending further implementation experience</p>
+            <p>
+                <em>Execution Collection</em> &mdash;
+                set of one or more Executions or ExecutionCollections; collections may be nested
+            </p>
+            <p>
+                All <a href="#SOSAExecution">Execution</a> properties may appear in an
+                <a href="#SOSAExecutionCollection">ExecutionCollection</a>, including:
+                <a href="#SOSAhasFeatureOfInterest">hasFeatureOfInterest</a>,
+                <a href="#SOSAusedProcedure">usedProcedure</a>,
+                <a href="#SOSAmadeBySystem">madeBySystem</a>,
+                <a href="#SOSAendTime">endTime</a>,
+                <a href="#SOSAresultTime">resultTime</a>,
+                <a href="#SOSAstartTime">startTime</a>.
+                If they are present, the value of these properties summarize the values of the matching properties
+                of the member Executions, where membership is either direct or transitive through one or more member
+                Execution collections.
+            </p>
+            <p>
+                The following consistency rules apply to the Execution properties listed above:
+            </p>
+            <ol>
+                <li>
+                    Where an individual <a href="#SOSAExecutionCollection">ExecutionCollection</a>
+                    <i>omits a property</i>, a member <a href="#SOSAExecution">Execution</a> (direct or
+                    transitive) MAY have any value for that property.
+                </li>
+                <li>
+                    Where an individual <a href="#SOSAExecutionCollection">ExecutionCollection</a> has <i>a single value
+                        for a property</i>, each member <a href="#SOSAExecution">Execution</a> (direct or transitive)
+                    MUST have that same value for that property &mdash; i.e., the collection (set) is homogeneous in
+                    that property.
+                    That property MAY then be omitted in any member <a href="#SOSAExecution">Execution</a> or
+                    <a href="#SOSAExecutionCollection">ExecutionCollection</a>.
+                </li>
+                <li>
+                    Where an individual <a href="#SOSAExecutionCollection">ExecutionCollection</a> has
+                    <i>more than one value for a property</i>, each member <a href="#SOSAExecution">Execution</a>
+                    (direct or transitive) MUST have a value for that property that matches one of the values for
+                    the property in the collection.
+                </li>
+                <li>
+                    Where an individual <a href="#SOSAExecutionCollection">ExecutionCollection</a>
+                    <i>has a value for a property that is a range or interval</i>, each member
+                    <a href="#SOSAExecution">Execution</a> (direct or transitive) MUST have a value for
+                    that property that matches or falls within that range or interval.
+                </li>
+                <li>
+                    Where an individual <a href="#SOSAExecutionCollection">ExecutionCollection</a>
+                    <i>has more than one value for a property that is a range or interval</i>, each member
+                    <a href="#SOSAExecution">Execution</a> (direct or transitive) MUST have a value for
+                    that property that matches or falls within one of those ranges or intervals.
+                </li>
+            </ol>
+            <p>
+                The members of a collection (set) do not necessarily share a common value for
+                any property.
+            </p>
+            <p class="note">
+                Examples of Collections conforming to the rules are provided in and
+                <a href="#ModelCollectionRules">Collections and their members' property values</a>.
+                These illustrate all the cases described above.
+            </p>
+            <dl>
+                <dt>Scope note</dt>
+                <dd>
+                    ExecutionCollection generalizes the
+                    <a href="#SOSAActuationCollection">ActuationCollection</a>,
+                    <a href="#SOSAObservationCollection">ObservationCollection</a>, and
+                    <a href="#SOSASamplingCollection">SamplingCollection</a> classes.
+                    It is included in the ontology to support the definition of a common pattern for
+                    executions and their properties.
+                    <br>
+                    <br>
+                    ExecutionCollection is considered to be abstract. 
+                    Individual execution collections SHOULD be typed with one of the (concrete) sub-classes of ExecutionCollection.
+                </dd>
+                <dt class="ssn restrictions">Restrictions in SSN</dt>
+                <dd class="ssn">
+                    <a>sosa:madeBySystem</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:System</a>
+                    <br>
+                    <a>sosa:usedProcedure</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:Procedure</a>
+                    <br>
+                    <a>sosa:hasFeatureOfInterest</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:FeatureOfInterest</a>
+                    <br>
+                    <a>sosa:hasUltimateFeatureOfInterest</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:FeatureOfInterest</a>
+                    <br>
+                    <a>sosa:hasMember</a>
+                    <em><b>ONLY</b></em>
+                    (<a>sosa:Execution</a> <em><b>OR</b></em>
+                    <a>sosa:ExecutionCollection</a>)
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Execution">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="informative specterm sosa" id="SOSAendTime">
+            <h6><dfn>sosa:endTime</dfn></h6>
+            <p class="crossreference">
+                <strong>IRI:</strong> http://www.w3.org/ns/sosa/endTime
+            </p>
+            <p>
+                <strong>an OWL Datatype Property</strong>
+            </p>
+            <p class="warning">endTime added in the 2023 Edition.
+                This term is non-normative, pending further implementation experience</p>
+            <p>
+                <em>end time</em> &mdash;
+                instant of time when the Execution or Deployment was ended or completed
+            </p>
+            <p>
+                The value would usually be encoded using
+                <a href="https://www.w3.org/TR/xmlschema-2/#dateTime">`xsd:dateTime`</a>,
+                <a href="https://www.w3.org/TR/xmlschema-2/#date">`xsd:date`</a>,
+                <a href="https://www.w3.org/TR/xmlschema-2/#gYearMonth">`xsd:gYearMonth`</a>,
+                and/or <a href="https://www.w3.org/TR/xmlschema-2/#gYear">`xsd:gYear`</a>.
+            </p>
+            <dl>
+                <dt>Example</dt>
+                <dd>
+                    <pre class="turtle">
+            "2024-01-23T19:26:00+11:00"^^xsd:dateTime
+            "2024-01-23"^^xsd:date
+            "2024-01"^^xsd:gMonth
+            "2024"^^xsd:gYear
+            </pre>
+                </dd>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:Deployment</a>,
+                    <a>sosa:Execution</a>,
+                    <a>sosa:ExecutionCollection</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="specterm sosa" id="SOSAhasFeatureOfInterest">
+            <h6><dfn>sosa:hasFeatureOfInterest</dfn></h6>
+            <p class="crossreference">
+                <strong>IRI:</strong> http://www.w3.org/ns/sosa/hasFeatureOfInterest
+            </p>
+            <p>
+                <strong>an OWL Object Property</strong>
+            </p>
+            <p>
+                <em>has feature of interest</em> &mdash;
+                relation from an Execution or Deployment to its subject entity
+            </p>
+            <p>
+                i.e., from an Actuation to the entity whose property was modified;
+                from an Observation to the entity whose quality was observed;
+                from an act of Sampling to the entity that was sampled;
+                or from a Deployment to its target
+            </p>
+            <p class="note">
+                The distinction between <a>sosa:hasFeatureOfInterest</a>, and
+                <a>sosa:hasUltimateFeatureOfInterest</a> is explored further in
+                <a href="#ModelFOI">Proximate and Ultimate feature of interest</a>
+            </p>
+
+            <dl>
+                <dt>Example</dt>
+                <dd>
+                    In an
+                    <a href="#SOSAObservation">Observation</a> of the weight of a person, the
+                    <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a> is the person, and
+                    the
+                    <a href="#SOSAobservedProperty">observedProperty</a> is its weight.
+                </dd>
+                <dt>Note</dt>
+                <dd>
+                    This is the
+                    <i>
+                        proximate
+                    </i>
+                    feature of interest.
+                    It may be a proxy entity such as a
+                    <i>
+                        sample
+                    </i>
+                    of the
+                    <i>
+                        ultimate
+                    </i>
+                    feature of
+                    interest.
+                    Use
+                    <a>sosa:hasUltimateFeatureOfInterest</a> if the intention is to link to the ultimate
+                    feature of interest.
+                </dd>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:Deployment</a>,
+                    <a>sosa:Execution</a>,
+                    <a>sosa:ExecutionCollection</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:FeatureOfInterest</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:isFeatureOfInterestOf</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="informative specterm sosa" id="SOSAhasInputValue">
+            <h6><dfn>sosa:hasInputValue</dfn></h6>
+            <p class="crossreference">
+                <strong>IRI:</strong> http://www.w3.org/ns/sosa/hasInputValue
+            </p>
+            <p>
+                <strong>an OWL Object Property</strong>
+            </p>
+            <p class="warning">hasInputValue added in the 2023 Edition.
+                This term is non-normative, pending further implementation experience.</p>
+            <p>
+                <em>has Input Value</em> &mdash;
+                assigns a value to an input defined by the Procedure that is used in an Execution
+            </p>
+            <dl>
+                <dt>Scope note</dt>
+                <dd>
+                    The input might be a calibration or conditioning parameter,
+                    or the output of a previous procedure within an extended processing chain.
+                </dd>
+                <dt>Note</dt>
+                <dd>
+                    The input value MUST be consistent with a hasInput definition
+                    from the corresponding Procedure
+                </dd>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:Execution</a>,
+                    <a>sosa:ExecutionCollection</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:inputValueForExecution</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="specterm sosa" id="SOSAhasResult">
+            <h6><dfn>sosa:hasResult</dfn></h6>
+            <p class="crossreference">
+                <strong>IRI:</strong> http://www.w3.org/ns/sosa/hasResult
+            </p>
+            <p>
+                <strong>an OWL Object Property</strong>
+            </p>
+            <p>
+                <em>has result</em> &mdash;
+                relation from an Execution to its result
+            </p>
+            <p>
+                In the case of an <a href="#SOSAActuation">Actuation</a>, the result may be the value
+                of the <a href="#SOSAProperty">Property</a> following the execution of
+                the <a href="#SOSAProcedure">Procedure</a> by the <a href="#SOSAActuator">Actuator</a>.
+            </p>
+            <p>
+                In the case of an <a href="#SOSAObservation">Observation</a>, the result is the value of
+                the <a href="#SOSAProperty">Property</a> produced by the execution of
+                the <a href="#SOSAProcedure">Procedure</a> by the <a href="#SOSASensor">Sensor</a>.
+            </p>
+            <p>
+                In the case of a <a href="#SOSASampling">Sampling</a>, the result is the
+                <a href="#SOSASample">Sample</a> produced by the execution of the
+                <a href="#SOSAProcedure">Procedure</a> by the <a href="#SOSASampler">Sampler</a>.
+            </p>
+            <p>
+                An <a href="#SOSAExecution">Execution</a> has a single result, therefore
+                <a>sosa:hasResult</a> is
+                <a href="https://www.w3.org/TR/owl2-syntax/#Functional_Object_Properties">Functional</a>.
+            </p>
+
+            <p class="note">The result of an actuation or observation may be a quantity.
+                See <a href="#ModelQuantity">Quantity Values and Units of Measure</a> for patterns to describe this.
+            </p>
+
+            <p class="note">The result of an observation may be a geometry.
+                See <a href="#ModelLocation">Location and Geometry</a> for patterns to describe this.</p>
+
+            <dl>
+                <dt>Note</dt>
+                <dd>
+                    The result value MUST be consistent with the hasOutput definition
+                    from the corresponding Procedure
+                </dd>
+                <dt>is</dt>
+                <dd>
+                    <a href="https://www.w3.org/TR/owl2-syntax/#Functional_Object_Properties">Functional</a>
+                </dd>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:Execution</a>,
+                    <a>sosa:ExecutionCollection</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    Any object,
+                    <br>
+                    <a>sosa:Sample</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:isResultOf</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="specterm sosa" id="SOSAhasSimpleResult">
+            <h6><dfn>sosa:hasSimpleResult</dfn></h6>
+            <p class="crossreference">
+                <strong>IRI:</strong> http://www.w3.org/ns/sosa/hasSimpleResult
+            </p>
+            <p>
+                <strong>an OWL Datatype Property</strong>
+            </p>
+            <p>
+                <em>has simple result</em> &mdash;
+                relation from an Execution to its value expressed as a literal
+            </p>
+            <p>
+                In the case of an <a>sosa:Actuation</a>, the result may be the value of the <a>sosa:Property</a>
+                following the execution of the <a href="#SOSAProcedure">Procedure</a> by the
+                <a href="#SOSAActuator">Actuator</a>.
+            </p>
+            <p>
+                In the case of an <a href="#SOSAObservation">Observation</a>, the result is the value produced by the
+                execution of the <a href="#SOSAProcedure">Procedure</a> by the <a href="#SOSASensor">Sensor</a>.
+            </p>
+            <p class="note">
+                The result of an actuation or observation may be a quantity.
+                See <a href="#ModelQuantity">Quantity Values and Units of Measure</a> for patterns to describe this.
+            </p>
+            <p class="note">
+                The result of an actuation or observation may be a geometry.
+                See <a href="#ModelLocation">Location and Geometry</a> for patterns to describe this.
+            </p>
+            <p class="warning">
+                Where a complex value is encoded as a literal, the processing environment must be configured to support
+                the specific literal format.
+                For example, geometries encoded as [[GeoSPARQL]] literals, or quantities encoded as [[CDT]] literals,
+                should only be used in cases where such a configuration is available, or where the value is to be passed
+                through unchanged.
+            </p>
+            <dl>
+                <dt>Note</dt>
+                <dd>
+                    This
+                    <a href="https://www.w3.org/TR/owl2-primer/#Datatypes">DatatypeProperty</a> provides an
+                    alternative to hasResult, to be used only if the execution result can be expressed as a
+                    <a href="https://www.w3.org/TR/rdf-schema/#ch_literal">Literal</a>
+                </dd>
+                <dt>Example</dt>
+                <dd>
+                    <pre class="turtle">
+            "89"^^xsd:integer
+            "true"^^xsd:boolean
+            "23.5 Cel"^^cdt:ucum
+            "Point (145.042316 -37.919134)"^^geo:wktLiteral
+            </pre>
+                </dd>
+                <dt>is</dt>
+                <dd>
+                    <a href="https://www.w3.org/TR/owl2-syntax/#Functional_Data_Properties">Functional</a>
+                </dd>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:Execution</a>,
+                    <a>sosa:ExecutionCollection</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="informative specterm" id="SOSAhasUltimateFeatureOfInterest">
+            <h6><dfn>sosa:hasUltimateFeatureOfInterest</dfn></h6>
+            <p class="crossreference"><strong>IRI:</strong>
+                http://www.w3.org/ns/sosa/hasUltimateFeatureOfInterest</p>
+            <p>
+                <strong>an OWL Object Property</strong>
+            </p>
+
+            <p class="warning">hasUltimateFeatureOfInterest added in 2023 edition.
+                This term is non-normative, pending further implementation experience
+            </p>
+            <p>
+                <em>has ultimate feature of interest</em> &mdash;
+                relation from a Deployment or Execution to its ultimate subject entity
+            </p>
+            <p>
+                i.e., from an Actuation to the ultimate entity whose property was modified;
+                from an Observation to the ultimate entity whose property was observed;
+                from an act of Sampling to the ultimate entity that was sampled;
+                or from a Deployment to its ultimate target
+            </p>
+            <p class="note">
+                The distinction between <a>sosa:hasFeatureOfInterest</a>, and <a>sosa:hasUltimateFeatureOfInterest</a>
+                is explored further in <a href="#ModelFOI">Proximate and Ultimate feature of interest</a>
+            </p>
+            <dl>
+                <dt>Note</dt>
+                <dd>
+                    This is useful when the proximate feature of interest is a sample
+                    of the ultimate feature of interest, directly or transitively.
+                </dd>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:Deployment</a>,
+                    <a>sosa:Execution</a>,
+                    <a>sosa:ExecutionCollection</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:FeatureOfInterest</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:isFeatureOfInterestOf</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="informative specterm" id="SOSAinputValueForExecution">
+            <h6><dfn>sosa:inputValueForExecution</dfn></h6>
+            <p class="crossreference">
+                <strong>IRI:</strong> http://www.w3.org/ns/sosa/inputValueForExecution
+            </p>
+            <p>
+                <strong>an OWL Object Property</strong>
+            </p>
+
+            <p class="warning">
+                inputValueForExecution added in the 2023 edition.
+                This term is non-normative, pending further implementation experience.</p>
+            <p>
+                <em>Input Value for Execution</em> &mdash;
+                relation from an input value to an Execution that used it
+            </p>
+            <dl>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:Execution</a>,
+                    <a>sosa:ExecutionCollection</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:hasInputValue</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="specterm sosa" id="SOSAisResultOf">
+            <h6><dfn>sosa:isResultOf</dfn></h6>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/isResultOf</p>
+            <p>
+                <strong>an OWL Object Property</strong>
+            </p>
+            <p>
+                <em>is result of</em> &mdash;
+                relation from a result to the Execution that created or caused it
+            </p>
+            <dl>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:Sample</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:Execution</a>,
+                    <a>sosa:ExecutionCollection</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:hasResult</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="informative specterm" id="SOSAmadeBySystem">
+            <h6><dfn>sosa:madeBySystem</dfn></h6>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/madeBySystem</p>
+            <p>
+                <strong>an OWL Object Property</strong>
+            </p>
+
+            <p class="warning">
+                madeBySystem added in the 2023 edition.
+                This term is non-normative, pending further implementation experience</p>
+            <p>
+                <em>made by system</em> &mdash;
+                relation from an Execution to the System that made it
+            </p>
+            <dl>
+                <dt>Scope note</dt>
+                <dd>
+                    madeBySystem generalizes the
+                    <a>sosa:madeByActuator</a>,
+                    <a>sosa:madeBySensor</a>, and
+                    <a>sosa:madeBySampler</a> properties.
+                    It is included in the ontology to support the definition of a common pattern for executions
+                    and their properties.
+                    <br>
+                    <br>
+                    madeBySystem is considered to be abstract. 
+                    Applications SHOULD use concrete sub-properties of madeBySystem.
+                </dd>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:Execution</a>,
+                    <a>sosa:ExecutionCollection</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:System</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:madeExecution</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="informative specterm sosa" id="SOSAphenomenonOccurred">
+            <h6><dfn>sosa:phenomenonOccurred</dfn></h6>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/phenomenonOccurred</p>
+            <p>
+                <strong>an OWL Object Property</strong>
+            </p>
+            <p>
+                <em>phenomenon occurred</em> &mdash;
+                result of an Execution that this time applies to
+            </p>
+            <dl>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a href="http://www.w3.org/TR/owl-time/#time:TemporalEntity">time:TemporalEntity</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:Execution</a>,
+                    <a>sosa:ExecutionCollection</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:phenomenonTime</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="specterm sosa" id="SOSAphenomenonTime">
+            <h6><dfn>sosa:phenomenonTime</dfn></h6>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/phenomenonTime</p>
+            <p>
+                <strong>an OWL Object Property</strong>
+            </p>
+            <p>
+                <em>phenomenon time</em> &mdash;
+                time that the result of an Execution applies to the subject entity
+            </p>
+            <p>
+                It may be an interval or an instant, or some other compound temporal entity [[!owl-time]].
+            </p>
+            <p>
+                The <a>sosa:phenomenonTime</a> is not necessarily the same as the <a>sosa:endTime</a> or
+                <a>sosa:resultTime</a>.
+            </p>
+            <p>
+                In the case of <a>sosa:Actuation</a>, <a>sosa:phenomenonTime</a> SHOULD indicate the time during
+                which the <a>sosa:Actuator</a> was active.
+            </p>
+            <p>
+                In the case of <a>sosa:Observation</a>, the <a>sosa:phenomenonTime</a> MAY be distant from the
+                <a>sosa:resultTime</a>.
+                For example in the case of forecasts the <a>sosa:phenomenonTime</a> is after the <a>sosa:resultTime</a>.
+                In historical, geological and cosmological investigations the <a>sosa:phenomenonTime</a> can be far in
+                the past, while the <a>sosa:resultTime</a> is contemporary.
+            </p>
+            <p>
+                In the case of <a>sosa:Sampling</a> the <a>sosa:phenomenonTime</a> SHOULD indicate the time during which
+                the sampling <a>sosa:Procedure</a> was active.
+                The <a>sosa:resultTime</a> can indicate when the sample comes into the possession of the operator.
+            </p>
+            <p class="note">
+                The different time-properties on a <a>sosa:Execution</a> support the description of plans, forecasts and
+                predictions as well as descriptions of arious historical scenarios.
+                See <a href="#ModelTimes">Temporal properties</a> for patterns related to these.
+            </p>
+            <dl>
+                <dt>Example</dt>
+                <dd>
+                    <pre class="turtle">
+            &lt;obs1&gt; sosa:phenomenonTime [
+              a time:Instant ;
+              time:inXSDDateTime "2023-06-20T21:49:18+00:00"^^xsd:dateTime ;
+            ] ;
+            &lt;obs2&gt; sosa:phenomenonTime [
+              a time:Interval ;
+              time:hasBeginning [
+                a time:Instant ;
+                time:inXSDDateTime "2017-04-15T23:59:30+00:00"^^xsd:dateTime
+              ] ;
+              time:hasEnd [
+                a time:Instant ;
+                time:inXSDDateTime "2017-04-16T00:00:00+00:00"^^xsd:dateTime
+              ] ;
+            ] ;
+            &lt;obs3&gt; sosa:phenomenonTime [
+              a time:Interval ;
+              time:hasBeginning [
+                a time:Instant ;
+                time:inTimePosition [
+                  time:hasTRS ex:BP ;
+                  time:numericPosition 12000 ;
+                ] ;
+              ] ;
+              time:hasDuration [
+                a time:Duration ;
+                time:numericDuration 500 ;
+                time:unitType time:unitYear ;
+              ] ;
+            ] ;
+            </pre>
+                </dd>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:Execution</a>,
+                    <a>sosa:ExecutionCollection</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a href="http://www.w3.org/TR/owl-time/#time:TemporalEntity">time:TemporalEntity</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:phenomenonOccurred</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="specterm sosa" id="SOSAresultTime">
+            <h6><dfn>sosa:resultTime</dfn></h6>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/resultTime</p>
+            <p><strong>an OWL Datatype Property</strong></p>
+            <p>
+                <em>result time</em> &mdash;
+                instant of time when the result of the Execution became available
+            </p>
+            <p>
+                The value would usually be encoded using
+                <a href="https://www.w3.org/TR/xmlschema-2/#dateTime">`xsd:dateTime`</a>,
+                <a href="https://www.w3.org/TR/xmlschema-2/#date">`xsd:date`</a>,
+                <a href="https://www.w3.org/TR/xmlschema-2/#gYearMonth">`xsd:gYearMonth`</a>,
+                and/or <a href="https://www.w3.org/TR/xmlschema-2/#gYear">`xsd:gYear`</a>.
+            </p>
+            <p class="note">
+                The different time-properties on a <a>sosa:Execution</a> support the description of plans, forecasts,
+                and predictions, as well as descriptions of various historical scenarios.
+                See <a href="#ModelTimes">Temporal properties</a> for patterns related to these.</p>
+
+            <dl>
+                <dt>Example</dt>
+                <dd>
+                    <pre class="turtle">
+            "2024-01-23T19:26:00+11:00"^^xsd:dateTime
+            "2024-01-23"^^xsd:date
+            "2024-01"^^xsd:gMonth
+            "2024"^^xsd:gYear
+            </pre>
+                </dd>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:Execution</a>,
+                    <a>sosa:ExecutionCollection</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="informative specterm sosa" id="SOSAstartTime">
+            <h6><dfn>sosa:startTime</dfn></h6>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/startTime</p>
+            <p><strong>an OWL Datatype Property</strong></p>
+
+            <p class="warning">startTime added in 2023 edition.
+                This term is non-normative, pending further implementation experience</p>
+            <p>
+                <em>start time</em> &mdash;
+                instant of time when the Execution or Deployment was initiated or tasked
+            </p>
+            <p>
+                The value would usually be encoded using
+                <a href="https://www.w3.org/TR/xmlschema-2/#dateTime">`xsd:dateTime`</a>,
+                <a href="https://www.w3.org/TR/xmlschema-2/#date">`xsd:date`</a>,
+                <a href="https://www.w3.org/TR/xmlschema-2/#gYearMonth">`xsd:gYearMonth`</a>,
+                and/or <a href="https://www.w3.org/TR/xmlschema-2/#gYear">`xsd:gYear`</a>.
+            </p>
+            <dl>
+                <dt>Example</dt>
+                <dd>
+                    <pre class="turtle">
+            "2024-01-23T19:26:00+11:00"^^xsd:dateTime
+            "2024-01-23"^^xsd:date
+            "2024-01"^^xsd:gMonth
+            "2024"^^xsd:gYear
+            </pre>
+                </dd>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:Deployment</a>,
+                    <a>sosa:Execution</a>,
+                    <a>sosa:ExecutionCollection</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="specterm sosa" id="SOSAusedProcedure">
+            <h6><dfn>sosa:usedProcedure</dfn></h6>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/usedProcedure</p>
+            <p><strong>an OWL Object Property</strong></p>
+            <p>
+                <em>used procedure</em> &mdash;
+                relation from an Execution or ExecutionCollection to the Procedure used
+            </p>
+            <dl>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:Execution</a>,
+                    <a>sosa:ExecutionCollection</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:Procedure</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:usedForExecution</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+
+        </section>
+    </section>
+</section>
+
+<section id="Systems-and-their-Deployment">
+    <h4>Systems and their Deployment</h4>
+    <section class="informative" id="Systems-and-their-Deployment-overview">
+        <h5>Overview</h5>
+        <div>
+            <p>The following figure provides an overview of the classes and properties that are specifically related to
+                modeling systems and their deployment.
+            </p>
+            <figure id="System">
+                <embed
+                    alt="Systems and deployment diagram; showing Asset, System, Deployment, Platform, Property, Procedure, Execution"
+                    src="images/System.svg" style="width: 100%;" />
+                <figcaption>Classes and relationships related to systems and deployments
+                    <br>
+                    <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
+                </figcaption>
+            </figure>
+
+            <p>
+                A <a>sosa:Deployment</a> is an arrangement of Assets (typically Systems and Platforms) with the intention of
+                executing actuation, observation, or sampling procedures with respect to designated features of interest
+                for a specified time interval.
+            </p>
+            <p>
+                A <a>sosa:Asset</a> is a resource involved in a deployment, such as a system or platform.
+            </p>
+            <p>
+                A <a>sosa:System</a> is an instrument or equipment, including software systems and
+                agents where relevant, that implements a procedure in the context of executions.
+                A system may be composed of sub-systems.
+            </p>
+            <p>
+                A <a>sosa:Platform</a> hosts one or more systems in the context of a deployment.
+                Stationary platforms include stations, or fixtures.
+                Mobile platforms include vehicles, marine- and air-craft, satellites, mobile phones, etc.
+            </p>
+        </div>
+
+    </section>
+    <section id="Systems-and-their-Deployment-specification">
+        <h5>Specification</h5>
+        <p>This section introduces the following classes and properties:</p>
+        <div class="azlist">
+            <p>
+                <a>sosa:Asset</a>,
+                <a>sosa:Deployment</a>,
+                <a>sosa:Platform</a>,
+                <a>sosa:System</a>,
+                <a>sosa:deployedAsset</a>,
+                <a>sosa:deployedOnPlatform</a>,
+                <a>sosa:deployedSystem</a>,
+                <a>sosa:hasDeployment</a>,
+                <a>sosa:hasSubSystem</a>,
+                <a>sosa:hosts</a>,
+                <a>sosa:implements</a>,
+                <a>sosa:inDeployment</a>,
+                <a>sosa:isHostedBy</a>,
+                <a>sosa:isSubSystemOf</a>,
+                <a>sosa:madeExecution</a>,
+                <a>sosa:systemDeployment</a>
+            </p>
+        </div>
+
+        <section class="specterm sosa" id="SOSAAsset">
+            <h6><dfn>sosa:Asset</dfn></h6>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/Asset</p>
+            <p><strong>an OWL Class</strong></p>
+
+            <p>
+                <em>Asset</em> &mdash;
+                resource involved in a Deployment.
+            </p>
+            <dl>
+                <dt>Scope note</dt>
+                <dd>
+                    Asset generalizes the <a href="#SOSASystem">System</a> and <a href="#SOSAPlatform">Platform</a>
+                    classes, or other resource types that are relevant to deployments.
+                    It is included in the ontology to support the definition of a common pattern for deployments.
+                    <br>
+                    <br>
+                    Asset is considered to be abstract. 
+                    Individual assets SHOULD be typed with one of the (concrete) sub-classes of Asset.
+                </dd>
+                <dt class="ssn restrictions">Restrictions in SSN</dt>
+                <dd class="ssn">
+                    <a>sosa:hasDeployment</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:Deployment</a>
+                    <br>
+                    <a>sosa:isHostedBy</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:Platform</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="specterm sosa" id="SOSADeployment">
+            <h6><dfn>sosa:Deployment</dfn></h6>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/Deployment</p>
+            <p><strong>an OWL Class</strong></p>
+
+            <p>
+                <em>Deployment</em> &mdash;
+                arrangement of one or more Assets to execute Procedures with respect to designated features of interest.
+            </p>
+            <p class="note">
+                A Deployment may have a geographic location.
+                See <a href="#ModelLocation">Location and Geometry</a> for patterns to describe this.
+            </p>
+            <dl>
+                <dt>Example</dt>
+                <dd>
+                    a temperature <a href="#SOSASensor">Sensor</a> deployed on a wall
+                    <br>a network of Sensors deployed for an Observation campaign.
+                </dd>
+                <dt>Note</dt>
+                <dd>
+                    A
+                    <a>sosa:Deployment</a> will usually be for a specified time interval.
+                    It MAY involve <a>sosa:Platforms</a>, or <a>sosa:Systems</a>, or both.
+                    A <a>sosa:Deployment</a> can be used quite flexibly to describe the use of systems, and
+                    platforms that host systems, with respect to a feature of interest.
+                </dd>
+                <dt class="ssn restrictions">Restrictions in SSN</dt>
+                <dd class="ssn">
+                    <a>sosa:deployedAsset</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:Asset</a>
+                    <br>
+                    <a>sosa:deployedOnPlatform</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:Platform</a>
+                    <br>
+                    <a>sosa:deployedSystem</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:System</a>
+                    <br>
+                    <a>sosa:hasFeatureOfInterest</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:FeatureOfInterest</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="specterm sosa" id="SOSAPlatform">
+            <h6><dfn>sosa:Platform</dfn></h6>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/Platform</p>
+            <p><strong>an OWL Class</strong></p>
+
+            <p>
+                <em>Platform</em> &mdash;
+                An Asset that hosts other Assets, particularly Systems, and other Platforms.
+            </p>
+            <p class="note">A Platform may have a geographic location.
+                See <a href="#ModelLocation">Location and Geometry</a> for patterns to describe this.</p>
+
+            <dl>
+                <dt>Subclass of</dt>
+                <dd>
+                    <a>sosa:Asset</a>
+                </dd>
+                <dt>Scope note</dt>
+                <dd>
+                    The INSPIRE 'Environmental Monitoring Facility' may be implemented using SOSA by the OWL/RDFS class
+                    'Platform'.
+                </dd>
+                <dt>Example</dt>
+                <dd>
+                    A post, buoy, vehicle, ship, aircraft, satellite, cell-phone, human or animal may act as
+                    <a href="#SOSAPlatform">Platforms</a> for (technical or biological)
+                    <a href="#SOSASensor">Sensors</a> or
+                    <a href="#SOSAActuator">Actuators</a>.
+                    <br>
+                    An environmental monitoring facility.
+                    <br>
+                    A platform that hosts a set of sensors.
+                    <br>
+                    A team performing a survey, where each team member would be modeled as an Observer.
+                </dd>
+                <dt class="ssn restrictions">Restrictions in SSN</dt>
+                <dd class="ssn">
+                    <a>sosa:hosts</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:Asset</a>
+                    <br>
+                    <a>sosa:inDeployment</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:Deployment</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="specterm sosa" id="SOSASystem">
+            <h6><dfn>sosa:System</dfn></h6>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/System</p>
+            <p><strong>an OWL Class</strong></p>
+            <p>
+                <em>System</em> &mdash;
+                An Asset that implements a Procedure in the context of an Execution
+            </p>
+            <p>
+                This may be a device, a piece of infrastructure, an agent (including humans), or software
+                (simulation).
+            </p>
+            <p>
+                Different Systems can implement the same (reusable) Procedure for different Executions.
+            </p>
+            <p>
+                A System may have components, its sub-systems, which are other systems.
+            </p>
+            <p class="note">
+                See <a href="#ModelSystemType">Systems Types and Individuals</a> for guidance on
+                describing types vs. individuals.</p>
+            <p class="note">
+                A System may have a geographic location.
+                See <a href="#ModelLocation">Location and Geometry</a> for patterns to describe this.
+            </p>
+
+            <dl>
+                <dt>Subclass of</dt>
+                <dd>
+                    <a>sosa:Asset</a>
+                </dd>
+                <dt>Scope note</dt>
+                <dd>
+                    System generalizes the
+                    <a href="#SOSAActuator">Actuator</a>,
+                    <a href="#SOSASensor">Sensor</a>, and
+                    <a href="#SOSASampler">Sampler</a> classes.
+                    It is included in the ontology to support the definition of a common
+                    pattern for executions and their properties.
+                    <br>
+                    <br>
+                    System is considered to be abstract. 
+                    Individual systems SHOULD be typed with one of the (concrete) sub-classes of System.
+                </dd>
+                <dt>Scope note</dt>
+                <dd>
+                    Specific system <em>types</em> may be implemented as <em>sub-classes</em>
+                    of this class or its sub-classes.
+                    Their descriptions may capture the properties and characteristics of a
+                    whole class of systems, corresponding with the information typically found
+                    in a data-sheet. Individual system <em>instances</em> are <em>members</em>
+                    of this class or its sub-classes.
+                </dd>
+                <dt>Scope note</dt>
+                <dd>
+                    The association of a System (<a href="#SOSAActuator">Actuator</a>,
+                    <a href="#SOSASensor">Sensor</a>, or <a href="#SOSASampler">Sampler</a>)
+                    with a <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a> is usually
+                    in the context of an <a href="#SOSAExecution">Execution</a> or a
+                    <a href="#SOSADeployment">Deployment</a>.
+                    <br>
+                    A <a>sosa:System</a> can be hosted by a <a>sosa:Platform</a>.
+                    <br>
+                    A <a>sosa:System</a> can be deployed for a specified time interval as
+                    part of a <a>sosa:Deployment</a>.
+                </dd>
+                <dt class="ssn restrictions">Restrictions in SSN</dt>
+                <dd class="ssn">
+                    <a>sosa:isHostedBy</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:Platform</a>
+                    <br>
+                    <a>sosa:implements</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:Procedure</a>
+                    <br>
+                    <a>sosa:forProperty</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:Property</a>
+                    <br>
+                    <a>sosa:hasSubSystem</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:System</a>
+                    <br>
+                    <a>sosa:isSubSystemOf</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:System</a>
+                    <br>
+                    <a>sosa:hasDeployment</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:Deployment</a>
+                    <br>
+                    <a>sosa:madeExecution</a>
+                    <em><b>ONLY</b></em>
+                    (<a>sosa:Execution</a> <em><b>OR</b></em>
+                    <a>sosa:ExecutionCollection</a>)
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="informative specterm sosa" id="SOSAdeployedAsset">
+            <h6><dfn>sosa:deployedAsset</dfn></h6>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/deployedAsset</p>
+            <p><strong>an OWL Object Property</strong></p>
+            <p class="warning">
+                deployedAsset added in 2023 Edition.
+                This term is non-normative, pending further implementation experience</p>
+            <p>
+                <em>deployed asset</em> &mdash;
+                relation from a Deployment to an Asset (System or Platform).
+            </p>
+            <dl>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:Deployment</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:Asset</a>,
+                    <a>sosa:Platform</a>,
+                    <a>sosa:System</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:hasDeployment</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="specterm sosa" id="SOSAdeployedOnPlatform">
+            <h6><dfn>sosa:deployedOnPlatform</dfn></h6>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/deployedOnPlatform</p>
+            <p><strong>an OWL Object Property</strong></p>
+            <p>
+                <em>deployed on platform</em> &mdash;
+                relation from a Deployment to a Platform on which Systems are hosted
+            </p>
+            <dl>
+                <dt>Subproperty of</dt>
+                <dd>
+                    <a>sosa:deployedAsset</a>
+                </dd>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:Deployment</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:Platform</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:inDeployment</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="specterm sosa" id="SOSAdeployedSystem">
+            <h6><dfn>sosa:deployedSystem</dfn></h6>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/deployedSystem</p>
+            <p><strong>an OWL Object Property</strong></p>
+            <p>
+                <em>deployed system</em> &mdash;
+                relation from a Deployment to a deployed System
+            </p>
+            <dl>
+                <dt>Subproperty of</dt>
+                <dd>
+                    <a>sosa:deployedAsset</a>
+                </dd>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:Deployment</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:System</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:systemDeployment</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="specterm sosa" id="SOSAhasDeployment">
+            <h6><dfn>sosa:hasDeployment</dfn></h6>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/hasDeployment</p>
+            <p><strong>an OWL Object Property</strong></p>
+            <p>
+                <em>has deployment</em> &mdash;
+                relation from an Asset (System or Platform) to a Deployment
+            </p>
+            <dl>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:Asset</a>,
+                    <a>sosa:Platform</a>,
+                    <a>sosa:System</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:Deployment</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:deployedAsset</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="specterm sosa" id="SOSAhasSubSystem">
+            <h6><dfn>sosa:hasSubSystem</dfn></h6>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/hasSubSystem</p>
+            <p><strong>an OWL Object Property</strong></p>
+            <p class="note">
+                See <a href="#ModelComplexSystem">Complex devices</a> for guidance on describing complex
+                systems.
+            </p>
+            <p>
+                <em>has subsystem</em> &mdash;
+                relation from a System to its component parts
+            </p>
+            <dl>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:System</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:System</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:isSubSystemOf</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="specterm sosa" id="SOSAhosts">
+            <h6><dfn>sosa:hosts</dfn></h6>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/hosts</p>
+            <p><strong>an OWL Object Property</strong></p>
+            <p>
+                <em>hosts</em> &mdash;
+                relation from a Platform to an Asset (System or Platform) hosted or mounted on it
+            </p>
+            <dl>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:Platform</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:Asset</a>,
+                    <a>sosa:Platform</a>,
+                    <a>sosa:System</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:isHostedBy</a>
+                </dd>
+                <dt class="ssn">Super property of chain</dt>
+                <dd class="ssn">
+                    <a>sosa:inDeployment</a> <b>o</b>
+                    <a>sosa:deployedSystem</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="specterm sosa" id="SOSAimplements">
+            <h6><dfn>sosa:implements</dfn></h6>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/implements</p>
+            <p><strong>an OWL Object Property</strong></p>
+            <p>
+                <em>implements</em> &mdash;
+                relation from a System to a Procedure that it is capable of executing
+            </p>
+            <dl>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:System</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:Procedure</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:implementedBy</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="specterm sosa" id="SOSAinDeployment">
+            <h6><dfn>sosa:inDeployment</dfn></h6>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/inDeployment</p>
+            <p><strong>an OWL Object Property</strong></p>
+            <p>
+                <em>in deployment</em> &mdash;
+                relation from a Platform to a Deployment
+            </p>
+            <dl>
+                <dt>Example</dt>
+                <dd>
+                    For example, a relation between a buoy and a
+                    <a href="#SOSADeployment">Deployment</a> of
+                    several
+                    <a href="#SOSASensor">Sensors</a>.
+                </dd>
+                <dt>Subproperty of</dt>
+                <dd>
+                    <a>sosa:hasDeployment</a>
+                </dd>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:Platform</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:Deployment</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:deployedOnPlatform</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="specterm sosa" id="SOSAisHostedBy">
+            <h6><dfn>sosa:isHostedBy</dfn></h6>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/isHostedBy</p>
+            <p><strong>an OWL Object Property</strong></p>
+            <p>
+                <em>is hosted by</em> &mdash;
+                relation from an Asset (System or Platform), to a Platform that it is mounted on or hosted by
+            </p>
+            <dl>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:Asset</a>,
+                    <a>sosa:Platform</a>,
+                    <a>sosa:System</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:Platform</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:hosts</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="specterm sosa" id="SOSAisSubSystemOf">
+            <h6><dfn>sosa:isSubSystemOf</dfn></h6>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/isSubSystemOf</p>
+            <p><strong>an OWL Object Property</strong></p>
+
+            <p>
+                <em>is subsystem of</em> &mdash;
+                relation from a component System to a System that it belongs to
+            </p>
+            <dl>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:System</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:System</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:hasSubSystem</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="informative specterm sosa" id="SOSAmadeExecution">
+            <h6><dfn>sosa:madeExecution</dfn></h6>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/madeExecution</p>
+            <p><strong>an OWL Object Property</strong></p>
+
+            <p class="warning">madeExecution added in the 2023 Edition.
+                This term is non-normative, pending further implementation experience</p>
+            <p>
+
+                <em>madeExecution</em> &mdash;
+                relation from a System to an Execution or ExecutionCollection that it has made
+            </p>
+            <dl>
+                <dt>Scope note</dt>
+                <dd>
+                    madeExecution generalizes the
+                    <a>sosa:madeActuation</a>,
+                    <a>sosa:madeObservation</a>, and
+                    <a>sosa:madeSampling</a> properties.
+                    It is included in the ontology to support the definition of a common pattern for executions
+                    and their properties.
+                    <br>
+                    <br>
+                    madeExecution is considered to be abstract.
+                    Applications SHOULD use concrete sub-properties of madeExecution.
+                </dd>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:System</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:Execution</a>,
+                    <a>sosa:ExecutionCollection</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:madeBySystem</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="specterm sosa" id="SOSAsystemDeployment">
+            <h6><dfn>sosa:systemDeployment</dfn></h6>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/systemDeployment</p>
+            <p><strong>an OWL Object Property</strong></p>
+
+            <p class="warning">systemDeployment added in the 2023 Edition.
+                This term is non-normative, pending further implementation experience</p>
+            <p>
+
+            <p>
+                <em>system deployment</em> &mdash;
+                relation from a System to a Deployment
+            </p>
+            <dl>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:System</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:Deployment</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:deployedSystem</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+    </section>
+</section>
+
+<section id="Collections">
+    <h4>Collections</h4>
+    <p class="note">Collections added in the 2023 Edition</p>
+    <section class="informative" id="Collections-requirement">
+        <h5>Requirement for collections</h5>
+        <p>
+            The results of multiple observations are typically assessed together in order to discover or detect a
+            pattern or signal.
+            Similarly, a single sample is usually insufficient to provide insight regarding the properties of its source
+            entity or population.
+        </p>
+        <p>
+            Collections (sets) that are useful for analysis will typically be homogeneous with respect to one or more
+            properties of the members.
+            For example, a collection of observations of the same observed-property on the same feature of interest at a
+            series of different times.
+            A collection of actuations may act on different properties of the same feature of interest, but other cases
+            also apply.
+            A collection of samplings may use the same sampler.
+            A collection of samples may be of the same feature (entity) of interest.
+        </p>
+        <p>
+            The SSN Ontology supports the description of collections (sets) primarily through the provision of:
+        </p>
+        <ol>
+            <li>
+                a property for membership of a collection, and its inverse, described in this section
+            </li>
+            <li>
+                the generic class <a href="#SOSAExecutionCollection">ExecutionCollection</a> and specializations for
+                actuations, observations and samplings
+            </li>
+            <li>
+                the class <a href="#SOSASampleCollection">SampleCollection</a>
+            </li>
+        </ol>
+        <p>
+            Consistency rules for the properties of collections and their members are described in the
+            definitions of the specific collection types
+            <a href="#SOSAExecutionCollection">ExecutionCollection</a>,
+            <a href="#SOSAActuationCollection">ActuationCollection</a>,
+            <a href="#SOSAObservationCollection">ObservationCollection</a>,
+            <a href="#SOSASampleCollection">SampleCollection</a>, and
+            <a href="#SOSASamplingCollection">SamplingCollection</a>.
+        </p>
+        <p class="note">
+            Examples of Collections conforming to the rules are provided in
+            <a href="#ModelCollectionRules">Collections and their members' property values</a>.
+        </p>
+    </section>
+
+    <section class="informative" id="Collections-overview">
+        <h5>Overview</h5>
+        <div>
+            <p>
+                <a href="#Fig-Collections"></a> provides an overview of the classes and properties that are specifically
+                related to describing collections of executions or of samples.
+            </p>
+            <figure id="Fig-Collections">
+                <embed alt="Collections of Executions or Samples" src="images/Collections.svg" style="width: 100%;" />
+                <figcaption>Classes and relationships related to collections of executions or samples
+                    <br>
+                    <em>See
+                        <a href="#Class-diagram">explanation of the notation used in class diagrams</a></em>.
+                </figcaption>
+            </figure>
+
+        </div>
+    </section>
+
+    <section id="Collections-specification">
+        <h5>Specification</h5>
+        <p>This section introduces the following properties:</p>
+        <div class="azlist">
+            <p>
+                <a>sosa:hasMember</a>,
+                <a>sosa:isMemberOf</a>
+            </p>
+        </div>
+
+        <section class="informative specterm sosa" id="SOSAhasMember">
+            <h6><dfn>sosa:hasMember</dfn></h6>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/hasMember</p>
+            <p><strong>an OWL Object Property</strong></p>
+
+            <p class="warning">hasMember added in the 2023 Edition.
+                This term is non-normative, pending further implementation experience</p>
+            <p>
+                <em>has member of collection</em> &mdash;
+                link from a Collection to an Execution or Sample or Collection of these that is part of it
+            </p>
+            <p>
+                rules for the consistency of values of properties of collections and properties of their members are
+                given for each collection type.
+            </p>
+            <p>
+                Note that there is a single `member` property.
+                OWL or SHACL constraints may limit the range depending on the context of different collection types.
+            </p>
+            <p class="note">
+                See <a href="#ModelTimeSeries">Time series</a> and
+                <a href="#ModelObservationCollection">Homogeneous observation collection</a> for examples of use of
+                `hasMember`.
+            </p>
+            <dl>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:ExecutionCollection</a>,
+                    <a>sosa:SampleCollection</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:Execution</a>,
+                    <a>sosa:Sample</a>,
+                    <a>sosa:ExecutionCollection</a>,
+                    <a>sosa:SampleCollection</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:isMemberOf</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+        <section class="informative specterm sosa" id="SOSAmemberOf">
+            <h6><dfn>sosa:isMemberOf</dfn></h6>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/memberOf</p>
+            <p><strong>an OWL Object Property</strong></p>
+
+            <p class="warning">memberOf added in 2023 Edition.
+                This term is non-normative, pending further implementation experience</p>
+            <p>
+                <em>is member of collection</em> &mdash;
+                link from an Execution or Sample or Collection of these, to a collection that it is part of
+            </p>
+            <p>
+                rules for the consistency of values of properties of collections and properties of their members are
+                given for each collection type.
+            </p>
+            <p>
+                Note that there is a single `member` property. OWL or SHACL constraints may limit the range depending on
+                the context of different collection types.
+            </p>
+            <dl>
+                <dt>Domain Includes</dt>
+                <dd>
+                    <a>sosa:Execution</a>,
+                    <a>sosa:Sample</a>,
+                    <a>sosa:ExecutionCollection</a>,
+                    <a>sosa:SampleCollection</a>
+                </dd>
+                <dt>Range Includes</dt>
+                <dd>
+                    <a>sosa:ExecutionCollection</a>,
+                    <a>sosa:SampleCollection</a>
+                </dd>
+                <dt>Inverse property of</dt>
+                <dd>
+                    <a>sosa:hasMember</a>
+                </dd>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
+    </section>
+
+    <section class="informative" id="Collections-extensions">
+        <h5>Other collections</h5>
+        <p>
+            Collections of other entities associated with sensing, actuation and sampling could use the same pattern.
+            For example, networks of sensors and platforms (sites and stations) are common in environmental monitoring.
+            Furthermore, higher level aggregations of both entities and activities, such as occur in the context of
+            projects, initiatives, and campaigns, might be described using similar patterns.
+            However, the details of these cases are currently beyond the scope of the SSN Ontology.
+        </p>
+        <p class="note">
+            The PROV Ontology provides a generic framework for describing and relating Activities and Entities
+            [[prov-o]].
+            An <a href="#PROV-alignment">alignment of SSN to PROV</a> is provided in this document.
+            A basic Project Ontology based on PROV has also been proposed [[Project-PROV]].
+            Higher level aggregations in SSN applications should consider the PROV framework along with the recursive
+            <a>sosa:hasMember</a>/<a>sosa:isMemberOf</a> pattern used for SSN collections.
+        </p>
+
+    </section>
+</section>

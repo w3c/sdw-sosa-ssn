@@ -1,0 +1,166 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix voaf: <http://purl.org/vocommons/voaf#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+
+@prefix schema: <http://schema.org/> .
+
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix sosa-systems: <http://www.w3.org/ns/sosa/systems/> .
+@prefix sosa-cap: <http://www.w3.org/ns/sosa/system-capability-properties#> .
+
+sosa-cap: a owl:Ontology , voaf:Vocabulary ;
+  dcterms:title "Sample vocabulary of properties about system capabilities"@en ;
+  dcterms:description """This vocabulary defines a short list of properties about system capabilities. 
+
+  It is only for illustration purposes, as the Spatio-temporal Data on the Web Working Group does not ambition to maintain a living list of properties. Extensions of this list should be led by other organization, and publications done to relevant vocabulary portals."""@en ;
+  dcterms:creator [ a foaf:Agent ; foaf:name "W3C/OGC Spatio-temporal Data on the Web Working Group"@en ] ;
+  dcterms:rights "Copyright 2025 W3C/OGC." ;
+  dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
+  dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
+  rdfs:comment "Please report any errors to the W3C Spatio-temporal Data on the Web Working Group via the SDW WG Public List public-sdw-wg@w3.org"@en ;
+  dcterms:modified "2025-08-05"^^xsd:date ;
+  vann:preferredNamespacePrefix "sosa-cap" ;
+  vann:preferredNamespaceUri "http://www.w3.org/ns/sosa/system-capability-properties#" ;
+  owl:imports sosa-systems: .
+
+sosa-cap:Accuracy a sosa:Property ;
+  rdfs:label "accuracy"@en ;
+  skos:definition "Closeness of agreement between a measured value and the true value."@en ;
+  rdfs:isDefinedBy sosa-cap: .
+
+sosa-cap:BatteryLifetime a sosa:Property ;
+  rdfs:label "Battery Lifetime"@en ;
+  skos:definition "Total useful life of a system's battery."@en ;
+  rdfs:isDefinedBy sosa-cap: .
+
+sosa-cap:BatteryResolution a sosa:Property ;
+  rdfs:label "battery resolution"@en ;
+  skos:definition "The smallest detectable change in the battery level or charge state measurable by the system."@en ;
+  rdfs:isDefinedBy sosa-cap: .
+
+sosa-cap:Drift a sosa:Property ;
+  rdfs:label "drift"@en ;
+  skos:definition "The slow change in a sensor's output signal without a corresponding change in the input."@en ;
+  rdfs:isDefinedBy sosa-cap: .
+
+sosa-cap:Frequency a sosa:Property ;
+  rdfs:label "frequency"@en ;
+  skos:definition "The rate at which a system performs a function, such as sensing or actuation."@en ;
+  rdfs:isDefinedBy sosa-cap: .
+
+sosa-cap:HumidityAccuracy a sosa:Property ;
+  rdfs:label "humidity accuracy"@en ;
+  skos:definition "The closeness of agreement between the measured humidity and the true humidity."@en ;
+  rdfs:isDefinedBy sosa-cap: .
+
+sosa-cap:Latency a sosa:Property ;
+  rdfs:label "latency"@en ;
+  skos:definition "The delay between the input or command and the corresponding response of a system."@en ;
+  rdfs:isDefinedBy sosa-cap: .
+
+sosa-cap:LowerDetectionLimit a sosa:Property ;
+  rdfs:label "lower detection limit"@en ;
+  skos:definition "The smallest quantity of a substance that can be reliably detected by the sensor."@en ;
+  rdfs:isDefinedBy sosa-cap: .
+
+sosa-cap:MaintenanceSchedule a sosa:Property ;
+  rdfs:label "maintenance schedule"@en ;
+  skos:definition "The planned interval at which the system requires inspection, calibration, or servicing."@en ;
+  rdfs:isDefinedBy sosa-cap: .
+
+sosa-cap:MaxFrequency a sosa:Property ;
+  rdfs:label "maximum frequency"@en ;
+  skos:definition "The highest frequency at which the system can operate or make observations."@en ;
+  rdfs:isDefinedBy sosa-cap: .
+
+sosa-cap:MaxMeasurableHumidity a sosa:Property ;
+  rdfs:label "maximum measurable humidity"@en ;
+  skos:definition "The maximum relative humidity value that the system can measure."@en ;
+  rdfs:isDefinedBy sosa-cap: .
+
+sosa-cap:MaxMeasurableTemperature a sosa:Property ;
+  rdfs:label "maximum measurable temperature"@en ;
+  skos:definition "The maximum temperature that a Sensor can measure."@en ;
+  rdfs:isDefinedBy sosa-cap: .
+
+sosa-cap:MaxOperatingPower a sosa:Property ;
+  rdfs:label "maximum operating power"@en ;
+  skos:definition "The maximum power level at which the system can reliably operate."@en ;
+  rdfs:isDefinedBy sosa-cap: .
+
+sosa-cap:MinFrequency a sosa:Property ;
+  rdfs:label "minimum frequency"@en ;
+  skos:definition "The lowest frequency at which the system can operate or make observations."@en ;
+  rdfs:isDefinedBy sosa-cap: .
+
+sosa-cap:MinMeasurableHumidity a sosa:Property ;
+  rdfs:label "minimum measurable humidity"@en ;
+  skos:definition "The minimum relative humidity value that the system can measure."@en ;
+  rdfs:isDefinedBy sosa-cap: .
+
+sosa-cap:MinMeasurableTemperature a sosa:Property ;
+  rdfs:label "minimum measurable temperature"@en ;
+  skos:definition "The minimum temperature that a Sensor can measure."@en ;
+  rdfs:isDefinedBy sosa-cap: .
+
+sosa-cap:MinOperatingPower a sosa:Property ;
+  rdfs:label "minimum operating power"@en ;
+  skos:definition "The minimum power level at which the system can reliably operate."@en ;
+  rdfs:isDefinedBy sosa-cap: .
+
+sosa-cap:Precision a sosa:Property ;
+  rdfs:label "precision"@en ;
+  skos:definition "The degree to which repeated measurements show the same results."@en ;
+  rdfs:isDefinedBy sosa-cap: .
+
+sosa-cap:Resolution a sosa:Property ;
+  rdfs:label "resolution"@en ;
+  skos:definition "The smallest change in a quantity being measured that causes a perceptible change in the sensor output."@en ;
+  rdfs:isDefinedBy sosa-cap: .
+
+sosa-cap:ResponseTime a sosa:Property ;
+  rdfs:label "response time"@en ;
+  skos:definition "The time it takes for a system to respond to an input or stimulus."@en ;
+  rdfs:isDefinedBy sosa-cap: .
+
+sosa-cap:RFSensitivity a sosa:Property ;
+  rdfs:label "RF sensitivity"@en ;
+  skos:definition "The minimum radio frequency signal power that the system can detect or decode reliably."@en ;
+  rdfs:isDefinedBy sosa-cap: .
+
+sosa-cap:Selectivity a sosa:Property ;
+  rdfs:label "selectivity"@en ;
+  skos:definition "The extent to which a sensor responds only to the target measurand and not to other quantities."@en ;
+  rdfs:isDefinedBy sosa-cap: .
+
+sosa-cap:Sensitivity a sosa:Property ;
+  rdfs:label "sensitivity"@en ;
+  skos:definition "The magnitude of change in output of a sensor per unit change in input."@en ;
+  rdfs:isDefinedBy sosa-cap: .
+
+sosa-cap:TemperatureAccuracy a sosa:Property ;
+  rdfs:label "temperature accuracy"@en ;
+  skos:definition "The closeness of agreement between the measured temperature and the true temperature."@en ;
+  rdfs:isDefinedBy sosa-cap: .
+
+sosa-cap:TemperaturePrecision a sosa:Property ;
+  rdfs:label "temperature precision"@en ;
+  skos:definition "The precision of the temperature measurements made by a Sensor."@en ;
+  rdfs:isDefinedBy sosa-cap: .
+
+sosa-cap:TemperatureResolution a sosa:Property ;
+  rdfs:label "temperature resolution"@en ;
+  skos:definition "The smallest temperature change that can be detected and reported by the system."@en ;
+  rdfs:isDefinedBy sosa-cap: .
+
+sosa-cap:UpperDetectionLimit a sosa:Property ;
+  rdfs:label "upper detection limit"@en ;
+  skos:definition "The maximum quantity of a substance that can be reliably detected by the sensor."@en ;
+  rdfs:isDefinedBy sosa-cap: .

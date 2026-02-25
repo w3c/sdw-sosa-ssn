@@ -1,0 +1,57 @@
+<h3>Quantity Values and Units of Measure</h3>
+<p>
+    The result of an <a>sosa:Observation</a> or an
+    <a>sosa:Actuation</a> can be a quantity value with a numeric value and a unit
+    of measure.
+</p>
+<p>
+    It is out of the scope of this specification to recommend a particular way of representing quantitative results.
+    Several options from external vocabularies are available for expressing quantities as OWL individuals, or as
+    datatypes.
+    `qudt:QuantityValue` from the <i>Quantities, Units, Dimensions, and Data Types</i> ontologies [[QUDT]] is the basis
+    for the examples in this section.
+    `cdt:ucum` from <i>Custom Datatypes</i> [[CDT]] is another option, but depends on an extension to standard RDF
+    processors.
+</p>
+
+<h4>Single values</h4>
+<p>
+    The following examples show an encoding of a single observation with a scalar result, as shown in
+    <a href="#Fig-UOM-general"></a>.
+</p>
+<figure id="Fig-UOM-general">
+    <embed alt="A simple Observation with a scaled number (Quantity) as its result" src="./images/UOM-general.svg"
+        style="width:80%" />
+    <figcaption>
+        A simple Observation with a scaled number (Quantity) as its result.
+        <br>
+        <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
+    </figcaption>
+</figure>
+
+<p>
+    A quantitative result can be represented as a <a href="http://qudt.org/">`qudt:QuantityValue`</a>.
+    In the following example <a href="http://qudt.org/vocab/unit/DEG_C">unit:DEG_C</a> is an
+    individual from the QUDT catalogue of units of measurement.
+</p>
+<pre class="example turtle" data-include="./rdf/examples/UOM-qudt-object.ttl" data-include-format="text"></pre>
+
+<h4>Collections</h4>
+<p>
+    In a collection of observations or actuations the members will often use a common unit of measurement.
+    This can be specified at the level of the collection using <a
+        href="http://qudt.org/schema/qudt/hasUnit">`qudt:hasUnit`</a>.
+</p>
+
+<p>
+    If `qudt:hasUnit` is present on a collection, then the consistency rules described for
+    <a href="#SOSAActuationCollection">Actuation properties</a> or
+    <a href="#SOSAObservationCollection">Observation properties</a> apply.
+</p>
+
+<p>
+    In the following example, the unit of measurement <a href="http://qudt.org/vocab/unit/DEG_C">unit:DEG_C</a> is
+    provided for all members of collection of observations.
+</p>
+
+<pre class="example turtle" data-include="./rdf/examples/UOM-qudt-collection.ttl" data-include-format="text"></pre>

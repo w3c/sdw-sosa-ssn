@@ -1,0 +1,153 @@
+<h2>Notation</h2>
+
+<section id="RDF-notation">
+    <h3>RDF notation</h3>
+    <p>
+        The SSN Ontology is defined using RDFS [[[rdf-schema]]] and OWL [[[owl2-overview]]] using its RDF representation
+        [[owl2-rdf-based-semantics]].
+    </p>
+    <p>
+        There are several RDF serializations available.
+        The choice of RDF serialization is NOT prescribed by this specification.
+        In this document, RDF fragments and examples are shown primarily using the compact
+        Turtle notation [[rdf12-turtle]], with options for JSON-LD [[json-ld11]] in some places.
+        OWL Restrictions are shown using the Manchester Syntax [[owl2-manchester-syntax]]
+    </p>
+</section>
+
+<section id="Class and property names" class="informative">
+    <h3>Class and property names</h3>
+    <p>
+        The names (IRIs) of classes and properties in the SSN Ontology use English words or phrases, consistent with
+        most other W3C ontologies.
+        This contrasts with the strategy of some other ontology design frameworks, particularly in the
+        <a href="https://basic-formal-ontology.org/">BFO family</a> and
+        <a href="https://obofoundry.org/">OBO Foundry</a>, which prefer 'opaque' codes in identifiers.
+    </p>
+    <p>
+        It is intended that the name for each term be a mnemonic or hint for the concept.
+        Names of some properties are phrases, including the verbs 'had', 'has', 'made', 'makes', 'used', 'uses', etc.
+        Verb tense varies, and sometimes does not match all uses of properties that may be used both retrospectively and
+        prospectively.
+        Don't look for perfect consistency: the name is just a token for identification, while the formal definition for
+        each term is provided using the `skos:definition` property and through its axiomatization.
+    </p>
+</section>
+
+<section id="Diagram" class="informative">
+    <h3>Diagram notation</h3>
+
+    <section id="Module-diagram">
+        <h4>Module diagrams</h4>
+
+        <figure id="Fig-ModuleKey">
+            <embed alt="UML-ish notation for module diagrams" src="images/ModuleKey.svg" style="width: 50%">
+            <figcaption>
+                Key to notation used in module diagrams.
+            </figcaption>
+        </figure>
+
+        <p>
+            Module diagrams use a notation similar to UML Package Diagrams [[[uml]]],
+            with folders for modules, and dashed directed connectors for dependencies.
+            However the module diagrams MUST NOT be interpreted according to strict UML rules.
+        </p>
+
+    </section>
+
+
+    <section id="Class-diagram">
+        <h4>Class and instance diagrams</h4>
+        <figure id="Fig-class-diagram-notation">
+            <embed alt="UML-ish notation for class+property diagrams" src="images/ClassKey.svg" style="width: 60%">
+            <figcaption>
+                Key to notation used in class and property diagrams, and in diagrams showing examples containing
+                individuals.
+                <br>
+                Unless otherwise stated, unqualified names refer to classes and properties in the sosa: namespace.
+            </figcaption>
+        </figure>
+
+        <p>
+            Class and property diagrams use a notation similar to UML Class Diagrams [[[uml]]],
+            with boxes for classes and individuals,
+            and labelled directed connectors (associations) or class attributes for properties.
+            However the class diagrams MUST NOT be interpreted according to strict UML rules.
+        </p>
+        <p>
+            In particular:
+            <br>- Cardinalities are not shown and SHOULD NOT be inferred
+            <br>- Object properties are generally shown as association roles.
+            Exceptions are (i) if a target class is unspecified (ii) to reduce clutter,
+            in which case object properties appear as class attributes, alongside the datatype properties
+        </p>
+        <p>
+            Individual members of classes in a diagrams showing examples, appear as boxes with a dotted-outline.
+            Properties of instances are shown as dashed connectors.
+            In some cases, a literal is shown in a box, even though it is not strictly an 'object' or 'individual' in
+            the RDF or OWL sense (e.g., quantities, location coordinates, time values).
+        </p>
+        <p>
+            Classes and properties coloured grey are included in a diagram for context,
+            but are described in a different section of the document
+        </p>
+        <p>
+            Connectors with open arrowheads indicate sub-class relationships.
+        </p>
+        <p>
+            The purpose of the diagrams is primarily to orient the reader as to how SSN properties are related to the
+            SSN classes for most applications.
+            The associations shown in the diagrams match the soft axioms `schema:domainIncludes` and
+            `schema:rangeIncludes` in the ontology.
+            However, in any diagram the associations and attributes are not exhaustive:
+            other associations and attributes exist but are not shown where their presence in the diagram would distract
+            from the primary message.
+        </p>
+    </section>
+
+</section>
+
+<section id="Alignment-notation" class="informative">
+    <h3>Alignment notation</h3>
+
+    <p>
+        Alignments of the SSN Ontology to some other ontologies and specifications are provided in
+        <a href="#Alignments"></a>.
+        Alignments use a combination of [[Description-Logics]] notation (see also the
+        [[Description-Logics-Home-Page]]) and the Manchester Syntax [[owl2-manchester-syntax]].
+    </p>
+
+    <ul>
+        <li>
+            <span class="logic">⊑</span> denotes either <code>rdfs:subClassOf</code> or <code>rdfs:subPropertyOf</code>,
+            depending on the context
+        </li>
+        <li>
+            <span class="logic">⊒</span> represents the inverse relation
+        </li>
+        <li>
+            <span class="logic">≡</span> indicates equivalence, corresponding to either <code>owl:equivalentClass</code>
+            or <code>owl:equivalentProperty</code>, depending on the context
+        </li>
+        <li>
+            The expression <code>C1 <span class="logic">or</span> C2</code> represents an <code>owl:unionOf</code> class
+            expression
+        </li>
+        <li>
+            The expression <code>OP1 <span class="logic">o</span> OP2</code> represents an
+            <code>owl:propertyChainAxiom</code>
+        </li>
+        <li>
+            The expression <code>OP <span class="logic">only</span> C</code> represents an
+            <code>owl:allValuesFrom</code> property restriction
+        </li>
+        <li>
+            The expression <code>OP <span class="logic">exactly 1</span></code> represents an
+            <code>owl:cardinality</code> restriction
+        </li>
+        <li>
+            The expression <code>OP <span class="logic">exactly 1</span> C</code> represents an
+            <code>owl:qualifiedCardinality</code> restriction
+        </li>
+    </ul>
+</section>
