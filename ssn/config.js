@@ -130,6 +130,8 @@ var respecConfig = {
         }, {
           value: "Krzysztof Janowicz, Universität Wien, AT"
         }, {
+          value: "Danielle Limbaugh, Summit Knowledge Solutions, USA"
+        }, {
           value: "Maja Milicic Brandt, Siemens AG, DE"
         }, {
           value: "Alex Robin, Georobotix, FR"
