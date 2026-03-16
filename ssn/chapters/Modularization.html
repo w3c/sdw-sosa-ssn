@@ -11,7 +11,7 @@
     Upper level ontologies are <i>general knowledge</i> ontologies that can be directionally imported in many domains.
 </p>
 
-<section id="SSNcoreModules">
+<section id="ssn-core-modules">
     <h3>Core modules</h3>
     <p>
         <a href="#Fig-SSN-core-modules"></a> summarizes the modules and dependencies within the core SSN
@@ -26,7 +26,7 @@
         </figcaption>
     </figure>
 
-    <h4 id="sosa-module">SOSA</h4>
+    <h4 id="sosa-modules">SOSA</h4>
     <p>
         The <i>SOSA Module</i> (Sensors, Observations, Samples and Actuations) defines the <b>core</b> classes and
         properties, and provides textual definitions and other annotations.
@@ -37,65 +37,770 @@
     <p>
         <b>SOSA</b> is composed of four lower level modules:
     </p>
-    <ol>
-        <li>
-            <b>SOSA Common</b> defines classes and properties that are shared across
-            Actuation, Observation and Sampling applications, documented in section <a href="#Common"></a>
-        </li>
-        <li>
-            <b>SOSA Actuation</b> imports <b>SOSA Common</b> and defines classes and properties used in Actuations,
-            documented in section <a href="#Actuation"></a>
-        </li>
-        <li>
-            <b>SOSA Observation</b> imports <b>SOSA Common</b> and defines classes and properties used in Observations,
-            documented in section <a href="#Observation"></a>
-        </li>
-        <li>
-            <b>SOSA Sampling</b> imports <b>SOSA Common</b> and defines classes and properties used in Samplings,
-            documented in section <a href="#Sampling"></a>
-        </li>
-    </ol>
+
+    <h5 id="sosa-common-module">SOSA Common</h5>
     <p>
-        Finally, <i>SOSA</i> imports <b>SOSA Actuation</b>, <b>SOSA Observation</b> and <b>SOSA Sampling</b>.
+        <b>SOSA Common</b> defines classes and properties that are shared across
+        Actuation, Observation and Sampling applications, documented in section <a href="#Common"></a>.
+    </p>
+
+    <table class="numbered">
+        <caption>OGC Requirements class:
+            <br> <a href="#sosa-common-module">https://www.w3.org/TR/vocab-ssn-2023#sosa-common-module</a>
+        </caption>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAFeatureOfInterest">https://www.w3.org/TR/vocab-ssn-2023#SOSAFeatureOfInterest</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAProperty">https://www.w3.org/TR/vocab-ssn-2023#SOSAProperty</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAforProperty">https://www.w3.org/TR/vocab-ssn-2023#SOSAforProperty</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAhasProperty">https://www.w3.org/TR/vocab-ssn-2023#SOSAhasProperty</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAisFeatureOfInterestOf">https://www.w3.org/TR/vocab-ssn-2023#SOSAisFeatureOfInterestOf</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAisPropertyOf">https://www.w3.org/TR/vocab-ssn-2023#SOSAisPropertyOf</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAisUltimateFeatureOfInterestOf">https://www.w3.org/TR/vocab-ssn-2023#SOSAisUltimateFeatureOfInterestOf</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSApropertyFor">https://www.w3.org/TR/vocab-ssn-2023#SOSApropertyFor</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAProcedure">https://www.w3.org/TR/vocab-ssn-2023#SOSAProcedure</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAhasInput">https://www.w3.org/TR/vocab-ssn-2023#SOSAhasInput</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAhasOutput">https://www.w3.org/TR/vocab-ssn-2023#SOSAhasOutput</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAhasProcedure">https://www.w3.org/TR/vocab-ssn-2023#SOSAhasProcedure</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAimplementedBy">https://www.w3.org/TR/vocab-ssn-2023#SOSAimplementedBy</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAinputFor">https://www.w3.org/TR/vocab-ssn-2023#SOSAinputFor</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAisProcedureFor">https://www.w3.org/TR/vocab-ssn-2023#SOSAisProcedureFor</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAoutputFor">https://www.w3.org/TR/vocab-ssn-2023#SOSAoutputFor</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAusedForExecution">https://www.w3.org/TR/vocab-ssn-2023#SOSAusedForExecution</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAExecution">https://www.w3.org/TR/vocab-ssn-2023#SOSAExecution</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAExecutionCollection">https://www.w3.org/TR/vocab-ssn-2023#SOSAExecutionCollection</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAendTime">https://www.w3.org/TR/vocab-ssn-2023#SOSAendTime</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAhasFeatureOfInterest">https://www.w3.org/TR/vocab-ssn-2023#SOSAhasFeatureOfInterest</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAhasInputValue">https://www.w3.org/TR/vocab-ssn-2023#SOSAhasInputValue</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAhasResult">https://www.w3.org/TR/vocab-ssn-2023#SOSAhasResult</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAhasSimpleResult">https://www.w3.org/TR/vocab-ssn-2023#SOSAhasSimpleResult</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAhasUltimateFeatureOfInterest">https://www.w3.org/TR/vocab-ssn-2023#SOSAhasUltimateFeatureOfInterest</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAinputValueForExecution">https://www.w3.org/TR/vocab-ssn-2023#SOSAinputValueForExecution</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAisResultOf">https://www.w3.org/TR/vocab-ssn-2023#SOSAisResultOf</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAmadeBySystem">https://www.w3.org/TR/vocab-ssn-2023#SOSAmadeBySystem</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAphenomenonOccurred">https://www.w3.org/TR/vocab-ssn-2023#SOSAphenomenonOccurred</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAphenomenonTime">https://www.w3.org/TR/vocab-ssn-2023#SOSAphenomenonTime</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAresultTime">https://www.w3.org/TR/vocab-ssn-2023#SOSAresultTime</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAstartTime">https://www.w3.org/TR/vocab-ssn-2023#SOSAstartTime</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAusedProcedure">https://www.w3.org/TR/vocab-ssn-2023#SOSAusedProcedure</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAAsset">https://www.w3.org/TR/vocab-ssn-2023#SOSAAsset</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSADeployment">https://www.w3.org/TR/vocab-ssn-2023#SOSADeployment</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAPlatform">https://www.w3.org/TR/vocab-ssn-2023#SOSAPlatform</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSASystem">https://www.w3.org/TR/vocab-ssn-2023#SOSASystem</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAdeployedAsset">https://www.w3.org/TR/vocab-ssn-2023#SOSAdeployedAsset</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAdeployedOnPlatform">https://www.w3.org/TR/vocab-ssn-2023#SOSAdeployedOnPlatform</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAdeployedSystem">https://www.w3.org/TR/vocab-ssn-2023#SOSAdeployedSystem</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAhasDeployment">https://www.w3.org/TR/vocab-ssn-2023#SOSAhasDeployment</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAhasSubSystem">https://www.w3.org/TR/vocab-ssn-2023#SOSAhasSubSystem</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAhosts">https://www.w3.org/TR/vocab-ssn-2023#SOSAhosts</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAimplements">https://www.w3.org/TR/vocab-ssn-2023#SOSAimplements</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAinDeployment">https://www.w3.org/TR/vocab-ssn-2023#SOSAinDeployment</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAisHostedBy">https://www.w3.org/TR/vocab-ssn-2023#SOSAisHostedBy</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAisSubSystemOf">https://www.w3.org/TR/vocab-ssn-2023#SOSAisSubSystemOf</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAmadeExecution">https://www.w3.org/TR/vocab-ssn-2023#SOSAmadeExecution</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAsystemDeployment">https://www.w3.org/TR/vocab-ssn-2023#SOSAsystemDeployment</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAhasMember">https://www.w3.org/TR/vocab-ssn-2023#SOSAhasMember</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAisMemberOf">https://www.w3.org/TR/vocab-ssn-2023#SOSAisMemberOf</a></td>
+        </tr>
+    </table>
+
+    <h5 id="sosa-actuation-module">SOSA Actuation</h5>
+    <p>
+        <b>SOSA Actuation</b> imports <b>SOSA Common</b> and defines classes and properties used in Actuations,
+        documented in section <a href="#Actuation"></a>.
+    </p>
+
+    <table class="numbered">
+        <caption>OGC Requirements class:
+            <br> <a href="#sosa-actuation-module">https://www.w3.org/TR/vocab-ssn-2023#sosa-actuation-module</a>
+        </caption>
+        <tr>
+            <td>Dependency</td>
+            <td><a href="#sosa-common-module">https://www.w3.org/TR/vocab-ssn-2023#sosa-common-module</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAActuatingProcedure">https://www.w3.org/TR/vocab-ssn-2023#SOSAActuatingProcedure</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAActuation">https://www.w3.org/TR/vocab-ssn-2023#SOSAActuation</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAActuationCollection">https://www.w3.org/TR/vocab-ssn-2023#SOSAActuationCollection</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAActuator">https://www.w3.org/TR/vocab-ssn-2023#SOSAActuator</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAactsOn">https://www.w3.org/TR/vocab-ssn-2023#SOSAactsOn</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAactsOnProperty">https://www.w3.org/TR/vocab-ssn-2023#SOSAactsOnProperty</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAisActedOnBy">https://www.w3.org/TR/vocab-ssn-2023#SOSAisActedOnBy</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAmadeActuation">https://www.w3.org/TR/vocab-ssn-2023#SOSAmadeActuation</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAmadeByActuator">https://www.w3.org/TR/vocab-ssn-2023#SOSAmadeByActuator</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAwasActedOnBy">https://www.w3.org/TR/vocab-ssn-2023#SOSAwasActedOnBy</a></td>
+        </tr>
+    </table>
+
+    <h5 id="sosa-observation-module">SOSA Observation</h5>
+    <p>
+        <b>SOSA Observation</b> imports <b>SOSA Common</b> and defines classes and properties used in Observations,
+        documented in section <a href="#Observation"></a>.
+    </p>
+
+    <table class="numbered">
+        <caption>OGC Requirements class:
+            <br> <a href="#sosa-observation-module">https://www.w3.org/TR/vocab-ssn-2023#sosa-observation-module</a>
+        </caption>
+        <tr>
+            <td>Dependency</td>
+            <td><a href="#sosa-common-module">https://www.w3.org/TR/vocab-ssn-2023#sosa-common-module</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAObservation">https://www.w3.org/TR/vocab-ssn-2023#SOSAObservation</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAObservationCollection">https://www.w3.org/TR/vocab-ssn-2023#SOSAObservationCollection</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAObservingProcedure">https://www.w3.org/TR/vocab-ssn-2023#SOSAObservingProcedure</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSASensor">https://www.w3.org/TR/vocab-ssn-2023#SOSASensor</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAStimulus">https://www.w3.org/TR/vocab-ssn-2023#SOSAStimulus</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAdetects">https://www.w3.org/TR/vocab-ssn-2023#SOSAdetects</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAhasProxy">https://www.w3.org/TR/vocab-ssn-2023#SOSAhasProxy</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAisDetectedBy">https://www.w3.org/TR/vocab-ssn-2023#SOSAisDetectedBy</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAisObservedBy">https://www.w3.org/TR/vocab-ssn-2023#SOSAisObservedBy</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAisProxyFor">https://www.w3.org/TR/vocab-ssn-2023#SOSAisProxyFor</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAmadeBySensor">https://www.w3.org/TR/vocab-ssn-2023#SOSAmadeBySensor</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAmadeObservation">https://www.w3.org/TR/vocab-ssn-2023#SOSAmadeObservation</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAobservationRelatedTo">https://www.w3.org/TR/vocab-ssn-2023#SOSAobservationRelatedTo</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAobservedProperty">https://www.w3.org/TR/vocab-ssn-2023#SOSAobservedProperty</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAobserves">https://www.w3.org/TR/vocab-ssn-2023#SOSAobserves</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAoriginated">https://www.w3.org/TR/vocab-ssn-2023#SOSAoriginated</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAqualityOf">https://www.w3.org/TR/vocab-ssn-2023#SOSAqualityOf</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSArelatedObservation">https://www.w3.org/TR/vocab-ssn-2023#SOSArelatedObservation</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAresultQuality">https://www.w3.org/TR/vocab-ssn-2023#SOSAresultQuality</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAwasObservedBy">https://www.w3.org/TR/vocab-ssn-2023#SOSAwasObservedBy</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAwasOriginatedBy">https://www.w3.org/TR/vocab-ssn-2023#SOSAwasOriginatedBy</a>
+            </td>
+        </tr>
+    </table>
+
+    <h5 id="sosa-sampling-module">SOSA Sampling</h5>
+    <p>
+        <b>SOSA Sampling</b> imports <b>SOSA Common</b> and defines classes and properties used in Samplings,
+        documented in section <a href="#Sampling"></a>.
+    </p>
+
+    <table class="numbered">
+        <caption>OGC Requirements class:
+            <br> <a href="#sosa-sampling-module">https://www.w3.org/TR/vocab-ssn-2023#sosa-sampling-module</a>
+        </caption>
+        <tr>
+            <td>Dependency</td>
+            <td><a href="#sosa-common-module">https://www.w3.org/TR/vocab-ssn-2023#sosa-common-module</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSASample">https://www.w3.org/TR/vocab-ssn-2023#SOSASample</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAMaterialSample">https://www.w3.org/TR/vocab-ssn-2023#SOSAMaterialSample</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSASpatialSample">https://www.w3.org/TR/vocab-ssn-2023#SOSASpatialSample</a> </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAStatisticalSample">https://www.w3.org/TR/vocab-ssn-2023#SOSAStatisticalSample</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSASampleCollection">https://www.w3.org/TR/vocab-ssn-2023#SOSASampleCollection</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSASampling">https://www.w3.org/TR/vocab-ssn-2023#SOSASampling</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSASamplingCollection">https://www.w3.org/TR/vocab-ssn-2023#SOSASamplingCollection</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSASamplingProcedure">https://www.w3.org/TR/vocab-ssn-2023#SOSASamplingProcedure</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAfeatureHasUltimateSample">https://www.w3.org/TR/vocab-ssn-2023#SOSAfeatureHasUltimateSample</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAhasOriginalSample">https://www.w3.org/TR/vocab-ssn-2023#SOSAhasOriginalSample</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAhasSample">https://www.w3.org/TR/vocab-ssn-2023#SOSAhasSample</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAisOriginalSampleOf">https://www.w3.org/TR/vocab-ssn-2023#SOSAisOriginalSampleOf</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAisResultOfMadeBySampler">https://www.w3.org/TR/vocab-ssn-2023#SOSAisResultOfMadeBySampler</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAisResultOfUsedProcedure">https://www.w3.org/TR/vocab-ssn-2023#SOSAisResultOfUsedProcedure</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAisSampleOf">https://www.w3.org/TR/vocab-ssn-2023#SOSAisSampleOf</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAisSampleOfUltimateFOI">https://www.w3.org/TR/vocab-ssn-2023#SOSAisSampleOfUltimateFOI</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAmadeBySampler">https://www.w3.org/TR/vocab-ssn-2023#SOSAmadeBySampler</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAmadeSampling">https://www.w3.org/TR/vocab-ssn-2023#SOSAmadeSampling</a> </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAmadeSamplingHasResult">https://www.w3.org/TR/vocab-ssn-2023#SOSAmadeSamplingHasResult</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SOSAusedForExecutionHasResult">https://www.w3.org/TR/vocab-ssn-2023#SOSAusedForExecutionHasResult</a>
+            </td>
+        </tr>
+    </table>
+
+    <h5 id="sosa-all-module">SOSA (All)</h5>
+    <p>
+        <b>SOSA</b> imports <b>SOSA Actuation</b>, <b>SOSA Observation</b> and <b>SOSA Sampling</b>.
     </p>
     <p>
-        <i>SOSA</i> as the core, does not import any other ontologies, so it is truly independent of modules that add
+        <b>SOSA</b> does not import any other ontologies, so it is independent of modules that add
         more expressivity and further ontological commitments to the lightweight semantics of <i>SOSA</i>.
     </p>
 
-    <h4 id="ssn-module">SSN</h4>
+    <table class="numbered">
+        <caption>OGC Requirements class:
+            <br> <a href="#sosa-all-module">https://www.w3.org/TR/vocab-ssn-2023#sosa-all-module</a>
+        </caption>
+        <tr>
+            <td>Dependency</td>
+            <td><a href="#sosa-actuation-module">https://www.w3.org/TR/vocab-ssn-2023#sosa-actuation-module</a></td>
+        </tr>
+        <tr>
+            <td>Dependency</td>
+            <td><a href="#sosa-observation-module">https://www.w3.org/TR/vocab-ssn-2023#sosa-observation-module</a></td>
+        </tr>
+        <tr>
+            <td>Dependency</td>
+            <td><a href="#sosa-sampling-module">https://www.w3.org/TR/vocab-ssn-2023#sosa-sampling-module</a></td>
+        </tr>
+    </table>
+
+
+    <h4 id="ssn-modules">SSN</h4>
     <p>
-        The <i>SSN Module</i> adds OWL axioms that formally indicate how properties relate to classes.
+        The <i>SSN Modules</i> adds OWL axioms that formally indicate how properties relate to classes.
         SSN may be used in semantic web systems that use inference and reasoning, and check consistency of
-        datasets. </p>
+        datasets.
+    </p>
     <p>
         The modularization of <b>SSN</b> mirrors <b>SOSA</b>.
         <b>SSN</b> is composed of four lower level modules:
     </p>
-    <ol>
-        <li>
-            <b>SSN Common</b> imports <b>SOSA Common</b> and axiomatizes classes and properties that are shared across
-            Actuation, Observation and Sampling applications, as documented in section <a href="#Common"></a>
-        </li>
-        <li>
-            <b>SSN Actuation</b> imports <b>SSN Common</b> and <b>SOSA Actuation</b>, and axiomatizes classes and
-            properties used in Actuations, as documented in section <a href="#Actuation"></a>
-        </li>
-        <li>
-            <b>SSN Observation</b> imports <b>SSN Common</b> and <b>SOSA Observation</b>, and axiomatizes classes and
-            properties used in Observations, as documented in section <a href="#Observation"></a>
-        </li>
-        <li>
-            <b>SSN Sampling</b> imports <b>SSN Common</b> and <b>SOSA Sampling</b>, and axiomatizes classes and
-            properties used in Samplings, as documented in section <a href="#Sampling"></a>
-        </li>
-    </ol>
+
+    <h5 id="ssn-common-module">SSN Common</h5>
     <p>
-        Finally, <i>SSN</i> imports <b>SSN Actuation</b>, <b>SSN Observation</b> and <b>SSN Sampling</b>.
+        <b>SSN Common</b> imports <b>SOSA Common</b> and axiomatizes classes and properties that are shared across
+        Actuation, Observation and Sampling applications, as documented in section <a href="#Common"></a>.
     </p>
+
+    <table class="numbered">
+        <caption>OGC Requirements class:
+            <br> <a href="#ssn-common-module">https://www.w3.org/TR/vocab-ssn-2023#ssn-common-module</a>
+        </caption>
+        <tr>
+            <td>Dependency</td>
+            <td><a href="#sosa-common-module">https://www.w3.org/TR/vocab-ssn-2023#sosa-common-module</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SSNFeatureOfInterest">https://www.w3.org/TR/vocab-ssn-2023#SSNFeatureOfInterest</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SSNProperty">https://www.w3.org/TR/vocab-ssn-2023#SSNProperty</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SSNProcedure">https://www.w3.org/TR/vocab-ssn-2023#SSNProcedure</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SSNExecution">https://www.w3.org/TR/vocab-ssn-2023#SSNExecution</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SSNExecutionCollection">https://www.w3.org/TR/vocab-ssn-2023#SSNExecutionCollection</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SSNDeployment">https://www.w3.org/TR/vocab-ssn-2023#SSNDeployment</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SSNPlatform">https://www.w3.org/TR/vocab-ssn-2023#SSNPlatform</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SSNSystem">https://www.w3.org/TR/vocab-ssn-2023#SSNSystem</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SSNhosts">https://www.w3.org/TR/vocab-ssn-2023#SSNhosts</a></td>
+        </tr>
+    </table>
+
+    <h5 id="ssn-actuation-module">SSN Actuation</h5>
+    <p>
+        <b>SSN Actuation</b> imports <b>SSN Common</b> and <b>SOSA Actuation</b>, and axiomatizes classes and
+        properties used in Actuations, as documented in section <a href="#Actuation"></a>.
+    </p>
+
+    <table class="numbered">
+        <caption>OGC Requirements class:
+            <br> <a href="#ssn-actuation-module">https://www.w3.org/TR/vocab-ssn-2023#ssn-actuation-module</a>
+        </caption>
+        <tr>
+            <td>Dependency</td>
+            <td><a href="#ssn-common-module">https://www.w3.org/TR/vocab-ssn-2023#ssn-common-module</a></td>
+        </tr>
+        <tr>
+            <td>Dependency</td>
+            <td><a href="#sosa-actuation-module">https://www.w3.org/TR/vocab-ssn-2023#sosa-actuation-module</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SSNActuatingProcedure">https://www.w3.org/TR/vocab-ssn-2023#SSNActuatingProcedure</a>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SSNActuation">https://www.w3.org/TR/vocab-ssn-2023#SSNActuation</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SSNActuationCollection">https://www.w3.org/TR/vocab-ssn-2023#SSNActuationCollection</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SSNActuator">https://www.w3.org/TR/vocab-ssn-2023#SSNActuator</a></td>
+        </tr>
+    </table>
+
+    <h5 id="ssn-observation-module">SSN Observation</h5>
+    <p>
+        <b>SSN Observation</b> imports <b>SSN Common</b> and <b>SOSA Observation</b>, and axiomatizes classes and
+        properties used in Observations, as documented in section <a href="#Observation"></a>.
+    </p>
+
+    <table class="numbered">
+        <caption>OGC Requirements class:
+            <br> <a href="#ssn-observation-module">https://www.w3.org/TR/vocab-ssn-2023#ssn-observation-module</a>
+        </caption>
+        <tr>
+            <td>Dependency</td>
+            <td><a href="#ssn-common-module">https://www.w3.org/TR/vocab-ssn-2023#ssn-common-module</a></td>
+        </tr>
+        <tr>
+            <td>Dependency</td>
+            <td><a href="#sosa-observation-module">https://www.w3.org/TR/vocab-ssn-2023#sosa-observation-module</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SSNObservation">https://www.w3.org/TR/vocab-ssn-2023#SSNObservation</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SSNObservationCollection">https://www.w3.org/TR/vocab-ssn-2023#SSNObservationCollection</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SSNObservingProcedure">https://www.w3.org/TR/vocab-ssn-2023#SSNObservingProcedure</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SSNSensor">https://www.w3.org/TR/vocab-ssn-2023#SSNSensor</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SSNStimulus">https://www.w3.org/TR/vocab-ssn-2023#SSNStimulus</a></td>
+        </tr>
+    </table>
+
+    <h5 id="ssn-sampling-module">SSN Sampling</h5>
+    <p>
+        <b>SSN Sampling</b> imports <b>SSN Common</b> and <b>SOSA Sampling</b>, and axiomatizes classes and
+        properties used in Samplings, as documented in section <a href="#Sampling"></a>.
+    </p>
+
+    <table class="numbered">
+        <caption>OGC Requirements class:
+            <br> <a href="#ssn-sampling-module">https://www.w3.org/TR/vocab-ssn-2023#ssn-sampling-module</a>
+        </caption>
+        <tr>
+            <td>Dependency</td>
+            <td><a href="#ssn-common-module">https://www.w3.org/TR/vocab-ssn-2023#ssn-common-module</a></td>
+        </tr>
+        <tr>
+            <td>Dependency</td>
+            <td><a href="#sosa-sampling-module">https://www.w3.org/TR/vocab-ssn-2023#sosa-sampling-module</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SSNSample">https://www.w3.org/TR/vocab-ssn-2023#SSNSample</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SSNSampleCollection">https://www.w3.org/TR/vocab-ssn-2023#SSNSampleCollection</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SSNSampler">https://www.w3.org/TR/vocab-ssn-2023#SSNSampler</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SSNSampling">https://www.w3.org/TR/vocab-ssn-2023#SSNSampling</a></td>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SSNSamplingCollection">https://www.w3.org/TR/vocab-ssn-2023#SSNSamplingCollection</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SSNSamplingProcedure">https://www.w3.org/TR/vocab-ssn-2023#SSNSamplingProcedure</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SSNisResultOfMadeBySampler">https://www.w3.org/TR/vocab-ssn-2023#SSNisResultOfMadeBySampler</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SSNisResultOfUsedProcedure">https://www.w3.org/TR/vocab-ssn-2023#SSNisResultOfUsedProcedure</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SSNmadeSamplingHasResult">https://www.w3.org/TR/vocab-ssn-2023#SSNmadeSamplingHasResult</a>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SSNusedForExecutionHasResult">https://www.w3.org/TR/vocab-ssn-2023#SSNusedForExecutionHasResult</a>
+        </tr>
+    </table>
+
+    <h5 id="ssn-all-module">SSN (All)</h5>
+    <p>
+        <b>SSN</b> imports <b>SSN Actuation</b>, <b>SSN Observation</b> and <b>SSN Sampling</b>.
+    </p>
+
+    <table class="numbered">
+        <caption>OGC Requirements class:
+            <br> <a href="#ssn-all-module">https://www.w3.org/TR/vocab-ssn-2023#ssn-all-module</a>
+        </caption>
+        <tr>
+            <td>Dependency</td>
+            <td><a href="#ssn-actuation-module">https://www.w3.org/TR/vocab-ssn-2023#ssn-actuation-module</a></td>
+        </tr>
+        <tr>
+            <td>Dependency</td>
+            <td><a href="#ssn-observation-module">https://www.w3.org/TR/vocab-ssn-2023#ssn-observation-module</a></td>
+        </tr>
+        <tr>
+            <td>Dependency</td>
+            <td><a href="#ssn-sampling-module">https://www.w3.org/TR/vocab-ssn-2023#ssn-sampling-module</a></td>
+        </tr>
+    </table>
+
 </section>
 
-<section id="SSNextensionModules">
+<section id="ssn-extension-modules">
     <h3>Extension modules</h3>
     <p>
         <a href="#Fig-SSN-extension-modules"></a> summarizes the extension modules described in this document and their
@@ -110,38 +815,171 @@
         </figcaption>
     </figure>
 
-    <h4 id="sosa-oms-module">OMS</h4>
+    <h4 id="oms-module">OMS</h4>
+
     <p>
-        The <i>SOSA-OMS module</i> imports <b>SOSA Observation</b> and <b>SOSA Sampling</b> and adds classes and
+        The <i>SOSA-OMS module</i> and the <i>SSN-OMS module</i> are documented in section <a href="#OMS"></a>
+    </p>
+
+    <h5 id="sosa-oms-module">SOSA-OMS</h5>
+    <p>
+        <b>SOSA-OMS</b> imports <b>SOSA Observation</b> and <b>SOSA Sampling</b> and adds classes and
         properties required to provide an RDF implementation of [[[OMS]]].
         <b><i>SOSA-OMS</i> may be used by audiences for whom full conformance to [[OMS]] (also known as ISO 19156:2023)
             is a requirement</b>
     </p>
 
+    <table class="numbered">
+        <caption>OGC Requirements class:
+            <br><a href="#sosa-oms-module">https://www.w3.org/TR/vocab-ssn-2023#sosa-oms-module</a>
+        </caption>
+        <tr>
+            <td>Dependency</td>
+            <td><a href="#sosa-observation-module">https://www.w3.org/TR/vocab-ssn-2023#sosa-observation-module</a></td>
+        </tr>
+        <tr>
+            <td>Dependency</td>
+            <td><a href="#sosa-sampling-module">https://www.w3.org/TR/vocab-ssn-2023#sosa-sampling-module</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#OMSPreparationProcedure">https://www.w3.org/TR/vocab-ssn-2023#OMSPreparationProcedure</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#OMSPreparationStep">https://www.w3.org/TR/vocab-ssn-2023#OMSPreparationStep</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#OMShasPreparationStep">https://www.w3.org/TR/vocab-ssn-2023#OMShasPreparationStep</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#OMSmadeOnPlatform">https://www.w3.org/TR/vocab-ssn-2023#OMSmadeOnPlatform</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#OMSmakesObservationCollection">https://www.w3.org/TR/vocab-ssn-2023#OMSmakesObservationCollection</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#OMSmetadata">https://www.w3.org/TR/vocab-ssn-2023#OMSmetadata</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#OMSobservationType">https://www.w3.org/TR/vocab-ssn-2023#OMSobservationType</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#OMSpreparedSample">https://www.w3.org/TR/vocab-ssn-2023#OMSpreparedSample</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#OMSprocessingDetails">https://www.w3.org/TR/vocab-ssn-2023#OMSprocessingDetails</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#OMSrelatedSampling">https://www.w3.org/TR/vocab-ssn-2023#OMSrelatedSampling</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#OMSsamplePreparationStep">https://www.w3.org/TR/vocab-ssn-2023#OMSsamplePreparationStep</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#OMSvalidTime">https://www.w3.org/TR/vocab-ssn-2023#OMSvalidTime</a></td>
+        </tr>
+    </table>
+
+    <h5 id="ssn-oms-module">SSN-OMS</h5>
+
     <p>
-        The <i>SSN-OMS module</i> imports <i>SOSA-OMS</i> and <b>SSN Observation</b> and <b>SSN Sampling</b> and adds
+        <b>SSN-OMS</b> imports <b>SOSA-OMS</b>, and <b>SSN Observation</b> and <b>SSN Sampling</b> and adds
         OWL/RDFS axiomatization to the RDF implementation of [[OMS]].
-        <b><i>SSN-OMS</i> may be used by audiences for whom full conformance to [[OMS]] (also known as ISO 19156:2023)
-            is a requirement, with reasoning support</b>
     </p>
-    <p>
-        The <i>SOSA-OMS module</i> and the <i>SSN-OMS module</i> are documented in section <a href="#OMS"></a>
+    <p class="note">
+        <b>SSN-OMS</b> may be used by audiences for whom full conformance to [[OMS]] (also known as ISO 19156:2023) is a
+        requirement, with reasoning support.
     </p>
+
+    <table class="numbered">
+        <caption>OGC Requirements class:
+            <br><a href="#ssn-oms-module">https://www.w3.org/TR/vocab-ssn-2023#ssn-oms-module</a>
+        </caption>
+        <tr>
+            <td>Dependency</td>
+            <td><a href="#sosa-oms-module">https://www.w3.org/TR/vocab-ssn-2023#sosa-oms-module</a></td>
+        </tr>
+        <tr>
+            <td>Dependency</td>
+            <td><a href="#ssn-observation-module">https://www.w3.org/TR/vocab-ssn-2023#ssn-observation-module</a></td>
+        </tr>
+        <tr>
+            <td>Dependency</td>
+            <td><a href="#ssn-sampling-module">https://www.w3.org/TR/vocab-ssn-2023#ssn-sampling-module</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SSN-OMSmadeOnPlatform">https://www.w3.org/TR/vocab-ssn-2023#SSN-OMSmadeOnPlatform</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SSN-OMSmakesObservationCollection">https://www.w3.org/TR/vocab-ssn-2023#SSN-OMSmakesObservationCollection</a>
+            </td>
+        </tr>
+    </table>
 
     <h4 id="sample-relations-module">Sample Relations</h4>
     <p>
-        The <i>Sample Relations module</i> imports <i>SOSA Sampling</i>, and adds classes and properties required for
+        The <i>Sample Relations module</i> imports <i>SOSA Sampling</i>, and adds classes and properties required
+        for
         the description of networks of samples.
     </p>
     <p>
         The <i>Sample Relations module</i> is documented in section <a href="#Sample-Relations"></a>.
     </p>
 
-    <h4 id="system-capabilities-module">System Capabilities</h4>
+    <table class="numbered">
+        <caption>OGC Requirements class:
+            <br><a href="#sample-relations-module">https://www.w3.org/TR/vocab-ssn-2023#sample-relations-module</a>
+        </caption>
+        <tr>
+            <td>Dependency</td>
+            <td><a href="#sosa-sampling-module">https://www.w3.org/TR/vocab-ssn-2023#sosa-sampling-module</a></td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SAMRRelationshipNature">https://www.w3.org/TR/vocab-ssn-2023#SAMRRelationshipNature</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SAMRSampleRelationship">https://www.w3.org/TR/vocab-ssn-2023#SAMRSampleRelationship</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SAMRhasSampleRelationship">https://www.w3.org/TR/vocab-ssn-2023#SAMRhasSampleRelationship</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SAMRnatureOfRelationship">https://www.w3.org/TR/vocab-ssn-2023#SAMRnatureOfRelationship</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Requirement</td>
+            <td><a href="#SAMRrelatedSample">https://www.w3.org/TR/vocab-ssn-2023#SAMRrelatedSample</a></td>
+        </tr>
+    </table>
+
+
+    <h4 id="system-capabilities-module" class="informative">System Capabilities</h4>
     <p>
-        The <i>System Capabilities module</i> imports <i>SOSA</i> and adds classes and properties required for the
-        description of the
-        operating conditions and capabilities of systems, in particular Sensors and Actuators.
+        The <i>System Capabilities module</i> imports <b>SOSA</b> and adds classes and properties required for the
+        description of the operating conditions and capabilities of systems, in particular Sensors and Actuators.
     </p>
     <p>
         The <i>System Capabilities module</i> is documented in appendix <a href="#System-capabilities"></a>.
@@ -149,8 +987,8 @@
 
 </section>
 
-<section id="SSNalignmentModules">
-    <h3>Alignment modules</h3>
+<section id="SSNalignmentModules" class="informative">
+    <h3 class="informative">Alignment modules</h3>
     <p>
         <a href="#Fig-SSN-alignment-modules"></a> summarizes alignments of other ontologies and specifications with the
         SSN Ontology that are described in this document.
@@ -204,7 +1042,8 @@
 
     <h4 id="sosa-ido-module">IDO</h4>
     <p>
-        The <i>SOSA-IDO module</i> imports <b>SOSA</b> and <b>IDO</b>, and describes the alignment of SOSA to <i>Industrial Data Ontology (IDO)</i>.
+        The <i>SOSA-IDO module</i> imports <b>SOSA</b> and <b>IDO</b>, and describes the alignment of SOSA to
+        <i>Industrial Data Ontology (IDO)</i>.
         <i>SOSA-IDO</i> may be used to integrate data designed using SOSA with data designed using IDO.
     </p>
     <p>
