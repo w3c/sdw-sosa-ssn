@@ -93,6 +93,12 @@ var respecConfig = {
       company: "BRGM, FR",
       companyURL: "https://brgm.fr/",
       orcid: "0000-0001-7656-1830"
+    },
+    {
+      name: "Krzysztof Janowicz",
+      company: "Universität Wien, AT",
+      companyURL: "https://www.univie.ac.at/",
+      orcid: "0009-0003-1968-887X"
     }
   ],
   formerEditors: [
@@ -101,12 +107,6 @@ var respecConfig = {
       company: "Australian National University, AU",
       companyURL: "https://www.cbe.anu.edu.au/",
       orcid: "0000-0003-3425-0780"
-    },
-    {
-      name: "Krzysztof Janowicz",
-      company: "Universität Wien, AT",
-      companyURL: "https://www.univie.ac.at/",
-      orcid: "0009-0003-1968-887X"
     },
     {
       name: "Danh Le Phuoc",
@@ -127,8 +127,6 @@ var respecConfig = {
       data: [
         {
           value: "Abdelfettah Feliachi, BRGM, FR"
-        }, {
-          value: "Krzysztof Janowicz, Universität Wien, AT"
         }, {
           value: "Danielle Limbaugh, Summit Knowledge Solutions, USA"
         }, {

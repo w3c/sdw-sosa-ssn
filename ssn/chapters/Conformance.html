@@ -20,8 +20,8 @@
 <h3>OGC Specification conformance</h3>
 
 <p>
-    OGC Standards are required to follow the OGC Modular Specification policy [[ModSpec]].
-    The key provisions of this policy are that: 
+  OGC Standards are required to follow the OGC Modular Specification policy [[ModSpec]].
+  The key provisions of this policy are that:
 </p>
 
 <ul>
@@ -30,31 +30,30 @@
   <li>each individual conformance Test is a member of one and only one Conformance Class</li>
   <li>each Requirement, Requirements Class, Test, and Conformance Class is denoted by an IRI</li>
   <li>dependencies are managed at the Requirements Class or Conformance Class level</li>
-  <li>no circular dependencies are allowed</li>
+  <li>no circular dependencies are permitted</li>
   <li>Conformance to the standard is assessed at the Conformance Class level</li>
   <li>the conformance target type is specified</li>
 </ul>
 
 <p>
-  The <a href="#modularization">SSN Ontology Modularization</a> (<a href="#Fig-SSN-core-modules"></a>) is consistent with this policy.  
+  The <a href="#modularization">SSN Ontology Modularization</a> (<a href="#Fig-SSN-core-modules"></a>) is consistent
+  with this policy.
 </p>
 
 <p>
-  Ten core modules are defined, each module packaged into an RDF file that implements the module. 
-  Each module corresponds to a Requirements Class, and is denoted by the Ontology IRI. 
-  Dependencies between modules are indicated through the <code>owl:imports</code> property.
+  Ten core modules are defined, each module packaged into an RDF file that implements the module.
+  Each module corresponds to an OGC Requirements Class.
+  Dependencies between modules are recorded in the RDF through the <code>owl:imports</code> property.
+  The definition of each term in the SSN Ontology corresponds to a single Requirement.
 </p>
 
 <p>
-  The definition of each term in the SSN Ontology corresponds to a single Requirement. 
-  Membership in a module is indicated by the <code>rdfs:isDefinedBy</code> property. 
-</p>
-
-<p>
-  OGC Requirements Classes for SSN, and their member Requirements are listed in <a href="#modularization"></a>.
+  OGC Requirements Classes for SSN, their dependencies, and their member Requirements are listed in
+  <a href="#modularization"></a>.
 </p>
 
 <p class="note informative">
-  OGC Conformance Classes and Tests are not provided explicitly at this time. 
-  A supplement to this document describing SHACL shapes ([[[shacl]]]) may be provided in the future.
+  OGC Conformance Classes and Tests are not provided explicitly at this time.
+  A supplement to this document describing SHACL shapes ([[[shacl]]]) may be provided in the future. 
+  This would provide some testing functionality.
 </p>
