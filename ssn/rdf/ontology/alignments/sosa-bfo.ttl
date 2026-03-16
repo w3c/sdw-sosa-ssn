@@ -1,0 +1,138 @@
+# baseURI: http://www.w3.org/ns/sosa/prov
+# imports: http://www.w3.org/ns/prov-o#
+# imports: http://www.w3.org/ns/sosa/
+
+@prefix cco: <https://www.commoncoreontologies.org/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix sp: <http://www.w3.org/ns/sosa/prov/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+
+sosa:Actuation
+  owl:equivalentClass [
+    a owl:Class ; 
+    owl:unionOf ( 
+      cco:ont00000357 
+      cco:ont00000908 
+      ) 
+
+  ]  ; # "Act of Motion" or "Act of Artifact Processing" 
+  rdfs:subClassOf [ 
+    a owl:Restriction ; 
+    owl:onProperty sosa:hasResult ; 
+    owl:allValuesFrom cco:ont00000958 
+  ] ; # Information Content Entity
+.
+sosa:Asset
+  rdfs:subClassOf obo:BFO_0000004 ; # Independent Continuant
+.
+sosa:Deployment
+  rdfs:subClassOf cco:ont00000228 ; # Planned Act 
+.
+sosa:Execution
+  rdfs:subClassOf cco:ont00000228 ; # Planned Act
+.
+sosa:FeatureOfInterest
+  rdfs:subClassOf obo:BFO_0000001 ; # Entity
+.
+sosa:Observation
+  owl:equivalentClass [
+    a owl:Class ; 
+    owl:unionOf ( 
+      cco:ont00000037 
+      cco:ont00000345
+      cco:ont00000371
+      ) 
+
+  ]  ; # "Act of Observation" or "Act of Measuring" or "Act of Prediction" 
+  rdfs:subClassOf [ 
+    a owl:Restriction ; 
+    owl:onProperty sosa:hasResult ; 
+    owl:allValuesFrom cco:ont00000958 
+  ] ; # Information Content Entity
+.
+sosa:Platform
+  rdfs:subClassOf obo:BFO_0000040 ; # Material Entity 
+.
+sosa:Procedure
+  rdfs:subClassOf cco:ont00000965 ; # Directive Information Content Entity
+.
+sosa:Property
+  rdfs:subClassOf [ 
+    a owl:Class ; 
+    owl:unionOf (
+      obo:BFO_0000019 
+      obo:BFO_0000031 
+      )
+    ] ; # "quality" or "generically dependent continuant"
+.
+sosa:Sample
+  rdfs:subClassOf obo:BFO_0000004 ; # Independent Continuant
+.
+sosa:Sampling
+  rdfs:subClassOf [
+    a owl:Class ; 
+    owl:unionOf ( 
+      cco:ont00000908 
+      cco:ont00000566
+      cco:ont00000366
+      ) 
+  ]  ; # "Act of Artifact Processing" or "Act of Artifact Employment" or "Act of Information Processing" 
+  rdfs:subClassOf [ 
+    a owl:Restriction ; 
+    owl:onProperty sosa:hasResult ; 
+    owl:allValuesFrom obo:BFO_0000004 
+  ] ; # independent continuant
+.
+sosa:Stimulus
+  rdfs:subClassOf cco:ont00000978 ; # Cause
+.
+sosa:System
+  rdfs:subClassOf obo:BFO_0000004 ; # Independent Continuant
+.
+sosa:hasFeatureOfInterest
+  rdfs:subPropertyOf cco:ont00001921 ; # has input 
+.
+sosa:hasResult
+  rdfs:subPropertyOf cco:ont00001986 ; # has output 
+.
+sosa:implements
+  rdfs:subPropertyOf cco:ont00001920 ; # prescribed by
+.
+sosa:isSampleOf
+  rdfs:subPropertyOf cco:ont00001775 ; # is successor of
+.
+sosa:madeBySystem
+  rdfs:subPropertyOf obo:BFO_0000057 ; # has participant
+.
+sosa:usedProcedure
+  rdfs:subPropertyOf cco:ont00001920 ; # prescribed by
+.
+sosa:wasOriginatedBy 
+  rdfs:subPropertyOf cco:ont00001819 ; # caused by 
+.
+sosa:bfo
+  rdf:type owl:Ontology ;
+  dcterms:created "2025-10-23"^^xsd:date ;
+  dcterms:modified "2026-02-25"^^xsd:date ;
+  dcterms:creator "Simon J D Cox" ;
+  dcterms:creator [
+      rdf:type foaf:Agent ;
+      foaf:name "W3C/OGC Spatiotemporal Data on the Web Working Group"@en ;
+    ] ;
+  dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
+  dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
+  dcterms:modified "2025-11-29"^^xsd:date ;
+  dcterms:rights "Copyright 2017, 2026 W3C/OGC." ;
+  rdfs:comment "Alignment of the the W3C/OGC SOSA Ontology with the BFO and CCO Ontologies"@en ;
+  rdfs:label "Alignment of SOSA with BFO + CCO"@en ;
+  owl:imports <http://purl.obolibrary.org/obo/bfo> ;
+  owl:imports <https://www.commoncoreontologies.org/CommonCoreOntologiesMerged> ; 
+  owl:imports sosa: ;
+.
