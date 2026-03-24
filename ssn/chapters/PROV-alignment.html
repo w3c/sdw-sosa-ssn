@@ -65,7 +65,7 @@
     The notation used in this section is described in <a href="#Alignment-notation"></a>.
   </p>
   <p>
-    1. Execution (acts of Observation, Actuation and Sampling) is a kind of Activity, thus:
+    1. Execution (acts of Observation, Actuation and Sampling) and Deployment are kinds of Activity, thus:
   </p>
   <ul class="align-on-symbol">
     <li>
@@ -73,16 +73,46 @@
       <span class="symbol logic">⊑</span>
       <span class="rhs"><a href="http://www.w3.org/ns/prov#Activity">prov:Activity</a></span>
     </li>
+    <li>
+      <span class="lhs"><a>sosa:Actuation</a></span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a href="http://www.w3.org/ns/prov#Activity">prov:Activity</a></span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:Observation</a></span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a href="http://www.w3.org/ns/prov#Activity">prov:Activity</a></span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:Sampling</a></span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a href="http://www.w3.org/ns/prov#Activity">prov:Activity</a></span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:Deployment</a></span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a href="http://www.w3.org/ns/prov#Activity">prov:Activity</a></span>
+    </li>
   </ul>
   <p>
-    2. Systems (Sensors, Actuators and Samplers) are entities that are responsible for the corresponding activities,
+    2. Assets, including Systems (Sensors, Actuators and Samplers) and Platforms are entities that are responsible for the corresponding activities,
     thus:
   </p>
   <ul class="align-on-symbol">
     <li>
+      <span class="lhs"><a>sosa:Asset</a></span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a href="http://www.w3.org/ns/prov#Agent">prov:Agent</a> <span class="logic">or</span> <a href="http://www.w3.org/ns/prov#Entity">prov:Entity</a></span>
+    </li>
+    <li>
       <span class="lhs"><a>sosa:System</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs"><a href="http://www.w3.org/ns/prov#Agent">prov:Agent</a> , <a href="http://www.w3.org/ns/prov#Entity">prov:Entity</a></span>
+      <span class="rhs"><a href="http://www.w3.org/ns/prov#Agent">prov:Agent</a> <span class="logic">or</span> <a href="http://www.w3.org/ns/prov#Entity">prov:Entity</a></span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:Platform</a></span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a href="http://www.w3.org/ns/prov#Entity">prov:Entity</a></span>
     </li>
   </ul>
   <p>
@@ -112,11 +142,6 @@
     </li>
     <li>
       <span class="lhs"><a>sosa:Property</a></span>
-      <span class="symbol logic">⊑</span>
-      <span class="rhs"><a href="http://www.w3.org/ns/prov#Entity">prov:Entity</a></span>
-    </li>
-    <li>
-      <span class="lhs"><a>sosa:Platform</a></span>
       <span class="symbol logic">⊑</span>
       <span class="rhs"><a href="http://www.w3.org/ns/prov#Entity">prov:Entity</a></span>
     </li>

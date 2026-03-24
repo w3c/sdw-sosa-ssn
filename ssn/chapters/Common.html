@@ -10,13 +10,11 @@
         <a href="#SOSAPlatform">Platform</a>,
         <a href="#SOSADeployment">Deployment</a>).
         Other classes in the Common module are super-classes of more specific classes used in the application modules
-        (<a href="#SOSAProcedure">Procedure</a>, <a href="#SOSASystem">System</a>,
-        <a href="#SOSAExecution">Execution</a>).
+        (<a href="#SOSAExecution">Execution</a>, <a href="#SOSAProcedure">Procedure</a>, <a href="#SOSAAsset">Asset</a>,
+        and <a href="#SOSASystem">System</a>).
         They all support the description of <a href="#SOSAActuation">Actuation</a>,
         <a href="#SOSAObservation">Observation</a> and <a href="#SOSASampling">Sampling</a> instances using patterns
-        that
-        are common
-        across the applications.
+        that are common across the applications.
     </p>
     <p>
         The description of the Common module is organized into the following sections:
@@ -116,21 +114,23 @@
                     <a>sosa:FeatureOfInterest</a> for an automatic window control
                     <a>sosa:Actuation</a>.
                 </dd>
-                <dt class="ssn restrictions">Restrictions in SSN</dt>
-                <dd class="ssn">
-                    <a>sosa:isFeatureOfInterestOf</a>
-                    <em><b>SOME</b></em>
-                    (<a>sosa:Execution</a> <em><b>or</b></em> <a>sosa:Deployment</a>)
-                    <br>
-                    <a>sosa:hasProperty</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:Property</a>
-                    <br>
-                    <a>sosa:hasSample</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:Sample</a>
-                    <br>
-                </dd>
+                <div class="ssn" id="SSNFeatureOfInterest">
+                    <dt class="restrictions">Restrictions in SSN</dt>
+                    <dd>
+                        <a>sosa:isFeatureOfInterestOf</a>
+                        <em><b>SOME</b></em>
+                        (<a>sosa:Execution</a> <em><b>OR</b></em> <a>sosa:Deployment</a>)
+                        <br>
+                        <a>sosa:hasProperty</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:Property</a>
+                        <br>
+                        <a>sosa:hasSample</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:Sample</a>
+                        <br>
+                    </dd>
+                </div>
                 <dt>is Defined By</dt>
                 <dd>
                     <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
@@ -179,34 +179,36 @@
                     <br>
                     Windows have a property "open state".
                 </dd>
-                <dt class="ssn restrictions">Restrictions in SSN</dt>
-                <dd class="ssn">
-                    <a>sosa:hasProcedure</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:Procedure</a>
-                    <br>
-                    <a>sosa:isPropertyOf</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:FeatureOfInterest</a>
-                    <br>
-                    <a>sosa:isActedOnBy</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:Actuator</a>
-                    <br>
-                    <a>sosa:wasActedOnBy</a>
-                    <em><b>ONLY</b></em>
-                    (<a>sosa:Actuation</a> <em><b>or</b></em>
-                    <a>sosa:ActuationCollection</a>)
-                    <br>
-                    <a>sosa:isObservedBy</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:Sensor</a>
-                    <br>
-                    <a>sosa:wasObservedBy</a>
-                    <em><b>ONLY</b></em>
-                    (<a>sosa:Observation</a> <em><b>or</b></em>
-                    <a>sosa:ObservationCollection</a>)
-                </dd>
+                <div class="ssn" id="SSNProperty">
+                    <dt class="restrictions">Restrictions in SSN</dt>
+                    <dd>
+                        <a>sosa:hasProcedure</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:Procedure</a>
+                        <br>
+                        <a>sosa:isPropertyOf</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:FeatureOfInterest</a>
+                        <br>
+                        <a>sosa:isActedOnBy</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:Actuator</a>
+                        <br>
+                        <a>sosa:wasActedOnBy</a>
+                        <em><b>ONLY</b></em>
+                        (<a>sosa:Actuation</a> <em><b>OR</b></em>
+                        <a>sosa:ActuationCollection</a>)
+                        <br>
+                        <a>sosa:isObservedBy</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:Sensor</a>
+                        <br>
+                        <a>sosa:wasObservedBy</a>
+                        <em><b>ONLY</b></em>
+                        (<a>sosa:Observation</a> <em><b>OR</b></em>
+                        <a>sosa:ObservationCollection</a>)
+                    </dd>
+                </div>
                 <dt>is Defined By</dt>
                 <dd>
                     <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
@@ -554,16 +556,18 @@
                     It is included in the ontology to support the definition of a common pattern for executions and
                     their properties.
                 </dd>
-                <dt class="ssn restrictions">Restrictions in SSN</dt>
-                <dd class="ssn">
-                    <a>sosa:implementedBy</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:System</a>
-                    <br>
-                    <a>sosa:forProperty</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:Property</a>
-                </dd>
+                <div class="ssn" id="SSNProcedure">
+                    <dt class="restrictions">Restrictions in SSN</dt>
+                    <dd>
+                        <a>sosa:implementedBy</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:System</a>
+                        <br>
+                        <a>sosa:forProperty</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:Property</a>
+                    </dd>
+                </div>
                 <dt>is Defined By</dt>
                 <dd>
                     <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
@@ -969,32 +973,33 @@
                     executions and their properties.
                     <br>
                     <br>
-                    Execution MUST be considered to be abstract, so any individual Execution SHOULD be
-                    declared to be an instance of one of the concrete sub-classes, and not of the Execution
-                    class.
+                    Execution is considered to be abstract.
+                    Individual Executions SHOULD be typed with one of the (concrete) sub-classes of Execution.
                 </dd>
-                <dt class="ssn restrictions">Restrictions in SSN</dt>
-                <dd class="ssn">
-                    <a>sosa:madeBySystem</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:System</a>
-                    <br>
-                    <a>sosa:usedProcedure</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:Procedure</a>
-                    <br>
-                    <a>sosa:hasFeatureOfInterest</a>
-                    <em><b>SOME</b></em>
-                    <a>sosa:FeatureOfInterest</a>
-                    <br>
-                    <a>sosa:hasFeatureOfInterest</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:FeatureOfInterest</a>
-                    <br>
-                    <a>sosa:hasUltimateFeatureOfInterest</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:FeatureOfInterest</a>
-                </dd>
+                <div class="ssn" id="SSNExecution">
+                    <dt class="restrictions">Restrictions in SSN</dt>
+                    <dd>
+                        <a>sosa:madeBySystem</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:System</a>
+                        <br>
+                        <a>sosa:usedProcedure</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:Procedure</a>
+                        <br>
+                        <a>sosa:hasFeatureOfInterest</a>
+                        <em><b>SOME</b></em>
+                        <a>sosa:FeatureOfInterest</a>
+                        <br>
+                        <a>sosa:hasFeatureOfInterest</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:FeatureOfInterest</a>
+                        <br>
+                        <a>sosa:hasUltimateFeatureOfInterest</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:FeatureOfInterest</a>
+                    </dd>
+                </div>
                 <dt>is Defined By</dt>
                 <dd>
                     <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
@@ -1090,34 +1095,35 @@
                     executions and their properties.
                     <br>
                     <br>
-                    ExecutionCollection MUST be considered to be abstract, so any individual
-                    ExecutionCollection SHOULD be declared to be an instance of one of the concrete
-                    sub-classes, and not of the ExecutionCollection
-                    class.
+                    ExecutionCollection is considered to be abstract.
+                    Individual execution collections SHOULD be typed with one of the (concrete) sub-classes of
+                    ExecutionCollection.
                 </dd>
-                <dt class="ssn restrictions">Restrictions in SSN</dt>
-                <dd class="ssn">
-                    <a>sosa:madeBySystem</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:System</a>
-                    <br>
-                    <a>sosa:usedProcedure</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:Procedure</a>
-                    <br>
-                    <a>sosa:hasFeatureOfInterest</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:FeatureOfInterest</a>
-                    <br>
-                    <a>sosa:hasUltimateFeatureOfInterest</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:FeatureOfInterest</a>
-                    <br>
-                    <a>sosa:hasMember</a>
-                    <em><b>ONLY</b></em>
-                    (<a>sosa:Execution</a> <em><b>or</b></em>
-                    <a>sosa:ExecutionCollection</a>)
-                </dd>
+                <div class="ssn" id="SSNExecutionCollection">
+                    <dt class="restrictions">Restrictions in SSN</dt>
+                    <dd>
+                        <a>sosa:madeBySystem</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:System</a>
+                        <br>
+                        <a>sosa:usedProcedure</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:Procedure</a>
+                        <br>
+                        <a>sosa:hasFeatureOfInterest</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:FeatureOfInterest</a>
+                        <br>
+                        <a>sosa:hasUltimateFeatureOfInterest</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:FeatureOfInterest</a>
+                        <br>
+                        <a>sosa:hasMember</a>
+                        <em><b>ONLY</b></em>
+                        (<a>sosa:Execution</a> <em><b>OR</b></em>
+                        <a>sosa:ExecutionCollection</a>)
+                    </dd>
+                </div>
                 <dt>is Defined By</dt>
                 <dd>
                     <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
@@ -1612,8 +1618,8 @@
                     and their properties.
                     <br>
                     <br>
-                    madeBySystem MUST be considered to be abstract, so SHOULD NOT appear in data instances.
-                    Applications can use concrete sub-properties of madeBySystem.
+                    madeBySystem is considered to be abstract.
+                    Applications SHOULD use concrete sub-properties of madeBySystem.
                 </dd>
                 <dt>Domain Includes</dt>
                 <dd>
@@ -1915,7 +1921,7 @@
             </p>
             <figure id="System">
                 <embed
-                    alt="Systems and deployment diagram; showing System, Deployment, Platform, Property, Procedure, Execution"
+                    alt="Systems and deployment diagram; showing Asset, System, Deployment, Platform, Property, Procedure, Execution"
                     src="images/System.svg" style="width: 100%;" />
                 <figcaption>Classes and relationships related to systems and deployments
                     <br>
@@ -1924,19 +1930,23 @@
             </figure>
 
             <p>
+                A <a>sosa:Deployment</a> is an arrangement of Assets (typically Systems and Platforms) with the
+                intention of
+                executing actuation, observation, or sampling procedures with respect to designated features of interest
+                for a specified time interval.
+            </p>
+            <p>
+                A <a>sosa:Asset</a> is a resource involved in a deployment, such as a system or platform.
+            </p>
+            <p>
                 A <a>sosa:System</a> is an instrument or equipment, including software systems and
                 agents where relevant, that implements a procedure in the context of executions.
                 A system may be composed of sub-systems.
             </p>
             <p>
-                A <a>sosa:Platform</a> hosts one or more <a>sosa:Systems</a>.
+                A <a>sosa:Platform</a> hosts one or more systems in the context of a deployment.
                 Stationary platforms include stations, or fixtures.
                 Mobile platforms include vehicles, marine- and air-craft, satellites, mobile phones, etc.
-            </p>
-            <p>
-                A <a>sosa:Deployment</a> is an arrangement of assets (systems and platforms) with the intention of
-                executing actuation, observation or sampling procedures with respect to designated features of interest
-                for a specified time interval.
             </p>
         </div>
 
@@ -1946,6 +1956,7 @@
         <p>This section introduces the following classes and properties:</p>
         <div class="azlist">
             <p>
+                <a>sosa:Asset</a>,
                 <a>sosa:Deployment</a>,
                 <a>sosa:Platform</a>,
                 <a>sosa:System</a>,
@@ -1964,6 +1975,50 @@
             </p>
         </div>
 
+        <section class="specterm sosa" id="SOSAAsset">
+            <h6><dfn>sosa:Asset</dfn></h6>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/Asset</p>
+            <p><strong>an OWL Class</strong></p>
+
+            <p>
+                <em>Asset</em> &mdash;
+                resource involved in a Deployment.
+            </p>
+            <dl>
+                <dt>Scope note</dt>
+                <dd>
+                    Asset generalizes the <a href="#SOSASystem">System</a> and <a href="#SOSAPlatform">Platform</a>
+                    classes, or other resource types that are relevant to deployments.
+                    It is included in the ontology to support the definition of a common pattern for deployments.
+                    <br>
+                    <br>
+                    Asset is considered to be abstract.
+                    Individual assets SHOULD be typed with one of the (concrete) sub-classes of Asset.
+                </dd>
+                <div class="ssn" id="SSNAsset">
+                    <dt class="restrictions">Restrictions in SSN</dt>
+                    <dd>
+                        <a>sosa:hasDeployment</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:Deployment</a>
+                        <br>
+                        <a>sosa:isHostedBy</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:Platform</a>
+                    </dd>
+                </div>
+                <dt>is Defined By</dt>
+                <dd>
+                    <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
+                </dd>
+            </dl>
+
+            <div class="buttonpanel">
+                <span class="back">[<a href="#Common-overview">Back to module overview</a>]</span>
+                <span class="back">[<a href="#Overview">Back to top</a>]</span>
+            </div>
+        </section>
+
         <section class="specterm sosa" id="SOSADeployment">
             <h6><dfn>sosa:Deployment</dfn></h6>
             <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/Deployment</p>
@@ -1971,8 +2026,7 @@
 
             <p>
                 <em>Deployment</em> &mdash;
-                arrangement of one or more assets (Systems or Platforms) to execute Procedures with respect to
-                designated features of interest.
+                arrangement of one or more Assets to execute Procedures with respect to designated features of interest.
             </p>
             <p class="note">
                 A Deployment may have a geographic location.
@@ -1992,24 +2046,26 @@
                     A <a>sosa:Deployment</a> can be used quite flexibly to describe the use of systems, and
                     platforms that host systems, with respect to a feature of interest.
                 </dd>
-                <dt class="ssn restrictions">Restrictions in SSN</dt>
-                <dd class="ssn">
-                    <a>sosa:deployedAsset</a>
-                    <em><b>ONLY</b></em>
-                    (<a>sosa:System</a> <em><b>or</b></em> <a>sosa:Platform</a>)
-                    <br>
-                    <a>sosa:deployedOnPlatform</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:Platform</a>
-                    <br>
-                    <a>sosa:deployedSystem</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:System</a>
-                    <br>
-                    <a>sosa:hasFeatureOfInterest</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:FeatureOfInterest</a>
-                </dd>
+                <div class="ssn" id="SSNDeployment">
+                    <dt class="restrictions">Restrictions in SSN</dt>
+                    <dd>
+                        <a>sosa:deployedAsset</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:Asset</a>
+                        <br>
+                        <a>sosa:deployedOnPlatform</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:Platform</a>
+                        <br>
+                        <a>sosa:deployedSystem</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:System</a>
+                        <br>
+                        <a>sosa:hasFeatureOfInterest</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:FeatureOfInterest</a>
+                    </dd>
+                </div>
                 <dt>is Defined By</dt>
                 <dd>
                     <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
@@ -2029,12 +2085,16 @@
 
             <p>
                 <em>Platform</em> &mdash;
-                entity that hosts other entities, particularly Systems, and other Platforms.
+                An Asset that hosts other Assets, particularly Systems, and other Platforms.
             </p>
             <p class="note">A Platform may have a geographic location.
                 See <a href="#ModelLocation">Location and Geometry</a> for patterns to describe this.</p>
 
             <dl>
+                <dt>Subclass of</dt>
+                <dd>
+                    <a>sosa:Asset</a>
+                </dd>
                 <dt>Scope note</dt>
                 <dd>
                     The INSPIRE 'Environmental Monitoring Facility' may be implemented using SOSA by the OWL/RDFS class
@@ -2053,18 +2113,18 @@
                     <br>
                     A team performing a survey, where each team member would be modeled as an Observer.
                 </dd>
-                <dt class="ssn restrictions">Restrictions in SSN</dt>
-                <dd class="ssn">
-                    <a>sosa:hosts</a>
-                    <em><b>ONLY</b></em>
-                    (<a>sosa:System</a>
-                    <em><b>or</b></em>
-                    <a>sosa:Platform</a>)
-                    <br>
-                    <a>sosa:inDeployment</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:Deployment</a>
-                </dd>
+                <div class="ssn" id="SSNPlatform">
+                    <dt class="restrictions">Restrictions in SSN</dt>
+                    <dd>
+                        <a>sosa:hosts</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:Asset</a>
+                        <br>
+                        <a>sosa:inDeployment</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:Deployment</a>
+                    </dd>
+                </div>
                 <dt>is Defined By</dt>
                 <dd>
                     <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
@@ -2083,7 +2143,7 @@
             <p><strong>an OWL Class</strong></p>
             <p>
                 <em>System</em> &mdash;
-                entity that implements a Procedure in the context of an Execution
+                An Asset that implements a Procedure in the context of an Execution
             </p>
             <p>
                 This may be a device, a piece of infrastructure, an agent (including humans), or software
@@ -2104,6 +2164,10 @@
             </p>
 
             <dl>
+                <dt>Subclass of</dt>
+                <dd>
+                    <a>sosa:Asset</a>
+                </dd>
                 <dt>Scope note</dt>
                 <dd>
                     System generalizes the
@@ -2114,8 +2178,8 @@
                     pattern for executions and their properties.
                     <br>
                     <br>
-                    System MUST be considered to be abstract, so any individual System SHOULD be declared to be an
-                    instance of a concrete sub-class, and not of the System class.
+                    System is considered to be abstract.
+                    Individual systems SHOULD be typed with one of the (concrete) sub-classes of System.
                 </dd>
                 <dt>Scope note</dt>
                 <dd>
@@ -2139,37 +2203,39 @@
                     A <a>sosa:System</a> can be deployed for a specified time interval as
                     part of a <a>sosa:Deployment</a>.
                 </dd>
-                <dt class="ssn restrictions">Restrictions in SSN</dt>
-                <dd class="ssn">
-                    <a>sosa:isHostedBy</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:Platform</a>
-                    <br>
-                    <a>sosa:implements</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:Procedure</a>
-                    <br>
-                    <a>sosa:forProperty</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:Property</a>
-                    <br>
-                    <a>sosa:hasSubSystem</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:System</a>
-                    <br>
-                    <a>sosa:isSubSystemOf</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:System</a>
-                    <br>
-                    <a>sosa:hasDeployment</a>
-                    <em><b>ONLY</b></em>
-                    <a>sosa:Deployment</a>
-                    <br>
-                    <a>sosa:madeExecution</a>
-                    <em><b>ONLY</b></em>
-                    (<a>sosa:Execution</a> <em><b>or</b></em>
-                    <a>sosa:ExecutionCollection</a>)
-                </dd>
+                <div class="ssn" id="SSNSystem">
+                    <dt class="restrictions">Restrictions in SSN</dt>
+                    <dd>
+                        <a>sosa:isHostedBy</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:Platform</a>
+                        <br>
+                        <a>sosa:implements</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:Procedure</a>
+                        <br>
+                        <a>sosa:forProperty</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:Property</a>
+                        <br>
+                        <a>sosa:hasSubSystem</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:System</a>
+                        <br>
+                        <a>sosa:isSubSystemOf</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:System</a>
+                        <br>
+                        <a>sosa:hasDeployment</a>
+                        <em><b>ONLY</b></em>
+                        <a>sosa:Deployment</a>
+                        <br>
+                        <a>sosa:madeExecution</a>
+                        <em><b>ONLY</b></em>
+                        (<a>sosa:Execution</a> <em><b>OR</b></em>
+                        <a>sosa:ExecutionCollection</a>)
+                    </dd>
+                </div>
                 <dt>is Defined By</dt>
                 <dd>
                     <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
@@ -2191,7 +2257,7 @@
                 This term is non-normative, pending further implementation experience</p>
             <p>
                 <em>deployed asset</em> &mdash;
-                relation from a Deployment to an asset (System or Platform).
+                relation from a Deployment to an Asset (System or Platform).
             </p>
             <dl>
                 <dt>Domain Includes</dt>
@@ -2200,8 +2266,9 @@
                 </dd>
                 <dt>Range Includes</dt>
                 <dd>
-                    <a>sosa:System</a>,
-                    <a>sosa:Platform</a>
+                    <a>sosa:Asset</a>,
+                    <a>sosa:Platform</a>,
+                    <a>sosa:System</a>
                 </dd>
                 <dt>Inverse property of</dt>
                 <dd>
@@ -2299,13 +2366,14 @@
             <p><strong>an OWL Object Property</strong></p>
             <p>
                 <em>has deployment</em> &mdash;
-                relation from an asset (System or Platform) to a Deployment
+                relation from an Asset (System or Platform) to a Deployment
             </p>
             <dl>
                 <dt>Domain Includes</dt>
                 <dd>
-                    <a>sosa:System</a>,
-                    <a>sosa:Platform</a>
+                    <a>sosa:Asset</a>,
+                    <a>sosa:Platform</a>,
+                    <a>sosa:System</a>
                 </dd>
                 <dt>Range Includes</dt>
                 <dd>
@@ -2370,7 +2438,7 @@
             <p><strong>an OWL Object Property</strong></p>
             <p>
                 <em>hosts</em> &mdash;
-                relation from a Platform to an asset (System or Platform) hosted or mounted on it
+                relation from a Platform to an Asset (System or Platform) hosted or mounted on it
             </p>
             <dl>
                 <dt>Domain Includes</dt>
@@ -2379,18 +2447,21 @@
                 </dd>
                 <dt>Range Includes</dt>
                 <dd>
-                    <a>sosa:System</a>,
-                    <a>sosa:Platform</a>
+                    <a>sosa:Asset</a>,
+                    <a>sosa:Platform</a>,
+                    <a>sosa:System</a>
                 </dd>
                 <dt>Inverse property of</dt>
                 <dd>
                     <a>sosa:isHostedBy</a>
                 </dd>
-                <dt class="ssn">Super property of chain</dt>
-                <dd class="ssn">
-                    <a>sosa:inDeployment</a> <b>o</b>
-                    <a>sosa:deployedSystem</a>
-                </dd>
+                <div class="ssn" id="SSNhosts">
+                    <dt>Super property of chain</dt>
+                    <dd>
+                        <a>sosa:inDeployment</a> <b>o</b>
+                        <a>sosa:deployedSystem</a>
+                    </dd>
+                </div>
                 <dt>is Defined By</dt>
                 <dd>
                     <a href="http://www.w3.org/ns/sosa/common/">http://www.w3.org/ns/sosa/common/</a>
@@ -2486,13 +2557,14 @@
             <p><strong>an OWL Object Property</strong></p>
             <p>
                 <em>is hosted by</em> &mdash;
-                relation from an asset (System or Platform), to a Platform that it is mounted on or hosted by
+                relation from an Asset (System or Platform), to a Platform that it is mounted on or hosted by
             </p>
             <dl>
                 <dt>Domain Includes</dt>
                 <dd>
-                    <a>sosa:System</a>,
-                    <a>sosa:Platform</a>
+                    <a>sosa:Asset</a>,
+                    <a>sosa:Platform</a>,
+                    <a>sosa:System</a>
                 </dd>
                 <dt>Range Includes</dt>
                 <dd>
@@ -2571,8 +2643,8 @@
                     and their properties.
                     <br>
                     <br>
-                    madeExecution MUST be considered to be abstract, so SHOULD NOT appear in data instances.
-                    Applications can use concrete sub-properties of madeExecution.
+                    madeExecution is considered to be abstract.
+                    Applications SHOULD use concrete sub-properties of madeExecution.
                 </dd>
                 <dt>Domain Includes</dt>
                 <dd>
@@ -2773,12 +2845,12 @@
             </div>
         </section>
 
-        <section class="informative specterm sosa" id="SOSAmemberOf">
+        <section class="informative specterm sosa" id="SOSAisMemberOf">
             <h6><dfn>sosa:isMemberOf</dfn></h6>
-            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/memberOf</p>
+            <p class="crossreference"><strong>IRI:</strong> http://www.w3.org/ns/sosa/isMemberOf</p>
             <p><strong>an OWL Object Property</strong></p>
 
-            <p class="warning">memberOf added in 2023 Edition.
+            <p class="warning">isMemberOf added in 2023 Edition.
                 This term is non-normative, pending further implementation experience</p>
             <p>
                 <em>is member of collection</em> &mdash;

@@ -101,8 +101,8 @@
                 The characteristics of the samples themselves are of little interest, except perhaps to the
                 manager of a sampling campaign.
                 <br><br>
-                A Sample is intended to represent some `FeatureOfInterest`, so there is an expectation of at least
-                one `isSampleOf` property.
+                A Sample is intended to represent some `FeatureOfInterest`, so there is an expectation of at least one
+                `isSampleOf` property.
                 However, in some cases the identity, and even the exact type, of the sampled feature may not
                 be known when observations are made using the sample.
                 <br><br>
@@ -121,22 +121,24 @@
                 <a href="#SOSAObservation">Observations</a> can be made regarding the sample that provide a good
                 estimate of the properties of the population.
             </dd>
-            <dt class="ssn restrictions">Restrictions in SSN</dt>
-            <dd class="ssn">
-                <a>sosa:isResultOf</a> <em><b>ONLY</b></em> (<a>sosa:Sampling</a> <em><b>or</b></em> <a>sosa:SamplingCollection</a>)
-                <br>
-                <a>sosa:isSampleOf</a> <em><b>ONLY</b></em> <a>sosa:FeatureOfInterest</a>
-                <br>
-                <a>sosa:isSampleOf</a> <em><b>MIN 1</b></em>
-                <br>
-                <a>sosa:hasOriginalSample</a> <em><b>ONLY</b></em> <a>sosa:Sample</a>
-                <br>
-                <a>sosa:isSampleOfUltimateFOI</a> <em><b>ONLY</b></em> <a>sosa:FeatureOfInterest</a>
-                <br>
-                <a>sosa:isResultOfMadeBySampler</a> <em><b>ONLY</b></em> <a>sosa:Sampler</a>
-                <br>
-                <a>sosa:isResultOfUsedProcedure</a> <em><b>ONLY</b></em> <a>sosa:SamplingProcedure</a>
-            </dd>
+            <div class="ssn" id="SSNSample">
+                <dt class="restrictions">Restrictions in SSN</dt>
+                <dd>
+                    <a>sosa:isResultOf</a> <em><b>ONLY</b></em> (<a>sosa:Sampling</a> <em><b>or</b></em> <a>sosa:SamplingCollection</a>)
+                    <br>
+                    <a>sosa:isSampleOf</a> <em><b>ONLY</b></em> <a>sosa:FeatureOfInterest</a>
+                    <br>
+                    <a>sosa:isSampleOf</a> <em><b>MIN 1</b></em>
+                    <br>
+                    <a>sosa:hasOriginalSample</a> <em><b>ONLY</b></em> <a>sosa:Sample</a>
+                    <br>
+                    <a>sosa:isSampleOfUltimateFOI</a> <em><b>ONLY</b></em> <a>sosa:FeatureOfInterest</a>
+                    <br>
+                    <a>sosa:isResultOfMadeBySampler</a> <em><b>ONLY</b></em> <a>sosa:Sampler</a>
+                    <br>
+                    <a>sosa:isResultOfUsedProcedure</a> <em><b>ONLY</b></em> <a>sosa:SamplingProcedure</a>
+                </dd>
+            </div>
             <dt>is Defined By</dt>
             <dd>
                 <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>
@@ -336,24 +338,24 @@
             </li>
             <li>
                 Where an individual <a href="#SOSASampleCollection">SampleCollection</a> has <i>a single value for a
-                property</i>, each ember <a href="#SOSASample">Sample</a> (direct or transitive) MUST have that same
+                    property</i>, each ember <a href="#SOSASample">Sample</a> (direct or transitive) MUST have that same
                 value for that property; i.e., the collection is homogeneous in that property. That property MAY
                 be omitted in any member <a href="#SOSASample">Sample</a> or
                 <a href="#SOSASampleCollection">SampleCollection</a>.
             </li>
             <li>
                 Where an individual <a href="#SOSASampleCollection">SampleCollection</a> has <i>more than one value
-                for a property</i>, each member <a href="#SOSASample">Sample</a> (direct or transitive) MUST have a
+                    for a property</i>, each member <a href="#SOSASample">Sample</a> (direct or transitive) MUST have a
                 value for that property that matches one of the values for the property in the collection.
             </li>
             <li>
                 Where an individual <a href="#SOSASampleCollection">SampleCollection</a> <i>has a value for a
-                property that is a range or interval</i>, each member <a href="#SOSASample">Sample</a> (direct or
+                    property that is a range or interval</i>, each member <a href="#SOSASample">Sample</a> (direct or
                 transitive) MUST have a value for that property that matches or falls within that range or interval.
             </li>
             <li>
                 Where an individual <a href="#SOSASampleCollection">SampleCollection</a> <i>has more than one value
-                for a property that is a range or interval</i>, each member <a href="#SOSASample">Sample</a> (direct
+                    for a property that is a range or interval</i>, each member <a href="#SOSASample">Sample</a> (direct
                 or transitive) MUST have a value for that property that matches or falls within one of those ranges or
                 intervals.
             </li>
@@ -372,29 +374,31 @@
                 The members of a collection do not necessarily share a common value
                 for any property.
             </dd>
-            <dt class="ssn">Disjoint with</dt>
-            <dd class="ssn">
-                <a>sosa:ActuationCollection</a> ,
-                <a>sosa:ObservationCollection</a> ,
-                <a>sosa:SamplingCollection</a>
-            </dd>
-            <dt class="ssn restrictions">Restrictions in SSN</dt>
-            <dd class="ssn">
-                <a>sosa:isResultOf</a> <em><b>ONLY</b></em> (<a>sosa:Sampling</a> <em><b>or</b></em> <a>sosa:SamplingCollection</a>)
-                <br>
-                <a>sosa:isSampleOf</a> <em><b>ONLY</b></em> <a>sosa:FeatureOfInterest</a>
-                <br>
-                <a>sosa:hasOriginalSample</a> <em><b>ONLY</b></em> <a>sosa:Sample</a>
-                <br>
-                <a>sosa:isSampleOfUltimateFOI</a> <em><b>ONLY</b></em> <a>sosa:FeatureOfInterest</a>
-                <br>
-                <a>sosa:isResultOfMadeBySampler</a> <em><b>ONLY</b></em> <a>sosa:Sampler</a>
-                <br>
-                <a>sosa:isResultOfUsedProcedure</a> <em><b>ONLY</b></em> <a>sosa:SamplingProcedure</a>
-                <br>
-                <a>sosa:hasMember</a> <em><b>ONLY</b></em>
-                (<a>sosa:Sample</a> <em><b>or</b></em> <a>sosa:SampleCollection</a>)
-            </dd>
+            <div class="ssn" id="SSNSampleCollection">
+                <dt>Disjoint with</dt>
+                <dd>
+                    <a>sosa:ActuationCollection</a> ,
+                    <a>sosa:ObservationCollection</a> ,
+                    <a>sosa:SamplingCollection</a>
+                </dd>
+                <dt class="restrictions">Restrictions in SSN</dt>
+                <dd>
+                    <a>sosa:isResultOf</a> <em><b>ONLY</b></em> (<a>sosa:Sampling</a> <em><b>or</b></em> <a>sosa:SamplingCollection</a>)
+                    <br>
+                    <a>sosa:isSampleOf</a> <em><b>ONLY</b></em> <a>sosa:FeatureOfInterest</a>
+                    <br>
+                    <a>sosa:hasOriginalSample</a> <em><b>ONLY</b></em> <a>sosa:Sample</a>
+                    <br>
+                    <a>sosa:isSampleOfUltimateFOI</a> <em><b>ONLY</b></em> <a>sosa:FeatureOfInterest</a>
+                    <br>
+                    <a>sosa:isResultOfMadeBySampler</a> <em><b>ONLY</b></em> <a>sosa:Sampler</a>
+                    <br>
+                    <a>sosa:isResultOfUsedProcedure</a> <em><b>ONLY</b></em> <a>sosa:SamplingProcedure</a>
+                    <br>
+                    <a>sosa:hasMember</a> <em><b>ONLY</b></em>
+                    (<a>sosa:Sample</a> <em><b>or</b></em> <a>sosa:SampleCollection</a>)
+                </dd>
+            </div>
             <dt>is Defined By</dt>
             <dd>
                 <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>
@@ -440,13 +444,15 @@
             <dd>
                 <a>sosa:System</a>
             </dd>
-            <dt class="ssn restrictions">Restrictions in SSN</dt>
-            <dd class="ssn">
-                <a>sosa:implements</a> <em><b>ONLY</b></em> <a>sosa:SamplingProcedure</a>
-                <br>
-                <a>sosa:madeSampling</a> <em><b>ONLY</b></em>
-                (<a>sosa:Sampling</a> <em><b>or</b></em> <a>sosa:SamplingCollection</a>)
-            </dd>
+            <div class="ssn" id="SSNSampler">
+                <dt class="restrictions">Restrictions in SSN</dt>
+                <dd>
+                    <a>sosa:implements</a> <em><b>ONLY</b></em> <a>sosa:SamplingProcedure</a>
+                    <br>
+                    <a>sosa:madeSampling</a> <em><b>ONLY</b></em>
+                    (<a>sosa:Sampling</a> <em><b>or</b></em> <a>sosa:SamplingCollection</a>)
+                </dd>            
+            </div>
             <dt>is Defined By</dt>
             <dd>
                 <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>
@@ -494,16 +500,18 @@
             <dd>
                 <a>sosa:Execution</a>
             </dd>
-            <dt class="ssn restrictions">Restrictions in SSN</dt>
-            <dd class="ssn">
-                <a>sosa:madeBySampler</a> <em><b>ONLY</b></em> <a>sosa:Sampler</a>
-                <br>
-                <a>sosa:usedProcedure</a> <em><b>ONLY</b></em> <a>sosa:SamplingProcedure</a>
-                <br>
-                <a>sosa:hasFeatureOfInterest</a> <em><b>ONLY</b></em> <a>sosa:FeatureOfInterest</a>
-                <br>
-                <a>sosa:hasResult</a> <em><b>ONLY</b></em> <a>sosa:Sample</a>
-            </dd>
+            <div class="ssn" id="SSNSampling">
+                <dt class="restrictions">Restrictions in SSN</dt>
+                <dd>
+                    <a>sosa:madeBySampler</a> <em><b>ONLY</b></em> <a>sosa:Sampler</a>
+                    <br>
+                    <a>sosa:usedProcedure</a> <em><b>ONLY</b></em> <a>sosa:SamplingProcedure</a>
+                    <br>
+                    <a>sosa:hasFeatureOfInterest</a> <em><b>ONLY</b></em> <a>sosa:FeatureOfInterest</a>
+                    <br>
+                    <a>sosa:hasResult</a> <em><b>ONLY</b></em> <a>sosa:Sample</a>
+                </dd>
+            </div>
             <dt>is Defined By</dt>
             <dd>
                 <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>
@@ -557,24 +565,26 @@
             </li>
             <li>
                 Where an individual <a href="#SOSASamplingCollection">SamplingCollection</a> has <i>a
-                single value for a property</i>, each member <a href="#SOSASampling">Sampling</a> (direct or transitive) MUST have that same value for that property; i.e., the collection is
+                    single value for a property</i>, each member <a href="#SOSASampling">Sampling</a> (direct or
+                transitive) MUST have that same value for that property; i.e., the collection is
                 homogeneous in that property.
                 That property MAY then be omitted in any member <a href="#SOSASampling">Sampling</a> or
                 <a href="#SOSASamplingCollection">SamplingCollection</a>.
             </li>
             <li>
                 Where an individual <a href="#SOSASamplingCollection">SamplingCollection</a> has <i>more than one value
-                for a property</i>, each member <a href="#SOSASampling">Sampling</a> (direct or transitive) MUST
+                    for a property</i>, each member <a href="#SOSASampling">Sampling</a> (direct or transitive) MUST
                 have a value for that property that matches one of the values for the property in the collection.
             </li>
             <li>
                 Where an individual <a href="#SOSASamplingCollection">SamplingCollection</a> <i>has a value for a
-                property that is a range or interval</i>, each member <a href="#SOSASampling">Sampling</a> (direct
+                    property that is a range or interval</i>, each member <a href="#SOSASampling">Sampling</a> (direct
                 or transitive) MUST have a value for that property that matches or falls within that range or interval.
             </li>
             <li>
                 Where an individual <a href="#SOSASamplingCollection">SamplingCollection</a> <i>has more than one value
-                for a property that is a range or interval</i>, each member <a href="#SOSASampling">Sampling</a> (direct or transitive) MUST have a value for that property that matches or falls within one of those
+                    for a property that is a range or interval</i>, each member <a href="#SOSASampling">Sampling</a>
+                (direct or transitive) MUST have a value for that property that matches or falls within one of those
                 ranges or intervals.
             </li>
         </ol>
@@ -591,25 +601,29 @@
             <dd>
                 <a>sosa:ExecutionCollection</a>
             </dd>
-            <dt class="ssn">Disjoint with</dt>
-            <dd class="ssn">
-                <a>sosa:ActuationCollection</a>,
-                <a>sosa:ObservationCollection</a>,
-                <a>sosa:SampleCollection</a>
-            </dd>
-            <dt class="ssn restrictions">Restrictions in SSN</dt>
-            <dd class="ssn">
-                <a>sosa:madeBySampler</a> <em><b>ONLY</b></em> <a>sosa:Sampler</a>
-                <br>
-                <a>sosa:hasFeatureOfInterest</a> <em><b>ONLY</b></em> <a>sosa:FeatureOfInterest</a>
-                <br>
+            <div class="ssn" id="SSNSamplingCollection">
+                <dt>Disjoint with</dt>
+                <dd>
+                    <a>sosa:ActuationCollection</a>,
+                    <a>sosa:ObservationCollection</a>,
+                    <a>sosa:SampleCollection</a>
+                </dd>
+                <dt class="restrictions">Restrictions in SSN</dt>
+                <dd>
+                    <a>sosa:madeBySampler</a> <em><b>ONLY</b></em> <a>sosa:Sampler</a>
+                    <br>
+                    <a>sosa:usedProcedure</a> <em><b>ONLY</b></em> <a>sosa:SamplingProcedure</a>
+                    <br>
+                    <a>sosa:hasFeatureOfInterest</a> <em><b>ONLY</b></em> <a>sosa:FeatureOfInterest</a>
+                    <br>
                 <a>sosa:hasResult</a> <em><b>ONLY</b></em> <a>sosa:Sample</a>
                 <br>
-                <a>sosa:usedProcedure</a> <em><b>ONLY</b></em> <a>sosa:SamplingProcedure</a>
-                <br>
-                <a>sosa:hasMember</a> <em><b>ONLY</b></em>
-                (<a>sosa:Sampling</a> <em><b>or</b></em> <a>sosa:SamplingCollection</a>)
-            </dd>
+                    <a>sosa:hasUltimateFeatureOfInterest</a> <em><b>ONLY</b></em> <a>sosa:FeatureOfInterest</a>
+                    <br>
+                    <a>sosa:hasMember</a> <em><b>ONLY</b></em>
+                    (<a>sosa:Sampling</a> <em><b>or</b></em> <a>sosa:SamplingCollection</a>)
+                </dd>
+            </div>
             <dt>is Defined By</dt>
             <dd>
                 <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>
@@ -646,12 +660,14 @@
             <dd>
                 <a>sosa:Procedure</a>
             </dd>
-            <dt class="ssn restrictions">Restriction</dt>
-            <dd class="ssn">
-                <a>sosa:implementedBy</a>
-                <em><b>ONLY</b></em>
-                <a>sosa:Sampler</a>
-            </dd>
+            <div class="ssn" id="SSNSamplingProcedure">
+                <dt class="restrictions">Restrictions in SSN</dt>
+                <dd>
+                    <a>sosa:implementedBy</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:Sampler</a>
+                </dd>
+            </div>
             <dt>Examples</dt>
             <dd>
                 spatial distribution of locations where to collect a sample (e.g., river segment)
@@ -883,11 +899,13 @@
             <dd>
                 <a>sosa:madeSamplingHasResult</a>
             </dd>
-            <dt class="ssn">Super property of chain</dt>
-            <dd class="ssn">
-                <a>sosa:isResultOf</a> <b>o</b>
-                <a>sosa:madeBySampler</a>
-            </dd>
+            <div class="ssn" id="SSNisResultOfMadeBySampler">
+                <dt>Super property of chain</dt>
+                <dd>
+                    <a>sosa:isResultOf</a> <b>o</b>
+                    <a>sosa:madeBySampler</a>
+                </dd>
+            </div>
             <dt>is Defined By</dt>
             <dd>
                 <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>
@@ -929,11 +947,13 @@
             <dd>
                 <a>sosa:usedForExecutionHasResult</a>
             </dd>
-            <dt class="ssn">Super property of chain</dt>
-            <dd class="ssn">
-                <a>sosa:isResultOf</a> <b>o</b>
-                <a>sosa:usedProcedure</a>
-            </dd>
+            <div class="ssn" id="SSNisResultOfUsedProcedure">
+                <dt>Super property of chain</dt>
+                <dd>
+                    <a>sosa:isResultOf</a> <b>o</b>
+                    <a>sosa:usedProcedure</a>
+                </dd>
+            </div>
             <dt>is Defined By</dt>
             <dd>
                 <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>
@@ -1151,11 +1171,13 @@
             <dd>
                 <a>sosa:isResultOfMadeBySampler</a>
             </dd>
-            <dt class="ssn">Super property of chain</dt>
-            <dd class="ssn">
-                <a>sosa:madeSampling</a> <b>o</b>
-                <a>sosa:hasResult</a>
-            </dd>
+            <div class="ssn" id="SSNmadeSamplingHasResult">
+                <dt>Super property of chain</dt>
+                <dd>
+                    <a>sosa:madeSampling</a> <b>o</b>
+                    <a>sosa:hasResult</a>
+                </dd>
+            </div>
             <dt>is Defined By</dt>
             <dd>
                 <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>
@@ -1197,11 +1219,13 @@
             <dd>
                 <a>sosa:isResultOfUsedProcedure</a>
             </dd>
-            <dt class="ssn">Super property of chain</dt>
-            <dd class="ssn">
-                <a>sosa:usedForExecution</a> <b>o</b>
-                <a>sosa:hasResult</a>
-            </dd>
+            <div class="ssn" id="SSNusedForExecutionHasResult">
+                <dt>Super property of chain</dt>
+                <dd>
+                    <a>sosa:usedForExecution</a> <b>o</b>
+                    <a>sosa:hasResult</a>
+                </dd>
+            </div>
             <dt>is Defined By</dt>
             <dd>
                 <a href="http://www.w3.org/ns/sosa/sampling/">http://www.w3.org/ns/sosa/sampling/</a>

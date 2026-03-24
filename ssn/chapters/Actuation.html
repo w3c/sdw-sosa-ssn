@@ -62,12 +62,14 @@
             <dd>
                 <a>sosa:Procedure</a>
             </dd>
-            <dt class="ssn restrictions">Restriction</dt>
-            <dd class="ssn">
-                <a>sosa:implementedBy</a>
-                <em><b>ONLY</b></em>
-                <a>sosa:Actuator</a>
-            </dd>
+            <div class="ssn" id="SSNActuatingProcedure">
+                <dt class="restrictions">Restrictions in SSN</dt>
+                <dd>
+                    <a>sosa:implementedBy</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:Actuator</a>
+                </dd>
+            </div>
             <dt>is Defined By</dt>
             <dd>
                 <a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a>
@@ -137,24 +139,26 @@
             <dd>
                 <a>sosa:Execution</a>
             </dd>
-            <dt class="ssn restrictions">Restrictions in SSN</dt>
-            <dd class="ssn">
-                <a>sosa:madeByActuator</a>
-                <em><b>ONLY</b></em>
-                <a>sosa:Actuator</a>
-                <br>
-                <a>sosa:usedProcedure</a>
-                <em><b>ONLY</b></em>
-                <a>sosa:ActuatingProcedure</a>
-                <br>
-                <a>sosa:hasFeatureOfInterest</a>
-                <em><b>ONLY</b></em>
-                <a>sosa:FeatureOfInterest</a>
-                <br>
-                <a>sosa:actsOnProperty</a>
-                <em><b>ONLY</b></em>
-                <a>sosa:Property</a>
-            </dd>
+            <div class="ssn" id="SSNActuation">
+                <dt class="restrictions">Restrictions in SSN</dt>
+                <dd>
+                    <a>sosa:madeByActuator</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:Actuator</a>
+                    <br>
+                    <a>sosa:usedProcedure</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:ActuatingProcedure</a>
+                    <br>
+                    <a>sosa:hasFeatureOfInterest</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:FeatureOfInterest</a>
+                    <br>
+                    <a>sosa:actsOnProperty</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:Property</a>
+                </dd>
+            </div>
             <dt>is Defined By</dt>
             <dd>
                 <a href="http://www.w3.org/ns/sosa/actuation/">http://www.w3.org/ns/sosa/actuation/</a>
@@ -208,7 +212,8 @@
             </li>
             <li>
                 Where an individual <a href="#SOSAActuationCollection">ActuationCollection</a> has <i>a
-                single value for a property</i>, each member <a href="#SOSAActuation">Actuation</a> (direct or transitive) MUST have that same value for that property; i.e., the collection is
+                    single value for a property</i>, each member <a href="#SOSAActuation">Actuation</a> (direct or
+                transitive) MUST have that same value for that property; i.e., the collection is
                 homogeneous
                 in that property.
                 That property MAY then be omitted in any member <a href="#SOSAActuation">Actuation</a> or
@@ -222,13 +227,13 @@
             </li>
             <li>
                 Where an individual <a href="#SOSAActuationCollection">ActuationCollection</a> <i>has a
-                value for a property that is a range or interval</i>, each member
+                    value for a property that is a range or interval</i>, each member
                 <a href="#SOSAActuation">Actuation</a> (direct or transitive) MUST have a value for that
                 property that matches or falls within that range or interval.
             </li>
             <li>
                 Where an individual <a href="#SOSAActuationCollection">ActuationCollection</a> <i>has
-                more than one value for a property that is a range or interval</i>, each member
+                    more than one value for a property that is a range or interval</i>, each member
                 <a href="#SOSAActuation">Actuation</a> (direct or transitive) MUST have a value for that
                 property that matches or falls within one of those ranges or intervals.
             </li>
@@ -247,35 +252,37 @@
             <dd>
                 <a>sosa:ExecutionCollection</a>
             </dd>
-            <dt class="ssn">Disjoint with</dt>
-            <dd class="ssn">
-                <a>sosa:ObservationCollection</a>,
-                <a>sosa:SampleCollection</a>,
-                <a>sosa:SamplingCollection</a>
-            </dd>
-            <dt class="ssn restrictions">Restrictions in SSN</dt>
-            <dd class="ssn">
-                <a>sosa:madeByActuator</a>
-                <em><b>ONLY</b></em>
-                <a>sosa:Actuator</a>
-                <br>
-                <a>sosa:usedProcedure</a>
-                <em><b>ONLY</b></em>
-                <a>sosa:ActuatingProcedure</a>
-                <br>
-                <a>sosa:hasFeatureOfInterest</a>
-                <em><b>ONLY</b></em>
-                <a>sosa:FeatureOfInterest</a>
-                <br>
-                <a>sosa:actsOnProperty</a>
-                <em><b>ONLY</b></em>
-                <a>sosa:Property</a>
-                <br>
-                <a>sosa:hasMember</a>
-                <em><b>ONLY</b></em>
-                (<a>sosa:Actuation</a> <em><b>or</b></em>
-                <a>sosa:ActuationCollection</a>)
-            </dd>
+            <div class="ssn" id="SSNActuationCollection">
+                <dt>Disjoint with</dt>
+                <dd>
+                    <a>sosa:ObservationCollection</a>,
+                    <a>sosa:SampleCollection</a>,
+                    <a>sosa:SamplingCollection</a>
+                </dd>
+                <dt class="restrictions">Restrictions in SSN</dt>
+                <dd>
+                    <a>sosa:madeByActuator</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:Actuator</a>
+                    <br>
+                    <a>sosa:usedProcedure</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:ActuatingProcedure</a>
+                    <br>
+                    <a>sosa:hasFeatureOfInterest</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:FeatureOfInterest</a>
+                    <br>
+                    <a>sosa:actsOnProperty</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:Property</a>
+                    <br>
+                    <a>sosa:hasMember</a>
+                    <em><b>ONLY</b></em>
+                    (<a>sosa:Actuation</a> <em><b>or</b></em>
+                    <a>sosa:ActuationCollection</a>)
+                </dd>
+            </div>
             <dt>is Defined By</dt>
             <dd>
                 <a href="http://www.w3.org/ns/sosa/actuation/">http://www.w3.org/ns/sosa/actuation/</a>
@@ -310,7 +317,8 @@
         <p class="note">
             Specific actuator <em>types</em> may be implemented as <em>sub-classes</em>
             of this class or its sub-classes.
-            Their descriptions may capture the properties and characteristics of a whole class of actuators, corresponding with the information typically found in a spec-sheet or
+            Their descriptions may capture the properties and characteristics of a whole class of actuators,
+            corresponding with the information typically found in a spec-sheet or
             data-sheet.
             <br>
             Individual actuator <em>instances</em> are <em>members</em> of this class or its sub-classes.
@@ -327,21 +335,23 @@
             <dd>
                 <a>sosa:System</a>
             </dd>
-            <dt class="ssn restrictions">Restrictions in SSN</dt>
-            <dd class="ssn">
-                <a>sosa:madeActuation</a>
-                <em><b>ONLY</b></em>
-                (<a>sosa:Actuation</a> <em><b>or</b></em>
-                <a>sosa:ActuationCollection</a>)
-                <br>
-                <a>sosa:actsOn</a>
-                <em><b>ONLY</b></em>
-                <a>sosa:Property</a>
-                <br>
-                <a>sosa:implements</a>
-                <em><b>ONLY</b></em>
-                <a>sosa:ActuatingProcedure</a>
-            </dd>
+            <div class="ssn" id="SSNActuator">
+                <dt class="restrictions">Restrictions in SSN</dt>
+                <dd>
+                    <a>sosa:madeActuation</a>
+                    <em><b>ONLY</b></em>
+                    (<a>sosa:Actuation</a> <em><b>or</b></em>
+                    <a>sosa:ActuationCollection</a>)
+                    <br>
+                    <a>sosa:actsOn</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:Property</a>
+                    <br>
+                    <a>sosa:implements</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:ActuatingProcedure</a>
+                </dd>
+            </div>
             <dt>is Defined By</dt>
             <dd>
                 <a href="http://www.w3.org/ns/sosa/actuation/">http://www.w3.org/ns/sosa/actuation/</a>
