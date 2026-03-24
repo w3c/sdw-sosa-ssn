@@ -1,6 +1,6 @@
 var respecConfig = {
   specStatus: "base",
-  shortName: "ssn-usage",
+  shortName: "ssn-2023-usage",
   //publishDate:  "2015-05-18",
   previousPublishDate: "2017-10-19",
   previousMaturity: "Document",
@@ -8,6 +8,28 @@ var respecConfig = {
   edDraftURI: "https://w3c.github.io/sdw-sosa-ssn/ssn-usage/",
   // lcEnd: "3000-01-01",
   // crEnd: "3000-01-01",
+  repoURL: "https://github.com/w3c/sdw-sosa-ssn/",
+  group: "wg/sdw",
+  github: "w3c/sdw-sosa-ssn",
+  wgPublicList: "public-sdw-comments",
+  wg: "Spatio-temporal Data on the Web Working Group",
+  wgURI: "https://www.w3.org/groups/wg/sdw/",
+  wgPublicList: "public-sdw-comments",
+  wgPatentURI: "https://www.w3.org/2004/01/pp-impl/75471/status",
+  inlineCSS: true,
+  noIDLIn: true,
+  noLegacyStyle: false,
+  noRecTrack: false,
+  overrideCopyright: "<p class='copyright'><a href='https://www.w3.org/Consortium/Legal/ipr-notice#Copyright'>Copyright</a> © 2024 <a href='http://www.opengeospatial.org/'>OGC</a> &amp; <a href='https://www.w3.org/'> <abbr title='World Wide Web Consortium'>W3C</abbr> </a><sup>®</sup> (<a href='https://www.csail.mit.edu/'><abbr title='Massachusetts Institute of Technology'>MIT</abbr></a>, <a href='https://www.ercim.eu/'><abbr title='European Research Consortium for Informatics and Mathematics'>ERCIM</abbr></a>, <a href='https://www.keio.ac.jp/'>Keio</a>, <a href='https://ev.buaa.edu.cn/'>Beihang</a>), <abbr title='World Wide Web Consortium'>W3C</abbr> <a href='https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer'>liability</a>, <a href='https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks'>trademark</a>, <a href='https://www.w3.org/Consortium/Legal/copyright-documents'>W3C</a> and <a href='https://www.ogc.org/ogc/document'>OGC</a> document use rules apply.</p>",
+  logos: [
+    {
+      src: "images/OGC-0.png",
+      alt: "OGC",
+      height: "128",
+      width: "114",
+      url: "https://www.ogc.org/"
+    }
+  ],
   editors: [
     {
       name: "Simon J D Cox",
@@ -70,32 +92,6 @@ var respecConfig = {
       orcid: "0000-0002-8742-7730"
     }
   ],
-  wg: "Spatial Data on the Web Working Group",
-  wgURI: "https://www.w3.org/2015/spatial/",
-  wgPublicList: "public-sdw-comments",
-  wgPatentURI: "https://www.w3.org/2004/01/pp-impl/75471/status",
-  inlineCSS: true,
-  noIDLIn: true,
-  noLegacyStyle: false,
-  logos: [
-    {
-      src: "http://www.w3.org/Icons/w3c_home",
-      alt: "W3C",
-      height: "48",
-      width: "72",
-      url: "https://www.w3.org/"
-    },
-    {
-      src: "https://www.ogc.org/wp-content/uploads/2023/03/OGC-1.svg",
-      alt: "OGC",
-      height: "48",
-      width: "141",
-      url: "https://www.ogc.org/"
-    }
-  ],
-  noRecTrack: false,
-  overrideCopyright: "<p class='copyright'><a href='https://www.w3.org/Consortium/Legal/ipr-notice#Copyright'>Copyright</a> © 2024 <a href='http://www.opengeospatial.org/'>OGC</a> &amp; <a href='https://www.w3.org/'> <abbr title='World Wide Web Consortium'>W3C</abbr> </a><sup>®</sup> (<a href='https://www.csail.mit.edu/'><abbr title='Massachusetts Institute of Technology'>MIT</abbr></a>, <a href='https://www.ercim.eu/'><abbr title='European Research Consortium for Informatics and Mathematics'>ERCIM</abbr></a>, <a href='https://www.keio.ac.jp/'>Keio</a>, <a href='https://ev.buaa.edu.cn/'>Beihang</a>), <abbr title='World Wide Web Consortium'>W3C</abbr> <a href='https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer'>liability</a>, <a href='https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks'>trademark</a>, <a href='https://www.w3.org/Consortium/Legal/copyright-documents'>W3C</a> and <a href='https://www.ogc.org/ogc/document'>OGC</a> document use rules apply.</p>",
-
   localBiblio: {
     "SSNX": {
       authors: ["Michael Compton", "Payam Barnaghi", "Luis Bermudez", "Raúl García-Castro", "Oscar Corcho", "Simon Cox", "John Graybeal", "Manfred Hauswirth", "Cory Henson", "Arthur Herzog", "Vincent Huang", "Krzysztof Janowicz", "W. David Kelsey", "Danh Le Phuoc", "Laurent Lefort", "Myriam Leggieri", "Holger Neuhaus", "Andriy Nikolov", "Kevin Page", "Alexandre Passant", "Amit Sheth", "Kerry Taylor"],
@@ -111,13 +107,12 @@ var respecConfig = {
       publisher: "W3C Note",
       date: "September 4, 2017"
     },
-    "vocab-ssn": {
-      authors: ["Armin Haller", "Krzysztof Janowicz", "Simon Cox", "Danh Le Phuoc", "Kerry Taylor", "Maxime Lefrançois", "(editors)"],
+    "vocab-ssn-2023": {
+      authors: ["Simon Cox", "Maxime Lefrançois", "Rob Warren", "Rob Atkinson", "Luis Moreira de Sousa", "Kathi Schleidt", "Sylvain Grellet", "Krzysztof Janowicz", "(editors)"],
       title: "Semantic Sensor Network Ontology",
       href: "https://www.w3.org/TR/vocab-ssn/",
       publisher: "W3C Recommendation",
       date: "July 11, 2017"
-    },
-  },
-  issueBase: "https://www.w3.org/2015/spatial/track/issues/"
+    }
+  }
 };
