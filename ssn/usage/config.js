@@ -3,7 +3,7 @@ var respecConfig = {
   shortName: "ssn-2023-usage",
   //publishDate:  "2015-05-18",
   previousPublishDate: "2017-10-19",
-  previousMaturity: "Document",
+  previousMaturity: "Note",
   previousURI: "https://w3c.github.io/sdw/ssn-usage/",
   edDraftURI: "https://w3c.github.io/sdw-sosa-ssn/ssn-usage/",
   // lcEnd: "3000-01-01",
@@ -93,13 +93,6 @@ var respecConfig = {
     }
   ],
   localBiblio: {
-    "SSNX": {
-      authors: ["Michael Compton", "Payam Barnaghi", "Luis Bermudez", "Raúl García-Castro", "Oscar Corcho", "Simon Cox", "John Graybeal", "Manfred Hauswirth", "Cory Henson", "Arthur Herzog", "Vincent Huang", "Krzysztof Janowicz", "W. David Kelsey", "Danh Le Phuoc", "Laurent Lefort", "Myriam Leggieri", "Holger Neuhaus", "Andriy Nikolov", "Kevin Page", "Alexandre Passant", "Amit Sheth", "Kerry Taylor"],
-      title: "The SSN ontology of the W3C semantic sensor network incubator group",
-      href: "http://www.sciencedirect.com/science/article/pii/S1570826812000571",
-      publisher: "Web Semantics: Science, Services and Agents on the World Wide Web, 17:25-32 ",
-      date: "December 2012"
-    },
     "usage-ssn": {
       authors: ["Raúl García-Castro", "Armin Haller", "Nandana Mihindukulasooriya", "(editors)"],
       title: "On the usage of the SSN ontology",
@@ -109,10 +102,10 @@ var respecConfig = {
     },
     "vocab-ssn-2023": {
       authors: ["Simon Cox", "Maxime Lefrançois", "Rob Warren", "Rob Atkinson", "Luis Moreira de Sousa", "Kathi Schleidt", "Sylvain Grellet", "Krzysztof Janowicz", "(editors)"],
-      title: "Semantic Sensor Network Ontology",
-      href: "https://www.w3.org/TR/vocab-ssn/",
+      title: "Semantic Sensor Network Ontology - 2023 Edition",
+      href: "https://www.w3.org/TR/vocab-ssn-2023/",
       publisher: "W3C Recommendation",
-      date: "July 11, 2017"
+      date: "2026"
     }
   }
 };
