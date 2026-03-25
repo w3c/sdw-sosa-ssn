@@ -22,7 +22,7 @@ var respecConfig = {
   noRecTrack: false,
   logos: [
     {
-      src: "images/OGC-0.png",
+      src: "../images/OGC-0.png",
       alt: "OGC",
       height: "128",
       width: "114",
@@ -39,41 +39,41 @@ var respecConfig = {
     },
     {
       name: "Maxime Lefrançois",
-      w3cid: "50604",
+      w3cid: 50604,
       company: "École Nationale Supérieure des Mines de Saint-Étienne, FR",
       companyURL: "https://www.mines-stetienne.fr/",
       orcid: "0000-0001-9814-8991"
     },
     {
       name: "Rob Warren",
-      w3cid: "144476",
+      w3cid: 144476,
       company: "Glengarry Agriculture and Forestry, CA",
       companyURL: "https://github.com/GlengarryAg"
     },
     {
       name: "Rob Atkinson",
-      w3cid: "90763",
+      w3cid: 90763,
       company: "OGC & Metalinkage, AU",
       companyURL: "https://www.ogc.org/",
       orcid: "0000-0002-7815-2472"
     },
     {
       name: "Luis Moreira de Sousa",
-      w3cid: "145885",
+      w3cid: 145885,
       company: "Instituto Superior Técnico Lisboa, PT",
       companyURL: "https://tecnico.ulisboa.pt/en/",
       orcid: "0000-0002-5851-2071"
     },
     {
       name: "Kathi Schleidt",
-      w3cid: "140963",
+      w3cid: 140963,
       company: "Datacove, AT",
       companyURL: "https://www.datacove.eu/",
       orcid: "0000-0002-8011-7350"
     },
     {
       name: "Sylvain Grellet",
-      w3cid: "143334",
+      w3cid: 143334,
       company: "BRGM, FR",
       companyURL: "https://brgm.fr/",
       orcid: "0000-0001-7656-1830"
@@ -86,7 +86,7 @@ var respecConfig = {
     },
     {
       name: "Nicholas Car",
-      company: "KurrawongAI",
+      company: "KurrawongAI, AU",
       companyURL: "https://kurrawong.ai",
       orcid: "0000-0002-8742-7730"
     }
