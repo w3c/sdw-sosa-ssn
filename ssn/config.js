@@ -128,11 +128,13 @@ var respecConfig = {
         {
           value: "Abdelfettah Feliachi, BRGM, FR"
         }, {
-          value: "Danielle Limbaugh, Summit Knowledge Solutions, USA"
+          value: "Danielle Limbaugh, Summit Knowledge Solutions, US"
         }, {
           value: "Maja Milicic Brandt, Siemens AG, DE"
         }, {
           value: "Alex Robin, Georobotix, FR"
+        }, {
+          value: "Alec Sculley, Summit Knowledge Solutions, US"
         }, {
           value: "Hylke van der Schaaf, Fraunhofer IOSB, DE"
         }
@@ -161,16 +163,16 @@ var respecConfig = {
   ],
   localBiblio: {
     "BFO": {
-        title: "Information technology — Top-level ontologies (TLO) — Part 2: Basic Formal Ontology (BFO)",
-        href: "https://www.iso.org/standard/74572.html",
-        rawDate: "2021-11",
-        publisher: "International Organization for Standardization (ISO)",
-        status: "ISO/IEC 21838-2:2021"
+      title: "Information technology — Top-level ontologies (TLO) — Part 2: Basic Formal Ontology (BFO)",
+      href: "https://www.iso.org/standard/74572.html",
+      rawDate: "2021-11",
+      publisher: "International Organization for Standardization (ISO)",
+      status: "ISO/IEC 21838-2:2021"
     },
     "CCO": {
-        title: "The Common Core Ontologies (CCO)",
-        href: "https://github.com/CommonCoreOntology/CommonCoreOntologies",
-        rawDate: "2022",
+      title: "The Common Core Ontologies (CCO)",
+      href: "https://github.com/CommonCoreOntology/CommonCoreOntologies",
+      rawDate: "2022",
     },
     "Description-Logics": {
       href: "http://www.cambridge.org/9780521150118",
@@ -257,5 +259,5 @@ var respecConfig = {
       publisher: "Open Geospatial Consortium"
     }
   },
-  preProcess: [ loadTurtle ]
+  preProcess: [loadTurtle]
 }
