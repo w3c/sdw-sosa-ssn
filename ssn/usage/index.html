@@ -22,7 +22,8 @@
     <a href='https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer'>liability</a>,
     <a href='https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks'>trademark</a>,
     <a href='https://www.w3.org/Consortium/Legal/copyright-documents'>W3C</a> and
-    <a href='https://www.ogc.org/ogc/document'>OGC</a> document use rules apply.</p>
+    <a href='https://www.ogc.org/ogc/document'>OGC</a> document use rules apply.
+  </p>
   <section id="abstract">
     <p>This document provides an analysis of the usage of the SSN Ontology.
       This edition adds usage information for terms added to SSN in the 2023 update [[vocab-ssn-2023]]. </p>
@@ -99,10 +100,11 @@
     </p>
     <section id="analysis-datasets">
       <h2>Analysis of usage in datasets</h2>
-      <p>The following table presents the datasets that use the SSN ontology that have been found, along with their
-        URIs.</p>
-      <p></p>
-      <table class="numbered">
+      <p>
+        <a href="#old-datasets"></a> presents the datasets that use the SSN ontology that have been found, along with
+        their URIs.
+      </p>
+      <table class="numbered" id="old-datasets">
         <caption>
           Datasets for 2017 edition
         </caption>
@@ -270,9 +272,9 @@
         </tbody>
       </table>
       <p>
-        The following table presents new datasets (since 2017) that use the SSN ontology
+        <a href="#new-datasets"></a> presents new datasets (since 2017) that use the SSN ontology
       </p>
-      <table class="numbered">
+      <table class="numbered" id="new-datasets">
         <caption>
           New datasets for 2023 edition
         </caption>
@@ -346,9 +348,15 @@
         </tbody>
       </table>
 
-      <p>The following table presents the coverage of the vocabulary terms of the SSN ontology in the different
-        datasets from both 2017 and now.</p>
-      <table class="numbered">
+      <p>
+        <a href="#term-usage"></a> presents the coverage of the vocabulary terms of the SSN ontology in the datasets
+        from both 2017 and now.
+      </p>
+      <p class="note">
+        Object-properties are listed with their inverses.
+        We consider usage of any object-property to also provide evidence of usage of its inverse.
+      </p>
+      <table class="numbered" id="term-usage">
         <caption>Core Ontology term usage </caption>
         <thead>
           <tr>
@@ -434,7 +442,8 @@
             </td>
             <td>D14, D16, D17, D18, D19, D21</td>
             <td></td>
-            <td></td>
+            <td>Also see entries for sub-classes `sosa:ActuatingProcedure`, `sosa:ObservingProcedure`,
+              `sosa:SamplingProcedure`</td>
           </tr>
           <tr>
             <td>
@@ -492,7 +501,8 @@
             </td>
             <td></td>
             <td></td>
-            <td></td>
+            <td>`Execution` is considered to be abstract. Individual Executions SHOULD be typed with one of the
+              (concrete) sub-classes: `Actuation`, `Observation` or `Sampling`. </td>
           </tr>
           <tr>
             <td>
@@ -500,7 +510,9 @@
             </td>
             <td></td>
             <td></td>
-            <td></td>
+            <td>`ExecutionCollection` is considered to be abstract.
+              Individual ExecutionCollections SHOULD be typed with one of the (concrete) sub-classes:
+              `ActuationCollection`, `ObservationCollection` or `SamplingCollection`. </td>
           </tr>
           <tr>
             <td>
@@ -546,7 +558,9 @@
             </td>
             <td></td>
             <td></td>
-            <td></td>
+            <td>`madeBySystem` and `madeExecution` are considered to be abstract.
+              Applications SHOULD use a concrete sub-property: `madeByActuator`, `madeBySensor` or `madeBySampler` and
+              `madeActuation` `madeObservation` `madeSampling`</td>
           </tr>
           <tr>
             <td>
@@ -580,7 +594,8 @@
             </td>
             <td></td>
             <td></td>
-            <td></td>
+            <td>`Asset` is considered to be abstract.
+              Individual Assets SHOULD be typed with one of the (concrete) sub-classes: `System` or `Platform`.</td>
           </tr>
           <tr>
             <td>
@@ -1003,13 +1018,14 @@
     </p>
     <section id="analysis-ontologies">
       <h2>Analysis of the usage in ontologies</h2>
-      <p>The following table presents the ontologies that reuse the SSN ontology that have been found, along with
-        their
-        URIs.</p>
+      <p>
+        <a href="#dependent-ontologies"></a> presents the ontologies that reuse the SSN ontology that have been found,
+        along with their URIs.
+      </p>
       <p>
 
       </p>
-      <table class="numbered">
+      <table class="numbered" id="dependent-ontologies">
         <caption>
           Ontologies that reuse the SSN ontology
         </caption>
