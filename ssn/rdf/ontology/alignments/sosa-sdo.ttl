@@ -25,8 +25,8 @@
   dcterms:description "This ontology describes a mapping from SOSA to schema.org"@en ;
   dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
   dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
-  dcterms:modified "2018-04-02"^^xsd:date ;
-  dcterms:rights "Copyright 2017, 2018 W3C/OGC." ;
+  dcterms:modified "2026-03-26"^^xsd:date ;
+  dcterms:rights "Copyright 2017, 2026 W3C/OGC." ;
   dcterms:title "SOSA - schema.org mapping"@en ;
   rdfs:comment "Please report any errors to the W3C Spatial Data on the Web Working Group via the SDW WG Public List public-sdw-wg@w3.org"@en ;
   rdfs:seeAlso <https://www.w3.org/2015/spatial/wiki/Semantic_Sensor_Network_Ontology> ;
@@ -43,16 +43,23 @@ schema:usesDevice
 .
 sosa:Actuation
   rdf:type rdfs:Class ;
-  rdfs:comment "An Actuation carries out an (Actuation) Procedure to change the state of the world using an Actuator."@en ;
+  rdfs:comment "An Actuation carries out an ActuatingProcedure to change the state of the world using an Actuator."@en ;
   rdfs:label "Actuation"@en ;
   rdfs:subClassOf schema:Action ;
   skos:editorialNote "Candidate for schema.org" ;
 .
 sosa:Actuator
   rdf:type rdfs:Class ;
-  rdfs:comment "A device that is used by, or implements, an (Actuation) Procedure that changes the state of the world."@en ;
+  rdfs:comment "A device that is used by, or implements, an ActuatingProcedure that changes the state of the world."@en ;
   rdfs:label "Actuator"@en ;
   rdfs:subClassOf schema:Thing ;
+  skos:editorialNote "Candidate for schema.org" ;
+.
+sosa:Execution
+  rdf:type rdfs:Class ;
+  rdfs:comment "An Execution carries out an Procedure."@en ;
+  rdfs:label "Execution"@en ;
+  rdfs:subClassOf schema:Action ;
   skos:editorialNote "Candidate for schema.org" ;
 .
 sosa:FeatureOfInterest
@@ -71,7 +78,7 @@ sosa:Property
 .
 sosa:Observation
   rdf:type rdfs:Class ;
-  rdfs:comment "Act of carrying out an (Observation) Procedure to estimate or calculate a value of a property of a FeatureOfInterest. Links to a Sensor to describe what made the Observation and how; links to a Property to describe what the result is an estimate of, and to a FeatureOfInterest to detail what that property was associated with."@en ;
+  rdfs:comment "Act of carrying out an ObservingProcedure to estimate or calculate a value of a property of a FeatureOfInterest. Links to a Sensor to describe what made the Observation and how; links to a Property to describe what the result is an estimate of, and to a FeatureOfInterest to detail what that property was associated with."@en ;
   rdfs:label "Observation"@en ;
   rdfs:subClassOf schema:CreateAction ;
   skos:editorialNote "Candidate for schema.org" ;
@@ -118,7 +125,7 @@ sosa:Sampler
 .
 sosa:Sampling
   rdf:type rdfs:Class ;
-  rdfs:comment "An act of Sampling carries out a sampling Procedure to create or transform one or more samples."@en ;
+  rdfs:comment "An act of Sampling carries out a SamplingProcedure to create or transform one or more samples."@en ;
   rdfs:label "Sampling"@en ;
   rdfs:subClassOf schema:CreateAction ;
   skos:editorialNote "Candidate for schema.org" ;
@@ -130,23 +137,21 @@ sosa:Sensor
   rdfs:subClassOf schema:Thing ;
   skos:editorialNote "Candidate for schema.org" ;
 .
-sosa:actsOnProperty
-  rdf:type rdf:Property ;
-  schema:domainIncludes sosa:Actuation ;
-  schema:inverseOf sosa:isActedOnBy ;
-  schema:rangeIncludes sosa:Property ;
-  rdfs:comment "Relation between an Actuation and the property of a FeatureOfInterest it is acting upon."@en ;
-  rdfs:label "acts on property"@en ;
+sosa:System
+  rdf:type rdfs:Class ;
+  rdfs:comment "A device that is used by, or implements, a Procedure."@en ;
+  rdfs:label "System"@en ;
+  rdfs:subClassOf schema:Thing ;
   skos:editorialNote "Candidate for schema.org" ;
 .
 sosa:hasFeatureOfInterest
   rdf:type rdf:Property ;
+  schema:domainIncludes sosa:Execution ;
   schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:Observation ;
   schema:domainIncludes sosa:Sampling ;
   schema:inverseOf sosa:isFeatureOfInterestOf ;
   schema:rangeIncludes sosa:FeatureOfInterest ;
-  schema:rangeIncludes sosa:Sample ;
   rdfs:comment "A relation between an Observation and the entity whose quality was observed, or between an Actuation and the entity whose property was modified, or between an act of Sampling and the entity that was sampled."@en ;
   rdfs:label "has feature of interest"@en ;
   rdfs:subPropertyOf schema:object ;
@@ -154,6 +159,7 @@ sosa:hasFeatureOfInterest
 .
 sosa:hasResult
   rdf:type rdf:Property ;
+  schema:domainIncludes sosa:Execution ;
   schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:Observation ;
   schema:domainIncludes sosa:Sampling ;
@@ -163,99 +169,6 @@ sosa:hasResult
   rdfs:comment "Relation linking an Observation or Actuation or act of Sampling and a Result or Sample."@en ;
   rdfs:label "has result"@en ;
   rdfs:subPropertyOf schema:result ;
-  skos:editorialNote "Candidate for schema.org" ;
-.
-sosa:hasSample
-  rdf:type rdf:Property ;
-  schema:domainIncludes sosa:FeatureOfInterest ;
-  schema:inverseOf sosa:isSampleOf ;
-  schema:rangeIncludes sosa:Sample ;
-  rdfs:comment "Relation between a FeatureOfInterest and the Sample used to represent it."@en ;
-  rdfs:label "has sample"@en ;
-  skos:editorialNote "Candidate for schema.org" ;
-.
-sosa:hosts
-  rdf:type rdf:Property ;
-  schema:domainIncludes sosa:Platform ;
-  schema:inverseOf sosa:isHostedBy ;
-  schema:rangeIncludes sosa:Actuator ;
-  schema:rangeIncludes sosa:Platform ;
-  schema:rangeIncludes sosa:Sampler ;
-  schema:rangeIncludes sosa:Sensor ;
-  rdfs:comment "Relation between a Platform and a Sensor, Actuator, Sampler, or Platform, hosted or mounted on it."@en ;
-  rdfs:label "hosts"@en ;
-  skos:editorialNote "Candidate for schema.org" ;
-.
-sosa:isActedOnBy
-  rdf:type rdf:Property ;
-  schema:domainIncludes sosa:Property ;
-  schema:inverseOf sosa:actsOnProperty ;
-  schema:rangeIncludes sosa:Actuation ;
-  rdfs:comment "Relation between a Property of a FeatureOfInterest and an Actuation changing its state."@en ;
-  rdfs:label "is acted on by"@en ;
-  skos:editorialNote "Candidate for schema.org" ;
-.
-sosa:isFeatureOfInterestOf
-  rdf:type rdf:Property ;
-  schema:domainIncludes sosa:FeatureOfInterest ;
-  schema:domainIncludes sosa:Sample ;
-  schema:inverseOf sosa:hasFeatureOfInterest ;
-  schema:rangeIncludes sosa:Actuation ;
-  schema:rangeIncludes sosa:Observation ;
-  schema:rangeIncludes sosa:Sampling ;
-  rdfs:comment "A relation between a FeatureOfInterest and an Observation about it, an Actuation acting on it, or an act of Sampling that sampled it."@en ;
-  rdfs:label "is feature of interest of"@en ;
-  skos:editorialNote "Candidate for schema.org" ;
-.
-sosa:isHostedBy
-  rdf:type rdf:Property ;
-  schema:domainIncludes sosa:Actuator ;
-  schema:domainIncludes sosa:Platform ;
-  schema:domainIncludes sosa:Sampler ;
-  schema:domainIncludes sosa:Sensor ;
-  schema:inverseOf sosa:hosts ;
-  schema:rangeIncludes sosa:Platform ;
-  rdfs:comment "Relation between a Sensor, Actuator, Sampler, or Platform, and the Platform that it is mounted on or hosted by."@en ;
-  rdfs:label "is hosted by"@en ;
-  skos:editorialNote "Candidate for schema.org" ;
-.
-sosa:isObservedBy
-  rdf:type rdf:Property ;
-  schema:domainIncludes sosa:Property ;
-  schema:inverseOf sosa:observes ;
-  schema:rangeIncludes sosa:Sensor ;
-  rdfs:comment "Relation between a Property and the Sensor able to observe it."@en ;
-  rdfs:label "is observed by"@en ;
-  skos:editorialNote "Candidate for schema.org" ;
-.
-sosa:isResultOf
-  rdf:type rdf:Property ;
-  schema:domainIncludes sosa:Result ;
-  schema:domainIncludes sosa:Sample ;
-  schema:inverseOf sosa:hasResult ;
-  schema:rangeIncludes sosa:Actuation ;
-  schema:rangeIncludes sosa:Observation ;
-  schema:rangeIncludes sosa:Sampling ;
-  rdfs:comment "Relation linking a Result to the Observation or Actuation or act of Sampling that created or caused it."@en ;
-  rdfs:label "is result of"@en ;
-  skos:editorialNote "Candidate for schema.org" ;
-.
-sosa:isSampleOf
-  rdf:type rdf:Property ;
-  schema:domainIncludes sosa:Sample ;
-  schema:inverseOf sosa:hasSample ;
-  schema:rangeIncludes sosa:FeatureOfInterest ;
-  rdfs:comment "Relation from a Sample to the FeatureOfInterest that it is intended to be representative of."@en ;
-  rdfs:label "is sample of"@en ;
-  skos:editorialNote "Candidate for schema.org" ;
-.
-sosa:madeActuation
-  rdf:type rdf:Property ;
-  schema:domainIncludes sosa:Actuator ;
-  schema:inverseOf sosa:madeByActuator ;
-  schema:rangeIncludes sosa:Actuation ;
-  rdfs:comment "Relation between an Actuator and the Actuation it has made."@en ;
-  rdfs:label "made actuation"@en ;
   skos:editorialNote "Candidate for schema.org" ;
 .
 sosa:madeByActuator
@@ -288,22 +201,14 @@ sosa:madeBySensor
   rdfs:subPropertyOf schema:instrument ;
   skos:editorialNote "Candidate for schema.org" ;
 .
-sosa:madeObservation
+sosa:madeBySystem
   rdf:type rdf:Property ;
-  schema:domainIncludes sosa:Sensor ;
-  schema:inverseOf sosa:madeBySensor ;
-  schema:rangeIncludes sosa:Observation ;
-  rdfs:comment "Relation between a Sensor and an Observation made by the Sensor."@en ;
-  rdfs:label "made observation"@en ;
-  skos:editorialNote "Candidate for schema.org" ;
-.
-sosa:madeSampling
-  rdf:type rdf:Property ;
-  schema:domainIncludes sosa:Sampler ;
-  schema:inverseOf sosa:madeBySampler ;
-  schema:rangeIncludes sosa:Sampling ;
-  rdfs:comment "Relation between a Sampler (sampling device or entity) and the Sampling act it performed."@en ;
-  rdfs:label "made sampling"@en ;
+  schema:domainIncludes sosa:Execution ;
+  schema:inverseOf sosa:madeExecution ;
+  schema:rangeIncludes sosa:System ;
+  rdfs:comment "Relation between an Execution and the System which made it."@en ;
+  rdfs:label "made by system"@en ;
+  rdfs:subPropertyOf schema:instrument ;
   skos:editorialNote "Candidate for schema.org" ;
 .
 sosa:observedProperty
@@ -315,17 +220,9 @@ sosa:observedProperty
   owl:equivalentProperty schema:measuredProperty ;
   skos:editorialNote "Candidate for schema.org" ;
 .
-sosa:observes
-  rdf:type rdf:Property ;
-  schema:domainIncludes sosa:Sensor ;
-  schema:inverseOf sosa:isObservedBy ;
-  schema:rangeIncludes sosa:Property ;
-  rdfs:comment "Relation between a Sensor and a Property that it is capable of sensing."@en ;
-  rdfs:label "observes"@en ;
-  skos:editorialNote "Candidate for schema.org" ;
-.
 sosa:phenomenonTime
   rdf:type rdf:Property ;
+  schema:domainIncludes sosa:Execution ;
   schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:Observation ;
   schema:domainIncludes sosa:Sampling ;
@@ -342,6 +239,7 @@ sosa:resultTime
 .
 sosa:usedProcedure
   rdf:type rdf:Property ;
+  schema:domainIncludes sosa:Execution ;
   schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:Observation ;
   schema:domainIncludes sosa:Sampling ;
