@@ -26,10 +26,13 @@ ex:DHT22_Procedure
 .
 
 ex:DHT22_output
-    # a              rdfp:GraphDescription ;
+    # specify the encoding format - which is not necessary constrained by the model for the content
+    dct:format     <https://w3id.org/mediatype/text/turtle> ;
     rdfs:comment   "The output is a RDF Graph that describes both the temperature and the humidity. It can be validated by a SHACL shapes graph."@en ;
     dct:conformsTo ex:myProfile
 .
+
+
 
 ex:myProfile
     a                prof:Profile ;
@@ -38,9 +41,8 @@ ex:myProfile
                        dct:format       <https://w3id.org/mediatype/text/turtle> ;
                        # it conforms to SHACL, here refered to by its namespace URI as a Profile
                        dct:conformsTo   <https://www.w3.org/TR/shacl/> ;
-                       # this profile resource plays the role of "Validation"
-                       # described in this ontology's accompanying Roles vocabulary
-                       prof:hasRole     role:Validation ;
+                       # this profile resource plays the role of "Validation" as well as defining a "schema"
+                       prof:hasRole     role:validation , role:schema ;
                        # this profile resource's actual file
                        prof:hasArtifact <http://example.org/profile/x/resource/validator.ttl> ] ;
 .
