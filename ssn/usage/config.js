@@ -5,7 +5,7 @@ var respecConfig = {
   previousPublishDate: "2017-10-19",
   previousMaturity: "NOTE",
   previousURI: "https://w3c.github.io/sdw/ssn-usage/",
-  edDraftURI: "https://w3c.github.io/sdw-sosa-ssn/ssn-usage/",
+  edDraftURI: "https://w3c.github.io/sdw-sosa-ssn/ssn/usage/",
   // lcEnd: "3000-01-01",
   // crEnd: "3000-01-01",
   repoURL: "https://github.com/w3c/sdw-sosa-ssn/",
@@ -32,7 +32,7 @@ var respecConfig = {
   editors: [
     {
       name: "Simon J D Cox",
-      w3cid: "1796",
+      w3cid: 1796,
       company: "Timely Logic, AU",
       orcid: "0000-0002-3884-3420",
       w3cid: 1796
