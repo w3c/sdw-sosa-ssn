@@ -27,7 +27,7 @@ that can sometimes be present when modeling sensor readings.
 * [Shipping to Retail Store](#shipping-to-retail-store)
 * [Display in Retail Store Cooler](#display-in-retail-store-cooler)
 * [Notes on deployment and observation aggregation](#notes-on-deployment-and-observation-aggregation)
-* [Recording data and sensor tasking through sensorvdeployments](#recording-data-and-sensor-tasking-through-sensor-deployments)
+* [Recording data and sensor tasking through sensor deployments](#recording-data-and-sensor-tasking-through-sensor-deployments)
 * [Recording data using observation collection](#recording-data-using-observation-collection)
 * [Recording data using sample collection](#recording-data-using-sample-collection)
 
@@ -45,11 +45,11 @@ differentiate between the product class and the specific instance of the
 product being consumed.  The ability to align SSN and product vocabularies
 are beneficial in that it permits a unified description of the sensor.  This
 includes modeling the sensor throughout its lifetime, announcing commercial
-availability, procurement, deployment, operation, decomissioning and
+availability, procurement, deployment, operation, decommissioning and
 disposal.
 
 To this end this example models IBS TH2 sensors using [schema.org](https://schema.org/) Product and
-[GS1 WebVoc](https://ref.gs1.org/voc/) Product classes.  This permits concurrent support for both Search Engine Optimization (SOA) and consumer supply chain product identification using barcodes.
+[GS1 WebVoc](https://ref.gs1.org/voc/) Product classes.  This permits concurrent support for both Search Engine Optimization (SOA) and consumer supply chain product identification using bar-codes.
 
 ## Technical challenges 
 
@@ -62,12 +62,16 @@ classes: [Product](https://schema.org/Product) and
 Section 9.6 of 
 the [GS1 Digital Link
 Standard](https://www.gs1.org/docs/Digital-Link/GS1_Digital_link_Standard_i1.1.1.pdf), 
-GS1 deals with this same problem by subclassing its [Product](https://ref.gs1.org/voc/Product)
+GS1 deals with this same problem by sub-classing its [Product](https://ref.gs1.org/voc/Product)
 class for both unique instances or indicating lot membership. Concurrently
 supporting both vocabularies obviously requires that a physical instance of
 a sensor be both an instance and a class. 
 
-Note: The use of long identifiers is for readability purposes and is non-normative.
+Note: This example makes concurrent use of the [Provenance Ontology](https://www.w3.org/TR/prov-o/) to model some of the operations in a
+way that is incompatible with the [alignment module for the Provenance
+Ontology]((https://www.w3.org/TR/vocab-ssn/#PROV_Alignment_property) provided by SOSA. Implementers are reminded that
+both alignments and examples are non-normative components of SOSA. Practitioners may be required to make modeling
+decisions that are appropriate to their application using their own alignments. The use of long identifiers is for readability purposes and is non-normative.
 
 ## Packaging and initial storage
 
