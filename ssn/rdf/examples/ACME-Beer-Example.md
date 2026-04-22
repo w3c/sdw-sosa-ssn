@@ -70,7 +70,7 @@ a sensor be both an instance and a class.
 Note: This example makes concurrent use of the [Provenance Ontology](https://www.w3.org/TR/prov-o/) to model some of the operations in a
 way that is incompatible with the [alignment module for the Provenance
 Ontology]((https://www.w3.org/TR/vocab-ssn/#PROV_Alignment_property) provided by SOSA. Implementers are reminded that
-alignments and examples are both non-normative components of SOSA. Practitioners may be required to make modeling
+both alignments and examples are non-normative components of SOSA. Practitioners may be required to make modeling
 decisions that are appropriate to their application using their own alignments. The use of long identifiers is for readability purposes and is non-normative.
 
 ## Packaging and initial storage
