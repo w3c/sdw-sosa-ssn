@@ -93,6 +93,12 @@ var respecConfig = {
       company: "BRGM, FR",
       companyURL: "https://brgm.fr/",
       orcid: "0000-0001-7656-1830"
+    },
+    {
+      name: "Krzysztof Janowicz",
+      company: "Universität Wien, AT",
+      companyURL: "https://www.univie.ac.at/",
+      orcid: "0009-0003-1968-887X"
     }
   ],
   formerEditors: [
@@ -101,12 +107,6 @@ var respecConfig = {
       company: "Australian National University, AU",
       companyURL: "https://www.cbe.anu.edu.au/",
       orcid: "0000-0003-3425-0780"
-    },
-    {
-      name: "Krzysztof Janowicz",
-      company: "Universität Wien, AT",
-      companyURL: "https://www.univie.ac.at/",
-      orcid: "0009-0003-1968-887X"
     },
     {
       name: "Danh Le Phuoc",
@@ -128,7 +128,7 @@ var respecConfig = {
         {
           value: "Abdelfettah Feliachi, BRGM, FR"
         }, {
-          value: "Krzysztof Janowicz, Universität Wien, AT"
+          value: "Danielle Limbaugh, Summit Knowledge Solutions, USA"
         }, {
           value: "Maja Milicic Brandt, Siemens AG, DE"
         }, {
@@ -160,6 +160,18 @@ var respecConfig = {
     }
   ],
   localBiblio: {
+    "BFO": {
+        title: "Information technology — Top-level ontologies (TLO) — Part 2: Basic Formal Ontology (BFO)",
+        href: "https://www.iso.org/standard/74572.html",
+        rawDate: "2021-11",
+        publisher: "International Organization for Standardization (ISO)",
+        status: "ISO/IEC 21838-2:2021"
+    },
+    "CCO": {
+        title: "The Common Core Ontologies (CCO)",
+        href: "https://github.com/CommonCoreOntology/CommonCoreOntologies",
+        rawDate: "2022",
+    },
     "Description-Logics": {
       href: "http://www.cambridge.org/9780521150118",
       authors: ["Franz Baader", "Diego Calvanese", "Deborah L. McGuinness", "Daniele Nardi", "Peter F. Patel-Schneider"],
@@ -187,6 +199,13 @@ var respecConfig = {
       status: "Deliverable 2.2",
       publisher: "ITEA2 12004 Smart Energy Aware Systems",
       date: "2017"
+    },
+    "ModSpec": {
+      href: "https://portal.ogc.org/files/?artifact_id=34762",
+      authors: ["OGC Policy SWG"],
+      title: "The Specification Model — A Standard for Modular specifications",
+      publisher: "Open Geospatial Consortium",
+      date: "2009"
     },
     "OM-Lite": {
       href: "http://content.iospress.com/articles/semantic-web/sw214",
