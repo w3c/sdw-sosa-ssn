@@ -1,0 +1,248 @@
+flowchart RL
+
+%% =====================================================
+%% PLANNING
+%% =====================================================
+    subgraph PLANNING["PLANNING"]
+        PLAN0([Plan: Nigella Brownies])
+
+        STEP_smelt([Step: Melting])
+        STEP_hak([Step: Chopping])
+        STEP_meng([Step: Mixing])
+        STEP_bak([Step: Baking])
+        STEP_afkoelen([Step: Cooling Down])
+        STEP_controle([Step: Quality Check])
+
+        PLAN_SMELT["Melting"]
+        PLAN_CHOP["Chopping"]
+        PLAN_MIX["Mixing"]
+        PLAN_BAK["Baking"]
+        PLAN_OBS["Quality Check"]
+
+        V_boter([var:butter])
+        V_choc([var:dark-chocolate])
+        V_walnoten([var:walnuts])
+        V_suiker([var:sugar])
+        V_eieren([var:eggs])
+        V_bloem([var:flour])
+        V_smelt([var:melted-mixture])
+        V_hak([var:chopped-walnuts])
+        V_beslag([var:batter])
+        V_brownies([var:brownies])
+        V_kleur([var:colour])
+
+    end
+
+    style PLANNING fill:#b8a2d4,stroke:#2E5C8A,color:#000
+    style PLAN0 fill:#7f59ae,stroke:#2E5C8A,color:#000
+    style STEP_smelt fill:#7f59ae,stroke:#2E5C8A,color:#000
+    style STEP_hak fill:#7f59ae,stroke:#2E5C8A,color:#000
+    style STEP_meng fill:#7f59ae,stroke:#2E5C8A,color:#000
+    style STEP_bak fill:#7f59ae,stroke:#2E5C8A,color:#000
+    style STEP_afkoelen fill:#7f59ae,stroke:#2E5C8A,color:#000
+    style STEP_controle fill:#7f59ae,stroke:#2E5C8A,color:#000
+    style PLAN_SMELT fill:#c6a0f5,stroke:#2E5C8A,color:#000
+    style PLAN_CHOP fill:#c6a0f5,stroke:#2E5C8A,color:#000
+    style PLAN_MIX fill:#c6a0f5,stroke:#2E5C8A,color:#000
+    style PLAN_BAK fill:#c6a0f5,stroke:#2E5C8A,color:#000
+    style PLAN_OBS fill:#c6a0f5,stroke:#2E5C8A,color:#000
+
+    style V_boter fill:#fe7130,stroke:#2E5C8A,color:#000
+    style V_choc fill:#fe7130,stroke:#2E5C8A,color:#000
+    style V_walnoten fill:#fe7130,stroke:#2E5C8A,color:#000
+    style V_suiker fill:#fe7130,stroke:#2E5C8A,color:#000
+    style V_eieren fill:#fe7130,stroke:#2E5C8A,color:#000
+    style V_bloem fill:#fe7130,stroke:#2E5C8A,color:#000
+    style V_smelt fill:#fe7130,stroke:#2E5C8A,color:#000
+    style V_hak fill:#fe7130,stroke:#2E5C8A,color:#000
+    style V_beslag fill:#fe7130,stroke:#2E5C8A,color:#000
+    style V_brownies fill:#fe7130,stroke:#2E5C8A,color:#000
+    style V_kleur fill:#fe7130,stroke:#2E5C8A,color:#000
+
+%% Plan structure — top-level steps of plan:nigella-brownies
+    PLAN0 -->|hasStep| STEP_smelt
+    PLAN0 -->|hasStep| STEP_hak
+    PLAN0 -->|hasStep| STEP_meng
+    PLAN0 -->|hasStep| STEP_bak
+
+    PLAN0 -->|hasSubPlan| PLAN_SMELT
+    PLAN0 -->|hasSubPlan| PLAN_CHOP
+    PLAN0 -->|hasSubPlan| PLAN_MIX
+    PLAN0 -->|hasSubPlan| PLAN_BAK
+    PLAN0 -->|hasSubPlan| PLAN_OBS
+
+    STEP_smelt -->|isDecomposedAsPlan| PLAN_SMELT
+    STEP_hak -->|isDecomposedAsPlan| PLAN_CHOP
+    STEP_meng -->|isDecomposedAsPlan| PLAN_MIX
+    STEP_bak -->|isDecomposedAsPlan| PLAN_BAK
+    STEP_controle -->|isDecomposedAsPlan| PLAN_OBS
+
+%% Top-level sequence
+    STEP_bak -.->|isPrecededBy| STEP_meng -.->|isPrecededBy| STEP_hak -.->|isPrecededBy| STEP_smelt
+
+%% Steps of plan:baking (sub-level)
+    PLAN_BAK -->|hasStep| STEP_controle
+    PLAN_BAK -->|hasStep| STEP_afkoelen
+    STEP_afkoelen -.->|isPrecededBy| STEP_controle
+
+%% Variables
+    V_boter -->|isInputVarOf| STEP_smelt
+    V_choc -->|isInputVarOf| STEP_smelt
+    V_smelt -->|isOutputVarOf| STEP_smelt
+
+    V_walnoten -->|isInputVarOf| STEP_hak
+    V_hak -->|isOutputVarOf| STEP_hak
+
+    V_smelt -->|isInputVarOf| STEP_meng
+    V_hak -->|isInputVarOf| STEP_meng
+    V_suiker -->|isInputVarOf| STEP_meng
+    V_eieren -->|isInputVarOf| STEP_meng
+    V_bloem -->|isInputVarOf| STEP_meng
+    V_beslag -->|isOutputVarOf| STEP_meng
+
+    V_beslag -->|isInputVarOf| STEP_bak
+    V_brownies -->|isOutputVarOf| STEP_bak
+    V_kleur -->|isOutputVarOf| STEP_controle
+    V_kleur -->|isInputVarOf| STEP_afkoelen
+    V_brownies -->|isInputVarOf| STEP_afkoelen
+    V_brownies -->|isOutputVarOf| STEP_afkoelen
+
+
+%% =====================================================
+%% DEPLOYMENT
+%% =====================================================
+    subgraph DEPLOYMENT["DEPLOYMENT"]
+        Platform([Platform: Kitchen])
+        Deployment([Deployment])
+
+        SYS_smelt([System: Melting System])
+        SYS_hak([System: Chopping System])
+        SYS_robot([System: Kitchen Robot])
+        SYS_oven([System: Oven])
+        SYS_Sensor([System: Sensor])
+    end
+
+    style DEPLOYMENT fill:#b0d9e7,stroke:#2E5C8A,color:#000
+    style Platform fill:#60c4e4,stroke:#2E5C8A,color:#000
+    style Deployment fill:#60c4e4,stroke:#2E5C8A,color:#000
+    style SYS_smelt fill:#60c4e4,stroke:#2E5C8A,color:#000
+    style SYS_hak fill:#60c4e4,stroke:#2E5C8A,color:#000
+    style SYS_Sensor fill:#60c4e4,stroke:#2E5C8A,color:#000
+    style SYS_robot fill:#60c4e4,stroke:#2E5C8A,color:#000
+    style SYS_oven fill:#60c4e4,stroke:#2E5C8A,color:#000
+
+    Deployment -->|deployedOnPlatform| Platform
+    Deployment -->|deployedAsset| SYS_smelt
+    Deployment -->|deployedAsset| SYS_hak
+    Deployment -->|deployedAsset| SYS_robot
+    Deployment -->|deployedAsset| SYS_oven
+    Deployment -->|deployedAsset| SYS_Sensor
+
+    SYS_smelt -->|implements| PLAN_SMELT
+    SYS_hak -->|implements| PLAN_CHOP
+    SYS_robot -->|implements| PLAN_MIX
+    SYS_oven -->|implements| PLAN_BAK
+    SYS_Sensor -->|implements| STEP_controle
+
+
+%% =====================================================
+%% EXECUTION
+%% =====================================================
+    subgraph EXECUTION["EXECUTION — 10 Feb 2026"]
+
+        Activity_smelt([Activity: Melting])
+        Activity_hak([Activity: Chopping])
+        Activity_meng([Activity: Mixing])
+        Activity_bak([Activity: Baking])
+        Activity_obs([Observation: Colour])
+
+        subgraph DERIVATION["DERIVATION — 10 Feb 2026"]
+            I_boter([Entity: Butter])
+            I_choc([Entity: Chocolate])
+            I_wal([Entity: Walnuts])
+            I_suiker([Entity: Sugar])
+            I_eieren([Entity: Eggs])
+            I_bloem([Entity: Flour])
+            T_smelt([Entity: Melted Mixture])
+            T_hak([Entity: Chopped Walnuts])
+            T_beslag([Entity: Batter])
+            R_brownies([Entity: Brownies])
+            O_kleur([Entity: Light Brown Colour])
+        end
+    end
+
+    style DERIVATION fill:#f8e1ad,stroke:#2E5C8A,color:#000
+    style EXECUTION fill:#e7a3be,stroke:#2E5C8A,color:#000
+    style Activity_smelt fill:#e54b89,stroke:#2E5C8A,color:#000
+    style Activity_hak fill:#e54b89,stroke:#2E5C8A,color:#000
+    style Activity_meng fill:#e54b89,stroke:#2E5C8A,color:#000
+    style Activity_bak fill:#e54b89,stroke:#2E5C8A,color:#000
+    style Activity_obs fill:#e54b89,stroke:#2E5C8A,color:#000
+
+    style I_boter fill:#f8b622,stroke:#2E5C8A,color:#000
+    style I_choc fill:#f8b622,stroke:#2E5C8A,color:#000
+    style I_wal fill:#f8b622,stroke:#2E5C8A,color:#000
+    style I_suiker fill:#f8b622,stroke:#2E5C8A,color:#000
+    style I_eieren fill:#f8b622,stroke:#2E5C8A,color:#000
+    style I_bloem fill:#f8b622,stroke:#2E5C8A,color:#000
+    style T_smelt fill:#f8b622,stroke:#2E5C8A,color:#000
+    style T_hak fill:#f8b622,stroke:#2E5C8A,color:#000
+    style T_beslag fill:#f8b622,stroke:#2E5C8A,color:#000
+    style R_brownies fill:#f8b622,stroke:#2E5C8A,color:#000
+    style O_kleur fill:#f8b622,stroke:#2E5C8A,color:#000
+
+%% Activity relations
+    Activity_smelt -->|correspondsToStep| STEP_smelt
+    Activity_hak -->|correspondsToStep| STEP_hak
+    Activity_meng -->|correspondsToStep| STEP_meng
+    Activity_bak -->|correspondsToStep| STEP_bak
+    Activity_obs -->|correspondsToStep| STEP_controle
+
+    Activity_smelt -->|madeBySystem| SYS_smelt
+    Activity_hak -->|madeBySystem| SYS_hak
+    Activity_meng -->|madeBySystem| SYS_robot
+    Activity_bak -->|madeBySystem| SYS_oven
+    Activity_obs -->|madeBySystem| SYS_Sensor
+
+    Activity_smelt -->|used| I_boter
+    Activity_smelt -->|used| I_choc
+    Activity_smelt -->|hasResult| T_smelt
+
+    Activity_hak -->|used| I_wal
+    Activity_hak -->|hasResult| T_hak
+
+    Activity_meng -->|used| T_smelt
+    Activity_meng -->|used| T_hak
+    Activity_meng -->|used| I_suiker
+    Activity_meng -->|used| I_eieren
+    Activity_meng -->|used| I_bloem
+    Activity_meng -->|hasResult| T_beslag
+
+    Activity_bak -->|used| T_beslag
+    Activity_bak -->|hasResult| R_brownies
+
+    Activity_obs -->|hasResult| O_kleur
+
+%% Derivation
+    T_smelt -->|wasDerivedFrom| I_boter
+    T_smelt -->|wasDerivedFrom| I_choc
+    T_hak -->|wasDerivedFrom| I_wal
+    T_beslag -->|wasDerivedFrom| T_smelt
+    T_beslag -->|wasDerivedFrom| T_hak
+    T_beslag -->|wasDerivedFrom| I_suiker
+    T_beslag -->|wasDerivedFrom| I_eieren
+    T_beslag -->|wasDerivedFrom| I_bloem
+    R_brownies -->|wasDerivedFrom| T_beslag
+
+%% Entity ↔ Variable
+    I_boter -->|correspondsToVariable| V_boter
+    I_choc -->|correspondsToVariable| V_choc
+    I_wal -->|correspondsToVariable| V_walnoten
+    I_suiker -->|correspondsToVariable| V_suiker
+    I_eieren -->|correspondsToVariable| V_eieren
+    I_bloem -->|correspondsToVariable| V_bloem
+    T_smelt -->|correspondsToVariable| V_smelt
+    T_hak -->|correspondsToVariable| V_hak
+    T_beslag -->|correspondsToVariable| V_beslag
+    R_brownies -->|correspondsToVariable| V_brownies
+    O_kleur -->|correspondsToVariable| V_kleur
