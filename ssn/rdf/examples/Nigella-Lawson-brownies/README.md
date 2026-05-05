@@ -8,6 +8,7 @@ This example demonstrates a complete implementation of the p-plan/SSN-SOSA-PROV-
 The abstract recipe as a reusable plan:
 - `plan:nigella-brownies` – the main plan (recipe)
 - Steps (`p-plan:Step`) that decompose the process
+- Sub-plans (`p-plan:isSubPlanOfPlan`) that hierarchically elaborate each step (melting, chopping, mixing, baking, quality check)
 - Variables (`p-plan:Variable`) for ingredients, intermediate products, and the final product
 - Procedures (`sosa:Procedure`) to be implemented
 
@@ -15,11 +16,11 @@ The abstract recipe as a reusable plan:
 Concrete implementation in a specific context:
 - `kitchen:kitchen-geert` as the platform
 - Systems (kitchen appliances) that implement procedures
-- Deployment of assets for a specific execution
+- Standing deployment of assets on a platform
 
 ### 3. Execution Level
 Actual execution with traceability:
-- Activities (`prov:Activity`) and actuations (`sosa:Actuation`)
+- Activities (`prov:Activity`), actuations (`sosa:Actuation`) and observations (`sosa:Observation`)
 - Concrete entities as instantiations of plan variables
 - Time-bound execution with start and end times
 - Traceability via `p-plan:correspondsToStep`, `p-plan:correspondsToVariable` and `prov:wasDerivedFrom`
