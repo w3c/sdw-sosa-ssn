@@ -52,4 +52,8 @@ This example describes the IP68 Smart Sensor and some of its capabilities and op
 
 An RDF file containing an [example ttl graph file](ip68.ttl)  corresponding to this example is available..
 
+## Eautonome Observation Collection
+
+An RDF file containing an [example ttl graph file](EautonomeObservationCollection.ttl) corresponding to this example is available.
+
 
