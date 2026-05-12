@@ -2,6 +2,10 @@
 
 This is a repository for the [Spatial Data on the Web Working Group](https://www.w3.org/2021/sdw/), a collaborative project between [W3C](https://www.w3.org/) and [OGC](https://ogc.org/).
 
+> [!IMPORTANT]  
+> We are currently in the process of collecting implementation usage for the 2023 edition of the SOSA/SSN ontology. If you can contribute, get in touch with us through an issue !
+> 
+
 This repository has been factored out as a submodule of the original repository at [https://github.com/w3c/sdw](https://github.com/w3c/sdw).
 
 The repo is used for developing editors drafts of some of the Working Group's [deliverables](https://www.w3.org/2021/10/sdw-charter.html#deliverables) and related resources, in particular:
