@@ -2,14 +2,14 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix relex: <https://example.org/data/sample-relations#> .
-@prefix sampling: <http://www.w3.org/ns/sosa/sampling/> .
+@prefix sosa-rel: <http://www.w3.org/ns/sosa/sampling/> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @base <https://example.org/data/sample-relations> .
 
 <https://example.org/data/sample-relations>
   rdf:type owl:Ontology ;
-  owl:imports sosa:sampling ;
+  owl:imports <http://www.w3.org/ns/sosa/sam/> ;
 .
 relex:CSRWA25569
   rdf:type sosa:Sample ;
@@ -23,12 +23,12 @@ relex:CSRWA25569-mount7
 relex:CSRWA25569-mount7-spot1
   rdf:type sosa:Sample ;
   rdfs:label "spot 1" ;
-  sampling:hasSampleRelationship [
-      rdf:type sampling:SampleRelationship ;
-      sampling:natureOfRelationship [
-          rdf:type sampling:RelationshipNature ;
+  sosa-rel:hasSampleRelationship [
+      rdf:type sosa-rel:SampleRelationship ;
+      sosa-rel:natureOfRelationship [
+          rdf:type sosa-rel:RelationshipNature ;
           rdfs:comment "probe spot on polished mount" ;
         ] ;
-      sampling:relatedSample relex:CSRWA25569-mount7 ;
+      sosa-rel:relatedSample relex:CSRWA25569-mount7 ;
     ] ;
 .

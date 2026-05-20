@@ -12,16 +12,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 1
       - name: Setup Python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: '3.13'
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install pyshacl rdflib
       - name: Run SHACL validations
-        run: python ssn/scripts/validate.py
+        run: |
+          cd ssn
+          python scripts/validate.py

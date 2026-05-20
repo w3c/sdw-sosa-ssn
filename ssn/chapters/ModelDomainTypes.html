@@ -10,7 +10,7 @@
 <p>
     A property of an instance of any domain type may be observed using a sensor, or changed using an actuator,
     or the entity may be sampled following a sampling procedure.
-    When this occurs, the domain entity is the <em>feature-of-interest</em> of the Execution.
+    When this occurs, the domain entity is the <em>feature of interest</em> of the Execution.
 </p>
 <p>
     Does this therefore require that classes in the domain model are defined as sub-classes of
@@ -21,7 +21,7 @@
 <p>
     The way the SSN Ontology addresses this is described in the following sub-sections.
     There are different implications depending on whether you are using the simple
-    <a href="#sosa-module">SOSA</a> module, or the more expressive <a href="ssn-module">SSN</a> module.
+    <a href="#sosa-modules">SOSA</a> module, or the more expressive <a href="#ssn-modules">SSN</a> module.
 </p>
 
 <h4>FeatureOfInterest in SOSA</h4>
@@ -29,10 +29,10 @@
     In SOSA the domain and range indications use the Schema.org [[schema-org]] predicates
     `schema:domainIncludes` and
     `schema:rangeIncludes`.
-    For <a href="#SOSAFeatureOfInterest">feature-of-interest</a>, SOSA has:
+    For <a href="#SOSAFeatureOfInterest">feature of interest</a>, SOSA has:
 </p>
-<pre>
-sosa:hasFeatureOfInterest 
+<pre class="turtle">
+sosa:hasFeatureOfInterest
   schema:domainIncludes sosa:Execution ;
   schema:domainIncludes sosa:Deployment ;
   schema:rangeIncludes sosa:FeatureOfInterest ;
@@ -47,7 +47,7 @@ sosa:hasFeatureOfInterest
 <p>
     So the 'domain and range' indications in SOSA are functionally harmless.
     The fact that
-<pre>sosa:hasFeatureOfInterest schema:rangeIncludes sosa:FeatureOfInterest .</pre> 
+<code class="turtle">sosa:hasFeatureOfInterest schema:rangeIncludes sosa:FeatureOfInterest .</code>
 merely says that things of type
 <a>sosa:FeatureOfInterest</a> might be found as the object of
 hasFeatureOfInterest statements.
@@ -58,23 +58,23 @@ No more, no less.
 <p>
     In SSN there are local (guarded) constraints, which can fix the range of a property
     when it appears in the context of a member of a specific class.
-    Related to the <a href="#SOSAFeatureOfInterest">feature-of-interest</a>, SSN has:
+    Related to the <a href="#SOSAFeatureOfInterest">feature of interest</a>, SSN has:
 </p>
-<pre>
-sosa:Execution 
-  rdfs:subClassOf [ 
-    a owl:Restriction ; 
-    owl:onProperty sosa:hasFeatureOfInterest ; 
+<pre class="turtle">
+sosa:Execution
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty sosa:hasFeatureOfInterest ;
     owl:allValuesFrom sosa:FeatureOfInterest ] ;
 .
-sosa:Deployment 
-  rdfs:subClassOf [ 
-    a owl:Restriction ; 
-    owl:onProperty sosa:hasFeatureOfInterest ; 
+sosa:Deployment
+  rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty sosa:hasFeatureOfInterest ;
     owl:allValuesFrom sosa:FeatureOfInterest ] ;
 .
 </pre>
-<p>This says that, in the context of an individual <a>sosa:Execution</a> 
+<p>This says that, in the context of an individual <a>sosa:Execution</a>
     or <a>sosa:Deployment</a>,
     the object of <a>sosa:hasFeatureOfInterest</a> is always an individual
     <a>sosa:FeatureOfInterest</a>.
@@ -121,7 +121,7 @@ sosa:Deployment
         <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
     </figcaption>
 </figure>
-<pre>
+<pre class="turtle">
 ex:YarraAboveDightsFalls rdf:type hydro:RiverReach .
 </pre>
 <p>
@@ -136,14 +136,23 @@ ex:YarraAboveDightsFalls rdf:type hydro:RiverReach .
     </figcaption>
 </figure>
 
-<pre>
+<pre class="turtle">
 ex:o345 rdf:type sosa:Observation ;
     sosa:hasFeatureOfInterest ex:YarraAboveDightsFalls ;
-    sosa:observedProperty hydro:elevation ; 
-    sosa:hasSimpleResult "30 m"^^cdt:ucum ;
-    sosa:phenomenonTime [ a time:Instant ; time:inXSDDateTime "2024-07-15T13:30:00+10:00" ; ] ;
-. 
+    sosa:observedProperty hydro:elevation ;
+    sosa:hasResult [
+        a qudt:QuantityValue ;
+        qudt:hasUnit unit:M ;
+        qudt:value 30 ;
+        ] ;
+    sosa:phenomenonTime [ 
+        a time:Instant ; 
+        time:inXSDDateTime "2024-07-15T13:30:00+10:00" ; 
+        ] ;
+.
 </pre>
+
+
 <p>
     The SSN constraint shown above entails:
     `ex:YarraAboveDightsFalls rdf:type sosa:FeatureOfInterest . `

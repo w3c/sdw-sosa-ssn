@@ -8,30 +8,26 @@
   The ontology is composed of multiple modules.
   The core observation elements are in the module <a href="https://github.com/NCEAS/oboe/">OBOE-core</a>.
 </p>
+<p style="text-align: center;">
+  The ontology IRI of the OBOE Alignment module is <a href="http://www.w3.org/ns/sosa/oboe">http://www.w3.org/ns/sosa/oboe</a><br>
+  The version IRI of the OBOE Alignment module 2023 edition is <a href="http://www.w3.org/ns/sosa/2023/oboe">http://www.w3.org/ns/sosa/2023/oboe</a>. This file additionally contains justifications for the alignment.
+</p>
+
 <section id="OBOE_Alignment_ns">
   <h4>Namespaces</h4>
   <p>
     The following namespace prefixes are used in the alignment to SOSA.
   </p>
-  <table>
-    <tbody>
-      <tr>
-        <th> Prefix </th>
-        <th> Namespace </th>
-      </tr>
-      <tr>
-        <td> `sosa:` </td>
-        <td> <a href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a>
-        </td>
-      </tr>
-      <tr>
-        <td> `oboe:` </td>
-        <td>
-          <a href="http://ecoinformatics.org/oboe/oboe.1.1/oboe-core.owl#">http://ecoinformatics.org/oboe/oboe.1.1/oboe-core.owl#</a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <dl>
+    <dt>sosa:</dt>
+    <dd>
+     <a href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a>
+    </dd>
+    <dt>oboe:</dt>
+    <dd>
+     <a href="http://ecoinformatics.org/oboe/oboe.1.1/oboe-core.owl#">http://ecoinformatics.org/oboe/oboe.1.1/oboe-core.owl#</a>
+    </dd>
+  </dl>
 </section>
 <section id="OBOE_Alignment_class">
   <h4>Class Alignments</h4>
@@ -65,110 +61,111 @@
   <p>
     The primary classes from [[OBOE]] are aligned with SOSA classes as follows.
   </p>
-  <table>
-    <tbody>
-      <tr>
-        <td> `oboe:ObservationCollection` </td>
-        <td> subclass of </td>
-        <td> <a>sosa:ObservationCollection</a>
-          <br><a>sosa:hasMember</a> <b>ONLY</b> <a>sosa:ObservationCollection</a>
-        </td>
-      </tr>
-      <tr>
-        <td> `oboe:Observation` </td>
-        <td> subclass of </td>
-        <td> <a>sosa:ObservationCollection</a>
-          <br><a>sosa:hasFeatureOfInterest</a> <b>EXACTLY 1</b>
-          <br><a>sosa:hasMember</a> <b>ONLY</b> <a>sosa:Observation</a>
-        </td>
-      </tr>
-      <tr>
-        <td> `oboe:Measurement` </td>
-        <td> equivalent class </td>
-        <td> <a>sosa:Observation</a> </td>
-      </tr>
-      <tr>
-        <td> `oboe:Characteristic` </td>
-        <td> equivalent class </td>
-        <td> <a>sosa:Property</a> </td>
-      </tr>
-      <tr>
-        <td> `oboe:Protocol` </td>
-        <td> equivalent class </td>
-        <td> <a>sosa:ObservingProcedure</a> </td>
-      </tr>
-    </tbody>
-  </table>
+  <p class="note">
+    The notation used in this section is described in <a href="#Alignment-notation"></a>.
+  </p>
+  <ul class="align-on-symbol">
+    <li>
+      <span class="lhs">`oboe:ObservationCollection`</span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a>sosa:ObservationCollection</a></span>
+    </li>
+    <li>
+      <span class="lhs">`oboe:ObservationCollection`</span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a>sosa:hasMember</a> <span class="logic">only</span> <a>sosa:ObservationCollection</a></span>
+    </li>
+    <li>
+      <span class="lhs">`oboe:Observation`</span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a>sosa:ObservationCollection</a></span>
+    </li>
+    <li>
+      <span class="lhs">`oboe:Observation`</span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a>sosa:hasFeatureOfInterest</a> <span class="logic">exactly 1</span></span>
+    </li>
+    <li>
+      <span class="lhs">`oboe:Observation`</span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a>sosa:hasMember</a> <span class="logic">only</span> <a>sosa:Observation</a></span>
+    </li>
+    <li>
+      <span class="lhs">`oboe:Measurement`</span>
+      <span class="symbol logic">≡</span>
+      <span class="rhs"><a>sosa:Observation</a></span>
+    </li>
+    <li>
+      <span class="lhs">`oboe:Characteristic`</span>
+      <span class="symbol logic">≡</span>
+      <span class="rhs"><a>sosa:Property</a></span>
+    </li>
+    <li>
+      <span class="lhs">`oboe:Protocol`</span>
+      <span class="symbol logic">≡</span>
+      <span class="rhs"><a>sosa:ObservingProcedure</a></span>
+    </li>
+  </ul>
   <p>
-    The class oboe:Entity appears in OBOE as the range of the oboe:ofEntity and oboe:hasValue properties, so we
+    The class `oboe:Entity` appears in OBOE as the range of the `oboe:ofEntity` and `oboe:hasValue` properties, so we
     interpret it as a general superclass.
   </p>
-  <table>
-    <tbody>
-      <tr>
-        <td> <a>sosa:FeatureOfInterest</a> </td>
-        <td> subclass of </td>
-        <td> `oboe:Entity` </td>
-      </tr>
-    </tbody>
-  </table>
+  <ul class="align-on-symbol">
+    <li>
+      <span class="lhs"><a>sosa:FeatureOfInterest</a></span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs">`oboe:Entity`</span>
+    </li>
+  </ul>
 </section>
 <section id="OBOE_Alignment_property">
   <h4>Property Alignments</h4>
   <p>
     The following properties from [[OBOE]] may be directly aligned with SOSA properties.
   </p>
-  <table>
-    <tbody>
-      <tr>
-        <td> `oboe:ofEntity` </td>
-        <td> equivalent property </td>
-        <td> <a>sosa:hasFeatureOfInterest</a> </td>
-      </tr>
-      <tr>
-        <td> `oboe:ofCharacteristic` </td>
-        <td> equivalent property </td>
-        <td> <a>sosa:observedProperty</a> </td>
-      </tr>
-      <tr>
-        <td> `oboe:usesProtocol` </td>
-        <td> subproperty of </td>
-        <td> <a>sosa:usedProcedure</a> </td>
-      </tr>
-      <tr>
-        <td> `oboe:usesMethod` </td>
-        <td> subproperty of </td>
-        <td> <a>sosa:usedProcedure</a> </td>
-      </tr>
-      <tr>
-        <td> `oboe:hasValue` </td>
-        <td> equivalent property </td>
-        <td> <a>sosa:hasResult</a> </td>
-      </tr>
-    </tbody>
-  </table>
+  <ul class="align-on-symbol">
+    <li>
+      <span class="lhs">`oboe:ofEntity`</span>
+      <span class="symbol logic">≡</span>
+      <span class="rhs"><a>sosa:hasFeatureOfInterest</a></span>
+    </li>
+    <li>
+      <span class="lhs">`oboe:ofCharacteristic`</span>
+      <span class="symbol logic">≡</span>
+      <span class="rhs"><a>sosa:observedProperty</a></span>
+    </li>
+    <li>
+      <span class="lhs">`oboe:usesProtocol`</span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a>sosa:usedProcedure</a></span>
+    </li>
+    <li>
+      <span class="lhs">`oboe:usesMethod`</span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a>sosa:usedProcedure</a></span>
+    </li>
+    <li>
+      <span class="lhs">`oboe:hasValue`</span>
+      <span class="symbol logic">≡</span>
+      <span class="rhs"><a>sosa:hasResult</a></span>
+    </li>
+  </ul>
   <p>
-    The properties oboe:hasMember and oboe:hasMeasurement link an oboe:ObservationCollection to its member
-    oboe:Observations, and an oboe:Observation to its member oboe:Measurements, respectively.
+    The properties `oboe:hasMember` and `oboe:hasMeasurement` link an `oboe:ObservationCollection` to its member
+    `oboe:Observations`, and an `oboe:Observation` to its member `oboe:Measurements`, respectively.
     These match <a>sosa:hasMember</a> links to a <a>sosa:ObservationCollection</a> (with a single
     <a>sosa:hasFeatureOfInterest</a>) and to the <a>sosa:Observations</a> of the different properties, respectively.
   </p>
-  <table>
-    <tbody>
-      <tr>
-        <td> `oboe:hasMember` </td>
-        <td> sub-property of </td>
-        <td> <a>sosa:hasMember</a> </td>
-      </tr>
-      <tr>
-        <td> `oboe:hasMeasurement` </td>
-        <td> sub-property of </td>
-        <td> <a>sosa:hasMember</a> </td>
-      </tr>
-    </tbody>
-  </table>
-  <p>
-    An RDF file containing a
-    <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/rdf/alignments/sosa-oboe.ttl">graph corresponding to this alignment is available</a>.
-  </p>
+  <ul class="align-on-symbol">
+    <li>
+      <span class="lhs">`oboe:hasMember`</span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a>sosa:hasMember</a></span>
+    </li>
+    <li>
+      <span class="lhs">`oboe:hasMeasurement`</span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a>sosa:hasMember</a></span>
+    </li>
+  </ul>
 </section>

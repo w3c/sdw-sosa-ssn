@@ -8,15 +8,16 @@
     It is out of the scope of this specification to recommend a particular way of representing quantitative results.
     Several options from external vocabularies are available for expressing quantities as OWL individuals, or as
     datatypes.
-    Examples include:
-    `qudt:QuantityValue` from the <i>Quantities, Units, Dimensions, and Data Types</i> ontologies [[QUDT]];
-    `cdt:ucum` from <i>Custom Datatypes</i> [[CDT]].
+    `qudt:QuantityValue` from the <i>Quantities, Units, Dimensions, and Data Types</i> ontologies [[QUDT]] is the basis
+    for the examples in this section.
+    `cdt:ucum` from <i>Custom Datatypes</i> [[CDT]] is another option, but depends on an extension to standard RDF
+    processors.
 </p>
 
 <h4>Single values</h4>
 <p>
-    The following examples show alternative encodings of a single observation with a scalar result, as shown in <a
-        href="#Fig-UOM-general"></a>.
+    The following examples show an encoding of a single observation with a scalar result, as shown in
+    <a href="#Fig-UOM-general"></a>.
 </p>
 <figure id="Fig-UOM-general">
     <embed alt="A simple Observation with a scaled number (Quantity) as its result" src="./images/UOM-general.svg"
@@ -29,31 +30,11 @@
 </figure>
 
 <p>
-    With QUDT, a quantitative result can be represented as a <a
-        href="http://qudt.org/">`qudt:QuantityValue`</a>.
+    A quantitative result can be represented as a <a href="http://qudt.org/">`qudt:QuantityValue`</a>.
     In the following example <a href="http://qudt.org/vocab/unit/DEG_C">unit:DEG_C</a> is an
     individual from the QUDT catalogue of units of measurement.
 </p>
-<pre class="example" data-include="./rdf/examples/UOM-qudt-object.ttl" data-include-format="text"></pre>
-
-<p>
-    With CDT, the value of <a>sosa:hasSimpleResult</a> is a literal structured
-    as space-separated quantiy-value using the UCUM code for the unit of measurement [[UCUM]].
-    The type designator is
-    <a href="https://ci.mines-stetienne.fr/lindt/v4/custom_datatypes#ucum">`cdt:ucum`</a> taken from [[CDT]].
-</p>
-<pre class="example" data-include="./rdf/examples/UOM-cdt.ttl" data-include-format="text"></pre>
-
-<!-- 
-<p>
-    Alternatively, the <em>type designator</em> can indicate the unit of measurement.
-    The advantage of this approach is that the numeric value is available directly in the data, without the need to
-    split the string representation.
-    The datatype can be linked to the definition of the unit of measurement, using an IRI from the
-    <a href="https://www.qudt.org/doc/2025/01/DOC_VOCAB-UNITS.html">catalogue of units of measurement</a> from [[QUDT]].
-</p>
-<pre class="example" data-include="./rdf/examples/UOM-qudt-datatype.ttl" data-include-format="text"></pre>
--->
+<pre class="example turtle" data-include="./rdf/examples/UOM-qudt-object.ttl" data-include-format="text"></pre>
 
 <h4>Collections</h4>
 <p>
@@ -73,4 +54,4 @@
     provided for all members of collection of observations.
 </p>
 
-<pre class="example" data-include="./rdf/examples/UOM-qudt-collection.ttl" data-include-format="text"></pre>
+<pre class="example turtle" data-include="./rdf/examples/UOM-qudt-collection.ttl" data-include-format="text"></pre>

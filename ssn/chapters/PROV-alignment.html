@@ -1,6 +1,6 @@
 <h3>PROV Alignment Module</h3>
 <p>
-  This section introduces the alignment of SOSA to W3C PROV ([[prov-overview]], [[prov-dm]], [[prov-o]]).
+  This section introduces the alignment of SSN to W3C PROV ([[prov-overview]], [[prov-dm]], [[prov-o]]).
 </p>
 <p>
   The underlying structure of PROV is based around a process-flow model, with three base classes:
@@ -24,223 +24,205 @@
 </figure>
 
 <p>
-  The SOSA/SSN ontologies conceive executions (actuations, observations, and acts of sampling) as activities or events,
+  The SSN ontology conceives executions (acts of actuation, observation, and sampling) as activities or events,
   which result in a change in the world, or information being produced, or the production or transformation of a sample.
-  An alignment of SOSA to PROV is natural.
+  An alignment of SSN to PROV is natural.
   Compton et al. [[SSN-PROV]] and Cox [[OM-Lite]] have described alignments of the [[SSNX]] and [[OandM]] models with [[prov-o]].
   The alignment here (see <a href="#Fig-PROV-Alignment"></a>) is based on that work, also extended to consider actuation and sampling.
+</p>
+<p style="text-align: center;">
+  The ontology IRI of the PROV Alignment module is <a href="http://www.w3.org/ns/sosa/prov">http://www.w3.org/ns/sosa/prov</a><br>
+  The version IRI of the PROV Alignment module 2023 edition is <a href="http://www.w3.org/ns/sosa/2023/prov">http://www.w3.org/ns/sosa/2023/prov</a>
 </p>
 
 <section id="PROV_Alignment_ns">
   <h4>Namespaces</h4>
   <p>
-    The following namespace prefixes are used in the alignment of SOSA to PROV.
+    The following namespace prefixes are used in the alignment of SSN to PROV.
   </p>
-  <table>
-    <tbody>
-      <tr>
-        <th> Prefix </th>
-        <th> Namespace </th>
-      </tr>
-      <tr>
-        <td> sosa: </td>
-        <td> <a href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a>
-        </td>
-      </tr>
-      <tr>
-        <td> prov: </td>
-        <td> <a href="http://www.w3.org/ns/prov">http://www.w3.org/ns/prov#</a>
-        </td>
-      </tr>
-      <tr>
-        <td> sp: </td>
-        <td> <a href="http://www.w3.org/ns/sosa/prov/">http://www.w3.org/ns/sosa/prov/</a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <dl>
+    <dt>sosa:</dt>
+    <dd>
+      <a href="http://www.w3.org/ns/sosa/">http://www.w3.org/ns/sosa/</a>
+    </dd>
+    <dt>prov:</dt>
+    <dd>
+      <a href="http://www.w3.org/ns/prov">http://www.w3.org/ns/prov</a>
+    </dd>
+    <dt>sp:</dt>
+    <dd>
+      <a href="http://www.w3.org/ns/sosa/prov/">http://www.w3.org/ns/sosa/prov/</a>
+    </dd>
+  </dl>
 </section>
 
 <section id="PROV_Alignment_class">
   <h4>Class Alignments</h4>
   <p>
-    The primary classes from SOSA are aligned with the PROV classes as follows.
+    The primary classes from SSN are aligned with the PROV classes as follows.
+  </p>
+  <p class="note">
+    The notation used in this section is described in <a href="#Alignment-notation"></a>.
   </p>
   <p>
-    1. Execution (acts of Observation, Actuation and Sampling) is a kind of Activity, thus:
+    1. Execution (acts of Observation, Actuation and Sampling) and Deployment are kinds of Activity, thus:
   </p>
-  <table>
-    <tbody>
-      <tr>
-        <td> <a>sosa:Execution</a> </td>
-        <td rowspan="4"> subclass of </td>
-        <td rowspan="4"> <a href="http://www.w3.org/ns/prov#Activity">prov:Activity</a> </td>
-      </tr>
-      <tr>
-        <td> <a>sosa:Actuation</a> </td>
-      </tr>
-      <tr>
-        <td> <a>sosa:Observation</a> </td>
-      </tr>
-      <tr>
-        <td> <a>sosa:Sampling</a> </td>
-      </tr>
-    </tbody>
-  </table>
+  <ul class="align-on-symbol">
+    <li>
+      <span class="lhs"><a>sosa:Execution</a></span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a href="http://www.w3.org/ns/prov#Activity">prov:Activity</a></span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:Actuation</a></span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a href="http://www.w3.org/ns/prov#Activity">prov:Activity</a></span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:Observation</a></span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a href="http://www.w3.org/ns/prov#Activity">prov:Activity</a></span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:Sampling</a></span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a href="http://www.w3.org/ns/prov#Activity">prov:Activity</a></span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:Deployment</a></span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a href="http://www.w3.org/ns/prov#Activity">prov:Activity</a></span>
+    </li>
+  </ul>
   <p>
-    2. Systems (Sensors, Actuators and Samplers) are entities that are responsible for the corresponding activities,
+    2. Assets, including Systems (Sensors, Actuators and Samplers) and Platforms are entities that are responsible for the corresponding activities,
     thus:
   </p>
-  <table>
-    <tbody>
-      <tr>
-        <td> <a>sosa:System</a> </td>
-        <td rowspan="4"> subclass of </td>
-        <td rowspan="4"> <a href="http://www.w3.org/ns/prov#Agent">prov:Agent</a> , <a href="http://www.w3.org/ns/prov#Entity">prov:Entity</a> </td>
-      </tr>
-      <tr>
-        <td> <a>sosa:Actuator</a> </td>
-      </tr>
-      <tr>
-        <td> <a>sosa:Sensor</a> </td>
-      </tr>
-      <tr>
-        <td> <a>sosa:Sampler</a> </td>
-      </tr>
-    </tbody>
-  </table>
+  <ul class="align-on-symbol">
+    <li>
+      <span class="lhs"><a>sosa:Asset</a></span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a href="http://www.w3.org/ns/prov#Agent">prov:Agent</a> <span class="logic">or</span> <a href="http://www.w3.org/ns/prov#Entity">prov:Entity</a></span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:System</a></span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a href="http://www.w3.org/ns/prov#Agent">prov:Agent</a> <span class="logic">or</span> <a href="http://www.w3.org/ns/prov#Entity">prov:Entity</a></span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:Platform</a></span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a href="http://www.w3.org/ns/prov#Entity">prov:Entity</a></span>
+    </li>
+  </ul>
   <p>
     3. Procedures for observation, actuation or sampling are a kind of prov:Plan, thus:
   </p>
-  <table>
-    <tbody>
-      <tr>
-        <td> <a>sosa:Procedure</a> </td>
-        <td> subclass of </td>
-        <td> <a href="http://www.w3.org/ns/prov#Plan">prov:Plan</a> </td>
-      </tr>
-    </tbody>
-  </table>
+  <ul class="align-on-symbol">
+    <li>
+      <span class="lhs"><a>sosa:Procedure</a></span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a href="http://www.w3.org/ns/prov#Plan">prov:Plan</a></span>
+    </li>
+  </ul>
   <p>
-    4. The other classes from the core SOSA ontology represent either real or information resources, so are
+    4. The other classes from the core SSN ontology represent either real or information resources, so are
     interpreted as kinds of prov:Entity, thus:
   </p>
-  <table>
-    <tbody>
-      <tr>
-        <td> <a>sosa:FeatureOfInterest</a> </td>
-        <td rowspan="2"> subclass of </td>
-        <td rowspan="2"> <a href="http://www.w3.org/ns/prov#Entity">prov:Entity</a> </td>
-      </tr>
-      <tr>
-        <td> <a>sosa:Sample</a> </td>
-      </tr>
-      <tr>
-        <td> <a>sosa:Property</a> </td>
-        <td> subclass of </td>
-        <td> <a href="http://www.w3.org/ns/prov#Entity">prov:Entity</a> </td>
-      </tr>
-      <tr>
-        <td> <a>sosa:Platform</a> </td>
-        <td> subclass of </td>
-        <td> <a href="http://www.w3.org/ns/prov#Entity">prov:Entity</a> </td>
-      </tr>
-    </tbody>
-  </table>
+  <ul class="align-on-symbol">
+    <li>
+      <span class="lhs"><a>sosa:FeatureOfInterest</a></span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a href="http://www.w3.org/ns/prov#Entity">prov:Entity</a></span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:Sample</a></span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a href="http://www.w3.org/ns/prov#Entity">prov:Entity</a></span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:Property</a></span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a href="http://www.w3.org/ns/prov#Entity">prov:Entity</a></span>
+    </li>
+  </ul>
 </section>
 
 <section id="PROV_Alignment_property">
   <h4>Property Alignments</h4>
   <p>
-    The following properties from SOSA have simple alignments with PROV properties:
+    The following properties from SSN have simple alignments with PROV properties:
   </p>
-  <table>
-    <tbody>
-      <tr>
-        <td> <a>sosa:hasFeatureOfInterest</a> </td>
-        <td> subproperty of </td>
-        <td> <a href="http://www.w3.org/ns/prov#used">prov:used</a> </td>
-      </tr>
-      <tr>
-        <td> <a>sosa:hasResult</a> </td>
-        <td> subproperty of </td>
-        <td> <a href="http://www.w3.org/ns/prov#generated">prov:generated</a> </td>
-      </tr>
-      <tr>
-        <td> <a>sosa:isResultOf</a> </td>
-        <td> subproperty of </td>
-        <td> <a href="http://www.w3.org/ns/prov#wasGeneratedBy">prov:wasGeneratedBy</a> </td>
-      </tr>
-      <tr>
-        <td> <a>sosa:isSampleOf</a> </td>
-        <td> subproperty of </td>
-        <td> <a href="http://www.w3.org/ns/prov#wasDerivedFrom">prov:wasDerivedFrom</a> </td>
-      </tr>
-      <tr>
-        <td> <a>sosa:madeBySystem</a> </td>
-        <td rowspan="4"> subproperty of </td>
-        <td rowspan="4"> <a href="http://www.w3.org/ns/prov#wasAssociatedWith">prov:wasAssociatedWith</a> </td>
-      </tr>
-      <tr>
-        <td> <a>sosa:madeByActuator</a> </td>
-      </tr>
-      <tr>
-        <td> <a>sosa:madeBySensor</a> </td>
-      </tr>
-      <tr>
-        <td> <a>sosa:madeBySampler</a> </td>
-      </tr>
-      <tr>
-        <td> <a>sosa:startTime</a> </td>
-        <td> subproperty of </td>
-        <td> <a href="http://www.w3.org/ns/prov#startedAtTime">prov:startedAtTime</a> </td>
-      </tr>
-      <tr>
-        <td> <a>sosa:resultTime</a> </td>
-        <td> subproperty of </td>
-        <td> <a href="http://www.w3.org/ns/prov#endedAtTime">prov:endedAtTime</a> </td>
-      </tr>
-    </tbody>
-  </table>
+  <ul class="align-on-symbol">
+    <li>
+      <span class="lhs"><a>sosa:hasFeatureOfInterest</a></span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a href="http://www.w3.org/ns/prov#used">prov:used</a></span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:hasResult</a></span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a href="http://www.w3.org/ns/prov#generated">prov:generated</a></span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:isResultOf</a></span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a href="http://www.w3.org/ns/prov#wasGeneratedBy">prov:wasGeneratedBy</a></span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:isSampleOf</a></span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a href="http://www.w3.org/ns/prov#wasDerivedFrom">prov:wasDerivedFrom</a></span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:madeBySystem</a></span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a href="http://www.w3.org/ns/prov#wasAssociatedWith">prov:wasAssociatedWith</a></span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:startTime</a></span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a href="http://www.w3.org/ns/prov#startedAtTime">prov:startedAtTime</a></span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:endTime</a></span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a href="http://www.w3.org/ns/prov#endedAtTime">prov:endedAtTime</a></span>
+    </li>
+  </ul>
   <p>
     The final property alignment first requires some sub-properties of PROV properties to be defined:
   </p>
-  <table>
-    <tbody>
-      <tr>
-        <td rowspan="2"> <dfn>sp:executionAssociation</dfn> </td>
-        <td> subproperty of </td>
-        <td> <a href="http://www.w3.org/ns/prov#qualifiedAssociation">prov:qualifiedAssociation</a> </td>
-      </tr>
-      <tr>
-        <td> domain </td>
-        <td> <a>sosa:Execution</a> </td>
-      </tr>
-      <tr>
-        <td rowspan="2"> <dfn>sp:hadProcedure</dfn> </td>
-        <td> subproperty of </td>
-        <td> <a href="http://www.w3.org/ns/prov#hadPlan">prov:hadPlan</a> </td>
-      </tr>
-      <tr>
-        <td> range </td>
-        <td> <a>sosa:Procedure</a> </td>
-      </tr>
-    </tbody>
-  </table>
+  <ul class="align-on-symbol">
+    <li>
+      <span class="lhs"><dfn>sp:executionAssociation</dfn></span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a href="http://www.w3.org/ns/prov#qualifiedAssociation">prov:qualifiedAssociation</a></span>
+    </li>
+    <li>
+      <span class="lhs"></span>
+      <span class="symbol logic">Domain:</span>
+      <span class="rhs"><a>sosa:Execution</a></span>
+    </li>
+    <li>
+      <span class="lhs"><dfn>sp:hadProcedure</dfn></span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a href="http://www.w3.org/ns/prov#hadPlan">prov:hadPlan</a></span>
+    </li>
+    <li>
+      <span class="lhs"></span>
+      <span class="symbol logic">Domain:</span>
+      <span class="rhs"><a>sosa:Procedure</a></span>
+    </li>
+  </ul>
   <p>
-    Then sosa:usedProcedure is given by a property chain axiom:
+    Then <a>sosa:usedProcedure</a> is given a property chain axiom:
   </p>
-  <table>
-    <tbody>
-      <tr>
-        <td> <a>sosa:usedProcedure</a> </td>
-        <td> property chain axiom </td>
-        <td> [ <a>sp:executionAssociation</a> , <a>sp:hadProcedure</a> ] </td>
-      </tr>
-    </tbody>
-  </table>
-  <p>
-    An RDF file containing a <a href="https://github.com/w3c/sdw/blob/gh-pages/ssn/rdf/alignments/sosa-prov.ttl">graph
-      corresponding to this alignment is available</a>.
-  </p>
+  <ul class="align-on-symbol">
+    <li>
+      <span class="lhs"><a>sp:executionAssociation</a> <span class="logic">o</span> <a>sp:hadProcedure</a></span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a>sosa:usedProcedure</a></span>
+    </li>
+  </ul>
 </section>

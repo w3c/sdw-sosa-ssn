@@ -1,11 +1,12 @@
-@prefix cdt: <http://w3id.org/lindt/custom_datatypes#> .
 @prefix ex: <https://example.org/data/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix qk: <http://qudt.org/vocab/quantitykind/> .
+@prefix qudt: <http://qudt.org/schema/qudt/>.
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sensor: <https://example.org/sensor/> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix unit: <http://qudt.org/vocab/unit/>.
 
 qk:Temperature
   a sosa:Property ;
@@ -37,7 +38,11 @@ ex:SickChildA
 ex:SickChildATempObs
   a sosa:Observation ;
   sosa:hasFeatureOfInterest ex:SickChildA ;
-  sosa:hasSimpleResult "38.2 Cel"^^cdt:ucum ;
+  sosa:hasResult [
+      a qudt:QuantityValue ;
+      qudt:hasUnit unit:DEG_C ;
+      qudt:value 38.2 ;
+  ] ;
   sosa:madeBySensor ex:Mums-clinical-thermometer ;
   sosa:observedProperty qk:Temperature ;
 .

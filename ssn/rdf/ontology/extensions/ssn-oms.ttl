@@ -27,7 +27,7 @@ ssn-oms: a owl:Ontology ;
   dcterms:title "OMS Ontology - based on (SOSA) Ontology with SSN axiomatization"@en ;
   dcterms:description "This ontology is based on the SOSA Ontology by the W3C/OGC Spatial Data on the Web Working Group, supplemented by some classes and properties required to implement ISO 19156:2023 , with axiomatization following SSN."@en ;
   dcterms:creator [ a foaf:Agent ; foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en ] ;
-  dcterms:rights "Copyright 2024 W3C/OGC." ;
+  dcterms:rights "Copyright 2025 W3C/OGC." ;
   dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
   dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
   dcterms:created "2023-12-06"^^xsd:date ;
@@ -37,7 +37,6 @@ ssn-oms: a owl:Ontology ;
   .
 
 sosa-oms:PreparationProcedure
-  rdfs:subClassOf sosa:Procedure ;
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implementedBy ; owl:allValuesFrom sosa-oms:PreparationStep ] ;
   rdfs:isDefinedBy sosa-oms: .
 
@@ -50,3 +49,11 @@ sosa-oms:PreparationStep
 sosa:Sample
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa-oms:hasPreparationStep ; owl:allValuesFrom sosa-oms:PreparationStep ] ;
   rdfs:isDefinedBy sosa-sam: .
+
+sosa-oms:madeOnPlatform
+  owl:propertyChainAxiom ( sosa:hasFeatureOfInterest sosa:isResultOfMadeBySampler sosa:isHostedBy ) ;
+  rdfs:isDefinedBy sosa-oms: .
+
+sosa-oms:makesObservationCollection
+  owl:propertyChainAxiom ( sosa:hosts sosa:madeSamplingHasResult sosa:isFeatureOfInterestOf ) ;
+  rdfs:isDefinedBy sosa-oms: .

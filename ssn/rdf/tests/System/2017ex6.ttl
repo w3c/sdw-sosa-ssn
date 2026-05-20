@@ -1,3 +1,8 @@
+@prefix ex:   <http://example.org/>.
+@prefix sosa: <http://www.w3.org/ns/sosa/>.
+@prefix system: <http://www.w3.org/ns/ssn/systems/> .
+@prefix ssn:     <http://www.w3.org/ns/ssn/>.
+
 ex:TemperatureSensor a ssn:System .
 
 <Observation/1> a sosa:Observation ;
@@ -9,7 +14,7 @@ ex:TemperatureSensor a ssn:System .
 # describing the system capabilities and operating/survival range can be done generically 
 # with this modeling choice:
 
-ex:TemperatureSensor ssn-system:hasOperatingRange ex:TemperatureSensorOperatingRange .
+ex:TemperatureSensor system:hasOperatingRange ex:TemperatureSensorOperatingRange .
 
-ex:TemperatureSensorOperatingRange a ssn-system:OperatingRange ;
-  ssn-system:inCondition ex:NormalTemperatureCondition , ex:NormalHumidityCondition .
+ex:TemperatureSensorOperatingRange a system:OperatingRange ;
+  system:inCondition ex:NormalTemperatureCondition , ex:NormalHumidityCondition .

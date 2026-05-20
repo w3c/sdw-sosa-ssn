@@ -67,7 +67,7 @@
             Property of a FeatureOfInterest
         </p>
         <p>
-            An <a href="#SOSAObservation">Observation</a> concerns a single
+            An <a href="#SOSAObservation">Observation</a> primarily concerns a single
             <a href="#SOSAProperty">Property</a> of a single
             <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a>.
             Observations of multiple properties, or other combinations of Observations, may be described in an
@@ -94,65 +94,43 @@
             See <a href="#ModelTimes">Temporal properties</a> for patterns related to these.
         </p>
 
-        <table>
-            <tbody>
-                <tr>
-                    <th>Examples</th>
-                    <td>
-                        The activity of
-                        <br>estimating the magnitude or intensity of an earthquake
-                        <br>measuring the height of a tree
-                        <br>determining the color of a leaf
-                        <br>measuring the CO2 concentration in a gas
-                        <br>finding the location of a car
-                        <br>measuring the temperature of a room
-                        <br>capturing an image of a scene
-                    </td>
-                </tr>
-                <tr class="ssn">
-                    <th>Sub class of</th>
-                    <td>
-                        <a>sosa:Execution</a>
-                    </td>
-                </tr>
-                <tr class="ssn">
-                    <th class="restrictions">Restrictions</th>
-                    <td>
-                        <a>sosa:madeBySensor</a> <em><b>EXACTLY 1</b></em>
-                        <br>
-                        <a>sosa:madeBySensor</a> <em><b>ONLY</b></em> <a>sosa:Sensor</a>
-                        <br>
-                        <a>sosa:usedProcedure</a> <em><b>ONLY</b></em> <a>sosa:ObservingProcedure</a>
-                        <br>
-                        <a>sosa:hasFeatureOfInterest</a> <em><b>EXACTLY 1</b></em>
-                        <br>
-                        <a>sosa:hasFeatureOfInterest</a> <em><b>ONLY</b></em> <a>sosa:FeatureOfInterest</a>
-                        <br>
-                        <a>sosa:hasUltimateFeatureOfInterest</a> <em><b>EXACTLY 1</b></em>
-                        <br>
-                        <a>sosa:hasUltimateFeatureOfInterest</a> <em><b>ONLY</b></em> <a>sosa:FeatureOfInterest</a>
-                        <br>
-                        <a>sosa:observedProperty</a> <em><b>EXACTLY 1</b></em>
-                        <br>
-                        <a>sosa:observedProperty</a> <em><b>ONLY</b></em> <a>sosa:Property</a>
-                        <br>
-                        <a>sosa:wasOriginatedBy</a> <em><b>EXACTLY 1</b></em>
-                        <br>
-                        <a>sosa:wasOriginatedBy</a> <em><b>ONLY</b></em> <a>sosa:Stimulus</a>
-                        <br>
-                        <a>sosa:phenomenonTime</a> <em><b>EXACTLY 1</b></em>
-                        <br>
-                        <a>sosa:hasResult</a> <em><b>EXACTLY 1</b></em>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <dl>
+            <dt>Examples</dt>
+            <dd>
+                The activity of
+                <br>- estimating the magnitude or intensity of an earthquake
+                <br>- measuring the height of a tree
+                <br>- determining the color of a leaf
+                <br>- measuring the CO2 concentration in a gas
+                <br>- finding the location of a car
+                <br>- measuring the temperature of a room
+                <br>- capturing an image of a scene
+            </dd>
+            <dt>Subclass of</dt>
+            <dd>
+                <a>sosa:Execution</a>
+            </dd>
+            <div class="ssn" id="SSNObservation">
+                <dt class="restrictions">Restrictions in SSN</dt>
+                <dd>
+                    <a>sosa:madeBySensor</a> <em><b>ONLY</b></em> <a>sosa:Sensor</a>
+                    <br>
+                    <a>sosa:usedProcedure</a> <em><b>ONLY</b></em> <a>sosa:ObservingProcedure</a>
+                    <br>
+                    <a>sosa:hasFeatureOfInterest</a> <em><b>ONLY</b></em> <a>sosa:FeatureOfInterest</a>
+                    <br>
+                    <a>sosa:hasUltimateFeatureOfInterest</a> <em><b>ONLY</b></em> <a>sosa:FeatureOfInterest</a>
+                    <br>
+                    <a>sosa:observedProperty</a> <em><b>ONLY</b></em> <a>sosa:Property</a>
+                    <br>
+                    <a>sosa:wasOriginatedBy</a> <em><b>ONLY</b></em> <a>sosa:Stimulus</a>
+                </dd>
+            </div>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
+            </dd>
+        </dl>
         <div class="buttonpanel">
             <span class="back">[<a href="#Observations-overview">Back to module overview</a>]</span>
             <span class="back">[<a href="#Overview">Back to top</a>]</span>
@@ -173,18 +151,18 @@
         </p>
         <p>
             <em>Observation Collection</em> &mdash;
-            set of one or more Observations or ObservationCollections; collections may be nested
+            set of Observations or ObservationCollections; collections may be nested
         </p>
         <p class="note">
             An instance of <a href="#SOSAObservationCollection">ObservationCollection</a> represents a container for a
             set of data derived from observations.
             This broadly corresponds with the class
-            <a href="https://w3c.github.io/dxwg/dcat/#Class:Dataset">dcat:Dataset</a>
-            from the Data Catalog Vocabulary [[vocab-dcat-3]].
+            <a href="https://w3c.github.io/dxwg/dcat/#Class:Dataset">dcat:Dataset</a> from the Data Catalog Vocabulary
+            [[vocab-dcat-3]].
         </p>
         <p>
-            The following <a href="#SOSAObservation">Observation</a> properties may appear in an
-            <a>sosa:ObservationCollection</a> &mdash;
+            All <a href="#SOSAObservation">Observation</a> properties may appear in an
+            <a>sosa:ObservationCollection</a>, including:
             <a>sosa:hasFeatureOfInterest</a>,
             <a>sosa:hasUltimateFeatureOfInterest</a>,
             <a>sosa:usedProcedure</a>,
@@ -194,7 +172,7 @@
             <a>sosa:resultTime</a>,
             <a>sosa:hasResult</a>,
             <a>sosa:hasSimpleResult</a>.
-            If they are present, the values of these properties summarize the values of the matching properties of
+            If they are present, the value of these properties summarize the values of the matching properties of
             the member observations, where membership is either direct or transitive through one or more member
             observation collections.
         </p>
@@ -213,8 +191,8 @@
                 transitive) MUST have that same value for that property; i.e., the collection is homogeneous in
                 that
                 property.
-                That property MAY then be omitted in any member <a href="#SOSAObservation">Observation</a>
-                or <a href="#SOSAObservationCollection">ObservationCollection</a>.
+                That property MAY then be omitted in any member <a href="#SOSAObservation">Observation</a> or
+                <a href="#SOSAObservationCollection">ObservationCollection</a>.
             </li>
             <li>
                 Where an individual <a href="#SOSAObservationCollection">ObservationCollection</a> has
@@ -252,54 +230,39 @@
             See <a href="#ModelTimeSeries">Time series</a> and
             <a href="#ModelObservationCollection">Homogeneous observation collection</a> for examples.
         </p>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Note</th>
-                    <td>
-                        The members of a collection do not necessarily share a common value for any property.
-                    </td>
-                </tr>
-                <tr class="ssn">
-                    <th>Sub class of</th>
-                    <td>
-                        <a href="https://www.w3.org/TR/rdf12-schema/#ch_bag">rdf:Bag</a>,
-                        <a>sosa:ExecutionCollection</a>
-                    </td>
-                </tr>
-                <tr class="ssn">
-                    <th>Disjoint with</th>
-                    <td>
-                        <a>sosa:ActuationCollection</a>,
-                        <a>sosa:SampleCollection</a>,
-                        <a>sosa:SamplingCollection</a>
-                    </td>
-                </tr>
-                <tr class="ssn">
-                    <th class="restrictions">Restrictions</th>
-                    <td>
-                        <a>sosa:madeBySensor</a> <em><b>ONLY</b></em> <a>sosa:Sensor</a>
-                        <br>
-                        <a>sosa:usedProcedure</a> <em><b>ONLY</b></em> <a>sosa:ObservingProcedure</a>
-                        <br>
-                        <a>sosa:hasFeatureOfInterest</a> <em><b>ONLY</b></em> <a>sosa:FeatureOfInterest</a>
-                        <br>
-                        <a>sosa:hasUltimateFeatureOfInterest</a> <em><b>ONLY</b></em> <a>sosa:FeatureOfInterest</a>
-                        <br>
-                        <a>sosa:observedProperty</a> <em><b>ONLY</b></em> <a>sosa:Property</a>
-                        <br>
-                        <a>sosa:hasMember</a> <em><b>ONLY</b></em>
-                        (<a>sosa:Observation</a> OR <a>sosa:ObservationCollection</a> )
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <dl>
+            <dt>Subclass of</dt>
+            <dd>
+                <a>sosa:ExecutionCollection</a>
+            </dd>
+            <div class="ssn" id="SSNObservationCollection">
+                <dt>Disjoint with</dt>
+                <dd>
+                    <a>sosa:ActuationCollection</a>,
+                    <a>sosa:SampleCollection</a>,
+                    <a>sosa:SamplingCollection</a>
+                </dd>
+                <dt class="restrictions">Restrictions in SSN</dt>
+                <dd>
+                    <a>sosa:madeBySensor</a> <em><b>ONLY</b></em> <a>sosa:Sensor</a>
+                    <br>
+                    <a>sosa:usedProcedure</a> <em><b>ONLY</b></em> <a>sosa:ObservingProcedure</a>
+                    <br>
+                    <a>sosa:hasFeatureOfInterest</a> <em><b>ONLY</b></em> <a>sosa:FeatureOfInterest</a>
+                    <br>
+                    <a>sosa:hasUltimateFeatureOfInterest</a> <em><b>ONLY</b></em> <a>sosa:FeatureOfInterest</a>
+                    <br>
+                    <a>sosa:observedProperty</a> <em><b>ONLY</b></em> <a>sosa:Property</a>
+                    <br>
+                    <a>sosa:hasMember</a> <em><b>ONLY</b></em>
+                    (<a>sosa:Observation</a> <em><b>or</b></em> <a>sosa:ObservationCollection</a>)
+                </dd>
+            </div>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
+            </dd>
+        </dl>
         <div class="buttonpanel">
             <span class="back">[<a href="#Observations-overview">Back to module overview</a>]</span>
             <span class="back">[<a href="#Overview">Back to top</a>]</span>
@@ -326,47 +289,39 @@
             An Observing Procedure is re-usable, and might be applied in many Observations.
             It explains the steps to be carried out to arrive at reproducible results.
         </p>
-        <table>
-            <tbody>
-                <tr class="ssn">
-                    <th>Sub class of</th>
-                    <td>
-                        <a>sosa:Procedure</a>
-                    </td>
-                </tr>
-                <tr class="ssn">
-                    <th class="restrictions">Restriction</th>
-                    <td>
-                        <a>sosa:implementedBy</a> <em><b>ONLY</b></em> <a>sosa:Sensor</a>
+        <dl>
+            <dt>Subclass of</dt>
+            <dd>
+                <a>sosa:Procedure</a>
+            </dd>
+            <div class="ssn" id="SSNObservingProcedure">
+                <dt class="restrictions">Restrictions in SSN</dt>
+                <dd>
+                    <a>sosa:implementedBy</a>
+                    <em><b>ONLY</b></em>
+                    <a>sosa:Sensor</a>
+                </dd>
+            </div>
+            <dt>Examples</dt>
+            <dd>
+                A workflow, protocol, plan, algorithm, or computational method specifying how to make an
+                observation; the description of the process used by an observer.
+                This could be a chemical analysis method, a protocol for measuring an object, or even
+                a checklist used by a human observer during a biodiversity campaign.
+                The Procedure could further describe the algorithms behind simulators or models used to
+                generate a result from other inputs.
+            </dd>
+            <dt>Note</dt>
+            <dd>
+                [ISO 19156:2023] An ObservingProcedure shall be defined as the description of steps performed in
+                order to determine the value of an observableProperty by an Observer.
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a>
+            </dd>
+        </dl>
 
-                    </td>
-                </tr>
-                <tr>
-                    <th>Examples</th>
-                    <td>
-                        A workflow, protocol, plan, algorithm, or computational method specifying how to make an
-                        observation; the description of the process used by an observer.
-                        This could be a chemical analysis method, a protocol for measuring an object, or even
-                        a checklist used by a human observer during a biodiversity campaign.
-                        The Procedure could further describe the algorithms behind simulators or models used to
-                        generate a result from other inputs.
-                    </td>
-                </tr>
-                <tr>
-                    <th>Note</th>
-                    <td>
-                        [ISO 19156:2023] An ObservingProcedure shall be defined as the description of steps performed in
-                        order to determine the value of an observableProperty by an Observer.
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
 
         <div class="buttonpanel">
             <span class="back">[<a href="#OMS">Back to module overview</a>]</span>
@@ -384,7 +339,7 @@
             <strong>an OWL Class</strong>
         </p>
         <p>
-            <em>Sensor</em> &mdash;
+            <em>Sensor</em> or <em>Observer</em> &mdash;
             System that implements an ObservingProcedure to determine the value of an observable Property
         </p>
         <p>
@@ -394,69 +349,58 @@
             A <a href="#SOSASensor">Sensor</a> responds to a <a href="#SOSAStimulus">Stimulus</a>,
             e.g., a change in the environment, or input data composed from the results of prior
             <a href="#SOSAObservation">Observations</a>.
-            This may be a device, a piece of infrastructure, an agent (including humans), or software (simulation).
         </p>
         <p class="note">
             A Sensor may have a geographic location.
-            See <a href="#ModelLocation">Location and Geometry</a> for patterns to describe this.</p>
+            See <a href="#ModelLocation">Location and Geometry</a> for patterns to describe this.
+        </p>
+        <p class="note">
+            Specific sensor <em>types</em> may be implemented as <em>sub-classes</em>
+            of this class or its sub-classes.
+            Their descriptions may capture the properties and characteristics of a whole class of sensors, corresponding
+            with the information typically found in a spec-sheet or data-sheet.
+            <br>
+            Individual sensor <em>instances</em> are <em>members</em> of this class or its sub-classes.
+            <br>
+            See <a href="#ModelSystemType">Systems Types and Individuals</a> for patterns to describe this.
+        </p>
+        <dl>
+            <dt>Note</dt>
+            <dd>
+                The UML class 'Observer' from ISO 19156:2023 is implemented in SOSA by the OWL/RDFS class
+                'Sensor'.
+                The class name 'Sensor' is preferred for backward compatibility with existing SOSA deployments.
+            </dd>
+            <dt>Examples</dt>
+            <dd>
+                Accelerometers, gyroscopes, barometers, magnetometers, etc are <a href="#SOSASensor">Sensors</a> that
+                are typically mounted on a modern smart phone (which acts as
+                <a href="#SOSAPlatform">Platform</a>).
+                Other examples of <a href="#SOSASensor">Sensors</a> include the human eyes.
+            </dd>
+            <dt>Subclass of</dt>
+            <dd>
+                <a>sosa:System</a>
+            </dd>
+            <div class="ssn" id="SSNSensor">
+                <dt class="restrictions">Restrictions in SSN</dt>
+                <dd>
+                    <a>sosa:madeObservation</a> <em><b>ONLY</b></em>
+                    (<a>sosa:Observation</a> <em><b>or</b></em> <a>sosa:ObservationCollection</a>)
+                    <br>
+                    <a>sosa:observes</a> <em><b>ONLY</b></em> <a>sosa:Property</a>
+                    <br>
+                    <a>sosa:detects</a> <em><b>ONLY</b></em> <a>sosa:Stimulus</a>
+                    <br>
+                    <a>sosa:implements</a> <em><b>ONLY</b></em> <a>sosa:ObservingProcedure</a>
+                </dd>
+            </div>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
+            </dd>
+        </dl>
 
-        <table>
-            <tbody>
-                <tr>
-                    <th>Scope note</th>
-                    <td>
-                        Specific sensor <em>types</em> may be implemented as <em>sub-classes</em> of this class
-                        or its sub-classes.
-                        Their descriptions may capture the properties and characteristics of a whole class of
-                        sensors, corresponding with the information typically found in a data-sheet.
-                        <br><br>
-                        Individual sensor <em>instances</em> are <em>members</em> of this class or its sub-classes.
-                    </td>
-                </tr>
-                <tr>
-                    <th>Note</th>
-                    <td>
-                        The UML class 'Observer' from ISO 19156:2023 is implemented in SOSA by the OWL/RDFS class
-                        'Sensor'.
-                        The class name 'Sensor' is preferred for backward compatibility with existing SOSA deployments.
-                    </td>
-                </tr>
-                <tr>
-                    <th>Examples</th>
-                    <td>
-                        Accelerometers, gyroscopes, barometers, magnetometers, etc are <a href="#SOSASensor">Sensors</a>
-                        that are typically mounted on a modern smart phone (which acts as
-                        <a href="#SOSAPlatform">Platform</a>).
-                        Other examples of <a href="#SOSASensor">Sensors</a> include the human eyes.
-                    </td>
-                </tr>
-                <tr class="ssn">
-                    <th>Sub class of</th>
-                    <td>
-                        <a>sosa:System</a>
-                    </td>
-                </tr>
-                <tr class="ssn">
-                    <th class="restrictions">Restrictions</th>
-                    <td>
-                        <a>sosa:madeObservation</a> <em><b>ONLY</b></em>
-                        ( <a>sosa:Observation</a> OR <a>sosa:ObservationCollection</a> )
-                        <br>
-                        <a>sosa:observes</a> <em><b>ONLY</b></em> <a>sosa:Property</a>
-                        <br>
-                        <a>sosa:detects</a> <em><b>ONLY</b></em> <a>sosa:Stimulus</a>
-                        <br>
-                        <a>sosa:implements</a> <em><b>ONLY</b></em> <a>sosa:ObservingProcedure</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
         <div class="buttonpanel">
             <span class="back">[<a href="#Observations-overview">Back to module overview</a>]</span>
             <span class="back">[<a href="#Overview">Back to top</a>]</span>
@@ -479,28 +423,26 @@
             The properties associated to the Stimulus may be different to the eventual observed Property.
             It is the event, not the object, that triggers the Sensor.
         </p>
-        <table>
-            <tbody>
-                <tr class="ssn">
-                    <th class="restrictions">Restrictions</th>
-                    <td>
-                        <a>sosa:isProxyFor</a> <em><b>ONLY</b></em> <a>sosa:Property</a>
-                        <br>
-                        ( <em><b>inverse Of</b></em> <a>sosa:wasOriginatedBy</a> ) <em><b>ONLY</b></em>
-                        <a>sosa:Observation</a>
-                        <br>
-                        ( <em><b>inverse Of</b></em> <a>sosa:detects</a> ) <em><b>ONLY</b></em> <a>sosa:Sensor</a>
-                        <br>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <dl>
+            <div class="ssn" id="SSNStimulus">
+                <dt class="restrictions">Restrictions in SSN</dt>
+                <dd>
+                    <a>sosa:isProxyFor</a> <em><b>ONLY</b></em> <a>sosa:Property</a>
+                    <br>
+                    <a>sosa:originated</a> <em><b>ONLY</b></em>
+                    (<a>sosa:Observation</a> <em><b>or</b></em>
+                    <a>sosa:ObservationCollection</a>)
+                    <br>
+                    <a>sosa:isDetectedBy</a> <em><b>ONLY</b></em> <a>sosa:Sensor</a>
+                    <br>
+                </dd>
+            </div>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
+            </dd>
+        </dl>
+
         <div class="buttonpanel">
             <span class="back">[<a href="#Observations-overview">Back to module overview</a>]</span>
             <span class="back">[<a href="#Overview">Back to top</a>]</span>
@@ -522,34 +464,25 @@
         <p>
             The Stimulus itself will be serving as a proxy (<a>sosa:isProxyFor</a>) for some Property.
         </p>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Domain Includes</th>
-                    <td>
-                        <a>sosa:Sensor</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Range Includes</th>
-                    <td>
-                        <a>sosa:Stimulus</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Inverse property of</th>
-                    <td>
-                        <a>sosa:isDetectedBy</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <dl>
+            <dt>Domain Includes</dt>
+            <dd>
+                <a>sosa:Sensor</a>
+            </dd>
+            <dt>Range Includes</dt>
+            <dd>
+                <a>sosa:Stimulus</a>
+            </dd>
+            <dt>Inverse property of</dt>
+            <dd>
+                <a>sosa:isDetectedBy</a>
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
+            </dd>
+        </dl>
+
         <div class="buttonpanel">
             <span class="back">[<a href="#Observations-overview">Back to module overview</a>]</span>
             <span class="back">[<a href="#Overview">Back to top</a>]</span>
@@ -568,44 +501,35 @@
             <em>has proxy</em> &mdash;
             relation from an Property to a Stimulus that serves as its proxy
         </p>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Examples</th>
-                    <td>
-                        For example, the expansion of mercury is a <a href="#SOSAStimulus">Stimulus</a> that serves as a
-                        proxy for some temperature <a href="#SOSAProperty">Property</a>.
-                        <br>
-                        An increase or decrease in the velocity of spinning cups on a wind
-                        <a href="#SOSASensor">Sensor</a> is serving as a proxy for the wind speed.
-                    </td>
-                </tr>
-                <tr>
-                    <th>Domain Includes</th>
-                    <td>
-                        <a>sosa:Property</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Range Includes</th>
-                    <td>
-                        <a>sosa:Stimulus</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Inverse property of</th>
-                    <td>
-                        <a>sosa:isProxyFor</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <dl>
+            <dt>Examples</dt>
+            <dd>
+                For example, the expansion of mercury is a
+                <a href="#SOSAStimulus">Stimulus</a> that serves as a
+                proxy for some temperature
+                <a href="#SOSAProperty">Property</a>.
+                <br>
+                An increase or decrease in the velocity of spinning cups on a wind
+                <a href="#SOSASensor">Sensor</a> is serving as a proxy for the wind speed.
+            </dd>
+            <dt>Domain Includes</dt>
+            <dd>
+                <a>sosa:Property</a>
+            </dd>
+            <dt>Range Includes</dt>
+            <dd>
+                <a>sosa:Stimulus</a>
+            </dd>
+            <dt>Inverse property of</dt>
+            <dd>
+                <a>sosa:isProxyFor</a>
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
+            </dd>
+        </dl>
+
         <div class="buttonpanel">
             <span class="back">[<a href="#Observations-overview">Back to module overview</a>]</span>
             <span class="back">[<a href="#Overview">Back to top</a>]</span>
@@ -627,34 +551,25 @@
         <p>
             The Stimulus itself will be serving as a proxy (<a>sosa:isProxyFor</a>) for some Property.
         </p>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Domain Includes</th>
-                    <td>
-                        <a>sosa:Stimulus</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Range Includes</th>
-                    <td>
-                        <a>sosa:Sensor</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Inverse property of</th>
-                    <td>
-                        <a>sosa:detects</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <dl>
+            <dt>Domain Includes</dt>
+            <dd>
+                <a>sosa:Stimulus</a>
+            </dd>
+            <dt>Range Includes</dt>
+            <dd>
+                <a>sosa:Sensor</a>
+            </dd>
+            <dt>Inverse property of</dt>
+            <dd>
+                <a>sosa:detects</a>
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
+            </dd>
+        </dl>
+
         <div class="buttonpanel">
             <span class="back">[<a href="#Observations-overview">Back to module overview</a>]</span>
             <span class="back">[<a href="#Overview">Back to top</a>]</span>
@@ -671,40 +586,31 @@
         </p>
         <p class="note">
             The 2017 edition defined the term ObservableProperty as the domain of <a>sosa:isObservedBy</a>.
-            That specialization of <a>sosa:Property</a> is deprecated in this 2025 edition.
+            That specialization of <a>sosa:Property</a> is deprecated in this 2023 edition.
         </p>
         <p>
             <em>is observed by</em> &mdash;
             relation from a Property to a Sensor that is able to observe it
         </p>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Domain Includes</th>
-                    <td>
-                        <a>sosa:Property</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Range Includes</th>
-                    <td>
-                        <a>sosa:Sensor</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Inverse property of</th>
-                    <td>
-                        <a>sosa:observes</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <dl>
+            <dt>Domain Includes</dt>
+            <dd>
+                <a>sosa:Property</a>
+            </dd>
+            <dt>Range Includes</dt>
+            <dd>
+                <a>sosa:Sensor</a>
+            </dd>
+            <dt>Inverse property of</dt>
+            <dd>
+                <a>sosa:observes</a>
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
+            </dd>
+        </dl>
+
         <div class="buttonpanel">
             <span class="back">[<a href="#Observations-overview">Back to module overview</a>]</span>
             <span class="back">[<a href="#Overview">Back to top</a>]</span>
@@ -721,49 +627,38 @@
         </p>
         <p class="note">
             The 2017 edition defined the term ObservableProperty as the range of <a>sosa:isProxyFor</a>.
-            That specialization of <a>sosa:Property</a> is deprecated in this 2025 edition.
+            That specialization of <a>sosa:Property</a> is deprecated in this 2023 edition.
         </p>
         <p>
             <em>isProxyFor</em> &mdash;
             relation from a Stimulus to the Property that it is serving as a proxy for
         </p>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Example</th>
-                    <td>
-                        For example, the expansion of quicksilver is a <a href="#SOSAStimulus">Stimulus</a> that serves
-                        as a proxy for some temperature <a href="#SOSAProperty">Property</a>.
-                        An increase or decrease in the velocity of spinning cups on a wind
-                        <a href="#SOSASensor">Sensor</a> is serving as a proxy for the wind speed.
-                    </td>
-                </tr>
-                <tr>
-                    <th>Domain Includes</th>
-                    <td>
-                        <a>sosa:Stimulus</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Range Includes</th>
-                    <td>
-                        <a>sosa:Property</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Inverse property of</th>
-                    <td>
-                        <a>sosa:hasProxy</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <dl>
+            <dt>Example</dt>
+            <dd>
+                For example, the expansion of quicksilver is a <a href="#SOSAStimulus">Stimulus</a> that serves
+                as a proxy for some temperature <a href="#SOSAProperty">Property</a>.
+                An increase or decrease in the velocity of spinning cups on a wind
+                <a href="#SOSASensor">Sensor</a> is serving as a proxy for the wind speed.
+            </dd>
+            <dt>Domain Includes</dt>
+            <dd>
+                <a>sosa:Stimulus</a>
+            </dd>
+            <dt>Range Includes</dt>
+            <dd>
+                <a>sosa:Property</a>
+            </dd>
+            <dt>Inverse property of</dt>
+            <dd>
+                <a>sosa:hasProxy</a>
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
+            </dd>
+        </dl>
+
         <div class="buttonpanel">
             <span class="back">[<a href="#Observations-overview">Back to module overview</a>]</span>
             <span class="back">[<a href="#Overview">Back to top</a>]</span>
@@ -780,43 +675,32 @@
         </p>
         <p>
             <em>made by Sensor</em> &mdash;
-            relation from an Observation or ObservationCollection to the Sensor that made it
+            relation from an Observation or ObservationCollection to the Sensor involved
         </p>
-        <table>
-            <tbody>
-                <tr class="ssn">
-                    <th>Sub property of</th>
-                    <td>
-                        <a>sosa:madeBySystem</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Domain Includes</th>
-                    <td>
-                        <a>sosa:Observation</a>,
-                        <a>sosa:ObservationCollection</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Range Includes</th>
-                    <td>
-                        <a>sosa:Sensor</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Inverse property of</th>
-                    <td>
-                        <a>sosa:madeObservation</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <dl>
+            <dt>Subproperty of</dt>
+            <dd>
+                <a>sosa:madeBySystem</a>
+            </dd>
+            <dt>Domain Includes</dt>
+            <dd>
+                <a>sosa:Observation</a>,
+                <a>sosa:ObservationCollection</a>
+            </dd>
+            <dt>Range Includes</dt>
+            <dd>
+                <a>sosa:Sensor</a>
+            </dd>
+            <dt>Inverse property of</dt>
+            <dd>
+                <a>sosa:madeObservation</a>
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
+            </dd>
+        </dl>
+
         <div class="buttonpanel">
             <span class="back">[<a href="#Observations-overview">Back to module overview</a>]</span>
             <span class="back">[<a href="#Overview">Back to top</a>]</span>
@@ -835,41 +719,30 @@
             <em>made observation</em> &mdash;
             relation from a Sensor to an Observation or ObservationCollection it has made
         </p>
-        <table>
-            <tbody>
-                <tr class="ssn">
-                    <th>Sub property of</th>
-                    <td>
-                        <a>sosa:madeExecution</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Domain Includes</th>
-                    <td>
-                        <a>sosa:Sensor</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Range Includes</th>
-                    <td>
-                        <a>sosa:Observation</a>,
-                        <a>sosa:ObservationCollection</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Inverse property of</th>
-                    <td>
-                        <a>sosa:madeBySensor</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <dl>
+            <dt>Subproperty of</dt>
+            <dd>
+                <a>sosa:madeExecution</a>
+            </dd>
+            <dt>Domain Includes</dt>
+            <dd>
+                <a>sosa:Sensor</a>
+            </dd>
+            <dt>Range Includes</dt>
+            <dd>
+                <a>sosa:Observation</a>,
+                <a>sosa:ObservationCollection</a>
+            </dd>
+            <dt>Inverse property of</dt>
+            <dd>
+                <a>sosa:madeBySensor</a>
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
+            </dd>
+        </dl>
+
         <div class="buttonpanel">
             <span class="back">[<a href="#Observations-overview">Back to module overview</a>]</span>
             <span class="back">[<a href="#Overview">Back to top</a>]</span>
@@ -892,37 +765,31 @@
             <em>observation related to</em> &mdash;
             relation from an Observation or ObservationCollection to another Execution or ExecutionCollection
         </p>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Domain Includes</th>
-                    <td>
-                        <a>sosa:Observation</a>,
-                        <a>sosa:ObservationCollection</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Range Includes</th>
-                    <td>
-                        <a>sosa:Execution</a>,
-                        <a>sosa:ExecutionCollection</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Inverse property of</th>
-                    <td>
+        <p class="note">
+            This general relationship complements the specific predicates outbound from Observation. It is particularly
+            useful to relate Observations (and collections) to other Executions (and collections)
+        </p>
+        <dl>
+            <dt>Domain Includes</dt>
+            <dd>
+                <a>sosa:Observation</a>,
+                <a>sosa:ObservationCollection</a>
+            </dd>
+            <dt>Range Includes</dt>
+            <dd>
+                <a>sosa:Execution</a>,
+                <a>sosa:ExecutionCollection</a>
+            </dd>
+            <dt>Inverse property of</dt>
+            <dd>
+                <a>sosa:relatedObservation</a>
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
+            </dd>
+        </dl>
 
-                        <a>sosa:relatedObservation</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
 
         <div class="buttonpanel">
             <span class="back">[<a href="#Observations-overview">Back to module overview</a>]</span>
@@ -940,11 +807,11 @@
         </p>
         <p class="note">
             The 2017 edition defined the term ObservableProperty as the range of <a>sosa:observedProperty</a>.
-            That specialization of <a>sosa:Property</a> is deprecated in this 2025 edition.
+            That specialization of <a>sosa:Property</a> is deprecated in this 2023 edition.
         </p>
         <p>
             <em>observed property</em> &mdash;
-            relation from an Observation or ObservationCollection to the property that was observed
+            relation from an Observation or ObservationCollection to the property observed
         </p>
         <p class="note">
             'observed property' covers the concepts referred to in [[VIM]] as 'measurand' (quantitative values) and
@@ -956,35 +823,26 @@
         <p>
             The Property MUST be a property of the FeatureOfInterest of this Observation.
         </p>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Domain Includes</th>
-                    <td>
-                        <a>sosa:Observation</a>,
-                        <a>sosa:ObservationCollection</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Range Includes</th>
-                    <td>
-                        <a>sosa:Property</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Inverse property of</th>
-                    <td>
-                        <a href="http://www.w3.org/ns/sosa/wasObservedBy/">sosa:wasObservedBy/</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <dl>
+            <dt>Domain Includes</dt>
+            <dd>
+                <a>sosa:Observation</a>,
+                <a>sosa:ObservationCollection</a>
+            </dd>
+            <dt>Range Includes</dt>
+            <dd>
+                <a>sosa:Property</a>
+            </dd>
+            <dt>Inverse property of</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/wasObservedBy">sosa:wasObservedBy</a>
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
+            </dd>
+        </dl>
+
         <div class="buttonpanel">
             <span class="back">[<a href="#Observations-overview">Back to module overview</a>]</span>
             <span class="back">[<a href="#Overview">Back to top</a>]</span>
@@ -1001,46 +859,35 @@
         </p>
         <p class="note">
             The 2017 edition defined the term ObservableProperty as the range of <a>sosa:observes</a>.
-            That specialization of <a>sosa:Property</a> is deprecated in this 2025 edition.
+            That specialization of <a>sosa:Property</a> is deprecated in this 2023 edition.
         </p>
         <p>
             <em>observes</em> &mdash;
             relation from a Sensor to a Property that it is capable of sensing
         </p>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Domain Includes</th>
-                    <td>
-                        <a>sosa:Sensor</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Range Includes</th>
-                    <td>
-                        <a>sosa:Property</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Inverse property of</th>
-                    <td>
-                        <a>sosa:isObservedBy</a>
-                    </td>
-                </tr>
-                <tr class="ssn">
-                    <th>Sub property of</th>
-                    <td>
-                        <a>sosa:forProperty</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <dl>
+            <dt>Domain Includes</dt>
+            <dd>
+                <a>sosa:Sensor</a>
+            </dd>
+            <dt>Range Includes</dt>
+            <dd>
+                <a>sosa:Property</a>
+            </dd>
+            <dt>Inverse property of</dt>
+            <dd>
+                <a>sosa:isObservedBy</a>
+            </dd>
+            <dt>Subproperty of</dt>
+            <dd>
+                <a>sosa:forProperty</a>
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
+            </dd>
+        </dl>
+
         <div class="buttonpanel">
             <span class="back">[<a href="#Observations-overview">Back to module overview</a>]</span>
             <span class="back">[<a href="#Overview">Back to top</a>]</span>
@@ -1059,34 +906,25 @@
             <em>originated</em> &mdash;
             relation from a Stimulus to an Observation that was originated by it
         </p>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Domain Includes</th>
-                    <td>
-                        <a>sosa:Stimulus</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Range Includes</th>
-                    <td>
-                        <a>sosa:Observation</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Inverse property of</th>
-                    <td>
-                        <a>sosa:wasOriginatedBy</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <dl>
+            <dt>Domain Includes</dt>
+            <dd>
+                <a>sosa:Stimulus</a>
+            </dd>
+            <dt>Range Includes</dt>
+            <dd>
+                <a>sosa:Observation</a>
+            </dd>
+            <dt>Inverse property of</dt>
+            <dd>
+                <a>sosa:wasOriginatedBy</a>
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
+            </dd>
+        </dl>
+
         <div class="buttonpanel">
             <span class="back">[<a href="#Observations-overview">Back to module overview</a>]</span>
             <span class="back">[<a href="#Overview">Back to top</a>]</span>
@@ -1108,29 +946,22 @@
             <em>quality of</em> &mdash;
             link from a quality description to an Observation or ObservationCollection that it relates to
         </p>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Range Includes</th>
-                    <td>
-                        <a>sosa:Observation</a>,
-                        <a>sosa:ObservationCollection</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Inverse property of</th>
-                    <td>
-                        <a>sosa:resultQuality</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <dl>
+            <dt>Range Includes</dt>
+            <dd>
+                <a>sosa:Observation</a>,
+                <a>sosa:ObservationCollection</a>
+            </dd>
+            <dt>Inverse property of</dt>
+            <dd>
+                <a>sosa:resultQuality</a>
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
+            </dd>
+        </dl>
+
 
         <div class="buttonpanel">
             <span class="back">[<a href="#Observations-overview">Back to module overview</a>]</span>
@@ -1154,42 +985,31 @@
             <em>related observation</em> &mdash;
             relation from an Execution or ExecutionCollection to an Observation or ObservationCollection
         </p>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Domain Includes</th>
-                    <td>
-                        <a>sosa:Execution</a>,
-                        <a>sosa:Actuation</a>,
-                        <a>sosa:Observation</a>,
-                        <a>sosa:Sampling</a>,
-                        <a>sosa:ExecutionCollection</a>,
-                        <a>sosa:ActuationCollection</a>,
-                        <a>sosa:ObservationCollection</a>,
-                        <a>sosa:SamplingCollection</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Range Includes</th>
-                    <td>
-                        <a>sosa:Observation</a>,
-                        <a>sosa:ObservationCollection</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Inverse property of</th>
-                    <td>
-                        <a>sosa:observationRelatedTo</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <p class="note">
+            This general relationship complements the specific predicates inbound to Observation. It is particularly
+            useful to relate Observations (and collections) to other Executions (and collections)
+        </p>
+        <dl>
+            <dt>Domain Includes</dt>
+            <dd>
+                <a>sosa:Execution</a>,
+                <a>sosa:ExecutionCollection</a>
+            </dd>
+            <dt>Range Includes</dt>
+            <dd>
+                <a>sosa:Observation</a>,
+                <a>sosa:ObservationCollection</a>
+            </dd>
+            <dt>Inverse property of</dt>
+            <dd>
+                <a>sosa:observationRelatedTo</a>
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
+            </dd>
+        </dl>
+
 
         <div class="buttonpanel">
             <span class="back">[<a href="#Observations-overview">Back to module overview</a>]</span>
@@ -1214,43 +1034,36 @@
             relation from an Observation or ObservationCollection to some information pertaining to the quality of
             the result
         </p>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Note</th>
-                    <td>
-                        This instance-specific description complements the description of the observation Procedure,
-                        which provides information concerning the quality of all observations using this procedure.
-                        Multiple measures can be provided.
-                        <br><br>
-                        The quality of a result can be assessed following the procedures in the ISO 19157 series
-                        [[iso-19157-1]].
-                        <br><br>
-                        <a href="https://www.w3.org/TR/vocab-dqv/#dqv:hasQualityMeasurement">dqv:hasQualityMeasurement</a>
-                        from the Data Quality Vocabulary [[vocab-dqv]] is equivalent
-                    </td>
-                </tr>
-                <tr>
-                    <th>Domain Includes</th>
-                    <td>
-                        <a>sosa:Observation</a>,
-                        <a>sosa:ObservationCollection</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Inverse property of</th>
-                    <td>
-                        <a>sosa:qualityOf</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <dl>
+            <dt>Note</dt>
+            <dd>
+                This instance-specific description complements the description of the observation Procedure,
+                which provides information concerning the quality of all observations using this procedure.
+                Multiple measures can be provided.
+                <br>
+                <br>
+                The quality of a result can be assessed following the procedures in the ISO 19157 series
+                [[iso-19157-1]].
+                <br>
+                <br>
+                <a href="https://www.w3.org/TR/vocab-dqv/#dqv:hasQualityMeasurement">dqv:hasQualityMeasurement</a> from
+                the Data Quality Vocabulary [[vocab-dqv]] is equivalent
+            </dd>
+            <dt>Domain Includes</dt>
+            <dd>
+                <a>sosa:Observation</a>,
+                <a>sosa:ObservationCollection</a>
+            </dd>
+            <dt>Inverse property of</dt>
+            <dd>
+                <a>sosa:qualityOf</a>
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
+            </dd>
+        </dl>
+
 
         <div class="buttonpanel">
             <span class="back">[<a href="#Observations-overview">Back to module overview</a>]</span>
@@ -1272,34 +1085,26 @@
             relation from a Property to an Observation that observed it
         </p>
 
-        <table>
-            <tbody>
-                <tr>
-                    <th>Domain Includes</th>
-                    <td>
-                        <a>sosa:Property</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Range Includes</th>
-                    <td>
-                        <a>sosa:Observation</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Inverse property of</th>
-                    <td>
-                        <a>sosa:observedProperty</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <dl>
+            <dt>Domain Includes</dt>
+            <dd>
+                <a>sosa:Property</a>
+            </dd>
+            <dt>Range Includes</dt>
+            <dd>
+                <a>sosa:Observation</a>,
+                <a>sosa:ObservationCollection</a>
+            </dd>
+            <dt>Inverse property of</dt>
+            <dd>
+                <a>sosa:observedProperty</a>
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
+            </dd>
+        </dl>
+
         <div class="buttonpanel">
             <span class="back">[<a href="#Observations-overview">Back to module overview</a>]</span>
             <span class="back">[<a href="#Overview">Back to top</a>]</span>
@@ -1318,34 +1123,26 @@
             <em>was originated by</em> &mdash;
             relation from an Observation to the Stimulus that originated it
         </p>
-        <table>
-            <tbody>
-                <tr>
-                    <th>Domain Includes</th>
-                    <td>
-                        <a>sosa:Observation</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Range Includes</th>
-                    <td>
-                        <a>sosa:Stimulus</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Inverse property of</th>
-                    <td>
-                        <a>sosa:originated</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>is Defined By</th>
-                    <td>
-                        <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <dl>
+            <dt>Domain Includes</dt>
+            <dd>
+                <a>sosa:Observation</a>,
+                <a>sosa:ObservationCollection</a>
+            </dd>
+            <dt>Range Includes</dt>
+            <dd>
+                <a>sosa:Stimulus</a>
+            </dd>
+            <dt>Inverse property of</dt>
+            <dd>
+                <a>sosa:originated</a>
+            </dd>
+            <dt>is Defined By</dt>
+            <dd>
+                <a href="http://www.w3.org/ns/sosa/observation/">http://www.w3.org/ns/sosa/observation/</a>
+            </dd>
+        </dl>
+
         <div class="buttonpanel">
             <span class="back">[<a href="#Observations-overview">Back to module overview</a>]</span>
             <span class="back">[<a href="#Overview">Back to top</a>]</span>

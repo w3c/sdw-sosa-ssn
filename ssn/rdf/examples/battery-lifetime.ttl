@@ -1,0 +1,28 @@
+@prefix ex:   <http://example.org/>.
+@prefix sosa: <https://www.w3.org/TR/vocab-ssn/>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix qudt: <http://qudt.org/schema/qudt/>.
+@prefix unit: <http://qudt.org/vocab/unit/>.
+@prefix iop:  <https://w3id.org/iadopt/ont/>.
+@prefix uom: <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
+@prefix sosa-cap: <http://www.w3.org/ns/sosa/system-capability-properties#> .
+
+ex:AABattery a sosa:Battery ;
+  rdfs:label "An AA battery." .
+
+ex:sensor a sosa:Sensor;
+  sosa:hasSubSystem ex:AABattery .
+
+ex:nominalLifetimeRestriction a iop:Variable, sosa:Property;
+  iop:hasStatisticalModifier uom:average ;
+  iop:hasObjectOfInterest ex:AABattery ;
+  iop:hasProperty sosa-cap:BatteryLifetime .
+  
+ex:nominalLifetime a sosa:Observation ;
+  sosa:hasFeatureOfInterest ex:sensor ;
+  sosa:observedProperty ex:nominalLifetimeRestriction ;
+  sosa:hasResult [ 
+    qudt:value 1.0 ;
+    qudt:hasUnit unit:YR ;
+  ] ;
+.

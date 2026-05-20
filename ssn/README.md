@@ -1,6 +1,6 @@
 # Semantic Sensor Network Ontology
 
-This folder contains resources associated with the **2024 Edition** of the **Semantic Sensor Network Ontology** (SSN). 
+This folder contains resources associated with the **2023 Edition** of the **Semantic Sensor Network Ontology** (SSN). 
 Where possible, the repository has been arranged to match the organization in the current [Editors Draft](https://w3c.github.io/sdw-sosa-ssn/ssn/) of the joint OGC/W3C Recommendation. 
 
 ## RDF resources (mostly TTL files)

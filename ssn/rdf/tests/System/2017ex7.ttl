@@ -1,3 +1,10 @@
+@prefix ex:   <http://example.org/>.
+@prefix sosa: <http://www.w3.org/ns/sosa/>.
+@prefix ssn: <http://www.w3.org/ns/ssn/>.
+@prefix owl:     <http://www.w3.org/2002/07/owl#>.
+@prefix system: <http://www.w3.org/ns/ssn/systems/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#>.
+
 ex:TemperatureSensor a owl:Class ;
   rdfs:subClassOf ssn:System .
 
@@ -15,12 +22,12 @@ ex:TemperatureSensor a owl:Class ;
 # the class or at the level of each instance with this modeling choice:
 
 ex:TemperatureSensor  rdfs:subClassOf [
-    owl:onProperty ssn-system:hasOperatingRange ;
+    owl:onProperty system:hasOperatingRange ;
     owl:hasValue ex:TemperatureSensorOperatingRange ] .
 
 <TemperatureSensor/1> 
-  ssn-system:hasOperatingRange ex:TemperatureSensorOperatingRange ; # this axiom can be inferred
-  ssn-system:hasOperatingRange <moreSpecificTemperatureSensorOperatingRange> .
+  system:hasOperatingRange ex:TemperatureSensorOperatingRange ; # this axiom can be inferred
+  system:hasOperatingRange <moreSpecificTemperatureSensorOperatingRange> .
 
-<moreSpecificTemperatureSensorOperatingRange> a ssn-system:OperatingRange ;
-  ssn-system:inCondition <modeSpecificTemperatureCondition> , <modeSpecificHumidityCondition> .
+<moreSpecificTemperatureSensorOperatingRange> a system:OperatingRange ;
+  system:inCondition <modeSpecificTemperatureCondition> , <modeSpecificHumidityCondition> .

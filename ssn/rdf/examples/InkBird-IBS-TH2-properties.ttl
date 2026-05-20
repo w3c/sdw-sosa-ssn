@@ -1,0 +1,32 @@
+@prefix ex: <https://example.org/data/> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix sosa-env: <http://www.w3.org/ns/sosa/system-environment-properties#> .
+
+ex:IBSTH2HumidityAccuracy a sosa:Property ;
+    rdfs:label "Humidity Accuracy (25°C/77°C, 20%~80%RH)"@en ;
+    sosa:hasValidityContext [ 
+      a sosa:ObservationCollection ;
+      sosa:hasMember [
+        sosa:observedProperty sosa-env:AmbientTemperature ;
+        sosa:hasResult [ 
+          qudt:value 25.0 ;
+          qudt:hasUnit unit:DEG_C ;
+        ] ;
+      ] , [
+        sosa:observedProperty sosa-env:MinAmbientRelativeHumidity ;
+        sosa:hasResult [ 
+          qudt:value 20.0 ;
+          qudt:hasUnit unit:PERCENT ;
+        ] ;
+      ] , [
+        sosa:observedProperty sosa-env:MaxAmbientRelativeHumidity ;
+        sosa:hasResult [ 
+          qudt:value 80.0 ;
+          qudt:hasUnit unit:PERCENT ;
+        ] ;
+      ]
+    ]
+.

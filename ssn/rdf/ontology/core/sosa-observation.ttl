@@ -19,7 +19,7 @@ sosa-obs:
   dcterms:title "Sensor, Observation, Sample, and Actuator (SOSA) Ontology - actuation module"@en ;
   dcterms:description "Observation classes and properties for the SSN Ontology."@en ;
   dcterms:creator [ a foaf:Agent ; foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en ] ;
-  dcterms:rights "Copyright 2024 W3C/OGC." ;
+  dcterms:rights "Copyright 2025 W3C/OGC." ;
   dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
   dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
   dcterms:created "2024-02-02"^^xsd:date ;
@@ -28,6 +28,7 @@ sosa-obs:
 
 sosa:Observation 
   a owl:Class ;
+  rdfs:subClassOf sosa:Execution ;
   rdfs:label "Observation"@en ;
   skos:definition """
   act of carrying out an ObservingProcedure using a Sensor to estimate or calculate a value of an observable Property of a FeatureOfInterest
@@ -36,7 +37,7 @@ sosa:Observation
   When the feature of interest cannot be observed directly, a sample of it might be used in Observations as a proxy for it. In such case, the Sample is the proximate Feature of Interest of the Observation, while the (ultimate) Feature of Interest of the act of Sampling (i.e., the entity that the Sample is ultimately 'isSampleOf') is the ultimate Feature of Interest of the Observation.
   """ ;
   skos:scopeNote """
-  An Observation concerns a single Property of a single FeatureOfInterest. 
+  An Observation primarily concerns a single Property of a single FeatureOfInterest. 
   Observations of multiple properties, or other combinations of Observations, may be described in an ObservationCollection. 
   
   Alternatively, applications may choose to encapsulate complexity by defining a complex property with multiple individual components, and a corresponding complex result (e.g., a vector). 
@@ -47,13 +48,14 @@ sosa:Observation
 
 sosa:ObservationCollection 
   a owl:Class ;
+  rdfs:subClassOf sosa:ExecutionCollection ;
   rdfs:label "Observation Collection"@en ;
   skos:definition """
-  set of one or more Observations or ObservationCollections &mdash; collections may be nested
+  set of Observations or ObservationCollections; collections may be nested
 
-  The following Observation properties may appear in an Observation Collection: 
-  hasFeatureOfInterest , hasUltimateFeatureOfInterest , usedProcedure , madeBySensor , observedProperty , phenomenonTime , startTime, resultTime , hasResult , hasSimpleResult . 
-  If it is present, the value of a property summarizes the values of the matching properties of the member observations, where membership is either direct or transitive through one or more member observation collections. 
+  All Observation properties may appear in an Observation Collection, including: 
+  hasFeatureOfInterest , hasUltimateFeatureOfInterest , usedProcedure , madeBySensor , observedProperty , phenomenonTime , startTime, resultTime , hasResult , hasSimpleResult : 
+  If they are present, the value of these properties summarize the values of the matching properties of the member observations, where membership is either direct or transitive through one or more member observation collections. 
   The following consistency rules apply with respect to the Observation properties listed above: 
   
   1. Where an individual Observation Collection omits a property, a member Observation (direct or transitive) MAY have any value for that property.
@@ -75,6 +77,7 @@ sosa:ObservationCollection
 
 sosa:ObservingProcedure 
   a owl:Class ;
+  rdfs:subClassOf sosa:Procedure ;
   rdfs:label "Observing Procedure"@en ;
   skos:definition """
   workflow, protocol, plan, algorithm, or computational method specifying how to make an Observation
@@ -82,12 +85,14 @@ sosa:ObservingProcedure
   An Observing Procedure is re-usable, and might be involved in many Observations. 
   It explains the steps to be carried out to arrive at reproducible results.
   """@en ;
-  skos:example """This could be a chemical analysis method, a protocol for measuring an object, or even a checklist used by a human observer during a biodiversity campaign."""@en ;
+  skos:example """A workflow, protocol, plan, algorithm, or computational method specifying how to make an observation; the description of the process used by an observer. This could be a chemical analysis method, a protocol for measuring an object, or even a checklist used by a human observer during a biodiversity campaign. The Procedure could further describe the algorithms behind simulators or models used to generate a result from other inputs."""@en ;
+  skos:note """[ISO 19156:2023] An ObservingProcedure shall be defined as the description of steps performed in order to determine the value of an observableProperty by an Observer."""@en ;
   rdfs:isDefinedBy sosa-obs: .
 
 
 sosa:Sensor 
   a owl:Class ;
+  rdfs:subClassOf sosa:System ;
   rdfs:label "Sensor or Observer"@en ;
   skos:altLabel "Observer"@en ;
   skos:prefLabel "Sensor"@en ;
@@ -96,7 +101,7 @@ sosa:Sensor
 
   This may be a device, a piece of infrastructure, an agent (including humans), or software (simulation).
 
-  A Sensor responds to a stimulus (e.g., a change in the environment, or input data composed from the results of prior Observations) to generate a result.
+  A Sensor responds to a stimulus, e.g., a change in the environment, or input data composed from the results of prior Observations.
   """@en ;
   skos:example "Accelerometers, gyroscopes, barometers, magnetometers, and so forth are Sensors that are typically mounted on a modern smartphone (which acts as Host or Platform). Other examples of Sensors include the human eyes."@en ;
   skos:note "The UML class 'Observer' from ISO 19156:2023 is implemented in SOSA by the OWL/RDFS class 'Sensor'. The class name 'Sensor' is preferred for backward compatibility with existing SOSA deployments. " ;
@@ -108,6 +113,7 @@ sosa:Stimulus
   skos:definition """
   event in the real world that triggers a Sensor
   """@en ;
+  skos:note """The properties associated to the Stimulus may be different to the eventual observed Property. It is the event, not the object, that triggers the Sensor."""@en ;
   rdfs:isDefinedBy sosa-obs: .
 
 sosa:detects 
@@ -128,6 +134,10 @@ sosa:hasProxy
   rdfs:label "has proxy"@en ;
   skos:definition """
   relation from an Property to a Stimulus that serves as its proxy
+  """@en ;
+  skos:example """
+For example, the expansion of mercury is a Stimulus that serves as a proxy for some temperature Property.
+An increase or decrease in the velocity of spinning cups on a wind Sensor is serving as a proxy for the wind speed.
   """@en ;
   schema:domainIncludes sosa:Property ;
   schema:rangeIncludes sosa:Stimulus ;
@@ -172,9 +182,10 @@ sosa:isProxyFor
 
 sosa:madeBySensor 
   a owl:ObjectProperty ;
+  rdfs:subPropertyOf sosa:madeBySystem ;
   rdfs:label "made by sensor or observer"@en ;
   skos:definition """
-  relation from an Observation or ObservationCollection to the Sensor that made it
+  relation from an Observation or ObservationCollection to the Sensor involved
   """@en ;
   schema:domainIncludes sosa:Observation ;
   schema:domainIncludes sosa:ObservationCollection ;
@@ -184,6 +195,7 @@ sosa:madeBySensor
 
 sosa:madeObservation 
   a owl:ObjectProperty ;
+  rdfs:subPropertyOf sosa:madeExecution ;
   rdfs:label "made observation"@en ;
   skos:definition """
   relation from a Sensor to an Observation or ObservationCollection it has made
@@ -212,7 +224,10 @@ sosa:observedProperty
   a owl:ObjectProperty ;
   rdfs:label "observed property"@en ;
   skos:definition """
-  relation from an Observation or ObservationCollection to the property that was observed
+  relation from an Observation or ObservationCollection to the property observed
+  """@en ;
+  skos:note """
+  'observed property' covers the concepts referred to in [VIM] as 'measurand' (quantitative values) and 'examinand' (categorical and nominal values — [VIM4]), as well as complex and structured properties whose values may be represented as lists, vectors, arrays, rasters, geometries, etc. More specific terms are used in other contexts for related concepts, such as 'analyte' (chemistry) and 'determinand' (water quality).
   """@en ;
   schema:domainIncludes sosa:Observation ;
   schema:domainIncludes sosa:ObservationCollection ;
@@ -222,6 +237,7 @@ sosa:observedProperty
 
 sosa:observes 
   a owl:ObjectProperty ;
+  rdfs:subPropertyOf sosa:forProperty ;
   rdfs:label "observes"@en ;
   skos:definition """
   relation from a Sensor to a Property that it is capable of sensing
@@ -244,7 +260,7 @@ sosa:originated
 
 sosa:qualityOf 
   a owl:ObjectProperty ;
-  rdfs:label "result quality of" ;
+  rdfs:label "quality of" ;
   skos:definition """
   link from a quality description to an Observation or ObservationCollection that it relates to
   """@en ;
@@ -274,10 +290,10 @@ sosa:resultQuality
   relation from an Observation or ObservationCollection to some information pertaining to the quality of the result
   """@en ;
   skos:scopeNote """
-  This instance-specific description complements the description of the observation Procedure, which provides information concerning the quality of all observations using this procedure.
+  This instance-specific description complements the description of the observation Procedure, which provides information concerning the quality of all observations using this procedure. Multiple measures can be provided.
   """@en ; 
   skos:note  """
-  The quality of a result can be assessed following the procedures in the ISO 19157 series. Multiple measures can be provided.
+  The quality of a result can be assessed following the procedures in the ISO 19157 series.
   """ ;
   skos:note  """dqv:hasQualityMeasurement from the Data Quality Vocabulary is equivalent""" ;
   schema:domainIncludes sosa:Observation ;
@@ -304,6 +320,7 @@ sosa:wasOriginatedBy
   relation from an Observation to the Stimulus that originated it
   """@en ;
   schema:domainIncludes sosa:Observation ;
+  schema:domainIncludes sosa:ObservationCollection ;
   schema:rangeIncludes sosa:Stimulus ;
   owl:inverseOf sosa:originated ;
   rdfs:isDefinedBy sosa-obs: .

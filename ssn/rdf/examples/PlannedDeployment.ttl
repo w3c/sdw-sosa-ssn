@@ -1,0 +1,30 @@
+@prefix ex: <https://example.org/data/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+
+ex:SamDepG a sosa:Deployment ;
+    sosa:hasFeatureOfInterest ex:Loire_River ;
+    sosa:deployedOnPlatform ex:LOIRE_A_JARGEAU_WQ_Station ; 
+    sosa:deployedSystem ex:SA56 ;
+    sosa:startTime "2026-05-01T00:00:00"^^xsd:dateTime ; 
+    sosa:endTime "2028-04-30T23:59:00"^^xsd:dateTime ;
+.
+ex:Loire_River
+    a sosa:FeatureOfInterest ;  
+.
+ex:LOIRE_A_JARGEAU_WQ_Station 
+    a sosa:Platform ;  
+. 
+ex:SA56 
+    a sosa:Sampler ;
+    sosa:implements ex:Sp-A56 ;
+    sosa:isHostedBy ex:LOIRE_A_JARGEAU_WQ_Station ;
+    sosa:madeSamplingHasResult ex:SC-LaJ1 ;
+.
+ex:Sp-A56 
+    a sosa:SamplingProcedure ;
+. 
+ex:SC-LaJ1
+    a sosa:SampleCollection ;
+.

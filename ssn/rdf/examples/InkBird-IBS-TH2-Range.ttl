@@ -7,9 +7,9 @@
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
-@prefix system: <http://www.w3.org/ns/ssn/systems/> .
 @prefix unit: <http://qudt.org/vocab/unit/> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix sosa-env: <http://www.w3.org/ns/sosa/system-environment-properties#> .
 @base <https://rdf.ag/o/equipment/> .
 
 # This example is a partial specification for a common over-the-shelf temperature and humidity sensor.  Different instantions can
@@ -28,26 +28,44 @@ ex:IBSTH2TemperatureSensor rdfs:subClassOf sosa:Sensor ;
     rdfs:label "Inkbird IBS-TH2 built-in Temperature Sensor"@en ;
     sosa:observes ex:airTemperature ;
     rdfs:subClassOf [ a owl:Restriction ;
-                      owl:onProperty system:hasOperatingRange ;
+                      owl:onProperty sosa:hasOperatingConditions ;
                       owl:allValuesFrom ex:IBSTH2TemperatureSensorLimits 
                     ] ;
     rdfs:subClassOf [ a owl:Restriction ;
-                      owl:onProperty system:hasSurvivalRange ;
+                      owl:onProperty sosa:hasOperatingConditions ;
                       owl:allValuesFrom ex:IBSTH2SurvivalRange 
                     ] ;
 .
-ex:IBSTH2TemperatureSensorLimits a system:OperatingRange ;
-    sosa:forProperty qk:Temperature ;
-    qudt:hasUnit unit:DEG_C ;
-    xsd:maxInclusive "60" ;
-    xsd:minInclusive "-40" ;
+ex:IBSTH2TemperatureSensorLimits a sosa:ObservationCollection , sosa:NormalOperatingConditions ;
     rdfs:label "Inkbird IBS-TH2 Temperature Sensor Limits"@en ;
+    sosa:hasMember [
+      sosa:observedProperty sosa-env:MinAmbientTemperature ;
+      sosa:hasResult [ 
+        qudt:value -40.0 ;
+        qudt:hasUnit unit:DEG_C ;
+      ] ;
+    ] , [
+      sosa:observedProperty sosa-env:MaxAmbientTemperature ;
+      sosa:hasResult [ 
+        qudt:value 60.0 ;
+        qudt:hasUnit unit:DEG_C ;
+      ] ;
+    ]
 .
 # Physical limits of the sensor (and platform) where structural failure occurs.
-ex:IBSTH2SurvivalRange a system:SurvivalRange ;
-    sosa:forProperty qk:Temperature ;
-    qudt:hasUnit unit:DEG_C ;
-    xsd:maxInclusive "80" ;
-    xsd:minInclusive "-273" ;
+ex:IBSTH2SurvivalRange a sosa:ObservationCollection , sosa:SurvivableConditions ;
     rdfs:label "Inkbird IBS-TH2 Failiure limits"@en ;
+    sosa:hasMember [
+      sosa:observedProperty sosa-env:MinAmbientTemperature ;
+      sosa:hasResult [ 
+        qudt:value -273.0 ;
+        qudt:hasUnit unit:DEG_C ;
+      ] ;
+    ] , [
+      sosa:observedProperty sosa-env:MaxAmbientTemperature ;
+      sosa:hasResult [ 
+        qudt:value 80.0 ;
+        qudt:hasUnit unit:DEG_C ;
+      ] ;
+    ]
 .

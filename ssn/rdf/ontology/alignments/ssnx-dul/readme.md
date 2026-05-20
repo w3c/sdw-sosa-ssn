@@ -1,1 +1,0 @@
-This directory contains artefacts related to the original 2011 version of SSN, and the alignmnent with DUL. 

@@ -1,69 +1,104 @@
+
+async function loadTurtle() {
+  // load the highlighter for turtle
+  const worker = await new Promise(resolve => {
+    require(["core/worker"], ({ worker }) => resolve(worker));
+  });
+  const action = "highlight-load-lang";
+  const langURL = new URL("./turtle.js", window.location).href;
+  const propName = "hljsDefineTurtle";
+  const lang = "turtle";
+  worker.postMessage({ action, langURL, propName, lang });
+  return new Promise(resolve => {
+    worker.addEventListener("message", function listener({ data }) {
+      const { action: responseAction, lang: responseLang } = data;
+      if (responseAction === action && responseLang === lang) {
+        worker.removeEventListener("message", listener);
+        resolve();
+      }
+    });
+  });
+}
+
 var respecConfig = {
   specStatus: "ED",
   shortName: "vocab-ssn-2023",
-  //publishDate:  "2025-08-01",
-  prevRecShortname: "vocab-ssn",
+  // publishDate:  "2025-09-16",
+  prevRecShortname: "vocab-ssn-2019",
+  prevRecURI: "https://www.w3.org/TR/2017/REC-vocab-ssn-20171019/",
   previousPublishDate: "2017-10-19",
   previousMaturity: "TR",
   repoURL: "https://github.com/w3c/sdw-sosa-ssn/",
   edDraftURI: "https://w3c.github.io/sdw-sosa-ssn/ssn/",
   group: "wg/sdw",
+  github: "w3c/sdw-sosa-ssn",
   wgPublicList: "public-sdw-comments",
-  implementationReportURI: "https://w3c.github.io/sdw-sosa-ssn/ssn-usage/",
-  inlineCSS: true,
-  noIDLIn: true,
-  noLegacyStyle: false,
+  // replace with pointer to GitHub issues list
+  implementationReportURI: "https://w3c.github.io/sdw-sosa-ssn/ssn/usage/",
   noRecTrack: false,
   logos: [
     {
-      src: "https://raw.githubusercontent.com/w3c/sdw-sosa-ssn/gh-pages/ssn/images/OGC-0.png",
+      src: "images/OGC-0.png",
       alt: "OGC",
-      height: "70",
-      width: "62",
+      height: "128",
+      width: "114",
       url: "https://www.ogc.org/"
     }
   ],
   editors: [
     {
       name: "Simon J D Cox",
+      w3cid: "1796",
       company: "Timely Logic, AU",
-      note: "formerly CSIRO and OGC",
       orcid: "0000-0002-3884-3420",
       w3cid: 1796
     },
     {
       name: "Maxime Lefrançois",
+      w3cid: "50604",
       company: "École Nationale Supérieure des Mines de Saint-Étienne, FR",
       companyURL: "https://www.mines-stetienne.fr/",
       orcid: "0000-0001-9814-8991"
     },
     {
       name: "Rob Warren",
-      company: "Glengarry Agriculture and Farming, CA",
+      w3cid: "144476",
+      company: "Glengarry Agriculture and Forestry, CA",
       companyURL: "https://github.com/GlengarryAg"
     },
     {
+      name: "Rob Atkinson",
+      w3cid: "90763",
+      company: "OGC & Metalinkage, AU",
+      companyURL: "https://www.ogc.org/",
+      orcid: "0000-0002-7815-2472"
+    },
+    {
       name: "Luis Moreira de Sousa",
+      w3cid: "145885",
       company: "Instituto Superior Técnico Lisboa, PT",
       companyURL: "https://tecnico.ulisboa.pt/en/",
       orcid: "0000-0002-5851-2071"
     },
     {
-      name: "Rob Atkinson",
-      company: "Metalinkage",
-      orcid: "0000-0002-7815-2472"
+      name: "Kathi Schleidt",
+      w3cid: "140963",
+      company: "Datacove, AT",
+      companyURL: "https://www.datacove.eu/",
+      orcid: "0000-0002-8011-7350"
     },
     {
       name: "Sylvain Grellet",
-      company: "BRGM",
+      w3cid: "143334",
+      company: "BRGM, FR",
       companyURL: "https://brgm.fr/",
       orcid: "0000-0001-7656-1830"
     },
     {
-      name: "Kathi Schleidt",
-      company: "Datacove",
-      companyURL: "https://www.datacove.eu/",
-      orcid: "0000-0002-8011-7350"
+      name: "Krzysztof Janowicz",
+      company: "Universität Wien, AT",
+      companyURL: "https://www.univie.ac.at/",
+      orcid: "0009-0003-1968-887X"
     }
   ],
   formerEditors: [
@@ -72,12 +107,6 @@ var respecConfig = {
       company: "Australian National University, AU",
       companyURL: "https://www.cbe.anu.edu.au/",
       orcid: "0000-0003-3425-0780"
-    },
-    {
-      name: "Krzysztof Janowicz",
-      company: "Universität Wien, AT",
-      companyURL: "https://www.univie.ac.at/",
-      orcid: "0009-0003-1968-887X"
     },
     {
       name: "Danh Le Phuoc",
@@ -97,7 +126,11 @@ var respecConfig = {
       key: "Contributors (ordered alphabetically by surname)",
       data: [
         {
-          value: "Krzysztof Janowicz, Universität Wien, AT"
+          value: "Abdelfettah Feliachi, BRGM, FR"
+        }, {
+          value: "Danielle Limbaugh, Summit Knowledge Solutions, USA"
+        }, {
+          value: "Maja Milicic Brandt, Siemens AG, DE"
         }, {
           value: "Alex Robin, Georobotix, FR"
         }, {
@@ -127,6 +160,38 @@ var respecConfig = {
     }
   ],
   localBiblio: {
+    "BFO": {
+        title: "Information technology — Top-level ontologies (TLO) — Part 2: Basic Formal Ontology (BFO)",
+        href: "https://www.iso.org/standard/74572.html",
+        rawDate: "2021-11",
+        publisher: "International Organization for Standardization (ISO)",
+        status: "ISO/IEC 21838-2:2021"
+    },
+    "CCO": {
+        title: "The Common Core Ontologies (CCO)",
+        href: "https://github.com/CommonCoreOntology/CommonCoreOntologies",
+        rawDate: "2022",
+    },
+    "Description-Logics": {
+      href: "http://www.cambridge.org/9780521150118",
+      authors: ["Franz Baader", "Diego Calvanese", "Deborah L. McGuinness", "Daniele Nardi", "Peter F. Patel-Schneider"],
+      title: "The Description Logic Handbook: Theory, Implementation, and Applications, 2nd Edition",
+      publisher: "Cambridge University Press",
+      date: "2007"
+    },
+    "Description-Logics-Home-Page": {
+      href: "https://dl.kr.org/",
+      title: "Description Logics Home Page"
+    },
+    "DUL": {
+      href: "https://www.iospress.com/catalog/books/ontology-engineering-with-ontology-design-patterns-foundations-and-applications",
+      doi: "10.3233/978-1-61499-676-7-81",
+      title: "Dolce+ D&S Ultralite and its main ontology design patterns",
+      date: "2016",
+      page: "81-103",
+      publisher: "Ontology Engineering with Ontology Design Patterns, Ed. Pascal Hitzler, Aldo Gangemi, Krzysztof Janowicz, Adila Krisnadhi, Valentina Presutti. IOS Press",
+      authors: ["Presutti, V.", "Gangemi, A."]
+    },
     "Lefrancois-et-al-2017": {
       href: "https://w3id.org/seas/SEAS-D2_2-SEAS-Knowledge-Model.pdf",
       authors: ["Maxime Lefrançois", "Jarmo Kalaoja", "Takoua Ghariani", "Antoine Zimmermann"],
@@ -134,6 +199,13 @@ var respecConfig = {
       status: "Deliverable 2.2",
       publisher: "ITEA2 12004 Smart Energy Aware Systems",
       date: "2017"
+    },
+    "ModSpec": {
+      href: "https://portal.ogc.org/files/?artifact_id=34762",
+      authors: ["OGC Policy SWG"],
+      title: "The Specification Model — A Standard for Modular specifications",
+      publisher: "Open Geospatial Consortium",
+      date: "2009"
     },
     "OM-Lite": {
       href: "http://content.iospress.com/articles/semantic-web/sw214",
@@ -150,6 +222,13 @@ var respecConfig = {
       authors: ["Simon J D Cox"],
       title: "A Project Ontology",
       date: "2017"
+    },
+    "RDFS-Plus": {
+      href: "https://doi.org/10.1016/B978-0-12-385965-5.10008-1",
+      authors: ["Dean Allemang", "Jim Hendler"],
+      title: "Chapter 8 - RDFS-Plus",
+      publisher: "Semantic Web for the Working Ontologist (Second Edition), Morgan Kaufmann",
+      date: "2011"
     },
     "SSN-PROV": {
       href: "http://ceur-ws.org/Vol-1401/paper-05.pdf",
@@ -177,5 +256,6 @@ var respecConfig = {
       title: "Sensor Web Enablement (SWE)",
       publisher: "Open Geospatial Consortium"
     }
-  }
+  },
+  preProcess: [ loadTurtle ]
 }

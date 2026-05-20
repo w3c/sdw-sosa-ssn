@@ -1,11 +1,13 @@
 @prefix ex: <https://example.org/data/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix qk: <http://qudt.org/vocab/quantitykind/> .
+@prefix qudt: <http://qudt.org/schema/qudt/>.
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 @prefix sosa: <http://www.w3.org/ns/sosa#> .
+@prefix unit: <http://qudt.org/vocab/unit/>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix cdt: <http://w3id.org/lindt/custom_datatypes#>.
 @base <https://example.org/data/IDEA/> .
 
 # Temperature and Humidity at Coal Oil Point Reserve
@@ -48,7 +50,11 @@ ex:RH_avg_1_COPR_15min_201706020300PM a sosa:Observation ;
    rdfs:label "Relative humidity, AVG, 15min, COPR, 06.02.2017, 3:00 PM"@en ;
    sosa:madeBySensor ex:HUMICAP-H ;
    sosa:hasFeatureOfInterest ex:COPR_SL ;
-   sosa:hasSimpleResult "92.5 %"^^cdt:ucum ;
+   sosa:hasResult [
+      a qudt:QuantityValue ;
+      qudt:hasUnit unit:PERCENT ;
+      qudt:value 92.5 ;
+   ] ;
    sosa:resultTime "2017-06-02T15:00:00-07:00"^^xsd:dateTime ;
    sosa:observedProperty ex:RelativeHumidity ;
    sosa:usedProcedure ex:MeasuringRelativeHumidity ;

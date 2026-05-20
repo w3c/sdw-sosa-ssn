@@ -2,40 +2,45 @@
 
 This is a repository for the [Spatial Data on the Web Working Group](https://www.w3.org/2021/sdw/), a collaborative project between [W3C](https://www.w3.org/) and [OGC](https://ogc.org/).
 
+> [!IMPORTANT]  
+> We are currently in the process of collecting implementation usage for the 2023 edition of the SOSA/SSN ontology. If you can contribute, get in touch with us through an issue !
+> 
+
 This repository has been factored out as a submodule of the original repository at [https://github.com/w3c/sdw](https://github.com/w3c/sdw).
 
 The repo is used for developing editors drafts of some of the Working Group's [deliverables](https://www.w3.org/2021/10/sdw-charter.html#deliverables) and related resources, in particular:
 
 <dl>
-<dt>[ssn-extensions](https://github.com/w3c/sdw-sosa-ssn/tree/gh-pages/ssn-extensions)</dt>
+  <dt><a href="https://github.com/w3c/sdw-sosa-ssn/tree/gh-pages/ssn">ssn</a></dt>
   <dd>
-    Extensions to the SSN ontology to enable linking directly to the ultimate feature-of-interest alongside the link to the (proximate) feature-of-interest; and homogeneous collections of observations.
-    <br>[Editor's Draft](https://w3c.github.io/sdw-sosa-ssn/ssn-extensions/)
-    <br>[Working Draft](https://www.w3.org/TR/vocab-ssn-ext/)
+    The Semantic Sensor Network Ontology — 2023 Edition
+    <br><a href="https://w3c.github.io/sdw-sosa-ssn/ssn/">Editor's Draft</a>
+    <br><a href="https://www.w3.org/TR/vocab-ssn-2023">Public working draft</a>
+    <br><a href="https://www.w3.org/TR/vocab-ssn/">W3C Recommendation from 2017</a>
   </dd>
-
-  <dt>[ssn-usage](https://github.com/w3c/sdw-sosa-ssn/tree/gh-pages/ssn/usage)</dt>
+  <dt><a href="https://github.com/w3c/sdw-sosa-ssn/tree/gh-pages/ssn/rdf">ssn/rdf</a></dt>
   <dd>
-    The implementation report for the Semantic Sensor Network Ontology, initially developed by the Spatial Data on the Web Working Group.
-    <br>[Implementation report](https://w3c.github.io/sdw-sosa-ssn/ssn/usage/)
+    RDF implementation of the SSN Ontology — 2023 edition, plus supporting resources
   </dd>
-
-  <dt>
-  [ssn-usecases](https://github.com/w3c/sdw-sosa-ssn/tree/gh-pages/ssn/usecases)
-  </dt>
+  <dt><a href="https://github.com/w3c/sdw-sosa-ssn/tree/gh-pages/ssn/rdf/ontology">ssn/rdf/ontology</a></dt>
   <dd>
-    A use cases document describing the reasons and new use cases for a proposed update to SSN in 2023.
-    <br>[SSN Use cases](https://w3c.github.io/sdw-sosa-ssn/ssn/usecases/)
+    RDF implementation of the SSN Ontology — 2023 edition
   </dd>
-
-  <dt>[ssn](https://github.com/w3c/sdw-sosa-ssn/tree/gh-pages/ssn)</dt>
+  <dt><a href="https://github.com/w3c/sdw-sosa-ssn/tree/gh-pages/ssn/rdf/ontology/core">ssn/rdf/ontology/core</a></dt>
   <dd>
-    The Semantic Sensor Network Ontology Recommendation
-    <br>[Editor's Draft](https://w3c.github.io/sdw-sosa-ssn/ssn/)
-    <br>[W3C Recommendation](https://www.w3.org/TR/vocab-ssn/)
-
-    This is a working draft with both SSN and SOSA ontology source files, examples and the specification document.
-
+    RDF implementation of the core terms of the SSN Ontology — 2023 edition — in `sosa:` namespace
+  </dd>
+  <dt><a href="https://github.com/w3c/sdw-sosa-ssn/tree/gh-pages/ssn/rdf/ontology/extensions">ssn/rdf/ontology/extensions</a></dt>
+  <dd>
+    RDF implementation of extensions to the SSN Ontology — documented in the (draft) Recommendation
+  </dd>
+  <dt><a href="https://github.com/w3c/sdw-sosa-ssn/tree/gh-pages/ssn/rdf/ontology/alignments">ssn/rdf/ontology/alignments</a></dt>
+  <dd>
+    RDF implementation of alignments of the SSN Ontology to external ontologies — documented in the (draft) Recommendation
+  </dd>
+  <dt><a href="https://github.com/w3c/sdw-sosa-ssn/tree/gh-pages/ssn/rdf/examples">ssn/rdf/examples</a></dt>
+  <dd>
+    RDF examples of applications of the SSN Ontology 
   </dd>
 </dl>
 
