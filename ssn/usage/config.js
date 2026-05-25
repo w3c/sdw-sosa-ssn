@@ -91,6 +91,15 @@ var respecConfig = {
       orcid: "0000-0002-8742-7730"
     }
   ],
+  contributors: [
+    {
+      name: "Erdem Önal",
+      w3cid: 171540,
+      company: "Université Jean-Monnet-Saint-Étienne, FR",
+      companyURL: "https://www.univ-st-etienne.fr/",
+      orcid: "0009-0006-6580-3711"
+    }
+  ],
   localBiblio: {
     "usage-ssn": {
       authors: ["Raúl García-Castro", "Armin Haller", "Nandana Mihindukulasooriya", "(editors)"],
