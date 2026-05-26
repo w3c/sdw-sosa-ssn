@@ -12,11 +12,9 @@ jobs:
       - uses: actions/checkout@v6
       - uses: w3c/spec-prod@v2
         with:
-          W3C_ECHIDNA_TOKEN: ${{ secrets.SECRET_ECHIDNA_TOKEN }}
+          W3C_ECHIDNA_TOKEN: ${{ secrets.ECHIDNA_TOKEN }}
           SOURCE: ssn/index.html
-          # Replace following with appropriate value. See options.md for details.
           W3C_WG_DECISION_URL: https://docs.google.com/document/d/15TBmYhgRjncdd_bvmTKygCD8aIhQo1-Tkg3eOKjYNTw/edit?tab=t.0#heading=h.p4osy2xb7ec
-          # Usually, you want the following set too...
           W3C_BUILD_OVERRIDE: |
             shortName: vocab-ssn-2023
             specStatus: WD
