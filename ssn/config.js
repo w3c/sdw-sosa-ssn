@@ -1,9 +1,7 @@
 
 async function loadTurtle() {
   // load the highlighter for turtle
-  const worker = await new Promise(resolve => {
-    require(["core/worker"], ({ worker }) => resolve(worker));
-  });
+  const worker = await document.respec.worker;
   const action = "highlight-load-lang";
   const langURL = new URL("./turtle.js", window.location).href;
   const propName = "hljsDefineTurtle";
