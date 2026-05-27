@@ -96,6 +96,7 @@ var respecConfig = {
     },
     {
       name: "Krzysztof Janowicz",
+      w3cid: "43518",
       company: "Universität Wien, AT",
       companyURL: "https://www.univie.ac.at/",
       orcid: "0009-0003-1968-887X"
