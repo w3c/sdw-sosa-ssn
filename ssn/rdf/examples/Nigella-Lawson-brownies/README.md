@@ -29,10 +29,10 @@ flowchart LR
     STEP -->|isDecomposedAsPlan| PLAN
 
 %% Variables
-    Variable -->|isInputVarOf| STEP
-    Variable -->|isOutputVarOf| STEP
-
-
+    Variable -->|pplan_isInputVarOf| STEP
+    Variable -->|pplan_isOutputVarOf| STEP
+    Variable -->|sosa_inputFor| PLAN
+    Variable -->|sosa_outputFor| PLAN
 
 
 %% =====================================================
@@ -53,6 +53,7 @@ flowchart LR
     Deployment -->|deployedSystem| SYS
     Platform -->|hosts| SYS
     SYS -->|implements| STEP
+    SYS -->|implements| PLAN
 
 
 %% =====================================================
@@ -516,9 +517,9 @@ Variables (`p-plan:Variable`) at plan level describe abstract requirements — w
 
 A `sosa:Procedure` defines what to do; a `sosa:System` knows how to do it in a particular context. The `sosa:implements` predicate connects them. During execution, `sosa:madeByActuator` (for actuations) and `sosa:madeBySensor` (for observations) record which system carried out the activity. `agent:geert` is modelled as both a `prov:Agent` and a `sosa:Sensor`/`sosa:System` because the quality-check step requires human observation.
 
-### ActuatableProperty vs ObservableProperty
+### Actuation on Property vs Observation on Property
 
-Most transformation steps act on an `sosa:ActuatableProperty` — a property whose value can be changed by an actuator (e.g., `prop:state-butter-chocolate` transitions from solid to liquid). The quality-check step targets an `sosa:ObservableProperty` (`parameter:the_colour_of_the_top_of_the_brownie`) — a property whose value is read, not changed.
+Most transformation steps act on an `sosa:Property` via `sosa:actsOnProperty` — a property whose value can be changed by an actuator (e.g., `prop:state-butter-chocolate` transitions from solid to liquid). The quality-check step targets a `sosa:Property` via `sosa:observedProperty` (`parameter:the_colour_of_the_top_of_the_brownie`) — a property whose value is read, not changed.
 
 ### Time and Sequence
 
@@ -527,6 +528,14 @@ Step ordering at plan level uses `p-plan:isPrecededBy`. At execution level, `sos
 ### Sub-activities and prov:wasInformedBy
 
 The melting actuation decomposes into three lower-level `prov:Activity` instances (acting-as-recipient, heating, homogenising), each associated with one physical component. The parent actuation declares `prov:wasInformedBy` each sub-activity, making the internal workflow of the composite system explicit without elevating sub-activities to members of the collection.
+
+### Modelling Choice: System as Agent vs. Instrument as Entity
+
+`inst:whisk-geert` and the other kitchen tools are modelled as `sosa:System` instances that act as agents in their own right, delegating their agency to `agent:geert` via `prov:actedOnBehalfOf`. Each system is the agent (`prov:wasAssociatedWith`) in its corresponding sub-activity, and `prov:used` / `sosa:hasResult` track only the entities that are actually transformed — the ingredients and intermediate products. The tool itself does not appear as a `prov:Entity` consumed or produced by the activity.
+
+An alternative modelling would treat `agent:geert` as the sole agent across all activities, while the tools appear as `prov:Entity` instances `prov:used` alongside the transformed ingredients. Under that alternative, `exec:homogenising-2026-02-10` would carry `prov:wasAssociatedWith agent:geert` and `prov:used inst:whisk-geert, ent:butter_001, ent:chocolate_001`.
+
+The chosen approach is preferred for two reasons. First, it keeps the role of each physical component explicit at the deployment level (each tool is a `sosa:System` that `sosa:implements` a specific step) and more faithfully reflects the SSN-SOSA distinction between a system that *acts* and an entity that is *acted upon*. Delegating agency via `prov:actedOnBehalfOf` still traces responsibility back to `agent:geert` without conflating the cook with his utensils. Second, and equally important, it enables a clean PROV derivation view: because only transformed entities appear as `prov:used` and `sosa:hasResult` (≡ `prov:generated`), the full derivation chain from raw ingredients to final brownies can be reconstructed purely from those two predicates, without tools or instruments polluting the lineage graph.
 
 ---
 
