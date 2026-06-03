@@ -27,6 +27,8 @@ flowchart LR
 
     PLAN -->|hasSubPlan| PLAN
     STEP -->|isDecomposedAsPlan| PLAN
+    STEP -->|isPrecededBy| STEP
+    STEP -->|isStepOfPlan| PLAN
 
 %% Variables
     Variable -->|pplan_isInputVarOf| STEP
@@ -60,7 +62,7 @@ flowchart LR
 %% EXECUTION
 %% =====================================================
     subgraph EXECUTION["EXECUTION"]
-        Activity([Activity])
+        Activity([Activity / Execution])
         Entity([Entity])
     end
 
@@ -73,8 +75,8 @@ flowchart LR
 %% Activity relations
     Activity -->|correspondsToStep| STEP
     Activity -->|madeBySystem| SYS
-    Activity -->|used| Entity
-    Activity -->|hasResult| Entity
+    Activity -->|used / hasFeatureOfInterest| Entity
+    Activity -->|generated / hasResult| Entity
     Activity -->|usedProcedure| PLAN
 
 
@@ -116,6 +118,7 @@ flowchart RL
         PLAN_MIX["Mixing"]
         PLAN_BAK["Baking"]
         PLAN_OBS["Quality Check"]
+        PLAN_COOL["Remove & Cool Down"]
 
         V_boter([var:butter])
         V_choc([var:dark-chocolate])
@@ -144,6 +147,7 @@ flowchart RL
     style PLAN_MIX fill:#c6a0f5,stroke:#2E5C8A,color:#000
     style PLAN_BAK fill:#c6a0f5,stroke:#2E5C8A,color:#000
     style PLAN_OBS fill:#c6a0f5,stroke:#2E5C8A,color:#000
+    style PLAN_COOL fill:#c6a0f5,stroke:#2E5C8A,color:#000
 
     style V_boter fill:#fe7130,stroke:#2E5C8A,color:#000
     style V_choc fill:#fe7130,stroke:#2E5C8A,color:#000
@@ -168,12 +172,14 @@ flowchart RL
     PLAN0 -->|hasSubPlan| PLAN_MIX
     PLAN0 -->|hasSubPlan| PLAN_BAK
     PLAN0 -->|hasSubPlan| PLAN_OBS
+    PLAN0 -->|hasSubPlan| PLAN_COOL
 
     STEP_smelt -->|isDecomposedAsPlan| PLAN_SMELT
     STEP_hak -->|isDecomposedAsPlan| PLAN_CHOP
     STEP_meng -->|isDecomposedAsPlan| PLAN_MIX
     STEP_bak -->|isDecomposedAsPlan| PLAN_BAK
     STEP_controle -->|isDecomposedAsPlan| PLAN_OBS
+    STEP_afkoelen -->|isDecomposedAsPlan| PLAN_COOL
 
 %% Top-level sequence
     STEP_bak -.->|isPrecededBy| STEP_meng -.->|isPrecededBy| STEP_hak -.->|isPrecededBy| STEP_smelt
@@ -367,6 +373,7 @@ Each major phase of the recipe is elaborated as a named sub-plan (`p-plan:isSubP
 | `plan:mixing` | `ActuatingProcedure` | Mix all ingredients |
 | `plan:baking` | `ActuatingProcedure` | Bake the batter |
 | `plan:bake_until_light_brown_top` | `ObservingProcedure` | Monitor colour of the top until light brown |
+| `plan:remove_from_oven_and_cool_down` | `ActuatingProcedure` | Remove brownies from the oven and let them cool down |
 
 Note that `plan:bake_until_light_brown_top` is an `sosa:ObservingProcedure` (not actuating), reflecting the quality-check nature of this step.
 
@@ -391,7 +398,7 @@ step:preheating → step:batter_in_baking_tin → step:baking_tin_in_oven
     → step:bake_until_light_brown_top → step:remove_from_oven_and_cool_down
 ```
 
-`step:bake_until_light_brown_top` is both a `p-plan:Step` and an `sosa:ObservingProcedure`, because it requires a human or sensor to observe the brownie colour, not just actuate.
+`step:bake_until_light_brown_top` is both a `p-plan:Step` and an `sosa:ObservingProcedure`, because it requires a human or sensor to observe the brownie colour, not just actuate. `step:remove_from_oven_and_cool_down` is decomposed as `plan:remove_from_oven_and_cool_down`, an `sosa:ActuatingProcedure` that covers removing the tin from the oven and the subsequent cooling.
 
 **Variables**
 
@@ -513,9 +520,37 @@ The observation produces `ent:colour_001` (typed as `colour:light-brown`), whose
 
 Variables (`p-plan:Variable`) at plan level describe abstract requirements — what ingredient, how much, and in which step. Entities (`prov:Entity`) at execution level are concrete instantiations of those variables. The predicate `p-plan:correspondsToVariable` links each entity back to its variable, enabling automated traceability from raw data to the original recipe specification.
 
+SOSA does not define an equivalent of `p-plan:Variable` as a first-class concept: its procedures reference features and properties at execution level, but have no built-in "slot" for abstract, pre-execution requirements. `p-plan:Variable` fills that gap — it is the named placeholder that exists at plan level independently of any concrete run. The predicates `sosa:inputFor` and `sosa:outputFor` are used on variables to connect them to the procedures they belong to, but the abstraction itself is contributed by p-plan. `p-plan:correspondsToVariable` is therefore a critical bridge predicate with no direct SOSA equivalent.
+
 ### Procedures and Systems
 
 A `sosa:Procedure` defines what to do; a `sosa:System` knows how to do it in a particular context. The `sosa:implements` predicate connects them. During execution, `sosa:madeByActuator` (for actuations) and `sosa:madeBySensor` (for observations) record which system carried out the activity. `agent:geert` is modelled as both a `prov:Agent` and a `sosa:Sensor`/`sosa:System` because the quality-check step requires human observation.
+
+**Why a `p-plan:Plan` is also a `sosa:Procedure`**
+
+`sosa:Procedure` is defined as "a set of instructions describing how to make a change in the world, or how to perform an observation". `p-plan:Plan` is defined as "a document, protocol, method, list of steps or set of instructions that are being followed". These definitions overlap: any plan that describes how an activity is to be carried out is simultaneously a procedure. Typing each plan as `sosa:Procedure` (and as `sosa:ActuatingProcedure` or `sosa:ObservingProcedure` depending on its nature) makes this alignment explicit and allows the SOSA execution vocabulary — in particular `sosa:usedProcedure` — to reference plans directly.
+
+**`p-plan:MultiStep`: the formal bridge between Step and Plan**
+
+p-plan defines `p-plan:MultiStep` as a subclass of both `p-plan:Plan` and `p-plan:Step`. A MultiStep IS simultaneously a step in a parent plan and a plan in its own right, and therefore also a `sosa:Procedure`. In this example, the same conceptual entity is modelled as two separate resources — e.g., `step:melting` (the step reference in the parent plan) and `plan:melting` (the procedure definition) — connected via `p-plan:isDecomposedAsPlan`. This two-entity approach makes the distinction between the step reference and the procedure definition explicit, at the cost of some redundancy. `p-plan:MultiStep` would collapse them into one resource; both approaches are conformant with p-plan.
+
+**When is a `p-plan:Step` also a `sosa:Procedure`?**
+
+Not all steps are typed as `sosa:Procedure`. The rule applied in this example is:
+
+- A step that is decomposed into its own sub-plan via `p-plan:isDecomposedAsPlan` is **not** separately typed as `sosa:Procedure` — the corresponding Plan entity carries the Procedure typing.
+- A leaf step (no `isDecomposedAsPlan`) that is directly implemented by a `sosa:System` via `sosa:implements` **is** typed as `sosa:Procedure`, because `sosa:implements` requires its object to be a `sosa:Procedure`.
+
+In this example, `step:butter_and_chocolate_in_pan`, `step:heat_pan`, `step:stir_until_homogeneous_liquid_mixture`, `step:batter_in_baking_tin`, and `step:bake_until_light_brown_top` are leaf steps directly implemented by a system and are therefore typed as `sosa:Procedure`.
+
+### Execution Links: `correspondsToStep` and `usedProcedure`
+
+Each activity in the execution layer carries two complementary links back to the plan:
+
+- `p-plan:correspondsToStep` → locates the activity in the plan structure: which abstract step does this execution realise?
+- `sosa:usedProcedure` → references the Plan-as-Procedure that was actually followed: the detailed instructions
+
+These serve different analytical purposes. `correspondsToStep` supports process traceability (was every step executed, and in the right order?). `usedProcedure` supports provenance reasoning (what instructions governed this activity?). Together they fully connect the execution layer to the planning layer across both ontologies.
 
 ### Actuation on Property vs Observation on Property
 
