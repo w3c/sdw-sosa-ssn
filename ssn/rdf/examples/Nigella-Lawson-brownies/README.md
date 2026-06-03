@@ -554,7 +554,7 @@ These serve different analytical purposes. `correspondsToStep` supports process 
 
 ### Actuation on Property vs Observation on Property
 
-Most transformation steps act on an `sosa:Property` via `sosa:actsOnProperty` — a property whose value can be changed by an actuator (e.g., `prop:state-butter-chocolate` transitions from solid to liquid). The quality-check step targets a `sosa:Property` via `sosa:observedProperty` (`parameter:the_colour_of_the_top_of_the_brownie`) — a property whose value is read, not changed.
+Most transformation steps act on an `sosa:Property` via `sosa:actsOnProperty` — a property whose value can be changed by an actuator (e.g., `prop:state-butter-chocolate` transitions from solid to liquid). The quality-check step targets a `sosa:Property` via `sosa:observedProperty` (`parameter:the_colour_of_the_top_of_the_brownie`) — a property whose value is changed by baking and read in an observation.
 
 ### Time and Sequence
 
