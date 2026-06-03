@@ -172,6 +172,13 @@ var respecConfig = {
         href: "https://github.com/CommonCoreOntology/CommonCoreOntologies",
         rawDate: "2022",
     },
+    "ConnectedSystems": {
+      href: "https://docs.ogc.org/is/23-001/23-001.html",
+      authors: ["Alexandre Robin"],
+      title: "OGC API - Connected Systems - Part 1: Feature Resources",
+      publisher: "Open Geospatial Consortium",
+      date: "2025"
+    },
     "Description-Logics": {
       href: "http://www.cambridge.org/9780521150118",
       authors: ["Franz Baader", "Diego Calvanese", "Deborah L. McGuinness", "Daniele Nardi", "Peter F. Patel-Schneider"],
