@@ -1,9 +1,7 @@
 
 async function loadTurtle() {
   // load the highlighter for turtle
-  const worker = await new Promise(resolve => {
-    require(["core/worker"], ({ worker }) => resolve(worker));
-  });
+  const worker = await document.respec.worker;
   const action = "highlight-load-lang";
   const langURL = new URL("./turtle.js", window.location).href;
   const propName = "hljsDefineTurtle";
@@ -96,6 +94,7 @@ var respecConfig = {
     },
     {
       name: "Krzysztof Janowicz",
+      w3cid: "43518",
       company: "Universität Wien, AT",
       companyURL: "https://www.univie.ac.at/",
       orcid: "0009-0003-1968-887X"
