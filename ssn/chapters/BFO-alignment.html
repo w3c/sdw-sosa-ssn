@@ -6,13 +6,14 @@
 <p>
   BFO is a 'top level ontology', which makes a basic distinction between
   <a href="https://github.com/bfo-ontology/bfo-2020?tab=readme-ov-file#basic-formal-ontology-hierarchy">Continuants and Occurrents</a>.
-  This allows us to make a primary alignment of <a>sosa:Execution</a> and <a>sosa:Deployment</a> with classes in the BFO Occurrent hierarchy, and
+  This allows us to make a primary alignment of <a>sosa:Execution</a> and <a>sosa:Deployment</a> with classes in the BFO
+  Occurrent hierarchy, and
   <a>sosa:Asset</a>, <a>sosa:System</a> and <a>sosa:Sample</a> with classes in the BFO Continuant hierarchy.
 </p>
 <p>
   CCO is a 'mid level ontology', based on BFO.
   CCO provides modules for several sets of common concepts that may then be used in many application domains.
-  This includes specializations of the BFO classes that align with classes from SSN. 
+  This includes specializations of the BFO classes that align with classes from SSN.
 </p>
 
 <section id="BFO_Alignment_ns">
@@ -54,75 +55,141 @@
 
   <ul class="align-on-symbol">
     <li>
-      <span class="lhs"><a>sosa:Actuation</a></span>
-      <span class="symbol logic">≡</span>
-      <span class="rhs">
-        <span
-          title="A Planned Act by which an Agent causes the position or location of some Object to change.">cco:ont00000357</span>
-        <span class="logic">or</span>
-        <span
-          title="A Planned Act of performing a series of mechanical or chemical operations on something in order to change or preserve it.">cco:ont00000908</span>
-        <br><i>"Act of Motion" or "Act of Artifact Processing"</i>
+      <span class="lhs"
+        title="A Planned Act by which an Agent causes the position or location of some Object to change.">
+        cco:ont00000357
+        <br><i>"Act of Motion"</i>
       </span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a>sosa:Actuation</a></span>
+    </li>
+    <li>
+      <span class="lhs"
+        title="An Act of Material Artifact Processing in which an existing Material Artifact is acted upon in a manner that changes, adds, or removes one or more of its Qualities, Dispositions, or Functions.">
+        cco:ont00000970
+        <br><i>"Act of Artifact Modification"</i>
+      </span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a>sosa:Actuation</a></span>
+    </li>
+    <li>
+      <span class="lhs"
+        title="A Material Artifact that is designed to manage, command, direct, or regulate the behavior of at least one other Material Artifact.">
+        cco:ont00000781
+        <br><i>"Control System"</i>
+      </span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a>sosa:Actuator</a></span>
+    </li>
+    <li>
+      <span class="lhs"
+        title="A Transducer that is designed to convert some control signal into mechanical motion.">
+        cco:ont00001242
+        <br><i>"Actuator"</i>
+      </span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a>sosa:Actuator</a></span>
     </li>
     <li>
       <span class="lhs"><a>sosa:Asset</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs">
-        <span
-          title="b is an independent continuant =Def b is a continuant & there is no c such that b specifically depends on c or b generically depends on c">obo:BFO_0000004</span>
+      <span class="rhs" title="b is an independent continuant =Def b is a continuant & there is no c such that b specifically depends on c or b generically depends on c">
+        obo:BFO_0000004
         <br><i>independent continuant</i>
       </span>
     </li>
     <li>
       <span class="lhs"><a>sosa:Deployment</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs">
-        <span
-          title="An Act in which at least one Agent plays a causative role and which is prescribed by some Directive Information Content Entity held by at least one of the Agents.">cco:ont00000228</span>
+      <span class="rhs" title="An Act in which at least one Agent plays a causative role and which is prescribed by some Directive Information Content Entity held by at least one of the Agents.">
+        cco:ont00000228
         <br><i>Planned Act</i>
       </span>
     </li>
     <li>
       <span class="lhs"><a>sosa:Execution</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs">
-        <span
-          title="An Act in which at least one Agent plays a causative role and which is prescribed by some Directive Information Content Entity held by at least one of the Agents.">cco:ont00000228</span>
+      <span class="rhs" title="An Act in which at least one Agent plays a causative role and which is prescribed by some Directive Information Content Entity held by at least one of the Agents.">
+        cco:ont00000228
         <br><i>Planned Act</i>
       </span>
     </li>
     <li>
+      <span class="lhs"
+        title="An Act of Information Processing in which an algorithm is executed to act upon one or more input Information Content Entities into one or more output Information Content Entities.">
+        cco:ont00001158
+        <br><i>"Act of Data Transformation"</i>
+      </span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a>sosa:Execution</a></span>
+    </li>
+    <li>
       <span class="lhs"><a>sosa:FeatureOfInterest</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs">
-        <span title="An entity is anything that exists or has existed or will exist">obo:BFO_0000001</span>
+      <span class="rhs" title="An entity is anything that exists or has existed or will exist">
+        obo:BFO_0000001
         <br><i>entity</i>
       </span>
     </li>
     <li>
+      <span class="lhs"
+        title="A Planned Act of acquiring information from a source via the use of one or more senses.">
+        cco:ont00000037
+        <br><i>"Act of Observation"</i>
+      </span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a>sosa:Observation</a></span>
+    </li>
+    <li>
+      <span class="lhs"
+        title="A Planned Act that involves determining the extent, dimensions, quanity, or quality of an Entity relative to some standard.">
+        cco:ont00000345
+        <br><i>"Act of Measuring"</i>
+      </span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a>sosa:Observation</a></span>
+    </li>
+    <li>
+      <span class="lhs"
+        title="A Planned Act that involves determining the extent, dimensions, quanity, or quality of an Entity relative to some standard.">
+        cco:ont00000371
+        <br><i>"Act of Prediction"</i>
+      </span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a>sosa:Observation</a></span>
+    </li>
+    <li>
+      <span class="lhs"
+        title="An Act of Measuring that involves the comparison of a measurement of a similar Entity or of a portion of the Entity being estimated to produce an approximated measurement of the target Entity.">
+        cco:ont00000078
+        <br><i>"Act of Estimation"</i>
+      </span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a>sosa:Observation</a></span>
+    </li>
+    <li>
       <span class="lhs"><a>sosa:Observation</a></span>
       <span class="symbol logic">≡</span>
-      <span class="rhs">
-        <span
-          title="A Planned Act of acquiring information from a source via the use of one or more senses.">cco:ont00000037</span>
-        <span class="logic">or</span>
-        <span
-          title="A Planned Act that involves determining the extent, dimensions, quanity, or quality of an Entity relative to some standard.">cco:ont00000345</span>
-        <span class="logic">or</span>
-        <span
-          title="A Planned Act that involves the generation of a Predictive Information Content entity that is intended to describe an uncertain possible future event, value, entity, or attribute of an entity.">cco:ont00000371</span>
-        <br><i>"Act of Observation" or "Act of Measuring" or "Act of Prediction"</i>
+      <span class="rhs" title="A Process that realizes a Sensor Function or Sensor Role.">
+        cco:ont00002075
+        <br><i>"Sensing Process"</i>
       </span>
     </li>
     <li>
-      <span class="lhs"><a>sosa:Platform</a></span>
+      <span class="lhs"><a>sosa:Observation</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs">
-        <span
-          title="A material entity is an independent continuant has some portion of matter as continuant part">obo:BFO_0000040</span>
-        <br><i>"material entity"</i>
+      <span class="rhs" title="An Information Content Entity that consists of a set of propositions that describe some Entity.">
+        (sosa:hasResult <span class="logic">only</span> cco:ont00000853)
+        <br><i>hasResult only "Descriptive Information Content Entity"</i>
       </span>
+    </li>
+    <li>
+      <span class="lhs" title="A Material Entity that bears a Sensor Platform Artifact Function or Sensor Platform Role">
+        cco:ont00000021
+        <br><i>"Sensor Platform"</i>
+      </span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a>sosa:Platform</a></span>
     </li>
     <li>
       <span class="lhs"><a>sosa:Procedure</a></span>
@@ -148,44 +215,59 @@
     <li>
       <span class="lhs"><a>sosa:Sample</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs">
-        <span
-          title="b is an independent continuant =Def b is a continuant & there is no c such that b specifically depends on c or b generically depends on c">obo:BFO_0000004</span>
+      <span class="rhs" title="b is an independent continuant =Def b is a continuant & there is no c such that b specifically depends on c or b generically depends on c">
+        obo:BFO_0000004
         <br><i>independent continuant</i>
       </span>
     </li>
     <li>
       <span class="lhs"><a>sosa:Sampling</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs">
-        <span
-          title="A Planned Act of performing a series of mechanical or chemical operations on something in order to change or preserve it.">cco:ont00000908</span>
-        <span class="logic">or</span>
-        <span title="A Planned Act of using an Artifact.">cco:ont00000566</span>
-        <span class="logic">or</span>
-        <span
-          title="A Planned Act in which one or more input Information Content Entities are received, manipulated, transferred, or stored by an Agent.">cco:ont00000366</span>
-        <br><i>"Act of Artifact Processing" or "Act of Artifact Employment" or "Act of Information Processing"</i>
+      <span class="rhs" title="b is an independent continuant =Def b is a continuant & there is no c such that b specifically depends on c or b generically depends on c.">
+        (sosa:hasResult <span class="logic">only</span> obo:BFO_0000004)
+        <br><i>hasResult only "independent continuant"</i>
       </span>
+    </li>
+    <li>
+      <span class="lhs"><a>sosa:Sample</a></span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs" title="b is an independent continuant =Def b is a continuant & there is no c such that b specifically depends on c or b generically depends on c">
+        obo:BFO_0000004
+        <br><i>independent continuant</i>
+      </span>
+    </li>
+    <li>
+      <span class="lhs"
+        title="A Material Entity that bears a Sensor Function or Sensor Role.">
+        cco:ont00000569
+        <br><i>"Sensor"</i>
+      </span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a>sosa:Sensor</a></span>
     </li>
     <li>
       <span class="lhs"><a>sosa:Stimulus</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs">
-        <span class="logic">or</span>
-        <span
-          title="A Process that is the cause of or one of the causes of some other Process.">cco:ont00000978</span>
+      <span class="rhs" title="A Process that is the cause of or one of the causes of some other Process.">
+        cco:ont00000978
         <br><i>Cause</i>
       </span>
     </li>
     <li>
       <span class="lhs"><a>sosa:System</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs">
-        <span
-          title="b is an independent continuant =Def b is a continuant & there is no c such that b specifically depends on c or b generically depends on c">obo:BFO_0000004</span>
+      <span class="rhs" title="b is an independent continuant =Def b is a continuant & there is no c such that b specifically depends on c or b generically depends on c">
+        obo:BFO_0000004
         <br><i>independent continuant</i>
       </span>
+    </li>
+    <li>
+      <span class="lhs" title="A Material Artifact that is designed to use algorithms to transform some Information Content Entity into another Information Content Entity">
+        cco:ont00000117
+        <br><i>Information Processing Artifact</i>
+      </span>
+      <span class="symbol logic">⊑</span>
+      <span class="rhs"><a>sosa:System</a></span>
     </li>
   </ul>
 </section>
@@ -200,62 +282,56 @@
     <li>
       <span class="lhs"><a>sosa:hasFeatureOfInterest</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs">
-        <span
-          title="y has_input x iff x is an instance of Continuant and y is an instance of Process, such that the presence of x at the beginning of y is a necessary condition for the start of y.">cco:ont00001921</span>
+      <span class="rhs" title="y has_input x iff x is an instance of Continuant and y is an instance of Process, such that the presence of x at the beginning of y is a necessary condition for the start of y.">
+        cco:ont00001921
         <br><i>has input</i>
       </span>
     </li>
     <li>
       <span class="lhs"><a>sosa:hasResult</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs">
-        <span
-          title="y has_output x iff x is an instance of Continuant and y is an instance of Process, such that the presence of x at the end of y is a necessary condition for the completion of y.">cco:ont00001986</span>
+      <span class="rhs" title="y has_output x iff x is an instance of Continuant and y is an instance of Process, such that the presence of x at the end of y is a necessary condition for the completion of y.">
+        cco:ont00001986
         <br><i>has output</i>
       </span>
     </li>
     <li>
       <span class="lhs"><a>sosa:implements</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs">
-        <span
-          title="x prescribed_by y iff y is an instance of Information Content Entity and x is an instance of Entity, such that y serves as a rule or guide for x if x is an Occurrent, or y serves as a model for x if x is a Continuant.">cco:ont00001920</span>
+      <span class="rhs" title="x prescribed_by y iff y is an instance of Information Content Entity and x is an instance of Entity, such that y serves as a rule or guide for x if x is an Occurrent, or y serves as a model for x if x is a Continuant.">
+        cco:ont00001920
         <br><i>prescribed by</i>
       </span>
     </li>
     <li>
       <span class="lhs"><a>sosa:isSampleOf</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs">
-        <span
-          title="A continuant c2 is a successor of some continuant c1 iff there is some process p1 and c1 is an input to p1 and c2 is an output of p1. Inverse of is predecessor.">cco:ont00001775</span>
+      <span class="rhs" title="A continuant c2 is a successor of some continuant c1 iff there is some process p1 and c1 is an input to p1 and c2 is an output of p1. Inverse of is predecessor.">
+        cco:ont00001775
         <br><i>is successor of</i>
       </span>
     </li>
     <li>
       <span class="lhs"><a>sosa:madeBySystem</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs">
-        <span title="p has participant c =Def c participates in p">obo:BFO_0000057</span>
+      <span class="rhs" title="p has participant c =Def c participates in p">
+        obo:BFO_0000057
         <br><i>has participant</i>
       </span>
     </li>
     <li>
       <span class="lhs"><a>sosa:usedProcedure</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs">
-        <span
-          title="x prescribed_by y iff y is an instance of Information Content Entity and x is an instance of Entity, such that y serves as a rule or guide for x if x is an Occurrent, or y serves as a model for x if x is a Continuant.">cco:ont00001920</span>
+      <span class="rhs" title="x prescribed_by y iff y is an instance of Information Content Entity and x is an instance of Entity, such that y serves as a rule or guide for x if x is an Occurrent, or y serves as a model for x if x is a Continuant.">
+        cco:ont00001920
         <br><i>prescribed by</i>
       </span>
     </li>
     <li>
       <span class="lhs"><a>sosa:wasOriginatedBy</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs">
-        <span
-          title="x caused_by y iff x and y are instances of Occurrent, and x is a consequence of y.">cco:ont00001819</span>
+      <span class="rhs" title="x caused_by y iff x and y are instances of Occurrent, and x is a consequence of y.">
+        cco:ont00001819
         <br><i>caused by</i>
       </span>
     </li>
@@ -264,44 +340,43 @@
 </section>
 
 <section id="BFO_Alignment_explanations">
-<h4>Explanations</h4>
-<p>
-  Most of these alignments are straightforward, but a few merit some explanation.
-</p>
+  <h4>Explanations</h4>
+  <p>
+    Most of these alignments are straightforward, but a few merit some explanation.
+  </p>
 
-<ol>
-  <li>
-    A <a>sosa:Platform</a> is a `material entity` such as a buoy, station, satellite, etc.
-    Even if a deployment location has no specific physical infrastructure, the location of a deployment is necessarily a material entity.  
-  </li>
-  <li>
-    A <a>sosa:Procedure</a> is a re-usable recipe or protocol or system datasheet, thus it is purely information
-    content.
-    In particular it describes the actions and settings that a system must implement.
-  </li>
-  <li>
-    A <a>sosa:Property</a> may be generic, so that it applies to many entities.
-    Or it may be specific to a particular individual.
-    See <a href="#feature-specific-properties"></a> for further discussion.
-  </li>
-  <li>
-    A <a>sosa:Stimulus</a> is an interaction of an observable proxy for the desired property with the sensor.
-    See [[SSO-Pattern]] for further discussion.
-  </li>
-  <li>
-    The range of <a>sosa:hasResult</a> is not specified. 
-    However, following <a href="#SOSAhasResult">its definition</a> we can infer that 
-    <ul>
-      <li>in the context of <a>sosa:Actuation</a> or <a>sosa:Observation</a>, the range of <a>sosa:hasResult</a> is <span
-          title="A Generically Dependent Continuant that generically depends on some Information Bearing Entity and stands in relation of aboutness to some Entity.">`cco:ont00000958`</span>
-        <i>Information Content Entity</i>
-      </span></li>
-      <li>in the context of <a>sosa:Sampling</a>, the range of <a>sosa:hasResult</a> is <span
-          title="independent continuant: b is an independent continuant =Def b is a continuant & there is no c such that b specifically depends on c or b generically depends on c">`obo:BFO_0000004`</span>
-        <i>independent continuant</i>
-      </span></li>
-    </ul>
-  </li>
-</ol>
+  <ol>
+    <li>
+      A <a>sosa:Procedure</a> is a re-usable recipe or protocol or system datasheet, thus it is purely information
+      content.
+      In particular it describes the actions and settings that a system must implement.
+    </li>
+    <li>
+      A <a>sosa:Property</a> may be generic, so that it applies to many entities.
+      Or it may be specific to a particular individual.
+      See <a href="#feature-specific-properties"></a> for further discussion.
+    </li>
+    <li>
+      A <a>sosa:Stimulus</a> is an interaction of an observable proxy for the desired property with the sensor.
+      See [[SSO-Pattern]] for further discussion.
+    </li>
+    <li>
+      The range of <a>sosa:hasResult</a> is not specified in SSN.
+      However, following <a href="#SOSAhasResult">its definition</a> we can infer that
+      <ul>
+        <li>in the context of <a>sosa:Observation</a>, the range of <a>sosa:hasResult</a> is
+          <span
+            title="An Information Content Entity that consists of a set of propositions that describe some Entity.">`cco:ont00000853`</span>
+          <i>Descriptive Information Content Entity</i>
+          </span>
+        </li>
+        <li>in the context of <a>sosa:Sampling</a>, the range of <a>sosa:hasResult</a> is <span
+            title="independent continuant: b is an independent continuant =Def b is a continuant & there is no c such that b specifically depends on c or b generically depends on c">`obo:BFO_0000004`</span>
+          <i>independent continuant</i>
+          </span>
+        </li>
+      </ul>
+    </li>
+  </ol>
 
 </section>
