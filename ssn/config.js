@@ -133,6 +133,8 @@ var respecConfig = {
         }, {
           value: "Alex Robin, Georobotix, FR"
         }, {
+          value: "Alec Sculley, Summit Knowledge Solutions, USA"
+        }, {
           value: "Hylke van der Schaaf, Fraunhofer IOSB, DE"
         }
       ]
