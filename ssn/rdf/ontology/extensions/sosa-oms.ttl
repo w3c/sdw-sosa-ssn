@@ -5,10 +5,11 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
 @prefix time: <http://www.w3.org/2006/time#> .
 @prefix dqv: <http://www.w3.org/ns/dqv#> .
 @prefix prov: <https://www.w3.org/TR/prov-o/#> .
-@prefix dqv: <http://www.w3.org/ns/dqv#> .
+@prefix qudt:  <http://qudt.org/schema/qudt/> .
 
 @prefix schema: <http://schema.org/> .
 
@@ -120,13 +121,72 @@ sosa:SpatialSample
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/SpatialSample> ;
   rdfs:isDefinedBy sosa-sam: .
 
+sosa-oms:shape 
+  a owl:ObjectProperty ;  
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/SpatialSample/shape-sem> ;
+  rdfs:label "shape"@en ;
+  skos:definition "the Geometry of the SpatialSample."@en ;
+  rdfs:subPropertyOf geosparql:hasGeometry ; 
+  schema:domainIncludes sosa:SpatialSample ;
+  rdfs:isDefinedBy sosa-oms: .
+
+sosa-oms:horizontalPositionalAccuracy 
+  a owl:ObjectProperty ;
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/SpatialSample/horizontalPositionalAccuracy-sem> ;
+  rdfs:label "horizontal positional accuracy"@en ;
+  skos:definition "positional accuracy of the horizontal component of the Geometry of the SpatialSample."@en ;
+  schema:domainIncludes sosa:SpatialSample ;
+  rdfs:isDefinedBy sosa-oms: .
+
+sosa-oms:verticalPositionalAccuracy 
+  a owl:ObjectProperty ;
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/SpatialSample/verticalPositionalAccuracy-sem> ;
+  rdfs:label "vertical positional accuracy"@en ;
+  skos:definition "positional accuracy of the vertical component of the Geometry of the SpatialSample."@en ;
+  schema:domainIncludes sosa:SpatialSample ;
+  rdfs:isDefinedBy sosa-oms: .
+
 sosa:MaterialSample 
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/MaterialSample> ;
   rdfs:isDefinedBy sosa-sam: .
 
+sosa-oms:size 
+  a owl:ObjectProperty ;
+  rdfs:subPropertyOf qudt:quantity ; 
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/MaterialSample/size-sem> ;
+  rdfs:label "size"@en ;
+  skos:definition "a physical extent of the MaterialSample."@en ;
+  schema:domainIncludes sosa:MaterialSample ;
+  rdfs:isDefinedBy sosa-oms: .
+
+sosa-oms:storageLocation 
+  rdf:type owl:ObjectProperty ; 
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/MaterialSample/storageLocation-sem> ;
+  rdfs:label "storage location"@en ;
+  skos:definition "the location of a MaterialSample."@en ;
+  schema:domainIncludes sosa:MaterialSample ;
+  rdfs:isDefinedBy sosa-oms: .
+
+sosa-oms:sourceLocation 
+  rdf:type owl:ObjectProperty ; 
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/MaterialSample/sourceLocation-sem> ;
+  rdfs:label "source location"@en ;
+  skos:definition "the location from where the MaterialSample was obtained."@en ;
+  rdfs:subPropertyOf geosparql:hasGeometry ;
+  schema:domainIncludes sosa:MaterialSample ;
+  rdfs:isDefinedBy sosa-oms: .
+
 sosa:StatisticalSample 
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/StatisticalSample> ;
   rdfs:isDefinedBy sosa-sam: .
+
+sosa-oms:classification 
+  a owl:ObjectProperty ;
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/StatisticalSample/classification-sem> ;
+  rdfs:label "classification"@en ;
+  skos:definition "a criterion by which the subset was defined."@en ;
+  schema:domainIncludes sosa:StatisticalSample ;
+  rdfs:isDefinedBy sosa-oms: .
 
 sosa:SampleCollection 
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/SampleCollection> ;
@@ -289,6 +349,32 @@ sosa-oms:makesObservationCollection
 
 sosa:Sampling ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sampling> ;
   rdfs:isDefinedBy sosa-sam: .
+
+sosa-oms:samplingLocation 
+  a owl:ObjectProperty ;  
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-core/AbstractSampling/samplingLocation-sem> ;
+  rdfs:label "sampling location"@en ;
+  skos:definition "If location information pertaining to the Sampling is provided, the attribute samplingLocation:Geometry shall be used."@en ;
+  rdfs:subPropertyOf geosparql:hasGeometry ; 
+  schema:domainIncludes sosa:Sampling ;
+  rdfs:isDefinedBy sosa-oms: .
+
+sosa-oms:time 
+  a owl:ObjectProperty ;  
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-core/AbstractSampling/time-sem> ;
+  rdfs:label "sampling time"@en ;
+  skos:definition "If information on the time of the Sampling is provided, the attribute time:TM_Object shall be used."@en ;
+  rdfs:subPropertyOf time:hasTime ; 
+  schema:domainIncludes sosa:Sampling ;
+  rdfs:isDefinedBy sosa-oms: .
+
+sosa-oms:parameter 
+  a owl:ObjectProperty ;  
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-core/AbstractSampling/parameter-sem> ;
+  rdfs:label "parameter"@en ;
+  skos:definition "Arbitrary event-specific parameter relevant to the Sampling."@en ;
+  schema:domainIncludes sosa:Sampling ;
+  rdfs:isDefinedBy sosa-oms: .
 
 sosa:madeSampling ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sampler/sampling-sem> ;
   rdfs:isDefinedBy sosa-sam: .
