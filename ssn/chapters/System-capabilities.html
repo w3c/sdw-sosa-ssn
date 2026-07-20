@@ -8,7 +8,8 @@
     meant to support. Previous standards and data formats have been limited by the constraints of their
     underlying technologies often resulting in solutions that were simple to implement but that could only
     handle real-life exceptions through the use of workarounds. The use of &quot;fill
-    values&quot; or &quot;magic numbers&quot; were a simple and common solution to data quality requirements or to indicate equipment
+    values&quot; or &quot;magic numbers&quot; were a simple and common solution to data quality requirements or to
+    indicate equipment
     failure. Unfortunately, these could later be inadvertently analyzed as actual instrument readings.</p>
 <p>The richness of RDF/S and ontological approaches offer opportunities for the rich and deep recording of system
     information and results. This perversely creates a new problem in that the ability to handle complexity can
@@ -20,21 +21,30 @@
     of real-life deployments: data quality constraints must ensure that the data is sensical while making allowanced
     for the storage of out-of-bounds values that may indicate a problem with a deployed sensor.</p>
 
-<p>The System Capabilities module has been downsized in this edition and its vocabulary extensively reworked with a number of
-    classes deleted in favor of external vocabularies and property repositories. The module further suffered from under specification
+<p>The System Capabilities module has been downsized in this edition and its vocabulary extensively reworked with a
+    number of
+    classes deleted in favor of external vocabularies and property repositories. The module further suffered from under
+    specification
     and lacked documentation over its intended use.
 </p>
 
-<p>The usage of <a href="#SOSAObservation">observations</a> and <a href="#SOSAObservationCollection">observation collections</a> has been expanded
-    to capabilities and conditions through the enumeration of values and constraints on those values without assigning a reporting sensor or timestamp.
+<p>The usage of <a href="#SOSAObservation">observations</a> and
+    <a href="#SOSAObservationCollection">observation collections</a> has been expanded
+    to capabilities and conditions through the enumeration of values and constraints on those values without assigning a
+    reporting sensor or timestamp.
     This allows to reuse the same structure to report on sensor behavior.
 </p>
 
-<p>This edition has also removed the notion of &quot;Ranges&quot; within its vocabulary due to the absence of an appropriate datatype or vocabulary to
-    describe numerical ranges. xsd:minInclusive/xsd:maxInclusive are part of OWL reserved vocabulary, and schema:minValue/schema:maxValue created additional
-    problems relating to the property of the feature. Instead, this edition recommends the specification of individual, simple properties such as
-    <em>MinMeasurableTemperature</em> and <em>MaxMeasurableTemperature</em>. Apart from <a href="#SOSAhasValidityContext">hasValidityContext</a>, this edition does not
-    provide means to relate properties or describe them further. External ontologies are expected to be complementary to this module, such as the
+<p>This edition has also removed the notion of &quot;Ranges&quot; within its vocabulary due to the absence of an
+    appropriate datatype or vocabulary to
+    describe numerical ranges. xsd:minInclusive/xsd:maxInclusive are part of OWL reserved vocabulary, and
+    schema:minValue/schema:maxValue created additional
+    problems relating to the property of the feature. Instead, this edition recommends the specification of individual,
+    simple properties such as
+    <em>MinMeasurableTemperature</em> and <em>MaxMeasurableTemperature</em>. Apart from
+    <a href="#SOSAhasValidityContext">hasValidityContext</a>, this edition does not
+    provide means to relate properties or describe them further. External ontologies are expected to be complementary to
+    this module, such as the
     <a href="https://i-adopt.github.io/ontology/">I-ADOPT Framework ontology</a>, and the
     <a href="http://www.ontology-of-units-of-measure.org/page/om-2">Ontology of Units of Measure</a>.
 </p>
@@ -44,8 +54,10 @@
 <p style="text-align: center;">
     The suggested prefix for the System Capabilities Module namespace is <code>sosa</code>. </p>
 <p style="text-align: center;">
-    <br>The ontology IRI of the System Capabilities Module is <a href="http://www.w3.org/ns/sosa/systems/">http://www.w3.org/ns/sosa/systems/</a>.
-    <br>The version IRI of the System Capabilities Module 2023 edition is <a href="http://www.w3.org/ns/sosa/2023/systems/">http://www.w3.org/ns/sosa/2023/systems/</a>.
+    <br>The ontology IRI of the System Capabilities Module is
+    <a href="http://www.w3.org/ns/sosa/systems/">http://www.w3.org/ns/sosa/systems/</a>.
+    <br>The version IRI of the System Capabilities Module 2023 edition is
+    <a href="http://www.w3.org/ns/sosa/2023/systems/">http://www.w3.org/ns/sosa/2023/systems/</a>.
 </p>
 
 <p class="note">
@@ -56,29 +68,39 @@
 
 <section class="informative" id="SysCap-overview">
     <h4>Overview</h4>
-    <p>The System Capabilities Module comprises of two primary concepts: the system's capability to sense and the conditions
-        under which it can do so. Both concepts are closely related and are often described as one and the same in industrial
-        literature. The System Capabilities describes the properties of the measurement being performed by the system while the
-        Operating Conditions describe the potentials environments in which the system is deployed. This separation is needed in order
-        to account for the variability in the performance of the system under different environmental or operating parameters.
+    <p>The System Capabilities Module comprises of two primary concepts: the system's capability to sense and the
+        conditions
+        under which it can do so. Both concepts are closely related and are often described as one and the same in
+        industrial
+        literature. The System Capabilities describes the properties of the measurement being performed by the system
+        while the
+        Operating Conditions describe the potentials environments in which the system is deployed. This separation is
+        needed in order
+        to account for the variability in the performance of the system under different environmental or operating
+        parameters.
         Furthermore:
     </p>
     <ul>
-        <li>Some systems depend on unreported environmental measurements in order to produce results (e.g., temperature is a component of
+        <li>Some systems depend on unreported environmental measurements in order to produce results (e.g., temperature
+            is a component of
             the relative humidity calculation)</li>
         <li>Some systems have requirements for proper operation for properties that they are unable to sense themselves
             (e.g., minimum power supply voltage)</li>
-        <li>The performance of some systems may vary depending on the environmental context (e.g., the accuracy of a frequency counter
+        <li>The performance of some systems may vary depending on the environmental context (e.g., the accuracy of a
+            frequency counter
             may be affected by ambient temperature.)</li>
     </ul>
 
-    <p>This information allows designers to communicate complex operating behavior to the consumer of the system results and to
-        simplify procurement and system deployment decision by enabling searches for systems capable of fulfilling a specific
+    <p>This information allows designers to communicate complex operating behavior to the consumer of the system results
+        and to
+        simplify procurement and system deployment decision by enabling searches for systems capable of fulfilling a
+        specific
         requirement.
     </p>
     <p>
         The reporting of operating conditions and capabilities is done through
-        <a href="#SOSAObservationCollection">observation collections</a> that aggregate <a href="#SOSAObservation">observations</a>.
+        <a href="#SOSAObservationCollection">observation collections</a> that aggregate
+        <a href="#SOSAObservation">observations</a>.
         Each observation gives a value for a system or environment <a href="#SOSAProperty">property</a>.
         The information is typically provided by a system vendor, and in this context sensor, procedure, and timestamp
         are generally not reported.
@@ -93,9 +115,11 @@
     </p>
 
     <figure>
-        <embed title="System Capabilities Module Overview" alt="System Capabilities Module Overview" src="images/SSNSystem-overview.svg" style="width: 90%;" />
+        <embed title="System Capabilities Module Overview" alt="System Capabilities Module Overview"
+            src="images/SSNSystem-overview.svg" style="width: 90%;" />
         <figcaption>
-            Classes and relationships involved in the description of the operating conditions and capabilities of a system.
+            Classes and relationships involved in the description of the operating conditions and capabilities of a
+            system.
             In this diagram, unqualified names refer to classes and properties in the <code>sosa:</code> namespace.
             <br>
             <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
@@ -104,26 +128,37 @@
 
     <section class="informative" id="SysCap-operating-conditions">
         <h5>Operating Conditions</h5>
-        <p>A system is linked to its operating conditions through property <a href="#SOSAhasOperatingConditions">hasOperatingConditions</a>.
-            The operating conditions themselves are modelled as <a href="#SOSAObservation">observations</a> or <a href="#SOSAObservationCollection">observation collections</a>, typically about the system environment.
-            Furthermore, operating conditions can be typed by one of the sub-classes of <a href="#SOSAOperatingConditions">OperatingConditions</a> so as to explicit the desirability of the conditions. Three such sub-classes are provided as a basic classification:
-            <a href="#SOSANormalOperatingConditions">NormalOperatingConditions</a>, <a href="#SOSASuboptimalOperatingConditions">SuboptimalOperatingConditions</a>,
+        <p>A system is linked to its operating conditions through property
+            <a href="#SOSAhasOperatingConditions">hasOperatingConditions</a>.
+            The operating conditions themselves are modelled as <a href="#SOSAObservation">observations</a> or
+            <a href="#SOSAObservationCollection">observation collections</a>, typically about the system environment.
+            Furthermore, operating conditions can be typed by one of the sub-classes of
+            <a href="#SOSAOperatingConditions">OperatingConditions</a> so as to explicit the desirability of the
+            conditions. Three such sub-classes are provided as a basic classification:
+            <a href="#SOSANormalOperatingConditions">NormalOperatingConditions</a>,
+            <a href="#SOSASuboptimalOperatingConditions">SuboptimalOperatingConditions</a>,
             and <a href="#SOSASurvivableConditions">SurvivableConditions</a>.
         </p>
         <p class="note">
-            For illustration purposes, this specification includes a <a href="#SysCap-environment-properties">sample vocabulary</a> consisting of a short
+            For illustration purposes, this specification includes a
+            <a href="#SysCap-environment-properties">sample vocabulary</a> consisting of a short
             list of properties about the system environment.
         </p>
-        <p>It is possible with additional ontological statements to create conditions that are &quot;latching&quot;, as in the case of
-            damaged sensors with permanently degraded operating characteristics. It is also possible to describe operating modes of systems
-            using all the expressivity of observations and observation collections. Implementers may define additional sub-classes of
+        <p>It is possible with additional ontological statements to create conditions that are &quot;latching&quot;, as
+            in the case of
+            damaged sensors with permanently degraded operating characteristics. It is also possible to describe
+            operating modes of systems
+            using all the expressivity of observations and observation collections. Implementers may define additional
+            sub-classes of
             <a href="#SOSAOperatingConditions">OperatingConditions</a> to account for such use cases.
         </p>
 
         <figure>
-            <embed title="System properties" alt="System properties" src="images/SSNSystem-operating-conditions.svg" style="width: 90%;" />
+            <embed title="System properties" alt="System properties" src="images/SSNSystem-operating-conditions.svg"
+                style="width: 90%;" />
             <figcaption>
-                Classes and relationships involved in the description of the operating conditions of a system (typically an observation
+                Classes and relationships involved in the description of the operating conditions of a system (typically
+                an observation
                 collection about the system environment).
                 <br>
                 In this diagram, unqualified names refer to classes and properties in the <code>sosa:</code> namespace.
@@ -133,47 +168,62 @@
         </figure>
 
         <p class="note">
-            The <a href="#SOSAhasFeatureOfInterest">feature of interest</a> of the operating conditions may be the system itself, but this is not mandatory.
+            The <a href="#SOSAhasFeatureOfInterest">feature of interest</a> of the operating conditions may be the
+            system itself, but this is not mandatory.
             <br />
             The <a href="#SOSAmadeBySensor">sensor</a> that made the observations can be left unspecified.
         </p>
 
-        <p>The following example describes that sensor <code>ex:InkBird-IBS-TH2-0354313547</code> can survive from -273.0&nbsp;°C to 80.0&nbsp;°C.</p>
+        <p>The following example describes that sensor <code>ex:InkBird-IBS-TH2-0354313547</code> can survive from
+            -273.0&nbsp;°C to 80.0&nbsp;°C.</p>
 
-        <pre class="example turtle" data-include="./rdf/examples/InkBird-IBS-TH2-survivable-conditions.ttl" data-include-format="text"></pre>
+        <pre class="example turtle" data-include="./rdf/examples/InkBird-IBS-TH2-survivable-conditions.ttl"
+            data-include-format="text"></pre>
     </section>
     <section class="informative" id="SysCap-system-capabilities">
         <h5>System Capabilities</h5>
-        <p>A system is linked to its capabilities through property <a href="#SOSAhasSystemCapability">hasSystemCapability</a>.
+        <p>A system is linked to its capabilities through property
+            <a href="#SOSAhasSystemCapability">hasSystemCapability</a>.
             The system capabilities themselves are modelled as <a href="#SOSAObservation">observations</a> or <a href="#SOSAObservationCollection">observation
-                collections</a>, that have for <a href="#SOSAobservedProperty">observed property</a> a property that qualifies some capability of the system.
+                collections</a>, that have for <a href="#SOSAobservedProperty">observed property</a> a property that
+            qualifies some capability of the system.
         </p>
         <p class="note">
-            For illustration purposes, this specification includes a <a href="#SysCap-capability-properties">sample vocabulary</a> consisting of a short
+            For illustration purposes, this specification includes a
+            <a href="#SysCap-capability-properties">sample vocabulary</a> consisting of a short
             list of properties about system capabilities.
         </p>
 
-        <p>Optionally, system capabilities may be linked through property <a href="#SOSAhasValidityContext">hasValidityContext</a> to some
-            <a href="#SOSAObservation">observations</a> or <a href="#SOSAObservationCollection">observation collections</a> that model the context under
+        <p>Optionally, system capabilities may be linked through property
+            <a href="#SOSAhasValidityContext">hasValidityContext</a> to some
+            <a href="#SOSAObservation">observations</a> or
+            <a href="#SOSAObservationCollection">observation collections</a> that model the context under
             which the system capabilities are valid. These observations are typically about the system environment.
             Validity contexts are especially useful to describe performance bands of systems.
-            Examples include environmental sensors that present different measurement accuracies in certain concentration ranges or that offer
+            Examples include environmental sensors that present different measurement accuracies in certain
+            concentration ranges or that offer
             detection-only capabilities at very low concentrations.
         </p>
         <p class="note">
-            For illustration purposes, this specification includes a <a href="#SysCap-environment-properties">sample vocabulary</a> consisting of a short
+            For illustration purposes, this specification includes a
+            <a href="#SysCap-environment-properties">sample vocabulary</a> consisting of a short
             list of properties about the system environment.
         </p>
         <p>
-            System Capabilities are properties that are relevant while the system is in operation. Operating Conditions may be relevant irrespective of
-            the operating state; a sensor that exceeds its <a href="#SOSASurvivableConditions">SurvivableConditions</a> will be rendered inoperable
-            irrespective of whether it was powered on or off at the time, as in the case of a deep water sensor reaching its crush-depth.
+            System Capabilities are properties that are relevant while the system is in operation. Operating Conditions
+            may be relevant irrespective of
+            the operating state; a sensor that exceeds its <a href="#SOSASurvivableConditions">SurvivableConditions</a>
+            will be rendered inoperable
+            irrespective of whether it was powered on or off at the time, as in the case of a deep water sensor reaching
+            its crush-depth.
         </p>
 
         <figure>
-            <embed title="System properties" alt="System properties" src="images/SSNSystem-observation-validity-context.svg" style="width: 90%;" />
+            <embed title="System properties" alt="System properties"
+                src="images/SSNSystem-observation-validity-context.svg" style="width: 90%;" />
             <figcaption>
-                Detailed classes and relationships involved in the description of the context (typically an observation collection about the
+                Detailed classes and relationships involved in the description of the context (typically an observation
+                collection about the
                 system environment) under which an observation (typically about the system capabilities) is valid.
                 <br>
                 In this diagram, unqualified names refer to classes and properties in the <code>sosa:</code> namespace.
@@ -182,26 +232,38 @@
             </figcaption>
         </figure>
 
-        <p class="warning">The axiomatization of property <a href="#SOSAhasSystemCapability">hasSystemCapability</a> enforces that the
+        <p class="warning">The axiomatization of property <a href="#SOSAhasSystemCapability">hasSystemCapability</a>
+            enforces that the
             <a href="#SOSAhasFeatureOfInterest">feature of interest</a> of the system capability is the system itself.
         </p>
 
-        <p>The following example describes the system capabilities of sensor <code>ex:IBS-TH2-Plus-T-687343</code> in terms of its accuracy
+        <p>The following example describes the system capabilities of sensor <code>ex:IBS-TH2-Plus-T-687343</code> in
+            terms of its accuracy
             and measurable temperature range, valid from 0.0 to 99.0&nbsp;%R.H.</p>
 
-        <pre class="example turtle" data-include="./rdf/examples/IBS-TH2-PLUS-capabilities.ttl" data-include-format="text"></pre>
+        <pre class="example turtle" data-include="./rdf/examples/IBS-TH2-PLUS-capabilities.ttl"
+            data-include-format="text"></pre>
     </section>
     <section class="informative" id="SysCap-property-conditions">
         <h5>Property Validity Context</h5>
 
-        <p>The object property <a href="#SOSAhasValidityContext">hasValidityContext</a> may be used to qualify the context in which a SOSA <a href="#SOSAProperty">Property</a> is valid. This context is modelled as individual <a href="#SOSAObservation">observations</a> or as grouped <a href="#SOSAObservationCollection">observation collections</a>. When the qualified <a href="#SOSAProperty">Property</a> represents a system capability,
-            the observed properties in the validity context typically refer to aspects of the system's operating environment.
-            For example, water heaters are characterized by nominal power and efficiency values under specified inlet and outlet temperatures and flow rates, and their energy consumption at steady temperature is typically expressed in kWh/24h in the context where the water temperature is maintained at 65&nbsp;°C.
+        <p>The object property <a href="#SOSAhasValidityContext">hasValidityContext</a> may be used to qualify the
+            context in which a SOSA <a href="#SOSAProperty">Property</a> is valid. This context is modelled as
+            individual <a href="#SOSAObservation">observations</a> or as grouped
+            <a href="#SOSAObservationCollection">observation collections</a>. When the qualified
+            <a href="#SOSAProperty">Property</a> represents a system capability,
+            the observed properties in the validity context typically refer to aspects of the system's operating
+            environment.
+            For example, water heaters are characterized by nominal power and efficiency values under specified inlet
+            and outlet temperatures and flow rates, and their energy consumption at steady temperature is typically
+            expressed in kWh/24h in the context where the water temperature is maintained at 65&nbsp;°C.
         </p>
         <figure>
-            <embed title="System properties" alt="System properties" src="images/SSNSystem-property-validity-context.svg" style="width: 90%;" />
+            <embed title="System properties" alt="System properties"
+                src="images/SSNSystem-property-validity-context.svg" style="width: 90%;" />
             <figcaption>
-                Detailed classes and relationships involved in the description of the context (typically an observation collection
+                Detailed classes and relationships involved in the description of the context (typically an observation
+                collection
                 about the system environment) in which a property (typically about the system capabilities) is valid.
                 <br>
                 In this diagram, unqualified names refer to classes and properties in the <code>sosa:</code> namespace.
@@ -209,32 +271,41 @@
                 <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
             </figcaption>
         </figure>
-        <p class="note">Beyond the scope of the System Capabilities module, <a href="#SOSAProperty">Properties</a> may also be further described with validity contexts.
-            For example standard meteorological practice defines reference measurement heights, such as 10&nbsp;m for wind and 2&nbsp;m for air temperature.
+        <p class="note">Beyond the scope of the System Capabilities module, <a href="#SOSAProperty">Properties</a> may
+            also be further described with validity contexts.
+            For example standard meteorological practice defines reference measurement heights, such as 10&nbsp;m for
+            wind and 2&nbsp;m for air temperature.
         </p>
 
-        <p>The following example describes the humidity accuracy property <code>ex:IBSTH2HumidityAccuracy</code>, valid at certain temperatures and relative humidities.</p>
+        <p>The following example describes the humidity accuracy property <code>ex:IBSTH2HumidityAccuracy</code>, valid
+            at certain temperatures and relative humidities.</p>
 
-        <pre class="example turtle" data-include="./rdf/examples/InkBird-IBS-TH2-properties.ttl" data-include-format="text"></pre>
+        <pre class="example turtle" data-include="./rdf/examples/InkBird-IBS-TH2-properties.ttl"
+            data-include-format="text"></pre>
     </section>
     <section>
         <h4>Guidance on System Capability properties and ranges</h4>
 
-        <p>The following example demonstrates a possible solution for describing sensor reading limitations using other ontologies such as I-ADOPT:</p>
+        <p>The following example demonstrates a possible solution for describing sensor reading limitations using other
+            ontologies such as I-ADOPT:</p>
 
         <pre class="example turtle" data-include="./rdf/examples/i-adopt.ttl" data-include-format="text"></pre>
 
-        <p>The advantage of this approach is that multiple statistical statements can be made about the property beyond that of simple
+        <p>The advantage of this approach is that multiple statistical statements can be made about the property beyond
+            that of simple
             maximum / minimum values, such as nominal or peak values.
         </p>
         <p>The Observation structure can similarly be used to report on the quality of individual results using the <a href="https://www.w3.org/TR/vocab-dqv/">Data
-                Quality Vocabulary</a>. In some applications, the properties of individual measurements vary within the operating conditions of the sensor.
+                Quality Vocabulary</a>. In some applications, the properties of individual measurements vary within the
+            operating conditions of the sensor.
             The values of these properties can then be reported alongside the individual result entries.
         </p>
         <pre class="example turtle" data-include="./rdf/examples/dqv.ttl" data-include-format="text"></pre>
 
-        <p>The System Capabilities Module also introduced a <a href="#SOSABattery">Battery</a> class to represent power supply requirements for mobile sensors.
-            The illustrative <a href="#SOSACAPBatteryLifetime"><code>sosa-cap:BatteryLifetime</code></a> system capability property allows to record expected battery
+        <p>The System Capabilities Module also introduced a <a href="#SOSABattery">Battery</a> class to represent power
+            supply requirements for mobile sensors.
+            The illustrative <a href="#SOSACAPBatteryLifetime"><code>sosa-cap:BatteryLifetime</code></a> system
+            capability property allows to record expected battery
             utilization either on a nominal basis or within different operating conditions.
         </p>
 
@@ -312,9 +383,12 @@
         </p>
         <p>
             <em>has operating conditions</em> &mdash;
-            Relation between a System and its Operating Conditions, modelled as ObservationCollection (or Observation) describing
-            conditions under which the System can operate. A short but extensible list of sub-classes of OperatingConditions is
-            provided in SSN-System, such as normal operating conditions, suboptimal conditions, and survivable conditions.
+            Relation between a System and its Operating Conditions, modelled as ObservationCollection (or Observation)
+            describing
+            conditions under which the System can operate. A short but extensible list of sub-classes of
+            OperatingConditions is
+            provided in SSN-System, such as normal operating conditions, suboptimal operating conditions, and survivable
+            conditions.
         </p>
         <dl>
             <dt>Domain Includes</dt>
@@ -395,8 +469,10 @@
         </p>
         <p>
             <em>has validity context</em> &mdash;
-            Links a an observation collection or observation (typically about the system capabilities) or a property (typically about
-            the system capabilities) to its validity context, described as an observation collection or observation (typically about the system environment)
+            Links an observation collection or observation (typically about the system capabilities) or a property
+            (typically about
+            the system capabilities) to its validity context, described as an observation collection or observation
+            (typically about the system environment)
         </p>
         <dl>
             <dt>Domain Includes</dt>
@@ -432,7 +508,9 @@
         </p>
         <p>
             <em>Normal Operating Conditions</em> &mdash;
-            Type of <a href="#SOSAObservation">observation</a> or <a href="#SOSAObservationCollection">observation collection</a> that describe the conditions under which a system is expected to operate normally.
+            Type of <a href="#SOSAObservation">observation</a> or
+            <a href="#SOSAObservationCollection">observation collection</a> that describe the conditions under which a
+            system is expected to operate normally.
         </p>
         <dl>
             <dt>Subclass of</dt>
@@ -461,7 +539,9 @@
         </p>
         <p>
             <em>Operating Condition</em> &mdash;
-            Type of <a href="#SOSAObservation">observation</a> or <a href="#SOSAObservationCollection">observation collection</a> that describe operating conditions of systems. Sub-classes of this class explicit the desirability of the conditions.
+            Type of <a href="#SOSAObservation">observation</a> or
+            <a href="#SOSAObservationCollection">observation collection</a> that describe operating conditions of
+            systems. Sub-classes of this class explicit the desirability of the conditions.
             Three such sub-classes are provided as a basic classification:
             <a href="#SOSANormalOperatingConditions">NormalOperatingConditions</a>,
             <a href="#SOSASuboptimalOperatingConditions">SuboptimalOperatingConditions</a>,
@@ -483,14 +563,16 @@
     <section class="specterm" id="SOSASuboptimalOperatingConditions">
         <h5><dfn>sosa:SuboptimalOperatingConditions</dfn></h5>
         <p class="crossreference">
-            <strong>IRI:</strong> http://www.w3.org/ns/sosa/SuboptimalConditions
+            <strong>IRI:</strong> http://www.w3.org/ns/sosa/SuboptimalOperatingConditions
         </p>
         <p>
             <strong>an OWL Class</strong>
         </p>
         <p>
-            <em>Suboptimal Conditions</em> &mdash;
-            Type of <a href="#SOSAObservation">observation</a> or <a href="#SOSAObservationCollection">observation collection</a> that describe the conditions under which a system is expected to operate sub-optimally. Results will still be reported but the
+            <em>Suboptimal Operating Conditions</em> &mdash;
+            Type of <a href="#SOSAObservation">observation</a> or
+            <a href="#SOSAObservationCollection">observation collection</a> that describe the conditions under which a
+            system is expected to operate sub-optimally. Results will still be reported but the
             performance of the sensor, in term of precision for example, will be impaired.
         </p>
         <dl>
@@ -520,9 +602,13 @@
         </p>
         <p>
             <em>Survivable Conditions</em> &mdash;
-            Type of <a href="#SOSAObservation">observation</a> or <a href="#SOSAObservationCollection">observation collection</a> that describe the conditions under which a system is expected to survive, that is to continue to exist in its current form, even
-            if its future operations are impaired. A typical example is the temperature at which a sensor looses physical
-            integrity and looses its shape. A system or sensor exposed to conditions outside of those reported by SurvivableConditions
+            Type of <a href="#SOSAObservation">observation</a> or
+            <a href="#SOSAObservationCollection">observation collection</a> that describe the conditions under which a
+            system is expected to survive, that is to continue to exist in its current form, even
+            if its future operations are impaired. A typical example is the temperature at which a sensor loses
+            physical
+            integrity and loses its shape. A system or sensor exposed to conditions outside of those reported by
+            SurvivableConditions
             will no longer be serviceable.
         </p>
         <dl>
@@ -545,11 +631,15 @@
 </section>
 <section id="SysCap-sample-vocabularies">
     <h6>Sample vocabularies of properties</h6>
-    <p>For illustration purposes, this section describes sample vocabularies consisting of short lists of properties about system capabilities and the system environment.</p>
+    <p>For illustration purposes, this section describes sample vocabularies consisting of short lists of properties
+        about system capabilities and the system environment.</p>
     <p class="warning">
-        These vocabularies have been partially generated by a large language model and are intended for illustrative purposes only.
-        The Spatio-temporal Data on the Web Working Group does not aim to maintain comprehensive or authoritative lists of properties.
-        Users SHOULD instead adopt concepts defined by other organizations and published through appropriate vocabulary portals.
+        These vocabularies have been partially generated by a large language model and are intended for illustrative
+        purposes only.
+        The Spatio-temporal Data on the Web Working Group does not aim to maintain comprehensive or authoritative lists
+        of properties.
+        Users SHOULD instead adopt concepts defined by other organizations and published through appropriate vocabulary
+        portals.
     </p>
 
     <section id="SysCap-capability-properties">
@@ -564,40 +654,68 @@
         <p style="text-align: center;">
             The RDF graph containing the definition of terms in this sample vocabulary is available at
             <a href="http://www.w3.org/ns/sosa/system-capability-properties">http://www.w3.org/ns/sosa/system-capability-properties</a>,
-            <br>with permanent IRI <a href="http://www.w3.org/ns/sosa/2023/system-capability-properties">http://www.w3.org/ns/sosa/2023/system-capability-properties</a>.
+            <br>with permanent IRI
+            <a href="http://www.w3.org/ns/sosa/2023/system-capability-properties">http://www.w3.org/ns/sosa/2023/system-capability-properties</a>.
         </p>
         <p class="note">
             The definition of each concept is displayed as a tooltip when hovering over the concept.
         </p>
         <div class="azlist">
             <p>
-                <code title="Closeness of agreement between a measured value and the true value.">sosa-cap:Accuracy</code>,
-                <code id="SOSACAPBatteryLifetime" title="Total useful life of a system's battery.">sosa-cap:BatteryLifetime</code>,
-                <code title="The smallest detectable change in the battery level or charge state measurable by the system.">sosa-cap:BatteryResolution</code>,
-                <code title="The slow change in a sensor's output signal without a corresponding change in the input.">sosa-cap:Drift</code>,
-                <code title="The rate at which a system performs a function, such as sensing or actuation.">sosa-cap:Frequency</code>,
-                <code title="The closeness of agreement between the measured humidity and the true humidity.">sosa-cap:HumidityAccuracy</code>,
-                <code title="The delay between the input or command and the corresponding response of a system.">sosa-cap:Latency</code>,
-                <code title="The smallest quantity of a substance that can be reliably detected by the sensor.">sosa-cap:LowerDetectionLimit</code>,
-                <code title="The planned interval at which the system requires inspection, calibration, or servicing.">sosa-cap:MaintenanceSchedule</code>,
-                <code title="The highest frequency at which the system can operate or make observations.">sosa-cap:MaxFrequency</code>,
-                <code title="The maximum relative humidity value that the system can measure.">sosa-cap:MaxMeasurableHumidity</code>,
-                <code title="The maximum temperature that a Sensor can measure.">sosa-cap:MaxMeasurableTemperature</code>,
-                <code title="The maximum power level at which the system can reliably operate.">sosa-cap:MaxOperatingPower</code>,
-                <code title="The lowest frequency at which the system can operate or make observations.">sosa-cap:MinFrequency</code>,
-                <code title="The minimum relative humidity value that the system can measure.">sosa-cap:MinMeasurableHumidity</code>,
-                <code title="The minimum temperature that a Sensor can measure.">sosa-cap:MinMeasurableTemperature</code>,
-                <code title="The minimum power level at which the system can reliably operate.">sosa-cap:MinOperatingPower</code>,
-                <code title="The degree to which repeated measurements show the same results.">sosa-cap:Precision</code>,
-                <code title="The smallest change in a quantity being measured that causes a perceptible change in the sensor output.">sosa-cap:Resolution</code>,
-                <code title="The time it takes for a system to respond to an input or stimulus.">sosa-cap:ResponseTime</code>,
-                <code title="The minimum radio frequency signal power that the system can detect or decode reliably.">sosa-cap:RFSensitivity</code>,
-                <code title="The extent to which a sensor responds only to the target measurand and not to other quantities.">sosa-cap:Selectivity</code>,
-                <code title="The magnitude of change in output of a sensor per unit change in input.">sosa-cap:Sensitivity</code>,
-                <code title="The closeness of agreement between the measured temperature and the true temperature.">sosa-cap:TemperatureAccuracy</code>,
-                <code title="The precision of the temperature measurements made by a Sensor.">sosa-cap:TemperaturePrecision</code>,
-                <code title="The smallest temperature change that can be detected and reported by the system.">sosa-cap:TemperatureResolution</code>,
-                <code title="The maximum quantity of a substance that can be reliably detected by the sensor.">sosa-cap:UpperDetectionLimit</code>,
+                <code
+                    title="Closeness of agreement between a measured value and the true value.">sosa-cap:Accuracy</code>,
+                <code id="SOSACAPBatteryLifetime"
+                    title="Total useful life of a system's battery.">sosa-cap:BatteryLifetime</code>,
+                <code
+                    title="The smallest detectable change in the battery level or charge state measurable by the system.">sosa-cap:BatteryResolution</code>,
+                <code
+                    title="The slow change in a sensor's output signal without a corresponding change in the input.">sosa-cap:Drift</code>,
+                <code
+                    title="The rate at which a system performs a function, such as sensing or actuation.">sosa-cap:Frequency</code>,
+                <code
+                    title="The closeness of agreement between the measured humidity and the true humidity.">sosa-cap:HumidityAccuracy</code>,
+                <code
+                    title="The delay between the input or command and the corresponding response of a system.">sosa-cap:Latency</code>,
+                <code
+                    title="The smallest quantity of a substance that can be reliably detected by the sensor.">sosa-cap:LowerDetectionLimit</code>,
+                <code
+                    title="The planned interval at which the system requires inspection, calibration, or servicing.">sosa-cap:MaintenanceSchedule</code>,
+                <code
+                    title="The highest frequency at which the system can operate or make observations.">sosa-cap:MaxFrequency</code>,
+                <code
+                    title="The maximum relative humidity value that the system can measure.">sosa-cap:MaxMeasurableHumidity</code>,
+                <code
+                    title="The maximum temperature that a Sensor can measure.">sosa-cap:MaxMeasurableTemperature</code>,
+                <code
+                    title="The maximum power level at which the system can reliably operate.">sosa-cap:MaxOperatingPower</code>,
+                <code
+                    title="The lowest frequency at which the system can operate or make observations.">sosa-cap:MinFrequency</code>,
+                <code
+                    title="The minimum relative humidity value that the system can measure.">sosa-cap:MinMeasurableHumidity</code>,
+                <code
+                    title="The minimum temperature that a Sensor can measure.">sosa-cap:MinMeasurableTemperature</code>,
+                <code
+                    title="The minimum power level at which the system can reliably operate.">sosa-cap:MinOperatingPower</code>,
+                <code
+                    title="The degree to which repeated measurements show the same results.">sosa-cap:Precision</code>,
+                <code
+                    title="The smallest change in a quantity being measured that causes a perceptible change in the sensor output.">sosa-cap:Resolution</code>,
+                <code
+                    title="The time it takes for a system to respond to an input or stimulus.">sosa-cap:ResponseTime</code>,
+                <code
+                    title="The minimum radio frequency signal power that the system can detect or decode reliably.">sosa-cap:RFSensitivity</code>,
+                <code
+                    title="The extent to which a sensor responds only to the target measurand and not to other quantities.">sosa-cap:Selectivity</code>,
+                <code
+                    title="The magnitude of change in output of a sensor per unit change in input.">sosa-cap:Sensitivity</code>,
+                <code
+                    title="The closeness of agreement between the measured temperature and the true temperature.">sosa-cap:TemperatureAccuracy</code>,
+                <code
+                    title="The precision of the temperature measurements made by a Sensor.">sosa-cap:TemperaturePrecision</code>,
+                <code
+                    title="The smallest temperature change that can be detected and reported by the system.">sosa-cap:TemperatureResolution</code>,
+                <code
+                    title="The maximum quantity of a substance that can be reliably detected by the sensor.">sosa-cap:UpperDetectionLimit</code>,
             </p>
         </div>
     </section>
@@ -615,7 +733,8 @@
         <p style="text-align: center;">
             The RDF graph containing the definition of terms in this sample vocabulary is available at
             <a href="http://www.w3.org/ns/sosa/system-environment-properties">http://www.w3.org/ns/sosa/system-environment-properties</a>.
-            <br>with permanent IRI <a href="http://www.w3.org/ns/sosa/2023/system-environment-properties">http://www.w3.org/ns/sosa/2023/system-environment-properties</a>.
+            <br>with permanent IRI
+            <a href="http://www.w3.org/ns/sosa/2023/system-environment-properties">http://www.w3.org/ns/sosa/2023/system-environment-properties</a>.
         </p>
         <p class="note">
             The definition of each concept is displayed as a tooltip when hovering over the concept.
@@ -624,22 +743,35 @@
             <p>
                 <code title="The temperature of the environment of the system.">sosa-env:AmbientTemperature</code>,
                 <code title="The humidity of the environment of the system.">sosa-env:AmbientHumidity</code>,
-                <code title="The atmospheric pressure in the environment surrounding the system.">sosa-env:AmbientPressure</code>,
-                <code title="The level of illumination in the environment surrounding the system.">sosa-env:AmbientLightLevel</code>,
+                <code
+                    title="The atmospheric pressure in the environment surrounding the system.">sosa-env:AmbientPressure</code>,
+                <code
+                    title="The level of illumination in the environment surrounding the system.">sosa-env:AmbientLightLevel</code>,
                 <code title="The vertical distance of the system above mean sea level.">sosa-env:Altitude</code>,
                 <code title="The spatial location at which the system is deployed.">sosa-env:DeploymentLocation</code>,
-                <code title="The type of environment in which the system is deployed, e.g., indoor, outdoor, marine, underground.">sosa-env:DeploymentEnvironmentType</code>,
-                <code title="Indicates whether and to what extent the system is subject to vibration in its environment.">sosa-env:ExposureToVibration</code>,
-                <code title="The minimum ambient humidity in the environment in which the system is expected to operate.">sosa-env:MinAmbientRelativeHumidity</code>,
-                <code title="The minimum ambient temperature in the environment in which the system is expected to operate.">sosa-env:MinAmbientTemperature</code>,
-                <code title="The level of magnetic interference present in the system's environment.">sosa-env:MagneticInterferenceLevel</code>,
-                <code title="The maximum ambient humidity in the environment in which the system is expected to operate.">sosa-env:MaxAmbientRelativeHumidity</code>,
-                <code title="The maximum ambient temperature in the environment in which the system is expected to operate.">sosa-env:MaxAmbientTemperature</code>,
-                <code title="The level of pollutants (e.g., particulate matter, NO₂, CO) in the air around the system.">sosa-env:PollutionLevel</code>,
-                <code title="The concentration of salts in the environment surrounding the system, typically used for aquatic or marine deployments.">sosa-env:Salinity</code>,
-                <code title="The level of ultraviolet radiation in the system's environment.">sosa-env:UVExposure</code>,
+                <code
+                    title="The type of environment in which the system is deployed, e.g., indoor, outdoor, marine, underground.">sosa-env:DeploymentEnvironmentType</code>,
+                <code
+                    title="Indicates whether and to what extent the system is subject to vibration in its environment.">sosa-env:ExposureToVibration</code>,
+                <code
+                    title="The minimum ambient humidity in the environment in which the system is expected to operate.">sosa-env:MinAmbientRelativeHumidity</code>,
+                <code
+                    title="The minimum ambient temperature in the environment in which the system is expected to operate.">sosa-env:MinAmbientTemperature</code>,
+                <code
+                    title="The level of magnetic interference present in the system's environment.">sosa-env:MagneticInterferenceLevel</code>,
+                <code
+                    title="The maximum ambient humidity in the environment in which the system is expected to operate.">sosa-env:MaxAmbientRelativeHumidity</code>,
+                <code
+                    title="The maximum ambient temperature in the environment in which the system is expected to operate.">sosa-env:MaxAmbientTemperature</code>,
+                <code
+                    title="The level of pollutants (e.g., particulate matter, NO₂, CO) in the air around the system.">sosa-env:PollutionLevel</code>,
+                <code
+                    title="The concentration of salts in the environment surrounding the system, typically used for aquatic or marine deployments.">sosa-env:Salinity</code>,
+                <code
+                    title="The level of ultraviolet radiation in the system's environment.">sosa-env:UVExposure</code>,
                 <code title="The speed of wind in the system's surrounding environment.">sosa-env:WindSpeed</code>,
-                <code title="The direction from which the wind is blowing in the system's environment.">sosa-env:WindDirection</code>
+                <code
+                    title="The direction from which the wind is blowing in the system's environment.">sosa-env:WindDirection</code>
             </p>
         </div>
     </section>
