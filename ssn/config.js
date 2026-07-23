@@ -35,7 +35,7 @@ var respecConfig = {
   implementationReportURI: "https://w3c.github.io/sdw-sosa-ssn/ssn/usage/",
   noRecTrack: false,
   copyrightStart: "2017",
-  additionalCopyrightHolders: "Open Geospatial Consortium (OGC)",
+  additionalCopyrightHolders: "<a href='https://www.ogc.org'>Open Geospatial Consortium</a>",
   logos: [
     {
       src: "images/OGC-0.png",
