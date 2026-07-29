@@ -34,6 +34,8 @@ var respecConfig = {
   // replace with pointer to GitHub issues list
   implementationReportURI: "https://w3c.github.io/sdw-sosa-ssn/ssn/usage/",
   noRecTrack: false,
+  copyrightStart: "2017",
+  additionalCopyrightHolders: "<a href='https://www.ogc.org'>Open Geospatial Consortium</a>",
   logos: [
     {
       src: "images/OGC-0.png",
@@ -47,7 +49,8 @@ var respecConfig = {
     {
       name: "Simon J D Cox",
       w3cid: "1796",
-      company: "Timely Logic, AU",
+      company: "OGC & Timely Logic, AU",
+      companyURL: "https://www.ogc.org/",
       orcid: "0000-0002-3884-3420",
       w3cid: 1796
     },
@@ -127,15 +130,15 @@ var respecConfig = {
         {
           value: "Abdelfettah Feliachi, BRGM, FR"
         }, {
-          value: "Danielle Limbaugh, Summit Knowledge Solutions, USA"
+          value: "Danielle Limbaugh, Summit Knowledge Solutions, US"
         }, {
           value: "Maja Milicic Brandt, Siemens AG, DE"
         }, {
           value: "Alex Robin, Georobotix, FR"
         }, {
-          value: "Alec Sculley, Summit Knowledge Solutions, USA"
-        }, {
           value: "Hylke van der Schaaf, Fraunhofer IOSB, DE"
+        }, {
+          value: "Alec Sculley, Summit Knowledge Solutions, US"
         }
       ]
     },
