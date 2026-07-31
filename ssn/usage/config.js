@@ -58,7 +58,7 @@ var respecConfig = {
       orcid: "0000-0002-7815-2472"
     },
     {
-      name: "Luis Moreira de Sousa",
+      name: "Luís Moreira de Sousa",
       w3cid: 145885,
       company: "Instituto Superior Técnico Lisboa, PT",
       companyURL: "https://tecnico.ulisboa.pt/en/",
