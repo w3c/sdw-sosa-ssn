@@ -75,7 +75,7 @@ var respecConfig = {
       orcid: "0000-0002-7815-2472"
     },
     {
-      name: "Luis Moreira de Sousa",
+      name: "Luís Moreira de Sousa",
       w3cid: "145885",
       company: "Instituto Superior Técnico Lisboa, PT",
       companyURL: "https://tecnico.ulisboa.pt/en/",
@@ -175,6 +175,13 @@ var respecConfig = {
         title: "The Common Core Ontologies (CCO)",
         href: "https://github.com/CommonCoreOntology/CommonCoreOntologies",
         rawDate: "2022",
+    },
+    "ConnectedSystems": {
+      href: "https://docs.ogc.org/is/23-001/23-001.html",
+      authors: ["Alexandre Robin"],
+      title: "OGC API - Connected Systems - Part 1: Feature Resources",
+      publisher: "Open Geospatial Consortium",
+      date: "2025"
     },
     "Description-Logics": {
       href: "http://www.cambridge.org/9780521150118",
