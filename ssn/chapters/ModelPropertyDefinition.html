@@ -19,30 +19,31 @@
 </p>
 <h4>New property definitions</h4>
 <p>
-    Alternatively, the <a href="https://w3id.org/env/puv">Parameter Usage Vocabulary</a> or <a href="https://w3id.org/iadopt/ont/">I-ADOPT</a> [[I-ADOPT]] may be used to define a new observable or actuatable
-    property.
-    For example, integrating I-ADOPT variables as SOSA properties resolves legacy inconsistencies by decomposing complex properties into explicit, interoperable atomic components. This enriches SOSA observables with reusable, machine-actionable semantics, lowering barriers to cross-system data comparison and sharing.
-    Fig xx and xx show the application of I-ADOPT variables for the properties used in two initial observations to provide input-values for the final observation (see Example 20: concentration of CO2 of the atmosphere at some past time).
+    Alternatively, the <a href="https://w3id.org/env/puv">Parameter Usage Vocabulary</a> or <a href="https://w3id.org/iadopt/ont/">I-ADOPT</a> [[I-ADOPT]] may be used to define a new <a>sosa:Property</a>.
+    For example, integrating I-ADOPT variables resolves legacy inconsistencies by decomposing complex properties into explicit, interoperable atomic components.
+    This enriches SOSA observables with reusable, machine-actionable semantics, lowering barriers to cross-system data comparison and sharing.
+    <a href="#Fig-AgeOfAir"></a> and <a href="#Fig-CO2-Concentration"></a> show the application of the I-ADOPT ontology for the properties used in two initial observations to provide input-values for the final observation (cmp. <a href="#example-20"></a>).
 </p>
-<figure id="AgeOfAir">
+<figure id="Fig-AgeOfAir">
     <embed alt="Property definition based on I-ADOPT" src="./images/Temperature-i-adopt.svg" style="width:90%" />
     <figcaption>
-        Definition of a the age property, using the I-ADOPT ontology.
+        Definition of an I-ADOPT Variable: The age of air in ice core, expressed relative to a datum of AD 1950.
         <br>
         <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
     </figcaption>
 </figure>
-<figure id="CO2-Concentration">
+<figure id="Fig-CO2-Concentration">
     <embed alt="Property definition based on I-ADOPT" src="./images/Temperature-i-adopt.svg" style="width:90%" />
     <figcaption>
-        Definition of a the CO2 concentration property, using the I-ADOPT ontology.
+        Definition of an I-ADOPT Variable: Concentration of carbon dioxide in air.
         <br>
         <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
     </figcaption>
 </figure>
 <pre class="example turtle" data-include="./rdf/examples/Temperature-i-adopt.ttl" data-include-format="text"></pre>
 <p>
-    The key point for using I-ADOPT variables is to semantically keep properties clean from procedure used (clearly demonstrated in the age example) and provide an identifier of this concept that is furter decomposed. This decomposition allows to clarify all components involved in the property definition by giving them description roles and annotating them with URIs from specialist vocabularies.
+    The key point for using I-ADOPT variables is to semantically keep properties clean from procedure used (clearly demonstrated in the age example) and provide an identifier of this concept that is further decomposed.
+    This decomposition allows to clarify all components involved in the property definition by giving them description roles and annotating them with URIs from specialist vocabularies.
     The variable URI can then be used as the value of the
     <a>sosa:actsOnProperty</a> or
     <a>sosa:observedProperty</a> of an Execution.
