@@ -1,0 +1,82 @@
+@prefix ex: <https://example.org/data/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix qudt: <http://qudt.org/schema/qudt/>.
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix time: <http://www.w3.org/2006/time#>.
+@prefix unit: <http://qudt.org/vocab/unit/>.
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix iop: <https://w3id.org/iadopt/ont/> .
+@prefix P21: <http://vocab.nerc.ac.uk/collection/P21/current/> .
+@prefix S27: <http://vocab.nerc.ac.uk/collection/S27/current/> .
+@prefix qk: <http://qudt.org/vocab/quantitykind/>.
+@prefix et: <http://vocabs.lter-europe.net/EnvThes/> .
+
+ex:Bubble873 a sosa:Sample , sosa:MaterialSample ;
+  sosa:isSampleOf ex:IceCore12 , ex:EarthAtmosphere;
+  sosa:isSampleOfUltimateFOI ex:Antarctic_ice_sheet ;
+  sosa:isResultOf ex:CoreEx1923 
+.
+ex:Ob873c4 a sosa:Observation ;
+  sosa:observedProperty ex:CO2-Concentration ;
+  sosa:hasFeatureOfInterest ex:Bubble873 ;
+  sosa:hasUltimateFeatureOfInterest ex:EarthAtmosphere ;
+  sosa:hasResult [
+      a qudt:QuantityValue ;
+      qudt:hasUnit unit:PPM ;
+      qudt:value 240.0 ;
+  ] ;
+  sosa:resultTime "2018-01-09T14:16:00+00:00"^^xsd:dateTime 
+.
+ex:Antarctic_ice_sheet a sosa:FeatureOfInterest ;
+  skos:exactMatch <https://www.wikidata.org/wiki/Q571430> .
+  
+ex:EarthAtmosphere a sosa:FeatureOfInterest ;
+  skos:exactMatch P21:MS292 . 
+  
+ex:CO2-Concentration a sosa:Property, iop:Variable ;
+    rdfs:label 
+        "Concentration of carbon dioxide in air" ;
+    rdfs:comment 
+        """Concentration of carbon dioxide in air""" ;
+    iop:hasObjectOfInterest 
+        _:b0 ;
+    iop:hasMatrix 
+        P21:MS292 ;
+    iop:hasProperty 
+        qk:AmountOfSubstanceConcentration .
+
+_:b0
+    a 
+        iop:Entity ,
+        iop:AsymmetricSystem ;
+    iop:hasNumerator 
+        S27:CS003089 ;
+    iop:hasDenominator 
+        et:23 .
+
+P21:MS292
+    a 
+        iop:Entity ;
+    rdfs:label 
+        "earth atmosphere" .
+
+qk:AmountOfSubstanceConcentration
+    a 
+        iop:Property ;
+    rdfs:label 
+        "amount of substance concentration" .
+
+S27:CS003089
+    a 
+        iop:Entity ;
+    rdfs:label 
+        "carbon dioxide" .
+		
+et:23
+    a 
+        iop:Entity ;
+    rdfs:label 
+        "air" .
