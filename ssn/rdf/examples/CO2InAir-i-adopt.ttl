@@ -30,53 +30,34 @@ ex:Ob873c4 a sosa:Observation ;
   ] ;
   sosa:resultTime "2018-01-09T14:16:00+00:00"^^xsd:dateTime 
 .
-ex:Antarctic_ice_sheet a sosa:FeatureOfInterest ;
-  skos:exactMatch <https://www.wikidata.org/wiki/Q571430> .
-  
-ex:EarthAtmosphere a sosa:FeatureOfInterest ;
-  skos:exactMatch P21:MS292 . 
-  
+ex:Antarctic_ice_sheet a sosa:FeatureOfInterest, <https://www.wikidata.org/wiki/Q571430> 
+. 
+ex:EarthAtmosphere a sosa:FeatureOfInterest, P21:MS292 
+.  
 ex:CO2-Concentration a sosa:Property, iop:Variable ;
-    rdfs:label 
-        "Concentration of carbon dioxide in air" ;
-    rdfs:comment 
-        """Concentration of carbon dioxide in air""" ;
-    iop:hasObjectOfInterest 
-        _:b0 ;
-    iop:hasMatrix 
-        P21:MS292 ;
-    iop:hasProperty 
-        qk:AmountOfSubstanceConcentration .
-
+    rdfs:label "Concentration of carbon dioxide in air" ;
+    rdfs:comment """Concentration of carbon dioxide in air""" ;
+    iop:hasObjectOfInterest _:b0 ;
+    iop:hasMatrix P21:MS292 ;
+    iop:hasProperty qk:AmountOfSubstanceConcentration 
+.
 _:b0
-    a 
-        iop:Entity ,
-        iop:AsymmetricSystem ;
-    iop:hasNumerator 
-        S27:CS003089 ;
-    iop:hasDenominator 
-        et:23 .
-
+    a iop:Entity, iop:AsymmetricSystem ;
+    iop:hasNumerator S27:CS003089 ;
+    iop:hasDenominator et:23
+.
 P21:MS292
-    a 
-        iop:Entity ;
-    rdfs:label 
-        "earth atmosphere" .
-
-qk:AmountOfSubstanceConcentration
-    a 
-        iop:Property ;
-    rdfs:label 
-        "amount of substance concentration" .
-
+    a   iop:Entity ;
+    rdfs:label "earth atmosphere" 
+.
+qk:AmountOfSubstanceConcentration a iop:Property ;
+    rdfs:label "amount of substance concentration" 
+.
 S27:CS003089
-    a 
-        iop:Entity ;
-    rdfs:label 
-        "carbon dioxide" .
-		
+    a iop:Entity ;
+    rdfs:label "carbon dioxide" 
+.		
 et:23
-    a 
-        iop:Entity ;
-    rdfs:label 
-        "air" .
+    a iop:Entity ;
+    rdfs:label "air"
+.
