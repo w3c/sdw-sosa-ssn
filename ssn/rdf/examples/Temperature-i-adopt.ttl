@@ -2,30 +2,26 @@
 @prefix iop: <https://w3id.org/iadopt/ont/> .
 @prefix qk: <http://qudt.org/vocab/quantitykind/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 
-ex:SickChildTemperature 
-  a iop:Variable , sosa:Property;
-  iop:hasProperty qk:Temperature ;
-  iop:hasObjectOfInterest ex:Child ;
-  iop:hasConstraint [ 
-    a iop:Constraint, ex:Sick ;
-    iop:constrains ex:Child ] ;
-    skos:prefLabel "sick child" ;
+<ex:SickChildTemperature>
+    a iop:Variable, sosa:Property;
+    rdfs:label "Temperature of sick child" ;
+    rdfs:comment """Temperature of the body of a sick child""" ;
+    iop:hasObjectOfInterest <http://hadatac.org/ont/chear#Child> ;
+    iop:hasProperty qk:Temperature ;
+    iop:hasConstraint 
+        [ a iop:Constraint, <http://semanticscience.org/resource/SIO_000954> ;
+             rdfs:label "state: sick" ;
+             iop:constrains <http://hadatac.org/ont/chear#Child> ;
+        ] 
 .
-qk:Temperature
-  a iop:Property , sosa:Property ;
-  skos:prefLabel "Temperature"@en ;
-.
-ex:Child skos:exactMatch <http://hadatac.org/ont/chear#Child> .
-ex:Sick skos:exactMatch <http://semanticscience.org/resource/SIO_000954> .
-
 <http://hadatac.org/ont/chear#Child>
-  a iop:Entity ;
-  skos:prefLabel "Child"@en ;
+    a iop:Entity ;
+    rdfs:label "child" 
 .
-<http://semanticscience.org/resource/SIO_000954>
-  skos:prefLabel "Sick"@en , "Krank"@de ; 
-  skos:altLabel "Unwell"@en , "Poorly"@en ;
+qk:Temperature a iop:Property ;
+    rdfs:label "temperature" 
 .
