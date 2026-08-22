@@ -9,8 +9,8 @@
 @prefix gemet: <https://www.eionet.europa.eu/gemet/concept/> .
 
 ex:sensor a sosa:Sensor;
-  sosa:hasSubSystem ex:AABattery .
-
+  sosa:hasSubSystem ex:AABattery 
+.
 ex:nominalLifetime a sosa:Observation ;
   sosa:hasFeatureOfInterest ex:sensor ;
   sosa:observedProperty ex:nominalLifetimeRestriction ;
@@ -20,42 +20,29 @@ ex:nominalLifetime a sosa:Observation ;
   ] ;
 .
 ex:nominalLifetimeRestriction
-    a 
-        iop:Variable, sosa:Property;
-    rdfs:label 
-        "Nominal Lifetime Restriction of a AA Battery" ;
-    rdfs:comment 
-        """Nominal lifetime restriction of a AA battery expressed as an average in years""" ;
-    iop:hasObjectOfInterest 
-        ex:AABattery ;
-    iop:hasStatisticalModifier 
-        uom:average ;
-    iop:hasContextObject
-	    gemet:1170 ;
-    iop:hasProperty 
-        sosa-cap:Lifetime .
-
+    a iop:Variable, sosa:Property;
+    rdfs:label "Nominal Lifetime Restriction of a AA Battery" ;
+    rdfs:comment """Nominal lifetime restriction of a AA battery""" ;
+    iop:hasObjectOfInterest ex:AABattery ;
+    iop:hasStatisticalModifier uom:average ;
+    iop:hasContextObject gemet:1170 ;
+    iop:hasProperty sosa-cap:Lifetime 
+.
 ex:AABattery
-    a 
-        iop:Entity ;
-    rdfs:label 
-        "AABattery" .
-
+    a iop:Entity ;
+    rdfs:label "AABattery" 
+.
 uom:average
-    a 
-        iop:StatisticalModifier ;
-    rdfs:label 
-        "average" .
-
+    a iop:StatisticalModifier ;
+    rdfs:label "average" 
+.
 sosa-cap:Lifetime
-    a 
-        iop:Property ;
-    rdfs:label 
-        "life time" .
+    a iop:Property ;
+    rdfs:label "life time" 
+.
 		
 gemet:1170
-    a 
-	    iop:Entity ;
-	rdfs:label  
-        "sensor" .
+    a iop:Entity ;
+	rdfs:label "sensor" 
+.
 
