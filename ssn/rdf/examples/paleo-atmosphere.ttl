@@ -15,7 +15,8 @@ ex:Bubble873 a sosa:Sample , sosa:MaterialSample ;
   sosa:isResultOf ex:CoreEx1923 ;
 .
 ex:Ob873t2 a sosa:Observation ;
-  sosa:observedProperty ex:C14-Age ;
+  sosa:observedProperty ex:Age-of-Air ;
+  sosa:usedProcedure ex:C14-Age ;
   sosa:hasFeatureOfInterest ex:Bubble873 ;
   sosa:hasUltimateFeatureOfInterest ex:EarthAtmosphere ;
   sosa:hasResult [
@@ -23,6 +24,9 @@ ex:Ob873t2 a sosa:Observation ;
       qudt:hasUnit unit:YR ;
       qudt:value 7530.0 ;
   ] ;
+  sosa:phenomenonTime [ 
+    time:inXSDgYear "2018"^^xsd:gYear ;
+  ] ;   
   sosa:resultTime "2018-01-09T14:15:00+00:00"^^xsd:dateTime ;
 .
 ex:Ob873c4 a sosa:Observation ;
@@ -34,10 +38,14 @@ ex:Ob873c4 a sosa:Observation ;
       qudt:hasUnit unit:PPM ;
       qudt:value 240.0 ;
   ] ;
+  sosa:phenomenonTime [ 
+    time:inXSDgYear "2018"^^xsd:gYear ;
+  ] ;   
   sosa:resultTime "2018-01-09T14:16:00+00:00"^^xsd:dateTime ;
 .
 ex:Oatc349 a sosa:Observation ;
   sosa:observedProperty ex:CO2-Concentration ;
+  sosa:usedProcedure ex:P-paleo-CO2 ;
   sosa:hasFeatureOfInterest ex:EarthAtmosphere ;
   sosa:hasResult [
       a qudt:QuantityValue ;
@@ -63,12 +71,22 @@ ex:Antarctic_ice_sheet a sosa:FeatureOfInterest ;
 ex:EarthAtmosphere a sosa:FeatureOfInterest ;
   skos:exactMatch <https://www.wikidata.org/wiki/Q3230> ;
   . 
-ex:C14-Age a sosa:Property ;
-  skos:exactMatch <http://vocab.nerc.ac.uk/collection/S06/current/S0600001/> ;
-  skos:definition "The age of an object, determined by radiocarbon dating, expressed relative to a datum of AD 1950." ;
-  skos:prefLabel "14C age" ;
+ex:Age-of-Air a sosa:Property ;
+  skos:definition "The age of air gas." ;
+  skos:prefLabel "Age of Air" ;
 .
 ex:CO2-Concentration a sosa:Property ;
   skos:exactMatch <http://purl.obolibrary.org/obo/ENVO_04000004> ;
   skos:prefLabel "concentration of carbon dioxide in air" ;
 . 
+ex:C14-Age a sosa:ObservingProcedure ;
+  skos:closeMatch <http://vocab.nerc.ac.uk/collection/S06/current/S0600001/> ;
+  skos:definition "The age of an object determined by radiocarbon dating expressed relative to a datum of AD 1950." ;
+  skos:prefLabel "14C age" ;
+.
+ex:P-paleo-CO2 a sosa:ObservingProcedure ;
+  skos:definition "The concentration of CO2 in a sample of air at some time in the past based on separate observations of the CO2 concentration and age of the air." ;
+  skos:prefLabel "paleo-CO2 concentration" ;
+.
+
+
