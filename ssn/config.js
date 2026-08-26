@@ -34,6 +34,8 @@ var respecConfig = {
   // replace with pointer to GitHub issues list
   implementationReportURI: "https://w3c.github.io/sdw-sosa-ssn/ssn/usage/",
   noRecTrack: false,
+  copyrightStart: "2017",
+  additionalCopyrightHolders: "<a href='https://www.ogc.org'>Open Geospatial Consortium</a>",
   logos: [
     {
       src: "images/OGC-0.png",
@@ -47,7 +49,8 @@ var respecConfig = {
     {
       name: "Simon J D Cox",
       w3cid: "1796",
-      company: "Timely Logic, AU",
+      company: "OGC & Timely Logic, AU",
+      companyURL: "https://www.ogc.org/",
       orcid: "0000-0002-3884-3420",
       w3cid: 1796
     },
@@ -72,7 +75,7 @@ var respecConfig = {
       orcid: "0000-0002-7815-2472"
     },
     {
-      name: "Luis Moreira de Sousa",
+      name: "Luís Moreira de Sousa",
       w3cid: "145885",
       company: "Instituto Superior Técnico Lisboa, PT",
       companyURL: "https://tecnico.ulisboa.pt/en/",
@@ -133,9 +136,9 @@ var respecConfig = {
         }, {
           value: "Alex Robin, Georobotix, FR"
         }, {
-          value: "Alec Sculley, Summit Knowledge Solutions, US"
-        }, {
           value: "Hylke van der Schaaf, Fraunhofer IOSB, DE"
+        }, {
+          value: "Alec Sculley, Summit Knowledge Solutions, US"
         }
       ]
     },
@@ -172,6 +175,13 @@ var respecConfig = {
       title: "The Common Core Ontologies (CCO)",
       href: "https://github.com/CommonCoreOntology/CommonCoreOntologies",
       rawDate: "2022",
+    },
+    "ConnectedSystems": {
+      href: "https://docs.ogc.org/is/23-001/23-001.html",
+      authors: ["Alexandre Robin"],
+      title: "OGC API - Connected Systems - Part 1: Feature Resources",
+      publisher: "Open Geospatial Consortium",
+      date: "2025"
     },
     "Description-Logics": {
       href: "http://www.cambridge.org/9780521150118",
