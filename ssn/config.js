@@ -212,11 +212,12 @@ var respecConfig = {
       date: "2017"
     },
     "ModSpec": {
-      href: "https://portal.ogc.org/files/?artifact_id=34762",
-      authors: ["OGC Policy SWG"],
-      title: "The Specification Model — A Standard for Modular specifications",
+      href: "https://docs.ogc.org/pol/08-131r7/08-131r7.html",
+      authors: ["Carl Reed", "Charles Heazel", "John Herring"],
+      title: "The ModSpec Model - Part 1: Core - A Standard for Designing and Writing Modular Standards",
       publisher: "Open Geospatial Consortium",
-      date: "2009"
+      ogcNumber: "OGC 08-131r7",
+      date: "2026"
     },
     "OM-Lite": {
       href: "http://content.iospress.com/articles/semantic-web/sw214",

@@ -93,7 +93,7 @@ sosa:SampleCollection
 
   All Sample properties may appear in a Sample Collection, including: 
   hasOriginalSample , isSampleOfUltimateFOI , isSampleOf , isResultOfUsedProcedure , isResultOfMadeBySampler . 
-  If they are present, the value of these properties summarize the values of the matching properties of the member samples, where membership is either direct or transitive through one or more member sample collections. 
+  If they are present, the values of these properties summarize the values of the matching properties of the member samples, where membership is either direct or transitive through one or more member sample collections. 
 
   The following consistency rules apply with respect to the Sample properties listed above: 
   
@@ -176,7 +176,7 @@ sosa:SamplingProcedure
   workflow, protocol, plan, algorithm, program, or computational method specifying how to make a Sampling
 
   A Sampling Procedure is re-usable, and might be involved in many Samplings. 
-  It explains the steps to be carried out to arrive at reproducible results.
+  The Sampling Procedure explains the steps to be carried out to arrive at reproducible results.
   """@en ;
   skos:example """
 spatial distribution of locations where to collect a sample (e.g., river segment)
@@ -216,10 +216,11 @@ sosa:hasSample
   a owl:ObjectProperty ;
   rdfs:label "has sample"@en ;
   skos:definition """
-  relation from a FeatureOfInterest to the Sample or SampleCollection used to represent it
+  relation from a FeatureOfInterest to the Sample or SampleCollection used to represent the FeatureOfInterest
   """@en ;
   schema:domainIncludes sosa:FeatureOfInterest ;
   schema:rangeIncludes sosa:Sample ;
+  schema:rangeIncludes sosa:SampleCollection ;
   owl:inverseOf sosa:isSampleOf ;
   rdfs:isDefinedBy sosa-sam: .
 
@@ -239,7 +240,7 @@ sosa:isResultOfMadeBySampler
   a owl:ObjectProperty ;
   rdfs:label "is a result of made by sampler"@en ;
   skos:definition """
-  relation from a Sample or SampleCollection to the Sampler that made it
+  relation from a Sample or SampleCollection to the Sampler that made Sample or SampleCollection
   """@en ;
   schema:domainIncludes sosa:Sample ;
   schema:domainIncludes sosa:SampleCollection ;
@@ -251,7 +252,7 @@ sosa:isResultOfUsedProcedure
   a owl:ObjectProperty ;
   rdfs:label "is a result of used procedure"@en ;
   skos:definition """
-  relation from a Sample or SampleCollection to the Procedure (plan) used to make it
+  relation from a Sample or SampleCollection to the Procedure (plan) used to make Sample or SampleCollection
   """@en ;
   schema:domainIncludes sosa:Sample ;
   schema:domainIncludes sosa:SampleCollection ;
@@ -313,7 +314,7 @@ sosa:madeSamplingHasResult
   a owl:ObjectProperty ;
   rdfs:label "made sampling has result"@en ;
   skos:definition """
-  relation from a Sampler to a Sample or SampleCollection made by it
+  relation from a Sampler to a Sample or SampleCollection made by the Sampler
   """@en ;
   schema:domainIncludes sosa:Sampler ;
   schema:rangeIncludes sosa:Sample ;
@@ -325,7 +326,7 @@ sosa:usedForExecutionHasResult
   a owl:ObjectProperty ;
   rdfs:label "used for execution has result"@en ;
   skos:definition """
-  relation from a Procedure to a Sample or SampleCollection made by it
+  relation from a Procedure to a Sample or SampleCollection made by the Procedure
   """@en ;
   schema:domainIncludes sosa:SamplingProcedure ;
   schema:rangeIncludes sosa:Sample ;
