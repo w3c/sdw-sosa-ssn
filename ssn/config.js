@@ -132,6 +132,8 @@ var respecConfig = {
         }, {
           value: "Danielle Limbaugh, Summit Knowledge Solutions, US"
         }, {
+          value: "Barbara Magagna, GO FAIR Foundation, NL"
+        }, {
           value: "Maja Milicic Brandt, Siemens AG, DE"
         }, {
           value: "Alex Robin, Georobotix, FR"
