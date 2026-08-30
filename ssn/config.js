@@ -163,7 +163,7 @@ var respecConfig = {
       ]
     }
   ],
-  localBiblio: {
+  biblio: {
     "BFO": {
       title: "Information technology — Top-level ontologies (TLO) — Part 2: Basic Formal Ontology (BFO)",
       href: "https://www.iso.org/standard/74572.html",
