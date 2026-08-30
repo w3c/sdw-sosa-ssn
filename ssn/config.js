@@ -174,7 +174,7 @@ var respecConfig = {
     "CCO": {
       title: "The Common Core Ontologies (CCO)",
       href: "https://github.com/CommonCoreOntology/CommonCoreOntologies",
-      rawDate: "2022",
+      rawDate: "2022"
     },
     "ConnectedSystems": {
       href: "https://docs.ogc.org/is/23-001/23-001.html",
