@@ -174,7 +174,7 @@ var respecConfig = {
     "CCO": {
       title: "The Common Core Ontologies (CCO)",
       href: "https://github.com/CommonCoreOntology/CommonCoreOntologies",
-      rawDate: "2022",
+      rawDate: "2022"
     },
     "ConnectedSystems": {
       href: "https://docs.ogc.org/is/23-001/23-001.html",
@@ -216,7 +216,7 @@ var respecConfig = {
       authors: ["Carl Reed", "Charles Heazel", "John Herring"],
       title: "The ModSpec Model - Part 1: Core - A Standard for Designing and Writing Modular Standards",
       publisher: "Open Geospatial Consortium",
-      ogcNumber: "OGC 08-131r7",
+      id: "OGC 08-131r7",
       date: "2026"
     },
     "OM-Lite": {
