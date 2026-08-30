@@ -31,12 +31,12 @@ sosa:FeatureOfInterest
   a owl:Class ;
   rdfs:label "Feature Of Interest"@en ;
   skos:definition """
-  entity that is the target of an Execution or Deployment
+  entity that is the target of an Execution or ExecutionCollection or Deployment
 
-  i.e., whose property is being estimated by an Observation, 
-  or whose property is being manipulated by an Actuator, 
-  or which is being sampled or transformed in an act of Sampling, 
-  or which is the target of Executions planned as part of a Deployment.
+i.e., the entity whose property is being manipulated by an Actuation or ActuationCollection,
+or whose property is being estimated by an Observation or ObservationCollection,
+or which is being sampled or transformed by an act of Sampling or SamplingCollection,
+or which is the target of Executions planned as part of a Deployment.
   """@en ;
   skos:example "When measuring the height of a tree, the height is the observed Property, 20m may be the Result of the Observation, and the tree is the FeatureOfInterest. A window is a FeatureOfInterest for an automatic window control Actuation."@en ;
   rdfs:isDefinedBy sosa-common: .
@@ -84,8 +84,10 @@ sosa:isFeatureOfInterestOf
   skos:definition """
   relation from a FeatureOfInterest to an Execution, Execution Collection, or Deployment, operating on it
 
-  i.e., to an Observation about it, to an Actuation acting on it, to an act of Sampling that sampled it,
-  or to a Deployment for which it is the subject.
+  i.e., to an Actuation or ActuationCollection acting on it, 
+  to an Observation or ObservationCollection about it, 
+  to an act of Sampling or SamplingCollection that sampled it, 
+  or to a Deployment for which it is the target.
 """@en ;
   schema:domainIncludes sosa:FeatureOfInterest ;
   schema:rangeIncludes sosa:Deployment ;
@@ -109,7 +111,7 @@ sosa:isUltimateFeatureOfInterestOf
   a owl:ObjectProperty ;
   rdfs:label "is ultimate feature of interest of"@en ;
   skos:definition """
-  relation from an ultimate FeatureOfInterest to an Execution, Execution Collection, or Deployment, for which it is the ultimate subject
+  relation from an ultimate FeatureOfInterest to an Execution, Execution Collection, or Deployment, for which it is the ultimate target
   """@en ;
   schema:domainIncludes sosa:FeatureOfInterest ;
   schema:rangeIncludes sosa:Deployment ;
@@ -178,7 +180,7 @@ sosa:hasProcedure
   rdfs:label "has procedure"@en ;
   rdfs:subPropertyOf sosa:propertyFor ;
   skos:definition """
-  relation from a Property to a Procedure that can observe or act on it
+  relation from a Property to a Procedure that can act on or observe the Property
   """@en ;
   schema:domainIncludes sosa:Property ;
   schema:rangeIncludes sosa:Procedure ;
@@ -189,7 +191,7 @@ sosa:implementedBy
   a owl:ObjectProperty ;
   rdfs:label "implemented by"@en ;
   skos:definition """
-  relation from a Procedure to a System that is capable of executing it
+  relation from a Procedure to a System that is capable of executing the Procedure
   """@en ;
   skos:example "For example, the relationship between a scientific measuring Procedure and a sensor that senses via that Procedure."@en ;
   schema:domainIncludes sosa:Procedure ;
@@ -233,7 +235,7 @@ sosa:usedForExecution
   a owl:ObjectProperty ;
   rdfs:label "used for execution"@en ;
   skos:definition """
-  relation from a Procedure to an Execution or ExecutionCollection made using it
+  relation from a Procedure to an Execution or ExecutionCollection made using the Procedure
   """@en ;
   schema:domainIncludes sosa:Procedure ;
   schema:rangeIncludes sosa:Execution ;
@@ -289,18 +291,6 @@ sosa:ExecutionCollection
   """@en ;
   rdfs:isDefinedBy sosa-common: .
 
-sosa:Result 
-  a owl:Class ;
-  owl:deprecated true ;
-  rdfs:label "Result"@en ;
-  skos:definition """
-  outcome of an Observation, Actuation, or act of Sampling. 
-  
-  To store an observation's simple result value one can use the hasSimpleResult property.
-  """@en ;
-  skos:example "The value 20 as the height of a certain tree together with the unit, e.g., Meter."@en ;
-  rdfs:isDefinedBy sosa-common: .
-
 sosa:endTime 
   a owl:DatatypeProperty ;
   rdfs:label "end time"@en ;
@@ -317,11 +307,11 @@ sosa:hasFeatureOfInterest
   a owl:ObjectProperty ;
   rdfs:label "has feature of interest"@en ;
   skos:definition """
-  relation from an Execution or Deployment to its subject entity
+  relation from an Execution or Deployment to its target entity
 
-  i.e., from an Actuation to the entity whose property was modified;
-  from an Observation to the entity whose quality was observed;
-  from an act of Sampling to the entity that was sampled;
+  i.e., from an Actuation or ActuationCollection to the entity whose property was modified;
+  from an Observation or ObservationCollection to the entity whose quality was observed;
+  from an act of Sampling or SamplingCollection to the entity that was sampled;
   or from a Deployment to its target
   """@en ;
   skos:scopeNote "This is the _proximate_ feature of interest, which may be a proxy entity such as a sample of the _ultimate_ feature of interest. Use `hasUltimateFeatureOfInterest` if the intention is to link to the _ultimate_ feature of interest. " ;
@@ -387,11 +377,11 @@ sosa:hasUltimateFeatureOfInterest
   a owl:ObjectProperty ;
   rdfs:label "has ultimate feature of interest"@en  ;
   skos:definition """
-  relation from a Deployment or Execution to its ultimate subject entity
+  relation from a Deployment or Execution to its ultimate target entity
 
-  i.e., from an Actuation to the ultimate entity whose property was modified;
-  from an Observation to the ultimate entity whose property was observed;
-  from an act of Sampling to the ultimate entity that was sampled;
+  i.e., from an Actuation or ActuationCollection to the ultimate entity whose property was modified;
+  from an Observation or ObservationCollection to the ultimate entity whose property was observed;
+  from an act of Sampling or SamplingCollection to the ultimate entity that was sampled;
   or from a Deployment to its ultimate target
   """@en ;
   skos:scopeNote "This is useful when the proximate feature of interest is a sample of the ultimate feature of interest, directly or transitively." ;
@@ -407,7 +397,7 @@ sosa:inputValueForExecution
   a owl:ObjectProperty ;
   rdfs:label "input value for execution"@en ;
   skos:definition """
-  relation from an input value to an Execution that used it
+  relation from an input value to an Execution that used the value
   """@en ;
   schema:rangeIncludes sosa:Execution ;
   schema:rangeIncludes sosa:ExecutionCollection ;
@@ -460,12 +450,12 @@ sosa:phenomenonTime
   a owl:ObjectProperty ;
   rdfs:label "phenomenon time"@en ;
   skos:definition """
-  time that the result of an Execution applies to the subject entity
+  time that the result of an Execution applies to the target entity
 
-  It may be an interval or an instant, or some other compound temporal entity [[!owl-time]].
+  This may be an interval or an instant, or some other compound temporal entity [[!owl-time]].
   """@en ;
   skos:scopeNote """
-  The phenomenonTime is not necessarily the same as the resultTime. 
+  The phenomenonTime is not necessarily the same as the endTime or resultTime. 
   
   In the case of Actuation, phenomenonTime SHOULD indicate the time during which the actuator was active. 
 
@@ -561,7 +551,7 @@ sosa:Platform
   skos:scopeNote "The INSPIRE 'Environmental Monitoring Facility' may be implemented using SOSA by the OWL/RDFS class 'Platform'" ;
   dcterms:source <https://inspire.ec.europa.eu/id/document/tg/ef> ;
   skos:example """
-  A post, tree, buoy, vehicle, ship, aircraft, satellite, cell-phone, human or animal may act as platforms for (technical or biological) sensors or actuators.
+  A post, tree, buoy, vehicle, ship, aircraft, satellite, cellphone, human or animal may act as platforms for (technical or biological) sensors or actuators.
   An environmental monitoring facility.
   """@en ;
   rdfs:isDefinedBy sosa-common: .
@@ -589,7 +579,7 @@ sosa:System
   """@en ;
   skos:scopeNote """
   Specific system types may be implemented as sub-classes of this class or its sub-classes.
-  Their descriptions may capture the properties and characteristics of a whole class of systems, corresponding with the information typically found in a data-sheet.
+  Their descriptions may capture the properties and characteristics of a whole class of systems, corresponding with the information typically found in a datasheet.
 
   Individual system instances are members of this class or its sub-classes. 
   """@en ;
@@ -667,7 +657,7 @@ sosa:hosts
   a owl:ObjectProperty ;
   rdfs:label "hosts"@en ;
   skos:definition """
-  relation from a Platform to an Asset (System or Platform) hosted or mounted on it
+  relation from a Platform to an Asset (System or Platform) hosted or mounted on the Platform
   """@en ;
   schema:domainIncludes sosa:Platform ;
   schema:rangeIncludes sosa:Asset ;
@@ -764,8 +754,8 @@ sosa:hasMember
   skos:definition """
   link from a Collection to an Execution or Sample or Collection of these that is part of it
   """ ;
-  skos:scopeNote "rules for the consistency of values of properties of collections and properties of their members are given for each collection type" ;
-  skos:editorialNote "Note that there is a single `member` property. OWL or SHACL constraints may limit the range depending on the context of different collection types" ;
+  skos:scopeNote "Rules for the consistency of values of properties of collections and properties of their members are given for each collection type" ;
+  skos:editorialNote "Note that there is a single `hasMember` property. OWL or SHACL constraints may limit the range depending on the context of different collection types" ;
   schema:domainIncludes sosa:ExecutionCollection ;
   schema:rangeIncludes sosa:Execution ;
   schema:rangeIncludes sosa:ExecutionCollection ;
@@ -778,8 +768,8 @@ sosa:isMemberOf
   skos:definition """
   link from an Execution or Sample or Collection of these, to a collection that it is part of
   """ ;
-  skos:scopeNote "rules for the consistency of values of properties of collections and properties of their members are given for each collection type" ;
-  skos:editorialNote "Note that there is a single `member` property. OWL or SHACL constraints may limit the range depending on the context of different collection types" ;
+  skos:scopeNote "Rules for the consistency of values of properties of collections and properties of their members are given for each collection type" ;
+  skos:editorialNote "Note that there is a single `isMemberOf` property. OWL or SHACL constraints may limit the range depending on the context of different collection types" ;
   schema:domainIncludes sosa:Execution ; 
   schema:domainIncludes sosa:ExecutionCollection ;
   schema:rangeIncludes sosa:ExecutionCollection ;

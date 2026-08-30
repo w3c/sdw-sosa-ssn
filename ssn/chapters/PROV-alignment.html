@@ -1,17 +1,25 @@
 <h3>PROV Alignment Module</h3>
 <p>
-  This section introduces the alignment of SSN to W3C PROV ([[prov-overview]], [[prov-dm]], [[prov-o]]).
+  This section introduces the alignment of SSN with W3C PROV ([[prov-overview]], [[prov-dm]], [[prov-o]]).
 </p>
 <p>
   The underlying structure of PROV is based around a process-flow model, with three base classes:
-  <a href="https://www.w3.org/TR/prov-o/#Entity">Entity</a>,
-  which is the class of physical, digital, conceptual, or other kinds of things with some fixed aspects;
-  <a href="https://www.w3.org/TR/prov-o/#Activity">Activity</a>,
-  which is the class of things that occur over a period of time and act upon or with entities, and it may include
-  consuming, processing, transforming, modifying, relocating, using, or generating entities; and
-  <a href="https://www.w3.org/TR/prov-o/#Agent">Agent</a>,
-  which is the class of things that bear some form of responsibility for an activity taking place, for the existence of
-  an entity, or for another agent's activity.
+</p>
+<ul>
+  <li>
+    <a href="https://www.w3.org/TR/prov-o/#Entity">Entity</a>, which is the class of physical, digital, conceptual, or
+    other kinds of things with some fixed aspects;
+  </li>
+  <li>
+    <a href="https://www.w3.org/TR/prov-o/#Activity">Activity</a>, which is the class of things that occur over a period
+    of time and act upon or with entities, and it may include consuming, processing, transforming, modifying,
+    relocating, using, or generating entities;
+  </li>
+  <li>
+    <a href="https://www.w3.org/TR/prov-o/#Agent">Agent</a>, which is the class of things that bear some form of
+    responsibility for an activity taking place, for the existence of an entity, or for another agent's activity.
+  </li>
+</ul>
 </p>
 <figure id="Fig-PROV-Alignment">
   <embed src="images/Prov-alignment.svg" alt="PROV-O alignment to SSN" style="width:100%" />
@@ -26,19 +34,23 @@
 <p>
   The SSN ontology conceives executions (acts of actuation, observation, and sampling) as activities or events,
   which result in a change in the world, or information being produced, or the production or transformation of a sample.
-  An alignment of SSN to PROV is natural.
-  Compton et al. [[SSN-PROV]] and Cox [[OM-Lite]] have described alignments of the [[SSNX]] and [[OandM]] models with [[prov-o]].
-  The alignment here (see <a href="#Fig-PROV-Alignment"></a>) is based on that work, also extended to consider actuation and sampling.
+  Alignment of SSN with PROV is natural.
+  Compton et al. [[SSN-PROV]] and Cox [[OM-Lite]] have described alignments of the [[SSNX]] and [[OandM]] models with
+  [[prov-o]].
+  The alignment described below (see <a href="#Fig-PROV-Alignment"></a>) is based on that work, and also extended to
+  consider actuation and sampling.
 </p>
 <p style="text-align: center;">
-  The ontology IRI of the PROV Alignment module is <a href="http://www.w3.org/ns/sosa/prov">http://www.w3.org/ns/sosa/prov</a><br>
-  The version IRI of the PROV Alignment module 2023 edition is <a href="http://www.w3.org/ns/sosa/2023/prov">http://www.w3.org/ns/sosa/2023/prov</a>
+  The ontology IRI of the PROV Alignment module is
+  <a href="http://www.w3.org/ns/sosa/prov">http://www.w3.org/ns/sosa/prov</a><br>
+  The version IRI of the PROV Alignment module 2023 edition is
+  <a href="http://www.w3.org/ns/sosa/2023/prov">http://www.w3.org/ns/sosa/2023/prov</a>
 </p>
 
 <section id="PROV_Alignment_ns">
   <h4>Namespaces</h4>
   <p>
-    The following namespace prefixes are used in the alignment of SSN to PROV.
+    The following namespace prefixes are used in the alignment of SSN with PROV.
   </p>
   <dl>
     <dt>sosa:</dt>
@@ -95,19 +107,22 @@
     </li>
   </ul>
   <p>
-    2. Assets, including Systems (Sensors, Actuators and Samplers) and Platforms are entities that are responsible for the corresponding activities,
+    2. Assets, including Systems (Sensors, Actuators and Samplers) and Platforms are entities that are responsible for
+    the corresponding activities,
     thus:
   </p>
   <ul class="align-on-symbol">
     <li>
       <span class="lhs"><a>sosa:Asset</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs"><a href="http://www.w3.org/ns/prov#Agent">prov:Agent</a> <span class="logic">or</span> <a href="http://www.w3.org/ns/prov#Entity">prov:Entity</a></span>
+      <span class="rhs"><a href="http://www.w3.org/ns/prov#Agent">prov:Agent</a> <span class="logic">or</span>
+        <a href="http://www.w3.org/ns/prov#Entity">prov:Entity</a></span>
     </li>
     <li>
       <span class="lhs"><a>sosa:System</a></span>
       <span class="symbol logic">⊑</span>
-      <span class="rhs"><a href="http://www.w3.org/ns/prov#Agent">prov:Agent</a> <span class="logic">or</span> <a href="http://www.w3.org/ns/prov#Entity">prov:Entity</a></span>
+      <span class="rhs"><a href="http://www.w3.org/ns/prov#Agent">prov:Agent</a> <span class="logic">or</span>
+        <a href="http://www.w3.org/ns/prov#Entity">prov:Entity</a></span>
     </li>
     <li>
       <span class="lhs"><a>sosa:Platform</a></span>

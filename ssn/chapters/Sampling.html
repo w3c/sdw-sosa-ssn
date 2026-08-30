@@ -82,9 +82,9 @@
             A Sample may have a geographic location.
             See <a href="#ModelLocation">Location and Geometry</a> for patterns to describe this.</p>
         <p class="note">
-            In the previous edition Sample was axiomatized as a sub-class of
+            In the previous edition of this Recommendation, Sample was a sub-class of
             <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a>.
-            The subclass relationship is removed in this edition.
+            The subclass axiom is removed in this edition.
             See <a href="#ModelDomainTypes">Domain types and FeatureOfInterest</a> for a discussion of the relationship
             between types and <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a>.
         </p>
@@ -332,7 +332,7 @@
             <a>sosa:isSampleOf</a>,
             <a>sosa:isResultOfUsedProcedure</a>,
             <a>sosa:isResultOfMadeBySampler</a>.
-            If they are present, the value of these properties summarize the values of the matching properties of the
+            If they are present, the values of these properties summarize the values of the matching properties of the
             member samples, where membership is either direct or transitive through one or more member sample
             collections.
         </p>
@@ -688,7 +688,7 @@
         </p>
         <p>
             A Sampling Procedure is re-usable, and might be applied in many Samplings.
-            It explains the steps to be carried out to arrive at reproducible results.
+            The Sampling Procedure explains the steps to be carried out to arrive at reproducible results.
         </p>
         <dl>
             <div>
@@ -708,12 +708,12 @@
             <div>
                 <dt>Examples</dt>
                 <dd>
-                    spatial distribution of locations where to collect a sample (e.g., river segment)
-                    <br>
-                    instrument (or mode of use thereof) required to collect a sample (e.g., fish net, electric
+                    Spatial distribution of locations where to collect a sample (e.g., river segment)
+                    <br><br>
+                    Instrument (or mode of use thereof) required to collect a sample (e.g., fish net, electric
                     stunner)
-                    <br>
-                    field work instructions (e.g., dig four boreholes in each cardinal direction 2 metre way from
+                    <br><br>
+                    Field work instructions (e.g., dig four boreholes in each cardinal direction 2 metre way from
                     the centre of the site; collect soil material from the 15-30 cm depth and mix it in a single
                     bag)
                 </dd>
@@ -837,7 +837,7 @@
         </p>
         <p>
             <em>has sample</em> &mdash;
-            relation from a FeatureOfInterest to the Sample or SampleCollection used to represent it
+            relation from a FeatureOfInterest to the Sample or SampleCollection used to represent the FeatureOfInterest
         </p>
         <dl>
             <dt>Domain Includes</dt>
@@ -846,7 +846,8 @@
             </dd>
             <dt>Range Includes</dt>
             <dd>
-                <a>sosa:Sample</a>
+                <a>sosa:Sample</a>,
+                <a>sosa:SampleCollection</a>
             </dd>
             <dt>Inverse property of</dt>
             <dd>
@@ -923,7 +924,7 @@
             This term is non-normative, pending further implementation experience</p>
         <p>
             <em>is a result of made by sampler</em> &mdash;
-            relation from a Sample or SampleCollection to the Sampler that made it
+            relation from a Sample or SampleCollection to the Sampler that made the Sample or SampleCollection
         </p>
         <dl>
             <div>
@@ -979,7 +980,7 @@
             This term is non-normative, pending further implementation experience</p>
         <p>
             <em>is a result of used procedure</em> &mdash;
-            relation from a Sample or SampleCollection to the Procedure (plan) used to make it
+            relation from a Sample or SampleCollection to the Procedure (plan) used to make Sample or SampleCollection
         </p>
         <dl>
             <div>
@@ -1207,7 +1208,7 @@
             This term is non-normative, pending further implementation experience</p>
         <p>
             <em>made sampling has result</em> &mdash;
-            relation from a Sampler to a Sample or SampleCollection made by it
+            relation from a Sampler to a Sample or SampleCollection made by the Sampler
         </p>
         <dl>
             <div>
@@ -1263,7 +1264,7 @@
             This term is non-normative, pending further implementation experience</p>
         <p>
             <em>used for execution has result</em> &mdash;
-            relation from a Procedure to a Sample or SampleCollection made by it
+            relation from a Procedure to a Sample or SampleCollection made by the Procedure
         </p>
         <dl>
             <div>
