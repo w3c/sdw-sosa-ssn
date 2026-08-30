@@ -1,7 +1,8 @@
 <h3>Sample chains</h3>
 <p>
-    Many observation workflows rely on a chain of samples, where it is important to understand the provenance of the
-    sample which is the (proximate) feature of interest for observations.
+    Many observation workflows rely on a chain of samples.
+    For this case, understanding the provenance of the sample which is the (proximate) feature of interest for
+    observations is important.
     Knowing either the original sample or the initial feature of interest at the base of the chain is useful for both
     discovery and management purposes.</p>
 <p>
@@ -9,7 +10,8 @@
     The ice-core is a sample of the ice-sheet, while the bubble taken from the core is a sample of an ancient
     atmosphere (<a href="#Fig-bubble-provenance"></a>).
     The two samples have different values for the <a href="#SOSAisSampleOf">isSampleOf</a> property, reflecting the
-    different <a href="#SOSAhasFeatureOfInterest">hasFeatureOfInterest</a> values for the separate acts of <a href="#SOSASampling">Sampling</a>.
+    different <a href="#SOSAhasFeatureOfInterest">hasFeatureOfInterest</a> values for the separate acts of
+    <a href="#SOSASampling">Sampling</a>.
     The bubble is also a sample of the atmosphere, which is a feature of interest for the observations.
 </p>
 <figure id="Fig-bubble-provenance">
@@ -21,19 +23,21 @@
 </figure>
 <pre class="example turtle" data-include="./rdf/examples/bubble-provenance.ttl" data-include-format="text"></pre>
 <p>
-    <a href="#Fig-chain-of-samples"></a> shows a more complex scenario involving many samples
-    derived from an initial one, with some relationships that may be useful in processing and discovery of
-    subsequent observations, the intention of which will be to characterize various aspects of the original sample
+    <a href="#Fig-chain-of-samples"></a> shows a more complex scenario.
+    This involves many samples derived from an initial one, with some relationships that may be useful in processing and
+    discovery of subsequent observations.
+    The intention of most of the observations are to characterize various aspects of the original sample,
     which is representative of an ultimate feature of interest.
-    This is supported by additional properties for relationships between samples and features of interest at
+    This is supported by two additional properties for relationships between samples and features of interest at
     specific points in the chain:
-    <a href="#SOSAhasOriginalSample">hasOriginalSample</a> and <a href="#SOSAisSampleOfUltimateFOI">isSampleOfUltimateFOI</a>.
+    <a href="#SOSAhasOriginalSample">hasOriginalSample</a> and
+    <a href="#SOSAisSampleOfUltimateFOI">isSampleOfUltimateFOI</a>.
 </p>
 
 <figure id="Fig-chain-of-samples">
     <embed alt="Sample chain example from geology" src="./images/chain-of-samples.svg" style="width:100%" />
-    <figcaption>It is common to generate a chain of samples in a geology exploration scenario, with initial sample
-        retrieval from the field followed by a sequence of sampling steps (pink) to generate a series of
+    <figcaption>It is common to generate a chain of samples in a geology exploration scenario. An initial sample is
+        retrieved from the field, and followed by a sequence of sampling steps (pink) to generate a series of
         sub-samples (light green).
         <br><br>
         For clarity the diagram shows only a subset of the full set of potential resources and relationships.
@@ -46,8 +50,7 @@
     Having a direct indication of an <em>original sample</em> allows multiple results to be combined to describe the
     sample.
     Having a direct indication of the <em>ultimate feature</em> that was sampled allows discovery of many samples that
-    are
-    intended to be representative of that feature.
+    are intended to be representative of that feature, and the observations on them.
 </p>
 
 <p class="Note">Note that the scenario in <a href="#Fig-chain-of-samples"></a> is simplified from real-life
