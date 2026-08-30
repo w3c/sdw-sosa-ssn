@@ -4,7 +4,7 @@
     Actuations, Observations, Samplings, and Deployments can be made on any entity in any context.
     For many applications a domain-model has been previously defined.
     This will include names and definitions for classes of entities in the domain.
-    For example: applications in hydrology will refer to types such as water-course, stream, river, reach,
+    As an example, applications in hydrology may refer to types such as watercourse, stream, river, reach,
     storage, aquifer, lake, reservoir, spring, water-table, etc.
 </p>
 <p>
@@ -19,7 +19,7 @@
     RDF and OWL entailments do not work that way.
 </p>
 <p>
-    The way the SSN Ontology addresses this is described in the following sub-sections.
+    The way the SSN Ontology addresses this issue is described in the following sub-sections.
     There are different implications depending on whether you are using the simple
     <a href="#sosa-modules">SOSA</a> module, or the more expressive <a href="#ssn-modules">SSN</a> module.
 </p>
@@ -40,24 +40,27 @@ sosa:hasFeatureOfInterest
 </pre>
 <p>Note:</p>
 <ol>
-    <li>these have no formal entailments, they are just hints</li>
+    <li>These have no formal entailments, they are just hints</li>
     <li>'Includes' means these types are non-exclusive, so any other type is acceptable, including types from
         application-domains</li>
 </ol>
 <p>
-    So the 'domain and range' indications in SOSA are functionally harmless.
-    The fact that
-<code class="turtle">sosa:hasFeatureOfInterest schema:rangeIncludes sosa:FeatureOfInterest .</code>
-merely says that things of type
-<a>sosa:FeatureOfInterest</a> might be found as the object of
-hasFeatureOfInterest statements.
-No more, no less.
+    Therefore, the 'domain and range' indications in SOSA are functionally harmless.
+    The fact that SOSA says
+</p>
+<pre class="turtle">
+sosa:hasFeatureOfInterest schema:rangeIncludes sosa:FeatureOfInterest .
+</pre>
+<p>
+    merely says that things of type <a>sosa:FeatureOfInterest</a> <i>might be</i> found as the object of
+    `hasFeatureOfInterest` statements.
+    No more, no less.
 </p>
 
 <h4>FeatureOfInterest in SSN</h4>
 <p>
     In SSN there are local (guarded) constraints, which can fix the range of a property
-    when it appears in the context of a member of a specific class.
+    <i>when it appears in the context of a member of a specific class</i>.
     Related to the <a href="#SOSAFeatureOfInterest">feature of interest</a>, SSN has:
 </p>
 <pre class="turtle">
@@ -74,14 +77,13 @@ sosa:Deployment
     owl:allValuesFrom sosa:FeatureOfInterest ] ;
 .
 </pre>
-<p>This says that, in the context of an individual <a>sosa:Execution</a>
-    or <a>sosa:Deployment</a>,
-    the object of <a>sosa:hasFeatureOfInterest</a> is always an individual
-    <a>sosa:FeatureOfInterest</a>.
+<p>
+    This says that, in the context of an individual <a>sosa:Execution</a> or <a>sosa:Deployment</a>, the object of
+    <a>sosa:hasFeatureOfInterest</a> is always an individual <a>sosa:FeatureOfInterest</a>.
 </p>
 <p>
-    However, this does not mean that (i) the object of the statement must be declared to have
-    `rdf:type sosa:FeatureOfInterest` in advance, or (ii) this is its only type.
+    However, this does not mean that the object of the statement must be declared to have
+    `rdf:type sosa:FeatureOfInterest` in advance, or that this is its only type.
     Rather, it means that
 </p>
 <ul>
@@ -99,14 +101,11 @@ sosa:Deployment
     then it is automatically inferred to be of type <a>sosa:FeatureOfInterest</a>
     <em>in addition to</em> any other information that was already available about it, including any pre-existing type.
 </p>
-<p><b>This does not require you to derive domain types as sub-classes of
-        <a>sosa:FeatureOfInterest</a></b>.
-    It merely says that when a domain individual participates in an Execution (e.g., an Observation)
-    it becomes a member of the class <a>sosa:FeatureOfInterest</a>
-    <b>in addition to</b> any pre-existing domain class.
-    In the context of SSN axiomatization, membership in the class
-    <a>sosa:FeatureOfInterest</a>
-    does not need to be asserted explicitly, and does not need to be assigned prior to the involvement of an entity in a
+<p><b>This does not require the derivation of domain types as sub-classes of <a>sosa:FeatureOfInterest</a></b>.
+    It merely means that when a domain individual participates in an Execution (e.g., an Observation) the individual
+    becomes a member of the class <a>sosa:FeatureOfInterest</a> <i>in addition to</i> any pre-existing domain class.
+    In the context of SSN axiomatization, membership in the class <a>sosa:FeatureOfInterest</a> does not need to be
+    asserted explicitly, and does not need to be assigned prior to the involvement of an entity in a
     <a>sosa:Execution</a> (or one of its sub-classes) or <a>sosa:Deployment</a>.
 </p>
 <p>
