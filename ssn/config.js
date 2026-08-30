@@ -163,7 +163,7 @@ var respecConfig = {
       ]
     }
   ],
-  biblio: {
+  localBiblio: {
     "BFO": {
       title: "Information technology — Top-level ontologies (TLO) — Part 2: Basic Formal Ontology (BFO)",
       href: "https://www.iso.org/standard/74572.html",
@@ -216,7 +216,7 @@ var respecConfig = {
       authors: ["Carl Reed", "Charles Heazel", "John Herring"],
       title: "The ModSpec Model - Part 1: Core - A Standard for Designing and Writing Modular Standards",
       publisher: "Open Geospatial Consortium",
-      ogcNumber: "OGC 08-131r7",
+      id: "OGC 08-131r7",
       date: "2026"
     },
     "OM-Lite": {
