@@ -67,7 +67,7 @@ sosa:FeatureOfInterest
 ### FeatureKind
 
 # In SAREF, class `saref:FeatureKind` allows to describe kinds of features of interest, with common properties and common states having the same value. An instance of `saref:FeatureKind` represents an archetype of real world entities, for example to populate product catalogs.
-# In SOSA/SSN, feature _types_ are expected to be represented as OWL Classes (sub-classes of SOSA classes where appropriate), and OWL `ObjectHasValue` or `DataHasValue` axioms must be used to bind values to any individuals populating these classes. See [#107](https://github.com/w3c/sdw-sosa-ssn/issues/107) and [#114](https://github.com/w3c/sdw-sosa-ssn/issues/114), 
+# In SOSA/SSN, feature _types_ are expected to be represented as OWL Classes (subclasses of SOSA classes where appropriate), and OWL `ObjectHasValue` or `DataHasValue` axioms must be used to bind values to any individuals populating these classes. See [#107](https://github.com/w3c/sdw-sosa-ssn/issues/107) and [#114](https://github.com/w3c/sdw-sosa-ssn/issues/114), 
 # Thus, there is no equivalent in SOSA/SSN to `saref:FeatureKind`.
 
 
@@ -78,7 +78,7 @@ sosa:FeatureOfInterest
 # In SAREF, an instance of `saref:Property` can apply to different features of interest, while an instance of `saref:PropertyOfInterest` is specific to a feature of interest. It is inherent to and cannot exist without that feature of interest.
 # SAREF also defines states, that refer to the identifiable conditions that features of interest are or may be in, and that can be acted upon by devices, such as observed and controlled. States and Properties are parallel, distinct, but not disjoint. Users can chose whichever seems to best fit their needs. 
 # While states can apply to different features of interest, states of interest are specific to a feature of interest.
-# Thus, `saref:Property`, `saref:PropertyOfInterest`, `saref:State`, `saref:StateOfInterest` are all sub-classes of `sosa:Property`.
+# Thus, `saref:Property`, `saref:PropertyOfInterest`, `saref:State`, `saref:StateOfInterest` are all subclasses of `sosa:Property`.
 
 saref:Property
   rdfs:subClassOf sosa:Property .
@@ -95,14 +95,14 @@ saref:StateOfInterest
 
 ### hasFeatureOfInterest, forProperty, observes, observedProperty, actsOn, actsOnProperty
 
-# In SAREF, a device can act upon (OP `saref:actsUpon`) features, properties, or states. SAREF Core defines `saref:observes` and `saref:controls` as sub-properties of `saref:actsUpon`. Property `saref:actsUpon` also applies to functions, commands, and procedure executions.
+# In SAREF, a device can act upon (OP `saref:actsUpon`) features, properties, or states. SAREF Core defines `saref:observes` and `saref:controls` as subproperties of `saref:actsUpon`. Property `saref:actsUpon` also applies to functions, commands, and procedure executions.
 # In SOSA/SSN, different object properties are used depending on the context. It would be:
 #
 # - `sosa:hasFeatureOfInterest` from execution to feature of interest
 # - `sosa:hasUltimateFeatureOfInterest` from execution to feature of interest
 # - `sosa:forProperty` from procedure or system to property
 # 
-# Thus, all these properties are sub-properties of the SAREF properties.
+# Thus, all these properties are subproperties of the SAREF properties.
 
 sosa:hasFeatureOfInterest
   rdfs:subPropertyOf saref:actsUpon . # this also covers sosa:isFeatureOfInterestOf
@@ -135,7 +135,7 @@ sosa:propertyFor
 # - `saref:hasState` between a feature of interest and a state
 # - `saref:hasStateOfInterest` between a feature of interest and a state of interest
 # 
-# Thus, all these properties are sub-properties of `sosa:hasProperty`.
+# Thus, all these properties are subproperties of `sosa:hasProperty`.
 
 saref:hasProperty
   rdfs:subPropertyOf sosa:hasProperty . # this also covers sosa:isPropertyOf
@@ -174,7 +174,7 @@ saref:Operation
 # - `sosa:hasInput` and `sosa:hasOuput` applied on a procedure
 # - `sosa:hasInputValue` applied on a procedure execution
 # 
-# Thus, SOSA properties are sub-properties of SAREF properties.
+# Thus, SOSA properties are subproperties of SAREF properties.
 
 sosa:hasInput # this also covers sosa:inputFor
   rdfs:subPropertyOf saref:hasInput .
@@ -319,7 +319,7 @@ sosa:Observation
 
 ### Sensor
 
-# SAREF `saref:Sensor` is a sub-class of `saref:Device`, which must be a tangible object.
+# SAREF `saref:Sensor` is a subclass of `saref:Device`, which must be a tangible object.
 # SOSA/SSN `sosa:Sensor` covers devices, agents (including humans), or softwares (simulations). 
 # So `saref:Sensor` is more specific than `sosa:Sensor`.
 
@@ -333,13 +333,13 @@ saref:Sensor
 # - `sosa:originated` and its inverse `sosa:wasOriginatedBy`
 
 
-# In SAREF, a device can act upon (OP `saref:actsUpon`) features, properties, or states. SAREF Core defines `saref:observes` and `saref:controls` as sub-properties of `saref:actsUpon`. Property `saref:actsUpon` also applies to functions, commands, and procedure executions.
+# In SAREF, a device can act upon (OP `saref:actsUpon`) features, properties, or states. SAREF Core defines `saref:observes` and `saref:controls` as subproperties of `saref:actsUpon`. Property `saref:actsUpon` also applies to functions, commands, and procedure executions.
 # In SOSA/SSN, different object properties are used depending on the context. It would be:
 #
 # - `sosa:observes` from sensor to property
 # - `sosa:observedProperty` from observation to property
 # 
-# Thus, these properties are sub-properties of the SAREF property `saref:observes`.
+# Thus, these properties are subproperties of the SAREF property `saref:observes`.
 
 sosa:observes
   rdfs:subPropertyOf saref:observes . # also covers sosa:isObservedBy
@@ -347,7 +347,7 @@ sosa:observes
 sosa:observedProperty # also covers sosa:wasObservedBy
   rdfs:subPropertyOf saref:observes .
 
-# In SOSA/SSN, `sosa:madeBySensor` is only defined to be a sub-property of `sosa:madeBySystem` in SSN, not in SOSA. 
+# In SOSA/SSN, `sosa:madeBySensor` is only defined to be a subproperty of `sosa:madeBySystem` in SSN, not in SOSA. 
 # This file explicits the alignment between `sosa:madeBySensor` and `saref:madeBy` in case it is used only with SOSA (without SSN).
 
 sosa:madeBySensor  # this also covers sosa:madeObservation
@@ -374,20 +374,20 @@ sosa:Actuation
 
 ### Actuator
 
-# SAREF `saref:Actuator` is a sub-class of `saref:Device`, which must be a tangible object.
+# SAREF `saref:Actuator` is a subclass of `saref:Device`, which must be a tangible object.
 # SOSA/SSN `sosa:Actuator` covers devices. Issue [#280](https://github.com/w3c/sdw-sosa-ssn/issues/280) discusses whether it should be relaxed to other entities such as humans.
 # In this file, `saref:Actuator` is assumed to be more specific than `sosa:Actuator`.
 
 saref:Actuator
   rdfs:subClassOf sosa:Actuator .
 
-# In SAREF, a device can act upon (OP `saref:actsUpon`) features, properties, or states. SAREF Core defines `saref:observes` and `saref:controls` as sub-properties of `saref:actsUpon`. Property `saref:actsUpon` also applies to functions, commands, and procedure executions.
+# In SAREF, a device can act upon (OP `saref:actsUpon`) features, properties, or states. SAREF Core defines `saref:observes` and `saref:controls` as subproperties of `saref:actsUpon`. Property `saref:actsUpon` also applies to functions, commands, and procedure executions.
 # In SOSA/SSN, different object properties are used depending on the context. It would be:
 #
 # - `sosa:actsOn` from actuator to property
 # - `sosa:actsOnProperty` from actuation to property
 # 
-# Thus, these properties are sub-properties of the SAREF property `saref:controls`.
+# Thus, these properties are subproperties of the SAREF property `saref:controls`.
 
 sosa:actsOn
   rdfs:subPropertyOf saref:controls . # also covers sosa:isActedOnBy
@@ -395,7 +395,7 @@ sosa:actsOn
 sosa:actsOnProperty # also covers sosa:wasActedOnBy
   rdfs:subPropertyOf saref:controls .
 
-# In SOSA/SSN, `sosa:madeByActuator` is only defined to be a sub-property of `sosa:madeBySystem` in SSN, not in SOSA. 
+# In SOSA/SSN, `sosa:madeByActuator` is only defined to be a subproperty of `sosa:madeBySystem` in SSN, not in SOSA. 
 # This file explicits the alignment between `sosa:madeByActuator` and `saref:madeBy` in case it is used only with SOSA (without SSN).
 
 sosa:madeByActuator  # this also covers sosa:madeActuation
@@ -432,14 +432,14 @@ sosa:hasOriginalSample
   rdfs:subPropertyOf s4syst:hasSubSystem .
 
 
-# In SOSA/SSN, `sosa:Sampling` is only defined to be a sub-class of `sosa:Procedure` in SSN, not in SOSA. 
+# In SOSA/SSN, `sosa:Sampling` is only defined to be a subclass of `sosa:Procedure` in SSN, not in SOSA. 
 # This file explicits the alignment between `sosa:Sampling` and `saref:ProcedureExecution` in case it is used only with SOSA (without SSN).
 
 sosa:Sampling
   rdfs:subClassOf saref:ProcedureExecution .
 
 
-# In SOSA/SSN, `sosa:madeBySampler` is only defined to be a sub-property of `sosa:madeBySystem` in SSN, not in SOSA. 
+# In SOSA/SSN, `sosa:madeBySampler` is only defined to be a subproperty of `sosa:madeBySystem` in SSN, not in SOSA. 
 # This file explicits the alignment between `sosa:madeBySampler` and `saref:madeBy` in case it is used only with SOSA (without SSN).
 
 sosa:madeBySampler
