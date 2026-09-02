@@ -7,23 +7,24 @@
 </p>
 <ul>
     <li>
-        many monitoring processes generate a stream of data in which only the (phenomenon-) time changes between
-        consecutive results for the same property on a single feature of interest, observed using the same procedure
-        implemented using the same sensor.
+        Many monitoring processes generate a stream of data.
+        Only the (phenomenon-) time changes between consecutive results for the same property on a single feature of
+        interest.
+        The property is observed using the same procedure, implemented using the same sensor.
     </li>
     <li>
-        a sensor network typically generates a set of results, over the same time interval, for the same
-        property(s), over a suite of features-of-interest.
-        Imaging sensors could be considered a special case of this, where the proximate features-of-interest
+        A sensor network typically generates a set of results, over the same time interval, for the same
+        property(ies), over a suite of features-of-interest.
+        Imaging sensors are a special case of this, where the proximate features-of-interest
         correspond with individual pixels in the result.
     </li>
 </ul>
 
 <p>
-    These patterns can be accommodated with the class `ObservationCollection` individuals of which may
-    hold one or more of the essential properties of an atomic observation, except for the result.
-    Where present, the value of the property(s) of the collection are shared by all member observations.
-    Of the essential properties of an observation, only the value of each actual <a href="https://www.w3.org/TR/vocab-ssn/#SOSAhasResult">hasResult</a> is not potentially shared by all member
+    These patterns can be accommodated with the class `ObservationCollection`. 
+    The value of the property(ies) of the collection that are present are shared by all member observations.
+    Of the essential properties of an observation, only the value of each actual
+    <a href="https://www.w3.org/TR/vocab-ssn/#SOSAhasResult">hasResult</a> is not potentially shared by all member
     observations, though at least one of the other properties would be expected to vary between members in a typical
     collection.
 </p>
@@ -44,7 +45,7 @@
 
 <p>
     Collections may be nested.
-    For example, an outer observation-collection might share the observed-property, procedure and sensor, and
+    For example, an outer observation-collection might share the observed property, procedure, and sensor, and
     contain inner observation-collections at different phenomenon-times, each of which contain a set of observations
     on different features-of-interest (<a href="#Fig-observation-collection-1"></a>).
 </p>
