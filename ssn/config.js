@@ -132,6 +132,8 @@ var respecConfig = {
         }, {
           value: "Danielle Limbaugh, Summit Knowledge Solutions, US"
         }, {
+          value: "Barbara Magagna, GO FAIR Foundation, NL"
+        }, {
           value: "Maja Milicic Brandt, Siemens AG, DE"
         }, {
           value: "Alex Robin, Georobotix, FR"
@@ -202,6 +204,14 @@ var respecConfig = {
       page: "81-103",
       publisher: "Ontology Engineering with Ontology Design Patterns, Ed. Pascal Hitzler, Aldo Gangemi, Krzysztof Janowicz, Adila Krisnadhi, Valentina Presutti. IOS Press",
       authors: ["Presutti, V.", "Gangemi, A."]
+    },
+    "I-ADOPT": {
+      href: "https://doi.org/10.15497/RDA00071",
+      doi: "10.15497/RDA00071",
+      title: "InteroperAble Descriptions of Observable Property Terminologies (I-ADOPT) WG Outputs and Recommendations",
+      date: "2022",
+      publisher: "RDA Recommendations",
+      authors: ["Barbara Magagna", "Gwenaëlle Moncoiffé", "Anusuriya Devaraju", "Maria Stoica", "Sirko Schindler", "Alison Pamment", "RDA I-ADOPT WG" ],
     },
     "Lefrancois-et-al-2017": {
       href: "https://w3id.org/seas/SEAS-D2_2-SEAS-Knowledge-Model.pdf",
