@@ -89,7 +89,6 @@ sosa:ObservingProcedure
   skos:note """[ISO 19156:2023] An ObservingProcedure shall be defined as the description of steps performed in order to determine the value of an observableProperty by an Observer."""@en ;
   rdfs:isDefinedBy sosa-obs: .
 
-
 sosa:Sensor 
   a owl:Class ;
   rdfs:subClassOf sosa:System ;
@@ -148,7 +147,7 @@ sosa:isDetectedBy
   a owl:ObjectProperty ;
   rdfs:label "is detected by"@en ;
   skos:definition """
-  relation from a Stimulus to a Sensor that may detect the Stimulus
+  relation from a Stimulus to a Sensor that may detect that Stimulus
 
   The Stimulus itself will be serving as a proxy for some Property.
   """@en ;
@@ -161,7 +160,7 @@ sosa:isObservedBy
   a owl:ObjectProperty ;
   rdfs:label "is observed by"@en ;
   skos:definition """
-  relation from a Property to a Sensor that is able to observe it
+  relation from a Property to a Sensor that is able to observe that Property
   """@en ;
   schema:domainIncludes sosa:Property ;
   schema:rangeIncludes sosa:Sensor ;
@@ -185,7 +184,7 @@ sosa:madeBySensor
   rdfs:subPropertyOf sosa:madeBySystem ;
   rdfs:label "made by sensor or observer"@en ;
   skos:definition """
-  relation from an Observation or ObservationCollection to the Sensor involved
+  relation from an Observation or ObservationCollection to the Sensor which made that Observation or ObservationCollection
   """@en ;
   schema:domainIncludes sosa:Observation ;
   schema:domainIncludes sosa:ObservationCollection ;
@@ -224,7 +223,7 @@ sosa:observedProperty
   a owl:ObjectProperty ;
   rdfs:label "observed property"@en ;
   skos:definition """
-  relation from an Observation or ObservationCollection to the property observed
+  relation from an Observation or ObservationCollection to the property observed in that Observation or ObservationCollection
   """@en ;
   skos:note """
   'observed property' covers the concepts referred to in [VIM] as 'measurand' (quantitative values) and 'examinand' (categorical and nominal values — [VIM4]), as well as complex and structured properties whose values may be represented as lists, vectors, arrays, rasters, geometries, etc. More specific terms are used in other contexts for related concepts, such as 'analyte' (chemistry) and 'determinand' (water quality).
@@ -251,7 +250,7 @@ sosa:originated
   a owl:ObjectProperty ;
   rdfs:label "originated"@en ;
   skos:definition """
-  relation from a Stimulus to an Observation that was originated by the Stimulus
+  relation from a Stimulus to an Observation that was originated by that Stimulus
   """@en ;
   schema:domainIncludes sosa:Stimulus ;
   schema:rangeIncludes sosa:Observation ;
@@ -262,7 +261,7 @@ sosa:qualityOf
   a owl:ObjectProperty ;
   rdfs:label "quality of" ;
   skos:definition """
-  link from a quality description to an Observation or ObservationCollection that it relates to
+  link from a quality description to an Observation or ObservationCollection which that quality description relates to
   """@en ;
   schema:rangeIncludes sosa:Observation ;
   schema:rangeIncludes sosa:ObservationCollection ;
@@ -287,7 +286,7 @@ sosa:resultQuality
   a owl:ObjectProperty ;
   rdfs:label "observation result quality" ;
   skos:definition """
-  relation from an Observation or ObservationCollection to some information pertaining to the quality of the result
+  relation from an Observation or ObservationCollection to some information pertaining to the quality of that result
   """@en ;
   skos:scopeNote """
   This instance-specific description complements the description of the observation Procedure, which provides information concerning the quality of all observations using this procedure. Multiple measures can be provided.
@@ -305,7 +304,7 @@ sosa:wasObservedBy
   a owl:ObjectProperty ;
   rdfs:label "was observed by"@en ;
   skos:definition """
-  relation from a Property to an Observation that observed it
+  relation from a Property to an Observation that observed that Property
   """@en ;
   schema:domainIncludes sosa:Property ;
   schema:rangeIncludes sosa:Observation ;
