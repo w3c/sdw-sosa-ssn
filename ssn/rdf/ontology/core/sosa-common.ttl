@@ -82,7 +82,7 @@ sosa:isFeatureOfInterestOf
   a owl:ObjectProperty ;
   rdfs:label "is feature of interest of"@en ;
   skos:definition """
-  relation from a FeatureOfInterest to an Execution, Execution Collection, or Deployment, operating on it
+  relation from a FeatureOfInterest to an Execution, Execution Collection, or Deployment, operating on that FeatureOfInterest
 
   i.e., to an Actuation or ActuationCollection acting on it, 
   to an Observation or ObservationCollection about it, 
@@ -111,7 +111,7 @@ sosa:isUltimateFeatureOfInterestOf
   a owl:ObjectProperty ;
   rdfs:label "is ultimate feature of interest of"@en ;
   skos:definition """
-  relation from an ultimate FeatureOfInterest to an Execution, Execution Collection, or Deployment, for which it is the ultimate target
+  relation from an ultimate FeatureOfInterest to an Execution, Execution Collection, or Deployment, for which that FeatureOfInterest is the ultimate target
   """@en ;
   schema:domainIncludes sosa:FeatureOfInterest ;
   schema:rangeIncludes sosa:Deployment ;
@@ -124,7 +124,7 @@ sosa:propertyFor
   a owl:ObjectProperty ;
   rdfs:label "property for"@en ;
   skos:definition """
-  relation from a Property to some Procedure or System that acts on it or observes it
+  relation from a Property to some Procedure or System that acts on it or observes that Property
   """@en ;
   skos:example "For example, from a Sensor to the properties it can observe; from an Actuator to the properties it can act on; from a SystemCapability to the Property the capability is described for."@en ;
   schema:domainIncludes sosa:Property ;
@@ -180,7 +180,7 @@ sosa:hasProcedure
   rdfs:label "has procedure"@en ;
   rdfs:subPropertyOf sosa:propertyFor ;
   skos:definition """
-  relation from a Property to a Procedure that can act on or observe the Property
+  relation from a Property to a Procedure that can act on or observe that Property
   """@en ;
   schema:domainIncludes sosa:Property ;
   schema:rangeIncludes sosa:Procedure ;
@@ -225,7 +225,7 @@ sosa:outputFor
   a owl:ObjectProperty ;
   rdfs:label "output for"@en ;
   skos:definition """
-  relation from an output to a Procedure that generates it in an Execution
+  relation from an output to a Procedure that generates that output in an Execution
   """@en ;
   schema:rangeIncludes sosa:Procedure ;
   owl:inverseOf sosa:hasOutput ;
@@ -235,7 +235,7 @@ sosa:usedForExecution
   a owl:ObjectProperty ;
   rdfs:label "used for execution"@en ;
   skos:definition """
-  relation from a Procedure to an Execution or ExecutionCollection made using the Procedure
+  relation from a Procedure to an Execution or ExecutionCollection made using that Procedure
   """@en ;
   schema:domainIncludes sosa:Procedure ;
   schema:rangeIncludes sosa:Execution ;
@@ -408,7 +408,7 @@ sosa:isResultOf
   a owl:ObjectProperty ;
   rdfs:label "is result of"@en ;
   skos:definition """
-  relation from a result to the Execution that created or caused it
+  relation from a result to the Execution that created or caused that result
   """@en ;
   schema:rangeIncludes sosa:Execution ;
   schema:rangeIncludes sosa:ExecutionCollection ;
@@ -419,7 +419,7 @@ sosa:madeBySystem
   a owl:ObjectProperty ;
   rdfs:label "made by system"@en ;
   skos:definition """
-  relation from an Execution to the System that made it
+  relation from an Execution to the System that made that Execution
   """@en ;
   skos:scopeNote """
   madeBySystem generalizes the madeByActuator, madeBySensor, and madeBySampler properties. 
@@ -657,7 +657,7 @@ sosa:hosts
   a owl:ObjectProperty ;
   rdfs:label "hosts"@en ;
   skos:definition """
-  relation from a Platform to an Asset (System or Platform) hosted or mounted on the Platform
+  relation from a Platform to an Asset (System or Platform) hosted or mounted on that Platform
   """@en ;
   schema:domainIncludes sosa:Platform ;
   schema:rangeIncludes sosa:Asset ;
@@ -683,7 +683,7 @@ sosa:inDeployment
   rdfs:subPropertyOf sosa:hasDeployment ;
   rdfs:label "in deployment"@en ;
   skos:definition """
-  relation from a Platform to a Deployment
+  relation from a Platform to a Deployment using that Platform
   """@en ;
   skos:example "For example, a relation between a buoy and a deployment of several Sensors."@en ;
   schema:domainIncludes sosa:Platform ;
@@ -739,7 +739,7 @@ sosa:systemDeployment
   rdfs:subPropertyOf sosa:hasDeployment ;
   rdfs:label "system deployment"@en ;
   skos:definition """
-  relation from a System to a Deployment
+  relation from a System to a Deployment of that System
   """@en ;
   schema:domainIncludes sosa:System ;
   schema:rangeIncludes sosa:Deployment ;
@@ -752,7 +752,7 @@ sosa:hasMember
   a owl:ObjectProperty ;
   rdfs:label "has member of collection" ;
   skos:definition """
-  link from a Collection to an Execution or Sample or Collection of these that is part of it
+  link from a Collection to an Execution or Sample or Collection of these that is part of that Collection
   """ ;
   skos:scopeNote "Rules for the consistency of values of properties of collections and properties of their members are given for each collection type" ;
   skos:editorialNote "Note that there is a single `hasMember` property. OWL or SHACL constraints may limit the range depending on the context of different collection types" ;
@@ -766,7 +766,7 @@ sosa:isMemberOf
   a owl:ObjectProperty ;
   rdfs:label "is member of collection" ;
   skos:definition """
-  link from an Execution or Sample or Collection of these, to a collection that it is part of
+  link from an Execution or Sample or Collection of these, to a Collection which that Execution or Sample or Collection is part of
   """ ;
   skos:scopeNote "Rules for the consistency of values of properties of collections and properties of their members are given for each collection type" ;
   skos:editorialNote "Note that there is a single `isMemberOf` property. OWL or SHACL constraints may limit the range depending on the context of different collection types" ;
