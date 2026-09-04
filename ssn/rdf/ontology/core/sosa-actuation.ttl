@@ -55,7 +55,7 @@ sosa:Actuation
   This approach is not prohibited by the SSN Ontology, but the details are beyond the scope of SSN.
   """@en ;
   skos:note "relatedObservation SHOULD be used to link to an associated Observation or ObservationCollection that monitors the actuated property to verify that the result value has been obtained. "@en ;
-  skos:example "The activity of automatically closing a window if the temperature in a room drops below 20 degree Celsius. The activity is the Actuation and the device that closes the window is the Actuator. The Procedure is the rule, plan, or specification that defines the conditions that triggers the Actuation, here a drop in temperature. "@en ;
+  skos:example "The activity of automatically closing a window if the temperature in a room drops below 20 degrees Celsius. The activity is the Actuation and the device that closes the window is the Actuator. The Procedure is the rule, plan, or specification that defines the conditions that triggers the Actuation, here a drop in temperature. "@en ;
   rdfs:isDefinedBy sosa-act: .
 
 sosa:ActuationCollection 
@@ -67,7 +67,7 @@ sosa:ActuationCollection
 
   All Actuation properties may appear in an Actuation Collection, including:
   hasFeatureOfInterest , usedProcedure , madeByActuator , actsOnProperty , endTime ,  hasResult , hasSimpleResult . 
-  If they are present, the value of these properties summarize the values of the matching properties of the member actuations, where membership is either direct or transitive through one or more member actuation collections. 
+  If they are present, the values of these properties summarize the values of the matching properties of the member actuations, where membership is either direct or transitive through one or more member actuation collections. 
   The following consistency rules apply with respect to the Actuation properties: 
   
   1. Where an individual Actuation Collection omits a property, a member Actuation (direct or transitive) MAY have any value for that property.
@@ -99,7 +99,7 @@ sosa:actsOn
   rdfs:subPropertyOf sosa:forProperty ;
   rdfs:label "acts on"@en ;
   skos:definition """
-  relation from an Actuator to a Property whose state may be changed by using it
+  relation from an Actuator to a Property whose state may be changed by that Actuator
   """@en ;
   skos:example "In the activity (Actuation) of automatically closing a window if the temperature in a room drops below 20 degrees Celsius, the property upon which the Actuator acts is the state of the window as it changes from being open to being closed. "@en ;
   schema:domainIncludes sosa:Actuator ;
@@ -150,7 +150,7 @@ sosa:madeByActuator
   rdfs:subPropertyOf sosa:madeBySystem ;
   rdfs:label "made by actuator"@en ;
   skos:definition """
-  relation from an Actuation or ActuationCollection to the Actuator that made it
+  relation from an Actuation or ActuationCollection to the Actuator that made that Actuation or ActuationCollection
   """@en ;
   schema:domainIncludes sosa:Actuation ;
   schema:domainIncludes sosa:ActuationCollection ;
