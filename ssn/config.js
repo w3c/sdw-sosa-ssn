@@ -167,16 +167,16 @@ var respecConfig = {
   ],
   localBiblio: {
     "BFO": {
-        title: "Information technology — Top-level ontologies (TLO) — Part 2: Basic Formal Ontology (BFO)",
-        href: "https://www.iso.org/standard/74572.html",
-        rawDate: "2021-11",
-        publisher: "International Organization for Standardization (ISO)",
-        status: "ISO/IEC 21838-2:2021"
+      title: "Information technology — Top-level ontologies (TLO) — Part 2: Basic Formal Ontology (BFO)",
+      href: "https://www.iso.org/standard/74572.html",
+      rawDate: "2021-11",
+      publisher: "International Organization for Standardization (ISO)",
+      status: "ISO/IEC 21838-2:2021"
     },
     "CCO": {
-        title: "The Common Core Ontologies (CCO)",
-        href: "https://github.com/CommonCoreOntology/CommonCoreOntologies",
-        rawDate: "2022",
+      title: "The Common Core Ontologies (CCO)",
+      href: "https://github.com/CommonCoreOntology/CommonCoreOntologies",
+      rawDate: "2022"
     },
     "ConnectedSystems": {
       href: "https://docs.ogc.org/is/23-001/23-001.html",
@@ -222,11 +222,12 @@ var respecConfig = {
       date: "2017"
     },
     "ModSpec": {
-      href: "https://portal.ogc.org/files/?artifact_id=34762",
-      authors: ["OGC Policy SWG"],
-      title: "The Specification Model — A Standard for Modular specifications",
+      href: "https://docs.ogc.org/pol/08-131r7/08-131r7.html",
+      authors: ["Carl Reed", "Charles Heazel", "John Herring"],
+      title: "The ModSpec Model - Part 1: Core - A Standard for Designing and Writing Modular Standards",
       publisher: "Open Geospatial Consortium",
-      date: "2009"
+      id: "OGC 08-131r7",
+      date: "2026"
     },
     "OM-Lite": {
       href: "http://content.iospress.com/articles/semantic-web/sw214",
@@ -278,5 +279,5 @@ var respecConfig = {
       publisher: "Open Geospatial Consortium"
     }
   },
-  preProcess: [ loadTurtle ]
+  preProcess: [loadTurtle]
 }
