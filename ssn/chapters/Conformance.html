@@ -2,37 +2,43 @@
 
 <p>Data conforms to SSN if:</p>
 <ul>
-  <li> Access to data is organized around Actuations, Observations, and Samplings, which respectively represent
-    executions of Actuating, Observing, and Sampling procedures, which are in turn respectively implemented by
-    Actuators, Sensors, and Samplers </li>
-  <li> The contents of all data fields are expressed using the appropriate RDF classes and properties from SSN. Where no
-    such class or property exists, sub-classes or sub-properties specializing SSN in a domain-specific web ontology are
-    employed.</li>
-  <li> All classes and properties from SSN are used in a way consistent with the semantics declared in this
-    specification, as so any SSN sub-classes or sub-properties specialised in domain-specific ontologies used to express
-    the concerned data.</li>
+  <li>
+    Access to data is organized around Actuations, Observations, and Samplings.
+    These respectively represent executions of Actuating, Observing, and Sampling procedures, which are implemented by
+    Actuators, Sensors, and Samplers, respectively.
+  </li>
+  <li>
+    The contents of all data fields are expressed using the appropriate RDF classes and properties from SSN.
+    Where no such class or property exists, subclasses or subproperties specializing SSN in a domain-specific web
+    ontology are employed.
+  </li>
+  <li>
+    Classes and properties from SSN must be used in a way consistent with the semantics declared in this Recommendation.
+    Any subclasses or subproperties of SSN terms that are defined in domain-specific ontologies must also be consistent
+    with the SSN definitions.
+  </li>
 </ul>
 <p>
   SSN-compliant knowledge graphs MAY include additional non-SSN class instances, object and data properties, and
   additional RDF data.
 </p>
 
-<h3>OGC Specification conformance</h3>
+<h3>Conformance with OGC Standards</h3>
 
 <p>
   OGC Standards are required to follow the OGC Modular Specification policy [[ModSpec]].
-  The key provisions of this policy are that:
+  The <a href="https://docs.ogc.org/pol/08-131r7/08-131r7.html#cls-8">key provisions of this policy</a> are that:
 </p>
 
 <ul>
-  <li>the standard is organized into Requirements Classes and Conformance Classes</li>
-  <li>each individual Requirement is a member of one and only one Requirements Class</li>
-  <li>each individual conformance Test is a member of one and only one Conformance Class</li>
-  <li>each Requirement, Requirements Class, Test, and Conformance Class is denoted by an IRI</li>
-  <li>dependencies are managed at the Requirements Class or Conformance Class level</li>
-  <li>no circular dependencies are permitted</li>
+  <li>Normative statements in a standard are organized as Requirements and conformance Tests</li>
+  <li>Each individual Requirement is a member of one and only one Requirements Class</li>
+  <li>Each individual conformance Test is a member of one and only one Conformance Class</li>
+  <li>Each Requirement, Requirements Class, Test, and Conformance Class shall be assigned a unique identifier and/or
+    label (usually an IRI)</li>
+  <li>Dependencies are managed at the Requirements Class or Conformance Class level</li>
+  <li>No circular dependencies are permitted</li>
   <li>Conformance to the standard is assessed at the Conformance Class level</li>
-  <li>the conformance target type is specified</li>
 </ul>
 
 <p>
@@ -52,8 +58,14 @@
   <a href="#modularization"></a>.
 </p>
 
-<p class="note informative">
+<p class="note">
   OGC Conformance Classes and Tests are not provided explicitly at this time.
-  A supplement to this document describing SHACL shapes ([[[shacl]]]) may be provided in the future. 
+  A supplement to this document describing SHACL shapes ([[[shacl]]]) may be provided in the future.
   This would provide some testing functionality.
+</p>
+
+<p class="note">
+  The OGC Policy also specifies that a <i>Target Type</i> be indicated for each Requirements Class.
+  That is not done in this Recommendation.
+  However, the accompanying <a href="https://w3c.github.io/sdw-sosa-ssn/ssn/usage/">Usage Report</a> considers <i>Ontologies</i> and <i>Datasets</i> as Target Types.
 </p>
