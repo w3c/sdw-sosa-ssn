@@ -14,7 +14,7 @@
                 Classes and relationships involved in Observation.
                 <br>
                 The result of an observation should be an information item of a type appropriate for the
-                observed-property (e.g., a number, quantity, category, image, vector, array, geometry etc.).
+                observed property (e.g., a number, quantity, category, image, vector, array, geometry etc.).
                 <br>
                 <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
             </figcaption>
@@ -144,7 +144,7 @@
         </div>
     </section>
 
-    <section class="informative specterm sosa" id="SOSAObservationCollection">
+    <section class="specterm sosa" id="SOSAObservationCollection">
         <h5><dfn>sosa:ObservationCollection</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/ObservationCollection
@@ -164,7 +164,7 @@
             [[vocab-dcat-3]].
         </p>
         <p>
-            All <a href="#SOSAObservation">Observation</a> properties may appear in an
+            All <a href="#SOSAObservation">Observation</a> properties may appear in a
             <a>sosa:ObservationCollection</a>, including:
             <a>sosa:hasFeatureOfInterest</a>,
             <a>sosa:hasUltimateFeatureOfInterest</a>,
@@ -175,7 +175,7 @@
             <a>sosa:resultTime</a>,
             <a>sosa:hasResult</a>,
             <a>sosa:hasSimpleResult</a>.
-            If they are present, the value of these properties summarize the values of the matching properties of
+            If they are present, the values of these properties summarize the values of the matching properties of
             the member observations, where membership is either direct or transitive through one or more member
             observation collections.
         </p>
@@ -360,7 +360,8 @@
             System that implements an ObservingProcedure to determine the value of an observable Property
         </p>
         <p>
-            This may be a device, a piece of infrastructure, an agent (including humans), or a software-based system, including systems performing simulations.
+            This may be a device, a piece of infrastructure, an agent (including humans), or a software-based system
+            (including systems performing simulations).
         </p>
         <p>
             A <a href="#SOSASensor">Sensor</a> responds to a <a href="#SOSAStimulus">Stimulus</a>,
@@ -372,12 +373,12 @@
             See <a href="#ModelLocation">Location and Geometry</a> for patterns to describe this.
         </p>
         <p class="note">
-            Specific sensor <em>types</em> may be implemented as <em>sub-classes</em>
-            of this class or its sub-classes.
+            Specific sensor <em>types</em> may be implemented as <em>subclasses</em>
+            of this class or its subclasses.
             Their descriptions may capture the properties and characteristics of a whole class of sensors, corresponding
-            with the information typically found in a spec-sheet or data-sheet.
+            with the information typically found in a spec-sheet or datasheet.
             <br>
-            Individual sensor <em>instances</em> are <em>members</em> of this class or its sub-classes.
+            Individual sensor <em>instances</em> are <em>members</em> of this class or its subclasses.
             <br>
             See <a href="#ModelSystemType">Systems Types and Individuals</a> for patterns to describe this.
         </p>
@@ -446,7 +447,7 @@
             event in the real world that triggers a Sensor
         </p>
         <p>
-            The properties associated to the Stimulus may be different to the eventual observed Property.
+            The Properties associated with the Stimulus may differ from those eventually observed.
             It is the event, not the object, that triggers the Sensor.
         </p>
         <dl>
@@ -517,7 +518,7 @@
         </div>
     </section>
 
-    <section class="informative specterm" id="SOSAhasProxy">
+    <section class="specterm sosa" id="SOSAhasProxy">
         <h5><dfn>sosa:hasProxy</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/hasProxy
@@ -532,7 +533,7 @@
         <dl>
             <dt>Examples</dt>
             <dd>
-                For example, the expansion of mercury is a
+                The expansion of mercury is a
                 <a href="#SOSAStimulus">Stimulus</a> that serves as a
                 proxy for some temperature
                 <a href="#SOSAProperty">Property</a>.
@@ -564,7 +565,7 @@
         </div>
     </section>
 
-    <section class="informative specterm" id="SOSAisDetectedBy">
+    <section class="specterm sosa" id="SOSAisDetectedBy">
         <h5><dfn>sosa:isDetectedBy</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/isDetectedBy
@@ -574,7 +575,7 @@
         </p>
         <p>
             <em>is detected by</em> &mdash;
-            relation from a Stimulus to a Sensor that may detect it
+            relation from a Stimulus to a Sensor that may detect that Stimulus
         </p>
         <p>
             The Stimulus itself will be serving as a proxy (<a>sosa:isProxyFor</a>) for some Property.
@@ -618,7 +619,7 @@
         </p>
         <p>
             <em>is observed by</em> &mdash;
-            relation from a Property to a Sensor that is able to observe it
+            relation from a Property to a Sensor that is able to observe that Property
         </p>
         <dl>
             <dt>Domain Includes</dt>
@@ -703,7 +704,7 @@
         </p>
         <p>
             <em>made by Sensor</em> &mdash;
-            relation from an Observation or ObservationCollection to the Sensor involved
+            relation from an Observation or ObservationCollection to the Sensor which made that Observation or ObservationCollection
         </p>
         <dl>
             <dt>Subproperty of</dt>
@@ -777,7 +778,7 @@
         </div>
     </section>
 
-    <section class="informative specterm" id="SOSAobservationRelatedTo">
+    <section class="informative specterm sosa" id="SOSAobservationRelatedTo">
         <h5><dfn>sosa:observationRelatedTo</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/observationRelatedTo
@@ -839,7 +840,7 @@
         </p>
         <p>
             <em>observed property</em> &mdash;
-            relation from an Observation or ObservationCollection to the property observed
+            relation from an Observation or ObservationCollection to the property observed in that Observation or ObservationCollection
         </p>
         <p class="note">
             'observed property' covers the concepts referred to in [[VIM]] as 'measurand' (quantitative values) and
@@ -922,7 +923,7 @@
         </div>
     </section>
 
-    <section class="informative specterm" id="SOSAoriginated">
+    <section class="specterm sosa" id="SOSAoriginated">
         <h5><dfn>sosa:originated</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/originated
@@ -932,7 +933,7 @@
         </p>
         <p>
             <em>originated</em> &mdash;
-            relation from a Stimulus to an Observation that was originated by it
+            relation from a Stimulus to an Observation that was originated by that Stimulus
         </p>
         <dl>
             <dt>Domain Includes</dt>
@@ -959,7 +960,7 @@
         </div>
     </section>
 
-    <section class="informative specterm" id="SOSAqualityOf">
+    <section class="informative specterm sosa" id="SOSAqualityOf">
         <h5><dfn>sosa:qualityOf</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/qualityOf
@@ -972,7 +973,7 @@
             This term is non-normative, pending further implementation experience</p>
         <p>
             <em>quality of</em> &mdash;
-            link from a quality description to an Observation or ObservationCollection that it relates to
+            link from a quality description to an Observation or ObservationCollection which that quality description relates to
         </p>
         <dl>
             <dt>Range Includes</dt>
@@ -997,7 +998,7 @@
         </div>
     </section>
 
-    <section class="informative specterm" id="SOSArelatedObservation">
+    <section class="informative specterm sosa" id="SOSArelatedObservation">
         <h5><dfn>sosa:relatedObservation</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/relatedObservation
@@ -1044,7 +1045,7 @@
         </div>
     </section>
 
-    <section class="informative specterm" id="SOSAresultQuality">
+    <section class="informative specterm sosa" id="SOSAresultQuality">
         <h5><dfn>sosa:resultQuality</dfn></h5>
         <p class="crossreference">
             <strong>IRI:</strong> http://www.w3.org/ns/sosa/resultQuality
@@ -1059,7 +1060,7 @@
         <p>
             <em>observation result quality</em> &mdash;
             relation from an Observation or ObservationCollection to some information pertaining to the quality of
-            the result
+            that result
         </p>
         <dl>
             <dt>Note</dt>
@@ -1108,7 +1109,7 @@
 
         <p>
             <em>was observed by</em> &mdash;
-            relation from a Property to an Observation that observed it
+            relation from a Property to an Observation that observed that Property
         </p>
 
         <dl>
@@ -1147,7 +1148,7 @@
         </p>
         <p>
             <em>was originated by</em> &mdash;
-            relation from an Observation to the Stimulus that originated it
+            relation from an Observation to the Stimulus that originated that Observation
         </p>
         <dl>
             <dt>Domain Includes</dt>
