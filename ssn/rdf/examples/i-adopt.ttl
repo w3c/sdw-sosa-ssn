@@ -4,7 +4,11 @@
 @prefix qudt: <http://qudt.org/schema/qudt/>.
 @prefix unit: <http://qudt.org/vocab/unit/>.
 @prefix iop:  <https://w3id.org/iadopt/ont/>.
-@prefix uom:  <http://www.opengis.net/def/uom/OGC/1.0/>.
+@prefix uom: <http://www.ontology-of-units-of-measure.org/resource/om-2/>.
+@prefix qk: <http://qudt.org/vocab/quantitykind/>.
+@prefix et: <http://vocabs.lter-europe.net/EnvThes/>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+
 
 ex:SensorCapabilityObservation a sosa:Observation ;
   sosa:hasFeatureOfInterest ex:Sensor ;
@@ -14,9 +18,20 @@ ex:SensorCapabilityObservation a sosa:Observation ;
     qudt:hasUnit unit:DEG_C ;
   ] ;
 .
-
 ex:SensorMinimumLimit a iop:Variable, sosa:Property;
   iop:hasStatisticalModifier uom:minimum ;
-  iop:hasObjectOfInterest ex:air ;
-  iop:hasProperty qudt:Temperature ;
+  iop:hasObjectOfInterest et:23 ;
+  iop:hasProperty qk:ThermodynamicTemperature ;
+.
+qk:ThermodynamicTemperature
+    a iop:Property ;
+    rdfs:label "thermodynamic temperature" 
+.		
+et:23
+    a iop:Entity ;
+    rdfs:label "air" 
+.
+uom:minimum
+    a iop:StatisticalModifier ;
+    rdfs:label "minimum" 
 .
