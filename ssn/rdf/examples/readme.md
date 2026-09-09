@@ -1,6 +1,6 @@
 # Extended SOSA examples
 
-This folder contains long running examples previously contained within the RDF files in this directory. They correspond to the numbered examples in the [Semantic Sensor Network Ontology](https://www.w3.org/TR/vocab-ssn/) recommendation. 
+This folder contains long running examples previously contained within the RDF files in this directory. They correspond to the numbered examples in the [Semantic Sensor Network Ontology](https://www.w3.org/TR/vocab-ssn/) Recommendation. 
 
 
 ## Tracking Beer Temperature with IBS-TH2
