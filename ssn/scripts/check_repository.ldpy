@@ -14,6 +14,8 @@ warnings, because the repository legitimately carries drafts and spare files.
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
+import difflib
+import html
 import re
 import sys
 from collections import defaultdict
@@ -37,6 +39,12 @@ EXAMPLES_DIR = SSN_DIR / "rdf" / "examples"
 # from the IRIs themselves rather than retyped.
 SOSA_NS = str(<http://www.w3.org/ns/sosa/>)
 SSN_NS = str(<http://www.w3.org/ns/ssn/>)
+
+# The two property registries are rendered as tables, with no anchor and no
+# prose per term.  That is an editorial choice, so the checks that expect a
+# documenting section skip them.
+VOCABULARY_NS = (str(<http://www.w3.org/ns/sosa/system-capability-properties#>),
+                 str(<http://www.w3.org/ns/sosa/system-environment-properties#>))
 
 
 def is_ours(term):
@@ -226,19 +234,22 @@ def check_terms(merged, declared_by, seen_in):
     return defines
 
 
-def check_annotations(merged, defines):
-    """Each defined term carries a label and a definition."""
+def check_annotations(merged, defines, deprecated):
+    """Each live term carries a label and a definition.
+
+    Deprecated terms are exempt: they are kept for resolution, not for reading.
+    """
     @graph merged
     missing = sorted(
         (term, [k for k, present in (("rdfs:label", bool(m{ {term} rdfs:label ?l })),
                                      ("skos:definition", bool(m{ {term} skos:definition ?d })))
                 if not present])
-        for term in defines
+        for term in defines if term not in deprecated
     )
     missing = [x for x in missing if x[1]]
     report(
         "Terms missing a label or a definition", missing,
-        "Every term is labelled and defined", fatal=True,
+        "Every live term is labelled and defined", fatal=True,
         detail=lambda x: f"- {x[0]} has no {' and no '.join(x[1])}",
     )
 
@@ -275,27 +286,174 @@ def check_deprecated(merged, defines):
 
 
 def check_documented(defines, deprecated):
-    """Every live ontology term has an anchor in the specification text.
-
-    The vocabularies are excluded: their terms are rendered as tables, with no
-    per-term anchor, which is a deliberate editorial choice.
-    """
+    """Every live ontology term has an anchor in the specification text."""
     anchors = set()
     for file in html_files():
         anchors.update(re.findall(r'id="([^"]+)"', read(file)))
 
-    vocabulary_ns = tuple(str(i) for i in (<http://www.w3.org/ns/sosa/system-capability-properties#>,
-                                           <http://www.w3.org/ns/sosa/system-environment-properties#>))
     undocumented = sorted(
         term for term in defines
         if term not in deprecated
-        and not str(term).startswith(vocabulary_ns)
+        and not str(term).startswith(VOCABULARY_NS)
         and not any(a.endswith(local_name(term)) for a in anchors)
     )
     report(
         "Ontology terms with no anchor in the specification", undocumented,
         "Every live term is documented", fatal=True,
         detail=lambda t: f"- {t} — expected an id ending in '{local_name(t)}'",
+    )
+
+
+# ---------------------------------------------------------------------------
+# The ontology and the prose, side by side
+# ---------------------------------------------------------------------------
+#
+# Each term is described twice: as `skos:definition` in Turtle, and as prose in
+# the chapter that documents it.  The two drift apart one edit at a time, so
+# they are compared here — on the text alone.  Markup, entities, whitespace,
+# the flavour of dash or quote, and the numbering of a list are all normalised
+# away before anything is compared; wording and punctuation are not, because
+# those are the content.
+
+SPECTERM = re.compile(
+    r'<section[^>]*\bclass="[^"]*\bspecterm\b[^"]*"[^>]*\bid="([^"]+)"', re.I)
+BLOCK_END = re.compile(r'</(?:p|li|dd|dt|h[1-6]|div|section|td)>|<br\s*/?>', re.I)
+SENTENCE_SPLIT = re.compile(r'(?<=[.;:])\s+')
+
+
+def plain(text):
+    """Markup and typography out; wording and punctuation in."""
+    text = html.unescape(re.sub(r"<[^>]+>", " ", text))
+    for fancy, plainer in (("\u2014", " - "), ("\u2013", " - "), ("--", " - "),
+                           ("\u2019", "'"), ("\u201c", '"'), ("\u201d", '"')):
+        text = text.replace(fancy, plainer)
+    text = re.sub(r"\s+", " ", text)
+    text = re.sub(r"\s+([,.;:!?)])", r"\1", text)   # markup leaves a gap here
+    text = re.sub(r"([(])\s+", r"\1", text)
+    return text.strip()
+
+
+def term_name_folder(defines):
+    """A normaliser that spells every term name the one way.
+
+    The prose writes a class as `sosa:ActuationCollection`, the Turtle spells it
+    out as "Actuation Collection"; both name the same term, and neither spelling
+    is a change of meaning.  Folding them together is what leaves only the
+    differences worth an editor's attention.
+    """
+    names = sorted({local_name(t) for t in defines}, key=len, reverse=True)
+    prefixed = re.compile(r"\b[a-z][a-zA-Z0-9-]*:(?=(?:" + "|".join(map(re.escape, names)) + r")\b)")
+    spaced = [(re.compile(r"\b" + r"\s+".join(re.findall(r"[A-Z][a-z0-9]*|[a-z0-9]+", n)) + r"\b"), n)
+              for n in names if len(re.findall(r"[A-Z][a-z0-9]*|[a-z0-9]+", n)) > 1]
+
+    def fold(text):
+        text = prefixed.sub("", text)
+        for pattern, name in spaced:
+            text = pattern.sub(name, text)
+        return text
+
+    return fold
+
+
+def definition_paragraphs(definition):
+    """The paragraphs of a `skos:definition`, list numbering dropped."""
+    for paragraph in re.split(r"\n\s*\n", str(definition)):
+        paragraph = plain(re.sub(r"^\s*\d+[.)]\s*", "", paragraph))
+        if paragraph:
+            yield paragraph
+
+
+def specterm_sections():
+    """`id` of each term section -> (file, flat text, list of block texts).
+
+    A section runs to the next `specterm` section, which is enough: they are
+    siblings, one per term.
+    """
+    sections = {}
+    for file in sorted(CHAPTERS_DIR.glob("*.html")):
+        content = read(file)
+        starts = list(SPECTERM.finditer(content))
+        for i, start in enumerate(starts):
+            end = starts[i + 1].start() if i + 1 < len(starts) else len(content)
+            raw = content[start.end():end]
+            blocks = [b for b in (plain(x) for x in BLOCK_END.split(raw)) if len(b) > 15]
+            sections[start.group(1)] = (file, plain(raw), blocks)
+    return sections
+
+
+def check_prose_matches_ontology(merged, defines, deprecated):
+    """Every paragraph of a term's definition appears in the term's section."""
+    @graph merged
+
+    fold = term_name_folder(defines)
+    sections = {key: (file, fold(flat), [fold(b) for b in blocks])
+                for key, (file, flat, blocks) in specterm_sections().items()}
+    everything = "\n".join(flat for _, flat, _ in sections.values())
+
+    undocumented, drifted, parallel, elsewhere = [], [], 0, 0
+    for term in sorted(defines):
+        if term in deprecated or str(term).startswith(VOCABULARY_NS):
+            continue
+        definition = m{ {term} skos:definition ?d }.first()
+        if definition is None:
+            continue
+        key = next((k for k in sections if k.endswith(local_name(term))), None)
+        if key is None:
+            undocumented.append(term)
+            continue
+
+        file, flat, blocks = sections[key]
+        for paragraph in definition_paragraphs(definition):
+            paragraph = fold(paragraph)
+            if paragraph in flat:
+                parallel += 1
+            elif paragraph in everything:
+                # Said once, in a shared passage another section links to.
+                elsewhere += 1
+            else:
+                ratio, nearest = max(
+                    ((difflib.SequenceMatcher(None, paragraph, block).ratio(), block)
+                     for block in blocks), default=(0.0, ""))
+                drifted.append((key, file, paragraph, ratio, nearest))
+
+    print(f"\n=== Definitions: Turtle against the prose ===")
+    print(f"{parallel} paragraph(s) match the documenting section, "
+          f"{elsewhere} appear in shared prose elsewhere.")
+    report(
+        "Definitions that differ between the ontology and the prose", drifted,
+        "The ontology and the prose say the same thing", fatal=False,
+        detail=lambda x: (f"- {x[0]} ({x[1]})\n"
+                          f"    turtle: {x[2]}\n"
+                          f"    prose:  {x[4] or '(nothing comparable in the section)'}"
+                          + (f"    [{x[3]:.0%} alike]" if x[3] else "")),
+    )
+    report(
+        "Terms with a definition but no documenting section", undocumented,
+        "Every defined term has a section", fatal=False,
+    )
+
+
+def check_labels_match_prose(merged, defines, deprecated):
+    """A term's preferred and alternative labels appear in its section."""
+    @graph merged
+    sections = specterm_sections()
+
+    missing = []
+    for term in sorted(defines):
+        if term in deprecated:
+            continue
+        key = next((k for k in sections if k.endswith(local_name(term))), None)
+        if key is None:
+            continue
+        flat = sections[key][1]
+        for label in set(m{ {term} skos:prefLabel ?l }) | set(m{ {term} skos:altLabel ?l }):
+            if str(label) not in flat:
+                missing.append((key, sections[key][0], term, str(label)))
+
+    report(
+        "Labels absent from the term's section", missing,
+        "Every preferred and alternative label is used in the prose", fatal=False,
+        detail=lambda x: f"- {x[0]} ({x[1]}): {x[2]} is labelled \"{x[3]}\", not said in the section",
     )
 
 
@@ -364,10 +522,12 @@ def main():
            detail=lambda x: f"- {x[0]}: {x[1]}")
 
     defines = check_terms(merged, declared_by, seen_in)
-    check_annotations(merged, defines)
-    check_domains_and_ranges(merged, defines)
     deprecated = check_deprecated(merged, defines)
+    check_annotations(merged, defines, deprecated)
+    check_domains_and_ranges(merged, defines)
     check_documented(defines, deprecated)
+    check_prose_matches_ontology(merged, defines, deprecated)
+    check_labels_match_prose(merged, defines, deprecated)
     check_prefixes()
     check_examples(defines, module_iris(merged))
 
