@@ -142,7 +142,7 @@ sosa:Procedure
   skos:definition """
   workflow, protocol, plan, algorithm, program, or computational method specifying how to make an Execution
 
-  A Procedure is re-usable, and might be applied in many Actuations, Observations, or Samplings.
+  A Procedure is re-usable, and might be applied in many Executions (Actuations, Observations, or Samplings).
   It explains the steps to be carried out to arrive at reproducible results.
   """@en ;
   skos:example "The measured wind speed differs depending on the height of the sensor above the surface, e.g., due to friction. Consequently, procedures for measuring wind speed define a standard height for anemometers above ground, typically 10m for meteorological measures and 2m in Agrometeorology. This definition of height, sensor placement, and so forth are defined by the Procedure."@en ;
@@ -269,17 +269,17 @@ sosa:ExecutionCollection
   hasFeatureOfInterest , usedProcedure , madeBySystem , endTime, resultTime , startTime . 
   If they are present, the value of these properties summarize the values of the matching properties of the member Executions, where membership is either direct or transitive through one or more member execution collections.
 
-  The following consistency rules apply with respect to the execution properties listed above: 
+  The following consistency rules apply to the Execution properties listed above: 
   
   1. Where an individual Execution Collection omits a property, a member Execution (direct or transitive) MAY have any value for that property.
 
-  2. Where an individual Execution Collection has a single value for a property, each member Execution (direct or transitive) MUST have that same value for the property - i.e., the collection is homogeneous in that property.  That property MAY then be omitted in any member Execution or Execution Collection.
+  2. Where an individual Execution Collection has a single value for a property, each member Execution (direct or transitive) MUST have that same value for that property; i.e., the collection is homogeneous in that property.  That property MAY then be omitted in any member Execution or Execution Collection.
 
   3. Where an individual Execution Collection has more than one value for a property, each member Execution (direct or transitive) MUST have a value for that property that matches one of the values for the property in the collection. 
   
   4. Where an individual Execution Collection has a value for a property that is a range or interval, each member Execution (direct or transitive) MUST have a value for that property that matches or falls within that range or interval.
 
-  5. Where an individual Execution Collection has more than one value for a property that is a range or interval, each member Execution (direct or transitive) MUST have a value for that property that either matches or falls within one of those ranges or intervals.
+  5. Where an individual Execution Collection has more than one value for a property that is a range or interval, each member Execution (direct or transitive) MUST have a value for that property that matches or falls within one of those ranges or intervals.
   """@en ;
   skos:note """The members of a collection do not necessarily share a common value for any property. """@en ;
   skos:scopeNote """
