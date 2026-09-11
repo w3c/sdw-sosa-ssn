@@ -1,0 +1,383 @@
+"""Repository integrity checks for the SOSA/SSN specification.
+
+Written in Linked-Data Python (ldpy): a superset of Python in which Turtle
+notation is part of the syntax.  Run it with::
+
+    pip install linked-data-python
+    python -m ldpy ssn/scripts/check_repository.ldpy
+
+Checks marked FATAL make the script exit non-zero; the others are reported as
+warnings, because the repository legitimately carries drafts and spare files.
+"""
+
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+import re
+import sys
+from collections import defaultdict
+from pathlib import Path
+
+from rdflib import Graph, URIRef
+
+# ---------------------------------------------------------------------------
+# Where things live
+# ---------------------------------------------------------------------------
+
+SSN_DIR = Path("ssn")
+CHAPTERS_DIR = SSN_DIR / "chapters"
+IMAGES_DIR = SSN_DIR / "images"
+ONTOLOGY_DIR = SSN_DIR / "rdf" / "ontology"
+VOCABULARIES_DIR = SSN_DIR / "rdf" / "vocabularies"
+EXAMPLES_DIR = SSN_DIR / "rdf" / "examples"
+
+# The two namespaces the specification is responsible for.  A bare `sosa:` is
+# not a term outside an island, so the strings needed by `startswith` are taken
+# from the IRIs themselves rather than retyped.
+SOSA_NS = str(<http://www.w3.org/ns/sosa/>)
+SSN_NS = str(<http://www.w3.org/ns/ssn/>)
+
+
+def is_ours(term):
+    """True for a URIRef in the SOSA or SSN namespace (extensions included)."""
+    return isinstance(term, URIRef) and str(term).startswith((SOSA_NS, SSN_NS))
+
+
+def module_iris(graph):
+    """The IRIs that name a module rather than a term.
+
+    An ontology IRI, a version IRI and anything imported all live in the SOSA
+    and SSN namespaces too, so they have to be told apart from terms before
+    anything is said about which terms are defined where.
+    """
+    @graph graph
+    return (set(m{ ?o a owl:Ontology })
+            | {o for s, o in m{ ?s owl:versionIRI ?o }}
+            | {o for s, o in m{ ?s owl:imports ?o }}
+            | {o for s, o in m{ ?s owl:priorVersion ?o }})
+
+
+def local_name(term):
+    """`Sensor` for sosa:Sensor, `metadata` for the oms: extension term."""
+    return re.split(r"[/#]", str(term))[-1]
+
+
+def ontology_files():
+    return sorted(ONTOLOGY_DIR.rglob("*.ttl")) + sorted(VOCABULARIES_DIR.rglob("*.ttl"))
+
+
+def html_files():
+    """Every source HTML file, minus the generated usage report."""
+    return [f for f in sorted(SSN_DIR.rglob("*.html")) if "usage" not in f.parts]
+
+
+def read(path):
+    return path.read_text(encoding="utf-8", errors="replace")
+
+
+# ---------------------------------------------------------------------------
+# Reporting
+# ---------------------------------------------------------------------------
+
+FAILURES = []
+
+
+def report(title, problems, all_good, fatal=False, detail=None):
+    """Print one section.  `problems` is a list; `detail` renders one item."""
+    print(f"\n=== {title} ===")
+    if not problems:
+        print(f"{all_good} 🎉")
+        return
+    print("❌" if fatal else "⚠️ ", f"{len(problems)} issue(s)")
+    for item in problems:
+        print(detail(item) if detail else f"- {item}")
+    if fatal:
+        FAILURES.append(title)
+
+
+# ---------------------------------------------------------------------------
+# Files and references — plain Python: no RDF here, so no island either
+# ---------------------------------------------------------------------------
+
+def unused_html_chapters():
+    """Chapter files that no document pulls in with `data-include`."""
+    pattern = re.compile(r'data-include=["\']\./chapters/(.*?)\.html["\']')
+    included = set()
+    for file in html_files():
+        if CHAPTERS_DIR not in file.parents:
+            included.update(pattern.findall(read(file)))
+    return sorted({f.stem for f in CHAPTERS_DIR.glob("*.html")} - included)
+
+
+def unreferenced_images():
+    pattern = re.compile(r'src=["\'](?:\./)?images/([^"\']+)["\']')
+    exts = {".svg", ".png", ".jpg", ".jpeg", ".gif"}
+    on_disk = {f.name for f in IMAGES_DIR.glob("*") if f.is_file() and f.suffix.lower() in exts}
+    used = set()
+    for file in html_files():
+        used.update(pattern.findall(read(file)))
+    return sorted(on_disk - used)
+
+
+def unreferenced_ttl_files():
+    """Example and data files no document links to.  Ontologies are exempt:
+    they are published by IRI, not by link."""
+    pattern = re.compile(r'(?:href|data-include)=["\']([^"\']+?\.ttl)["\']')
+    on_disk = {f.resolve() for f in Path(".").rglob("*.ttl") if "ontology" not in f.parts}
+    used = set()
+    for file in html_files():
+        for match in pattern.findall(read(file)):
+            if not re.match(r"^\w+://", match):          # skip absolute URLs
+                used.add((SSN_DIR / match).resolve())
+    return sorted(on_disk - used)
+
+
+def dangling_anchors():
+    """`href="#x"` with no `id="x"` anywhere in the document sources."""
+    ids, hrefs = set(), {}
+    for file in html_files():
+        content = read(file)
+        ids.update(re.findall(r'id="([^"]+)"', content))
+        for target in re.findall(r'href="#([^"]+)"', content):
+            hrefs.setdefault(target, file)
+    return sorted((t, hrefs[t]) for t in hrefs if t not in ids)
+
+
+# ---------------------------------------------------------------------------
+# The ontology — one graph per file, then one graph for the whole thing
+# ---------------------------------------------------------------------------
+
+def invalid_ttl_files():
+    broken = []
+    for file in sorted(Path(".").rglob("*.ttl")):
+        try:
+            Graph().parse(file, format="turtle")
+        except Exception as error:
+            broken.append((file, str(error)))
+    return broken
+
+
+def load_ontology():
+    """Parse every ontology file once, and record what each one declares.
+
+    Returns the merged graph, the ontology IRI declared by each file, and the
+    files a term was seen in.
+    """
+    merged = Graph()
+    declared_by = {}                       # ontology IRI -> file declaring it
+    seen_in = defaultdict(set)             # term -> files mentioning it
+    problems = []
+
+    for file in ontology_files():
+        @graph as module
+        module.parse(file, format="turtle")
+
+        ontologies = list(m{ ?o a owl:Ontology })
+        if len(ontologies) != 1:
+            problems.append((file, f"{len(ontologies)} owl:Ontology declarations, expected 1"))
+            continue
+        declared_by[ontologies[0]] = file
+
+        for term in {t for triple in module for t in triple if is_ours(t)}:
+            seen_in[term].add(file)
+
+        merged += module
+
+    for iri in module_iris(merged):
+        seen_in.pop(iri, None)
+
+    return merged, declared_by, seen_in, problems
+
+
+def check_terms(merged, declared_by, seen_in):
+    """Every SOSA/SSN term must be declared by exactly one declared ontology."""
+    @graph merged
+
+    defines = defaultdict(set)             # term -> ontologies defining it
+    for term, ontology in m{ ?term rdfs:isDefinedBy ?ontology }:
+        defines[term].add(ontology)
+
+    duplicates = sorted((t, sorted(o)) for t, o in defines.items() if len(o) > 1)
+    report(
+        "Terms defined by more than one ontology", duplicates,
+        "Every term has a single home", fatal=True,
+        detail=lambda x: f"- {x[0]}\n" + "\n".join(f"    - {o}" for o in x[1]),
+    )
+
+    undefined = sorted(t for t in seen_in if t not in defines)
+    report(
+        "Terms used but never defined", undefined,
+        "No undefined term", fatal=True,
+        detail=lambda t: f"- {t} used in:\n" + "\n".join(f"    - {f}" for f in sorted(seen_in[t])),
+    )
+
+    orphans = sorted(
+        (o, sorted(t for t in defines if o in defines[t]))
+        for o in {o for ontos in defines.values() for o in ontos} - set(declared_by)
+    )
+    report(
+        "Terms defined by an ontology that is declared nowhere", orphans,
+        "Every term's home ontology exists", fatal=True,
+        detail=lambda x: f"- <{x[0]}> is declared in no file, yet defines:\n"
+                         + "\n".join(f"    - {t}" for t in x[1]),
+    )
+
+    return defines
+
+
+def check_annotations(merged, defines):
+    """Each defined term carries a label and a definition."""
+    @graph merged
+    missing = sorted(
+        (term, [k for k, present in (("rdfs:label", bool(m{ {term} rdfs:label ?l })),
+                                     ("skos:definition", bool(m{ {term} skos:definition ?d })))
+                if not present])
+        for term in defines
+    )
+    missing = [x for x in missing if x[1]]
+    report(
+        "Terms missing a label or a definition", missing,
+        "Every term is labelled and defined", fatal=True,
+        detail=lambda x: f"- {x[0]} has no {' and no '.join(x[1])}",
+    )
+
+
+def check_domains_and_ranges(merged, defines):
+    """A domain or range in our own namespace must be a term we define."""
+    @graph merged
+    targets = {(p, o, "domain") for p, o in m{ ?p rdfs:domain ?o }}
+    targets |= {(p, o, "range") for p, o in m{ ?p rdfs:range ?o }}
+    dangling = sorted((p, o, kind) for p, o, kind in targets if is_ours(o) and o not in defines)
+    report(
+        "Undefined terms used as a domain or a range", dangling,
+        "Every domain and range resolves", fatal=True,
+        detail=lambda x: f"- {x[0]} rdfs:{x[2]} {x[1]}, which is not defined",
+    )
+
+
+def check_deprecated(merged, defines):
+    """A term whose home is a `*-deprecated` module says so, and vice versa."""
+    @graph merged
+    marked = set(m{ ?term owl:deprecated true })
+    in_deprecated_module = {t for t, ontologies in defines.items()
+                            if any("dep/" in str(o) for o in ontologies)}
+
+    report(
+        "Deprecated modules holding unmarked terms", sorted(in_deprecated_module - marked),
+        "Every deprecated term carries owl:deprecated true", fatal=True,
+    )
+    report(
+        "Terms marked deprecated outside a deprecated module", sorted(marked - in_deprecated_module),
+        "Deprecation marks and modules agree", fatal=False,
+    )
+    return marked
+
+
+def check_documented(defines, deprecated):
+    """Every live ontology term has an anchor in the specification text.
+
+    The vocabularies are excluded: their terms are rendered as tables, with no
+    per-term anchor, which is a deliberate editorial choice.
+    """
+    anchors = set()
+    for file in html_files():
+        anchors.update(re.findall(r'id="([^"]+)"', read(file)))
+
+    vocabulary_ns = tuple(str(i) for i in (<http://www.w3.org/ns/sosa/system-capability-properties#>,
+                                           <http://www.w3.org/ns/sosa/system-environment-properties#>))
+    undocumented = sorted(
+        term for term in defines
+        if term not in deprecated
+        and not str(term).startswith(vocabulary_ns)
+        and not any(a.endswith(local_name(term)) for a in anchors)
+    )
+    report(
+        "Ontology terms with no anchor in the specification", undocumented,
+        "Every live term is documented", fatal=True,
+        detail=lambda t: f"- {t} — expected an id ending in '{local_name(t)}'",
+    )
+
+
+def check_prefixes():
+    """The same prefix means the same namespace in every Turtle file."""
+    pattern = re.compile(r'@prefix\s+([A-Za-z0-9_.-]*):\s*<([^>]*)>')
+    bindings = defaultdict(lambda: defaultdict(set))
+    for file in sorted(Path(".").rglob("*.ttl")):
+        for prefix, namespace in pattern.findall(read(file)):
+            bindings[prefix][namespace].add(file)
+    conflicts = sorted((p, sorted(ns.items())) for p, ns in bindings.items() if len(ns) > 1)
+    report(
+        "Prefixes bound to more than one namespace", conflicts,
+        "Every prefix is used consistently", fatal=False,
+        detail=lambda x: f"- {x[0]}:\n" + "\n".join(
+            f"    - <{ns}> in {', '.join(str(f) for f in sorted(files))}" for ns, files in x[1]),
+    )
+
+
+def check_examples(defines, modules):
+    """Examples must not invent SOSA/SSN terms, and should exercise them all."""
+    used = set()
+    undefined = defaultdict(set)
+    for file in sorted(EXAMPLES_DIR.rglob("*.ttl")):
+        try:
+            example = Graph().parse(file, format="turtle")
+        except Exception as error:
+            print(f"❌ Error parsing example {file}: {error}")
+            continue
+        for term in {t for triple in example for t in triple if is_ours(t)} - modules:
+            used.add(term)
+            if term not in defines:
+                undefined[term].add(file)
+
+    report(
+        "Undefined SOSA/SSN terms in examples", sorted(undefined),
+        "Every term used in an example is defined", fatal=True,
+        detail=lambda t: f"- {t} used in:\n" + "\n".join(f"    - {f}" for f in sorted(undefined[t])),
+    )
+    report(
+        "Terms illustrated by no example", sorted(set(defines) - used),
+        "Every term appears in an example", fatal=False,
+    )
+
+
+# ---------------------------------------------------------------------------
+
+def main():
+    report("Unused HTML chapters", unused_html_chapters(),
+           "Every chapter is included")
+    report("Unreferenced images", unreferenced_images(),
+           "Every image is referenced")
+    report("Unreferenced TTL files", unreferenced_ttl_files(),
+           "Every data file is referenced")
+    report("Dangling internal links", dangling_anchors(),
+           "Every internal link resolves", fatal=True,
+           detail=lambda x: f"- href=\"#{x[0]}\" in {x[1]} has no matching id")
+
+    report("Invalid TTL files", invalid_ttl_files(),
+           "Every Turtle file parses", fatal=True,
+           detail=lambda x: f"- {x[0]}\n    {x[1]}")
+
+    merged, declared_by, seen_in, module_problems = load_ontology()
+    report("Ontology module declarations", module_problems,
+           f"All {len(declared_by)} modules declare exactly one ontology", fatal=True,
+           detail=lambda x: f"- {x[0]}: {x[1]}")
+
+    defines = check_terms(merged, declared_by, seen_in)
+    check_annotations(merged, defines)
+    check_domains_and_ranges(merged, defines)
+    deprecated = check_deprecated(merged, defines)
+    check_documented(defines, deprecated)
+    check_prefixes()
+    check_examples(defines, module_iris(merged))
+
+    print()
+    if FAILURES:
+        print(f"❌ {len(FAILURES)} failing check(s): " + ", ".join(FAILURES))
+        return 1
+    print("✅ All checks passed.")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
