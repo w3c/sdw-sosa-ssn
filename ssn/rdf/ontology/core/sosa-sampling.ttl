@@ -95,17 +95,17 @@ sosa:SampleCollection
   hasOriginalSample , isSampleOfUltimateFOI , isSampleOf , isResultOfUsedProcedure , isResultOfMadeBySampler . 
   If these properties are present, their values summarize the values of the matching properties of the member samples, where membership is either direct or transitive through one or more member sample collections. 
 
-  The following consistency rules apply with respect to the Sample properties listed above: 
+  The following consistency rules apply to the Sample properties listed above: 
   
   1. Where an individual Sample Collection omits a property, a member Sample (direct or transitive) MAY have any value for that property.
 
-  2. Where an individual Sample Collection has a single value for a property, each member Sample (direct or transitive) MUST have that same value for the property - i.e., the collection is homogeneous in that property.  That property MAY be omitted in any member Sample or Sample Collection.
+  2. Where an individual Sample Collection has a single value for a property, each member Sample (direct or transitive) MUST have that same value for that property; i.e., the collection is homogeneous in that property.  That property MAY be omitted in any member Sample or Sample Collection.
 
   3. Where an individual Sample Collection has more than one value for a property, each member Sample (direct or transitive) MUST have a value for that property that matches one of the values for the property in the collection. 
   
-  4. Where an individual Sample Collection has a value for a property that is a range or interval, each member Sample (direct or transitive) MUST have a value for that property that either matches or falls within that range or interval.
+  4. Where an individual Sample Collection has a value for a property that is a range or interval, each member Sample (direct or transitive) MUST have a value for that property that matches or falls within that range or interval.
 
-  5. Where an individual Sample Collection has more than one value for a property that is a range or interval, each member Sample (direct or transitive) MUST have a value for that property that either matches or falls within one of those ranges or intervals.
+  5. Where an individual Sample Collection has more than one value for a property that is a range or interval, each member Sample (direct or transitive) MUST have a value for that property that matches or falls within one of those ranges or intervals.
   """@en ;
   skos:note """
   The members of a collection do not necessarily share a common value for any property. 
@@ -153,17 +153,17 @@ sosa:SamplingCollection
   All Sampling properties may appear in a Sampling Collection, including: 
   hasFeatureOfInterest , hasUltimateFeatureOfInterest , madeBySampler , usedProcedure , hasInputValue , startTime , phenomenonTime , resultTime , hasResult . 
   If they are present, the value of these properties summarize the values of the matching properties of the member samplings, where membership is either direct or transitive through one or more member sampling collections. 
-  The following consistency rules apply with respect to the Sampling properties listed above: 
+  The following consistency rules apply to the Sampling properties listed above: 
   
   1. Where an individual Sampling Collection omits a property, a member Sampling (direct or transitive) MAY have any value for that property.
 
-  2. Where an individual Sampling Collection has a single value for a property, each member Sampling (direct or transitive) MUST have that same value for the property - i.e., the collection is homogeneous in that property.  That property MAY then be omitted in any member Sampling or Sampling Collection.
+  2. Where an individual Sampling Collection has a single value for a property, each member Sampling (direct or transitive) MUST have that same value for that property; i.e., the collection is homogeneous in that property.  That property MAY then be omitted in any member Sampling or Sampling Collection.
 
   3. Where an individual Sampling Collection has more than one value for a property, each member Sampling (direct or transitive) MUST have a value for that property that matches one of the values for the property in the collection. 
   
   4. Where an individual Sampling Collection has a value for a property that is a range or interval, each member Sampling (direct or transitive) MUST have a value for that property that matches or falls within that range or interval.
 
-  5. Where an individual Sampling Collection has more than one value for a property that is a range or interval, each member Sampling (direct or transitive) MUST have a value for that property that either matches or falls within one of those ranges or intervals.
+  5. Where an individual Sampling Collection has more than one value for a property that is a range or interval, each member Sampling (direct or transitive) MUST have a value for that property that matches or falls within one of those ranges or intervals.
   """@en ;
   skos:note """The members of a collection do not necessarily share a common value for any property."""@en ;
   rdfs:isDefinedBy sosa-sam: .
@@ -175,7 +175,7 @@ sosa:SamplingProcedure
   skos:definition """
   workflow, protocol, plan, algorithm, program, or computational method specifying how to make a Sampling
 
-  A Sampling Procedure is re-usable, and might be involved in many Samplings. 
+  A Sampling Procedure is re-usable, and might be applied in many Samplings. 
   The Sampling Procedure explains the steps to be carried out to arrive at reproducible results.
   """@en ;
   skos:example """

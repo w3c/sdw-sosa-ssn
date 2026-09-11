@@ -56,17 +56,17 @@ sosa:ObservationCollection
   All Observation properties may appear in an Observation Collection, including: 
   hasFeatureOfInterest , hasUltimateFeatureOfInterest , usedProcedure , madeBySensor , observedProperty , phenomenonTime , startTime, resultTime , hasResult , hasSimpleResult : 
   If they are present, the values of these properties summarize the values of the matching properties of the member observations, where membership is either direct or transitive through one or more member observation collections. 
-  The following consistency rules apply with respect to the Observation properties listed above: 
+  The following consistency rules apply to the Observation properties listed above: 
   
   1. Where an individual Observation Collection omits a property, a member Observation (direct or transitive) MAY have any value for that property.
 
-  2. Where an individual Observation Collection has a single value for a property, each member Observation(direct or transitive) MUST have that same value for the property - i.e., the collection is homogeneous in that property.  That property MAY then be omitted in any member Observation or Observation Collection.
+  2. Where an individual Observation Collection has a single value for a property, each member Observation(direct or transitive) MUST have that same value for that property; i.e., the collection is homogeneous in that property.  That property MAY then be omitted in any member Observation or Observation Collection.
 
   3. Where an individual Observation Collection has more than one value for a property, each member Observation (direct or transitive) MUST have a value for that property that matches one of the values for the property in the collection. 
   
   4. Where an individual Observation Collection has a value for a property that is a range or interval, each member Observation (direct or transitive) MUST have a value for that property that matches or falls within that range or interval.
 
-  5. Where an individual Observation Collection has more than one value for a property that is a range or interval, each member Observation (direct or transitive) MUST have a value for that property that either matches or falls within one of those ranges or intervals.
+  5. Where an individual Observation Collection has more than one value for a property that is a range or interval, each member Observation (direct or transitive) MUST have a value for that property that matches or falls within one of those ranges or intervals.
   """@en ;
   skos:note """The members of a collection do not necessarily share a common value for any property. """@en ;
   skos:note """The results of collections of observations are often packaged in a 'data cube' whose axes define the
@@ -82,7 +82,7 @@ sosa:ObservingProcedure
   skos:definition """
   workflow, protocol, plan, algorithm, program, or computational method specifying how to make an Observation
 
-  An Observing Procedure is re-usable, and might be involved in many Observations. 
+  An Observing Procedure is re-usable, and might be applied in many Observations. 
   It explains the steps to be carried out to arrive at reproducible results.
   """@en ;
   skos:example """A workflow, protocol, plan, algorithm, program, or computational method specifying how to make an observation; the description of the process used by an observer. This could be a chemical analysis method, a protocol for measuring an object, or even a checklist used by a human observer during a biodiversity campaign. The Procedure could further describe the algorithms behind simulators or models used to generate a result from other inputs."""@en ;
@@ -100,7 +100,7 @@ sosa:Sensor
 
   This may be a device, a piece of infrastructure, an agent (including humans), or a software-based system, including systems performing simulations.
 
-  A Sensor responds to a stimulus, e.g., a change in the environment, or input data composed from the results of prior Observations.
+  A Sensor responds to a Stimulus, e.g., a change in the environment, or input data composed from the results of prior Observations.
   """@en ;
   skos:example "Accelerometers, gyroscopes, barometers, magnetometers, and so forth are Sensors that are typically mounted on a modern smartphone (which acts as Host or Platform). Other examples of Sensors include the human eyes."@en ;
   skos:note "The UML class 'Observer' from ISO 19156:2023 is implemented in SOSA by the OWL/RDFS class 'Sensor'. The class name 'Sensor' is preferred for backward compatibility with existing SOSA deployments. " ;
