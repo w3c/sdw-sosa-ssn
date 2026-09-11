@@ -36,10 +36,17 @@ the chapter that documents it — and the two drift apart one edit at a time.
 no longer matches, with the nearest prose alongside:
 
 ```text
-- SOSAExecutionCollection (ssn/chapters/Common.html)
-    turtle: The following consistency rules apply with respect to the execution properties listed above:
-    prose:  The following consistency rules apply to the Execution properties listed above:    [91% alike]
+- SOSAProcedure (ssn/chapters/Common.html)
+    turtle: A Procedure is re-usable, and might be applied in many Actuations, Observations, or Samplings. ...
+      last changed 2025-07-12 30a00ae3 Sync definitions between HTML and TTL representations
+    prose (more recent):  A Procedure is re-usable, and might be applied in many Executions (Actuations, Observations, or Samplings). ...    [96% alike]
+      last changed 2025-07-23 077d50a9 Tweak Procedure definition and notes
 ```
+
+Each side is traced with `git blame`, down to the lines that carry that
+paragraph rather than the whole file, and the one edited last is marked
+`(more recent)` — usually the side holding the intended wording, the other
+being the one that was forgotten.
 
 The comparison is on the text alone. Markup, HTML entities, whitespace, the
 flavour of dash or quote, and the numbering of a list are normalised away, and

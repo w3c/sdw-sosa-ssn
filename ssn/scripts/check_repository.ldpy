@@ -17,8 +17,10 @@ warnings, because the repository legitimately carries drafts and spare files.
 import difflib
 import html
 import re
+import subprocess
 import sys
 from collections import defaultdict
+from datetime import datetime, timezone
 from pathlib import Path
 
 from rdflib import Graph, URIRef
@@ -64,6 +66,17 @@ def module_iris(graph):
             | {o for s, o in m{ ?s owl:versionIRI ?o }}
             | {o for s, o in m{ ?s owl:imports ?o }}
             | {o for s, o in m{ ?s owl:priorVersion ?o }})
+
+
+def anchor_matches(anchor, term):
+    """True when `anchor` is the documentation anchor for `term`.
+
+    Anchors are the term's local name behind a module prefix in capitals:
+    `SOSASensor`, `SSNhasProperty`, `OMSpreparedSample`. The match has to be
+    exact — testing that the anchor merely ends with the local name makes
+    `SOSAActuatingProcedure` answer for `sosa:Procedure`.
+    """
+    return re.fullmatch(r"[A-Z]{2,6}" + re.escape(local_name(term)), anchor) is not None
 
 
 def local_name(term):
@@ -295,7 +308,7 @@ def check_documented(defines, deprecated):
         term for term in defines
         if term not in deprecated
         and not str(term).startswith(VOCABULARY_NS)
-        and not any(a.endswith(local_name(term)) for a in anchors)
+        and not any(anchor_matches(a, term) for a in anchors)
     )
     report(
         "Ontology terms with no anchor in the specification", undocumented,
@@ -317,7 +330,7 @@ def check_documented(defines, deprecated):
 
 SPECTERM = re.compile(
     r'<section[^>]*\bclass="[^"]*\bspecterm\b[^"]*"[^>]*\bid="([^"]+)"', re.I)
-BLOCK_END = re.compile(r'</(?:p|li|dd|dt|h[1-6]|div|section|td)>|<br\s*/?>', re.I)
+BLOCK_END = re.compile(r'(</(?:p|li|dd|dt|h[1-6]|div|section|td)>|<br\s*/?>)', re.I)
 SENTENCE_SPLIT = re.compile(r'(?<=[.;:])\s+')
 
 
@@ -356,18 +369,23 @@ def term_name_folder(defines):
 
 
 def definition_paragraphs(definition):
-    """The paragraphs of a `skos:definition`, list numbering dropped."""
+    """The paragraphs of a `skos:definition`, as (raw, comparable) pairs.
+
+    The raw form is kept so the paragraph can be found again in the Turtle
+    file, which is what makes `git blame` possible on the lines that carry it.
+    """
     for paragraph in re.split(r"\n\s*\n", str(definition)):
-        paragraph = plain(re.sub(r"^\s*\d+[.)]\s*", "", paragraph))
-        if paragraph:
-            yield paragraph
+        comparable = plain(re.sub(r"^\s*\d+[.)]\s*", "", paragraph))
+        if comparable:
+            yield paragraph.strip(), comparable
 
 
 def specterm_sections():
-    """`id` of each term section -> (file, flat text, list of block texts).
+    """`id` of each term section -> (file, flat text, blocks).
 
-    A section runs to the next `specterm` section, which is enough: they are
-    siblings, one per term.
+    A block is `(comparable text, first line, last line)`, so a paragraph that
+    differs can be traced to the lines that hold it.  A section runs to the
+    next `specterm` section, which is enough: they are siblings, one per term.
     """
     sections = {}
     for file in sorted(CHAPTERS_DIR.glob("*.html")):
@@ -376,17 +394,122 @@ def specterm_sections():
         for i, start in enumerate(starts):
             end = starts[i + 1].start() if i + 1 < len(starts) else len(content)
             raw = content[start.end():end]
-            blocks = [b for b in (plain(x) for x in BLOCK_END.split(raw)) if len(b) > 15]
+
+            # The pattern captures its delimiters, so every character of `raw`
+            # comes back and the running offset stays true to the file.
+            blocks, offset = [], start.end()
+            for piece in BLOCK_END.split(raw):
+                text = "" if BLOCK_END.fullmatch(piece) else plain(piece)
+                if len(text) > 15:
+                    lead = len(piece) - len(piece.lstrip())
+                    first = content.count("\n", 0, offset + lead) + 1
+                    blocks.append((text, first, first + piece.strip().count("\n")))
+                offset += len(piece)
+
             sections[start.group(1)] = (file, plain(raw), blocks)
     return sections
 
 
-def check_prose_matches_ontology(merged, defines, deprecated):
-    """Every paragraph of a term's definition appears in the term's section."""
+# ---------------------------------------------------------------------------
+# Which side was edited last
+# ---------------------------------------------------------------------------
+#
+# When the Turtle and the prose disagree, the useful question is not that they
+# differ but which one somebody changed last: that is almost always the side
+# carrying the intended wording, and the other is the one that was forgotten.
+
+BLAME_CACHE = {}
+
+
+def blame(file):
+    """line number -> (commit time, short sha, subject), from `git blame`."""
+    path = str(file)
+    if path not in BLAME_CACHE:
+        lines = {}
+        try:
+            output = subprocess.run(
+                ["git", "blame", "--line-porcelain", "--", path],
+                capture_output=True, text=True, check=True).stdout
+        except (subprocess.CalledProcessError, FileNotFoundError):
+            BLAME_CACHE[path] = lines           # not a checkout, or not tracked
+            return lines
+
+        sha = subject = None
+        when = 0
+        for line in output.splitlines():
+            header = re.match(r"^([0-9a-f]{40}) \d+ (\d+)", line)
+            if header:
+                sha, number = header.group(1)[:8], int(header.group(2))
+            elif line.startswith("committer-time "):
+                when = int(line.split(" ", 1)[1])
+            elif line.startswith("summary "):
+                subject = line.split(" ", 1)[1]
+            elif line.startswith("\t") and sha:
+                lines[number] = (when, sha, subject)
+        BLAME_CACHE[path] = lines
+    return BLAME_CACHE[path]
+
+
+def last_touched(file, first, last):
+    """The most recent commit among a range of lines."""
+    lines = blame(file)
+    touches = [lines[n] for n in range(first, last + 1) if n in lines]
+    return max(touches) if touches else None
+
+
+def describe(touch):
+    if touch is None:
+        return "unknown"
+    when, sha, subject = touch
+    date = datetime.fromtimestamp(when, tz=timezone.utc).date().isoformat()
+    return f"{date} {sha} {subject}"
+
+
+def locate_in_turtle(file, term, raw_paragraph):
+    """The line range a definition paragraph occupies in its Turtle file.
+
+    The search starts at the term's own block, because the collection rules
+    repeat the same sentences under several terms of the same file and the
+    first occurrence is rarely the right one.
+    """
+    content = read(file)
+    block = re.search(r"^\S*[:/]" + re.escape(local_name(term)) + r"\s*$",
+                      content, re.M)
+    start = block.start() if block else 0
+
+    needle = raw_paragraph.strip().splitlines()[0].strip()
+    if len(needle) < 12:
+        return None
+    offset = content.find(needle, start)
+    if offset == -1:
+        offset = content.find(needle)               # fall back to anywhere
+    if offset == -1:
+        return None
+    first = content.count("\n", 0, offset) + 1
+    return first, first + raw_paragraph.count("\n")
+
+
+def render_drift(item):
+    newer = " (more recent)" if item["newer"] == "turtle" else ""
+    older = " (more recent)" if item["newer"] == "prose" else ""
+    alike = f"    [{item['ratio']:.0%} alike]" if item["ratio"] else ""
+    return (f"- {item['term']} ({item['html_file']})\n"
+            f"    turtle{newer}: {item['turtle']}\n"
+            f"      last changed {describe(item['turtle_touch'])}\n"
+            f"    prose{older}:  {item['prose'] or '(nothing comparable in the section)'}{alike}\n"
+            f"      last changed {describe(item['prose_touch'])}")
+
+
+def check_prose_matches_ontology(merged, defines, declared_by, deprecated):
+    """Every paragraph of a term's definition appears in the term's section.
+
+    When one does not, both sides are blamed, so the report says which of the
+    two was edited last.
+    """
     @graph merged
 
     fold = term_name_folder(defines)
-    sections = {key: (file, fold(flat), [fold(b) for b in blocks])
+    sections = {key: (file, fold(flat), [(fold(t), a, b) for t, a, b in blocks])
                 for key, (file, flat, blocks) in specterm_sections().items()}
     everything = "\n".join(flat for _, flat, _ in sections.values())
 
@@ -397,13 +520,15 @@ def check_prose_matches_ontology(merged, defines, deprecated):
         definition = m{ {term} skos:definition ?d }.first()
         if definition is None:
             continue
-        key = next((k for k in sections if k.endswith(local_name(term))), None)
+        key = next((k for k in sections if anchor_matches(k, term)), None)
         if key is None:
             undocumented.append(term)
             continue
 
-        file, flat, blocks = sections[key]
-        for paragraph in definition_paragraphs(definition):
+        turtle_file = declared_by.get(next(iter(defines[term]), None))
+        html_file, flat, blocks = sections[key]
+
+        for raw, paragraph in definition_paragraphs(definition):
             paragraph = fold(paragraph)
             if paragraph in flat:
                 parallel += 1
@@ -411,21 +536,43 @@ def check_prose_matches_ontology(merged, defines, deprecated):
                 # Said once, in a shared passage another section links to.
                 elsewhere += 1
             else:
-                ratio, nearest = max(
-                    ((difflib.SequenceMatcher(None, paragraph, block).ratio(), block)
-                     for block in blocks), default=(0.0, ""))
-                drifted.append((key, file, paragraph, ratio, nearest))
+                ratio, nearest, first, last = max(
+                    ((difflib.SequenceMatcher(None, paragraph, text).ratio(), text, a, b)
+                     for text, a, b in blocks), default=(0.0, "", 0, -1))
+
+                turtle_span = locate_in_turtle(turtle_file, term, raw) if turtle_file else None
+                turtle_touch = last_touched(turtle_file, *turtle_span) if turtle_span else None
+                prose_touch = last_touched(html_file, first, last) if last >= first else None
+
+                if not (turtle_touch and prose_touch):
+                    newer = "unknown"
+                elif turtle_touch[0] > prose_touch[0]:
+                    newer = "turtle"
+                elif prose_touch[0] > turtle_touch[0]:
+                    newer = "prose"
+                else:
+                    newer = "same"
+
+                drifted.append({"term": key, "html_file": html_file,
+                                "turtle_file": turtle_file, "turtle": paragraph,
+                                "prose": nearest, "ratio": ratio, "newer": newer,
+                                "turtle_touch": turtle_touch, "prose_touch": prose_touch})
 
     print(f"\n=== Definitions: Turtle against the prose ===")
     print(f"{parallel} paragraph(s) match the documenting section, "
           f"{elsewhere} appear in shared prose elsewhere.")
+    if drifted:
+        counts = defaultdict(int)
+        for item in drifted:
+            counts[item["newer"]] += 1
+        print(f"Of the {len(drifted)} that differ, the Turtle carries the more recent "
+              f"edit in {counts['turtle']}, the prose in {counts['prose']}; "
+              f"{counts['same']} were last changed by the same commit "
+              f"and {counts['unknown']} could not be traced.")
     report(
         "Definitions that differ between the ontology and the prose", drifted,
         "The ontology and the prose say the same thing", fatal=False,
-        detail=lambda x: (f"- {x[0]} ({x[1]})\n"
-                          f"    turtle: {x[2]}\n"
-                          f"    prose:  {x[4] or '(nothing comparable in the section)'}"
-                          + (f"    [{x[3]:.0%} alike]" if x[3] else "")),
+        detail=render_drift,
     )
     report(
         "Terms with a definition but no documenting section", undocumented,
@@ -442,7 +589,7 @@ def check_labels_match_prose(merged, defines, deprecated):
     for term in sorted(defines):
         if term in deprecated:
             continue
-        key = next((k for k in sections if k.endswith(local_name(term))), None)
+        key = next((k for k in sections if anchor_matches(k, term)), None)
         if key is None:
             continue
         flat = sections[key][1]
@@ -526,7 +673,7 @@ def main():
     check_annotations(merged, defines, deprecated)
     check_domains_and_ranges(merged, defines)
     check_documented(defines, deprecated)
-    check_prose_matches_ontology(merged, defines, deprecated)
+    check_prose_matches_ontology(merged, defines, declared_by, deprecated)
     check_labels_match_prose(merged, defines, deprecated)
     check_prefixes()
     check_examples(defines, module_iris(merged))
