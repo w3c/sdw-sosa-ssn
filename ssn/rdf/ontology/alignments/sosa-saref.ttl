@@ -267,10 +267,12 @@ sosa:startTime owl:equivalentProperty saref:hasStartTime .
 #
 # - `sosa:hasDeployment` and its inverse `sosa:deployedAsset`
 # - `sosa:isHostedBy` and its inverse `sosa:hosts`
-# 
+#
+# `sosa:Asset` is the resource involved in a Deployment, and `sosa:Platform` and `sosa:System` are both subclasses of it. It is the one place to say that these are systems in the SAREF4SYST sense, and features of interest in the SAREF sense — `saref:FeatureOfInterest` being more general than `sosa:FeatureOfInterest`, an entity can be one without being the target of any execution.
 
 sosa:Asset
-  rdfs:subClassOf s4syst:System . 
+  rdfs:subClassOf s4syst:System ;
+  rdfs:subClassOf saref:FeatureOfInterest . 
 
 
 ### Deployment
@@ -288,10 +290,7 @@ sosa:Asset
 #
 # - `sosa:hosts` and its inverse `sosa:isHostedBy`
 # 
-# `saref:FeatureOfInterest` being more general than `sosa:FeatureOfInterest`, this alignemnt maps `sosa:Platform` to `saref:FeatureOfInterest` and `s4syst:System`. 
-
-sosa:Platform
-  rdfs:subClassOf s4syst:System . 
+# `sosa:Platform` is a subclass of `sosa:Asset`, so it is already a `s4syst:System` and a `saref:FeatureOfInterest`. 
 
 
 ### Systems
@@ -299,16 +298,12 @@ sosa:Platform
 # In SOSA/SSN, `sosa:System` is a generalization of `sosa:Sensor`, `sosa:Actuator` and `sosa:Sampler`, where `sosa:Sensor` covers devices, agents (including humans), or softwares (simulations). 
 # In SAREF, a `saref:Device` is "a tangible object designed to accomplish a particular task. To accomplish this task, the device performs one or more functions. An instance of saref:Device represents one specific real world entity.".
 # `sosa:System` is positionned in the middle of the hierarchy:
-# `saref:Device` < `sosa:System`  < `s4syst:System`
-#                                 < `saref:FeatureOfInterest` 
+# `saref:Device` < `sosa:System` < `sosa:Asset` < `s4syst:System`
+#                                              < `saref:FeatureOfInterest` 
 
 saref:Device
   rdfs:subClassOf sosa:System .
 
-sosa:System
-  rdfs:subClassOf s4syst:System ;
-  rdfs:subClassOf saref:FeatureOfInterest .
-  
 
 # SAREF adds the concept of `saref:DeviceKind`, which allows to describe kinds of devices, with common properties and common states having the same value, and with common functions and services. Devices kinds may be used to describe models of devices in online catalogues.
 # There is no equivalent in SOSA/SSN to `saref:DeviceKind`.
