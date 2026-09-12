@@ -36,14 +36,27 @@ ssn-oms: a owl:Ontology ;
   owl:imports ssn-obs: , ssn-sam: , sosa-oms: ;
   .
 
+## Terms of other vocabularies, declared here because OWL 2 DL asks that
+## every entity an ontology uses be declared in its imports closure
+
+dcterms:created a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:license a owl:AnnotationProperty .
+dcterms:rights a owl:AnnotationProperty .
+dcterms:source a owl:AnnotationProperty .
+dcterms:title a owl:AnnotationProperty .
+foaf:name a owl:AnnotationProperty .
+foaf:Agent a owl:Class .
+
 sosa-oms:PreparationProcedure
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implementedBy ; owl:allValuesFrom sosa-oms:PreparationStep ] ;
   rdfs:isDefinedBy sosa-oms: .
 
 sosa-oms:PreparationStep 
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:usedProcedure ; owl:allValuesFrom sosa-oms:PreparationProcedure ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:preparedSample ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:preparedSample ; owl:allValuesFrom sosa:Sample ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa-oms:preparedSample ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa-oms:preparedSample ; owl:allValuesFrom sosa:Sample ] ;
   rdfs:isDefinedBy sosa-oms: .
 
 sosa:Sample

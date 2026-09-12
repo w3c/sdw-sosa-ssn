@@ -30,6 +30,25 @@ sosa-systems: a owl:Ontology , voaf:Vocabulary ;
   vann:preferredNamespaceUri "http://www.w3.org/ns/sosa/" ;
   owl:imports sosa: .
 
+## Terms of other vocabularies, declared here because OWL 2 DL asks that
+## every entity an ontology uses be declared in its imports closure
+
+dcterms:created a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:license a owl:AnnotationProperty .
+dcterms:modified a owl:AnnotationProperty .
+dcterms:rights a owl:AnnotationProperty .
+dcterms:title a owl:AnnotationProperty .
+foaf:name a owl:AnnotationProperty .
+schema:domainIncludes a owl:AnnotationProperty .
+schema:rangeIncludes a owl:AnnotationProperty .
+skos:definition a owl:AnnotationProperty .
+vann:preferredNamespacePrefix a owl:AnnotationProperty .
+vann:preferredNamespaceUri a owl:AnnotationProperty .
+foaf:Agent a owl:Class .
+voaf:Vocabulary a owl:Class .
+
 ## Classes and relationships involved in the description of the operating conditions of a system (typically an observation collection about the system environment).
 
 sosa:hasOperatingConditions
@@ -105,7 +124,8 @@ sosa:hasValidityContext a owl:ObjectProperty ;
 
 
 ## Battery
-sosa:Battery rdfs:subClassOf sosa:System ;
+sosa:Battery a owl:Class ;
+  rdfs:subClassOf sosa:System ;
   rdfs:label "Battery"@en ;
   skos:definition "A Battery powering a System as its primary or secondary power source. As this is a specialization of the System class modeling of integrated battery management systems is also possible."@en ;
   rdfs:isDefinedBy sosa-systems: .
