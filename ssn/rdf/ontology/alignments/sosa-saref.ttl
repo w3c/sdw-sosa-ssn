@@ -44,6 +44,7 @@ sosa:saref a owl:Ontology ;
   dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
   dcterms:modified "2024-03-14"^^xsd:date ;
   dcterms:modified "2025-02-19"^^xsd:date ;
+  dcterms:modified "2026-09-12"^^xsd:date ;
   dcterms:rights "Copyright 2025 W3C/OGC." ;
   rdfs:comment """Alignment of the the W3C/OGC SOSA Ontology with the ETSI Smart Applications REFerence Ontology (SAREF)."""@en ;
   rdfs:label "Alignment of SOSA with SAREF Core V4.1.1"@en ;
@@ -51,15 +52,26 @@ sosa:saref a owl:Ontology ;
   owl:imports <https://saref.etsi.org/saref4syst/v1.1.2> ;
   owl:imports sosa: .
 
+# Note on SAREF V4.1.1. The ontology this file imports and ETSI TS 103 264 V4.1.1
+# do not agree on three terms, and this alignment follows the ontology, which is
+# what a reasoner that imports it actually sees:
+#
+# - the TS names `saref:actsUpon` where the ontology has `saref:targets`;
+# - the TS names `saref:isActedUponBy` where the ontology has `saref:isTargetOf`;
+# - the TS specifies `saref:hasStartTime` (clause 5.11.1) and the ontology does
+#   not declare it, so this file declares it. See the startTime section below.
+#
+# All three are known, and are to be settled in SAREF V4.1.2.
+
 ## Alignment sosa-common and SAREF Core and SAREF4SYST
 
 # This part of the file can be read side-by-side with the file sosa-common.ttl 
 
 ### FeatureOfInterest
 
-# In SOSA/SSN, `sosa:FeatureOfInterest` is the class of things that are the target of an execution or a deployment. 
+# In SOSA/SSN, `sosa:FeatureOfInterest` is the "entity that is the target of an Execution or ExecutionCollection or Deployment". 
 # In SAREF, `saref:FeatureOfInterest` is the class of real world entities from which a property or a state may be acted upon, such as observed and controlled.
-# So `saref:FeatureOfInterest` is more general than `sosa:FeatureOfInterest`. An entity can be a `saref:FeatureOfInterest` even if it is not the target of an execution or a deployment.
+# So `saref:FeatureOfInterest` is more general than `sosa:FeatureOfInterest`. An entity can be a `saref:FeatureOfInterest` even if it is the target of no execution and no deployment.
 
 sosa:FeatureOfInterest
   rdfs:subClassOf saref:FeatureOfInterest .
@@ -74,7 +86,7 @@ sosa:FeatureOfInterest
 
 ### Property
 
-# In SOSA/SSN, a `sosa:Property` can apply to different features of interest. Section 8.8.3 "Feature-specific properties" states that a property may be made specific to a single feature of interest using sosa:isPropertyOf.
+# In SOSA/SSN, a `sosa:Property` is an "identifiable quality of features of interest that can be observed or acted upon", and can apply to different features of interest. The section "Feature-specific properties" states that a property may be made specific to a single feature of interest using sosa:isPropertyOf.
 # In SAREF, an instance of `saref:Property` can apply to different features of interest, while an instance of `saref:PropertyOfInterest` is specific to a feature of interest. It is inherent to and cannot exist without that feature of interest.
 # SAREF also defines states, that refer to the identifiable conditions that features of interest are or may be in, and that can be acted upon by devices, such as observed and controlled. States and Properties are parallel, distinct, but not disjoint. Users can chose whichever seems to best fit their needs. 
 # While states can apply to different features of interest, states of interest are specific to a feature of interest.
@@ -95,7 +107,7 @@ saref:StateOfInterest
 
 ### hasFeatureOfInterest, forProperty, observes, observedProperty, actsOn, actsOnProperty
 
-# In SAREF, a device can act upon (OP `saref:actsUpon`) features, properties, or states. SAREF Core defines `saref:observes` and `saref:controls` as subproperties of `saref:actsUpon`. Property `saref:actsUpon` also applies to functions, commands, and procedure executions.
+# In SAREF, a device can act upon (OP `saref:targets`) features, properties, or states. SAREF Core defines `saref:observes` and `saref:controls` as subproperties of `saref:targets`. Property `saref:targets` also applies to functions, commands, and procedure executions.
 # In SOSA/SSN, different object properties are used depending on the context. It would be:
 #
 # - `sosa:hasFeatureOfInterest` from execution to feature of interest
@@ -105,24 +117,24 @@ saref:StateOfInterest
 # Thus, all these properties are subproperties of the SAREF properties.
 
 sosa:hasFeatureOfInterest
-  rdfs:subPropertyOf saref:actsUpon . # this also covers sosa:isFeatureOfInterestOf
+  rdfs:subPropertyOf saref:targets . # this also covers sosa:isFeatureOfInterestOf
 
 sosa:hasUltimateFeatureOfInterest
-  rdfs:subPropertyOf saref:actsUpon . # this also covers sosa:isUltimateFeatureOfInterestOf
+  rdfs:subPropertyOf saref:targets . # this also covers sosa:isUltimateFeatureOfInterestOf
 
 sosa:forProperty
-  rdfs:subPropertyOf saref:actsUpon .
+  rdfs:subPropertyOf saref:targets .
 
 
-# `sosa:hasProcedure` links a Property and a Procedure that can observe or act on it. This corresponds to a restrictive application of `saref:isActedUponBy` in SAREF, which is defined as "Links a feature, property, or state, to the device, function, command, or procedure execution, that acts on it.". 
+# `sosa:hasProcedure` is the "relation from a Property to a Procedure that can act on or observe that Property". This corresponds to a restrictive application of `saref:isTargetOf` in SAREF, which is defined as "Links a feature, property, or state, to the device, function, command, or procedure execution, that targets it.". 
 
 sosa:hasProcedure 
-  rdfs:subPropertyOf saref:isActedUponBy .
+  rdfs:subPropertyOf saref:isTargetOf .
 
-# `sosa:propertyFor` is defined as "A relation between a Property and some entity.". Three examples are given: from a Sensor to the properties it can observe; from an Actuator to the properties it can act on; from a SystemCapability to the Property the capability is described for. In the two first examples, SAREF would offer as equivalent `saref:isActedUponBy`, which is defined as "Links a feature, property, or state, to the device, function, command, or procedure execution, that acts on it.". In the third example, it is less clear what would be the equivalent in SAREF.
+# `sosa:propertyFor` is defined as the "relation from a Property to some Procedure or System that acts on it or observes that Property", and `sosa:hasProcedure` is one of its sub-properties. Its examples run from a Sensor to the properties it can observe, and from an Actuator to the properties it can act on; for both, SAREF offers `saref:isTargetOf`, "Links a feature, property, or state, to the device, function, command, or procedure execution, that targets it.".
 
 sosa:propertyFor
-  rdfs:subPropertyOf saref:isActedUponBy . 
+  rdfs:subPropertyOf saref:isTargetOf . 
 
 
 ### link entity to property of that entity
@@ -241,6 +253,10 @@ sosa:resultTime owl:equivalentProperty saref:hasResultTime .
 
 
 # SAREF `saref:hasStartTime` is equivalent to SOSA/SSN `sosa:startTime`, SAREF added prefix `has` to conform to naming best practices.
+# ETSI TS 103 264 V4.1.1 clause 5.11.1 specifies it — "DP saref:hasStartTime links a procedure execution to the instant of time when it was initiated or tasked, expressed as an xsd:dateTime literal" — but the V4.1.1 ontology does not declare it, and is to do so in V4.1.2.
+# Until then the declaration is made here: without it an OWL parser cannot tell whether the equivalence holds between object or between data properties, and drops the axiom.
+
+saref:hasStartTime a owl:DatatypeProperty .
 
 sosa:startTime owl:equivalentProperty saref:hasStartTime .
 
@@ -251,10 +267,12 @@ sosa:startTime owl:equivalentProperty saref:hasStartTime .
 #
 # - `sosa:hasDeployment` and its inverse `sosa:deployedAsset`
 # - `sosa:isHostedBy` and its inverse `sosa:hosts`
-# 
+#
+# `sosa:Asset` is the resource involved in a Deployment, and `sosa:Platform` and `sosa:System` are both subclasses of it. It is the one place to say that these are systems in the SAREF4SYST sense, and features of interest in the SAREF sense — `saref:FeatureOfInterest` being more general than `sosa:FeatureOfInterest`, an entity can be one without being the target of any execution.
 
 sosa:Asset
-  rdfs:subClassOf s4syst:System . 
+  rdfs:subClassOf s4syst:System ;
+  rdfs:subClassOf saref:FeatureOfInterest . 
 
 
 ### Deployment
@@ -272,27 +290,20 @@ sosa:Asset
 #
 # - `sosa:hosts` and its inverse `sosa:isHostedBy`
 # 
-# `saref:FeatureOfInterest` being more general than `sosa:FeatureOfInterest`, this alignemnt maps `sosa:Platform` to `saref:FeatureOfInterest` and `s4syst:System`. 
-
-sosa:Platform
-  rdfs:subClassOf s4syst:System . 
+# `sosa:Platform` is a subclass of `sosa:Asset`, so it is already a `s4syst:System` and a `saref:FeatureOfInterest`. 
 
 
 ### Systems
 
-# In SOSA/SSN, `sosa:System` is a generalization of `sosa:Sensor`, `sosa:Actuator` and `sosa:Sampler`, where `sosa:Sensor` covers devices, agents (including humans), or softwares (simulations). 
+# In SOSA/SSN, `sosa:System` is "an Asset that implements a Procedure in the context of an Execution", and generalizes `sosa:Sensor`, `sosa:Actuator` and `sosa:Sampler`. Each of those may be a device, a piece of infrastructure, an agent (including humans), or a software-based system.
 # In SAREF, a `saref:Device` is "a tangible object designed to accomplish a particular task. To accomplish this task, the device performs one or more functions. An instance of saref:Device represents one specific real world entity.".
 # `sosa:System` is positionned in the middle of the hierarchy:
-# `saref:Device` < `sosa:System`  < `s4syst:System`
-#                                 < `saref:FeatureOfInterest` 
+# `saref:Device` < `sosa:System` < `sosa:Asset` < `s4syst:System`
+#                                              < `saref:FeatureOfInterest` 
 
 saref:Device
   rdfs:subClassOf sosa:System .
 
-sosa:System
-  rdfs:subClassOf s4syst:System ;
-  rdfs:subClassOf saref:FeatureOfInterest .
-  
 
 # SAREF adds the concept of `saref:DeviceKind`, which allows to describe kinds of devices, with common properties and common states having the same value, and with common functions and services. Devices kinds may be used to describe models of devices in online catalogues.
 # There is no equivalent in SOSA/SSN to `saref:DeviceKind`.
@@ -320,7 +331,7 @@ sosa:Observation
 ### Sensor
 
 # SAREF `saref:Sensor` is a subclass of `saref:Device`, which must be a tangible object.
-# SOSA/SSN `sosa:Sensor` covers devices, agents (including humans), or softwares (simulations). 
+# SOSA/SSN `sosa:Sensor` is a "System that implements an ObservingProcedure to determine the value of an observable Property", and "may be a device, a piece of infrastructure, an agent (including humans), or a software-based system, including systems performing simulations". 
 # So `saref:Sensor` is more specific than `sosa:Sensor`.
 
 saref:Sensor
@@ -333,7 +344,7 @@ saref:Sensor
 # - `sosa:originated` and its inverse `sosa:wasOriginatedBy`
 
 
-# In SAREF, a device can act upon (OP `saref:actsUpon`) features, properties, or states. SAREF Core defines `saref:observes` and `saref:controls` as subproperties of `saref:actsUpon`. Property `saref:actsUpon` also applies to functions, commands, and procedure executions.
+# In SAREF, a device can act upon (OP `saref:targets`) features, properties, or states. SAREF Core defines `saref:observes` and `saref:controls` as subproperties of `saref:targets`. Property `saref:targets` also applies to functions, commands, and procedure executions.
 # In SOSA/SSN, different object properties are used depending on the context. It would be:
 #
 # - `sosa:observes` from sensor to property
@@ -347,8 +358,7 @@ sosa:observes
 sosa:observedProperty # also covers sosa:wasObservedBy
   rdfs:subPropertyOf saref:observes .
 
-# In SOSA/SSN, `sosa:madeBySensor` is only defined to be a subproperty of `sosa:madeBySystem` in SSN, not in SOSA. 
-# This file explicits the alignment between `sosa:madeBySensor` and `saref:madeBy` in case it is used only with SOSA (without SSN).
+# `sosa:madeBySensor` is a subproperty of `sosa:madeBySystem` in `sosa-observation.ttl` itself, so the alignment below is entailed by the one on `sosa:madeBySystem`. It is kept because this file is read as well as reasoned over.
 
 sosa:madeBySensor  # this also covers sosa:madeObservation
   rdfs:subPropertyOf saref:madeBy .
@@ -375,13 +385,13 @@ sosa:Actuation
 ### Actuator
 
 # SAREF `saref:Actuator` is a subclass of `saref:Device`, which must be a tangible object.
-# SOSA/SSN `sosa:Actuator` covers devices. Issue [#280](https://github.com/w3c/sdw-sosa-ssn/issues/280) discusses whether it should be relaxed to other entities such as humans.
-# In this file, `saref:Actuator` is assumed to be more specific than `sosa:Actuator`.
+# SOSA/SSN `sosa:Actuator` is a "System that implements an ActuatingProcedure to change the value of an actuatable Property", and since [#280](https://github.com/w3c/sdw-sosa-ssn/issues/280) was settled it "may be a device, a piece of infrastructure, an agent (including humans), or a software-based system".
+# So `saref:Actuator` is more specific than `sosa:Actuator`.
 
 saref:Actuator
   rdfs:subClassOf sosa:Actuator .
 
-# In SAREF, a device can act upon (OP `saref:actsUpon`) features, properties, or states. SAREF Core defines `saref:observes` and `saref:controls` as subproperties of `saref:actsUpon`. Property `saref:actsUpon` also applies to functions, commands, and procedure executions.
+# In SAREF, a device can act upon (OP `saref:targets`) features, properties, or states. SAREF Core defines `saref:observes` and `saref:controls` as subproperties of `saref:targets`. Property `saref:targets` also applies to functions, commands, and procedure executions.
 # In SOSA/SSN, different object properties are used depending on the context. It would be:
 #
 # - `sosa:actsOn` from actuator to property
@@ -395,8 +405,7 @@ sosa:actsOn
 sosa:actsOnProperty # also covers sosa:wasActedOnBy
   rdfs:subPropertyOf saref:controls .
 
-# In SOSA/SSN, `sosa:madeByActuator` is only defined to be a subproperty of `sosa:madeBySystem` in SSN, not in SOSA. 
-# This file explicits the alignment between `sosa:madeByActuator` and `saref:madeBy` in case it is used only with SOSA (without SSN).
+# `sosa:madeByActuator` is a subproperty of `sosa:madeBySystem` in `sosa-actuation.ttl` itself, so the alignment below is entailed by the one on `sosa:madeBySystem`. It is kept because this file is read as well as reasoned over.
 
 sosa:madeByActuator  # this also covers sosa:madeActuation
   rdfs:subPropertyOf saref:madeBy .
@@ -432,15 +441,13 @@ sosa:hasOriginalSample
   rdfs:subPropertyOf s4syst:hasSubSystem .
 
 
-# In SOSA/SSN, `sosa:Sampling` is only defined to be a subclass of `sosa:Procedure` in SSN, not in SOSA. 
-# This file explicits the alignment between `sosa:Sampling` and `saref:ProcedureExecution` in case it is used only with SOSA (without SSN).
+# `sosa:Sampling` is a subclass of `sosa:Execution` in `sosa-sampling.ttl` itself, so the alignment below is entailed by `sosa:Execution owl:equivalentClass saref:ProcedureExecution`. It is kept because this file is read as well as reasoned over.
 
 sosa:Sampling
   rdfs:subClassOf saref:ProcedureExecution .
 
 
-# In SOSA/SSN, `sosa:madeBySampler` is only defined to be a subproperty of `sosa:madeBySystem` in SSN, not in SOSA. 
-# This file explicits the alignment between `sosa:madeBySampler` and `saref:madeBy` in case it is used only with SOSA (without SSN).
+# `sosa:madeBySampler` is a subproperty of `sosa:madeBySystem` in `sosa-sampling.ttl` itself, so the alignment below is entailed by the one on `sosa:madeBySystem`. It is kept because this file is read as well as reasoned over.
 
 sosa:madeBySampler
   rdfs:subPropertyOf saref:madeBy . # this also covers sosa:madeSampling
