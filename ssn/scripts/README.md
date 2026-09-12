@@ -3,6 +3,7 @@
 | Script | What it does |
 |---|---|
 | [`check_repository.ldpy`](check_repository.ldpy) | Repository integrity: unused chapters and images, unreferenced data files, dangling internal links, Turtle that does not parse, the consistency of the ontology itself (term definitions, labels, domains and ranges, deprecation, documentation anchors, prefixes, examples), and whether the Turtle and the prose still say the same thing. Run by CI on every push. |
+| [`publish_namespace.py`](publish_namespace.py) | Copies the ontology files to the place where `https://www.w3.org/ns/` must serve them, in a checkout of [w3c/ns](https://github.com/w3c/ns), and writes the RDF/XML beside each one. Every destination is derived from the ontology IRI and the version IRI the file declares. Assumes `ns` and this repository sit side by side; pass `--ns-repo` otherwise. |
 | [`all_terms.ldpy`](all_terms.ldpy) | Lists every term SOSA/SSN defines, by kind. With `--dul`, also writes `dul.definitions.md` from a fetched copy of DOLCE+DnS Ultralite. |
 | [`validate.py`](validate.py) | SHACL validation of the ontology and the examples. |
 

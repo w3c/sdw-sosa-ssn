@@ -211,6 +211,48 @@ def load_ontology():
     return merged, declared_by, seen_in, problems
 
 
+def check_publication(merged, declared_by):
+    """What the namespace tree needs from us.
+
+    w3c/ns serves a module at the path of its ontology IRI, under the directory
+    of its edition: `http://www.w3.org/ns/sosa/act/` is served from
+    `sosa/<edition>/act/`, and its version IRI is
+    `http://www.w3.org/ns/sosa/<edition>/act/`.  Two things have to hold for a
+    module to be publishable that way, and the table of what each file declares
+    is what an editor reads to check the third.
+    """
+    print("\n=== Ontology Declarations ===")
+    for iri, file in sorted(declared_by.items(), key=lambda item: (str(item[1]), str(item[0]))):
+        print(f"- <{iri}>: {file}")
+
+    homeless = sorted(iri for iri in declared_by
+                      if not str(iri).startswith((SOSA_NS, SSN_NS)))
+    report(
+        "Ontologies that cannot be published under /ns/", homeless,
+        "Every ontology has a home in the W3C namespace tree", fatal=False,
+        detail=lambda iri: f"- <{iri}> declared in {declared_by[iri]}",
+    )
+
+    @graph merged
+    odd = []
+    for ontology, version in m{ ?ontology owl:versionIRI ?version }:
+        base = next((ns for ns in (SOSA_NS, SSN_NS) if str(ontology).startswith(ns)), None)
+        if base is None:
+            continue
+        tail = str(ontology)[len(base):]
+        if not str(version).startswith(base):
+            odd.append((ontology, version, f"{base}<edition>/{tail}"))
+            continue
+        edition, _, rest = str(version)[len(base):].partition("/")
+        if not edition or rest != tail:
+            odd.append((ontology, version, f"{base}<edition>/{tail}"))
+    report(
+        "Version IRIs that do not name an edition of their ontology", sorted(odd),
+        "Every version IRI is its ontology IRI, one edition down", fatal=False,
+        detail=lambda x: f"- <{x[0]}> declares owl:versionIRI <{x[1]}>, expected <{x[2]}>",
+    )
+
+
 def check_terms(merged, declared_by, seen_in):
     """Every SOSA/SSN term must be declared by exactly one declared ontology."""
     @graph merged
@@ -530,9 +572,14 @@ def check_prose_matches_ontology(merged, defines, declared_by, deprecated):
 
         for raw, paragraph in definition_paragraphs(definition):
             paragraph = fold(paragraph)
-            if paragraph in flat:
+            # A definition ends in a full stop in one source and not in the
+            # other about as often as not, and the prose opens the paragraph
+            # with the term's label and a dash. Neither is a difference in
+            # what the two say, so neither counts as one.
+            bare = paragraph.rstrip(".;, ")
+            if paragraph in flat or bare in flat:
                 parallel += 1
-            elif paragraph in everything:
+            elif paragraph in everything or bare in everything:
                 # Said once, in a shared passage another section links to.
                 elsewhere += 1
             else:
@@ -667,6 +714,8 @@ def main():
     report("Ontology module declarations", module_problems,
            f"All {len(declared_by)} modules declare exactly one ontology", fatal=True,
            detail=lambda x: f"- {x[0]}: {x[1]}")
+
+    check_publication(merged, declared_by)
 
     defines = check_terms(merged, declared_by, seen_in)
     deprecated = check_deprecated(merged, defines)
