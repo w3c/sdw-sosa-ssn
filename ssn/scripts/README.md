@@ -103,6 +103,7 @@ too:
     ...
 ```
 
-The profile check only warns, for now: the modules carry violations that
-predate it, tracked in their own issue. The reasoning checks are fatal — the
-ontology is coherent today, and that is worth keeping.
+The profile check only warns, for now: every module carries violations that
+predate it, listed in
+[#528](https://github.com/w3c/sdw-sosa-ssn/issues/528). The reasoning checks
+are fatal — the ontology is coherent today, and that is worth keeping.
