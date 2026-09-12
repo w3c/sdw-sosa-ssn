@@ -13,6 +13,8 @@ warnings, because the repository legitimately carries drafts and spare files.
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 
 import difflib
 import html
@@ -57,15 +59,22 @@ def is_ours(term):
 def module_iris(graph):
     """The IRIs that name a module rather than a term.
 
-    An ontology IRI, a version IRI and anything imported all live in the SOSA
-    and SSN namespaces too, so they have to be told apart from terms before
-    anything is said about which terms are defined where.
+    An ontology IRI, a version IRI, anything imported and anything a module
+    says about its editions all live in the SOSA and SSN namespaces too, so
+    they have to be told apart from terms before anything is said about which
+    terms are defined where.  A module that replaces one published under
+    another IRI names that IRI, and it is a module, not a term.
     """
     @graph graph
     return (set(m{ ?o a owl:Ontology })
             | {o for s, o in m{ ?s owl:versionIRI ?o }}
             | {o for s, o in m{ ?s owl:imports ?o }}
-            | {o for s, o in m{ ?s owl:priorVersion ?o }})
+            | {o for s, o in m{ ?s owl:priorVersion ?o }}
+            | {o for s, o in m{ ?s dcat:hasVersion ?o }}
+            | {o for s, o in m{ ?s dcat:hasCurrentVersion ?o }}
+            | {o for s, o in m{ ?s dcat:previousVersion ?o }}
+            | {o for s, o in m{ ?s dcterms:replaces ?o }}
+            | {o for s, o in m{ ?s dcterms:isReplacedBy ?o }})
 
 
 def anchor_matches(anchor, term):
