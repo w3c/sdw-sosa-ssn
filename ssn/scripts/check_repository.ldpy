@@ -3,8 +3,12 @@
 Written in Linked-Data Python (ldpy): a superset of Python in which Turtle
 notation is part of the syntax.  Run it with::
 
-    pip install linked-data-python
+    pip install linked-data-python owlapy
     python -m ldpy ssn/scripts/check_repository.ldpy
+
+The OWL 2 DL checks at the end need `owlapy` and a Java runtime, for the OWL
+API and the HermiT reasoner; without either they report themselves skipped and
+the rest of the script still runs.
 
 Checks marked FATAL make the script exit non-zero; the others are reported as
 warnings, because the repository legitimately carries drafts and spare files.
@@ -21,7 +25,7 @@ import html
 import re
 import subprocess
 import sys
-from collections import defaultdict
+from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -703,6 +707,210 @@ def check_examples(defines, modules):
 
 
 # ---------------------------------------------------------------------------
+# OWL 2 DL: the profile, and the classes nothing can be an instance of
+# ---------------------------------------------------------------------------
+#
+# SOSA/SSN is an OWL 2 DL ontology.  That is what keeps reasoning decidable,
+# and what the reasoners the specification expects are built for; and it is a
+# syntactic condition, so losing it costs nothing visible.  An annotation
+# property nobody declared, an IRI used as two kinds of property at once — the
+# Turtle still parses, the documentation still renders, and the ontology is no
+# longer in the profile it claims.
+#
+# The second question needs a reasoner.  A class is *unsatisfiable* when the
+# axioms leave no room for an instance: saying that anything is one makes the
+# whole ontology inconsistent, and from an inconsistent ontology everything
+# follows.  Nothing in the Turtle says so, and reading rarely finds it; only
+# classification does.
+#
+# Both questions are asked of a module *and its imports*, with the OWL API and
+# HermiT behind `owlapy` — which is why a module whose imports this repository
+# does not hold is left out rather than fetched over the network.
+
+REASONER_TIMEOUT = 300          # seconds, per module
+
+OWL_NOTHING = str(<http://www.w3.org/2002/07/owl#Nothing>)
+
+
+def local_documents(merged, declared_by):
+    """Every IRI that names a file we hold: ontology IRIs, and version IRIs.
+
+    The OWL API resolves an `owl:imports` by fetching the IRI.  Mapping both
+    the ontology IRI and the version IRI of every module to its own file keeps
+    the check on disk, and off the network.
+    """
+    @graph merged
+    documents = {str(iri): file for iri, file in declared_by.items()}
+    for ontology, version in m{ ?ontology owl:versionIRI ?version }:
+        if ontology in declared_by:
+            documents[str(version)] = declared_by[ontology]
+    return documents
+
+
+def imports_from_elsewhere(merged, declared_by, documents):
+    """Per module, the IRIs its imports reach that this repository does not hold.
+
+    Empty for a core, extension or vocabulary module; the alignments import
+    DOLCE, SAREF, PROV and schema.org, and those are neither ours to keep in
+    the profile nor worth a network round trip on every push.
+    """
+    @graph merged
+    imports = defaultdict(set)
+    for ontology, imported in m{ ?ontology owl:imports ?imported }:
+        imports[str(ontology)].add(str(imported))
+
+    elsewhere = {}
+    for iri, file in declared_by.items():
+        pending, seen, missing = [str(iri)], set(), set()
+        while pending:
+            current = pending.pop()
+            if current in seen:
+                continue
+            seen.add(current)
+            for imported in imports.get(current, ()):
+                if imported in documents:
+                    pending.append(imported)
+                else:
+                    missing.add(imported)
+        elsewhere[file] = missing
+    return elsewhere
+
+
+def readable(kind):
+    """The OWL API's `UseOfNonAbsoluteIRI`, as "use of non absolute IRI"."""
+    words = re.split(r"(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])", kind)
+    return " ".join(w if w.isupper() else w.lower() for w in words)
+
+
+def offender(violation):
+    """What the violation is about, as one IRI.
+
+    Blank nodes are named by a parser-assigned identifier that changes from one
+    run to the next, so they are reported as what they are rather than by a
+    number that means nothing twice.
+    """
+    subject = str(violation.getExpression()).strip("<>")
+    return "an anonymous node" if subject.startswith("_:") else subject
+
+
+def check_owl_dl(merged, declared_by):
+    """Every module is in OWL 2 DL, and nothing it says empties a class."""
+    try:
+        import jpype
+        from owlapy.owl_ontology import SyncOntology
+        from owlapy.owl_reasoner import SyncReasoner
+        from owlapy.owlapi_mapper import OWLAPIMapper
+        from owlapy.static_funcs import startJVM
+        if not jpype.isJVMStarted():
+            startJVM()
+        from java.io import File
+        from org.semanticweb.owlapi.apibinding import OWLManager
+        from org.semanticweb.owlapi.model import IRI as JavaIRI
+        from org.semanticweb.owlapi.profiles import OWL2DLProfile
+        from org.semanticweb.owlapi.util import SimpleIRIMapper
+    except Exception as error:
+        print("\n=== OWL 2 DL ===")
+        print(f"⚠️   not checked: {error}")
+        print("    Needs `pip install owlapy` and a Java runtime for HermiT.")
+        return
+
+    documents = local_documents(merged, declared_by)
+    elsewhere = imports_from_elsewhere(merged, declared_by, documents)
+    ours = {str(iri): file for iri, file in declared_by.items()}
+
+    class Module(SyncOntology):
+        """One module and its imports, every one of them read from disk.
+
+        `SyncOntology` builds its own manager and loads straight away, and a
+        manager resolves `owl:imports` by fetching the IRI unless it is told
+        otherwise — so the loading is done here instead, with the mappers in
+        place first.
+        """
+
+        def __init__(self, path):
+            self.path, self.load = str(path), True
+            self.owlapi_manager = OWLManager.createOWLOntologyManager()
+            for iri, target in documents.items():
+                self.owlapi_manager.getIRIMappers().add(
+                    SimpleIRIMapper(JavaIRI.create(iri), JavaIRI.create(File(str(target)))))
+            self.owlapi_ontology = self.owlapi_manager.loadOntologyFromOntologyDocument(
+                File(self.path))
+            self.mapper = OWLAPIMapper()
+
+    def home_of(violation, fallback):
+        """The file holding the axiom a violation is about."""
+        iri = violation.getOntologyID().getOntologyIRI()
+        return ours.get(str(iri.get()), fallback) if iri.isPresent() else fallback
+
+    checked = sorted(file for file, missing in elsewhere.items() if not missing)
+    profile = OWL2DLProfile()
+    kinds = defaultdict(Counter)            # file -> violation kind -> occurrences
+    offenders = defaultdict(lambda: defaultdict(set))   # file -> kind -> IRIs
+    empty_classes, inconsistent, unreadable = [], [], []
+
+    for file in checked:
+        try:
+            module = Module(file)
+            for violation in profile.checkOntology(module.get_owlapi_ontology()).getViolations():
+                # The profile is a property of the whole imports closure, so an
+                # imported module's violations are reported here again.  Each is
+                # counted once, against the module whose axiom it is, on the run
+                # that checks that module — every module has one.
+                if home_of(violation, file) != file:
+                    continue
+                kind = str(violation.getClass().getSimpleName())
+                kinds[file][kind] += 1
+                offenders[file][kind].add(offender(violation))
+
+            with SyncReasoner(module, "HermiT") as reasoner:
+                if not reasoner.has_consistent_ontology(timeout=REASONER_TIMEOUT):
+                    inconsistent.append(file)
+                    continue
+                empty = sorted(
+                    c.str for c in reasoner.unsatisfiable_classes(timeout=REASONER_TIMEOUT)
+                    if c.str != OWL_NOTHING)
+                if empty:
+                    empty_classes.append((file, empty))
+        except Exception as error:
+            unreadable.append((file, str(error)))
+
+    print("\n=== Modules left out of the OWL 2 DL checks ===")
+    if not any(elsewhere.values()):
+        print("Every module imports only modules this repository holds 🎉")
+    for file, missing in sorted(elsewhere.items()):
+        if missing:
+            print(f"- {file} imports, from outside this repository:")
+            for iri in sorted(missing):
+                print(f"    - <{iri}>")
+
+    report(
+        "Modules the OWL API or HermiT could not get through", sorted(unreadable),
+        f"The OWL API and HermiT get through all {len(checked)} of them", fatal=True,
+        detail=lambda x: f"- {x[0]}\n    {x[1]}",
+    )
+    report(
+        "Modules with OWL 2 DL profile violations", sorted(kinds),
+        f"All {len(checked)} checked modules are in OWL 2 DL, imports included",
+        fatal=False,
+        detail=lambda file: f"- {file} — {sum(kinds[file].values())} violation(s)\n" + "\n".join(
+            f"    {count} × {readable(kind)}: "
+            + ", ".join(sorted(offenders[file][kind]))
+            for kind, count in sorted(kinds[file].items())),
+    )
+    report(
+        "Modules that are inconsistent", sorted(inconsistent),
+        f"All {len(checked)} checked modules are consistent", fatal=True,
+        detail=lambda file: f"- {file} — HermiT finds its axioms contradictory",
+    )
+    report(
+        "Classes nothing can be an instance of", sorted(empty_classes),
+        "Every class can have an instance", fatal=True,
+        detail=lambda x: f"- {x[0]} leaves these classes unsatisfiable:\n"
+                         + "\n".join(f"    - {c}" for c in x[1]),
+    )
+
+
+# ---------------------------------------------------------------------------
 
 def main():
     report("Unused HTML chapters", unused_html_chapters(),
@@ -735,6 +943,7 @@ def main():
     check_labels_match_prose(merged, defines, deprecated)
     check_prefixes()
     check_examples(defines, module_iris(merged))
+    check_owl_dl(merged, declared_by)
 
     print()
     if FAILURES:
