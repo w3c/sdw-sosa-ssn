@@ -54,13 +54,14 @@ sosa:ObservationCollection
   set of Observations or ObservationCollections; collections may be nested
 
   All Observation properties may appear in an Observation Collection, including: 
-  hasFeatureOfInterest , hasUltimateFeatureOfInterest , usedProcedure , madeBySensor , observedProperty , phenomenonTime , startTime, resultTime , hasResult , hasSimpleResult : 
+  hasFeatureOfInterest , hasUltimateFeatureOfInterest , usedProcedure , madeBySensor , observedProperty , phenomenonTime , startTime, resultTime , hasResult , hasSimpleResult. 
   If they are present, the values of these properties summarize the values of the matching properties of the member observations, where membership is either direct or transitive through one or more member observation collections. 
+
   The following consistency rules apply to the Observation properties listed above: 
   
   1. Where an individual Observation Collection omits a property, a member Observation (direct or transitive) MAY have any value for that property.
 
-  2. Where an individual Observation Collection has a single value for a property, each member Observation(direct or transitive) MUST have that same value for that property; i.e., the collection is homogeneous in that property.  That property MAY then be omitted in any member Observation or Observation Collection.
+  2. Where an individual Observation Collection has a single value for a property, each member Observation (direct or transitive) MUST have that same value for that property; i.e., the collection is homogeneous in that property.  That property MAY then be omitted in any member Observation or Observation Collection.
 
   3. Where an individual Observation Collection has more than one value for a property, each member Observation (direct or transitive) MUST have a value for that property that matches one of the values for the property in the collection. 
   

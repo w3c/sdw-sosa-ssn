@@ -31,7 +31,7 @@ sosa:FeatureOfInterest
   a owl:Class ;
   rdfs:label "Feature Of Interest"@en ;
   skos:definition """
-  entity that is the target of an Execution or ExecutionCollection or Deployment
+  entity that is the target of an Execution, ExecutionCollection, or Deployment
 
 i.e., the entity whose property is being manipulated by an Actuation or ActuationCollection,
 or whose property is being estimated by an Observation or ObservationCollection,
@@ -266,8 +266,8 @@ sosa:ExecutionCollection
   set of one or more Executions or ExecutionCollections; collections may be nested
 
   All Execution properties may appear in an Execution Collection, including: 
-  hasFeatureOfInterest , usedProcedure , madeBySystem , endTime, resultTime , startTime . 
-  If they are present, the value of these properties summarize the values of the matching properties of the member Executions, where membership is either direct or transitive through one or more member execution collections.
+  hasFeatureOfInterest , usedProcedure , madeBySystem , endTime, resultTime , startTime. 
+  If they are present, the value of these properties summarize the values of the matching properties of the member Executions, where membership is either direct or transitive through one or more member Execution collections.
 
   The following consistency rules apply to the Execution properties listed above: 
   
@@ -670,7 +670,7 @@ sosa:implements
   a owl:ObjectProperty ;
   rdfs:label "implements"@en ;
   skos:definition """
-  relation from a System to the Procedure that it is capable of executing
+  relation from a System to a Procedure that it is capable of executing
   """@en ;
   skos:example "For example, the relationship between a sensor and the scientific measuring Procedure via which it senses."@en ;
   schema:domainIncludes sosa:System ;
@@ -766,7 +766,7 @@ sosa:isMemberOf
   a owl:ObjectProperty ;
   rdfs:label "is member of collection" ;
   skos:definition """
-  link from an Execution or Sample or Collection of these, to a Collection which that Execution or Sample or Collection is part of
+  link from an Execution or Sample, or Collection of these, to a Collection which that Execution or Sample or Collection is part of
   """ ;
   skos:scopeNote "Rules for the consistency of values of properties of collections and properties of their members are given for each collection type" ;
   skos:editorialNote "Note that there is a single `isMemberOf` property. OWL or SHACL constraints may limit the range depending on the context of different collection types" ;
