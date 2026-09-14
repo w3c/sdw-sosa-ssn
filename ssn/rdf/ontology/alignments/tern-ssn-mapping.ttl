@@ -1,0 +1,422 @@
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dwc: <http://rs.tdwg.org/dwc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix ssn-system: <http://www.w3.org/ns/ssn/systems/> .
+@prefix tern: <https://w3id.org/tern/ontologies/tern/> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+sosa:tern
+  a owl:Ontology ;
+  dcterms:created "2026-07-08"^^xsd:date ;
+  dcterms:modified "2026-07-09"^^xsd:date ;
+  dcterms:creator <https://kurrawong.ai> ;
+  dcterms:contributor [
+      a foaf:Agent ;
+      foaf:name "W3C/OGC Spatiotemporal Data on the Web Working Group"@en ;
+    ] ;
+  dcterms:description """
+  Alignment notes and candidate axioms between the TERN ontology and SOSA/SSN.
+
+  TERN provides implementation evidence for ecological observation, sampling,
+  site-visit, and survey workflows. Some TERN terms align directly with
+  SOSA/SSN, some are regional or domain profile vocabulary, and some suggest
+  modelling patterns that may be useful for SOSA/SSN guidance.
+  """@en ;
+  dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
+  dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
+  dcterms:rights "Copyright 2026 W3C/OGC." ;
+  rdfs:comment "Exploratory alignment of TERN with SOSA/SSN. Not yet endorsed by TERN, W3C, or OGC."@en ;
+  rdfs:label "Alignment of SOSA/SSN with TERN"@en ;
+  owl:imports sosa: ;
+  owl:imports ssn: ;
+  owl:imports ssn-system: ;
+  owl:imports <https://w3id.org/tern/ontologies/tern/> ;
+.
+
+## Direct correspondences
+
+# These TERN classes duplicate, or very closely specialize, current SOSA/SSN
+# modelling terms. Current SOSA names are used where the older SSN names are
+# retained only for compatibility.
+
+tern:Deployment
+  owl:equivalentClass sosa:Deployment ;
+.
+
+tern:FeatureOfInterest
+  owl:equivalentClass sosa:FeatureOfInterest ;
+.
+
+tern:Observation
+  owl:equivalentClass sosa:Observation ;
+.
+
+tern:ObservationCollection
+  owl:equivalentClass sosa:ObservationCollection ;
+.
+
+tern:Platform
+  owl:equivalentClass sosa:Platform ;
+.
+
+tern:Procedure
+  owl:equivalentClass sosa:Procedure ;
+.
+
+tern:Sample
+  owl:equivalentClass sosa:Sample ;
+.
+
+tern:Sampler
+  owl:equivalentClass sosa:Sampler ;
+.
+
+tern:Sampling
+  owl:equivalentClass sosa:Sampling ;
+.
+
+tern:Sensor
+  owl:equivalentClass sosa:Sensor ;
+.
+
+tern:System
+  owl:equivalentClass sosa:System ;
+.
+
+## Compatibility with deprecated or legacy SOSA/SSN terms
+
+# sosa:ObservableProperty and sosa:Result are deprecated in the current SOSA
+# ontology. These axioms preserve the TERN relationship to the older pattern
+# while pointing consumers at the current generic classes.
+
+tern:Input
+  rdfs:subClassOf ssn:Input ;
+.
+
+tern:ObservableProperty
+  rdfs:subClassOf sosa:Property ;
+.
+
+tern:Result
+  rdfs:subClassOf sosa:Result ;
+.
+
+## TERN specialisations of SOSA/SSN classes
+
+tern:Attribute
+  rdfs:subClassOf sosa:Property ;
+.
+
+tern:Intervention
+  rdfs:subClassOf sosa:Actuation ;
+.
+
+# TERN's MaterialSample is more precisely aligned to the current SOSA
+# MaterialSample class than to generic sosa:Sample.
+
+tern:MaterialSample
+  rdfs:subClassOf sosa:MaterialSample ;
+  rdfs:subClassOf dwc:MaterialSample ;
+.
+
+tern:MeasurementRange
+  rdfs:subClassOf ssn-system:MeasurementRange ;
+  rdfs:subClassOf ssn-system:SystemProperty ;
+.
+
+# TERN sites and transects behave both as ecological field locations and as
+# sampling features. SOSA SpatialSample is a better generic target than the
+# older generic sosa:Sample mapping, while sosa:Platform remains useful when
+# a site hosts systems or procedures.
+
+tern:Site
+  rdfs:subClassOf sosa:Platform ;
+  rdfs:subClassOf sosa:SpatialSample ;
+  skos:editorialNote "Candidate for SOSA/SSN examples of ecological sites as spatial samples and platforms."@en ;
+.
+
+tern:EcosystemProcessesSite
+  rdfs:subClassOf sosa:Platform ;
+  rdfs:subClassOf sosa:SpatialSample ;
+  skos:editorialNote "Candidate for SOSA/SSN examples of ecological sites as spatial samples and platforms."@en ;
+.
+
+tern:Transect
+  rdfs:subClassOf sosa:SpatialSample ;
+  skos:editorialNote "Candidate for a SOSA/SSN class representing transects as spatial samples."@en ;
+.
+
+tern:FixedPlatform
+  rdfs:subClassOf sosa:Platform ;
+.
+
+tern:MobilePlatform
+  rdfs:subClassOf sosa:Platform ;
+.
+
+tern:CosmOzStation
+  rdfs:subClassOf sosa:Platform ;
+.
+
+tern:EarthObservationSatellite
+  rdfs:subClassOf sosa:Platform ;
+.
+
+tern:FluxTower
+  rdfs:subClassOf sosa:Platform ;
+.
+
+# TERN Survey and SiteVisit gather observations, samplings, and related field
+# executions. SOSA ExecutionCollection is intentionally abstract, but provides
+# the generic pattern for mixed execution bundles.
+
+tern:Survey
+  rdfs:subClassOf sosa:ExecutionCollection ;
+  skos:editorialNote "Candidate for SOSA/SSN guidance on field surveys as execution collections."@en ;
+.
+
+tern:SiteVisit
+  rdfs:subClassOf sosa:ExecutionCollection ;
+  skos:editorialNote "Candidate for SOSA/SSN guidance on site visits as execution collections."@en ;
+.
+
+tern:Calibration
+  rdfs:subClassOf sosa:Execution ;
+  skos:editorialNote "Candidate for SOSA/SSN guidance on calibration as an execution pattern."@en ;
+.
+
+## Property mappings to SOSA/SSN
+
+tern:hasAttribute
+  rdfs:subPropertyOf sosa:hasProperty ;
+.
+
+tern:isAttributeOf
+  rdfs:subPropertyOf sosa:isPropertyOf ;
+.
+
+# TERN defines hasSubSample as a relation from a MaterialSample to a child
+# sample derived from it. SOSA hasSample/isSampleOf covers the general sampling
+# relation. The newer isOriginalSampleOf/hasOriginalSample pair may be a more
+# precise profile-level pattern where the parent sample is the original sample.
+
+tern:hasSubSample
+  rdfs:subPropertyOf sosa:hasSample ;
+  skos:editorialNote "Candidate for a SOSA/SSN property for material sub-sampling and sample derivation chains."@en ;
+.
+
+tern:isSubSampleOf
+  rdfs:subPropertyOf sosa:isSampleOf ;
+  skos:editorialNote "Candidate for a SOSA/SSN property for material sub-sampling and sample derivation chains."@en ;
+.
+
+tern:hasObservation
+  rdfs:subPropertyOf sosa:hasMember ;
+.
+
+tern:hasSampling
+  rdfs:subPropertyOf sosa:hasMember ;
+.
+
+tern:hasSubActivity
+  rdfs:subPropertyOf sosa:hasMember ;
+.
+
+tern:hasSurvey
+  rdfs:subPropertyOf sosa:isMemberOf ;
+.
+
+tern:hasSite
+  rdfs:subPropertyOf sosa:hasFeatureOfInterest ;
+.
+
+tern:isSiteOf
+  rdfs:subPropertyOf sosa:isFeatureOfInterestOf ;
+.
+
+tern:hasSiteVisit
+  rdfs:subPropertyOf sosa:isFeatureOfInterestOf ;
+.
+
+tern:isSiteVisitOf
+  rdfs:subPropertyOf sosa:hasFeatureOfInterest ;
+.
+
+tern:hasSamplingPoint
+  rdfs:subPropertyOf sosa:hasFeatureOfInterest ;
+.
+
+tern:isSamplingPointOf
+  rdfs:subPropertyOf sosa:isFeatureOfInterestOf ;
+.
+
+tern:resultDateTime
+  rdfs:subPropertyOf sosa:resultTime ;
+.
+
+tern:sampleCollectionTime
+  rdfs:subPropertyOf sosa:resultTime ;
+.
+
+tern:hasValue
+  rdfs:subPropertyOf sosa:hasResult ;
+.
+
+# tern:hasSimpleValue is equivalent to the rdf:value on a tern:Value wrapper.
+# It is close to the SOSA simple-result pattern, but the domain differs: SOSA
+# hasSimpleResult links directly from an Execution, while TERN values are
+# usually represented as value nodes.
+
+tern:hasSimpleValue
+  owl:equivalentProperty rdf:value ;
+.
+
+## Supporting mappings outside SOSA/SSN
+
+tern:Dataset
+  owl:equivalentClass dcat:Dataset ;
+.
+
+tern:Distribution
+  owl:equivalentClass dcat:Distribution ;
+.
+
+tern:RDFDataset
+  rdfs:subClassOf void:Dataset ;
+.
+
+tern:CategoricalValue
+  rdfs:subClassOf skos:Concept ;
+.
+
+tern:DigitalCamera
+  rdfs:subClassOf skos:Concept ;
+.
+
+tern:Method
+  rdfs:subClassOf skos:Concept ;
+.
+
+tern:Parameter
+  rdfs:subClassOf skos:Concept ;
+.
+
+tern:featureType
+  rdfs:subPropertyOf dcterms:type ;
+.
+
+tern:instrumentType
+  rdfs:subPropertyOf dcterms:type ;
+.
+
+tern:interventionType
+  rdfs:subPropertyOf dcterms:type ;
+.
+
+tern:observationType
+  rdfs:subPropertyOf dcterms:type ;
+.
+
+tern:platformType
+  rdfs:subPropertyOf dcterms:type ;
+.
+
+tern:sampleSubType
+  rdfs:subPropertyOf dcterms:type ;
+.
+
+tern:sampleType
+  rdfs:subPropertyOf dcterms:type ;
+.
+
+tern:samplingType
+  rdfs:subPropertyOf dcterms:type ;
+.
+
+tern:systemType
+  rdfs:subPropertyOf dcterms:type ;
+.
+
+tern:valueType
+  rdfs:subPropertyOf dcterms:type ;
+.
+
+tern:unit
+  rdfs:subPropertyOf qudt:unit ;
+.
+
+tern:centroidPoint
+  rdfs:subPropertyOf geo:hasGeometry ;
+.
+
+tern:sampleStorageLocation
+  rdfs:subPropertyOf geo:hasGeometry ;
+.
+
+tern:swPoint
+  rdfs:subPropertyOf geo:hasGeometry ;
+.
+
+tern:globalMatch
+  rdfs:subPropertyOf skos:exactMatch ;
+.
+
+tern:isGlobalMatchOf
+  rdfs:subPropertyOf skos:exactMatch ;
+.
+
+tern:hasFeatureType
+  rdfs:subPropertyOf skos:relatedMatch ;
+.
+
+tern:hasMethod
+  rdfs:subPropertyOf skos:relatedMatch ;
+.
+
+tern:hasObservationTheme
+  rdfs:subPropertyOf skos:relatedMatch ;
+.
+
+tern:hasParameter
+  rdfs:subPropertyOf skos:relatedMatch ;
+.
+
+tern:locationProcedure
+  rdfs:subPropertyOf tern:hasMethod ;
+.
+
+tern:stratum
+  rdfs:subPropertyOf dcterms:type ;
+.
+
+## Terms left as profile or domain vocabulary
+
+# The following TERN terms do not have direct SOSA/SSN mappings in this
+# alignment. They are better treated as TERN/BDR profile vocabulary, links to
+# supporting ontologies, or evidence for future guidance rather than as direct
+# SOSA/SSN equivalences.
+#
+# - Value wrappers and datatypes: tern:Value, tern:Date, tern:DateTime,
+#   tern:Boolean, tern:Float, tern:Integer, tern:IRI, tern:Taxon, tern:Text.
+# - Calibration details: tern:hasCalibration, tern:calibratedBy,
+#   tern:calibrationActualResult, tern:calibrationReferenceResult,
+#   tern:calibrationOffset.
+# - Value quality: tern:uncertainty. This is related to result-quality
+#   modelling, but it is a datatype property on TERN value nodes rather than an
+#   object property like sosa:resultQuality.
+# - Method sequencing: tern:undertakenAfter, tern:undertakenBefore,
+#   tern:undertakenComplementarily, tern:undertakenConcurrently.
+# - Local ecological/site metadata and identifiers such as tern:hasIGSN,
+#   tern:siteDescription, tern:environmentDescription, tern:transectDirection,
+#   tern:transectStartPoint, tern:transectEndPoint, tern:minAltitude,
+#   tern:maxAltitude, and tern:verticalExtent.
