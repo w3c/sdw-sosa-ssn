@@ -7,7 +7,7 @@
 @prefix geosparql: <http://www.opengis.net/ont/geosparql#> .
 @prefix time: <http://www.w3.org/2006/time#> .
 @prefix dqv: <http://www.w3.org/ns/dqv#> .
-@prefix prov: <https://www.w3.org/TR/prov-o/#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix qudt:  <http://qudt.org/schema/qudt/> .
 
 @prefix schema: <http://schema.org/> .
@@ -30,7 +30,7 @@ sosa-oms:
   dcterms:created "2023-10-07"^^xsd:date ;
   dcterms:source <https://docs.ogc.org/as/20-082r4/20-082r4.html> ;
   rdfs:comment "The original source of each resource is indicated by the rdfs:isDefinedBy property" ;
-  owl:imports sosa-obs: , sosa-sam: .
+  owl:imports sosa-obs: , sosa-sam: , qudt: , geosparql: , time: .
 
 ## Terms of other vocabularies, declared here because OWL 2 DL asks that
 ## every entity an ontology uses be declared in its imports closure
@@ -42,11 +42,15 @@ dcterms:license a owl:AnnotationProperty .
 dcterms:rights a owl:AnnotationProperty .
 dcterms:source a owl:AnnotationProperty .
 dcterms:title a owl:AnnotationProperty .
+geosparql:hasGeometry a owl:ObjectProperty .
+prov:wasDerivedFrom a owl:ObjectProperty .
+qudt:quantity a owl:ObjectProperty .
 schema:domainIncludes a owl:AnnotationProperty .
 schema:rangeIncludes a owl:AnnotationProperty .
 skos:definition a owl:AnnotationProperty .
 skos:example a owl:AnnotationProperty .
 skos:note a owl:AnnotationProperty .
+time:hasTime a owl:ObjectProperty .
 
 ogc-ms:implements 
   a owl:ObjectProperty ;
