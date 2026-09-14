@@ -4,38 +4,47 @@
     The System Capabilities Module imports SOSA and adds classes and properties required for the description of the
     operating conditions and capabilities of systems, in particular Sensors and Actuators.
 </p>
-<p>The complexity of the SSN/SOSA ontologies is directly due to the complexity of the use-cases that they are
-    meant to support. Previous standards and data formats have been limited by the constraints of their
+<p>
+    The complexity of the SSN ontologies is due to the complexity of the use-cases that they are
+    intended to support. Previous standards and data formats have been limited by the constraints of their
     underlying technologies often resulting in solutions that were simple to implement but that could only
     handle real-life exceptions through the use of workarounds. The use of &quot;fill
-    values&quot; or &quot;magic numbers&quot; were a simple and common solution to data quality requirements or to
+    values&quot; or &quot;magic numbers&quot; were a common solution to data quality requirements or to
     indicate equipment
-    failure. Unfortunately, these could later be inadvertently analyzed as actual instrument readings.</p>
-<p>The richness of RDF/S and ontological approaches offer opportunities for the rich and deep recording of system
+    failure. Unfortunately, these could later be inadvertently analyzed as actual instrument readings.
+</p>
+<p>
+    The richness of RDF/S and ontological approaches offer opportunities for the rich and deep recording of system
     information and results. This perversely creates a new problem in that the ability to handle complexity can
     make implementation difficult and costly for implementers that are simply
     trying determine whether their ice cream is about to melt. The very richness of the semantic web
-    ecosystem also makes it tempting to over-specify data structures to an extents that it becomes inflexible.</p>
+    ecosystem also makes it tempting to over-specify data structures to an extents that it becomes inflexible.
+</p>
 
-<p>The authors often wrestled with these issues when designing this standard and attempting to support the complexity
+<p>
+    The authors often wrestled with these issues when designing this standard and attempting to support the complexity
     of real-life deployments: data quality constraints must ensure that the data is sensical while making allowanced
-    for the storage of out-of-bounds values that may indicate a problem with a deployed sensor.</p>
+    for the storage of out-of-bounds values that may indicate a problem with a deployed sensor.
+</p>
 
-<p>The System Capabilities module has been downsized in this edition and its vocabulary extensively reworked with a
+<p>
+    The System Capabilities module has been downsized in this edition and its vocabulary extensively reworked with a
     number of
     classes deleted in favor of external vocabularies and property repositories. The module further suffered from under
     specification
     and lacked documentation over its intended use.
 </p>
 
-<p>The usage of <a href="#SOSAObservation">observations</a> and
+<p>
+    The usage of <a href="#SOSAObservation">observations</a> and
     <a href="#SOSAObservationCollection">observation collections</a> has been expanded
     to capabilities and conditions through the enumeration of values and constraints on those values without assigning a
     reporting sensor or timestamp.
     This allows to reuse the same structure to report on sensor behavior.
 </p>
 
-<p>This edition has also removed the notion of &quot;Ranges&quot; within its vocabulary due to the absence of an
+<p>
+    This edition has also removed the notion of &quot;Ranges&quot; within its vocabulary due to the absence of an
     appropriate datatype or vocabulary to
     describe numerical ranges. xsd:minInclusive/xsd:maxInclusive are part of OWL reserved vocabulary, and
     schema:minValue/schema:maxValue created additional
@@ -50,9 +59,11 @@
 </p>
 
 <p style="text-align: center;">
-    The namespace for the System Capabilities Module is <code>http://www.w3.org/ns/sosa/</code>.</p>
+    The namespace for the System Capabilities Module is <code>http://www.w3.org/ns/sosa/</code>.
+</p>
 <p style="text-align: center;">
-    The suggested prefix for the System Capabilities Module namespace is <code>sosa</code>. </p>
+    The suggested prefix for the System Capabilities Module namespace is <code>sosa</code>.
+</p>
 <p style="text-align: center;">
     <br>The ontology IRI of the System Capabilities Module is
     <a href="http://www.w3.org/ns/sosa/systems/">http://www.w3.org/ns/sosa/systems/</a>.
@@ -68,7 +79,8 @@
 
 <section class="informative" id="SysCap-overview">
     <h4>Overview</h4>
-    <p>The System Capabilities Module comprises of two primary concepts: the system's capability to sense and the
+    <p>
+        The System Capabilities Module comprises of two primary concepts: the system's capability to sense and the
         conditions
         under which it can do so. Both concepts are closely related and are often described as one and the same in
         industrial
@@ -81,17 +93,25 @@
         Furthermore:
     </p>
     <ul>
-        <li>Some systems depend on unreported environmental measurements in order to produce results (e.g., temperature
+        <li>
+            Some systems depend on unreported environmental measurements in order to produce results (e.g., temperature
             is a component of
-            the relative humidity calculation)</li>
-        <li>Some systems have requirements for proper operation for properties that they are unable to sense themselves
-            (e.g., minimum power supply voltage)</li>
-        <li>The performance of some systems may vary depending on the environmental context (e.g., the accuracy of a
+            the relative humidity calculation)
+        </li>
+        <li>
+            Some systems have requirements for proper operation for properties that they are unable to sense themselves
+            (e.g., minimum power supply voltage)
+        </li>
+        <li>
+            The performance of some systems may vary depending on the environmental context (e.g., the accuracy of a
             frequency counter
-            may be affected by ambient temperature.)</li>
+            may be affected by ambient temperature.)
+        </li>
     </ul>
 
-    <p>This information allows designers to communicate complex operating behavior to the consumer of the system results
+    <p>
+        This information allows designers to communicate complex operating behavior to the consumer of the system
+        results
         and to
         simplify procurement and system deployment decision by enabling searches for systems capable of fulfilling a
         specific
@@ -128,7 +148,8 @@
 
     <section class="informative" id="SysCap-operating-conditions">
         <h5>Operating Conditions</h5>
-        <p>A system is linked to its operating conditions through property
+        <p>
+            A system is linked to its operating conditions through property
             <a href="#SOSAhasOperatingConditions">hasOperatingConditions</a>.
             The operating conditions themselves are modelled as <a href="#SOSAObservation">observations</a> or
             <a href="#SOSAObservationCollection">observation collections</a>, typically about the system environment.
@@ -144,7 +165,8 @@
             <a href="#SysCap-environment-properties">sample vocabulary</a> consisting of a short
             list of properties about the system environment.
         </p>
-        <p>It is possible with additional ontological statements to create conditions that are &quot;latching&quot;, as
+        <p>
+            It is possible with additional ontological statements to create conditions that are &quot;latching&quot;, as
             in the case of
             damaged sensors with permanently degraded operating characteristics. It is also possible to describe
             operating modes of systems
@@ -174,15 +196,18 @@
             The <a href="#SOSAmadeBySensor">sensor</a> that made the observations can be left unspecified.
         </p>
 
-        <p>The following example describes that sensor <code>ex:InkBird-IBS-TH2-0354313547</code> can survive from
-            -273.0&nbsp;°C to 80.0&nbsp;°C.</p>
+        <p>
+            The following example describes that sensor <code>ex:InkBird-IBS-TH2-0354313547</code> can survive from
+            -273.0&nbsp;°C to 80.0&nbsp;°C.
+        </p>
 
         <pre class="example turtle" data-include="./rdf/examples/InkBird-IBS-TH2-survivable-conditions.ttl"
             data-include-format="text"></pre>
     </section>
     <section class="informative" id="SysCap-system-capabilities">
         <h5>System Capabilities</h5>
-        <p>A system is linked to its capabilities through property
+        <p>
+            A system is linked to its capabilities through property
             <a href="#SOSAhasSystemCapability">hasSystemCapability</a>.
             The system capabilities themselves are modelled as <a href="#SOSAObservation">observations</a> or <a href="#SOSAObservationCollection">observation
                 collections</a>, that have for <a href="#SOSAobservedProperty">observed property</a> a property that
@@ -194,7 +219,8 @@
             list of properties about system capabilities.
         </p>
 
-        <p>Optionally, system capabilities may be linked through property
+        <p>
+            Optionally, system capabilities may be linked through property
             <a href="#SOSAhasValidityContext">hasValidityContext</a> to some
             <a href="#SOSAObservation">observations</a> or
             <a href="#SOSAObservationCollection">observation collections</a> that model the context under
@@ -232,14 +258,17 @@
             </figcaption>
         </figure>
 
-        <p class="warning">The axiomatization of property <a href="#SOSAhasSystemCapability">hasSystemCapability</a>
+        <p class="warning">
+            The axiomatization of property <a href="#SOSAhasSystemCapability">hasSystemCapability</a>
             enforces that the
             <a href="#SOSAhasFeatureOfInterest">feature of interest</a> of the system capability is the system itself.
         </p>
 
-        <p>The following example describes the system capabilities of sensor <code>ex:IBS-TH2-Plus-T-687343</code> in
+        <p>
+            The following example describes the system capabilities of sensor <code>ex:IBS-TH2-Plus-T-687343</code> in
             terms of its accuracy
-            and measurable temperature range, valid from 0.0 to 99.0&nbsp;%R.H.</p>
+            and measurable temperature range, valid from 0.0 to 99.0&nbsp;%R.H.
+        </p>
 
         <pre class="example turtle" data-include="./rdf/examples/IBS-TH2-PLUS-capabilities.ttl"
             data-include-format="text"></pre>
@@ -247,7 +276,8 @@
     <section class="informative" id="SysCap-property-conditions">
         <h5>Property Validity Context</h5>
 
-        <p>The object property <a href="#SOSAhasValidityContext">hasValidityContext</a> may be used to qualify the
+        <p>
+            The object property <a href="#SOSAhasValidityContext">hasValidityContext</a> may be used to qualify the
             context in which a SOSA <a href="#SOSAProperty">Property</a> is valid. This context is modelled as
             individual <a href="#SOSAObservation">observations</a> or as grouped
             <a href="#SOSAObservationCollection">observation collections</a>. When the qualified
@@ -271,14 +301,17 @@
                 <em><a href="#Class-diagram">Explanation of the notation used in class diagrams</a></em>.
             </figcaption>
         </figure>
-        <p class="note">Beyond the scope of the System Capabilities module, <a href="#SOSAProperty">Properties</a> may
+        <p class="note">
+            Beyond the scope of the System Capabilities module, <a href="#SOSAProperty">Properties</a> may
             also be further described with validity contexts.
             For example standard meteorological practice defines reference measurement heights, such as 10&nbsp;m for
             wind and 2&nbsp;m for air temperature.
         </p>
 
-        <p>The following example describes the humidity accuracy property <code>ex:IBSTH2HumidityAccuracy</code>, valid
-            at certain temperatures and relative humidities.</p>
+        <p>
+            The following example describes the humidity accuracy property <code>ex:IBSTH2HumidityAccuracy</code>, valid
+            at certain temperatures and relative humidities.
+        </p>
 
         <pre class="example turtle" data-include="./rdf/examples/InkBird-IBS-TH2-properties.ttl"
             data-include-format="text"></pre>
@@ -286,25 +319,30 @@
     <section>
         <h4>Guidance on System Capability properties and ranges</h4>
 
-        <p>The following example demonstrates a possible solution for describing sensor reading limitations using other
-            ontologies such as I-ADOPT:</p>
+        <p>
+            The following example demonstrates a possible solution for describing sensor reading limitations using other
+            ontologies such as I-ADOPT:
+        </p>
 
         <pre class="example turtle" data-include="./rdf/examples/i-adopt.ttl" data-include-format="text"></pre>
 
-        <p>The advantage of this approach is that multiple statistical statements can be made about the property beyond
+        <p>
+            The advantage of this approach is that multiple statistical statements can be made about the property beyond
             that of simple
             maximum / minimum values, such as nominal or peak values.
         </p>
-        <p>The Observation structure can similarly be used to report on the quality of individual results using the <a href="https://www.w3.org/TR/vocab-dqv/">Data
+        <p>
+            The Observation structure can similarly be used to report on the quality of individual results using the <a href="https://www.w3.org/TR/vocab-dqv/">Data
                 Quality Vocabulary</a>. In some applications, the properties of individual measurements vary within the
             operating conditions of the sensor.
             The values of these properties can then be reported alongside the individual result entries.
         </p>
         <pre class="example turtle" data-include="./rdf/examples/dqv.ttl" data-include-format="text"></pre>
 
-        <p>The System Capabilities Module also introduced a <a href="#SOSABattery">Battery</a> class to represent power
+        <p>
+            The System Capabilities Module also introduced a <a href="#SOSABattery">Battery</a> class to represent power
             supply requirements for mobile sensors.
-            The illustrative  <a href="#SOSACAPBatteryLifetime"><code>sosa-cap:BatteryLifetime</code></a> system
+            The illustrative <a href="#SOSACAPBatteryLifetime"><code>sosa-cap:BatteryLifetime</code></a> system
             capability property allows to record expected battery
             utilization either on a nominal basis or within different operating conditions.
         </p>
@@ -314,7 +352,9 @@
     <section>
         <h4>Complete examples</h4>
         <div>
-            <p>The following examples illustrate the terms related to System capabilities and operating conditions:</p>
+            <p>
+                The following examples illustrate the terms related to System capabilities and operating conditions:
+            </p>
             <ul>
                 <li><a href="examples/dht22.ttl">DHT22 Description</a>
                 </li>
@@ -328,7 +368,9 @@
 </section>
 <section id="SysCap-specification">
     <h4>Specification</h4>
-    <p>This section introduces the following classes and properties:</p>
+    <p>
+        This section introduces the following classes and properties:
+    </p>
     <div class="azlist">
         <p>
             <a>sosa:Battery</a>,
@@ -631,8 +673,10 @@
 </section>
 <section id="SysCap-sample-vocabularies">
     <h6>Sample vocabularies of properties</h6>
-    <p>For illustration purposes, this section describes sample vocabularies consisting of short lists of properties
-        about system capabilities and the system environment.</p>
+    <p>
+        For illustration purposes, this section describes sample vocabularies consisting of short lists of properties
+        about system capabilities and the system environment.
+    </p>
     <p class="warning">
         These vocabularies have been partially generated by a large language model and are intended for illustrative
         purposes only.
@@ -644,13 +688,16 @@
 
     <section id="SysCap-capability-properties">
         <h6>Sample vocabulary of properties about system capabilities</h6>
-        <p>SOSA/SSN includes a sample vocabulary consisting of a short list of properties about system capabilities.</p>
+        <p>
+            SOSA/SSN includes a sample vocabulary consisting of a short list of properties about system capabilities.
+        </p>
         <p style="text-align: center;">
             The namespace for this sample vocabulary is
             <code>http://www.w3.org/ns/sosa/system-capability-properties#</code>.
         </p>
         <p style="text-align: center;">
-            The suggested prefix for this sample vocabulary is <code>sosa-cap</code>. </p>
+            The suggested prefix for this sample vocabulary is <code>sosa-cap</code>.
+        </p>
         <p style="text-align: center;">
             The RDF graph containing the definition of terms in this sample vocabulary is available at
             <a href="http://www.w3.org/ns/sosa/system-capability-properties">http://www.w3.org/ns/sosa/system-capability-properties</a>,
@@ -722,14 +769,16 @@
 
     <section id="SysCap-environment-properties">
         <h6>Sample vocabulary of properties about the system environment</h6>
-        <p>SOSA/SSN includes a sample vocabulary consisting of a short list of properties about the system environment.
+        <p>
+            SOSA/SSN includes a sample vocabulary consisting of a short list of properties about the system environment.
         </p>
         <p style="text-align: center;">
             The namespace for this sample vocabulary is
             <code>http://www.w3.org/ns/sosa/system-environment-properties#</code>.
         </p>
         <p style="text-align: center;">
-            The suggested prefix for this sample vocabulary is <code>sosa-env</code>. </p>
+            The suggested prefix for this sample vocabulary is <code>sosa-env</code>.
+        </p>
         <p style="text-align: center;">
             The RDF graph containing the definition of terms in this sample vocabulary is available at
             <a href="http://www.w3.org/ns/sosa/system-environment-properties">http://www.w3.org/ns/sosa/system-environment-properties</a>.
