@@ -4,7 +4,6 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix time: <http://www.w3.org/2006/time#> .
 @prefix prov: <https://www.w3.org/TR/prov-o/#> .
 @prefix doap: <http://usefulinc.com/ns/doap#> .
@@ -25,8 +24,8 @@
 
 ssn-oms: a owl:Ontology ;
   dcterms:title "OMS Ontology - based on (SOSA) Ontology with SSN axiomatization"@en ;
-  dcterms:description "This ontology is based on the SOSA Ontology by the W3C/OGC Spatial Data on the Web Working Group, supplemented by some classes and properties required to implement ISO 19156:2023 , with axiomatization following SSN."@en ;
-  dcterms:creator [ a foaf:Agent ; foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en ] ;
+  dcterms:description "This ontology is based on the SOSA Ontology by the W3C/OGC Spatiotemporal Data on the Web Working Group, supplemented by some classes and properties required to implement ISO 19156:2023 , with axiomatization following SSN."@en ;
+  dcterms:creator "W3C/OGC Spatiotemporal Data on the Web Working Group"@en ;
   dcterms:rights "Copyright 2025 W3C/OGC." ;
   dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
   dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
@@ -46,8 +45,6 @@ dcterms:license a owl:AnnotationProperty .
 dcterms:rights a owl:AnnotationProperty .
 dcterms:source a owl:AnnotationProperty .
 dcterms:title a owl:AnnotationProperty .
-foaf:name a owl:AnnotationProperty .
-foaf:Agent a owl:Class .
 
 sosa-oms:PreparationProcedure
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implementedBy ; owl:allValuesFrom sosa-oms:PreparationStep ] ;
