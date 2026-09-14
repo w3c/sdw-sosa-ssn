@@ -124,6 +124,11 @@ ssn:forProperty a owl:ObjectProperty ;
       rdfs:subClassOf [ a owl:Restriction ; owl:onProperty [ owl:inverseOf ssn:hasOutput ] ; owl:allValuesFrom sosa:Procedure ] ;
       rdfs:isDefinedBy ssn-dep: .
 
+sosa:Result 
+  owl:deprecated true ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isResultOf ; owl:someValuesFrom sosa:Execution ] ;
+  rdfs:isDefinedBy sosa-common: .
+
 ssn:System a owl:Class ;
   owl:equivalentClass sosa:System ;
   owl:deprecated true ;
