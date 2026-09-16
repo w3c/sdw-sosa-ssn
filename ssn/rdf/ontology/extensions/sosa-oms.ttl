@@ -55,7 +55,7 @@ time:hasTime a owl:ObjectProperty .
 ogc-ms:implements 
   a owl:ObjectProperty ;
   skos:definition "link from an RDFS/OWL class or property to a requirement linked to an element in a UML model which it implements" ;
-  rdfs:subPropertyOf dcterms:source , prov:wasDerivedFrom . 
+  rdfs:subPropertyOf prov:wasDerivedFrom . 
 
 ogc-ms:implementedBy 
   a owl:ObjectProperty ;
@@ -73,16 +73,17 @@ sosa-oms:metadata
                         sosa:Observation ,
                         sosa:ObservationCollection , 
                         sosa:Sample ,
+                        sosa:MaterialSample ,
+                        sosa:SpatialSample ,
+                        sosa:StatisticalSample ,
                         sosa:SampleCollection ,
                         sosa:Sampling ,
                         sosa:SamplingCollection ,
                         sosa-oms:PreparationStep ,
                         sosa:Procedure ,
-                        sosa:ActuatingProcedure ,
                         sosa:ObservingProcedure ,
                         sosa:SamplingProcedure ,
                         sosa-oms:PreparationProcedure ,
-                        sosa:Actuator ,
                         sosa:Sensor ,
                         sosa:Sampler ,
                         sosa:Platform ,
@@ -304,6 +305,22 @@ sosa:isFeatureOfInterestOf
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/gen/relatedObservation-sem> ;
   rdfs:isDefinedBy sosa-common: .
 
+sosa:phenomenonTime 
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/phenomenonTime-sem> ;
+  rdfs:isDefinedBy sosa-common: .
+
+sosa-oms:validTime 
+  a owl:ObjectProperty ;
+  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/validTime-sem> ;
+  rdfs:label "valid time"@en ;
+  skos:definition "The time interval during which the result is assumed to be applicable for use."@en ;
+  schema:domainIncludes sosa:Observation ;
+  schema:domainIncludes sosa:ObservationCollection ;
+  schema:domainIncludes sosa:Sampling ;
+  schema:domainIncludes sosa:SamplingCollection ;
+  schema:rangeIncludes time:Interval , dcterms:PeriodOfTime ;
+  rdfs:isDefinedBy sosa-oms: .
+
 sosa:Observation 
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation> ;
   rdfs:isDefinedBy sosa-obs: .
@@ -475,46 +492,9 @@ sosa:hasSimpleResult
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/result-sem> ;
   rdfs:isDefinedBy sosa-common: .
 
-# for sampling
-
-#  sosa:hasResultingSample a owl:ObjectProperty ;
-#    rdfs:label "has resulting sample"@en ;
-#    skos:definition "Relation linking an act of Sampling and the new Sample created as a result."@en ;
-#    rdfs:comment "Relation linking an act of Sampling and the new Sample created as a result."@en ;
-#    schema:domainIncludes sosa:Sampling ;
-#    schema:rangeIncludes sosa:Sample ;
-#    owl:inverseOf sosa:isSamplingResultOf ;
-#    rdfs:isDefinedBy sosa: .
-
-#  sosa:isSamplingResultOf a owl:ObjectProperty ;
-#    rdfs:label "is sampling result of"@en ;
-#    skos:definition "Relation linking a Sample to the act of Sampling that created or caused it."@en ;
-#    rdfs:comment "Relation linking a Sample to the act of Sampling that created or caused it."@en ;
-#    schema:domainIncludes sosa:Sample ;
-#    schema:rangeIncludes sosa:Sampling ;
-#    owl:inverseOf sosa:hasResultingSample ;
-#    rdfs:isDefinedBy sosa: .
-
-
 sosa:resultTime 
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/resultTime-sem> ;
   rdfs:isDefinedBy sosa-common: .
-
-sosa:phenomenonTime 
-  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/phenomenonTime-sem> ;
-  rdfs:isDefinedBy sosa-common: .
-
-sosa-oms:validTime 
-  a owl:ObjectProperty ;
-  ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/validTime-sem> ;
-  rdfs:label "valid time"@en ;
-  skos:definition "The time interval during which the result is assumed to be applicable for use."@en ;
-  schema:domainIncludes sosa:Observation ;
-  schema:domainIncludes sosa:ObservationCollection ;
-  schema:domainIncludes sosa:Sampling ;
-  schema:domainIncludes sosa:SamplingCollection ;
-  schema:rangeIncludes time:Interval , dcterms:PeriodOfTime ;
-  rdfs:isDefinedBy sosa-oms: .
 
 
 ## Deployment
