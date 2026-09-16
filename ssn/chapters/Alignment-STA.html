@@ -1,14 +1,60 @@
 <h3>SensorThings API Alignment</h3>
 <p>
   The OGC SensorThings API ([[STA]]) is a JSON API for the internet of things sensor data.
-  As such, the alignment with the SSN Ontology cannot be axiomatized using OWL and RDFS. 
-  Nevertheless, alignment of STA may be understood using [[OMS]] as the bridge, as follows: 
+  As such, the alignment with the SSN Ontology cannot be axiomatized using OWL and RDFS.
+  Nevertheless, alignment of STA may be understood using [[OMS]] as the bridge, as follows:
 </p>
 <ul>
   <li>
-    the <a href="#OMS">OMS Extension Module</a> provides the implementation of [[OMS]] based on the SSN Ontology
+    an alignment of SensorThings entities to OMS concepts is provided in Table 1 of [[[STA2]]]
   </li>
   <li>
-    Sensor Things [[STA]] is 
+    the <a href="#OMS">OMS Extension Module</a> provides the SSN implementation of OMS
   </li>
 </ul>
+
+
+<table class="numbered">
+  <caption>OGC SensorThings API entities and equivalent concepts in OMS with the mappings to SSN</caption>
+  <thead>
+    <tr>
+      <th>STA Entity</th>
+      <th>OMS Concept</th>
+      <th>SSN Class</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Thing</td>
+      <td>Host</td>
+      <td><a>sosa:Platform</a></td>
+    </tr>
+    <tr>
+      <td>Datastream</td>
+      <td>ObservationCollection</td>
+      <td><a>sosa:ObservationCollection</a></td>
+    </tr>
+    <tr>
+    <tr>
+      <td>Sensor</td>
+      <td>Observer</td>
+      <td><a>sosa:Sensor</a></td>
+    </tr>
+    <tr>
+      <td>Observation</td>
+      <td>Observation</td>
+      <td><a>sosa:Observation</a></td>
+    </tr>
+    <tr>
+      <td>ObservedProperty</td>
+      <td>Observed Property</td>
+      <td><a>sosa:Property</a></td>
+    </tr>
+    <tr>
+      <td>Feature</td>
+      <td>Feature</td>
+      <td><a>sosa:FeatureOfInterest</a></td>
+    </tr>
+  </tbody>
+
+</table>
