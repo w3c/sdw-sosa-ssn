@@ -54,19 +54,25 @@ time:hasTime a owl:ObjectProperty .
 
 ogc-ms:implements 
   a owl:ObjectProperty ;
+  rdf:label "implements"@en ;
   skos:definition "link from an RDFS/OWL class or property to a requirement linked to an element in a UML model which it implements" ;
-  rdfs:subPropertyOf prov:wasDerivedFrom . 
+  rdfs:subPropertyOf prov:wasDerivedFrom ;
+  rdfs:isDefinedBy sosa-oms: .
 
 ogc-ms:implementedBy 
   a owl:ObjectProperty ;
+  rdf:label "implemented by"@en ;
   skos:definition "link from a requirement linked to an element in a UML model to an RDFS/OWL class or property which implements it" ;
-  owl:inverseOf ogc-ms:implements . 
+  owl:inverseOf ogc-ms:implements ;
+  rdfs:isDefinedBy sosa-oms: . 
 
 
 ## General properties
 
 sosa-oms:metadata 
   a owl:ObjectProperty ;
+  rdf:label "metadata"@en ;
+  skos:definition "link from an individual to a metadata description"@en ;  
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-core/gen/metadata-sem> ;
   schema:domainIncludes sosa:FeatureOfInterest ,
                         sosa:Property ,
@@ -329,7 +335,7 @@ sosa-oms:observationType
   a owl:ObjectProperty ;
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-core/AbstractObservationCharacteristics/type-sem> ;
   rdfs:label "observation type"@en ;
-  skos:definition "Information providing further detail on the type of Observations."@en ;
+  skos:definition "further detail on the type of Observations."@en ;
   schema:domainIncludes sosa:Observation ;
   rdfs:isDefinedBy sosa-oms: .
 
