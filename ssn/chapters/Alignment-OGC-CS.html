@@ -1,0 +1,119 @@
+<h4>OGC Connected Systems Alignment</h4>
+<p>
+  The OGC Connected Systems API ([[OGC-CS]]) is a JSON API for for interacting with Connected Systems and associated resources. 
+  A Connected System represents any kind of system that can either directly transmit data via communication networks (being connected to them in a permanent or temporary fashion), or whose data is made available in one form or another via such networks.
+  The API is based on JSON, so the alignment cannot be formally axiomatized. 
+  The alignment of OGC-CS with the SSN Ontology is described in the tabulation below. 
+</p>
+<table class="numbered">
+  <caption>OGC Connected Systems entities with the mappings to SSN</caption>
+  <thead>
+    <tr>
+      <th>CS Entity</th>
+      <th>SSN Term</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Resource Type</th>
+      <th>Class</th>
+    </tr>
+    <tr>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#clause-deployment-resource">Deployment</a></td>
+      <td><a>sosa:Deployment</a></td>
+    </tr>
+    <tr>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#clause-system-resource">System</a></td>
+      <td><a>sosa:Asset</a></td>
+    </tr>
+    <tr>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#_6a78a489-0ed3-b02e-1002-7a8e4ffbe34e">Procedure</a></td>
+      <td><a>sosa:Procedure</a></td>
+    </tr>
+    <tr>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#_65a54f92-722c-e62f-c814-43a2fa02fdc8">Feature</a></td>
+      <td><a>sosa:FeatureOfInterest</a></td>
+    </tr>
+    <tr>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#clause-sf-resource">Sampling Feature</a></td>
+      <td><a>sosa:Sample</a></td>
+    </tr>
+    <tr>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#clause-property-resource">Property Definition</a></td>
+      <td><a>sosa:Property</a></td>
+    </tr>
+    <tr>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#_9d63ab22-f551-e30f-5cb4-b6f84759a843">ControlStream</a></td>
+      <td><a>sosa:ActuationCollection</a></td>
+    </tr>
+    <tr>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#_9d63ab22-f551-e30f-5cb4-b6f84759a843">Command </td>
+      <td><a>sosa:Actuation</a></td>
+    </tr>
+    <tr>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#_9d63ab22-f551-e30f-5cb4-b6f84759a843">Datastream</a></td>
+      <td><a>sosa:ObservationCollection</a></td>
+    </tr>
+    <tr>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#_9d63ab22-f551-e30f-5cb4-b6f84759a843">Observation</a></td>
+      <td><a>sosa:Observation</a></td>
+    </tr>
+    <tr>
+      <th>association role | filter parameter</th>
+      <th>property</th>
+    </tr>
+    <tr>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#_9d63ab22-f551-e30f-5cb4-b6f84759a843">controlledProperty</a></td>
+      <td><a>sosa:actsOnProperty</a></td>
+    </tr>
+    <tr>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#_9d63ab22-f551-e30f-5cb4-b6f84759a843">observedProperty</a></td>
+      <td><a>sosa:observedProperty</a></td>
+    </tr>
+    <tr>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#_9d63ab22-f551-e30f-5cb4-b6f84759a843">observation | command</a></td>
+      <td><a>sosa:hasMember</a></td>
+    </tr>
+    <tr>
+      <th>link relation</th>
+      <th>property</th>
+    </tr>
+    <tr>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#_71326fcb-f445-362b-55e8-81043e588a5c">ogc-rel:parentSystem</a></td>
+      <td><a>sosa:isSubsystemOf</a></td>
+    </tr>
+    <tr>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#_71326fcb-f445-362b-55e8-81043e588a5c">ogc-rel:subsystems</a></td>
+      <td><a>sosa:hasSubsystem</a></td>
+    </tr>
+    <tr>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#_71326fcb-f445-362b-55e8-81043e588a5c">ogc-rel:samplingFeatures</a></td>
+      <td><a>sosa:hasFeatureOfInterest</a></td>
+    </tr>
+    <tr>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#_71326fcb-f445-362b-55e8-81043e588a5c">ogc-rel:deployments</a></td>
+      <td><a>sosa:systemDeployment</a></td>
+    </tr>
+    <tr>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#_71326fcb-f445-362b-55e8-81043e588a5c">ogc-rel:procedures</a></td>
+      <td><a>sosa:implements</a></td>
+    </tr>
+    <tr>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#_71326fcb-f445-362b-55e8-81043e588a5c">ogc-rel:implementingSystems</a></td>
+      <td><a>sosa:implementedBy</a></td>
+    </tr>
+    <tr>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#_71326fcb-f445-362b-55e8-81043e588a5c">ogc-rel:featuresOfInterest</a></td>
+      <td><a>sosa:hasUltimateFeatureOfInterest</a></td>
+    </tr>
+    <tr>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#_71326fcb-f445-362b-55e8-81043e588a5c">ogc-rel:sampledFeature</a></td>
+      <td><a>sosa:isSampleOfUltimateFOI</a></td>
+    </tr>
+    <tr>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#_71326fcb-f445-362b-55e8-81043e588a5c">ogc-rel:sampleOf</a></td>
+      <td><a>sosa:isSampleOf</a></td>
+    </tr>
+  </tbody>
+
+</table>

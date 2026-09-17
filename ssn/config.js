@@ -229,6 +229,14 @@ var respecConfig = {
       id: "OGC 08-131r7",
       date: "2026"
     },
+    "OGC-CS": {
+      href: "https://docs.ogc.org/is/23-001/23-001.html",
+      authors: ["Alexandre Robin"],
+      title: "OGC API - Connected Systems - Part 1: Feature Resources",
+      publisher: "Open Geospatial Consortium",
+      id: "OGC 23-001",
+      date: "2025"
+    },
     "OM-Lite": {
       href: "http://content.iospress.com/articles/semantic-web/sw214",
       doi: "10.3233/SW-160214",
