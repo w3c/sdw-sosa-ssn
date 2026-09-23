@@ -23,12 +23,12 @@ sosa:ido rdf:type owl:Ontology ;
   dcterms:contributor "Caitlin Woods" ;
   dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
   dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
-  dcterms:modified "2025-11-12"^^xsd:date ;
+  dcterms:modified "2026-09-17"^^xsd:date ;
   dcterms:rights "Copyright 2017, 2025 W3C/OGC." ;
   rdfs:comment "Alignment of the the W3C/OGC SOSA Ontology with the Industrial Data Ontology (IDO) version 4.0 <http://rds.posccaesar.org/ontology/lis14/ont/core/4.0>"@en ;
   skos:note "A caution is advised if using the provided alignment with IDO major versions higher than 4.0"@en;
   rdfs:label "Alignment of SOSA with IDO"@en ;
-            owl:imports <http://rds.posccaesar.org/ontology/lis14/ont/core/> ,
+            owl:imports <http://rds.posccaesar.org/ontology/lis14/ont/core> ,
             sosa: .
 
 #################################################################
@@ -36,7 +36,9 @@ sosa:ido rdf:type owl:Ontology ;
 #################################################################
 
 ###  http://www.w3.org/ns/sosa/actsOn
-sosa:actsOn rdfs:domain sosa:Actuator .
+sosa:actsOn rdf:type owl:ObjectProperty ;
+            rdfs:domain sosa:Actuator ;
+            rdfs:range sosa:Property .
 
 
 ###  http://www.w3.org/ns/sosa/actsOnProperty
@@ -46,7 +48,8 @@ sosa:actsOnProperty rdf:type owl:ObjectProperty ;
 
 
 ###  http://www.w3.org/ns/sosa/deployedAsset
-sosa:deployedAsset rdfs:subPropertyOf lis:hasPassiveParticipant .
+sosa:deployedAsset rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf lis:hasPassiveParticipant .
 
 
 ###  http://www.w3.org/ns/sosa/detects
@@ -56,7 +59,8 @@ sosa:detects rdf:type owl:ObjectProperty ;
 
 
 ###  http://www.w3.org/ns/sosa/featureHasUltimateSample
-sosa:featureHasUltimateSample rdfs:domain lis:Object ;
+sosa:featureHasUltimateSample rdf:type owl:ObjectProperty ;
+                              rdfs:domain lis:Object ;
                               rdfs:range lis:Object .
 
 
@@ -71,7 +75,8 @@ sosa:forProperty rdf:type owl:ObjectProperty ;
 
 
 ###  http://www.w3.org/ns/sosa/hasDeployment
-sosa:hasDeployment rdfs:subPropertyOf lis:passiveParticipantIn .
+sosa:hasDeployment rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf lis:passiveParticipantIn .
 
 
 ###  http://www.w3.org/ns/sosa/hasFeatureOfInterest
@@ -86,15 +91,18 @@ sosa:hasInput rdf:type owl:ObjectProperty ;
 
 
 ###  http://www.w3.org/ns/sosa/hasInputValue
-sosa:hasInputValue rdfs:subPropertyOf lis:hasPassiveParticipant .
+sosa:hasInputValue rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf lis:hasPassiveParticipant .
 
 
 ###  http://www.w3.org/ns/sosa/hasMember
-sosa:hasMember rdfs:subPropertyOf lis:hasPart .
+sosa:hasMember rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf lis:hasPart .
 
 
 ###  http://www.w3.org/ns/sosa/hasOriginalSample
-sosa:hasOriginalSample rdfs:domain lis:Object ;
+sosa:hasOriginalSample rdf:type owl:ObjectProperty ;
+                       rdfs:domain lis:Object ;
                        rdfs:range sosa:Sample .
 
 
@@ -109,8 +117,18 @@ sosa:hasProperty rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf lis:hasQuality .
 
 
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource sosa:hasProperty ;
+   owl:annotatedProperty rdfs:subPropertyOf ;
+   owl:annotatedTarget lis:hasQuality ;
+   rdfs:seeAlso <https://w3c.github.io/sdw-sosa-ssn/ssn/#feature-specific-properties> ;
+   skos:note "Note that this alignment requires sosa:Property instances to have unique sosa:FeatureOfInterest bearers (in SOSA terms: properties are feature-specific), rather than having prototypical sosa:Property instances that denote property types."
+ ] .
+
+
 ###  http://www.w3.org/ns/sosa/hasProxy
-sosa:hasProxy rdfs:domain sosa:Property ;
+sosa:hasProxy rdf:type owl:ObjectProperty ;
+              rdfs:domain sosa:Property ;
               rdfs:range sosa:Stimulus .
 
 
@@ -131,7 +149,8 @@ sosa:hasSubSystem rdf:type owl:ObjectProperty ;
 
 
 ###  http://www.w3.org/ns/sosa/hasUltimateFeatureOfInterest
-sosa:hasUltimateFeatureOfInterest rdfs:subPropertyOf lis:hasParticipant .
+sosa:hasUltimateFeatureOfInterest rdf:type owl:ObjectProperty ;
+                                  rdfs:subPropertyOf lis:hasParticipant .
 
 
 ###  http://www.w3.org/ns/sosa/hosts
@@ -141,11 +160,6 @@ sosa:hosts rdf:type owl:ObjectProperty ;
            rdfs:range lis:PhysicalObject .
 
 
-###  http://www.w3.org/ns/sosa/implementedBy
-sosa:implementedBy rdfs:domain sosa:Procedure ;
-                   rdfs:range sosa:System .
-
-
 ###  http://www.w3.org/ns/sosa/implements
 sosa:implements rdf:type owl:ObjectProperty ;
                 rdfs:domain sosa:System ;
@@ -153,99 +167,72 @@ sosa:implements rdf:type owl:ObjectProperty ;
 
 
 ###  http://www.w3.org/ns/sosa/inputFor
-sosa:inputFor rdfs:subPropertyOf lis:contentPartOf ;
-              rdfs:range sosa:Procedure .
+sosa:inputFor rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf lis:contentPartOf  .
 
 
 ###  http://www.w3.org/ns/sosa/inputValueForExecution
-sosa:inputValueForExecution rdfs:subPropertyOf lis:passiveParticipantIn .
-
-
-###  http://www.w3.org/ns/sosa/isActedOnBy
-sosa:isActedOnBy rdfs:domain sosa:Property ;
-                 rdfs:range sosa:Actuator .
-
-
-###  http://www.w3.org/ns/sosa/isDetectedBy
-sosa:isDetectedBy rdfs:domain sosa:Stimulus ;
-                  rdfs:range sosa:Sensor .
+sosa:inputValueForExecution rdf:type owl:ObjectProperty ;
+                            rdfs:subPropertyOf lis:passiveParticipantIn .
 
 
 ###  http://www.w3.org/ns/sosa/isFeatureOfInterestOf
-sosa:isFeatureOfInterestOf rdfs:subPropertyOf lis:participantIn .
+sosa:isFeatureOfInterestOf rdf:type owl:ObjectProperty ;
+                           rdfs:subPropertyOf lis:participantIn .
 
 
 ###  http://www.w3.org/ns/sosa/isHostedBy
-sosa:isHostedBy rdfs:subPropertyOf lis:locatedRelativeTo .
+sosa:isHostedBy rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf lis:locatedRelativeTo .
 
 
 ###  http://www.w3.org/ns/sosa/isMemberOf
-sosa:isMemberOf rdfs:subPropertyOf lis:partOf .
-
-
-###  http://www.w3.org/ns/sosa/isObservedBy
-sosa:isObservedBy rdfs:domain sosa:Property ;
-                  rdfs:range sosa:Sensor .
-
-
-###  http://www.w3.org/ns/sosa/isOriginalSampleOf
-sosa:isOriginalSampleOf rdfs:domain sosa:Sample ;
-                        rdfs:range lis:Object .
+sosa:isMemberOf rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf lis:partOf .
 
 
 ###  http://www.w3.org/ns/sosa/isPropertyOf
-sosa:isPropertyOf rdfs:subPropertyOf lis:qualityOf .
+sosa:isPropertyOf rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf lis:qualityOf .
 
-
-###  http://www.w3.org/ns/sosa/isProxyFor
-sosa:isProxyFor rdf:type owl:ObjectProperty ;
-                rdfs:domain sosa:Stimulus ;
-                rdfs:range sosa:Property .
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource sosa:isPropertyOf ;
+   owl:annotatedProperty rdfs:subPropertyOf ;
+   owl:annotatedTarget lis:qualityOf ;
+   rdfs:seeAlso <https://w3c.github.io/sdw-sosa-ssn/ssn/#feature-specific-properties> ;
+   skos:note "Note that this alignment requires sosa:Property instances to have unique sosa:FeatureOfInterest bearers (in SOSA terms: properties are feature-specific), rather than having prototypical sosa:Property instances that denote property types."
+ ] .
 
 
 ###  http://www.w3.org/ns/sosa/isResultOf
-sosa:isResultOf rdfs:subPropertyOf lis:createdBy .
-
-
-###  http://www.w3.org/ns/sosa/isResultOfMadeBySampler
-sosa:isResultOfMadeBySampler rdfs:domain sosa:Sample ;
-                             rdfs:range lis:Activity .
-
-
-###  http://www.w3.org/ns/sosa/isResultOfUsedProcedure
-sosa:isResultOfUsedProcedure rdfs:domain lis:Object ;
-                             rdfs:range sosa:SamplingProcedure .
-
-
-###  http://www.w3.org/ns/sosa/isSampleOf
-sosa:isSampleOf rdfs:domain lis:Object ;
-                rdfs:range lis:Object .
-
-
-###  http://www.w3.org/ns/sosa/isSampleOfUltimateFOI
-sosa:isSampleOfUltimateFOI rdfs:domain lis:Object ;
-                           rdfs:range lis:Object .
+sosa:isResultOf rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf lis:createdBy .
 
 
 ###  http://www.w3.org/ns/sosa/isSubSystemOf
-sosa:isSubSystemOf rdfs:subPropertyOf lis:functionalPartOf .
+sosa:isSubSystemOf rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf lis:functionalPartOf .
 
 
 ###  http://www.w3.org/ns/sosa/madeBySystem
-sosa:madeBySystem rdfs:subPropertyOf lis:hasActiveParticipant .
+sosa:madeBySystem rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf lis:hasActiveParticipant .
 
 
 ###  http://www.w3.org/ns/sosa/madeExecution
-sosa:madeExecution rdfs:subPropertyOf lis:activeParticipantIn .
+sosa:madeExecution rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf lis:activeParticipantIn .
 
 
 ###  http://www.w3.org/ns/sosa/madeSamplingHasResult
-sosa:madeSamplingHasResult rdfs:domain sosa:Sampler ;
+sosa:madeSamplingHasResult rdf:type owl:ObjectProperty ;
+                           rdfs:domain sosa:Sampler ;
                            rdfs:range lis:Object .
 
 
 ###  http://www.w3.org/ns/sosa/observationRelatedTo
-sosa:observationRelatedTo rdfs:subPropertyOf lis:occursRelativeTo .
+sosa:observationRelatedTo rdf:type owl:ObjectProperty ;
+                          rdfs:subPropertyOf lis:occursRelativeTo .
 
 
 ###  http://www.w3.org/ns/sosa/observedProperty
@@ -256,43 +243,51 @@ sosa:observedProperty rdf:type owl:ObjectProperty ;
 
 ###  http://www.w3.org/ns/sosa/observes
 sosa:observes rdf:type owl:ObjectProperty ;
-              rdfs:domain sosa:Sensor .
+              rdfs:domain sosa:Sensor ;
+              rdfs:range sosa:Property .
 
 
 ###  http://www.w3.org/ns/sosa/originated
-sosa:originated rdfs:subPropertyOf lis:occursRelativeTo ;
+sosa:originated rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf lis:occursRelativeTo ;
                 rdfs:domain sosa:Stimulus ;
                 rdfs:range sosa:Observation .
 
 
 ###  http://www.w3.org/ns/sosa/outputFor
-sosa:outputFor rdfs:subPropertyOf lis:contentPartOf ;
-               rdfs:range sosa:Procedure .
+sosa:outputFor rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf lis:contentPartOf .
 
 
 ###  http://www.w3.org/ns/sosa/phenomenonOccurred
-sosa:phenomenonOccurred rdfs:subPropertyOf lis:temporalExtentOf .
+sosa:phenomenonOccurred rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf lis:temporalExtentOf .
 
 
 ###  http://www.w3.org/ns/sosa/phenomenonTime
-sosa:phenomenonTime rdfs:subPropertyOf lis:hasTemporalExtent .
+sosa:phenomenonTime rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf lis:hasTemporalExtent .
 
 
 ###  http://www.w3.org/ns/sosa/relatedObservation
-sosa:relatedObservation rdfs:subPropertyOf lis:occursRelativeTo .
+sosa:relatedObservation rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf lis:occursRelativeTo .
 
 
 ###  http://www.w3.org/ns/sosa/resultQuality
-sosa:resultQuality rdfs:domain lis:Activity ;
+sosa:resultQuality rdf:type owl:ObjectProperty ;
+                   rdfs:domain lis:Activity ;
                    rdfs:range lis:InformationObject .
 
 
 ###  http://www.w3.org/ns/sosa/usedForExecution
-sosa:usedForExecution rdfs:subPropertyOf lis:concretizedBy .
+sosa:usedForExecution rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf lis:concretizedBy .
 
 
 ###  http://www.w3.org/ns/sosa/usedForExecutionHasResult
-sosa:usedForExecutionHasResult rdfs:domain sosa:SamplingProcedure ;
+sosa:usedForExecutionHasResult rdf:type owl:ObjectProperty ;
+                               rdfs:domain sosa:SamplingProcedure ;
                                rdfs:range lis:Object .
 
 
@@ -301,20 +296,9 @@ sosa:usedProcedure rdf:type owl:ObjectProperty ;
                    rdfs:subPropertyOf lis:concretizes .
 
 
-###  http://www.w3.org/ns/sosa/wasActedOnBy
-sosa:wasActedOnBy rdfs:domain sosa:Property ;
-                  rdfs:range lis:Activity .
-
-
-###  http://www.w3.org/ns/sosa/wasObservedBy
-sosa:wasObservedBy rdfs:domain sosa:Property ;
-                   rdfs:range lis:Activity .
-
-
 ###  http://www.w3.org/ns/sosa/wasOriginatedBy
-sosa:wasOriginatedBy rdfs:subPropertyOf lis:occursRelativeTo ;
-                     rdfs:domain sosa:Observation ;
-                     rdfs:range sosa:Stimulus .
+sosa:wasOriginatedBy rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf lis:occursRelativeTo .
 
 
 #################################################################
@@ -332,11 +316,13 @@ sosa:Deployment rdf:type owl:Class ;
 
 
 ###  http://www.w3.org/ns/sosa/Execution
-sosa:Execution rdfs:subClassOf lis:Activity .
+sosa:Execution rdf:type owl:Class ;
+               rdfs:subClassOf lis:Activity .
 
 
 ###  http://www.w3.org/ns/sosa/ExecutionCollection
-sosa:ExecutionCollection rdfs:subClassOf lis:Activity .
+sosa:ExecutionCollection rdf:type owl:Class ;
+                         rdfs:subClassOf lis:Activity .
 
 
 ###  http://www.w3.org/ns/sosa/FeatureOfInterest
@@ -354,12 +340,23 @@ sosa:Property rdf:type owl:Class ;
               rdfs:subClassOf lis:Quality .
 
 
+[ rdf:type owl:Axiom ;
+   owl:annotatedSource sosa:Property ;
+   owl:annotatedProperty rdfs:subClassOf ;
+   owl:annotatedTarget lis:Quality ;
+   rdfs:seeAlso <https://w3c.github.io/sdw-sosa-ssn/ssn/#feature-specific-properties> ;
+   skos:note "Note that this alignment requires sosa:Property instances to have unique sosa:FeatureOfInterest bearers (in SOSA terms: properties are feature-specific), rather than having prototypical sosa:Property instances that denote property types."
+ ] .
+
+
 ###  http://www.w3.org/ns/sosa/Sample
-sosa:Sample rdfs:subClassOf lis:Object .
+sosa:Sample rdf:type owl:Class ;
+            rdfs:subClassOf lis:Object .
 
 
 ###  http://www.w3.org/ns/sosa/SampleCollection
-sosa:SampleCollection rdfs:subClassOf lis:Object .
+sosa:SampleCollection rdf:type owl:Class ;
+                      rdfs:subClassOf lis:Object .
 
 
 ###  http://www.w3.org/ns/sosa/Stimulus

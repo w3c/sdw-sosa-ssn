@@ -36,7 +36,7 @@ sosa:FeatureOfInterest
   a owl:Class ;
   rdfs:label "Feature Of Interest"@en ;
   skos:definition """
-  entity that is the target of an Execution or ExecutionCollection or Deployment
+  entity that is the target of an Execution, ExecutionCollection, or Deployment
 
 i.e., the entity whose property is being manipulated by an Actuation or ActuationCollection,
 or whose property is being estimated by an Observation or ObservationCollection,
@@ -147,7 +147,7 @@ sosa:Procedure
   skos:definition """
   workflow, protocol, plan, algorithm, program, or computational method specifying how to make an Execution
 
-  A Procedure is re-usable, and might be applied in many Actuations, Observations, or Samplings.
+  A Procedure is re-usable, and might be applied in many Executions (Actuations, Observations, or Samplings).
   It explains the steps to be carried out to arrive at reproducible results.
   """@en ;
   skos:example "The measured wind speed differs depending on the height of the sensor above the surface, e.g., due to friction. Consequently, procedures for measuring wind speed define a standard height for anemometers above ground, typically 10m for meteorological measures and 2m in Agrometeorology. This definition of height, sensor placement, and so forth are defined by the Procedure."@en ;
@@ -271,20 +271,20 @@ sosa:ExecutionCollection
   set of one or more Executions or ExecutionCollections; collections may be nested
 
   All Execution properties may appear in an Execution Collection, including: 
-  hasFeatureOfInterest , usedProcedure , madeBySystem , endTime, resultTime , startTime . 
-  If they are present, the value of these properties summarize the values of the matching properties of the member Executions, where membership is either direct or transitive through one or more member execution collections.
+  hasFeatureOfInterest , usedProcedure , madeBySystem , endTime, resultTime , startTime. 
+  If they are present, the value of these properties summarize the values of the matching properties of the member Executions, where membership is either direct or transitive through one or more member Execution collections.
 
-  The following consistency rules apply with respect to the execution properties listed above: 
+  The following consistency rules apply to the Execution properties listed above: 
   
   1. Where an individual Execution Collection omits a property, a member Execution (direct or transitive) MAY have any value for that property.
 
-  2. Where an individual Execution Collection has a single value for a property, each member Execution (direct or transitive) MUST have that same value for the property - i.e., the collection is homogeneous in that property.  That property MAY then be omitted in any member Execution or Execution Collection.
+  2. Where an individual Execution Collection has a single value for a property, each member Execution (direct or transitive) MUST have that same value for that property; i.e., the collection is homogeneous in that property.  That property MAY then be omitted in any member Execution or Execution Collection.
 
   3. Where an individual Execution Collection has more than one value for a property, each member Execution (direct or transitive) MUST have a value for that property that matches one of the values for the property in the collection. 
   
   4. Where an individual Execution Collection has a value for a property that is a range or interval, each member Execution (direct or transitive) MUST have a value for that property that matches or falls within that range or interval.
 
-  5. Where an individual Execution Collection has more than one value for a property that is a range or interval, each member Execution (direct or transitive) MUST have a value for that property that either matches or falls within one of those ranges or intervals.
+  5. Where an individual Execution Collection has more than one value for a property that is a range or interval, each member Execution (direct or transitive) MUST have a value for that property that matches or falls within one of those ranges or intervals.
   """@en ;
   skos:note """The members of a collection do not necessarily share a common value for any property. """@en ;
   skos:scopeNote """
@@ -675,7 +675,7 @@ sosa:implements
   a owl:ObjectProperty ;
   rdfs:label "implements"@en ;
   skos:definition """
-  relation from a System to the Procedure that it is capable of executing
+  relation from a System to a Procedure that it is capable of executing
   """@en ;
   skos:example "For example, the relationship between a sensor and the scientific measuring Procedure via which it senses."@en ;
   schema:domainIncludes sosa:System ;
@@ -771,7 +771,7 @@ sosa:isMemberOf
   a owl:ObjectProperty ;
   rdfs:label "is member of collection" ;
   skos:definition """
-  link from an Execution or Sample or Collection of these, to a Collection which that Execution or Sample or Collection is part of
+  link from an Execution or Sample, or Collection of these, to a Collection which that Execution or Sample or Collection is part of
   """ ;
   skos:scopeNote "Rules for the consistency of values of properties of collections and properties of their members are given for each collection type" ;
   skos:editorialNote "Note that there is a single `isMemberOf` property. OWL or SHACL constraints may limit the range depending on the context of different collection types" ;
