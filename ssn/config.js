@@ -229,6 +229,14 @@ var respecConfig = {
       id: "OGC 08-131r7",
       date: "2026"
     },
+    "OGC-CS": {
+      href: "https://docs.ogc.org/is/23-001/23-001.html",
+      authors: ["Alexandre Robin"],
+      title: "OGC API - Connected Systems - Part 1: Feature Resources",
+      publisher: "Open Geospatial Consortium",
+      id: "OGC 23-001",
+      date: "2025"
+    },
     "OM-Lite": {
       href: "http://content.iospress.com/articles/semantic-web/sw214",
       doi: "10.3233/SW-160214",
@@ -272,6 +280,14 @@ var respecConfig = {
       title: "The Stimulus-Sensor-Observation Ontology Design Pattern and its Integration into the Semantic Sensor Network Ontology",
       publisher: "CEUR: Proceedings of the 3rd International Workshop on Semantic Sensor Networks (SSN10)",
       date: "2010"
+    },
+    "STA2": {
+      href: "https://docs.ogc.org/is/23-019/23-019r2.html",
+      editors: ["Hylke van der Schaaf"],
+      title: "OGC SensorThings API 2.0",
+      publisher: "Open Geospatial Consortium",
+      id: "OGC 23-019",
+      date: "2026"
     },
     "SWE": {
       href: "https://www.ogc.org/about-ogc/domains/swe/",
