@@ -281,6 +281,14 @@ var respecConfig = {
       publisher: "CEUR: Proceedings of the 3rd International Workshop on Semantic Sensor Networks (SSN10)",
       date: "2010"
     },
+    "STA2": {
+      href: "https://docs.ogc.org/is/23-019/23-019r2.html",
+      editors: ["Hylke van der Schaaf"],
+      title: "OGC SensorThings API 2.0",
+      publisher: "Open Geospatial Consortium",
+      id: "OGC 23-019",
+      date: "2026"
+    },
     "SWE": {
       href: "https://www.ogc.org/about-ogc/domains/swe/",
       title: "Sensor Web Enablement (SWE)",
