@@ -4,7 +4,6 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix time: <http://www.w3.org/2006/time#> .
 @prefix prov: <https://www.w3.org/TR/prov-o/#> .
 @prefix doap: <http://usefulinc.com/ns/doap#> .
@@ -30,8 +29,8 @@ ssn-oms: a owl:Ontology ;
   dcat:hasVersion <http://www.w3.org/ns/ssn/2023/oms/> ;
   dcat:hasCurrentVersion <http://www.w3.org/ns/ssn/2023/oms/> ;
   dcterms:title "OMS Ontology - based on (SOSA) Ontology with SSN axiomatization"@en ;
-  dcterms:description "This ontology is based on the SOSA Ontology by the W3C/OGC Spatial Data on the Web Working Group, supplemented by some classes and properties required to implement ISO 19156:2023 , with axiomatization following SSN."@en ;
-  dcterms:creator [ a foaf:Agent ; foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en ] ;
+  dcterms:description "This ontology is based on the SOSA Ontology by the W3C/OGC Spatiotemporal Data on the Web Working Group, supplemented by some classes and properties required to implement ISO 19156:2023 , with axiomatization following SSN."@en ;
+  dcterms:creator "W3C/OGC Spatiotemporal Data on the Web Working Group"@en ;
   dcterms:rights "Copyright 2025 W3C/OGC." ;
   dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
   dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
@@ -41,14 +40,25 @@ ssn-oms: a owl:Ontology ;
   owl:imports ssn-obs: , ssn-sam: , sosa-oms: ;
   .
 
+## Terms of other vocabularies, declared here because OWL 2 DL asks that
+## every entity an ontology uses be declared in its imports closure
+
+dcterms:created a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:license a owl:AnnotationProperty .
+dcterms:rights a owl:AnnotationProperty .
+dcterms:source a owl:AnnotationProperty .
+dcterms:title a owl:AnnotationProperty .
+
 sosa-oms:PreparationProcedure
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implementedBy ; owl:allValuesFrom sosa-oms:PreparationStep ] ;
   rdfs:isDefinedBy sosa-oms: .
 
 sosa-oms:PreparationStep 
   rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:usedProcedure ; owl:allValuesFrom sosa-oms:PreparationProcedure ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:preparedSample ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:preparedSample ; owl:allValuesFrom sosa:Sample ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa-oms:preparedSample ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa-oms:preparedSample ; owl:allValuesFrom sosa:Sample ] ;
   rdfs:isDefinedBy sosa-oms: .
 
 sosa:Sample

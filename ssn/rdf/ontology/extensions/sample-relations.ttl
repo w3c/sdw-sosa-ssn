@@ -2,7 +2,6 @@
 # imports: http://www.w3.org/ns/ssn/
 
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -17,10 +16,7 @@
 sosa-rel:
   rdf:type owl:Ontology ;
   owl:imports sosa-sam: ;
-  dcterms:creator [
-      rdf:type foaf:Agent ;
-      foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en ;
-    ] ;
+  dcterms:creator "W3C/OGC Spatiotemporal Data on the Web Working Group"@en ;  
   dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
   dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
   owl:versionIRI <http://www.w3.org/ns/sosa/2023/sampling/> ;
@@ -32,6 +28,19 @@ sosa-rel:
   owl:priorVersion <http://www.w3.org/ns/sosa/2017/sampling/> ;
   dcterms:rights "Copyright 2025 W3C/OGC." ;
 .
+
+## Terms of other vocabularies, declared here because OWL 2 DL asks that
+## every entity an ontology uses be declared in its imports closure
+
+dcterms:creator rdf:type owl:AnnotationProperty .
+dcterms:license rdf:type owl:AnnotationProperty .
+dcterms:rights rdf:type owl:AnnotationProperty .
+schema:domainIncludes rdf:type owl:AnnotationProperty .
+schema:rangeIncludes rdf:type owl:AnnotationProperty .
+skos:definition rdf:type owl:AnnotationProperty .
+skos:example rdf:type owl:AnnotationProperty .
+skos:Concept rdf:type owl:Class .
+
 sosa-rel:RelationshipNature
   rdf:type owl:Class ;
   rdfs:label "Nature of relationship (between samples)"@en ;

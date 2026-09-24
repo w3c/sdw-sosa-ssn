@@ -4,7 +4,6 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix time: <http://www.w3.org/2006/time#> .
 
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
@@ -23,13 +22,23 @@ ssn-common:
   dcterms:description """Core classes and properties for the SSN Ontology.
   This module adds RDFS and OWL axioms to the terms defined in SOSA Core
   """@en ;
-  dcterms:creator [ a foaf:Agent ; foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en ] ;
+  dcterms:creator "W3C/OGC Spatiotemporal Data on the Web Working Group"@en ;
   dcterms:rights "Copyright 2025 W3C/OGC." ;
   dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
   dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
   dcterms:created "2024-02-03"^^xsd:date ;
   owl:imports sosa-common: ;
   .
+
+## Terms of other vocabularies, declared here because OWL 2 DL asks that
+## every entity an ontology uses be declared in its imports closure
+
+dcterms:created a owl:AnnotationProperty .
+dcterms:creator a owl:AnnotationProperty .
+dcterms:description a owl:AnnotationProperty .
+dcterms:license a owl:AnnotationProperty .
+dcterms:rights a owl:AnnotationProperty .
+dcterms:title a owl:AnnotationProperty .
 
 ## Features of interest and Property
 
@@ -88,11 +97,6 @@ sosa:ExecutionCollection
       ) ;
     ] 
   ] ;
-  rdfs:isDefinedBy sosa-common: .
-
-sosa:Result 
-  owl:deprecated true ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:isResultOf ; owl:someValuesFrom sosa:Execution ] ;
   rdfs:isDefinedBy sosa-common: .
 
 ## Systems
