@@ -71,7 +71,7 @@ var respecConfig = {
       name: "Rob Atkinson",
       w3cid: "90763",
       company: "OGC & Metalinkage, AU",
-      companyURL: "https://www.ogc.org/",
+      companyURL: "https://github.com/metalinkage/",
       orcid: "0000-0002-7815-2472"
     },
     {
@@ -178,13 +178,6 @@ var respecConfig = {
       href: "https://github.com/CommonCoreOntology/CommonCoreOntologies",
       rawDate: "2022"
     },
-    "ConnectedSystems": {
-      href: "https://docs.ogc.org/is/23-001/23-001.html",
-      authors: ["Alexandre Robin"],
-      title: "OGC API - Connected Systems - Part 1: Feature Resources",
-      publisher: "Open Geospatial Consortium",
-      date: "2025"
-    },
     "Description-Logics": {
       href: "http://www.cambridge.org/9780521150118",
       authors: ["Franz Baader", "Diego Calvanese", "Deborah L. McGuinness", "Daniele Nardi", "Peter F. Patel-Schneider"],
@@ -229,12 +222,20 @@ var respecConfig = {
       id: "OGC 08-131r7",
       date: "2026"
     },
-    "OGC-CS": {
+    "CSAPI-1": {
       href: "https://docs.ogc.org/is/23-001/23-001.html",
       authors: ["Alexandre Robin"],
       title: "OGC API - Connected Systems - Part 1: Feature Resources",
       publisher: "Open Geospatial Consortium",
       id: "OGC 23-001",
+      date: "2025"
+    },
+    "CSAPI-2": {
+      href: "https://docs.ogc.org/is/23-002/23-002.html",
+      authors: ["Alexandre Robin"],
+      title: "OGC API - Connected Systems - Part 2: Dynamic Data",
+      publisher: "Open Geospatial Consortium",
+      id: "OGC 23-002",
       date: "2025"
     },
     "OM-Lite": {
