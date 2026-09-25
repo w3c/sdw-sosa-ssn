@@ -71,7 +71,7 @@ var respecConfig = {
       name: "Rob Atkinson",
       w3cid: "90763",
       company: "OGC & Metalinkage, AU",
-      companyURL: "https://github.com/metalinkage/",
+      companyURL: "https://www.ogc.org/",
       orcid: "0000-0002-7815-2472"
     },
     {
