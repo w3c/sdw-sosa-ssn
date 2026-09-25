@@ -1,13 +1,13 @@
 <h4>OGC API – Connected Systems Alignment</h4>
 <p>OGC API – Connected Systems (CSAPI) is a multipart OGC Web API standard for accessing and managing connected systems and their associated resources. Part 1 [[CSAPI-1]] defines feature resources and property definitions; Part 2 [[CSAPI-2]] defines dynamic-data resources, including datastreams, observations, control streams, and commands. CSAPI uses SOSA/SSN concepts as a basis for its resource model and expresses corresponding information through resource representations, attributes, and associations.</p>
-<p>The following tables summarize selected conceptual correspondences between CSAPI 1.0 and the vocabulary defined in this edition of SSN. This informative alignment describes CSAPI as specified in the cited OGC standards; it does not modify CSAPI resource definitions, API behavior, encodings, or conformance requirements. The correspondences are not OWL equivalence axioms and do not define an RDF encoding or a complete transformation between CSAPI and SOSA/SSN.</p>
+<p>The tables below describe selected conceptual correspondences between CSAPI 1.0 and the classes and properties defined in this edition of SSN, rather than formal OWL equivalence axioms.</p>
 <table class="numbered" id="csapi-resource-correspondences">
   <caption>Selected correspondences between CSAPI resources and SOSA/SSN classes</caption>
   <thead>
     <tr>
       <th scope="col">CSAPI resource or role</th>
       <th scope="col">SOSA/SSN class</th>
-      <th scope="col">Qualification</th>
+      <th scope="col">Notes</th>
       <th scope="col">CSAPI reference</th>
     </tr>
   </thead>
@@ -21,7 +21,7 @@
     <tr>
       <td>System</td>
       <td><a>sosa:System</a></td>
-      <td>More specific system types and the dual System/Platform case are described below.</td>
+      <td>Includes <a>sosa:Sensor</a>, <a>sosa:Actuator</a>, and <a>sosa:Sampler</a>; a represented individual may also be a <a>sosa:Platform</a>.</td>
       <td><a href="https://docs.ogc.org/is/23-001/23-001.html#clause-system-resource">Part 1, 9.1–9.2 and 9.5</a></td>
     </tr>
     <tr>
@@ -33,7 +33,7 @@
     <tr>
       <td>Feature used as a feature of interest</td>
       <td><a>sosa:FeatureOfInterest</a></td>
-      <td>The correspondence concerns the role played by the feature, not every feature exposed through an API.</td>
+      <td>CSAPI uses the term feature of interest for the ultimate feature of interest.</td>
       <td><a href="https://docs.ogc.org/is/23-001/23-001.html#clause-sampling-features">Part 1, 14.2 (within Sampling Features)</a></td>
     </tr>
     <tr>
@@ -45,13 +45,13 @@
     <tr>
       <td>Property (property definition)</td>
       <td><a>sosa:Property</a></td>
-      <td>A definition of a property; this row does not identify the resource with an RDF predicate.</td>
+      <td>Provides the definition of a property.</td>
       <td><a href="https://docs.ogc.org/is/23-001/23-001.html#clause-property-resource">Part 1, 15.2</a></td>
     </tr>
     <tr>
       <td>DataStream</td>
       <td><a>sosa:ObservationCollection</a></td>
-      <td>CSAPI constrains its observations to the same System, observed properties, and result schema.</td>
+      <td>Observations share the same System, observed properties, and result schema.</td>
       <td><a href="https://docs.ogc.org/is/23-002/23-002.html#clause-datastream-resource">Part 2, 9.2</a></td>
     </tr>
     <tr>
@@ -63,20 +63,18 @@
     <tr>
       <td>ControlStream</td>
       <td><a>sosa:ActuationCollection</a></td>
-      <td>CSAPI constrains its commands to the same receiving System, controlled properties, and parameter schema. See the status note below.</td>
+      <td>Commands share the same receiving System, controlled properties, and parameter schema.</td>
       <td><a href="https://docs.ogc.org/is/23-002/23-002.html#clause-controlstream-resource">Part 2, 10.2</a></td>
     </tr>
     <tr>
       <td>Command</td>
       <td><a>sosa:Actuation</a></td>
-      <td>Conceptual correspondence: CSAPI describes Command as a generalization of Actuation. See the lifecycle note below.</td>
+      <td>Generalizes Actuation; a command may be rejected without execution.</td>
       <td><a href="https://docs.ogc.org/is/23-002/23-002.html#clause-command-resource">Part 2, 10.7</a></td>
     </tr>
   </tbody>
 </table>
-<p class="note">CSAPI System resources represent instances of <a>sosa:System</a>, including more specific types such as <a>sosa:Sensor</a>, <a>sosa:Actuator</a>, and <a>sosa:Sampler</a>. Part 1, 9.1 also describes the case in which an individual is both a <a>sosa:System</a> and a <a>sosa:Platform</a>; it does not make every Platform a System. <a>sosa:Asset</a> is a broader superclass in this edition of SSN.</p>
-<p class="note">The definition of <a>sosa:ActuationCollection</a> is non-normative in this edition of SSN. The correspondence above does not change the requirements specified for ControlStream resources in CSAPI Part 2. A Command can be received, scheduled, executed, completed, or rejected; the correspondence with <a>sosa:Actuation</a> does not by itself establish that execution occurred.</p>
-<p>The next table identifies the source resource for each attribute or association. Association names may also be used in CSAPI link relations, such as <code>ogc-rel:subsystems</code>; their interpretation depends on the source resource and the association definition. Query parameters select resources and are not themselves RDF predicates.</p>
+<p>Each attribute or association below is interpreted in the context of its source resource. Association correspondences relate that resource to the associated entities; for example, DataStream <code>observations</code> relates a datastream to its member observations. Association names also appear in CSAPI link relations, such as <code>ogc-rel:subsystems</code>.</p>
 <table class="numbered" id="csapi-association-correspondences">
   <caption>Selected correspondences between CSAPI attributes or associations and SOSA/SSN properties</caption>
   <thead>
@@ -128,7 +126,7 @@
       <td>System</td>
       <td><code>deployments</code></td>
       <td><a>sosa:systemDeployment</a></td>
-      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#clause-system-resource">Part 1, 9.2.2, Table 5; see version note</a></td>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#clause-system-resource">Part 1, 9.2.2, Table 5</a></td>
     </tr>
     <tr>
       <td>System</td>
@@ -146,7 +144,7 @@
       <td>SamplingFeature</td>
       <td><code>sampledFeature</code> when the target is the ultimate feature of interest</td>
       <td><a>sosa:isSampleOfUltimateFOI</a></td>
-      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#sf-assocs">Part 1, 14.3.1, Table 18; see scope note</a></td>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#sf-assocs">Part 1, 14.3.1, Table 18</a></td>
     </tr>
     <tr>
       <td>SamplingFeature</td>
@@ -174,7 +172,4 @@
     </tr>
   </tbody>
 </table>
-<p class="note">Membership is read from the DataStream or ControlStream to its Observation or Command members. Where an association is exposed through a link to a list endpoint, the correspondence concerns the associated entities, not the response wrapper or page. These rows do not define a general conversion of links or query results into RDF statements.</p>
-<p class="note">The <code>parentSystem</code> correspondence applies to a System that is a subsystem. A SamplingFeature’s <code>parentSystem</code> instead identifies the System that created or uses it. Likewise, the <code>samplingFeatures</code> correspondence above is scoped to DataStream and ControlStream: a System or Deployment can expose associated sampling features without asserting the same direct SOSA/SSN property. No single-property mapping is asserted here for those other contexts.</p>
-<p class="note">CSAPI Part 1 uses <code>sosa:hasDeployment</code> for the System <code>deployments</code> association. The table uses <a>sosa:systemDeployment</a>, which denotes the System-to-Deployment relationship in this edition of SSN; it does not assert that the two properties are equivalent.</p>
-<p class="note">The <code>sampledFeature</code> correspondence applies only when the target is the ultimate feature of interest, as described in <a href="https://docs.ogc.org/is/23-001/23-001.html#sf-assocs">CSAPI Part 1, Table 18</a>. In that case, <a>sosa:isSampleOfUltimateFOI</a> is the name used in this edition for the property previously called <code>sosa:hasSampledFeature</code>. This is not an unconditional mapping of sampled-feature relationships in a sampling chain: an intermediate sample, also discussed in <a href="https://docs.ogc.org/is/23-001/23-001.html#clause-sampling-features">Part 1, 14.2</a>, is not identified here as the ultimate feature of interest.</p>
+<p class="note">CSAPI Part 1 uses <code>sosa:hasDeployment</code> for the System <code>deployments</code> association; <a>sosa:systemDeployment</a> denotes the System-specific relationship in this edition of SSN. The property <a>sosa:isSampleOfUltimateFOI</a> was previously named <code>sosa:hasSampledFeature</code>.</p>
