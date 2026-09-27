@@ -128,6 +128,8 @@ var respecConfig = {
       key: "Contributors (ordered alphabetically by surname)",
       data: [
         {
+          value: "Sam Bolling, Riverside Research, US"
+        }, {
           value: "Abdelfettah Feliachi, BRGM, FR"
         }, {
           value: "Danielle Limbaugh, Summit Knowledge Solutions, US"
