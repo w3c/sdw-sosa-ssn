@@ -4,8 +4,6 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix vann: <http://purl.org/vocab/vann/> .
-@prefix voaf: <http://purl.org/vocommons/voaf#> .
 @prefix time: <http://www.w3.org/2006/time#> .
 
 @prefix schema: <http://schema.org/> .
@@ -15,7 +13,7 @@
 @prefix sosa-cap: <http://www.w3.org/ns/sosa/system-capability-properties#> .
 @prefix dcat: <http://www.w3.org/ns/dcat#> .
 
-sosa-cap: a owl:Ontology , voaf:Vocabulary ;
+sosa-cap: a owl:Ontology ;
   owl:versionIRI <http://www.w3.org/ns/sosa/2023/system-capability-properties#> ;
   dcat:version "2023" ;
   dcat:hasVersion <http://www.w3.org/ns/sosa/2023/system-capability-properties#> ;
@@ -30,8 +28,6 @@ sosa-cap: a owl:Ontology , voaf:Vocabulary ;
   dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
   rdfs:comment "Please report any errors to the W3C Spatio-temporal Data on the Web Working Group via the SDW WG Public List public-sdw-wg@w3.org"@en ;
   dcterms:modified "2025-08-05"^^xsd:date ;
-  vann:preferredNamespacePrefix "sosa-cap" ;
-  vann:preferredNamespaceUri "http://www.w3.org/ns/sosa/system-capability-properties#" ;
   owl:imports sosa-systems: .
 
 ## Terms of other vocabularies, declared here because OWL 2 DL asks that
@@ -44,9 +40,6 @@ dcterms:modified a owl:AnnotationProperty .
 dcterms:rights a owl:AnnotationProperty .
 dcterms:title a owl:AnnotationProperty .
 skos:definition a owl:AnnotationProperty .
-vann:preferredNamespacePrefix a owl:AnnotationProperty .
-vann:preferredNamespaceUri a owl:AnnotationProperty .
-voaf:Vocabulary a owl:Class .
 
 sosa-cap:Accuracy a sosa:Property ;
   rdfs:label "accuracy"@en ;
