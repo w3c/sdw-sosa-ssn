@@ -1,0 +1,126 @@
+"""List every term the SOSA/SSN ontology defines, by kind.
+
+Written in Linked-Data Python (ldpy)::
+
+    python -m ldpy ssn/scripts/all_terms.ldpy            # SOSA/SSN
+    python -m ldpy ssn/scripts/all_terms.ldpy --dul      # also fetch DUL
+
+The `--dul` form downloads DOLCE+DnS Ultralite and writes
+`dul.definitions.md`, a table of its terms with their comments as tooltips —
+the working document used when aligning SOSA with DUL.
+"""
+
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+import sys
+from pathlib import Path
+
+from rdflib import Graph, URIRef
+from rdflib.namespace import NamespaceManager
+
+CORE_DIR = Path("ssn/rdf/ontology/core")
+SOSA_NS = str(<http://www.w3.org/ns/sosa/>)
+DUL_NS = str(<http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#>)
+DUL_URL = "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl"
+
+
+def classify(graph, namespace, roots_only):
+    """Split the terms of `namespace` into classes, object and datatype
+    properties, and everything else.
+
+    With `roots_only`, a class or property that specialises another one of the
+    same namespace is left out, so what is printed is the top of each
+    hierarchy rather than all of it.
+    """
+    @graph graph
+
+    terms = {t for triple in graph for t in triple
+             if isinstance(t, URIRef) and str(t).startswith(namespace)}
+
+    def specialises(term):
+        parents = set(m{ {term} rdfs:subClassOf ?p }) | set(m{ {term} rdfs:subPropertyOf ?p })
+        return any(isinstance(p, URIRef) and str(p).startswith(namespace) for p in parents)
+
+    classes, object_properties, datatype_properties, individuals = set(), set(), set(), set()
+    for term in terms:
+        if m{ {term} a owl:Class }:
+            if not (roots_only and specialises(term)):
+                classes.add(term)
+        elif m{ {term} a owl:ObjectProperty }:
+            if not (roots_only and specialises(term)):
+                object_properties.add(term)
+        elif m{ {term} a owl:DatatypeProperty }:
+            datatype_properties.add(term)
+        else:
+            individuals.add(term)
+
+    individuals -= classes | object_properties | datatype_properties
+    return classes, object_properties, datatype_properties, individuals
+
+
+def sosa_terms():
+    @graph as core
+    for file in sorted(CORE_DIR.glob("*.ttl")):
+        try:
+            core.parse(file, format="turtle")
+        except Exception as error:
+            print(f"❌ Error parsing {file}: {error}")
+
+    names = core.namespace_manager
+    classes, object_properties, datatype_properties, individuals = classify(
+        core, SOSA_NS, roots_only=True)
+
+    print("=== All Classes ===")
+    for term in sorted(classes):
+        print(term.n3(names))
+
+    print(f"=== All {len(object_properties)} Object Properties ===")
+    for term in sorted(object_properties):
+        definition = str(m{ {term} skos:definition ?d }.first() or "").replace("\n", " ")
+        print(f"- {term.n3(names)} with comment {definition}")
+
+    print("=== All Datatype Properties ===")
+    for term in sorted(datatype_properties):
+        print(term.n3(names))
+
+    print("=== All Named Individuals ===")
+    for term in sorted(individuals):
+        print(term.n3(names))
+
+
+def dul_terms(out=Path("dul.definitions.md")):
+    print(f"Fetching {DUL_URL} …")
+    @graph as dul
+    dul.parse(DUL_URL, format="xml")
+
+    names = NamespaceManager(Graph(), "none")
+    names.bind("dul", DUL_NS, override=True, replace=True)
+
+    classes, object_properties, datatype_properties, individuals = classify(
+        dul, DUL_NS, roots_only=False)
+
+    def tooltip(term):
+        comment = str(m{ {term} rdfs:comment ?c }.first() or "")
+        comment = comment.replace("\n", " ").replace('"', "''")
+        return f'<span title="{comment}">{term.n3(names)}</span>'
+
+    with out.open("w", encoding="utf-8") as file:
+        for title, terms, render in (
+            ("All Classes", classes, tooltip),
+            (f"All {len(object_properties)} Object Properties", object_properties, tooltip),
+            ("All Datatype Properties", datatype_properties, lambda t: t.n3(names)),
+            ("All Named Individuals", individuals, lambda t: t.n3(names)),
+        ):
+            print(f"\n## {title}\n", file=file)
+            for term in sorted(terms):
+                print(render(term), file=file)
+
+    print(f"Wrote {out}")
+
+
+if __name__ == "__main__":
+    sosa_terms()
+    if "--dul" in sys.argv:
+        dul_terms()
