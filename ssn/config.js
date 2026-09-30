@@ -1,9 +1,7 @@
 
 async function loadTurtle() {
   // load the highlighter for turtle
-  const worker = await new Promise(resolve => {
-    require(["core/worker"], ({ worker }) => resolve(worker));
-  });
+  const worker = await document.respec.worker;
   const action = "highlight-load-lang";
   const langURL = new URL("./turtle.js", window.location).href;
   const propName = "hljsDefineTurtle";
@@ -36,6 +34,8 @@ var respecConfig = {
   // replace with pointer to GitHub issues list
   implementationReportURI: "https://w3c.github.io/sdw-sosa-ssn/ssn/usage/",
   noRecTrack: false,
+  copyrightStart: "2017",
+  additionalCopyrightHolders: "<a href='https://www.ogc.org'>Open Geospatial Consortium</a>",
   logos: [
     {
       src: "images/OGC-0.png",
@@ -49,7 +49,8 @@ var respecConfig = {
     {
       name: "Simon J D Cox",
       w3cid: "1796",
-      company: "Timely Logic, AU",
+      company: "OGC & Timely Logic, AU",
+      companyURL: "https://www.ogc.org/",
       orcid: "0000-0002-3884-3420",
       w3cid: 1796
     },
@@ -74,7 +75,7 @@ var respecConfig = {
       orcid: "0000-0002-7815-2472"
     },
     {
-      name: "Luis Moreira de Sousa",
+      name: "Luís Moreira de Sousa",
       w3cid: "145885",
       company: "Instituto Superior Técnico Lisboa, PT",
       companyURL: "https://tecnico.ulisboa.pt/en/",
@@ -96,6 +97,7 @@ var respecConfig = {
     },
     {
       name: "Krzysztof Janowicz",
+      w3cid: "43518",
       company: "Universität Wien, AT",
       companyURL: "https://www.univie.ac.at/",
       orcid: "0009-0003-1968-887X"
@@ -126,15 +128,21 @@ var respecConfig = {
       key: "Contributors (ordered alphabetically by surname)",
       data: [
         {
+          value: "Sam Bolling, Riverside Research, US"
+        }, {
           value: "Abdelfettah Feliachi, BRGM, FR"
         }, {
-          value: "Danielle Limbaugh, Summit Knowledge Solutions, USA"
+          value: "Danielle Limbaugh, Summit Knowledge Solutions, US"
+        }, {
+          value: "Barbara Magagna, GO FAIR Foundation, NL"
         }, {
           value: "Maja Milicic Brandt, Siemens AG, DE"
         }, {
           value: "Alex Robin, Georobotix, FR"
         }, {
           value: "Hylke van der Schaaf, Fraunhofer IOSB, DE"
+        }, {
+          value: "Alec Sculley, Summit Knowledge Solutions, US"
         }
       ]
     },
@@ -161,16 +169,16 @@ var respecConfig = {
   ],
   localBiblio: {
     "BFO": {
-        title: "Information technology — Top-level ontologies (TLO) — Part 2: Basic Formal Ontology (BFO)",
-        href: "https://www.iso.org/standard/74572.html",
-        rawDate: "2021-11",
-        publisher: "International Organization for Standardization (ISO)",
-        status: "ISO/IEC 21838-2:2021"
+      title: "Information technology — Top-level ontologies (TLO) — Part 2: Basic Formal Ontology (BFO)",
+      href: "https://www.iso.org/standard/74572.html",
+      rawDate: "2021-11",
+      publisher: "International Organization for Standardization (ISO)",
+      status: "ISO/IEC 21838-2:2021"
     },
     "CCO": {
-        title: "The Common Core Ontologies (CCO)",
-        href: "https://github.com/CommonCoreOntology/CommonCoreOntologies",
-        rawDate: "2022",
+      title: "The Common Core Ontologies (CCO)",
+      href: "https://github.com/CommonCoreOntology/CommonCoreOntologies",
+      rawDate: "2022"
     },
     "Description-Logics": {
       href: "http://www.cambridge.org/9780521150118",
@@ -192,6 +200,14 @@ var respecConfig = {
       publisher: "Ontology Engineering with Ontology Design Patterns, Ed. Pascal Hitzler, Aldo Gangemi, Krzysztof Janowicz, Adila Krisnadhi, Valentina Presutti. IOS Press",
       authors: ["Presutti, V.", "Gangemi, A."]
     },
+    "I-ADOPT": {
+      href: "https://doi.org/10.15497/RDA00071",
+      doi: "10.15497/RDA00071",
+      title: "InteroperAble Descriptions of Observable Property Terminologies (I-ADOPT) WG Outputs and Recommendations",
+      date: "2022",
+      publisher: "RDA Recommendations",
+      authors: ["Barbara Magagna", "Gwenaëlle Moncoiffé", "Anusuriya Devaraju", "Maria Stoica", "Sirko Schindler", "Alison Pamment", "RDA I-ADOPT WG" ],
+    },
     "Lefrancois-et-al-2017": {
       href: "https://w3id.org/seas/SEAS-D2_2-SEAS-Knowledge-Model.pdf",
       authors: ["Maxime Lefrançois", "Jarmo Kalaoja", "Takoua Ghariani", "Antoine Zimmermann"],
@@ -201,11 +217,28 @@ var respecConfig = {
       date: "2017"
     },
     "ModSpec": {
-      href: "https://portal.ogc.org/files/?artifact_id=34762",
-      authors: ["OGC Policy SWG"],
-      title: "The Specification Model — A Standard for Modular specifications",
+      href: "https://docs.ogc.org/pol/08-131r7/08-131r7.html",
+      authors: ["Carl Reed", "Charles Heazel", "John Herring"],
+      title: "The ModSpec Model - Part 1: Core - A Standard for Designing and Writing Modular Standards",
       publisher: "Open Geospatial Consortium",
-      date: "2009"
+      id: "OGC 08-131r7",
+      date: "2026"
+    },
+    "CSAPI-1": {
+      href: "https://docs.ogc.org/is/23-001/23-001.html",
+      authors: ["Alexandre Robin"],
+      title: "OGC API - Connected Systems - Part 1: Feature Resources",
+      publisher: "Open Geospatial Consortium",
+      id: "OGC 23-001",
+      date: "2025"
+    },
+    "CSAPI-2": {
+      href: "https://docs.ogc.org/is/23-002/23-002.html",
+      authors: ["Alexandre Robin"],
+      title: "OGC API - Connected Systems - Part 2: Dynamic Data",
+      publisher: "Open Geospatial Consortium",
+      id: "OGC 23-002",
+      date: "2025"
     },
     "OM-Lite": {
       href: "http://content.iospress.com/articles/semantic-web/sw214",
@@ -251,11 +284,19 @@ var respecConfig = {
       publisher: "CEUR: Proceedings of the 3rd International Workshop on Semantic Sensor Networks (SSN10)",
       date: "2010"
     },
+    "STA2": {
+      href: "https://docs.ogc.org/is/23-019/23-019r2.html",
+      editors: ["Hylke van der Schaaf"],
+      title: "OGC SensorThings API 2.0",
+      publisher: "Open Geospatial Consortium",
+      id: "OGC 23-019",
+      date: "2026"
+    },
     "SWE": {
       href: "https://www.ogc.org/about-ogc/domains/swe/",
       title: "Sensor Web Enablement (SWE)",
       publisher: "Open Geospatial Consortium"
     }
   },
-  preProcess: [ loadTurtle ]
+  preProcess: [loadTurtle]
 }

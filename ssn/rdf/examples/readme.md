@@ -1,6 +1,6 @@
 # Extended SOSA examples
 
-This folder contains long running examples previously contained within the RDF files in this directory. They correspond to the numbered examples in the [Semantic Sensor Network Ontology](https://www.w3.org/TR/vocab-ssn/) recommendation. 
+This folder contains long running examples previously contained within the RDF files in this directory. They correspond to the numbered examples in the [Semantic Sensor Network Ontology](https://www.w3.org/TR/vocab-ssn/) Recommendation. 
 
 
 ## Tracking Beer Temperature with IBS-TH2
@@ -51,5 +51,9 @@ An RDF file containing an [example ttl graph file](dht22-deployment.ttl)  corres
 This example describes the IP68 Smart Sensor and some of its capabilities and operating ranges. A specific IP68 Smart Sensor observes the air temperature, and its own battery state.</p>
 
 An RDF file containing an [example ttl graph file](ip68.ttl)  corresponding to this example is available..
+
+## Eautonome Observation Collection
+
+An RDF file containing an [example ttl graph file](EautonomeObservationCollection.ttl) corresponding to this example is available.
 
 

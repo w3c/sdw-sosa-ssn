@@ -1,0 +1,175 @@
+<h4>OGC API – Connected Systems Alignment</h4>
+<p>OGC API – Connected Systems (CSAPI) is a multipart OGC Web API standard for accessing and managing connected systems and their associated resources. Part 1 [[CSAPI-1]] defines feature resources and property definitions; Part 2 [[CSAPI-2]] defines dynamic-data resources, including datastreams, observations, control streams, and commands. CSAPI uses SOSA/SSN concepts as a basis for its resource model and expresses corresponding information through resource representations, attributes, and associations.</p>
+<p>The tables below describe selected conceptual correspondences between CSAPI 1.0 and the classes and properties defined in this edition of SSN, rather than formal OWL equivalence axioms.</p>
+<table class="numbered" id="csapi-resource-correspondences">
+  <caption>Selected correspondences between CSAPI resources and SOSA/SSN classes</caption>
+  <thead>
+    <tr>
+      <th scope="col">CSAPI resource or role</th>
+      <th scope="col">SOSA/SSN class</th>
+      <th scope="col">Notes</th>
+      <th scope="col">CSAPI reference</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Deployment</td>
+      <td><a>sosa:Deployment</a></td>
+      <td>—</td>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#clause-deployment-resource">Part 1, 11.2</a></td>
+    </tr>
+    <tr>
+      <td>System</td>
+      <td><a>sosa:System</a></td>
+      <td>System resources implement <a>sosa:System</a>. A System resource tagged <code>systemType=sosa:Platform</code> represents an individual that is both <a>sosa:System</a> and <a>sosa:Platform</a>; platforms that are not systems may instead be represented as other Feature resources.</td>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#clause-system-resource">Part 1, 9.1–9.2 and 9.5</a></td>
+    </tr>
+    <tr>
+      <td>Procedure</td>
+      <td><a>sosa:Procedure</a></td>
+      <td>—</td>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#clause-procedure-resource">Part 1, 13.2</a></td>
+    </tr>
+    <tr>
+      <td>Feature used as a feature of interest</td>
+      <td><a>sosa:FeatureOfInterest</a></td>
+      <td>CSAPI uses the term feature of interest for the ultimate feature of interest.</td>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#clause-sampling-features">Part 1, 14.2 (within Sampling Features)</a></td>
+    </tr>
+    <tr>
+      <td>SamplingFeature</td>
+      <td><a>sosa:Sample</a></td>
+      <td>CSAPI also uses SamplingFeature by analogy to describe the part of a feature affected by a command.</td>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#clause-sampling-features">Part 1, 14.1–14.3</a></td>
+    </tr>
+    <tr>
+      <td>Property (property definition)</td>
+      <td><a>sosa:Property</a></td>
+      <td>Provides the definition of a property.</td>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#clause-property-resource">Part 1, 15.2</a></td>
+    </tr>
+    <tr>
+      <td>DataStream</td>
+      <td><a>sosa:ObservationCollection</a></td>
+      <td>Observations share the same System, observed properties, and result schema.</td>
+      <td><a href="https://docs.ogc.org/is/23-002/23-002.html#clause-datastream-resource">Part 2, 9.2</a></td>
+    </tr>
+    <tr>
+      <td>Observation</td>
+      <td><a>sosa:Observation</a></td>
+      <td>Some information may be supplied by the parent DataStream; CSAPI permits multiple observed properties in one resource.</td>
+      <td><a href="https://docs.ogc.org/is/23-002/23-002.html#clause-observation-resource">Part 2, 9.7</a></td>
+    </tr>
+    <tr>
+      <td>ControlStream</td>
+      <td><a>sosa:ActuationCollection</a></td>
+      <td>Commands share the same receiving System, controlled properties, and parameter schema.</td>
+      <td><a href="https://docs.ogc.org/is/23-002/23-002.html#clause-controlstream-resource">Part 2, 10.2</a></td>
+    </tr>
+    <tr>
+      <td>Command</td>
+      <td><a>sosa:Actuation</a></td>
+      <td>Generalizes Actuation; a command may be rejected without execution.</td>
+      <td><a href="https://docs.ogc.org/is/23-002/23-002.html#clause-command-resource">Part 2, 10.7</a></td>
+    </tr>
+  </tbody>
+</table>
+<p>Each attribute or association below is interpreted in the context of its source resource. Association correspondences relate that resource to the associated entities; for example, DataStream <code>observations</code> relates a datastream to its member observations. Association names also appear in CSAPI link relations, such as <code>ogc-rel:subsystems</code>.</p>
+<table class="numbered" id="csapi-association-correspondences">
+  <caption>Selected correspondences between CSAPI attributes or associations and SOSA/SSN properties</caption>
+  <thead>
+    <tr>
+      <th scope="col">Source resource</th>
+      <th scope="col">CSAPI attribute or association</th>
+      <th scope="col">SOSA/SSN property</th>
+      <th scope="col">CSAPI reference</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>DataStream</td>
+      <td><code>observedProperties</code></td>
+      <td><a>sosa:observedProperty</a></td>
+      <td><a href="https://docs.ogc.org/is/23-002/23-002.html#datastream-attributes">Part 2, 9.2.2, Table 2</a></td>
+    </tr>
+    <tr>
+      <td>ControlStream</td>
+      <td><code>controlledProperties</code></td>
+      <td><a>sosa:actsOnProperty</a></td>
+      <td><a href="https://docs.ogc.org/is/23-002/23-002.html#controlstream-attributes">Part 2, 10.2.2, Table 8</a></td>
+    </tr>
+    <tr>
+      <td>DataStream</td>
+      <td><code>observations</code></td>
+      <td><a>sosa:hasMember</a></td>
+      <td><a href="https://docs.ogc.org/is/23-002/23-002.html#datastream-assocs">Part 2, 9.2.2, Table 5</a></td>
+    </tr>
+    <tr>
+      <td>ControlStream</td>
+      <td><code>commands</code></td>
+      <td><a>sosa:hasMember</a></td>
+      <td><a href="https://docs.ogc.org/is/23-002/23-002.html#controlstream-assocs">Part 2, 10.2.2, Table 10</a></td>
+    </tr>
+    <tr>
+      <td>System acting as a subsystem</td>
+      <td><code>parentSystem</code></td>
+      <td><a>sosa:isSubSystemOf</a></td>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#subsystem-assocs">Part 1, 10.3.2, Table 8</a></td>
+    </tr>
+    <tr>
+      <td>System</td>
+      <td><code>subsystems</code></td>
+      <td><a>sosa:hasSubSystem</a></td>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#clause-system-resource">Part 1, 9.2.2, Table 5</a></td>
+    </tr>
+    <tr>
+      <td>System</td>
+      <td><code>deployments</code></td>
+      <td><a>sosa:systemDeployment</a></td>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#clause-system-resource">Part 1, 9.2.2, Table 5</a></td>
+    </tr>
+    <tr>
+      <td>System</td>
+      <td><code>procedures</code></td>
+      <td><a>sosa:implements</a></td>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#clause-system-resource">Part 1, 9.2.2, Table 5</a></td>
+    </tr>
+    <tr>
+      <td>Procedure</td>
+      <td><code>implementingSystems</code></td>
+      <td><a>sosa:implementedBy</a></td>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#clause-procedure-resource">Part 1, 13.2.2, Table 15</a></td>
+    </tr>
+    <tr>
+      <td>SamplingFeature</td>
+      <td><code>sampledFeature</code> when the target is the ultimate feature of interest</td>
+      <td><a>sosa:isSampleOfUltimateFOI</a></td>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#sf-assocs">Part 1, 14.3.1, Table 18</a></td>
+    </tr>
+    <tr>
+      <td>SamplingFeature</td>
+      <td><code>sampleOf</code></td>
+      <td><a>sosa:isSampleOf</a></td>
+      <td><a href="https://docs.ogc.org/is/23-001/23-001.html#sf-assocs">Part 1, 14.3.1, Table 18</a></td>
+    </tr>
+    <tr>
+      <td>DataStream or ControlStream</td>
+      <td><code>samplingFeatures</code></td>
+      <td><a>sosa:hasFeatureOfInterest</a></td>
+      <td><a href="https://docs.ogc.org/is/23-002/23-002.html#datastream-assocs">Part 2, 9.2.2, Table 5</a>; <a href="https://docs.ogc.org/is/23-002/23-002.html#controlstream-assocs">10.2.2, Table 10</a></td>
+    </tr>
+    <tr>
+      <td>DataStream or ControlStream</td>
+      <td><code>featuresOfInterest</code></td>
+      <td><a>sosa:hasUltimateFeatureOfInterest</a></td>
+      <td><a href="https://docs.ogc.org/is/23-002/23-002.html#datastream-assocs">Part 2, 9.2.2, Table 5</a>; <a href="https://docs.ogc.org/is/23-002/23-002.html#controlstream-assocs">10.2.2, Table 10</a></td>
+    </tr>
+    <tr>
+      <td>DataStream or ControlStream</td>
+      <td><code>procedure</code></td>
+      <td><a>sosa:usedProcedure</a></td>
+      <td><a href="https://docs.ogc.org/is/23-002/23-002.html#datastream-assocs">Part 2, 9.2.2, Table 5</a>; <a href="https://docs.ogc.org/is/23-002/23-002.html#controlstream-assocs">10.2.2, Table 10</a></td>
+    </tr>
+  </tbody>
+</table>
+<p class="note">CSAPI Part 1 uses <code>sosa:hasDeployment</code> for the System <code>deployments</code> association; <a>sosa:systemDeployment</a> denotes the System-specific relationship in this edition of SSN. The property <a>sosa:isSampleOfUltimateFOI</a> was previously named <code>sosa:hasSampledFeature</code>.</p>

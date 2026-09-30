@@ -12,10 +12,15 @@
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix sosa-common: <http://www.w3.org/ns/sosa/common/> .
 @prefix sosa-obs: <http://www.w3.org/ns/sosa/obs/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
 
 
 sosa-obs: 
   a owl:Ontology ;
+  owl:versionIRI <http://www.w3.org/ns/sosa/2023/obs/> ;
+  dcat:version "2023" ;
+  dcat:hasVersion <http://www.w3.org/ns/sosa/2023/obs/> ;
+  dcat:hasCurrentVersion <http://www.w3.org/ns/sosa/2023/obs/> ;
   dcterms:title "Sensor, Observation, Sample, and Actuator (SOSA) Ontology - actuation module"@en ;
   dcterms:description "Observation classes and properties for the SSN Ontology."@en ;
   dcterms:creator [ a foaf:Agent ; foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en ] ;
@@ -54,19 +59,20 @@ sosa:ObservationCollection
   set of Observations or ObservationCollections; collections may be nested
 
   All Observation properties may appear in an Observation Collection, including: 
-  hasFeatureOfInterest , hasUltimateFeatureOfInterest , usedProcedure , madeBySensor , observedProperty , phenomenonTime , startTime, resultTime , hasResult , hasSimpleResult : 
-  If they are present, the value of these properties summarize the values of the matching properties of the member observations, where membership is either direct or transitive through one or more member observation collections. 
-  The following consistency rules apply with respect to the Observation properties listed above: 
+  hasFeatureOfInterest , hasUltimateFeatureOfInterest , usedProcedure , madeBySensor , observedProperty , phenomenonTime , startTime, resultTime , hasResult , hasSimpleResult. 
+  If they are present, the values of these properties summarize the values of the matching properties of the member observations, where membership is either direct or transitive through one or more member observation collections. 
+
+  The following consistency rules apply to the Observation properties listed above: 
   
   1. Where an individual Observation Collection omits a property, a member Observation (direct or transitive) MAY have any value for that property.
 
-  2. Where an individual Observation Collection has a single value for a property, each member Observation(direct or transitive) MUST have that same value for the property - i.e., the collection is homogeneous in that property.  That property MAY then be omitted in any member Observation or Observation Collection.
+  2. Where an individual Observation Collection has a single value for a property, each member Observation (direct or transitive) MUST have that same value for that property; i.e., the collection is homogeneous in that property.  That property MAY then be omitted in any member Observation or Observation Collection.
 
   3. Where an individual Observation Collection has more than one value for a property, each member Observation (direct or transitive) MUST have a value for that property that matches one of the values for the property in the collection. 
   
   4. Where an individual Observation Collection has a value for a property that is a range or interval, each member Observation (direct or transitive) MUST have a value for that property that matches or falls within that range or interval.
 
-  5. Where an individual Observation Collection has more than one value for a property that is a range or interval, each member Observation (direct or transitive) MUST have a value for that property that either matches or falls within one of those ranges or intervals.
+  5. Where an individual Observation Collection has more than one value for a property that is a range or interval, each member Observation (direct or transitive) MUST have a value for that property that matches or falls within one of those ranges or intervals.
   """@en ;
   skos:note """The members of a collection do not necessarily share a common value for any property. """@en ;
   skos:note """The results of collections of observations are often packaged in a 'data cube' whose axes define the
@@ -80,15 +86,14 @@ sosa:ObservingProcedure
   rdfs:subClassOf sosa:Procedure ;
   rdfs:label "Observing Procedure"@en ;
   skos:definition """
-  workflow, protocol, plan, algorithm, or computational method specifying how to make an Observation
+  workflow, protocol, plan, algorithm, program, or computational method specifying how to make an Observation
 
-  An Observing Procedure is re-usable, and might be involved in many Observations. 
+  An Observing Procedure is re-usable, and might be applied in many Observations. 
   It explains the steps to be carried out to arrive at reproducible results.
   """@en ;
-  skos:example """A workflow, protocol, plan, algorithm, or computational method specifying how to make an observation; the description of the process used by an observer. This could be a chemical analysis method, a protocol for measuring an object, or even a checklist used by a human observer during a biodiversity campaign. The Procedure could further describe the algorithms behind simulators or models used to generate a result from other inputs."""@en ;
+  skos:example """A workflow, protocol, plan, algorithm, program, or computational method specifying how to make an observation; the description of the process used by an observer. This could be a chemical analysis method, a protocol for measuring an object, or even a checklist used by a human observer during a biodiversity campaign. The Procedure could further describe the algorithms behind simulators or models used to generate a result from other inputs."""@en ;
   skos:note """[ISO 19156:2023] An ObservingProcedure shall be defined as the description of steps performed in order to determine the value of an observableProperty by an Observer."""@en ;
   rdfs:isDefinedBy sosa-obs: .
-
 
 sosa:Sensor 
   a owl:Class ;
@@ -99,9 +104,9 @@ sosa:Sensor
   skos:definition """
   System that implements an ObservingProcedure to determine the value of an observable Property
 
-  This may be a device, a piece of infrastructure, an agent (including humans), or software (simulation).
+  This may be a device, a piece of infrastructure, an agent (including humans), or a software-based system, including systems performing simulations.
 
-  A Sensor responds to a stimulus, e.g., a change in the environment, or input data composed from the results of prior Observations.
+  A Sensor responds to a Stimulus, e.g., a change in the environment, or input data composed from the results of prior Observations.
   """@en ;
   skos:example "Accelerometers, gyroscopes, barometers, magnetometers, and so forth are Sensors that are typically mounted on a modern smartphone (which acts as Host or Platform). Other examples of Sensors include the human eyes."@en ;
   skos:note "The UML class 'Observer' from ISO 19156:2023 is implemented in SOSA by the OWL/RDFS class 'Sensor'. The class name 'Sensor' is preferred for backward compatibility with existing SOSA deployments. " ;
@@ -113,7 +118,7 @@ sosa:Stimulus
   skos:definition """
   event in the real world that triggers a Sensor
   """@en ;
-  skos:note """The properties associated to the Stimulus may be different to the eventual observed Property. It is the event, not the object, that triggers the Sensor."""@en ;
+  skos:note """The Properties associated with a Stimulus may differ from those eventually observed. It is the event, not the object, that triggers the Sensor."""@en ;
   rdfs:isDefinedBy sosa-obs: .
 
 sosa:detects 
@@ -133,10 +138,10 @@ sosa:hasProxy
   a owl:ObjectProperty ;
   rdfs:label "has proxy"@en ;
   skos:definition """
-  relation from an Property to a Stimulus that serves as its proxy
+  relation from a Property to a Stimulus that serves as its proxy
   """@en ;
   skos:example """
-For example, the expansion of mercury is a Stimulus that serves as a proxy for some temperature Property.
+The expansion of mercury is a Stimulus that serves as a proxy for some temperature Property.
 An increase or decrease in the velocity of spinning cups on a wind Sensor is serving as a proxy for the wind speed.
   """@en ;
   schema:domainIncludes sosa:Property ;
@@ -148,7 +153,7 @@ sosa:isDetectedBy
   a owl:ObjectProperty ;
   rdfs:label "is detected by"@en ;
   skos:definition """
-  relation from a Stimulus to a Sensor that may detect it
+  relation from a Stimulus to a Sensor that may detect that Stimulus
 
   The Stimulus itself will be serving as a proxy for some Property.
   """@en ;
@@ -161,7 +166,7 @@ sosa:isObservedBy
   a owl:ObjectProperty ;
   rdfs:label "is observed by"@en ;
   skos:definition """
-  relation from a Property to a Sensor that is able to observe it
+  relation from a Property to a Sensor that is able to observe that Property
   """@en ;
   schema:domainIncludes sosa:Property ;
   schema:rangeIncludes sosa:Sensor ;
@@ -185,7 +190,7 @@ sosa:madeBySensor
   rdfs:subPropertyOf sosa:madeBySystem ;
   rdfs:label "made by sensor or observer"@en ;
   skos:definition """
-  relation from an Observation or ObservationCollection to the Sensor involved
+  relation from an Observation or ObservationCollection to the Sensor which made that Observation or ObservationCollection
   """@en ;
   schema:domainIncludes sosa:Observation ;
   schema:domainIncludes sosa:ObservationCollection ;
@@ -224,7 +229,7 @@ sosa:observedProperty
   a owl:ObjectProperty ;
   rdfs:label "observed property"@en ;
   skos:definition """
-  relation from an Observation or ObservationCollection to the property observed
+  relation from an Observation or ObservationCollection to the property observed in that Observation or ObservationCollection
   """@en ;
   skos:note """
   'observed property' covers the concepts referred to in [VIM] as 'measurand' (quantitative values) and 'examinand' (categorical and nominal values — [VIM4]), as well as complex and structured properties whose values may be represented as lists, vectors, arrays, rasters, geometries, etc. More specific terms are used in other contexts for related concepts, such as 'analyte' (chemistry) and 'determinand' (water quality).
@@ -251,7 +256,7 @@ sosa:originated
   a owl:ObjectProperty ;
   rdfs:label "originated"@en ;
   skos:definition """
-  relation from a Stimulus to an Observation that was originated by it
+  relation from a Stimulus to an Observation that was originated by that Stimulus
   """@en ;
   schema:domainIncludes sosa:Stimulus ;
   schema:rangeIncludes sosa:Observation ;
@@ -262,7 +267,7 @@ sosa:qualityOf
   a owl:ObjectProperty ;
   rdfs:label "quality of" ;
   skos:definition """
-  link from a quality description to an Observation or ObservationCollection that it relates to
+  link from a quality description to an Observation or ObservationCollection which that quality description relates to
   """@en ;
   schema:rangeIncludes sosa:Observation ;
   schema:rangeIncludes sosa:ObservationCollection ;
@@ -287,7 +292,7 @@ sosa:resultQuality
   a owl:ObjectProperty ;
   rdfs:label "observation result quality" ;
   skos:definition """
-  relation from an Observation or ObservationCollection to some information pertaining to the quality of the result
+  relation from an Observation or ObservationCollection to some information pertaining to the quality of that result
   """@en ;
   skos:scopeNote """
   This instance-specific description complements the description of the observation Procedure, which provides information concerning the quality of all observations using this procedure. Multiple measures can be provided.
@@ -305,7 +310,7 @@ sosa:wasObservedBy
   a owl:ObjectProperty ;
   rdfs:label "was observed by"@en ;
   skos:definition """
-  relation from a Property to an Observation that observed it
+  relation from a Property to an Observation that observed that Property
   """@en ;
   schema:domainIncludes sosa:Property ;
   schema:rangeIncludes sosa:Observation ;
@@ -317,7 +322,7 @@ sosa:wasOriginatedBy
   a owl:ObjectProperty ;
   rdfs:label "was originated by"@en ;
   skos:definition """
-  relation from an Observation to the Stimulus that originated it
+  relation from an Observation to the Stimulus that originated that Observation
   """@en ;
   schema:domainIncludes sosa:Observation ;
   schema:domainIncludes sosa:ObservationCollection ;
