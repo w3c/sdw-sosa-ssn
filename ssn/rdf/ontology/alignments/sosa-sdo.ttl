@@ -5,7 +5,6 @@
 # imports: https://raw.githubusercontent.com/schemaorg/schemaorg/master/data/releases/3.3/ext-meta.ttl
 
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -18,10 +17,7 @@
 <https://example.org/sosa-sdo-mapping>
   rdf:type owl:Ontology ;
   dcterms:created "2017-09-21"^^xsd:date ;
-  dcterms:creator [
-      rdf:type foaf:Person ;
-      foaf:name "Simon J D COX"@en ;
-    ] ;
+  dcterms:creator "Simon J D COX"@en ;
   dcterms:description "This ontology describes a mapping from SOSA to schema.org"@en ;
   dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
   dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
@@ -97,13 +93,6 @@ sosa:Procedure
   rdfs:subClassOf schema:Intangible ;
   skos:editorialNote "Candidate for schema.org" ;
 .
-sosa:Result
-  rdf:type rdfs:Class ;
-  rdfs:comment "The Result of an Observation, Actuation, or act of Sampling. To store an observation's simple result value one can use the hasSimpleResult property."@en ;
-  rdfs:label "Result"@en ;
-  rdfs:subClassOf schema:Thing ;
-  skos:editorialNote "Candidate for schema.org" ;
-.
 sosa:Sample
   rdf:type rdfs:Class ;
   rdfs:comment "A Sample is the result from an act of Sampling."@en ;
@@ -164,7 +153,6 @@ sosa:hasResult
   schema:domainIncludes sosa:Observation ;
   schema:domainIncludes sosa:Sampling ;
   schema:inverseOf sosa:isResultOf ;
-  schema:rangeIncludes sosa:Result ;
   schema:rangeIncludes sosa:Sample ;
   rdfs:comment "Relation linking an Observation or Actuation or act of Sampling and a Result or Sample."@en ;
   rdfs:label "has result"@en ;
