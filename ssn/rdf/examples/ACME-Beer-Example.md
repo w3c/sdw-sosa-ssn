@@ -89,7 +89,7 @@ temperature and the relative humidity within the beer crate every few
 minutes.  In the following snippet, we instantiate the IBS-TH2 System, the
 carton, and the activity that represents the packaging of the beer and the
 creation of the beer carton as a product. Note that a detailed model of the 
-IBS-TH2 System is given in the [Complex System modeling pattern](https://w3c.github.io/sdw-sosa-ssn/ssn/#ModelComplexSystem) 
+IBS-TH2 System is given in the [Complex System modeling pattern](https://www.w3.org/TR/vocab-ssn-2023/#ModelComplexSystem) 
 in the SSN Ontology (2023 Edition) Recommendation. 
 
 The system then begins to take measurements that are recorded as part of a data logging
