@@ -1,0 +1,20 @@
+@prefix ex: <https://example.org/data/> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+ex:TemperatureSensor a sosa:System .
+
+<Observation/1> a sosa:Observation ;
+  sosa:madeBySensor ex:TemperatureSensor .
+
+<Observation/2> a sosa:Observation ;
+  sosa:madeBySensor ex:TemperatureSensor .
+
+# describing the system capabilities and operating/survival range can be done generically 
+# with this modeling choice:
+
+ex:TemperatureSensor sosa:hasOperatingConditions ex:TemperatureSensorOperatingRange .
+
+ex:TemperatureSensorOperatingRange a sosa:OperatingConditions , sosa:ObservationCollection ;
+  sosa:hasMember ex:NormalTemperatureCondition , ex:NormalHumidityCondition .
