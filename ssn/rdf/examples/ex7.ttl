@@ -1,0 +1,34 @@
+@prefix ex: <https://example.org/data/> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+ex:TemperatureSensor a owl:Class ;
+  rdfs:subClassOf sosa:System .
+
+<TemperatureSensor/1> a ex:TemperatureSensor , sosa:System .
+
+<Observation/1> a sosa:Observation ;
+  sosa:madeBySensor <TemperatureSensor/1> .
+
+<TemperatureSensor/2> a ex:TemperatureSensor , sosa:System .
+
+<Observation/2> a sosa:Observation ;
+  sosa:madeBySensor <TemperatureSensor/2> .
+
+# describing the system capabilities and operating/survival range can be done at the level of 
+# the class or at the level of each instance with this modeling choice:
+
+ex:TemperatureSensor  rdfs:subClassOf [
+    owl:onProperty sosa:hasSystemCapability ;
+    owl:hasValue ex:TemperatureSensorOperatingRange ;
+    ] .
+
+<TemperatureSensor/1> 
+  sosa:hasSystemCapability ex:TemperatureSensorOperatingRange ; # this axiom can be inferred
+  sosa:hasSystemCapability <moreSpecificTemperatureSensorOperatingRange> .
+
+<moreSpecificTemperatureSensorOperatingRange> a sosa:ObservationCollection ;
+  sosa:hasMember <moreSpecificTemperatureCondition> , <moreSpecificHumidityCondition> .
