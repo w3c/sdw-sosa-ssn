@@ -3,7 +3,6 @@
 # imports: http://www.w3.org/ns/sosa/
 
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix oboe-core: <http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -85,9 +84,6 @@ dcterms:rights
 sosa:FeatureOfInterest
   rdfs:subClassOf oboe-core:Entity ;
 .
-sosa:Result
-  rdfs:subClassOf oboe-core:Entity ;
-.
 sosa:hasFeatureOfInterest
   owl:propertyChainAxiom (
       oboe-core:measurementFor
@@ -106,10 +102,7 @@ sosa:oboe
   dcterms:created "2017-03-05"^^xsd:date ;
   dcterms:creator <http://orcid.org/0000-0002-3884-3420> ;
   dcterms:creator "Simon J D COX" ;
-  dcterms:creator [
-      a foaf:Agent ;
-      foaf:name "W3C/OGC Spatial Data on the Web Working Group"@en ;
-    ] ;
+  dcterms:creator "W3C/OGC Spatiotemporal Data on the Web Working Group"@en ;
   dcterms:description "Mapping of classes and properties from OBOE to SOSA" ;
   dcterms:license <http://www.opengeospatial.org/ogc/Software> ;
   dcterms:license <http://www.w3.org/Consortium/Legal/2015/copyright-software-and-document> ;
@@ -118,10 +111,4 @@ sosa:oboe
   rdfs:label "OBOE -> SOSA map" ;
   owl:imports <http://ecoinformatics.org/oboe/oboe.1.0/oboe-core.owl> ;
   owl:imports sosa-obs: ;
-.
-foaf:Agent
-  a owl:Class ;
-.
-foaf:name
-  a owl:AnnotationProperty ;
 .
