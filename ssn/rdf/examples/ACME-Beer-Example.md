@@ -105,7 +105,7 @@ An RDF file containing a [graph corresponding to this example is available in AC
 @prefix qudt: <http://qudt.org/schema/qudt/> .
 @prefix unit: <http://qudt.org/vocab/unit/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix schema: <http://schema.org/> .
+@prefix schema: <https://schema.org/> .
 @prefix gs1: <https://gs1.org/voc/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix rel: <http://id.loc.gov/vocabulary/relators/> .
@@ -469,7 +469,7 @@ An RDF file containing a [graph corresponding to this example is available in AC
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix qudt: <http://qudt.org/schema/qudt/> .
-@prefix schema: <http://schema.org/> .
+@prefix schema: <https://schema.org/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix sosa-env: <http://www.w3.org/ns/sosa/system-environment-properties#> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
@@ -548,7 +548,7 @@ SSN provides a lightweight capability to aggregate members for convenience. In p
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix qudt: <http://qudt.org/schema/qudt/> .
-@prefix schema: <http://schema.org/> .
+@prefix schema: <https://schema.org/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix sosa-env: <http://www.w3.org/ns/sosa/system-environment-properties#> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
@@ -592,7 +592,7 @@ An RDF file containing a [graph corresponding to this example is available in AC
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix qudt: <http://qudt.org/schema/qudt/> .
-@prefix schema: <http://schema.org/> .
+@prefix schema: <https://schema.org/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix sosa-env: <http://www.w3.org/ns/sosa/system-environment-properties#> .
