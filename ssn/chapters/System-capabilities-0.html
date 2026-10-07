@@ -5,36 +5,64 @@
     operating conditions and capabilities of systems, in particular Sensors and Actuators.
 </p>
 <p>
-    Previous standards and data formats have been limited by the constraints of their implementation technologies.
-    These often resulting in solutions that were simple to implement for a narrow set of use-cases.
-    However, workarounds were required to handle real-life exceptions.
-    For example, &quot;fill values&quot; or &quot;magic numbers&quot; are a common strategy for data quality and range
-    requirements or to indicate equipment failure.
-    The risk is that these might later be analyzed as actual instrument readings.
+    The complexity of the SSN ontologies is due to the complexity of the use-cases that they are
+    intended to support. Previous standards and data formats have been limited by the constraints of their
+    underlying technologies often resulting in solutions that were simple to implement but that could only
+    handle real-life exceptions through the use of workarounds. The use of &quot;fill
+    values&quot; or &quot;magic numbers&quot; were a common solution to data quality requirements or to
+    indicate equipment
+    failure. Unfortunately, these could later be inadvertently analyzed as actual instrument readings.
 </p>
 <p>
-    The complexity of the SSN ontologies follows from the complexity of the use-cases that they are intended to support.
-    RDF/S and OWL offer opportunities for the rich and deep recording of system information and results.
-    However, the ability to handle complexity can make implementation difficult and costly for implementers that are
-    simply trying determine whether their ice cream is about to melt.
-    The very richness of the semantic web ecosystem also makes it tempting to over-specify data structures to an extents
-    that it becomes inflexible.
+    The richness of RDF/S and ontological approaches offer opportunities for the rich and deep recording of system
+    information and results. This perversely creates a new problem in that the ability to handle complexity can
+    make implementation difficult and costly for implementers that are simply
+    trying determine whether their ice cream is about to melt. The very richness of the semantic web
+    ecosystem also makes it tempting to over-specify data structures to an extents that it becomes inflexible.
 </p>
+
 <p>
-    In this edition the System Capabilities module has been downsized and its vocabulary extensively reworked compared
-    to the 2017 edition [[vocab-ssn-20171019]].
-    Many classes have been removed .
-    In places of these, <a href="#SOSAObservation">observations</a> and
-    <a href="#SOSAObservationCollection">observation collections</a> are used to specify the capabilities and conditions
-    of the system, with the details delegated to externally managed vocabularies and property registers.
-    This allows the same structure used to report sensor results to also describe sensor behavior.
+    The authors often wrestled with these issues when designing this standard and attempting to support the complexity
+    of real-life deployments: data quality constraints must ensure that the data is sensical while making allowanced
+    for the storage of out-of-bounds values that may indicate a problem with a deployed sensor.
+</p>
+
+<p>
+    The System Capabilities module has been downsized in this edition and its vocabulary extensively reworked with a
+    number of
+    classes deleted in favor of external vocabularies and property repositories. The module further suffered from under
+    specification
+    and lacked documentation over its intended use.
+</p>
+
+<p>
+    The usage of <a href="#SOSAObservation">observations</a> and
+    <a href="#SOSAObservationCollection">observation collections</a> has been expanded
+    to capabilities and conditions through the enumeration of values and constraints on those values without assigning a
+    reporting sensor or timestamp.
+    This allows to reuse the same structure to report on sensor behavior.
+</p>
+
+<p>
+    This edition has also removed the notion of &quot;Ranges&quot; within its vocabulary due to the absence of an
+    appropriate datatype or vocabulary to
+    describe numerical ranges. xsd:minInclusive/xsd:maxInclusive are part of OWL reserved vocabulary, and
+    schema:minValue/schema:maxValue created additional
+    problems relating to the property of the feature. Instead, this edition recommends the specification of individual,
+    simple properties such as
+    <em>MinMeasurableTemperature</em> and <em>MaxMeasurableTemperature</em>. Apart from
+    <a href="#SOSAhasValidityContext">hasValidityContext</a>, this edition does not
+    provide means to relate properties or describe them further. External ontologies are expected to be complementary to
+    this module, such as the
+    <a href="https://i-adopt.github.io/ontology/">I-ADOPT Framework ontology</a>, and the
+    <a href="http://www.ontology-of-units-of-measure.org/page/om-2">Ontology of Units of Measure</a>.
 </p>
 
 <p style="text-align: center;">
     The namespace for the System Capabilities Module is <code>http://www.w3.org/ns/sosa/</code>.
 </p>
 <p style="text-align: center;">
-    The suggested prefix for the System Capabilities Module namespace is <code>sosa:</code>.
+    The suggested prefix for the System Capabilities Module namespace is <code>sosa</code>.
 </p>
 <p style="text-align: center;">
     <br>The ontology IRI of the System Capabilities Module is
@@ -52,47 +80,53 @@
 <section class="informative" id="SysCap-overview">
     <h4>Overview</h4>
     <p>
-        The System Capabilities Module addresses two primary concepts: the system's capability to sense, and the
-        conditions under which it can do so.
-        The information is typically provided by a system vendor.
-    </p>
-    <ul>
-        <li>
-            System Capabilities describes the properties of the measurement being performed by the system
-        </li>
-        <li>
-            Operating Conditions describe the environments in which the system is deployed
-        </li>
-    </ul>
-    <p>
-        These concepts are closely related and are often conflated in industrial literature.
-        However, separation is needed in order to account for the variability in the performance of the system under
-        different environmental or operating parameters.
+        The System Capabilities Module comprises of two primary concepts: the system's capability to sense and the
+        conditions
+        under which it can do so. Both concepts are closely related and are often described as one and the same in
+        industrial
+        literature. The System Capabilities describes the properties of the measurement being performed by the system
+        while the
+        Operating Conditions describe the potentials environments in which the system is deployed. This separation is
+        needed in order
+        to account for the variability in the performance of the system under different environmental or operating
+        parameters.
         Furthermore:
     </p>
     <ul>
         <li>
-            Some systems depend on unreported environmental measurements in order to produce results
-            (e.g., temperature is a component of the relative humidity calculation)
+            Some systems depend on unreported environmental measurements in order to produce results (e.g., temperature
+            is a component of
+            the relative humidity calculation)
         </li>
         <li>
             Some systems have requirements for proper operation for properties that they are unable to sense themselves
             (e.g., minimum power supply voltage)
         </li>
         <li>
-            The performance of some systems may vary depending on the environmental context
-            (e.g., the accuracy of a frequency counter may be affected by ambient temperature.)
+            The performance of some systems may vary depending on the environmental context (e.g., the accuracy of a
+            frequency counter
+            may be affected by ambient temperature.)
         </li>
     </ul>
 
     <p>
-        The reporting of both capabilities is accomplished through
-        <a href="#SOSAObservationCollection">observation collections</a> that aggregate
-        <a href="#SOSAObservation">observations</a>.
-        Each observation gives a value for a system or environment variable.
+        This information allows designers to communicate complex operating behavior to the consumer of the system
+        results
+        and to
+        simplify procurement and system deployment decision by enabling searches for systems capable of fulfilling a
+        specific
+        requirement.
     </p>
     <p>
-        Reuse of <a>sosa:Observation</a> in this way values ensures consistency in reporting across the ontology,
+        The reporting of operating conditions and capabilities is done through
+        <a href="#SOSAObservationCollection">observation collections</a> that aggregate
+        <a href="#SOSAObservation">observations</a>.
+        Each observation gives a value for a system or environment <a href="#SOSAProperty">property</a>.
+        The information is typically provided by a system vendor, and in this context sensor, procedure, and timestamp
+        are generally not reported.
+    </p>
+    <p>
+        Reuse of <a>sosa:Observation</a> in this way ensures consistency in reporting values across the ontology,
         which is particularly helpful when the same observation can be used for reporting both a capability and
         operating condition.
         Note that this is application dependent, and nuances may prevent reuse: for example, a thermometer's
@@ -118,18 +152,18 @@
             A system is linked to its operating conditions through property
             <a href="#SOSAhasOperatingConditions">hasOperatingConditions</a>.
             The operating conditions themselves are modelled as <a href="#SOSAObservation">observations</a> or
-            <a href="#SOSAObservationCollection">observation collections</a>, about the system environment.
+            <a href="#SOSAObservationCollection">observation collections</a>, typically about the system environment.
             Furthermore, operating conditions can be typed by one of the sub-classes of
             <a href="#SOSAOperatingConditions">OperatingConditions</a> so as to explicit the desirability of the
-            conditions.
-            Three such sub-classes are provided as a basic classification:
+            conditions. Three such sub-classes are provided as a basic classification:
             <a href="#SOSANormalOperatingConditions">NormalOperatingConditions</a>,
             <a href="#SOSASuboptimalOperatingConditions">SuboptimalOperatingConditions</a>,
             and <a href="#SOSASurvivableConditions">SurvivableConditions</a>.
         </p>
         <p class="note">
-            A <a href="#SysCap-environment-properties">sample vocabulary</a> is provided consisting of a short list of
-            properties about the system environment.
+            For illustration purposes, this specification includes a
+            <a href="#SysCap-environment-properties">sample vocabulary</a> consisting of a short
+            list of properties about the system environment.
         </p>
         <p>
             It is possible with additional ontological statements to create conditions that are &quot;latching&quot;, as
