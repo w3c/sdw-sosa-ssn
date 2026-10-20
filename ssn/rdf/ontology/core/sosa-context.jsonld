@@ -1,0 +1,573 @@
+{
+  "@context" : {
+    "ActuatableProperty" : {
+      "@id" : "http://www.w3.org/ns/sosa/ActuatableProperty",
+      "@type" : "@id"
+    },
+    "ActuatingProcedure" : {
+      "@id" : "http://www.w3.org/ns/sosa/ActuatingProcedure",
+      "@type" : "@id"
+    },
+    "Actuation" : {
+      "@id" : "http://www.w3.org/ns/sosa/Actuation",
+      "@type" : "@id"
+    },
+    "ActuationCollection" : {
+      "@id" : "http://www.w3.org/ns/sosa/ActuationCollection",
+      "@type" : "@id"
+    },
+    "Actuator" : {
+      "@id" : "http://www.w3.org/ns/sosa/Actuator",
+      "@type" : "@id"
+    },
+    "Asset" : {
+      "@id" : "http://www.w3.org/ns/sosa/Asset",
+      "@type" : "@id"
+    },
+    "Deployment" : {
+      "@id" : "http://www.w3.org/ns/sosa/Deployment",
+      "@type" : "@id"
+    },
+    "Execution" : {
+      "@id" : "http://www.w3.org/ns/sosa/Execution",
+      "@type" : "@id"
+    },
+    "ExecutionCollection" : {
+      "@id" : "http://www.w3.org/ns/sosa/ExecutionCollection",
+      "@type" : "@id"
+    },
+    "FeatureOfInterest" : {
+      "@id" : "http://www.w3.org/ns/sosa/FeatureOfInterest",
+      "@type" : "@id"
+    },
+    "MaterialSample" : {
+      "@id" : "http://www.w3.org/ns/sosa/MaterialSample",
+      "@type" : "@id"
+    },
+    "ObservableProperty" : {
+      "@id" : "http://www.w3.org/ns/sosa/ObservableProperty",
+      "@type" : "@id"
+    },
+    "Observation" : {
+      "@id" : "http://www.w3.org/ns/sosa/Observation",
+      "@type" : "@id"
+    },
+    "ObservationCollection" : {
+      "@id" : "http://www.w3.org/ns/sosa/ObservationCollection",
+      "@type" : "@id"
+    },
+    "ObservingProcedure" : {
+      "@id" : "http://www.w3.org/ns/sosa/ObservingProcedure",
+      "@type" : "@id"
+    },
+    "Platform" : {
+      "@id" : "http://www.w3.org/ns/sosa/Platform",
+      "@type" : "@id"
+    },
+    "Procedure" : {
+      "@id" : "http://www.w3.org/ns/sosa/Procedure",
+      "@type" : "@id"
+    },
+    "Property" : {
+      "@id" : "http://www.w3.org/ns/sosa/Property",
+      "@type" : "@id"
+    },
+    "Result" : {
+      "@id" : "http://www.w3.org/ns/sosa/Result",
+      "@type" : "@id"
+    },
+    "Sample" : {
+      "@id" : "http://www.w3.org/ns/sosa/Sample",
+      "@type" : "@id"
+    },
+    "SampleCollection" : {
+      "@id" : "http://www.w3.org/ns/sosa/SampleCollection",
+      "@type" : "@id"
+    },
+    "Sampler" : {
+      "@id" : "http://www.w3.org/ns/sosa/Sampler",
+      "@type" : "@id"
+    },
+    "Sampling" : {
+      "@id" : "http://www.w3.org/ns/sosa/Sampling",
+      "@type" : "@id"
+    },
+    "SamplingCollection" : {
+      "@id" : "http://www.w3.org/ns/sosa/SamplingCollection",
+      "@type" : "@id"
+    },
+    "SamplingProcedure" : {
+      "@id" : "http://www.w3.org/ns/sosa/SamplingProcedure",
+      "@type" : "@id"
+    },
+    "Sensor" : {
+      "@id" : "http://www.w3.org/ns/sosa/Sensor",
+      "@type" : "@id"
+    },
+    "SpatialSample" : {
+      "@id" : "http://www.w3.org/ns/sosa/SpatialSample",
+      "@type" : "@id"
+    },
+    "StatisticalSample" : {
+      "@id" : "http://www.w3.org/ns/sosa/StatisticalSample",
+      "@type" : "@id"
+    },
+    "Stimulus" : {
+      "@id" : "http://www.w3.org/ns/sosa/Stimulus",
+      "@type" : "@id"
+    },
+    "System" : {
+      "@id" : "http://www.w3.org/ns/sosa/System",
+      "@type" : "@id"
+    },
+    "actsOn" : {
+      "@id" : "http://www.w3.org/ns/sosa/actsOn",
+      "@type" : "@id"
+    },
+    "actsOnProperty" : {
+      "@id" : "http://www.w3.org/ns/sosa/actsOnProperty",
+      "@type" : "@id"
+    },
+    "deployedAsset" : {
+      "@id" : "http://www.w3.org/ns/sosa/deployedAsset",
+      "@type" : "@id"
+    },
+    "deployedOnPlatform" : {
+      "@id" : "http://www.w3.org/ns/sosa/deployedOnPlatform",
+      "@type" : "@id"
+    },
+    "deployedSystem" : {
+      "@id" : "http://www.w3.org/ns/sosa/deployedSystem",
+      "@type" : "@id"
+    },
+    "detects" : {
+      "@id" : "http://www.w3.org/ns/sosa/detects",
+      "@type" : "@id"
+    },
+    "endTime" : {
+      "@id" : "http://www.w3.org/ns/sosa/endTime",
+      "@type" : "@id"
+    },
+    "featureHasUltimateSample" : {
+      "@id" : "http://www.w3.org/ns/sosa/featureHasUltimateSample",
+      "@type" : "@id"
+    },
+    "forProperty" : {
+      "@id" : "http://www.w3.org/ns/sosa/forProperty",
+      "@type" : "@id"
+    },
+    "hasDeployment" : {
+      "@id" : "http://www.w3.org/ns/sosa/hasDeployment",
+      "@type" : "@id"
+    },
+    "hasFeatureOfInterest" : {
+      "@id" : "http://www.w3.org/ns/sosa/hasFeatureOfInterest",
+      "@type" : "@id"
+    },
+    "hasInput" : {
+      "@id" : "http://www.w3.org/ns/sosa/hasInput",
+      "@type" : "@id"
+    },
+    "hasInputValue" : {
+      "@id" : "http://www.w3.org/ns/sosa/hasInputValue",
+      "@type" : "@id"
+    },
+    "hasMember" : {
+      "@id" : "http://www.w3.org/ns/sosa/hasMember",
+      "@type" : "@id"
+    },
+    "hasOriginalSample" : {
+      "@id" : "http://www.w3.org/ns/sosa/hasOriginalSample",
+      "@type" : "@id"
+    },
+    "hasOutput" : {
+      "@id" : "http://www.w3.org/ns/sosa/hasOutput",
+      "@type" : "@id"
+    },
+    "hasProcedure" : {
+      "@id" : "http://www.w3.org/ns/sosa/hasProcedure",
+      "@type" : "@id"
+    },
+    "hasProperty" : {
+      "@id" : "http://www.w3.org/ns/sosa/hasProperty",
+      "@type" : "@id"
+    },
+    "hasProxy" : {
+      "@id" : "http://www.w3.org/ns/sosa/hasProxy",
+      "@type" : "@id"
+    },
+    "hasResult" : {
+      "@id" : "http://www.w3.org/ns/sosa/hasResult",
+      "@type" : "@id"
+    },
+    "hasSample" : {
+      "@id" : "http://www.w3.org/ns/sosa/hasSample",
+      "@type" : "@id"
+    },
+    "hasSimpleResult" : {
+      "@id" : "http://www.w3.org/ns/sosa/hasSimpleResult",
+      "@type" : "@id"
+    },
+    "hasSubSystem" : {
+      "@id" : "http://www.w3.org/ns/sosa/hasSubSystem",
+      "@type" : "@id"
+    },
+    "hasUltimateFeatureOfInterest" : {
+      "@id" : "http://www.w3.org/ns/sosa/hasUltimateFeatureOfInterest",
+      "@type" : "@id"
+    },
+    "hosts" : {
+      "@id" : "http://www.w3.org/ns/sosa/hosts",
+      "@type" : "@id"
+    },
+    "implementedBy" : {
+      "@id" : "http://www.w3.org/ns/sosa/implementedBy",
+      "@type" : "@id"
+    },
+    "implements" : {
+      "@id" : "http://www.w3.org/ns/sosa/implements",
+      "@type" : "@id"
+    },
+    "inDeployment" : {
+      "@id" : "http://www.w3.org/ns/sosa/inDeployment",
+      "@type" : "@id"
+    },
+    "inputFor" : {
+      "@id" : "http://www.w3.org/ns/sosa/inputFor",
+      "@type" : "@id"
+    },
+    "inputValueForExecution" : {
+      "@id" : "http://www.w3.org/ns/sosa/inputValueForExecution",
+      "@type" : "@id"
+    },
+    "isActedOnBy" : {
+      "@id" : "http://www.w3.org/ns/sosa/isActedOnBy",
+      "@type" : "@id"
+    },
+    "isDetectedBy" : {
+      "@id" : "http://www.w3.org/ns/sosa/isDetectedBy",
+      "@type" : "@id"
+    },
+    "isFeatureOfInterestOf" : {
+      "@id" : "http://www.w3.org/ns/sosa/isFeatureOfInterestOf",
+      "@type" : "@id"
+    },
+    "isHostedBy" : {
+      "@id" : "http://www.w3.org/ns/sosa/isHostedBy",
+      "@type" : "@id"
+    },
+    "isMemberOf" : {
+      "@id" : "http://www.w3.org/ns/sosa/isMemberOf",
+      "@type" : "@id"
+    },
+    "isObservedBy" : {
+      "@id" : "http://www.w3.org/ns/sosa/isObservedBy",
+      "@type" : "@id"
+    },
+    "isOriginalSampleOf" : {
+      "@id" : "http://www.w3.org/ns/sosa/isOriginalSampleOf",
+      "@type" : "@id"
+    },
+    "isProcedureFor" : {
+      "@id" : "http://www.w3.org/ns/sosa/isProcedureFor",
+      "@type" : "@id"
+    },
+    "isPropertyOf" : {
+      "@id" : "http://www.w3.org/ns/sosa/isPropertyOf",
+      "@type" : "@id"
+    },
+    "isProxyFor" : {
+      "@id" : "http://www.w3.org/ns/sosa/isProxyFor",
+      "@type" : "@id"
+    },
+    "isResultOf" : {
+      "@id" : "http://www.w3.org/ns/sosa/isResultOf",
+      "@type" : "@id"
+    },
+    "isResultOfMadeBySampler" : {
+      "@id" : "http://www.w3.org/ns/sosa/isResultOfMadeBySampler",
+      "@type" : "@id"
+    },
+    "isResultOfUsedProcedure" : {
+      "@id" : "http://www.w3.org/ns/sosa/isResultOfUsedProcedure",
+      "@type" : "@id"
+    },
+    "isSampleOf" : {
+      "@id" : "http://www.w3.org/ns/sosa/isSampleOf",
+      "@type" : "@id"
+    },
+    "isSampleOfUltimateFOI" : {
+      "@id" : "http://www.w3.org/ns/sosa/isSampleOfUltimateFOI",
+      "@type" : "@id"
+    },
+    "isSubSystemOf" : {
+      "@id" : "http://www.w3.org/ns/sosa/isSubSystemOf",
+      "@type" : "@id"
+    },
+    "isUltimateFeatureOfInterestOf" : {
+      "@id" : "http://www.w3.org/ns/sosa/isUltimateFeatureOfInterestOf",
+      "@type" : "@id"
+    },
+    "madeActuation" : {
+      "@id" : "http://www.w3.org/ns/sosa/madeActuation",
+      "@type" : "@id"
+    },
+    "madeByActuator" : {
+      "@id" : "http://www.w3.org/ns/sosa/madeByActuator",
+      "@type" : "@id"
+    },
+    "madeBySampler" : {
+      "@id" : "http://www.w3.org/ns/sosa/madeBySampler",
+      "@type" : "@id"
+    },
+    "madeBySensor" : {
+      "@id" : "http://www.w3.org/ns/sosa/madeBySensor",
+      "@type" : "@id"
+    },
+    "madeBySystem" : {
+      "@id" : "http://www.w3.org/ns/sosa/madeBySystem",
+      "@type" : "@id"
+    },
+    "madeExecution" : {
+      "@id" : "http://www.w3.org/ns/sosa/madeExecution",
+      "@type" : "@id"
+    },
+    "madeObservation" : {
+      "@id" : "http://www.w3.org/ns/sosa/madeObservation",
+      "@type" : "@id"
+    },
+    "madeSampling" : {
+      "@id" : "http://www.w3.org/ns/sosa/madeSampling",
+      "@type" : "@id"
+    },
+    "madeSamplingHasResult" : {
+      "@id" : "http://www.w3.org/ns/sosa/madeSamplingHasResult",
+      "@type" : "@id"
+    },
+    "observationRelatedTo" : {
+      "@id" : "http://www.w3.org/ns/sosa/observationRelatedTo",
+      "@type" : "@id"
+    },
+    "observedProperty" : {
+      "@id" : "http://www.w3.org/ns/sosa/observedProperty",
+      "@type" : "@id"
+    },
+    "observes" : {
+      "@id" : "http://www.w3.org/ns/sosa/observes",
+      "@type" : "@id"
+    },
+    "originated" : {
+      "@id" : "http://www.w3.org/ns/sosa/originated",
+      "@type" : "@id"
+    },
+    "outputFor" : {
+      "@id" : "http://www.w3.org/ns/sosa/outputFor",
+      "@type" : "@id"
+    },
+    "phenomenonOccurred" : {
+      "@id" : "http://www.w3.org/ns/sosa/phenomenonOccurred",
+      "@type" : "@id"
+    },
+    "phenomenonTime" : {
+      "@id" : "http://www.w3.org/ns/sosa/phenomenonTime",
+      "@type" : "@id"
+    },
+    "propertyFor" : {
+      "@id" : "http://www.w3.org/ns/sosa/propertyFor",
+      "@type" : "@id"
+    },
+    "qualityOf" : {
+      "@id" : "http://www.w3.org/ns/sosa/qualityOf",
+      "@type" : "@id"
+    },
+    "relatedObservation" : {
+      "@id" : "http://www.w3.org/ns/sosa/relatedObservation",
+      "@type" : "@id"
+    },
+    "resultQuality" : {
+      "@id" : "http://www.w3.org/ns/sosa/resultQuality",
+      "@type" : "@id"
+    },
+    "resultTime" : {
+      "@id" : "http://www.w3.org/ns/sosa/resultTime",
+      "@type" : "@id"
+    },
+    "startTime" : {
+      "@id" : "http://www.w3.org/ns/sosa/startTime",
+      "@type" : "@id"
+    },
+    "systemDeployment" : {
+      "@id" : "http://www.w3.org/ns/sosa/systemDeployment",
+      "@type" : "@id"
+    },
+    "usedForExecution" : {
+      "@id" : "http://www.w3.org/ns/sosa/usedForExecution",
+      "@type" : "@id"
+    },
+    "usedForExecutionHasResult" : {
+      "@id" : "http://www.w3.org/ns/sosa/usedForExecutionHasResult",
+      "@type" : "@id"
+    },
+    "usedProcedure" : {
+      "@id" : "http://www.w3.org/ns/sosa/usedProcedure",
+      "@type" : "@id"
+    },
+    "wasActedOnBy" : {
+      "@id" : "http://www.w3.org/ns/sosa/wasActedOnBy",
+      "@type" : "@id"
+    },
+    "wasObservedBy" : {
+      "@id" : "http://www.w3.org/ns/sosa/wasObservedBy",
+      "@type" : "@id"
+    },
+    "wasOriginatedBy" : {
+      "@id" : "http://www.w3.org/ns/sosa/wasOriginatedBy",
+      "@type" : "@id"
+    },
+
+    "type" : {
+      "@id" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+      "@type" : "@id"
+    },
+
+    "comment" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#comment",
+      "@type" : "@id"
+    },
+    "label" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#label",
+      "@type" : "@id"
+    },
+    "seeAlso" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#seeAlso",
+      "@type" : "@id"
+    },
+
+    "identifier" : {
+      "@id" : "http://purl.org/dc/terms/identifier",
+      "@type" : "@id"
+    },
+
+    "Class" : {
+      "@id" : "http://www.w3.org/2002/07/owl#Class",
+      "@type" : "@id"
+    },
+    "Restriction" : {
+      "@id" : "http://www.w3.org/2002/07/owl#Restriction",
+      "@type" : "@id"
+    },
+    "hasValue" : {
+      "@id" : "http://www.w3.org/2002/07/owl#hasValue",
+      "@type" : "@id"
+    },
+    "onProperty" : {
+      "@id" : "http://www.w3.org/2002/07/owl#onProperty",
+      "@type" : "@id"
+    },
+    "allValuesFrom" : {
+      "@id" : "http://www.w3.org/2002/07/owl#allValuesFrom",
+      "@type" : "@id"
+    },
+    "someValuesFrom" : {
+      "@id" : "http://www.w3.org/2002/07/owl#someValuesFrom",
+      "@type" : "@id"
+    },
+
+
+    "altLabel" : {
+      "@id" : "http://www.w3.org/2004/02/skos/core#altLabel",
+      "@type" : "@id"
+    },
+    "definition" : {
+      "@id" : "http://www.w3.org/2004/02/skos/core#definition",
+      "@type" : "@id"
+    },
+    "broader" : {
+      "@id" : "http://www.w3.org/2004/02/skos/core#broader",
+      "@type" : "@id"
+    },
+    "broadMatch" : {
+      "@id" : "http://www.w3.org/2004/02/skos/core#broadMatch",
+      "@type" : "@id"
+    },
+    "exactMatch" : {
+      "@id" : "http://www.w3.org/2004/02/skos/core#exactMatch",
+      "@type" : "@id"
+    },
+    "narrower" : {
+      "@id" : "http://www.w3.org/2004/02/skos/core#narrower",
+      "@type" : "@id"
+    },
+    "narrowMatch" : {
+      "@id" : "http://www.w3.org/2004/02/skos/core#narrowMatch",
+      "@type" : "@id"
+    },
+    "note" : {
+      "@id" : "http://www.w3.org/2004/02/skos/core#note",
+      "@type" : "@id"
+    },
+    "prefLabel" : {
+      "@id" : "http://www.w3.org/2004/02/skos/core#prefLabel",
+      "@type" : "@id"
+    },
+    "hasBeginning" : {
+      "@id" : "http://www.w3.org/2006/time#hasBeginning",
+      "@type" : "@id"
+    },
+    "hasEnd" : {
+      "@id" : "http://www.w3.org/2006/time#hasEnd",
+      "@type" : "@id"
+    },
+    "hasTRS" : {
+      "@id" : "http://www.w3.org/2006/time#hasTRS",
+      "@type" : "@id"
+    },
+    "inTimePosition" : {
+      "@id" : "http://www.w3.org/2006/time#inTimePosition",
+      "@type" : "@id"
+    },
+    "inXSDDateTime" : {
+      "@id" : "http://www.w3.org/2006/time#inXSDDateTime",
+      "@type" : "@id"
+    },
+    "numericPosition" : {
+      "@id" : "http://www.w3.org/2006/time#numericPosition",
+      "@type" : "@id"
+    },
+    "unitType" : {
+      "@id" : "http://www.w3.org/2006/time#unitType",
+      "@type" : "@id"
+    },
+    "QuantityValue" : {
+      "@id" : "http://qudt.org/schema/qudt/QuantityValue",
+      "@type" : "@id"
+    },
+    "hasUnit" : {
+      "@id" : "http://qudt.org/schema/qudt/hasUnit",
+      "@type" : "@id"
+    },
+    "value" : {
+      "@id" : "http://qudt.org/schema/qudt/value",
+      "@type" : "http://www.w3.org/2001/XMLSchema#decimal"
+    },
+    "dcat" : "http://www.w3.org/ns/dcat#",
+    "dcterms" : "http://purl.org/dc/terms/",
+    "dqv" : "http://www.w3.org/ns/dqv#",
+    "owl" : "http://www.w3.org/2002/07/owl#",
+    "rdf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
+    "qk" : "http://qudt.org/vocab/quantitykind/",
+    "qudt" : "http://qudt.org/schema/qudt/",
+    "schema" : "https://schema.org/",
+    "skos" : "http://www.w3.org/2004/02/skos/core#",
+    "sosa" : "http://www.w3.org/ns/sosa/" ,
+    "sosa-act" : "http://www.w3.org/ns/sosa/act/",
+    "sosa-common" : "http://www.w3.org/ns/sosa/common/",
+    "sosa-dep" : "http://www.w3.org/ns/sosa/dep/",
+    "sosa-obs" : "http://www.w3.org/ns/sosa/obs/",
+    "sosa-sam" : "http://www.w3.org/ns/sosa/sam/",
+    "time" : "http://www.w3.org/2006/time#",
+    "unit" : "http://qudt.org/vocab/unit/",
+    "xsd" : "http://www.w3.org/2001/XMLSchema#"
+  }
+}
