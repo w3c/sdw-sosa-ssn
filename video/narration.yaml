@@ -1,0 +1,44 @@
+# The shared script of the SOSA/SSN videos: the voice, its tones, one entry per
+# episode (`slides`, episode number). Each episode's lines are
+# in its script, video/episodes/<episode>/episode.yaml.
+#
+# A single off-screen voice: a synthetic Qwen3-TTS VoiceDesign voice (seed 7),
+# cloned for every line from one reference clip, data/voices/narrator.wav, to
+# keep the same timbre from one line to the next (video/README.md).
+# Paths start from data/, where video/narrated.sh runs the pipeline
+# (data/video is a link to video/).
+
+meta:
+  language: en
+  cast: video/cast.yaml
+  tts:
+    mode: casting
+    instruct_template: "{description}. Speak {tone}."
+    anchor_text: >-
+      Every minute, millions of sensors observe our planet. To share what they
+      see on the web, we need a common way to describe each observation.
+
+voices:
+  narrator:
+    description: >-
+      Man in his forties, a French engineering professor who speaks clear
+      English with a light French accent. Medium-low, warm voice, calm and
+      precise, sometimes theatrical
+    seed: 7
+    ref_audio: voices/narrator.wav
+    ref_tone: explain
+    f0: 97
+    speed: 1.00
+
+tones:
+  narrator:
+    explain: in a calm, warm and clear voice, at a steady pace
+    invite: in an open, inviting voice, turning to the audience
+
+slides:
+  - n: 1
+    title: "Episode 1 · Introduction"
+  - n: 2
+    title: "Episode 2 · Observations"
+  - n: 3
+    title: "Episode 3 · Samples"

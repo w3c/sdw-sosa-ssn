@@ -1,0 +1,192 @@
+# Episode 1 · Introduction: SOSA and SSN, the 2023 edition as a Candidate
+# Recommendation, and the series.
+#
+# The text follows the Abstract (ssn/index.html, section abstract) and the
+# Introduction (ssn/chapters/Introduction.html: Context, Scope, 2023 Edition) of the spec.
+# Marks: `{do: mark, id, cue}` (video/README.md). Paths relative to data/.
+
+narration: video/narration.yaml
+cast: video/cast.yaml
+slide: 1
+fps: 25
+actors: []
+scene: video/episodes/01-introduction/scene.py
+video: build/01-introduction/animation.mp4
+
+lines:
+  - pause: 4.0
+    gesture: [{do: mark, id: title}]
+
+  # --- Context (Introduction §1.1)
+  - who: narrator
+    tone: explain
+    text: >-
+      Sensors are a major source of data on the Web today. They watch our air,
+      our rivers, our cities and our homes.
+    gesture:
+      - {do: mark, id: globe, cue: Sensors}
+      - {do: mark, id: watch, cue: watch}
+  - who: narrator
+    tone: explain
+    text: >-
+      But the result of an act of sensing says very little on its own. Two
+      point four. Two point four of what?
+    gesture:
+      - {do: mark, id: number, cue: Two}
+  - who: narrator
+    tone: explain
+    text: >-
+      To interpret it, we need to know the feature of interest, such as a
+      river, the observed property, such as flow velocity, and the sampling
+      strategy: where and when the velocity was measured.
+    gesture:
+      - {do: mark, id: river, cue: river}
+      - {do: mark, id: velocity, cue: flow}
+      - {do: mark, id: where, cue: where}
+  - who: narrator
+    tone: explain
+    text: >-
+      Actuators raise the same questions. When a smart thermostat changes its
+      setpoint, we need to know what it acted on, and which property it changed.
+    gesture:
+      - {do: mark, id: thermostat, cue: thermostat}
+      - {do: mark, id: setpoint, cue: setpoint}
+      - {do: mark, id: acted, cue: acted}
+      - {do: mark, id: changed, cue: changed}
+
+  # --- Abstract and Scope (Introduction §1.2)
+  - who: narrator
+    tone: explain
+    text: >-
+      The Semantic Sensor Network ontology, S S N, describes sensors and their
+      observations, actuators and their actuations, and samplers and their
+      samplings,
+    gesture:
+      - {do: mark, id: sensors, cue: sensors}
+      - {do: mark, id: actuators, cue: actuators}
+      - {do: mark, id: samplers, cue: samplers}
+  - who: narrator
+    tone: explain
+    text: >-
+      along with the procedures they implement, the features of interest and
+      the samples, and the observed and actuated properties.
+    gesture:
+      - {do: mark, id: procedures, cue: procedures}
+      - {do: mark, id: features, cue: features}
+      - {do: mark, id: properties, cue: properties}
+  - who: narrator
+    tone: explain
+    text: >-
+      Its core classes and properties are defined with a minimal set of axioms,
+      in a lightweight module called SOSA: Sensor, Observation, Sample and
+      Actuator.
+    gesture:
+      - {do: mark, id: minimal, cue: minimal}
+      - {do: mark, id: sosa, cue: SOSA}
+  - who: narrator
+    tone: explain
+    text: >-
+      SOSA is the minimal level of interoperability: data described with SOSA
+      can be exchanged safely across every use of S S N. The full ontology adds
+      more axioms, for richer semantic web applications.
+    gesture:
+      - {do: mark, id: interoperability, cue: interoperability}
+      - {do: mark, id: axioms, cue: axioms}
+
+  # --- W3C, OGC, SAREF (Introduction §1.1, §1.3)
+  - who: narrator
+    tone: explain
+    text: >-
+      S S N is both a W3C Recommendation and an OGC Standard. It brings the
+      sensor web standards of the OGC into the semantic web of the W3C, and it
+      is aligned with SAREF, the smart applications reference ontology of ETSI.
+    gesture:
+      - {do: mark, id: joint, cue: both}
+      - {do: mark, id: ogc, cue: sensor}
+      - {do: mark, id: w3c, cue: semantic}
+      - {do: mark, id: saref, cue: SAREF}
+  - who: narrator
+    tone: explain
+    text: >-
+      Linked together, these descriptions become part of a global and densely
+      interconnected graph of data,
+    gesture:
+      - {do: mark, id: graph, cue: global}
+  - who: narrator
+    tone: explain
+    text: >-
+      with uses that range from satellite imagery and scientific monitoring to
+      industrial and household infrastructure, citizen science, and the Web of
+      Things.
+    gesture:
+      - {do: mark, id: satellite, cue: satellite}
+      - {do: mark, id: things, cue: Things}
+
+  # --- 2023 Edition (Introduction §1.3)
+  - who: narrator
+    tone: explain
+    text: >-
+      The first edition dates from twenty seventeen. Since then, the ISO
+      standard for observations, measurements and samples was revised in
+      twenty twenty-three, after more than ten years of experience.
+    gesture:
+      - {do: mark, id: first, cue: first}
+      - {do: mark, id: iso, cue: ISO}
+  - who: narrator
+    tone: explain
+    text: >-
+      The twenty twenty-three edition of S S N follows it. It adds a canonical
+      RDF implementation of this standard, an alignment to SAREF, and a simpler
+      module for system capabilities, and it lets humans and software act as
+      sensors.
+    gesture:
+      - {do: mark, id: edition, cue: follows}
+      - {do: mark, id: canonical, cue: canonical}
+      - {do: mark, id: alignment, cue: alignment}
+      - {do: mark, id: capabilities, cue: capabilities}
+      - {do: mark, id: humans, cue: humans}
+  - who: narrator
+    tone: explain
+    text: >-
+      And data written for the twenty seventeen edition remains valid.
+    gesture:
+      - {do: mark, id: valid, cue: valid}
+
+  # --- Candidate Recommendation
+  - who: narrator
+    tone: invite
+    text: >-
+      Today, the twenty twenty-three edition becomes a W3C Candidate
+      Recommendation.
+    gesture:
+      - {do: mark, id: candidate, cue: Candidate}
+  - who: narrator
+    tone: invite
+    text: >-
+      Now is the time to implement it. Terms that are still marked as non
+      normative will become normative if we receive evidence that they are
+      used, so please tell us about your implementations.
+    gesture:
+      - {do: mark, id: implement, cue: implement}
+      - {do: mark, id: normative, cue: normative}
+      - {do: mark, id: tell, cue: tell}
+
+  # --- the series
+  - who: narrator
+    tone: explain
+    text: >-
+      In this series, each episode presents one part of the specification,
+      with a real example from our planet: an observation in Vienna, a bubble
+      of air in the Antarctic ice, and many more.
+    gesture:
+      - {do: mark, id: series, cue: series}
+      - {do: mark, id: vienna, cue: Vienna}
+      - {do: mark, id: antarctic, cue: Antarctic}
+      - {do: mark, id: more, cue: many}
+  - who: narrator
+    tone: invite
+    text: >-
+      The specification is on the W3C website. Let's begin.
+    gesture:
+      - {do: mark, id: end, cue: specification}
+  - pause: 4.0

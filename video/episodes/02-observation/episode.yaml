@@ -1,0 +1,169 @@
+# Episode 2 · SOSA Observation: Vienna, 4 April 1872 at 3 pm.
+#
+# The script for the narrated pipeline (narration toolkit), with no character: a voice-over. Each `{do: mark, id, cue}` is a
+# mark: the scene (`scene.py`) waits for the moment the word `cue` is spoken
+# via `until(self, v.at(id))`. A `cue` is a word of the text, spelled as in the
+# text. Paths are relative to data/ (video/narrated.sh).
+#
+# The example is the spec's: ssn/rdf/examples/historical-airtemp.ttl.
+
+narration: video/narration.yaml
+cast: video/cast.yaml
+slide: 2
+fps: 25
+actors: []
+scene: video/episodes/02-observation/scene.py
+video: build/02-observation/animation.mp4
+
+lines:
+  - pause: 4.0
+    gesture: [{do: mark, id: title}]
+
+  # --- the planet
+  - who: narrator
+    tone: explain
+    text: >-
+      Every minute, millions of sensors observe our planet: its air, its
+      oceans, its rivers and its soils.
+    gesture:
+      - {do: mark, id: globe, cue: Every}
+      - {do: mark, id: sensors, cue: sensors}
+  - who: narrator
+    tone: explain
+    text: >-
+      To share what they see on the web, we need a common way to describe each
+      observation. That is what the SOSA vocabulary does, and we will follow
+      just one observation to see how.
+    gesture:
+      - {do: mark, id: one, cue: one}
+  - who: narrator
+    tone: invite
+    text: >-
+      Let's go to Vienna, in eighteen seventy-two.
+    gesture:
+      - {do: mark, id: vienna, cue: Vienna}
+
+  # --- the real world
+  - who: narrator
+    tone: explain
+    text: >-
+      On the Hohe Warte hill, the weather station keeps a mercury thermometer
+      in a white shelter, in the shade, out of the rain.
+    gesture:
+      - {do: mark, id: station, cue: station}
+      - {do: mark, id: shelter, cue: shelter}
+  - who: narrator
+    tone: explain
+    text: >-
+      On the fourth of April, at three in the afternoon, an observer reads it:
+      twenty-two point five degrees Celsius.
+    gesture:
+      - {do: mark, id: date, cue: fourth}
+      - {do: mark, id: reads, cue: reads}
+      - {do: mark, id: celsius, cue: Celsius}
+
+  # --- from the real world to the model
+  - who: narrator
+    tone: explain
+    text: >-
+      Now let's turn this scene into data that machines can share. Each thing
+      we talk about gets an identifier: a name on the web.
+    gesture:
+      - {do: mark, id: identifier, cue: identifier}
+  - who: narrator
+    tone: explain
+    text: >-
+      The thermometer gets one, and so does the station, and the reading
+      becomes a value.
+    gesture:
+      - {do: mark, id: thermometer, cue: thermometer}
+      - {do: mark, id: thestation, cue: station}
+      - {do: mark, id: value, cue: value}
+
+  # --- the graph builds up
+  - who: narrator
+    tone: explain
+    text: >-
+      At the centre, we add the observation itself: the act of reading this
+      thermometer, at this place and at this time.
+    gesture:
+      - {do: mark, id: observation, cue: observation}
+  - who: narrator
+    tone: explain
+    text: >-
+      The observation was made by the sensor. It observed the air temperature,
+      and its feature of interest is the station.
+    gesture:
+      - {do: mark, id: made, cue: made}
+      - {do: mark, id: observed, cue: observed}
+      - {do: mark, id: interest, cue: interest}
+  - who: narrator
+    tone: explain
+    text: >-
+      Its result is twenty-two point five degrees, and its phenomenon time is
+      the moment that the reading describes.
+    gesture:
+      - {do: mark, id: result, cue: result}
+      - {do: mark, id: time, cue: time}
+  - who: narrator
+    tone: explain
+    text: >-
+      Each arrow is a statement with a subject, a property and an object. On
+      the semantic web, we call it a triple.
+    gesture:
+      - {do: mark, id: statement, cue: statement}
+      - {do: mark, id: triple, cue: triple}
+  - who: narrator
+    tone: explain
+    text: >-
+      The station also hosts the thermometer, so it is a platform, as well as
+      the feature of interest.
+    gesture:
+      - {do: mark, id: hosts, cue: hosts}
+  - who: narrator
+    tone: explain
+    text: >-
+      And air temperature is a property of something much bigger: the
+      atmosphere of the Earth.
+    gesture:
+      - {do: mark, id: bigger, cue: bigger}
+      - {do: mark, id: atmosphere, cue: atmosphere}
+
+  # --- the classes
+  - who: narrator
+    tone: explain
+    text: >-
+      Now take away the identifiers, and the same shape remains: observation,
+      sensor, property, feature of interest. These are the classes that SOSA
+      defines.
+    gesture:
+      - {do: mark, id: shape, cue: shape}
+      - {do: mark, id: classes, cue: classes}
+  - who: narrator
+    tone: explain
+    text: >-
+      A reading from eighteen seventy-two and a satellite image from this
+      morning fit the very same pattern.
+    gesture:
+      - {do: mark, id: pattern, cue: pattern}
+
+  # --- the Turtle
+  - who: narrator
+    tone: explain
+    text: >-
+      Written in Turtle, a common syntax for linked data, the whole story fits
+      in a few lines that any SOSA tool can read.
+    gesture:
+      - {do: mark, id: turtle, cue: Turtle}
+      - {do: mark, id: lines, cue: lines}
+
+  # --- the end
+  - who: narrator
+    tone: invite
+    text: >-
+      That was the Observation module of SOSA. Stay tuned for more.
+    gesture:
+      - {do: mark, id: module, cue: module}
+      - {do: mark, id: next, cue: tuned}
+  - pause: 4.0
+    gesture: [{do: mark, id: end}]
