@@ -45,7 +45,7 @@ skos:definition rdf:type owl:AnnotationProperty .
 skos:example rdf:type owl:AnnotationProperty .
 skos:Concept rdf:type owl:Class .
 
-sosa-rel:RelationshipNature
+sosa:RelationshipNature
   rdf:type owl:Class ;
   rdfs:label "Nature of relationship (between samples)"@en ;
   rdfs:subClassOf skos:Concept ;
@@ -62,31 +62,31 @@ sosa-rel:RelationshipNature
   skos:example "Subsample with grain size smaller than specified seive mesh" ;
   rdfs:isDefinedBy sosa-rel: ;
 .
-sosa-rel:SampleRelationship
+sosa:SampleRelationship
   rdf:type owl:Class ;
   rdfs:label "Sample relationship"@en ;
   skos:definition "relationship from one Sample to another Sample"@en ;
   rdfs:isDefinedBy sosa-rel: ;
 .
-sosa-rel:hasSampleRelationship
+sosa:hasSampleRelationship
   rdf:type owl:ObjectProperty ;
   schema:domainIncludes sosa:Sample ;
-  schema:rangeIncludes sosa-rel:SampleRelationship ;
+  schema:rangeIncludes sosa:SampleRelationship ;
   rdfs:label "has sample relationship"@en ;
   skos:definition "links a Sample to a SampleRelationship"@en ;
   rdfs:isDefinedBy sosa-rel: ;
 .
-sosa-rel:natureOfRelationship
+sosa:natureOfRelationship
   rdf:type owl:ObjectProperty ;
-  schema:domainIncludes sosa-rel:SampleRelationship ;
-  schema:rangeIncludes sosa-rel:RelationshipNature ;
+  schema:domainIncludes sosa:SampleRelationship ;
+  schema:rangeIncludes sosa:RelationshipNature ;
   rdfs:label "nature of (sample) relationship"@en ;
   skos:definition "links a SampleRelationship to an indication of the nature of the relationship"@en ;
   rdfs:isDefinedBy sosa-rel: ;
 .
-sosa-rel:relatedSample
+sosa:relatedSample
   rdf:type owl:ObjectProperty ;
-  schema:domainIncludes sosa-rel:SampleRelationship ;
+  schema:domainIncludes sosa:SampleRelationship ;
   schema:rangeIncludes sosa:Sample ;
   rdfs:label "related sample"@en ;
   skos:definition "links a SampleRelationship to the related Sample"@en ;
