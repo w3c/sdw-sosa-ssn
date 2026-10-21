@@ -51,24 +51,24 @@ dcterms:rights a owl:AnnotationProperty .
 dcterms:source a owl:AnnotationProperty .
 dcterms:title a owl:AnnotationProperty .
 
-sosa-oms:PreparationProcedure
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implementedBy ; owl:allValuesFrom sosa-oms:PreparationStep ] ;
+sosa:PreparationProcedure
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:implementedBy ; owl:allValuesFrom sosa:PreparationStep ] ;
   rdfs:isDefinedBy sosa-oms: .
 
-sosa-oms:PreparationStep 
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:usedProcedure ; owl:allValuesFrom sosa-oms:PreparationProcedure ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa-oms:preparedSample ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa-oms:preparedSample ; owl:allValuesFrom sosa:Sample ] ;
+sosa:PreparationStep 
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:usedProcedure ; owl:allValuesFrom sosa:PreparationProcedure ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:preparedSample ; owl:cardinality "1"^^xsd:nonNegativeInteger ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:preparedSample ; owl:allValuesFrom sosa:Sample ] ;
   rdfs:isDefinedBy sosa-oms: .
 
 sosa:Sample
-  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa-oms:hasPreparationStep ; owl:allValuesFrom sosa-oms:PreparationStep ] ;
+  rdfs:subClassOf [ a owl:Restriction ; owl:onProperty sosa:hasPreparationStep ; owl:allValuesFrom sosa:PreparationStep ] ;
   rdfs:isDefinedBy sosa-sam: .
 
-sosa-oms:madeOnPlatform
+sosa:madeOnPlatform
   owl:propertyChainAxiom ( sosa:hasFeatureOfInterest sosa:isResultOfMadeBySampler sosa:isHostedBy ) ;
   rdfs:isDefinedBy sosa-oms: .
 
-sosa-oms:makesObservationCollection
+sosa:makesObservationCollection
   owl:propertyChainAxiom ( sosa:hosts sosa:madeSamplingHasResult sosa:isFeatureOfInterestOf ) ;
   rdfs:isDefinedBy sosa-oms: .

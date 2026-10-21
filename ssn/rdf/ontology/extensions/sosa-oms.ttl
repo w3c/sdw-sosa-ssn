@@ -75,7 +75,7 @@ ogc-ms:implementedBy
 
 ## General properties
 
-sosa-oms:metadata 
+sosa:metadata 
   a owl:ObjectProperty ;
   rdfs:label "metadata"@en ;
   skos:definition "link from an individual to a metadata description"@en ;  
@@ -91,11 +91,11 @@ sosa-oms:metadata
                         sosa:SampleCollection ,
                         sosa:Sampling ,
                         sosa:SamplingCollection ,
-                        sosa-oms:PreparationStep ,
+                        sosa:PreparationStep ,
                         sosa:Procedure ,
                         sosa:ObservingProcedure ,
                         sosa:SamplingProcedure ,
-                        sosa-oms:PreparationProcedure ,
+                        sosa:PreparationProcedure ,
                         sosa:Sensor ,
                         sosa:Sampler ,
                         sosa:Platform ,
@@ -139,21 +139,21 @@ sosa:isSampleOfUltimateFOI
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sample/sampledFeature-sem> ;
   rdfs:isDefinedBy sosa-sam: .
 
-sosa-oms:hasPreparationStep 
+sosa:hasPreparationStep 
   a owl:ObjectProperty ;
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sample/preparationStep-sem> ;
   rdfs:label "has preparation step"@en ;
   skos:definition "Link to a preparation step used to prepare the sample"@en ;
   schema:domainIncludes sosa:Sample ;
-  schema:rangeIncludes sosa-oms:PreparationStep ;
-  owl:inverseOf sosa-oms:preparedSample ;
+  schema:rangeIncludes sosa:PreparationStep ;
+  owl:inverseOf sosa:preparedSample ;
   rdfs:isDefinedBy sosa-oms: .
 
 sosa:SpatialSample 
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/SpatialSample> ;
   rdfs:isDefinedBy sosa-sam: .
 
-sosa-oms:shape 
+sosa:shape 
   a owl:ObjectProperty ;  
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/SpatialSample/shape-sem> ;
   rdfs:label "shape"@en ;
@@ -162,7 +162,7 @@ sosa-oms:shape
   schema:domainIncludes sosa:SpatialSample ;
   rdfs:isDefinedBy sosa-oms: .
 
-sosa-oms:horizontalPositionalAccuracy 
+sosa:horizontalPositionalAccuracy 
   a owl:ObjectProperty ;
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/SpatialSample/horizontalPositionalAccuracy-sem> ;
   rdfs:label "horizontal positional accuracy"@en ;
@@ -170,7 +170,7 @@ sosa-oms:horizontalPositionalAccuracy
   schema:domainIncludes sosa:SpatialSample ;
   rdfs:isDefinedBy sosa-oms: .
 
-sosa-oms:verticalPositionalAccuracy 
+sosa:verticalPositionalAccuracy 
   a owl:ObjectProperty ;
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/SpatialSample/verticalPositionalAccuracy-sem> ;
   rdfs:label "vertical positional accuracy"@en ;
@@ -182,7 +182,7 @@ sosa:MaterialSample
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/MaterialSample> ;
   rdfs:isDefinedBy sosa-sam: .
 
-sosa-oms:size 
+sosa:size 
   a owl:ObjectProperty ;
   rdfs:subPropertyOf qudt:quantity ; 
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/MaterialSample/size-sem> ;
@@ -191,7 +191,7 @@ sosa-oms:size
   schema:domainIncludes sosa:MaterialSample ;
   rdfs:isDefinedBy sosa-oms: .
 
-sosa-oms:storageLocation 
+sosa:storageLocation 
   rdf:type owl:ObjectProperty ; 
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/MaterialSample/storageLocation-sem> ;
   rdfs:label "storage location"@en ;
@@ -199,7 +199,7 @@ sosa-oms:storageLocation
   schema:domainIncludes sosa:MaterialSample ;
   rdfs:isDefinedBy sosa-oms: .
 
-sosa-oms:sourceLocation 
+sosa:sourceLocation 
   rdf:type owl:ObjectProperty ; 
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/MaterialSample/sourceLocation-sem> ;
   rdfs:label "source location"@en ;
@@ -212,7 +212,7 @@ sosa:StatisticalSample
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/StatisticalSample> ;
   rdfs:isDefinedBy sosa-sam: .
 
-sosa-oms:classification 
+sosa:classification 
   a owl:ObjectProperty ;
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-basic/StatisticalSample/classification-sem> ;
   rdfs:label "classification"@en ;
@@ -251,7 +251,7 @@ sosa:SamplingProcedure
   skos:definition """[ISO 19156:2023] A SamplingProcedure shall be defined as the description of steps performed by a Sampler in order to extract a Sample from its sampledFeature in the frame of a Sampling.""" ;
   rdfs:isDefinedBy sosa-sam: .
 
-sosa-oms:PreparationProcedure 
+sosa:PreparationProcedure 
   a owl:Class ;
   rdfs:subClassOf sosa:Procedure ;
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/PreparationProcedure> ;
@@ -321,7 +321,7 @@ sosa:phenomenonTime
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/phenomenonTime-sem> ;
   rdfs:isDefinedBy sosa-common: .
 
-sosa-oms:validTime 
+sosa:validTime 
   a owl:ObjectProperty ;
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/validTime-sem> ;
   rdfs:label "valid time"@en ;
@@ -337,7 +337,7 @@ sosa:Observation
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation> ;
   rdfs:isDefinedBy sosa-obs: .
 
-sosa-oms:observationType 
+sosa:observationType 
   a owl:ObjectProperty ;
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-core/AbstractObservationCharacteristics/type-sem> ;
   rdfs:label "observation type"@en ;
@@ -373,17 +373,17 @@ sosa:resultQuality
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-core/AbstractObservationCharacteristics/resultQuality-sem> ;
   rdfs:isDefinedBy sosa-obs: .
 
-sosa-oms:madeOnPlatform   
+sosa:madeOnPlatform   
   a owl:ObjectProperty ;
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/obs-cpt/Observation/host-sem> ;
   rdfs:label "made on platform"@en ;
   skos:definition "relation from an ObservationCollection to the associated Platform."@en ;
   schema:domainIncludes sosa:ObservationCollection ;
   schema:rangeIncludes sosa:Platform ;
-  owl:inverseOf sosa-oms:makesObservationCollection ;
+  owl:inverseOf sosa:makesObservationCollection ;
   rdfs:isDefinedBy sosa-oms: .
 
-sosa-oms:makesObservationCollection
+sosa:makesObservationCollection
   a owl:ObjectProperty ;
   rdfs:label "makes observation collection"@en ;
   skos:definition "relation from a Platform to an ObservationCollection arising from a Deployment on the Platform"@en ;
@@ -392,13 +392,13 @@ sosa-oms:makesObservationCollection
   """@en ;
   schema:domainIncludes sosa:Platform ;
   schema:rangeIncludes sosa:ObservationCollection ;
-  owl:inverseOf sosa-oms:madeOnPlatform ;
+  owl:inverseOf sosa:madeOnPlatform ;
   rdfs:isDefinedBy sosa-oms: .
 
 sosa:Sampling ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sampling> ;
   rdfs:isDefinedBy sosa-sam: .
 
-sosa-oms:samplingLocation 
+sosa:samplingLocation 
   a owl:ObjectProperty ;  
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-core/AbstractSampling/samplingLocation-sem> ;
   rdfs:label "sampling location"@en ;
@@ -407,16 +407,17 @@ sosa-oms:samplingLocation
   schema:domainIncludes sosa:Sampling ;
   rdfs:isDefinedBy sosa-oms: .
 
-sosa-oms:time 
+sosa:timeOfSampling
   a owl:ObjectProperty ;  
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-core/AbstractSampling/time-sem> ;
   rdfs:label "sampling time"@en ;
   skos:definition "If information on the time of the Sampling is provided, the attribute time:TM_Object shall be used."@en ;
+  skos:note "The datatype properties sosa:startTime sosa:endTime sosa:resultTime may also be used in the context of an act of sampling"@en ;
   rdfs:subPropertyOf time:hasTime ; 
   schema:domainIncludes sosa:Sampling ;
   rdfs:isDefinedBy sosa-oms: .
 
-sosa-oms:parameter 
+sosa:parameter 
   a owl:ObjectProperty ;  
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-core/AbstractSampling/parameter-sem> ;
   rdfs:label "parameter"@en ;
@@ -430,7 +431,7 @@ sosa:madeSampling ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-
 sosa:madeBySampler ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sampling/sampler-sem> ;
   rdfs:isDefinedBy sosa-sam: .
 
-sosa-oms:relatedSampling 
+sosa:relatedSampling 
   a owl:ObjectProperty ;
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/Sampling/relatedSampling-sem> ;
   rdfs:label "related sampling"@en ;
@@ -439,7 +440,7 @@ sosa-oms:relatedSampling
   schema:rangeIncludes sosa:Sampling ;
   rdfs:isDefinedBy sosa-oms: .
 
-sosa-oms:PreparationStep 
+sosa:PreparationStep 
   a owl:Class ;
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/PreparationStep> ;
   rdfs:label "Preparation Step"@en ;
@@ -447,34 +448,34 @@ sosa-oms:PreparationStep
   skos:example "???"@en ;
   rdfs:isDefinedBy sosa-oms: .
 
-sosa-oms:preparedSample 
+sosa:preparedSample 
   a owl:ObjectProperty ;
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/PreparationStep/preparedSample-sem> ;
   rdfs:label "prepared sample"@en ;
   skos:definition "The Sample on which the PreparationProcedure is performed."@en ;
-  schema:domainIncludes sosa-oms:PreparationStep ;
+  schema:domainIncludes sosa:PreparationStep ;
   schema:rangeIncludes sosa:Sample ;
-  owl:inverseOf sosa-oms:hasPreparationStep ;
+  owl:inverseOf sosa:hasPreparationStep ;
   rdfs:isDefinedBy sosa-oms: .
 
-sosa-oms:processingDetails 
+sosa:processingDetails 
   a owl:ObjectProperty ;
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/PreparationStep/processingDetails-sem> ;
   rdfs:label "processing details"@en ;
   skos:definition "The PreparationProcedure used by the PreparationStep."@en ;
-  schema:domainIncludes sosa-oms:PreparationStep ;
-  schema:rangeIncludes sosa-oms:PreparationProcedure ;
-  owl:inverseOf sosa-oms:samplePreparationStep ;
+  schema:domainIncludes sosa:PreparationStep ;
+  schema:rangeIncludes sosa:PreparationProcedure ;
+  owl:inverseOf sosa:samplePreparationStep ;
   rdfs:isDefinedBy sosa-oms: .
 
-sosa-oms:samplePreparationStep 
+sosa:samplePreparationStep 
   a owl:ObjectProperty ;
   ogc-ms:implements <http://www.opengis.net/spec/om/3.0/req/sam-cpt/PreparationProcedure/samplePreparationStep-sem> ;
   rdfs:label "sample preparation step"@en ;
   skos:definition "link from a PreparationProcedure to a PreparationStep used in the PreparationProcedure"@en ;
-  schema:domainIncludes sosa-oms:PreparationProcedure ;
-  schema:rangeIncludes sosa-oms:PreparationStep ;
-  owl:inverseOf sosa-oms:processingDetails ;
+  schema:domainIncludes sosa:PreparationProcedure ;
+  schema:rangeIncludes sosa:PreparationStep ;
+  owl:inverseOf sosa:processingDetails ;
   rdfs:isDefinedBy sosa-oms: .
 
 
