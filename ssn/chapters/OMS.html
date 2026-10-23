@@ -135,11 +135,11 @@ ogc-ms:implementedBy a owl:ObjectProperty ;
       <a>sosa:relatedSampling</a>,
       <a>sosa:samplePreparationStep</a>,
       <a>sosa:samplingLocation</a>,
+      <a>sosa:samplingTime</a>,
       <a>sosa:shape</a>,
       <a>sosa:size</a>,
       <a>sosa:sourceLocation</a>,
       <a>sosa:storageLocation</a>,
-      <a>sosa:timeOfSampling</a>,
       <a>sosa:validTime</a>,
       <a>sosa:verticalPositionalAccuracy</a>,
     </p>
@@ -687,6 +687,42 @@ ogc-ms:implementedBy a owl:ObjectProperty ;
       </dd>
     </dl>
 
+  <section class="informative specterm" id="OMSsamplingTime">
+    <h5><dfn>sosa:samplingTime</dfn></h5>
+    <p class="crossreference">
+      <strong>IRI:</strong> http://www.w3.org/ns/sosa/samplingTime
+    </p>
+    <p>
+      <strong>an OWL Object Property</strong>
+    </p>
+    <p>
+      <em>sampling time</em> &mdash;
+      If information on the time of the Sampling is provided, the attribute `time:TM_Object` shall be used
+    </p>
+    <p class="note">
+      The datatype properties <a>sosa:startTime</a> <a>sosa:endTime</a> <a>sosa:resultTime</a> may also be used in the context of an act of sampling
+    </p>
+    <dl>
+      <dt>Subproperty of</dt>
+      <dd>
+        <a href="https://www.w3.org/TR/owl-time/#time:hasTime">time:hasTime</a>
+      </dd>
+      <dt>Domain Includes</dt>
+      <dd>
+        <a>sosa:Sampling</a>
+      </dd>
+      <dt>is Defined By</dt>
+      <dd>
+        <a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a>
+      </dd>
+    </dl>
+
+    <div class="buttonpanel">
+      <span class="back">[<a href="#OMS">Back to module overview</a>]</span>
+      <span class="back">[<a href="#Overview">Back to top</a>]</span>
+    </div>
+  </section>
+
     <div class="buttonpanel">
       <span class="back">[<a href="#OMS">Back to module overview</a>]</span>
       <span class="back">[<a href="#Overview">Back to top</a>]</span>
@@ -808,42 +844,6 @@ ogc-ms:implementedBy a owl:ObjectProperty ;
       <dt>Domain Includes</dt>
       <dd>
         <a>sosa:MaterialSample</a>
-      </dd>
-      <dt>is Defined By</dt>
-      <dd>
-        <a href="http://www.w3.org/ns/sosa/oms/">http://www.w3.org/ns/sosa/oms/</a>
-      </dd>
-    </dl>
-
-    <div class="buttonpanel">
-      <span class="back">[<a href="#OMS">Back to module overview</a>]</span>
-      <span class="back">[<a href="#Overview">Back to top</a>]</span>
-    </div>
-  </section>
-
-  <section class="informative specterm" id="OMStimeOfSampling">
-    <h5><dfn>sosa:timeOfSampling</dfn></h5>
-    <p class="crossreference">
-      <strong>IRI:</strong> http://www.w3.org/ns/sosa/timeOfSampling
-    </p>
-    <p>
-      <strong>an OWL Object Property</strong>
-    </p>
-    <p>
-      <em>sampling time</em> &mdash;
-      If information on the time of the Sampling is provided, the attribute `time:TM_Object` shall be used
-    </p>
-    <p class="note">
-      The datatype properties <a>sosa:startTime</a> <a>sosa:endTime</a> <a>sosa:resultTime</a> may also be used in the context of an act of sampling
-    </p>
-    <dl>
-      <dt>Subproperty of</dt>
-      <dd>
-        <a href="https://www.w3.org/TR/owl-time/#time:hasTime">time:hasTime</a>
-      </dd>
-      <dt>Domain Includes</dt>
-      <dd>
-        <a>sosa:Sampling</a>
       </dd>
       <dt>is Defined By</dt>
       <dd>
@@ -1344,7 +1344,7 @@ ogc-ms:implementedBy a owl:ObjectProperty ;
       <span class="rhs">sam-basic:MaterialSample/storageLocation-sem</span>
     </li>
     <li>
-      <span class="lhs"><a>sosa:timeOfSampling</a></span>
+      <span class="lhs"><a>sosa:samplingTime</a></span>
       <span class="symbol">ogc-ms:implements</span>
       <span class="rhs">sam-core:AbstractSampling/time-sem</span>
     </li>
@@ -1432,7 +1432,7 @@ ogc-ms:implementedBy a owl:ObjectProperty ;
     <li>
       <span class="lhs">sam-core:AbstractSampling/time-sem</span>
       <span class="symbol">ogc-ms:implementedBy</span>
-      <span class="rhs"><a>sosa:timeOfSampling</a></span>
+      <span class="rhs"><a>sosa:samplingTime</a></span>
     </li>
     <li>
       <span class="lhs">obs-cpt:Deployment/host-sem</span>
