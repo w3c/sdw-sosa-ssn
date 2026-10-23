@@ -5,7 +5,7 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix sosa-rel: <http://www.w3.org/ns/sosa/sampling/> .
+@prefix sosa-rel: <http://www.w3.org/ns/sosa/relations/> .
 @prefix sosa-sam: <http://www.w3.org/ns/sosa/sam/> .
 @prefix schema: <https://schema.org/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
@@ -74,6 +74,7 @@ sosa:hasSampleRelationship
   schema:rangeIncludes sosa:SampleRelationship ;
   rdfs:label "has sample relationship"@en ;
   skos:definition "links a Sample to a SampleRelationship"@en ;
+  owl:inverseOf sosa:relatedSample ;
   rdfs:isDefinedBy sosa-rel: ;
 .
 sosa:natureOfRelationship
@@ -90,5 +91,6 @@ sosa:relatedSample
   schema:rangeIncludes sosa:Sample ;
   rdfs:label "related sample"@en ;
   skos:definition "links a SampleRelationship to the related Sample"@en ;
+  owl:inverseOf sosa:hasSampleRelationship ;
   rdfs:isDefinedBy sosa-rel: ;
 .
