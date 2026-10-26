@@ -168,13 +168,6 @@ var respecConfig = {
     }
   ],
   localBiblio: {
-    "BFO": {
-      title: "Information technology — Top-level ontologies (TLO) — Part 2: Basic Formal Ontology (BFO)",
-      href: "https://www.iso.org/standard/74572.html",
-      rawDate: "2021-11",
-      publisher: "International Organization for Standardization (ISO)",
-      status: "ISO/IEC 21838-2:2021"
-    },
     "CCO": {
       title: "The Common Core Ontologies (CCO)",
       href: "https://github.com/CommonCoreOntology/CommonCoreOntologies",
