@@ -1,0 +1,142 @@
+# Episode 7 · OMS: observation collections, and SOSA as the RDF implementation
+# of ISO 19156.
+#
+# The thread: the observation of Vienna (episode 2) is not alone. The
+# collection: sosa:ObservationCollection and its consistency rules
+# (rdf/ontology/core/sosa-observation.ttl), the time series of the spec
+# (chapter ModelTimeSeries, rdf/examples/timeseries-oc.ttl: ex:ts159c, a speed
+# in m/s every minute). Then the chapter OMS: the terms of SOSA that implement
+# the requirements of OMS (ogc-ms:implements, rdf/ontology/extensions/sosa-oms.ttl),
+# and the terms it adds (madeOnPlatform, storageLocation, PreparationStep),
+# non-normative in the 2023 edition. The stack of Vienna observations has no
+# identifiers and no values beyond 22.5 °C: it is an illustration.
+# Marks: `{do: mark, id, cue}` (video/README.md). Paths relative to data/.
+
+narration: video/narration.yaml
+cast: video/cast.yaml
+slide: 7
+fps: 25
+actors: []
+scene: video/episodes/07-oms/scene.py
+video: build/07-oms/animation.mp4
+
+lines:
+  - pause: 4.0
+    gesture: [{do: mark, id: title}]
+
+  # --- Vienna: not one observation, but many
+  - who: narrator
+    tone: explain
+    text: >-
+      Back to Vienna. The observation of eighteen seventy-two is not alone.
+    gesture:
+      - {do: mark, id: back, cue: Back}
+      - {do: mark, id: alone, cue: alone}
+  - who: narrator
+    tone: explain
+    text: >-
+      Day after day, the station measures the air temperature again: the same
+      sensor, the same property, the same place. Only the time and the result
+      change.
+    gesture:
+      - {do: mark, id: again, cue: again}
+      - {do: mark, id: same, cue: sensor}
+      - {do: mark, id: change, cue: time}
+
+  # --- the collection
+  - who: narrator
+    tone: explain
+    text: >-
+      An observation collection says, once, what all its members share.
+    gesture:
+      - {do: mark, id: collection, cue: collection}
+      - {do: mark, id: once, cue: once}
+  - who: narrator
+    tone: explain
+    text: >-
+      SOSA states a rule: when the collection gives one value for a property,
+      every member has that same value.
+    gesture:
+      - {do: mark, id: rule, cue: rule}
+      - {do: mark, id: every, cue: every}
+
+  # --- the time series of the spec
+  - who: narrator
+    tone: explain
+    text: >-
+      In the spec's example, a sensor measures a speed, in metres per second,
+      every minute. Four members, four results, and the collection becomes a
+      time series.
+    gesture:
+      - {do: mark, id: speed, cue: speed}
+      - {do: mark, id: results, cue: results}
+      - {do: mark, id: series, cue: series}
+
+  # --- OMS
+  - who: narrator
+    tone: explain
+    text: >-
+      This way of describing observations comes from O M S: Observations,
+      Measurements and Samples, published by ISO in twenty twenty-three.
+    gesture:
+      - {do: mark, id: oms, cue: Observations}
+      - {do: mark, id: iso, cue: ISO}
+  - who: narrator
+    tone: explain
+    text: >-
+      O M S is written in U M L. SOSA is its implementation on the web, in
+      RDF: each term of SOSA says which requirement of O M S it implements.
+    gesture:
+      - {do: mark, id: uml, cue: written}
+      - {do: mark, id: rdf, cue: web}
+      - {do: mark, id: implements, cue: implements}
+  - who: narrator
+    tone: explain
+    text: >-
+      The observation, the sensor that made it, the collection, the sample:
+      each finds its counterpart.
+    gesture:
+      - {do: mark, id: pairs, cue: observation}
+      - {do: mark, id: counterpart, cue: counterpart}
+
+  # --- the new terms
+  - who: narrator
+    tone: explain
+    text: >-
+      Some terms of O M S had no match in SOSA. The O M S module adds them: the
+      platform on which a collection was made, where a sample is stored, and
+      the steps that prepared it.
+    gesture:
+      - {do: mark, id: nomatch, cue: match}
+      - {do: mark, id: platform, cue: platform}
+      - {do: mark, id: stored, cue: stored}
+      - {do: mark, id: steps, cue: steps}
+  - who: narrator
+    tone: explain
+    text: >-
+      These new terms are not yet normative: they wait for more experience
+      from implementations.
+    gesture:
+      - {do: mark, id: normative, cue: normative}
+
+  # --- the Turtle
+  - who: narrator
+    tone: explain
+    text: >-
+      In Turtle, the collection carries the sensor, the property and the
+      feature once, and lists its members.
+    gesture:
+      - {do: mark, id: turtle, cue: Turtle}
+      - {do: mark, id: carries, cue: carries}
+      - {do: mark, id: lists, cue: lists}
+
+  # --- the end
+  - who: narrator
+    tone: invite
+    text: >-
+      That was the O M S module. Stay tuned for more.
+    gesture:
+      - {do: mark, id: module, cue: That}
+      - {do: mark, id: tuned, cue: tuned}
+  - pause: 4.0
+    gesture: [{do: mark, id: end}]

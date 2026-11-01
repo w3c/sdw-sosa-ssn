@@ -1,0 +1,145 @@
+# Episode 5 · SSN: the axioms behind the boxes.
+#
+# The graph of episode 2 (ssn/rdf/examples/historical-airtemp.ttl), read first
+# with SOSA (hints, named inverses: chapter RDF-implementation, "Expressivity"),
+# then with SSN: the owl:allValuesFrom restrictions of ssn-observation.ttl type
+# the nodes by inference; SSN never uses rdfs:domain and rdfs:range; the
+# collections are disjoint (ssn.ttl); SSN imports SOSA (chapter Modularization).
+# The stripped graph ("suppose the data only says…") and ex:collection-1 are
+# illustrations, not examples of the spec.
+# Marks: `{do: mark, id, cue}` (video/README.md). Paths relative to data/.
+
+narration: video/narration.yaml
+cast: video/cast.yaml
+slide: 5
+fps: 25
+actors: []
+scene: video/episodes/05-ssn/scene.py
+video: build/05-ssn/animation.mp4
+
+lines:
+  - pause: 4.0
+    gesture: [{do: mark, id: title}]
+
+  # --- SOSA: what it already says
+  - who: narrator
+    tone: explain
+    text: >-
+      Remember the observation in Vienna: a thermometer, a station, the air
+      temperature, and a reading.
+    gesture:
+      - {do: mark, id: recall, cue: Remember}
+      - {do: mark, id: reading, cue: reading}
+  - who: narrator
+    tone: explain
+    text: >-
+      The SOSA vocabulary is light. Its terms come with definitions for people,
+      and with hints: made by sensor goes from an observation to a sensor.
+    gesture:
+      - {do: mark, id: light, cue: light}
+      - {do: mark, id: hints, cue: hints}
+  - who: narrator
+    tone: explain
+    text: >-
+      SOSA also names the inverse of each property. If the observation was made
+      by the thermometer, then the thermometer made the observation.
+    gesture:
+      - {do: mark, id: inverse, cue: inverse}
+      - {do: mark, id: then, cue: then}
+
+  # --- SSN: the axioms, and what a reasoner infers
+  - who: narrator
+    tone: explain
+    text: >-
+      SOSA allows only simple conclusions, like these inverses. SSN goes
+      further: it adds formal rules, called axioms, written in OWL, the web
+      ontology language.
+    gesture:
+      - {do: mark, id: simple, cue: simple}
+      - {do: mark, id: axioms, cue: axioms}
+      - {do: mark, id: owl, cue: OWL}
+  - who: narrator
+    tone: explain
+    text: >-
+      Suppose the data only says that this is an observation. The other nodes
+      have no type.
+    gesture:
+      - {do: mark, id: suppose, cue: Suppose}
+      - {do: mark, id: notype, cue: type}
+  - who: narrator
+    tone: explain
+    text: >-
+      SSN says that an observation is made only by sensors. So a reasoner
+      infers that the thermometer is a sensor.
+    gesture:
+      - {do: mark, id: only, cue: only}
+      - {do: mark, id: infers, cue: infers}
+  - who: narrator
+    tone: explain
+    text: >-
+      In the same way, the air temperature is a property, and the station is a
+      feature of interest.
+    gesture:
+      - {do: mark, id: property, cue: property}
+      - {do: mark, id: station, cue: station}
+  - who: narrator
+    tone: explain
+    text: >-
+      The colours come back, by inference.
+    gesture:
+      - {do: mark, id: colours, cue: colours}
+
+  # --- local rules, not global ones
+  - who: narrator
+    tone: explain
+    text: >-
+      These rules are local. Has feature of interest is used by observations,
+      actuations and samplings. A global rule would turn all of them into
+      observations. So SSN never uses the domain and range of RDF Schema.
+    gesture:
+      - {do: mark, id: local, cue: local}
+      - {do: mark, id: used, cue: used}
+      - {do: mark, id: global, cue: global}
+      - {do: mark, id: never, cue: never}
+
+  # --- consistency
+  - who: narrator
+    tone: explain
+    text: >-
+      A reasoner can also check that data are consistent. In SSN, a collection
+      of observations can never be a collection of samples. A collection said
+      to be both is flagged as an error.
+    gesture:
+      - {do: mark, id: consistent, cue: consistent}
+      - {do: mark, id: disjoint, cue: samples}
+      - {do: mark, id: error, cue: error}
+
+  # --- SOSA and SSN
+  - who: narrator
+    tone: explain
+    text: >-
+      SOSA alone is enough to publish and share data. SSN imports SOSA, and
+      adds what reasoning needs.
+    gesture:
+      - {do: mark, id: share, cue: share}
+      - {do: mark, id: imports, cue: imports}
+
+  # --- the Turtle
+  - who: narrator
+    tone: explain
+    text: >-
+      In Turtle, the axiom about sensors takes just three lines.
+    gesture:
+      - {do: mark, id: turtle, cue: Turtle}
+      - {do: mark, id: lines, cue: lines}
+
+  # --- the end
+  - who: narrator
+    tone: invite
+    text: >-
+      That was SSN, the axioms behind SOSA. Stay tuned for more.
+    gesture:
+      - {do: mark, id: module, cue: That}
+      - {do: mark, id: tuned, cue: tuned}
+  - pause: 4.0
+    gesture: [{do: mark, id: end}]

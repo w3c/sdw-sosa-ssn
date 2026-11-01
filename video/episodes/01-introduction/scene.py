@@ -32,9 +32,9 @@ EPISODES = [
     ("4", "Actuation", "Saint-Étienne"),
     ("5", "SSN axioms", "reasoning with SOSA"),
     ("6", "System capabilities", "surviving the cold"),
-    ("7", "Collections", "time series since 1872"),
-    ("8", "Sample relations", "slicing an ice core"),
-    ("9", "Alignments", "PROV, SAREF, OMS…"),
+    ("7", "Collections, OMS", "Vienna, ISO 19156"),
+    ("8", "Sample relations", "a probe spot on a rock"),
+    ("9", "Alignments", "PROV, SAREF, OGC APIs"),
 ]
 
 

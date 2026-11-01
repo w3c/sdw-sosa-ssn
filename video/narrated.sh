@@ -23,6 +23,7 @@
 #   QWEN_PY        Python with Qwen3-TTS (speech synthesis)
 #   RENDER_PY      Python with faster-whisper and PyYAML (word alignment)
 #   MANIMGX        the manimgx executable
+#   VIDEO_COPY_DIR optional: a directory that receives a copy of each final MP4
 set -euo pipefail
 
 REPO=$(cd "$(dirname "$0")/.." && pwd)
@@ -71,3 +72,7 @@ ffmpeg -v error -y -i "$VIDEO" -i "$OUT/audio.wav" \
   -filter_complex "[0:v]fps=25,tpad=stop_mode=clone:stop_duration=3600[v]" -map "[v]" -map 1:a \
   -t "$D" -c:v libx264 -pix_fmt yuv420p -crf 18 -c:a aac -b:a 160k "$NAME.mp4"
 echo "$DATA/$NAME.mp4"
+if [[ -n ${VIDEO_COPY_DIR:-} ]]; then
+  cp "$NAME.mp4" "$VIDEO_COPY_DIR/"
+  echo "$VIDEO_COPY_DIR/$NAME.mp4"
+fi

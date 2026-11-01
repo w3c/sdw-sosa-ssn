@@ -341,7 +341,7 @@ class Episode02(m.Scene):
         self.play(m.FadeIn(ex, shift=0.2 * m.UP), run_time=0.8)
         until(self, v.at("lines"))
         for i in (0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11):
-            self.play(ex.line(i).animate.set_color(HEADING), run_time=0.22)
+            self.play(ex.mark(i), run_time=0.22)
 
         # --- the end
         until(self, v.at("module"))

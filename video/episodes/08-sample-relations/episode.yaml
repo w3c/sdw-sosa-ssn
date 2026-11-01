@@ -1,0 +1,128 @@
+# Episode 8 · Sample Relations: what one arrow between two samples does not say.
+#
+# The thread: the bubble of episode 3 is a sample of the ice core, one
+# sosa:isSampleOf arrow, which does not say how. The Sample Relations module
+# (chapter Sample-Relations, informative; rdf/ontology/extensions/sample-relations.ttl,
+# namespace sosa-rel:) qualifies the relationship: a node, sosa-rel:SampleRelationship,
+# its related sample, and its nature, a sosa-rel:RelationshipNature (a skos:Concept,
+# whose skos:example are the natures shown). The spec's example,
+# rdf/examples/sample-relations.ttl: the specimen relex:CSRWA25569, its mount 7
+# (sosa:isSampleOf), and spot 1, a probe spot on the polished mount. The rock,
+# the resin mount and the microprobe are an illustration: the example gives
+# only labels.
+# Marks: `{do: mark, id, cue}` (video/README.md). Paths relative to data/.
+
+narration: video/narration.yaml
+cast: video/cast.yaml
+slide: 8
+fps: 25
+actors: []
+scene: video/episodes/08-sample-relations/scene.py
+video: build/08-sample-relations/animation.mp4
+
+lines:
+  - pause: 4.0
+    gesture: [{do: mark, id: title}]
+
+  # --- one arrow, which does not say how
+  - who: narrator
+    tone: explain
+    text: >-
+      In episode three, the air bubble was a sample of the ice core. SOSA says
+      it with a single arrow: is sample of.
+    gesture:
+      - {do: mark, id: bubble, cue: bubble}
+      - {do: mark, id: arrow, cue: arrow}
+  - who: narrator
+    tone: explain
+    text: >-
+      But one arrow does not say how. Was the core split, or crushed? Is the
+      sample a station along a traverse, or a pixel within an image?
+    gesture:
+      - {do: mark, id: how, cue: how}
+      - {do: mark, id: split, cue: split}
+      - {do: mark, id: station, cue: station}
+      - {do: mark, id: pixel, cue: pixel}
+  - who: narrator
+    tone: explain
+    text: >-
+      The Sample Relations module gives the relationship a node of its own,
+      which can say what kind of relationship it is.
+    gesture:
+      - {do: mark, id: module, cue: Relations}
+      - {do: mark, id: node, cue: node}
+      - {do: mark, id: kind, cue: kind}
+
+  # --- the spec's example: a specimen, a mount, a spot
+  - who: narrator
+    tone: explain
+    text: >-
+      The spec's example comes from a geology collection. A rock specimen is
+      cut, set in resin and polished: mount seven is a sample of the specimen.
+    gesture:
+      - {do: mark, id: geology, cue: geology}
+      - {do: mark, id: cut, cue: cut}
+      - {do: mark, id: mount, cue: mount}
+  - who: narrator
+    tone: explain
+    text: >-
+      Under a microprobe, a beam hits the polished surface at one spot: spot
+      one.
+    gesture:
+      - {do: mark, id: probe, cue: microprobe}
+      - {do: mark, id: spot, cue: spot}
+  - who: narrator
+    tone: explain
+    text: >-
+      Spot one is a sample too. Its sample relationship points to mount seven,
+      and gives its nature: a probe spot on a polished mount.
+    gesture:
+      - {do: mark, id: too, cue: too}
+      - {do: mark, id: points, cue: points}
+      - {do: mark, id: nature, cue: nature}
+
+  # --- the classes
+  - who: narrator
+    tone: explain
+    text: >-
+      In the module, the relationship is a class: sample relationship. Its
+      nature is a concept, taken from a vocabulary that a community shares.
+    gesture:
+      - {do: mark, id: classes, cue: class}
+      - {do: mark, id: concept, cue: concept}
+  - who: narrator
+    tone: explain
+    text: >-
+      The spec gives a few: a split of a core sample, a specimen taken from a
+      borehole, an adjacent flight line.
+    gesture:
+      - {do: mark, id: few, cue: few}
+  - who: narrator
+    tone: explain
+    text: >-
+      This module is informative. Its terms have their own namespace, and it
+      imports SOSA.
+    gesture:
+      - {do: mark, id: informative, cue: informative}
+      - {do: mark, id: imports, cue: imports}
+
+  # --- the Turtle
+  - who: narrator
+    tone: explain
+    text: >-
+      In Turtle, the relationship is a blank node, written between square
+      brackets, inside the description of spot one.
+    gesture:
+      - {do: mark, id: turtle, cue: Turtle}
+      - {do: mark, id: brackets, cue: brackets}
+
+  # --- the end
+  - who: narrator
+    tone: invite
+    text: >-
+      That was the Sample Relations module. Stay tuned for more.
+    gesture:
+      - {do: mark, id: end_module, cue: That}
+      - {do: mark, id: tuned, cue: tuned}
+  - pause: 4.0
+    gesture: [{do: mark, id: end}]

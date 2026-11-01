@@ -1,0 +1,153 @@
+# Episode 9 · Alignments: where the colours come from, and SOSA among other
+# ontologies.
+#
+# The thread: the colours of the graphs since episode 1. The chapter Notation
+# says the colour scheme is similar to that of the PROV Ontology, following the
+# PROV alignment (chapter Alignment-PROV, rdf/ontology/alignments/sosa-prov.ttl):
+# Execution ⊑ prov:Activity, FeatureOfInterest, Sample, Property ⊑ prov:Entity,
+# System ⊑ prov:Agent ⊔ prov:Entity, Procedure ⊑ prov:Plan; isSampleOf ⊑
+# prov:wasDerivedFrom, hasResult ⊑ prov:generated. Then the other alignments
+# of the chapter Alignments (upper level: DUL, DOLCE, BFO and PROV;
+# application: SAREF, IDO, OBOE; non-RDF APIs: SensorThings, Connected
+# Systems), each shown by what becomes of sosa:FeatureOfInterest, as in the
+# files and in the SSSOM spreadsheet (sosa-mappings-sssom.xlsx).
+# Marks: `{do: mark, id, cue}` (video/README.md). Paths relative to data/.
+
+narration: video/narration.yaml
+cast: video/cast.yaml
+slide: 9
+fps: 25
+actors: []
+scene: video/episodes/09-alignments/scene.py
+video: build/09-alignments/animation.mp4
+
+lines:
+  - pause: 4.0
+    gesture: [{do: mark, id: title}]
+
+  # --- the colours
+  - who: narrator
+    tone: explain
+    text: >-
+      Since the first episode, the boxes have had colours: purple for acts of
+      observation, actuation and sampling, orange for the systems that make
+      them, yellow for features, green for properties, pink for procedures.
+    gesture:
+      - {do: mark, id: colours, cue: colours}
+      - {do: mark, id: purple, cue: purple}
+      - {do: mark, id: orange, cue: orange}
+      - {do: mark, id: yellow, cue: yellow}
+      - {do: mark, id: green, cue: green}
+      - {do: mark, id: pink, cue: pink}
+  - who: narrator
+    tone: explain
+    text: >-
+      They are close to the colours of PROV, the W3C ontology for provenance.
+      And there is a reason: an alignment.
+    gesture:
+      - {do: mark, id: prov, cue: PROV}
+      - {do: mark, id: alignment, cue: alignment}
+
+  # --- PROV
+  - who: narrator
+    tone: explain
+    text: >-
+      PROV has three base classes: the activity, the entity it uses, and the
+      agent responsible for the activity.
+    gesture:
+      - {do: mark, id: activity, cue: activity}
+      - {do: mark, id: entity, cue: entity}
+      - {do: mark, id: agent, cue: agent}
+  - who: narrator
+    tone: explain
+    text: >-
+      In SOSA, observations, actuations and samplings are activities.
+    gesture:
+      - {do: mark, id: acts, cue: activities}
+  - who: narrator
+    tone: explain
+    text: >-
+      Sensors, actuators and samplers are agents, or entities. Features of
+      interest, samples and properties are entities.
+    gesture:
+      - {do: mark, id: agents, cue: agents}
+      - {do: mark, id: entities, cue: Features}
+  - who: narrator
+    tone: explain
+    text: >-
+      And a procedure is a plan, that the activity follows.
+    gesture:
+      - {do: mark, id: plan, cue: plan}
+  - who: narrator
+    tone: explain
+    text: >-
+      The arrows are aligned too: is sample of is a kind of was derived from,
+      and has result, a kind of generated.
+    gesture:
+      - {do: mark, id: arrows, cue: arrows}
+      - {do: mark, id: derived, cue: derived}
+      - {do: mark, id: generated, cue: generated}
+
+  # --- the other alignments
+  - who: narrator
+    tone: explain
+    text: >-
+      The spec aligns SOSA in the same way with other ontologies. Upper level
+      ones: D U L, DOLCE, B F O, and PROV itself.
+    gesture:
+      - {do: mark, id: other, cue: other}
+      - {do: mark, id: upper, cue: Upper}
+  - who: narrator
+    tone: explain
+    text: >-
+      Application ones: SAREF, the ETSI ontology for smart applications; I D O,
+      for industrial data; and OBOE, for observations in ecology.
+    gesture:
+      - {do: mark, id: application, cue: Application}
+      - {do: mark, id: ido, cue: industrial}
+      - {do: mark, id: oboe, cue: ecology}
+  - who: narrator
+    tone: explain
+    text: >-
+      In each of them, the yellow box finds its place: an entity, an object, an
+      endurant or a perdurant.
+    gesture:
+      - {do: mark, id: place, cue: yellow}
+  - who: narrator
+    tone: explain
+    text: >-
+      And two JSON APIs from OGC: SensorThings, and Connected Systems. There,
+      the alignment is a table, not an axiom.
+    gesture:
+      - {do: mark, id: apis, cue: APIs}
+      - {do: mark, id: table, cue: table}
+  - who: narrator
+    tone: explain
+    text: >-
+      All these mappings are also gathered in one spreadsheet, in S S S O M: a
+      simple standard for sharing ontology mappings.
+    gesture:
+      - {do: mark, id: sheet, cue: spreadsheet}
+      - {do: mark, id: sssom, cue: simple}
+
+  # --- the Turtle
+  - who: narrator
+    tone: explain
+    text: >-
+      In Turtle, an alignment is a few lines: a SOSA term, sub class of, or sub
+      property of, a PROV term.
+    gesture:
+      - {do: mark, id: turtle, cue: Turtle}
+      - {do: mark, id: lines, cue: lines}
+      - {do: mark, id: subprop, cue: property}
+
+  # --- the end
+  - who: narrator
+    tone: invite
+    text: >-
+      That was the alignments of SOSA and SSN. Stay tuned for more.
+    gesture:
+      - {do: mark, id: end_module, cue: That}
+      - {do: mark, id: tuned, cue: tuned}
+  - pause: 4.0
+    gesture: [{do: mark, id: end}]

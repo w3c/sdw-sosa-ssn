@@ -380,7 +380,7 @@ class Episode03(m.Scene):
         self.play(m.FadeOut(model), m.FadeIn(ex, shift=0.2 * m.UP), run_time=1.0)
         until(self, v.at("lines"))
         for i in range(4):
-            self.play(ex.line(i).animate.set_color(HEADING), run_time=0.3)
+            self.play(ex.mark(i), run_time=0.3)
 
         # --- the end
         until(self, v.at("module"))

@@ -19,6 +19,7 @@ Paths (logos, coastlines) start from the repository root, `REPO`.
 from __future__ import annotations
 
 import json
+import re
 import os
 from pathlib import Path
 
@@ -338,19 +339,46 @@ def pin(scene: m.Scene, *mobs: m.Mobject) -> None:
         scene.add(mob)
 
 
+# Turtle as the spec shows it: the token classes of ssn/turtle.js (highlight.js),
+# in the colours of respec's light theme (respec-w3c.js, `.hljs-*`)
+HL = {"comment": "#717277", "keyword": "#A626A4", "built_in": "#9A6A01", "literal": "#0B76C5",
+      "symbol": "#336AE3", "string": "#42803C", "number": "#986801", "type": "#986801"}
+_TTL = re.compile(r"""(?P<comment>\#.*$)
+    | (?P<string>"[^"]*"|'[^']*')
+    | (?P<keyword>@prefix|@base|\bPREFIX\b|\bBASE\b)
+    | (?P<type>\^\^[\w-]*:[\w.-]*|@[a-zA-Z]+(?:-[a-zA-Z0-9]+)*(?=\s|$))
+    | (?P<literal><[^>\s]*>|\btrue\b|\bfalse\b)
+    | (?P<number>(?<![\w:])[+-]?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?(?![\w:]))
+    | (?P<symbol>(?:[A-Za-z][\w.-]*)?:[\w-]*(?:[\w.-]*[\w-])?|_:[\w-]+)
+    | (?P<built_in>(?<![\w:])a(?![\w:]))""", re.X)
+
+
+def _turtle_colours(line: str) -> list[tuple[int, int, str]]:
+    """The highlighted tokens of a Turtle line: (start, end, colour), offsets in the line."""
+    return [(t.start(), t.end(), HL[t.lastgroup]) for t in _TTL.finditer(line)]
+
+
 def example_box(code: str, caption: str = "Example", size: float = 22) -> m.VGroup:
     """A respec `.example` box: left border `#E0CB52`, background `#FCFAEE`,
-    caption in `#574B0F`, code in mono. `box.line(i)` returns the glyphs of
-    line i (to colour it when the voice talks about it)."""
+    caption in `#574B0F`, code in mono, highlighted as in the spec (`HL`).
+    `box.line(i)` returns the glyphs of line i; `box.mark(i)` lays a band behind
+    line i, and returns its animation (when the voice talks about the line)."""
     # a single text: lines keep their spacing and indentation
     # (non-breaking spaces, which Typst keeps); an empty line keeps its height
     src = [l.replace(" ", "\u00a0") if l.strip() else "\u00a0" for l in code.splitlines()]
-    text = mono("\n".join(src), size)
+    text = mono("\n".join(src), size, "#383A42")
     spans, k = [], 0
     for l in src:
         n = sum(1 for c in l if not c.isspace())
         spans.append((k, k + n))
         k += n
+    # glyphs are the non-space characters: a token's glyphs are counted from its line's first one
+    for l, (k0, _) in zip(code.splitlines(), spans):
+        for a, b, colour in _turtle_colours(l):
+            g0 = k0 + sum(1 for c in l[:a] if not c.isspace())
+            g1 = g0 + sum(1 for c in l[a:b] if not c.isspace())
+            for glyph in text.submobjects[g0:g1]:
+                glyph.set_color(colour)
     head = txt(caption, size * 1.05, "#574B0F", weight=m.BOLD)
     body = m.VGroup(head, text).arrange(m.DOWN, buff=0.3, aligned_edge=m.LEFT)
     bg = m.Rectangle(width=body.width + 0.9, height=body.height + 0.6, stroke_width=0,
@@ -361,6 +389,17 @@ def example_box(code: str, caption: str = "Example", size: float = 22) -> m.VGro
     box = m.VGroup(bg, bar, body)
     box.text = text
     box.line = lambda i: m.VGroup(*text.submobjects[spans[i][0]:spans[i][1]])
+    pitch = text.height / len(src)
+
+    def mark(i: int) -> m.Animation:
+        # the band goes between the background and the code, and leaves with the box
+        band = m.Rectangle(width=text.width + 0.3, height=pitch, stroke_width=0, fill_color="#F2E3A0",
+                           fill_opacity=1)
+        band.move_to([text.get_center()[0], text.get_top()[1] - (i + 0.5) * pitch, 0])
+        box.submobjects.insert(2, band)
+        return m.FadeIn(band)
+
+    box.mark = mark
     return box
 
 
@@ -371,7 +410,11 @@ class Voice:
     `NARRATION_TIMELINE` points to it; `video/narrated.sh` sets it.
 
     A script marker is a gesture `{do: mark, id: …, cue: word}`: `at(id)`
-    returns the moment the word is spoken."""
+    returns the moment the word is spoken, minus `LEAD`: an animation lasts
+    0.6 to 1.8 s, so it starts a little before the word (decided by Maxime
+    Lefrançois on 2026-10-30, after the image was seen lagging the voice)."""
+
+    LEAD = 0.3
 
     def __init__(self, path: str | None = None) -> None:
         path = path or os.environ.get("NARRATION_TIMELINE")
@@ -383,7 +426,7 @@ class Voice:
     def at(self, mark: str) -> float:
         for e in self.tl["events"]:
             if e.get("id") == mark:
-                return e["t"]
+                return max(0.0, e["t"] - self.LEAD)
         raise KeyError(f"no mark '{mark}' in the episode script")
 
     def line(self, i: int) -> tuple[float, float]:

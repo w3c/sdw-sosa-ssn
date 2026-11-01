@@ -1,0 +1,164 @@
+# Episode 4 · SOSA Actuation: a window opens in Saint-Étienne, on 18 April
+# 2017 at 17:23.
+#
+# The example from the spec: ssn/rdf/examples/open-window.ttl ("Simple
+# Actuation to open a window", chapter ModelFOI, figure images/open-window.svg),
+# placed in Saint-Étienne, at the location of LocatedSampling.ttl
+# (video/scenarios.md): the window of the director's office, at the École des
+# Mines. The class diagram: images/Actuation.svg.
+# Marks: `{do: mark, id, cue}` (video/README.md). Paths relative to data/.
+
+narration: video/narration.yaml
+cast: video/cast.yaml
+slide: 4
+fps: 25
+actors: []
+scene: video/episodes/04-actuation/scene.py
+video: build/04-actuation/animation.mp4
+
+lines:
+  - pause: 4.0
+    gesture: [{do: mark, id: title}]
+
+  # --- the planet
+  - who: narrator
+    tone: explain
+    text: >-
+      Sensors observe the world. Actuators change it: they open a valve, start
+      a pump, or switch on a light.
+    gesture:
+      - {do: mark, id: globe, cue: Sensors}
+      - {do: mark, id: actuators, cue: Actuators}
+  - who: narrator
+    tone: invite
+    text: >-
+      Let's go to Saint-Étienne, in France, on the eighteenth of April twenty
+      seventeen.
+    gesture:
+      - {do: mark, id: france, cue: France}
+      - {do: mark, id: april, cue: April}
+
+  # --- the real world
+  - who: narrator
+    tone: explain
+    text: >-
+      At the Ecole des Meen, a small motor is fixed to the frame of a window:
+      the window of the director's office.
+    gesture:
+      # "École des Mines" spelt for the voice, chosen by ear (Maxime Lefrançois,
+      # 2026-10-30); the cue is the first word, which Whisper always writes the same
+      - {do: mark, id: building, cue: At}
+      - {do: mark, id: motor, cue: motor}
+  - who: narrator
+    tone: explain
+    text: >-
+      At twenty-three minutes past five in the afternoon, the motor starts to
+      turn. One minute later, the window is open.
+    gesture:
+      - {do: mark, id: date, cue: minutes}
+      - {do: mark, id: turn, cue: turn}
+      - {do: mark, id: open, cue: open}
+
+  # --- from the real world to the model
+  - who: narrator
+    tone: explain
+    text: >-
+      As with observations, each thing gets an identifier. The window is the
+      feature of interest, and its open state is the property that changes.
+    gesture:
+      - {do: mark, id: identifier, cue: identifier}
+      - {do: mark, id: window, cue: window}
+      - {do: mark, id: state, cue: state}
+  - who: narrator
+    tone: explain
+    text: >-
+      The motor is the actuator.
+    gesture:
+      - {do: mark, id: actuator, cue: actuator}
+
+  # --- the graph builds up
+  - who: narrator
+    tone: explain
+    text: >-
+      At the centre, we add the actuation itself: the act of changing the
+      state of this window, at this time.
+    gesture:
+      - {do: mark, id: actuation, cue: actuation}
+  - who: narrator
+    tone: explain
+    text: >-
+      The actuation was made by the actuator. It acts on the open state, and
+      its feature of interest is the window.
+    gesture:
+      - {do: mark, id: made, cue: made}
+      - {do: mark, id: acts, cue: acts}
+      - {do: mark, id: interest, cue: interest}
+  - who: narrator
+    tone: explain
+    text: >-
+      Its result is the new value of the property: true, the window is open.
+      It started at five twenty-three, and ended one minute later.
+    gesture:
+      - {do: mark, id: result, cue: result}
+      - {do: mark, id: "true", cue: "true"}
+      - {do: mark, id: started, cue: started}
+      - {do: mark, id: ended, cue: ended}
+
+  # --- the classes, side by side with the observation
+  - who: narrator
+    tone: explain
+    text: >-
+      Now take away the identifiers: actuation, actuator, property, feature of
+      interest. Does this shape look familiar?
+    gesture:
+      - {do: mark, id: shape, cue: identifiers}
+      - {do: mark, id: familiar, cue: familiar}
+  - who: narrator
+    tone: explain
+    text: >-
+      It is the shape of the observation in Vienna. Only the verbs change. An
+      observation is made by a sensor, and observes a property. An actuation is
+      made by an actuator, and acts on a property.
+    gesture:
+      - {do: mark, id: vienna, cue: Vienna}
+      - {do: mark, id: verbs, cue: verbs}
+      - {do: mark, id: sensor, cue: sensor}
+      - {do: mark, id: observes, cue: observes}
+      - {do: mark, id: byactuator, cue: actuator}
+      - {do: mark, id: actson, cue: acts}
+  - who: narrator
+    tone: explain
+    text: >-
+      Sensors change what we know about the world. Actuators change the world
+      itself.
+    gesture:
+      - {do: mark, id: know, cue: know}
+      - {do: mark, id: itself, cue: itself}
+  - who: narrator
+    tone: explain
+    text: >-
+      Behind an actuation, there is often a procedure, for example a rule: open
+      the window when the room gets too warm.
+    gesture:
+      - {do: mark, id: procedure, cue: procedure}
+      - {do: mark, id: rule, cue: rule}
+
+  # --- the Turtle
+  - who: narrator
+    tone: explain
+    text: >-
+      In Turtle, the whole story of this window takes just a few lines.
+    gesture:
+      - {do: mark, id: turtle, cue: Turtle}
+      - {do: mark, id: lines, cue: lines}
+
+  # --- the end
+  - who: narrator
+    tone: invite
+    text: >-
+      That was the Actuation module of SOSA. Stay tuned for more.
+    gesture:
+      - {do: mark, id: module, cue: module}
+      - {do: mark, id: tuned, cue: tuned}
+  - pause: 4.0
+    gesture: [{do: mark, id: end}]

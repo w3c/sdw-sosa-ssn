@@ -48,6 +48,14 @@ transcript in `narrator.txt`), is not distributed: it is a synthetic voice,
 generated once with Qwen3-TTS VoiceDesign from the description in
 `narration.yaml`, then reused to clone every line with the same timbre.
 
+The voice was chosen by ear by Maxime Lefrançois on 2026-10-30: seed
+1598911631 (median pitch 121 Hz), among 20 VoiceDesign draws of the same
+description made with the narration toolkit's `casting_server.py` (the draws
+and their `state.json` are in `data/build/video/casting/`). It replaces the
+first voice, seed 7 (97 Hz), kept in `data/voices/narrator-seed7.wav`.
+Changing the seed in `narration.yaml` is what makes every line be synthesised
+again: the voice cache key includes it, not the content of the clip.
+
 ## Making an episode
 
 From the root of the repository:
