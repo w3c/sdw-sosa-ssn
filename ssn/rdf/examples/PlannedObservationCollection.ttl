@@ -1,25 +1,42 @@
 @prefix ex: <https://example.org/data/> .
-@prefix qk: <http://qudt.org/vocab/quantitykind/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix iop: <https://w3id.org/iadopt/ont/> .
+@prefix uom: <http://www.ontology-of-units-of-measure.org/resource/om-2/> .
 
-ex:ObsColpH a sosa:ObservationCollection ;
-    sosa:hasUltimateFeatureOfInterest ex:Loire_River ; 
-    sosa:observedProperty qk:PH ;
-    sosa:usedProcedure ex:pH-A56 ;
+ex:ObsColMCNSF a sosa:ObservationCollection ;
+    sosa:hasUltimateFeatureOfInterest ex:Loire_River ;
+    sosa:observedProperty ex:Mass-Concentration-Of-Nitrate-In-Surface-Water ;
+    sosa:usedProcedure ex:Mass-Conc-Nitrate-Surface-Water_A257 ;
     sosa:hasFeatureOfInterest ex:SC-LaJ2 ;
 .
-ex:Loire_River
-    a sosa:FeatureOfInterest ;  
+ex:Loire_River a sosa:FeatureOfInterest ;
 .
-qk:PH 
-    a sosa:Property ;
-. 
-ex:pH-A56 
-    a sosa:ObservingProcedure ;
+ex:Mass-Concentration-Of-Nitrate-In-Surface-Water
+	a	sosa:Property,
+		iop:Variable,
+		<https://data.geoscience.fr/ncl/ObsProp/632> ;
+    rdfs:label "Mass concentration of Nitrate in Surface water" ;
+    rdfs:comment "Mass concentration of Nitrate in Surface water, measured in mg/l." ;
+    iop:hasObjectOfInterest _:b0 ;
+    iop:hasProperty <https://data.geoscience.fr/ncl/ObsProp/631>
 .
-ex:SC-LaJ2 
-    a sosa:SampleCollection ;
-    rdfs:comment "described above" ;    
+ex:Mass-Conc-Nitrate-Surface-Water_A257 a sosa:ObservingProcedure ;
+.
+ex:SC-LaJ2 a sosa:SampleCollection ;
+    rdfs:comment "described above" ;
+.
+_:b0 a iop:Entity , iop:AsymmetricSystem ;
+    iop:hasDenominator <https://data.geoscience.fr/ncl/TyFeaTy/3> ;
+    iop:hasNumerator   <https://data.geoscience.fr/ncl/ObjParSubs/3196> ;
+.
+<https://data.geoscience.fr/ncl/ObsProp/631> a iop:Property ;
+    rdfs:label "Mass concentration" ;
+.
+<https://data.geoscience.fr/ncl/TyFeaTy/3> a iop:Entity ;
+    rdfs:label "Surface water" ;
+.
+<https://data.geoscience.fr/ncl/ObjParSubs/3196> a iop:Entity ;
+    rdfs:label "nitrate" ;
 .
