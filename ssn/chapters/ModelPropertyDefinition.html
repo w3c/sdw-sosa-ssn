@@ -81,6 +81,16 @@ As demonstrated, the I-ADOPT Variable remains strictly decoupled from procedural
     [[SAREF]] is closely aligned with SSN as <a href="#SAREF-alignment">documented in the alignments chapter</a>
     so this may be used in SSN applications.
 </p>
+<p>
+    In both cases the object of <a>sosa:observedProperty</a> or <a>sosa:actsOnProperty</a> is an individual
+    member of <a>sosa:Property</a>, not a class.
+    Where a domain model defines a kind of property as a class (e.g., `ex:Temperature` declared as a subclass of
+    <a>sosa:Property</a>), the individual is a member of that class: either one generic individual shared by all
+    features of interest (e.g., `ex:temperature a ex:Temperature`), or one individual per feature of interest
+    (e.g., `&lt;office/1/temperature&gt; a ex:Temperature`), whose type then relates it to its kind.
+    The class itself should not be used as the object of these predicates, since it would then denote both a class
+    and an individual (<a href="https://www.w3.org/TR/owl2-new-features/#F12:_Punning">OWL punning</a>).
+</p>
 <p class="note">
     Where a property is defined as applying to a specific feature of interest, it cannot be used for an observation
     concerning any other feature of interest.
