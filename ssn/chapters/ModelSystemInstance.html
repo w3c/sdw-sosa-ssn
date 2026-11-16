@@ -1,10 +1,12 @@
 <h3>Generic or Specific Instances of sosa:System</h3>
 <p>
-    SSN does not specify whether an instance of <a>sosa:System</a>
-    should be generic (e.g., `ex:TemperatureSensor`,
+    An instance of <a>sosa:System</a> may be
+    generic (e.g., `ex:TemperatureSensor`,
     `ex:LightActuator`), or specific to a single feature of interest (e.g.,
     `&lt;temperatureSensor/84&gt;`, `&lt;light/112&gt;`).
-    Implementers are free to choose either way of modeling.
+    The recommended pattern, described in <a href="#ModelSystemType"></a>, is to represent a system type as a
+    subclass of <a>sosa:System</a> and an individual system as an instance of that class, as in the second example
+    below.
 </p>
 <p>
     On the other hand, one SHOULD NOT use <a href="https://www.w3.org/TR/owl2-new-features/#F12:_Punning">OWL
