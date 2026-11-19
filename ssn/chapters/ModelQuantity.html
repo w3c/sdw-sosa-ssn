@@ -12,6 +12,16 @@
     Another option is `cdt:ucum` from <i>Custom Datatypes</i> [[CDT]], but use of custom datatypes requires an extension
     to standard RDF and OWL processors.
 </p>
+<p>
+    Where the unit of measure is fixed by the definition of the observed property, or is given once for a collection
+    of observations (see <em>Collections</em> below), the numeric value may be given as a typed literal using
+    <a>sosa:hasSimpleResult</a>.
+    Otherwise, a `qudt:QuantityValue` given using <a>sosa:hasResult</a> carries the numeric value together with its
+    unit (see <em>Single values</em> below).
+    A literal result should have an explicit datatype, such as `xsd:string`, `xsd:decimal`, `xsd:double`, or `xsd:boolean`.
+    in Turtle, `24.9` is an `xsd:decimal`, whereas `"24.9"` is a string, which cannot be compared or computed with
+    as a number.
+</p>
 
 <h4>Single values</h4>
 <p>
