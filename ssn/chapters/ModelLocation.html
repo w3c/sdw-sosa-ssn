@@ -22,6 +22,13 @@
     In case of classes, e.g., specific types of features of interest such as rivers, these MAY be explicitly defined as
     subclasses of `geo:Feature`.
 </p>
+<p>
+    GeoSPARQL is the vocabulary used in the patterns below.
+    Where only a point position in WGS84 is needed, the
+    <a href="https://www.w3.org/2003/01/geo/">W3C Basic Geo (WGS84 lat/long) Vocabulary</a> is a lightweight
+    alternative used in many applications: its properties `lat`, `long`, and `alt` give the position of the located
+    entity directly, without a geometry node.
+</p>
 
 <h5>Systems, Platforms, Deployments</h5>
 
@@ -69,6 +76,14 @@
 <h5>Samples, Features</h5>
 
 <p>Similarly, Location can be associated directly or indirectly with a <a href="#SOSASample">Sample</a>. </p>
+
+<p>
+    The location of any other <a href="#SOSAFeatureOfInterest">FeatureOfInterest</a> is attached to the feature itself,
+    in the same way.
+    Where the location changes from one <a href="#SOSAObservation">Observation</a> to the next, e.g., for a sensor on
+    a moving platform, it may be given on the Sample observed, or on the act of Sampling that generated it, as shown
+    below, rather than on the System or its Platform.
+</p>
 
 <p>
     Observations of the atmosphere are necessarily made at a specific location.
