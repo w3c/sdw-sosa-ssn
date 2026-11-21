@@ -15,6 +15,14 @@
             The terms in the `ssn:` namespaces remain in the RDF artefacts to protect backward
             compatibility of existing deployments, but are marked `deprecated`.
         </p>
+        <p>New data and queries should therefore name every core term in the `sosa:` namespace, e.g.,
+            `sosa:hasProperty` rather than `ssn:hasProperty`.
+            Term names are case-sensitive, and a misspelt or wrongly cased name, e.g., `sosa:madeBysensor`, is
+            another IRI, which RDF processors do not report as an error.
+            Checking the `sosa:` and `ssn:` IRIs used in data or queries against the terms declared in the RDF
+            artefacts, or against the <a href="#index-of-classes-and-properties">index of classes and properties</a>,
+            detects such errors.
+        </p>
     </aside>
 </section>
 
